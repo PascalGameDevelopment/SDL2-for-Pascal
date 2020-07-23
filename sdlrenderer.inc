@@ -771,5 +771,5 @@ function SDL_GL_UnbindTexture(texture: PSDL_Texture): SInt32 cdecl; external SDL
    *  a contiguous block of Y and U/V planes in the proper order, but
    *  this function is available if your pixel data is not contiguous.
    *}
-function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: PUInt8; Ypitch: SInt32; Uplane: PUInt8; UPitch: SInt32; Vplane: UInt8; VPitch: SInt32):SInt32;
+function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: PUInt8; Ypitch: SInt32; Uplane: PUInt8; UPitch: SInt32; Vplane: PUInt8; VPitch: SInt32):SInt32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateYUVTexture' {$ENDIF} {$ENDIF};
