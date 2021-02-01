@@ -87,7 +87,7 @@ const
    it should NOT be used to fill a version structure, instead you should
    use the SDL_TTF_VERSION() macro.
  *}
-function TTF_Linked_Version: TSDL_Version cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Linked_Version' {$ENDIF} {$ENDIF};
+function TTF_Linked_Version: PSDL_Version cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Linked_Version' {$ENDIF} {$ENDIF};
 
 {* ZERO WIDTH NO-BREAKSPACE (Unicode byte order mark) *}
 const
