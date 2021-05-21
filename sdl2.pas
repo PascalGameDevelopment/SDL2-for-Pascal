@@ -431,9 +431,9 @@ end;
 
 //from "sdl_events.h"
 
-function SDL_GetEventState(type_: UInt32): UInt8;
+function SDL_GetEventState(evType: TSDL_EventType): UInt8;
 begin
-  Result := SDL_EventState(type_, SDL_QUERY);
+  Result := SDL_EventState(evType, SDL_QUERY);
 end;
 
 // from "sdl_timer.h"
