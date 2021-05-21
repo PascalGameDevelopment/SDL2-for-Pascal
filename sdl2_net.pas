@@ -70,7 +70,7 @@ procedure SDL_NET_VERSION(Out X: TSDL_Version);
 it should NOT be used to fill a version structure, instead you should
 use the SDL_NET_VERSION() macro.
 *}
-   procedure SDLNet_Linked_Version() cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_Linked_Version' {$ENDIF} {$ENDIF};
+   function SDLNet_Linked_Version: PSDL_Version cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_Linked_Version' {$ENDIF} {$ENDIF};
    
    {* Initialize/Cleanup the network API
    SDL must be initialized before calls to functions in this library,
