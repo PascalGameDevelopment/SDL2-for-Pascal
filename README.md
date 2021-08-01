@@ -32,6 +32,23 @@ Please use the GitHub issue tracker for bug reports.
 - (Continously atm.) Translate integer aliases into typed enums. See PR [#4](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/4) for reference.
 - (Continously) Check FPC/Delphi compatibility.
 
+## Versions
+
+The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/tags)) refers to the version of this translation package [SDL2 for Pascal](https://github.com/PascalGameDevelopment/SDL2-for-Pascal), not the `SDL2 library`.
+
+### v2.x (planned)
+
+- be up-to-date with version 2.0.14 of the `SDL2 library`
+- replaced all aliases by typed enums
+- improve Delphi-compatibility (and even more important, DO NOT break it)
+
+### v2.0
+
+- first official release of the PGD community fork of the [Pascal-SDL-2-Headers](https://github.com/ev1313/Pascal-SDL-2-Headers)
+  - its latest version git tag is 1.72, in the sdl2.pas it goes even up to version 1.80; hence starting with v2.0 for this fork is a senseful distinction
+- this ia a highly Delphi-compatible and stable fallback package
+- loosely is up-to-date with version 2.0.4 of the `SDL2 library`
+
 ## License
 
 You may license the Pascal SDL2 units either
