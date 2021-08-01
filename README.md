@@ -20,11 +20,17 @@ Use the `sdl2` unit for the main SDL2 library (should be always needed). Units f
  - [`sdl2_net`](https://www.libsdl.org/projects/SDL_net/)
  - [`sdl2_ttf`](https://www.libsdl.org/projects/SDL_ttf/)
 
-## Bugs / Contributions
+## Bugs / Contributions / ToDos
 
-If you have any contributions, feel free to drop a pull request or send in a patch.
+If you have any contributions or bugfixes, feel free to drop a pull request or send in a patch.
 
-Same goes for bugs, please use the GitHub issue tracker.
+Please use the GitHub issue tracker for bug reports.
+
+### ToDos
+
+- (Continously) Update files by new SDL2 functions and types which are present in more recent SDL2 versions.
+- (Continously atm.) Translate integer aliases into typed enums. See PR [#4](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/4) for reference.
+- (Continously) Check FPC/Delphi compatibility.
 
 ## License
 
