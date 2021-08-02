@@ -46,9 +46,11 @@ Ex: `SDL_INIT_VIDEO` does not change into `SDLInitVideo`.
 2. Names of function parameters shall not be modified or "pascalified"
 Ex.: `type_` in `function SDL_GetEventState(type_: TSDL_EventType): UInt8` does not change into `evType`.
 
-3. Use `UInt8`, `UInt16`, `UInt32`, `SInt8`, `SInt16`, `SInt32` and so on as often as possible.
-Do not use the Pascal equivalents.
-Ex.: Use `UInt32` instead of `Cardinal`, `LongWord` or `DWord`.
+3. Use C data types like `UInt8`, `UInt16`, `UInt32`, `SInt8`, `SInt16`,
+`SInt32`, `Float` and so on as often as possible if it is used  in the
+original code. Do not replace them by Pascal equivalents.
+Ex.: Use `UInt32` (if used in
+the original code) instead of `Cardinal`, `LongWord` or `DWord` .
 
 ## Versions
 
