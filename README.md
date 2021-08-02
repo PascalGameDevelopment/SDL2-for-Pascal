@@ -29,8 +29,26 @@ Please use the GitHub issue tracker for bug reports.
 ### ToDos
 
 - (Continously) Update files by new SDL2 functions and types which are present in more recent SDL2 versions.
-- (Continously atm.) Translate integer aliases into typed enums. See PR [#4](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/4) for reference.
+- (Continously atm.) Translate integer aliases into typed enums.
+See PR [#4](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/4) for reference.
 - (Continously) Check FPC/Delphi compatibility.
+
+## Code style guidelines
+
+The main principle is to stay as tight as possible at the names in the C headers.
+These guidelines aim to have better consistency in this community project and make
+it easier to find certain code parts in the C headers/Pascal includes. Feel free
+to discuss or extend these guidelines, use the issue tracker.
+
+1. Names of C defines (constants) shall not be modified or "pascalified"
+Ex: `SDL_INIT_VIDEO` does not change into `SDLInitVideo`.
+
+2. Names of function parameters shall not be modified or "pascalified"
+Ex.: `type_` in `function SDL_GetEventState(type_: TSDL_EventType): UInt8` does not change into 'evType`.
+
+3. Use `UInt8`, `UInt16`, `UInt32`, `SInt8`, `SInt16`, `SInt32` and so on as often as possible.
+Do not use the Pascal equivalents.
+Ex.: Use `UInt32` instead of `Cardinal`, `LongWord` or `DWord`.
 
 ## Versions
 
