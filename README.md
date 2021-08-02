@@ -44,7 +44,7 @@ to discuss or extend these guidelines, use the issue tracker.
 Ex: `SDL_INIT_VIDEO` does not change into `SDLInitVideo`.
 
 2. Names of function parameters shall not be modified or "pascalified"
-Ex.: `type_` in `function SDL_GetEventState(type_: TSDL_EventType): UInt8` does not change into 'evType`.
+Ex.: `type_` in `function SDL_GetEventState(type_: TSDL_EventType): UInt8` does not change into `evType`.
 
 3. Use `UInt8`, `UInt16`, `UInt32`, `SInt8`, `SInt16`, `SInt32` and so on as often as possible.
 Do not use the Pascal equivalents.
