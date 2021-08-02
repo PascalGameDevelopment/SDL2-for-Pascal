@@ -47,8 +47,7 @@ unit sdl2;
   "sdl_timer.h",
   "sdl_touch.h",
   "sdl_version.h",
-  "sdl_video.h",
-  "sdl_types.h"
+  "sdl_video.h"
 
   I will not translate:
   "sdl_opengl.h",
@@ -136,7 +135,7 @@ const
     {$ENDIF}
   {$ENDIF}
 
-{$I sdltype.inc}
+{$I sdlstdinc.inc}
 {$I sdlversion.inc}
 {$I sdlerror.inc}
 {$I sdlplatform.inc}
@@ -171,7 +170,6 @@ const
 {$I sdlfilesystem.inc}
 {$I sdllog.inc}
 {$I sdlsystem.inc}
-{$I sdlstdinc.inc}
 {$I sdl.inc}
 
 implementation
