@@ -36,7 +36,7 @@ Please use the GitHub issue tracker for bug reports.
 
 The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/tags)) refers to the version of this translation package [SDL2 for Pascal](https://github.com/PascalGameDevelopment/SDL2-for-Pascal), not the `SDL2 library`.
 
-### v2.x (planned)
+### v2.x (work in progress)
 
 - be up-to-date with version 2.0.14 of the `SDL2 library`
 - replaced all aliases by typed enums
