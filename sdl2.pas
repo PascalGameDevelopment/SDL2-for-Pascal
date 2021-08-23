@@ -163,6 +163,7 @@ const
 {$I sdlhaptic.inc}
 {$I sdltouch.inc}
 {$I sdlgesture.inc}
+{$I sdlsensor.inc}
 {$I sdlsyswm.inc}
 {$I sdlevents.inc}
 {$I sdlclipboard.inc}
