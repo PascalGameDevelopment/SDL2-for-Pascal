@@ -20,20 +20,21 @@ type
   end;
 
   {**
-   *  A rectangle, with the origin at the upper left.
-   *
-   *  SDL_RectEmpty
-   *  SDL_RectEquals
-   *  SDL_HasIntersection
-   *  SDL_IntersectRect
-   *  SDL_UnionRect
-   *  SDL_EnclosePoints
+   *  A rectangle, with the origin at the upper left. (integer)
    *}
-
   PSDL_Rect = ^TSDL_Rect;
   TSDL_Rect = record
     x,y: SInt32;
     w,h: SInt32;
+  end;
+
+  {**
+   *  A rectangle, with the origin at the upper left. (floating point)
+   *}
+  PSDL_FRect = ^TSDL_FRect;
+  TSDL_FRect = record
+    x,y: Single;
+    w,h: Single;
   end;
 
   {**
