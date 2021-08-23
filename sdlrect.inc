@@ -2,15 +2,21 @@
 
 type
   {**
-   *  The structure that defines a point
-   *
-   *  SDL_EnclosePoints
+   *  The structure that defines a point (integer)
    *}
-
   PSDL_Point = ^TSDL_Point;
   TSDL_Point = record
     x: SInt32;
     y: SInt32;
+  end;
+
+  {**
+   *  The structure that defines a point (floating point)
+   *}
+  PSDL_FPoint = ^TSDL_FPoint;
+  TSDL_FPoint = record
+    x: Single;
+    y: Single;
   end;
 
   {**

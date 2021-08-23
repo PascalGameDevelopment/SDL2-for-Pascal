@@ -586,6 +586,18 @@ function SDL_RenderClear(renderer: PSDL_Renderer): SInt32 cdecl; external SDL_Li
 function SDL_RenderDrawPoint(renderer: PSDL_Renderer; x: SInt32; y: SInt32): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawPoint' {$ENDIF} {$ENDIF};
 
   {**
+   *  Draw a point on the current rendering target.
+   *
+   *    renderer The renderer which should draw a point.
+   *    x        The x coordinate of the point.
+   *    y        The y coordinate of the point.
+   *
+   *    0 on success, or -1 on error
+   *}
+function SDL_RenderDrawPointF(renderer: PSDL_Renderer; x, y: single): SInt32 cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawPointF' {$ENDIF} {$ENDIF};
+
+  {**
    *  Draw multiple points on the current rendering target.
    *
    *   renderer The renderer which should draw multiple points.
@@ -595,6 +607,18 @@ function SDL_RenderDrawPoint(renderer: PSDL_Renderer; x: SInt32; y: SInt32): SIn
    *   0 on success, or -1 on error
    *}
 function SDL_RenderDrawPoints(renderer: PSDL_Renderer; points: PSDL_Point; count: SInt32): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawPoints' {$ENDIF} {$ENDIF};
+
+  {**
+   *  Draw multiple points on the current rendering target.
+   *
+   *    renderer The renderer which should draw multiple points.
+   *    points   The points to draw
+   *    count    The number of points to draw
+   *
+   *    0 on success, or -1 on error
+   *}
+function SDL_RenderDrawPointsF(renderer: PSDL_Renderer; points: PSDL_FPoint; count: SInt32): SInt32 cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawPointsF' {$ENDIF} {$ENDIF};
 
   {**
    *  Draw a line on the current rendering target.
@@ -610,6 +634,20 @@ function SDL_RenderDrawPoints(renderer: PSDL_Renderer; points: PSDL_Point; count
 function SDL_RenderDrawLine(renderer: PSDL_Renderer; x1: SInt32; y1: SInt32; x2: SInt32; y2: SInt32): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawLine' {$ENDIF} {$ENDIF};
 
   {**
+   *  Draw a line on the current rendering target.
+   *
+   *    renderer The renderer which should draw a line.
+   *    x1       The x coordinate of the start point.
+   *    y1       The y coordinate of the start point.
+   *    x2       The x coordinate of the end point.
+   *    y2       The y coordinate of the end point.
+   *
+   *  0 on success, or -1 on error
+   *}
+function SDL_RenderDrawLineF(renderer: PSDL_Renderer; x1, y1, x2, y2: single): SInt32 cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawLineF' {$ENDIF} {$ENDIF};
+
+  {**
    *  \brief Draw a series of connected lines on the current rendering target.
    *
    *  \param renderer The renderer which should draw multiple lines.
@@ -619,6 +657,18 @@ function SDL_RenderDrawLine(renderer: PSDL_Renderer; x1: SInt32; y1: SInt32; x2:
    *  \return 0 on success, or -1 on error
    *}
 function SDL_RenderDrawLines(renderer: PSDL_Renderer; points: PSDL_Point; count: SInt32): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawLines' {$ENDIF} {$ENDIF};
+
+  {**
+   *  Draw a series of connected lines on the current rendering target.
+   *
+   *    renderer The renderer which should draw multiple lines.
+   *    points   The points along the lines
+   *    count    The number of points, drawing count-1 lines
+   *
+   *    0 on success, or -1 on error
+   *}
+function SDL_RenderDrawLinesF(renderer: PSDL_Renderer; points: PSDL_FPoint; count: SInt32): SInt32 cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawLinesF' {$ENDIF} {$ENDIF};
 
   {**
    *  Draw a rectangle on the current rendering target.
