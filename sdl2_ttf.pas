@@ -72,7 +72,7 @@ const
 const
   SDL_TTF_MAJOR_VERSION = 2;
   SDL_TTF_MINOR_VERSION = 0;
-  SDL_TTF_PATCHLEVEL    = 12;
+  SDL_TTF_PATCHLEVEL    = 15;
 
 Procedure SDL_TTF_VERSION(Out X:TSDL_Version);
 
@@ -81,7 +81,6 @@ const
   TTF_MAJOR_VERSION = SDL_TTF_MAJOR_VERSION;
   TTF_MINOR_VERSION = SDL_TTF_MINOR_VERSION;
   TTF_PATCHLEVEL    = SDL_TTF_PATCHLEVEL;
-  //TTF_VERSION(X)    = SDL_TTF_VERSION(X);
 
  {* This function gets the version of the dynamically linked SDL_ttf library.
    it should NOT be used to fill a version structure, instead you should
@@ -261,8 +260,21 @@ procedure TTF_Quit() cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} 
 {* Check if the TTF engine is initialized *}
 function TTF_WasInit: Boolean cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_WasInit' {$ENDIF} {$ENDIF};
 
+{* Get the kerning size of two glyphs
+
+   DEPRECATED: this function requires FreeType font indexes, not glyphs,
+     by accident, which we don't expose through this API, so it could give
+     wildly incorrect results, especially with non-ASCII values.
+     Going forward, please use TTF_GetFontKerningSizeGlyphs() instead, which
+     does what you probably expected this function to do.
+*}
+function TTF_GetFontKerningSize(font: PTTF_Font; prev_index, index: Integer): Integer cdecl;
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSize' {$ENDIF} {$ENDIF};
+  deprecated 'This function requires FreeType font indexes, not glyphs. Use TTF_GetFontKerningSizeGlyphs() instead';
+
 {* Get the kerning size of two glyphs *}
-function TTF_GetFontKerningSize(font: PTTF_Font; prev_index, index: Integer): Integer cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSize' {$ENDIF} {$ENDIF};
+function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch, ch: UInt16): Integer cdecl;
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
 
 {* We'll use SDL for reporting errors *}
 function TTF_SetError(const fmt: PAnsiChar): SInt32; cdecl;
