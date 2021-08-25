@@ -65,7 +65,7 @@ const
 const
   SDL_MIXER_MAJOR_VERSION = 2;
   SDL_MIXER_MINOR_VERSION = 0;
-  SDL_MIXER_PATCHLEVEL    = 0;
+  SDL_MIXER_PATCHLEVEL    = 4;
 
   {* This macro can be used to fill a version structure with the compile-time
    * version of the SDL_mixer library.
@@ -89,12 +89,17 @@ function Mix_Linked_Version: PSDL_Version cdecl; external MIX_LibName {$IFDEF DE
 const
   MIX_INIT_FLAC        = $00000001;
   MIX_INIT_MOD         = $00000002;
-  MIX_INIT_MODPLUG     = $00000004;
   MIX_INIT_MP3         = $00000008;
   MIX_INIT_OGG         = $00000010;
+  MIX_INIT_MID         = $00000020;
+  MIX_INIT_OPUS        = $00000040;
+
+{ // Removed in SDL2_mixer 2.0.2
+  MIX_INIT_MODPLUG     = $00000004;
   MIX_INIT_FLUIDSYNTH  = $00000020;
+}
 type
-  TMIX_InitFlags = Byte;
+  TMIX_InitFlags = Integer;
 
   {* Loads dynamic libraries and prepares them for use.  Flags should be
      one or more flags from MIX_InitFlags OR'd together.
@@ -116,7 +121,7 @@ const
 const
   MIX_DEFAULT_FREQUENCY = 22050;
   MIX_DEFAULT_CHANNELS = 2;
-  MIX_MAX_VOLUME       = 128; {* Volume of a chunk *}
+  MIX_MAX_VOLUME       = SDL2.SDL_MIX_MAXVOLUME; {* Volume of a chunk *}
 
 {$IFDEF FPC}
    {$IF DEFINED(ENDIAN_LITTLE)}
@@ -142,16 +147,19 @@ type
 type
   TMix_Fading = (MIX_NO_FADING, MIX_FADING_OUT, MIX_FADING_IN);
 
-  TMix_MusicType = (MUS_NONE,
-                    MUS_CMD,
-                    MUS_WAV,
-                    MUS_MOD,
-                    MUS_MID,
-                    MUS_OGG,
-                    MUS_MP3,
-                    MUS_MP3_MAD,
-                    MUS_FLAC,
-                    MUS_MODPLUG);
+  TMix_MusicType = (
+    MUS_NONE,
+    MUS_CMD,
+    MUS_WAV,
+    MUS_MOD,
+    MUS_MID,
+    MUS_OGG,
+    MUS_MP3,
+    MUS_MP3_MAD_UNUSED,
+    MUS_FLAC,
+    MUS_MODPLUG_UNUSED,
+    MUS_OPUS
+  );
 
   {* The internal format for a music chunk interpreted via mikmod *}
   PMix_Music = ^TMix_Music;
@@ -213,10 +221,18 @@ procedure Mix_FreeMusic(music: PMix_Music) cdecl; external MIX_LibName {$IFDEF D
      These return values are static, read-only data; do not modify or free it.
      The pointers remain valid until you call Mix_CloseAudio().
   *}
-function Mix_GetNumChunkDecoders: Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetNumChunkDecoders' {$ENDIF} {$ENDIF};
-function Mix_GetChunkDecoder(index: Integer): PAnsiChar cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetChunkDecoder' {$ENDIF} {$ENDIF};
-function Mix_GetNumMusicDecoders: Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetNumMusicDecoders' {$ENDIF} {$ENDIF};
-function Mix_GetMusicDecoder(index: Integer): PAnsiChar cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicDecoder' {$ENDIF} {$ENDIF};
+function Mix_GetNumChunkDecoders: Integer cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetNumChunkDecoders' {$ENDIF} {$ENDIF};
+function Mix_GetChunkDecoder(index: Integer): PAnsiChar cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetChunkDecoder' {$ENDIF} {$ENDIF};
+function Mix_HasChunkDecoder(const name: PAnsiChar): TSDL_Bool cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_HasChunkDecoder' {$ENDIF} {$ENDIF};
+function Mix_GetNumMusicDecoders: Integer cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetNumMusicDecoders' {$ENDIF} {$ENDIF};
+function Mix_GetMusicDecoder(index: Integer): PAnsiChar cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicDecoder' {$ENDIF} {$ENDIF};
+function Mix_HasMusicDecoder(const name: PAnsiChar): TSDL_Bool cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_HasMusicDecoder' {$ENDIF} {$ENDIF};
 
   {* Find out the music format of a mixer music, or the currently playing
      music, if 'music' is NULL.
@@ -615,8 +631,8 @@ function Mix_PausedMusic: Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$
   {* Set the current position in the music stream.
      This returns 0 if successful, or -1 if it failed or isn't implemented.
      This function is only implemented for MOD music formats (set pattern
-     order number) and for OGG, FLAC, MP3_MAD, and MODPLUG music (set
-     position in seconds), at the moment.
+     order number) and for OGG, FLAC, MP3_MAD, MP3_MPG and MODPLUG music
+     (set position in seconds), at the moment.
   *}
 function Mix_SetMusicPosition(position: Double): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetMusicPosition' {$ENDIF} {$ENDIF};
 
@@ -653,6 +669,7 @@ procedure Mix_CloseAudio cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MAC
 {* We'll use SDL for reporting errors *}
 function Mix_SetError(const fmt: PAnsiChar): SInt32; cdecl;
 function Mix_GetError: PAnsiChar; cdecl;
+procedure Mix_ClearError(); cdecl;
 
 implementation
 
@@ -691,6 +708,11 @@ end;
 function Mix_GetError: PAnsiChar; cdecl;
 begin
   Result := SDL_GetError();
+end;
+
+procedure Mix_ClearError; cdecl;
+begin
+  SDL_ClearError()
 end;
 
 end.
