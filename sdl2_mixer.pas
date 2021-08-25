@@ -244,7 +244,7 @@ function Mix_GetMusicType(music: TMix_Music): TMix_MusicType cdecl; external MIX
      or add a custom mixer filter for the stream data.
   *}
 type
-  TMix_Func = procedure(udata: Pointer; stream: PUInt8; len: Integer);
+  TMix_Func = procedure(udata: Pointer; stream: PUInt8; len: Integer) cdecl;
 
 procedure Mix_SetPostMix(func: TMix_Func; arg: Pointer) cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPostMix' {$ENDIF} {$ENDIF};
 
@@ -253,12 +253,13 @@ procedure Mix_SetPostMix(func: TMix_Func; arg: Pointer) cdecl; external MIX_LibN
    *}
 procedure Mix_HookMusic(func: TMix_Func; arg: Pointer) cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_HookMusic' {$ENDIF} {$ENDIF};
 
-  {* Add your own callback when the music has finished playing.
-     This callback is only called if the music finishes naturally.
+  {* Add your own callback when the music has finished playing
+   *  or when it is stopped from a call to Mix_HaltMusic.
    *}
 type
   PMix_Music_Finished = ^TMix_Music_Finished;
-  TMix_Music_Finished = procedure();
+  TMix_Music_Finished = procedure() cdecl;
+
 procedure Mix_HookMusicFinished(music_finished: PMix_Music_Finished) cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_HookMusicFinished' {$ENDIF} {$ENDIF};
 
   {* Get a pointer to the user data for the current music hook *}
@@ -273,7 +274,8 @@ function Mix_GetMusicHookData: Pointer cdecl; external MIX_LibName {$IFDEF DELPH
    *  before calling your callback.
    *}
 type
-  TMix_Channel_Finished = procedure(channel: Integer);
+  TMix_Channel_Finished = procedure(channel: Integer) cdecl;
+
 procedure Mix_ChannelFinished(channel_finished: TMix_Channel_Finished) cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ChannelFinished' {$ENDIF} {$ENDIF};
 
   {* Special Effects API by ryan c. gordon. (icculus@icculus.org) *}
@@ -298,7 +300,7 @@ const
    * DO NOT EVER call SDL_LockAudio() from your callback function!
    *}
 type
-  TMix_EffectFunc_t = procedure(chan: Integer; stream: Pointer; len: Integer; udata: Pointer);
+  TMix_EffectFunc_t = procedure(chan: Integer; stream: Pointer; len: Integer; udata: Pointer) cdecl;
 
   {*
    * This is a callback that signifies that a channel has finished all its
@@ -310,7 +312,7 @@ type
    * DO NOT EVER call SDL_LockAudio() from your callback function!
    *}
 type
-  TMix_EffectDone_t = procedure(chan: Integer; udata: Pointer);
+  TMix_EffectDone_t = procedure(chan: Integer; udata: Pointer) cdecl;
 
   {* Register a special effect function. At mixing time, the channel data is
    *  copied into a buffer and passed through each registered effect function.
@@ -654,7 +656,7 @@ function Mix_SetSoundFonts(paths: PAnsiChar): Integer cdecl; external MIX_LibNam
 function Mix_GetSoundFonts: PAnsiChar cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetSoundFonts' {$ENDIF} {$ENDIF};
 
 type
-  TMix_SoundFunc = function(c: PAnsiChar; p: Pointer): Integer;
+  TMix_SoundFunc = function(c: PAnsiChar; p: Pointer): Integer cdecl;
 
 function Mix_EachSoundFont(func: TMix_SoundFunc; data: Pointer): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_EachSoundFont' {$ENDIF} {$ENDIF};
 
