@@ -70,7 +70,7 @@ const
   {* Printable format: "%d.%d.%d", MAJOR, MINOR, PATCHLEVEL *}
   SDL_IMAGE_MAJOR_VERSION = 2;
   SDL_IMAGE_MINOR_VERSION = 0;
-  SDL_IMAGE_PATCHLEVEL    = 0;
+  SDL_IMAGE_PATCHLEVEL    = 5;
 
   {* This macro can be used to fill a version structure with the compile-time
    * version of the SDL_image library.
@@ -133,6 +133,7 @@ function IMG_isLBM(src: PSDL_RWops): SInt32 cdecl; external IMG_LibName {$IFDEF 
 function IMG_isPCX(src: PSDL_RWops): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isPCX' {$ENDIF} {$ENDIF};
 function IMG_isPNG(src: PSDL_RWops): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isPNG' {$ENDIF} {$ENDIF};
 function IMG_isPNM(src: PSDL_RWops): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isPNM' {$ENDIF} {$ENDIF};
+function IMG_isSVG(src: PSDL_RWops): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isSVG' {$ENDIF} {$ENDIF};
 function IMG_isTIF(src: PSDL_RWops): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isTIF' {$ENDIF} {$ENDIF};
 function IMG_isXCF(src: PSDL_RWops): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '-IMG_isXCF' {$ENDIF} {$ENDIF};
 function IMG_isXPM(src: PSDL_RWops): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isXPM' {$ENDIF} {$ENDIF};
@@ -149,6 +150,7 @@ function IMG_LoadLBM_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibNa
 function IMG_LoadPCX_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadPCX_RW' {$ENDIF} {$ENDIF};
 function IMG_LoadPNG_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadPNG_RW' {$ENDIF} {$ENDIF};
 function IMG_LoadPNM_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadPNM_RW' {$ENDIF} {$ENDIF};
+function IMG_LoadSVG_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadSVG_RW' {$ENDIF} {$ENDIF};
 function IMG_LoadTGA_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadTGA_RW' {$ENDIF} {$ENDIF};
 function IMG_LoadTIF_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadTIF_RW' {$ENDIF} {$ENDIF};
 function IMG_LoadXCF_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadXCF_RW' {$ENDIF} {$ENDIF};
@@ -159,8 +161,14 @@ function IMG_LoadWEBP_RW(src: PSDL_RWops): PSDL_Surface cdecl; external IMG_LibN
 function IMG_ReadXPMFromArray(xpm: PPChar): PSDL_Surface cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_ReadXPMFromArray' {$ENDIF} {$ENDIF};
 
   {* Individual saving functions *}
-function IMG_SavePNG(surface: PSDL_Surface; const _file: PAnsiChar): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SavePNG' {$ENDIF} {$ENDIF};
-function IMG_SavePNG_RW(surface: PSDL_Surface; dst: PSDL_RWops; freedst: SInt32): SInt32 cdecl; external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SavePNG_RW' {$ENDIF} {$ENDIF};
+function IMG_SavePNG(surface: PSDL_Surface; const _file: PAnsiChar): SInt32 cdecl;
+  external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SavePNG' {$ENDIF} {$ENDIF};
+function IMG_SavePNG_RW(surface: PSDL_Surface; dst: PSDL_RWops; freedst: SInt32): SInt32 cdecl;
+  external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SavePNG_RW' {$ENDIF} {$ENDIF};
+function IMG_SaveJPG(surface: PSDL_Surface; const _file: PAnsiChar; quality: SInt32): SInt32 cdecl;
+  external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SaveJPG' {$ENDIF} {$ENDIF};
+function IMG_SaveJPG_RW(surface: PSDL_Surface; dst: PSDL_RWops; freedst: SInt32; quality: SInt32): SInt32 cdecl;
+  external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SaveJPG_RW' {$ENDIF} {$ENDIF};
 
 {* We'll use SDL for reporting errors *}
 function IMG_SetError(fmt: PAnsiChar): SInt32; cdecl;
