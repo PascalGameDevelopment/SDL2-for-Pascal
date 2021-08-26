@@ -573,14 +573,14 @@ type
    *  Checks to see if certain event types are in the event queue.
    *}
 
-  function SDL_HasEvent(evType: TSDL_EventType): TSDL_Bool  cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasEvent' {$ENDIF} {$ENDIF};
+  function SDL_HasEvent(type_: TSDL_EventType): TSDL_Bool  cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasEvent' {$ENDIF} {$ENDIF};
   function SDL_HasEvents(minType, maxType: TSDL_EventType): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasEvents' {$ENDIF} {$ENDIF};
 
   {**
    *  This function clears events from the event queue
    *}
 
-  procedure SDL_FlushEvent(evType: TSDL_EventType) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlushEvent' {$ENDIF} {$ENDIF};
+  procedure SDL_FlushEvent(type_: TSDL_EventType) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlushEvent' {$ENDIF} {$ENDIF};
   procedure SDL_FlushEvents(minType, maxType: TSDL_EventType) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlushEvents' {$ENDIF} {$ENDIF};
 
   {**
@@ -629,7 +629,7 @@ type
 type
   PSDL_EventFilter = ^TSDL_EventFilter;
   {$IFNDEF GPC}
-    TSDL_EventFilter = function( userdata: Pointer; event: PSDL_Event ): Integer; cdecl;
+    TSDL_EventFilter = function(userdata: Pointer; event: PSDL_Event): Integer; cdecl;
   {$ELSE}
     TSDL_EventFilter = function( userdata: Pointer; event: PSDL_Event ): Integer;
   {$ENDIF}
@@ -700,9 +700,9 @@ const
    *     current processing state of the specified event.
    *}
 
-  function SDL_EventState(evType: TSDL_EventType; state: SInt32): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventState' {$ENDIF} {$ENDIF};
+  function SDL_EventState(type_: TSDL_EventType; state: SInt32): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventState' {$ENDIF} {$ENDIF};
 
-  function SDL_GetEventState(evType: TSDL_EventType): UInt8;
+  function SDL_GetEventState(type_: TSDL_EventType): UInt8;
 
   {**
    *  This function allocates a set of user-defined events, and returns

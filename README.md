@@ -40,11 +40,12 @@ These guidelines aim to have better consistency in this community project and ma
 it easier to find certain code parts in the C headers/Pascal includes. Feel free
 to discuss or extend these guidelines, use the issue tracker.
 
-1. Names of C defines (constants) shall not be modified or "pascalified"
+1. Names of C defines (constants) and function parameters shall not be modified or "pascalified"
 Ex: `SDL_INIT_VIDEO` does not change into `SDLInitVideo`.
 
-2. Names of function parameters shall not be modified or "pascalified"
-Ex.: `type_` in `function SDL_GetEventState(type_: TSDL_EventType): UInt8` does not change into `evType`.
+2. Names corresponding to reserved key words are kept and an underscore is added.
+Ex.: `type` in C function `SDL_HasEvent(Uint32 type)` changes into `type_`
+in Pascal function `SDL_HasEvent(type_: TSDL_EventType)`.
 
 3. Use C data types like `UInt8`, `UInt16`, `UInt32`, `SInt8`, `SInt16`,
 `SInt32`, `Float` and so on as often as possible if it is used  in the
