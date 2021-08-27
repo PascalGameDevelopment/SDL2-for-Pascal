@@ -22,6 +22,14 @@
    {$DEFINE SDL_VIDEO_DRIVER_VIVANTE}
 {$ENDIF}
 
+{$IFDEF OS2}
+   {$DEFINE SDL_VIDEO_DRIVER_OS2}
+{$ENDIF}
+
+{$IFDEF HAIKU}
+   {$DEFINE SDL_VIDEO_DRIVER_HAIKU}
+{$ENDIF}
+
 
 {**
  *  These are the various supported windowing subsystems
@@ -34,11 +42,13 @@ Type
       SDL_SYSWM_DIRECTFB,
       SDL_SYSWM_COCOA,
       SDL_SYSWM_UIKIT,
-      SDL_SYSWM_WAYLAND, // Since SDL 2.0.2
+      SDL_SYSWM_WAYLAND, // Since SDL 2.0.2 - REMOVED in SDL 2.0.10!
       SDL_SYSWM_MIR,     // Since SDL 2.0.2
       SDL_SYSWM_WINRT,   // Since SDL 2.0.3
       SDL_SYSWM_ANDROID, // Since SDL 2.0.4
-      SDL_SYSWM_VIVANTE  // Since SDL 2.0.5
+      SDL_SYSWM_VIVANTE, // Since SDL 2.0.5
+      SDL_SYSWM_OS2,     // Since SDL 2.0.6
+      SDL_SYSWM_HAIKU    // Since SDL 2.0.12
    );
 
 /// sdl_syswm.h uses anonymous structs, declared right in SDL_SysWMmsg and SDL_SysWMinfo.
@@ -46,7 +56,7 @@ Type
 {$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
    __SYSWM_WINDOWS = record
       hwnd:   HWND;   {**< The window for the message }
-      msg:     uInt;  {**< The type of message *}
+      msg:    uInt;   {**< The type of message *}
       wParam: WPARAM; {**< WORD message parameter *}
       lParam: LPARAM; {**< WORD message parameter *}
    end;
@@ -139,6 +149,20 @@ Type
    end;
 {$ENDIF}
 
+{$IFDEF SDL_VIDEO_DRIVER_OS2}
+   __SYSWM_OS2 = record
+      fFrame: Boolean; {**< TRUE if hwnd is a frame window *}
+      hwnd: HWND;      {**< The window receiving the message *}
+      msg: uInt;       {**< The message identifier *}
+      mp1: MPARAM;     {**< The first first message parameter *}
+      mp2: MPARAM;     {**< The second first message parameter *}
+   end;
+   __WMINFO_OS2 = record
+      hwnd: HWND;      {**< The window handle *}
+      hwndFrame: HWND; {**< The frame window handle *}
+   end;
+{$ENDIF}
+
 
 {**
  *  The custom event structure.
@@ -164,6 +188,9 @@ Type
          {$ENDIF}
          {$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
             SDL_SYSWM_VIVANTE: (vivante: __SYSWM_VIVANTE);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_OS2}
+            SDL_SYSWM_OS2: (os2: __SYSWM_OS2);
          {$ENDIF}
          SDL_SYSWM_UNKNOWN: (dummy: integer);
    end;
@@ -207,6 +234,9 @@ Type
          {$ENDIF}
          {$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
             SDL_SYSWM_VIVANTE: (vivante: __WMINFO_VIVANTE);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_OS2}
+            SDL_SYSWM_OS2: (os2: __WMINFO_OS2);
          {$ENDIF}
          (* Ensure this union is always 64 bytes (8 64-bit pointers) *)
             SDL_SYSWM_UNKNOWN: (dummy: array[0..63] of Byte);
