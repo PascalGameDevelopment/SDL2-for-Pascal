@@ -4,8 +4,8 @@
    {$DEFINE SDL_VIDEO_DRIVER_WINDOWS}
 {$ENDIF}
 
-{$IF DEFINED (LINUX) OR DEFINED(UNIX) AND NOT DEFINED(ANDROID)}
-   {$IFNDEF DARWIN}
+{$IF DEFINED (LINUX) OR DEFINED(UNIX)}
+   {$IF NOT (DEFINED(DARWIN) OR DEFINED(ANDROID))}
       {$DEFINE SDL_VIDEO_DRIVER_X11}
    {$ENDIF}
 {$IFEND}
@@ -19,7 +19,7 @@
 {$ENDIF}
 
 {$IFDEF VIVANTE}
-  {$DEFINE SDL_VIDEO_DRIVER_VIVANTE}
+   {$DEFINE SDL_VIDEO_DRIVER_VIVANTE}
 {$ENDIF}
 
 
@@ -41,9 +41,8 @@ Type
       SDL_SYSWM_VIVANTE  // Since SDL 2.0.5
    );
 
-/// sdl_syswm.h uses anonymous structs, declared right in SDL_SysWMmsg.
-/// Since Pascal does not allow this, we workaround by introducing named types
-/// before the proper TSDL_SysWMmsg definition.
+/// sdl_syswm.h uses anonymous structs, declared right in SDL_SysWMmsg and SDL_SysWMinfo.
+/// Since Pascal does not allow this, we workaround by introducing named types.
 {$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
    __SYSWM_WINDOWS = record
       hwnd:   HWND;   {**< The window for the message }
@@ -51,35 +50,95 @@ Type
       wParam: WPARAM; {**< WORD message parameter *}
       lParam: LPARAM; {**< WORD message parameter *}
    end;
+   __WMINFO_WINDOWS = record
+      window: HWND; {**< The window handle *}
+      hdc:    HDC;  {**< The window device context *}
+   end;
 {$ENDIF}
+
 {$IFDEF SDL_VIDEO_DRIVER_X11}
    __SYSWM_X11 = record
       event: {$IFDEF FPC} TXEvent {$ELSE} XEvent {$ENDIF};
    end;
+   __WMINFO_X11 = record
+      display: PDisplay;  {**< The X11 display *}
+      window:  TWindow;   {**< The X11 window *}
+   end;
 {$ENDIF}
+
 {$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
    __SYSWM_DIRECTFB = record
       event: DFBEvent;
    end;
+   __WMINFO_DIRECTFB = record
+      dfb:     IDirectFB;         {**< The directfb main interface *}
+      window:  IDirectFBWindow;   {**< The directfb window handle *}
+      surface: IDirectFBSurface;  {**< The directfb client surface *}
+   end;
 {$ENDIF}
+
 {$IFDEF SDL_VIDEO_DRIVER_COCOA}
    __SYSWM_COCOA = record
       (* No Cocoa window events yet *)
       dummy: integer;
    end;
+   __WMINFO_COCOA = record
+      window: NSWindow; {* The Cocoa window *}
+   end;
 {$ENDIF}
+
 {$IFDEF SDL_VIDEO_DRIVER_UIKIT}
    __SYSWM_UIKIT = record
       (* No UIKit window events yet *)
       dummy: integer;
    end;
+   __WMINFO_UIKIT = record
+      window: UIWindow;           {* The UIKit window *}
+      framebuffer: GLuint;        {* The GL view's Framebuffer Object. It must be bound when rendering to the screen using GL. *}
+      colorbuffer: GLuint;        {* The GL view's color Renderbuffer Object. It must be bound when SDL_GL_SwapWindow is called. *}
+      resolveFramebuffer: GLuint; {* The Framebuffer Object which holds the resolve color Renderbuffer, when MSAA is used. *}
+   end;
 {$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_WAYLAND}
+   __WMINFO_WAYLAND = record
+      display: wl_display;             {**< Wayland display *}
+      surface: wl_surface;             {**< Wayland surface *}
+      shell_surface: wl_shell_surface; {**< Wayland shell_surface (window manager handle) *}
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_MIR}
+   __WMINFO_MIR = record
+      connection: PMirConnection; {**< Mir display server connection *}
+      surface: PMirSurface;       {**< Mir surface *}
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_WINRT}
+   __WMINFO_WINRT = record
+      window: IInspectable;      {**< The WinRT CoreWindow *}
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_ANDROID}
+   __WMINFO_ANDROID = record
+      window:  Pointer;  // PANativeWindow;
+      surface: Pointer;  // PEGLSurface;
+   end;
+{$ENDIF}
+
 {$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
    __SYSWM_VIVANTE = record
       (* No Vivante window events yet *)
       dummy: integer;
    end;
+   __WMINFO_VIVANTE = record
+      display: EGLNativeDisplayType;
+      window:  EGLNativeWindowType;
+   end;
 {$ENDIF}
+
 
 {**
  *  The custom event structure.
@@ -109,71 +168,6 @@ Type
          SDL_SYSWM_UNKNOWN: (dummy: integer);
    end;
 
-/// Once again, sdl_syswm.h uses anonymous structs, declared right in SDL_SysWMinfo.
-/// We workaround by introducing named types before the proper TSDL_SysWMinfo definition.
-{$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
-   __WMINFO_WINDOWS = record
-      window: HWND; {**< The window handle *}
-      hdc:    HDC;  {**< The window device context *}
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_WINRT} // Since SDL 2.0.3
-   __WMINFO_WINRT = record
-      window: IInspectable;      {**< The WinRT CoreWindow *}
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_X11}
-   __WMINFO_X11 = record
-      display: PDisplay;  {**< The X11 display *}
-      window:  TWindow;   {**< The X11 window *}
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
-   __WMINFO_DFB = record
-      dfb:     IDirectFB;         {**< The directfb main interface *}
-      window:  IDirectFBWindow;   {**< The directfb window handle *}
-      surface: IDirectFBSurface;  {**< The directfb client surface *}
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_COCOA}
-   __WMINFO_COCOA = record
-      window: NSWindow;           {* The Cocoa window *}
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_UIKIT}
-   __WMINFO_UIKIT = record
-      window: UIWindow;           {* The UIKit window *}
-      framebuffer: GLuint;        {* The GL view's Framebuffer Object. It must be bound when rendering to the screen using GL. *}
-      colorbuffer: GLuint;        {* The GL view's color Renderbuffer Object. It must be bound when SDL_GL_SwapWindow is called. *}
-      resolveFramebuffer: GLuint; {* The Framebuffer Object which holds the resolve color Renderbuffer, when MSAA is used. *}
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_WAYLAND} // Since SDL 2.0.2
-   __WMINFO_WAYLAND = record
-      display: wl_display;             {**< Wayland display *}
-      surface: wl_surface;             {**< Wayland surface *}
-      shell_surface: wl_shell_surface; {**< Wayland shell_surface (window manager handle) *}
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_MIR} // Since SDL 2.0.2
-   __WMINFO_MIR = record
-      connection: PMirConnection; {**< Mir display server connection *}
-      surface: PMirSurface;       {**< Mir surface *}
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_ANDROID}
-   __WMINFO_ANDROID = record
-      window:  Pointer;  // PANativeWindow;
-      surface: Pointer;  // PEGLSurface;
-   end;
-{$ENDIF}
-{$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
-   __WMINFO_VIVANTE = record
-      display: EGLNativeDisplayType;
-      window:  EGLNativeWindowType;
-   end;
-{$ENDIF}
-
 {**
  *  The custom window manager information structure.
  *
@@ -194,7 +188,7 @@ Type
             SDL_SYSWM_X11: (x11 : __WMINFO_X11);
          {$ENDIF}
          {$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
-            SDL_SYSWM_DIRECTFB: (dfb : __WMINFO_DFB);
+            SDL_SYSWM_DIRECTFB: (dfb : __WMINFO_DIRECTFB);
          {$ENDIF}
          {$IFDEF SDL_VIDEO_DRIVER_COCOA}
             SDL_SYSWM_COCOA: (cocoa : __WMINFO_COCOA);
