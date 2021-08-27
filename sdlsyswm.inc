@@ -183,31 +183,39 @@ Type
    PSDL_SysWMinfo = ^TSDL_SysWMinfo;
    TSDL_SysWMinfo = record
       version: TSDL_version;
-      subsystem: TSDL_SYSWM_TYPE;
-      {$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
-        win : __WMINFO_WINDOWS;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_WINRT}
-        winrt : __WMINFO_WINRT;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_X11}
-        x11 : __WMINFO_X11;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
-        dfb : __WMINFO_DFB;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_COCOA}
-        cocoa : __WMINFO_COCOA;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_UIKIT}
-        uikit : __WMINFO_UIKIT;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_WAYLAND}
-        wl : __WMINFO_WAYLAND;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_MIR}
-        mir : __WMINFO_MIR;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_ANDROID}
-        android: __WMINFO_ANDROID;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
-        vivante: __WMINFO_VIVANTE;
-      {$ELSE}
-        (* Cannot have empty record case *)
-        dummy: integer;
-      {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF}
+      case subsystem: TSDL_SYSWM_TYPE of
+         {$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
+            SDL_SYSWM_WINDOWS: (win : __WMINFO_WINDOWS);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_WINRT}
+            SDL_SYSWM_WINRT: (winrt : __WMINFO_WINRT);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_X11}
+            SDL_SYSWM_X11: (x11 : __WMINFO_X11);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
+            SDL_SYSWM_DIRECTFB: (dfb : __WMINFO_DFB);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_COCOA}
+            SDL_SYSWM_COCOA: (cocoa : __WMINFO_COCOA);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_UIKIT}
+            SDL_SYSWM_UIKIT: (uikit : __WMINFO_UIKIT);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_WAYLAND}
+            SDL_SYSWM_WAYLAND: (wl : __WMINFO_WAYLAND);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_MIR}
+            SDL_SYSWM_MIR: (mir : __WMINFO_MIR);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_ANDROID}
+            SDL_SYSWM_ANDROID: (android: __WMINFO_ANDROID);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
+            SDL_SYSWM_VIVANTE: (vivante: __WMINFO_VIVANTE);
+         {$ENDIF}
+         (* Ensure this union is always 64 bytes (8 64-bit pointers) *)
+            SDL_SYSWM_UNKNOWN: (dummy: array[0..63] of Byte);
    end;
 
 {* Function prototypes *}
