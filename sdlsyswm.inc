@@ -10,17 +10,50 @@
    {$ENDIF}
 {$IFEND}
 
+(* 
+ * Disabled because FPC does not ship a DirectFB unit.
+ * If you have some working DirectDB bindings, feel welcome to enable this and check if it breaks anything.
+ *)
+{$UNDEFINE SDL_VIDEO_DRIVER_DIRECTFB}
+
 {$IFDEF DARWIN}
    {$DEFINE SDL_VIDEO_DRIVER_COCOA}
 {$ENDIF}
+
+(*
+ * Disabled because it's a Mac-specific video driver and we have no means of testing it.
+ * If you own a Mac, feel welcome to enable this and check if it actually compiles and doesn't break anything.
+ *)
+{$UNDEFINE SDL_VIDEO_DRIVER_UIKIT}
+
+(* 
+ * Disabled because FPC does not ship a Wayland unit.
+ * If you have some working Wayland bindings, feel welcome to enable this,
+ * check if it actually compiles and doesn't break anything.
+ *)
+{$UNDEFINE SDL_VIDEO_DRIVER_WAYLAND}
+
+(*
+ * Disabled because FPC does not ship a Mir unit.
+ * Also, support for Mir has been removed in SDL 2.0.10.
+ *)
+{$UNDEFINE SDL_VIDEO_DRIVER_MIR}
+
+(*
+ * Disabled because FPC does not support WinRT.
+ *)
+{$UNDEFINE SDL_VIDEO_DRIVER_WINRT}
 
 {$IFDEF ANDROID}
    {$DEFINE SDL_VIDEO_DRIVER_ANDROID}
 {$ENDIF}
 
-{$IFDEF VIVANTE}
-   {$DEFINE SDL_VIDEO_DRIVER_VIVANTE}
-{$ENDIF}
+(*
+ * Disabled because this is an embedded platform and we have no means of testing this.
+ * If you're actually working with Vivante, feel welcome to enable this
+ * and check if it compiles and works properly.
+ *)
+{$UNDEFINE SDL_VIDEO_DRIVER_VIVANTE}
 
 {$IFDEF OS2}
    {$DEFINE SDL_VIDEO_DRIVER_OS2}
