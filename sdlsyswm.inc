@@ -87,23 +87,26 @@ Type
    PSDL_SysWMmsg = ^TSDL_SysWMmsg;
    TSDL_SysWMmsg = record
       version: TSDL_version;
-      subsystem: TSDL_SYSWM_TYPE;
-      {$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
-        win: __SYSWM_WINDOWS;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_X11}
-        x11: __SYSWM_X11;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
-        dfb: __SYSWM_DIRECTFB;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_COCOA}
-        cocoa: __SYSWM_COCOA;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_UIKIT}
-        uikit: __SYSWM_UIKIT;
-      {$ELSE} {$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
-        vivante: __SYSWM_VIVANTE;
-      {$ELSE}
-        (* Cannot have empty record case *)
-        dummy: integer;
-      {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF} {$ENDIF}
+      case subsystem: TSDL_SYSWM_TYPE of
+         {$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
+            SDL_SYSWM_WINDOWS: (win: __SYSWM_WINDOWS);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_X11}
+            SDL_SYSWM_X11: (x11: __SYSWM_X11);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
+            SDL_SYSWM_DIRECTFB: (dfb: __SYSWM_DIRECTFB);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_COCOA}
+            SDL_SYSWM_COCOA: (cocoa: __SYSWM_COCOA);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_UIKIT}
+            SDL_SYSWM_UIKIT: (uikit: __SYSWM_UIKIT);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
+            SDL_SYSWM_VIVANTE: (vivante: __SYSWM_VIVANTE);
+         {$ENDIF}
+         SDL_SYSWM_UNKNOWN: (dummy: integer);
    end;
 
 /// Once again, sdl_syswm.h uses anonymous structs, declared right in SDL_SysWMinfo.
