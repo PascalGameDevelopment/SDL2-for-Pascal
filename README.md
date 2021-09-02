@@ -30,7 +30,7 @@ Please use the GitHub issue tracker for bug reports.
 
 - (Continously) Update files by new SDL2 functions and types which are present in more recent SDL2 versions.
 - (Continously atm.) Translate integer aliases into typed enums.
-See PR [#4](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/4) for reference.
+See part Enums on the [Cheat sheet](CHEATSHEET.md) for reference.
 - (Continously) Check FPC/Delphi compatibility.
 
 ## Code style guidelines
@@ -52,6 +52,8 @@ in Pascal function `SDL_HasEvent(type_: TSDL_EventType)`.
 original code. Do not replace them by Pascal equivalents.
 Ex.: Use `UInt32` (if used in
 the original code) instead of `Cardinal`, `LongWord` or `DWord` .
+
+4. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
 
 ## Versions
 
