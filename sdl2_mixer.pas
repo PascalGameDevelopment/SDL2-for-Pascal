@@ -21,15 +21,6 @@ unit sdl2_mixer;
   3. This notice may not be removed or altered from any source distribution.
 *}
 
-{* ChangeLog: (Header Translation)
-   ----------
-
-   v.1.72-stable; 29.09.2013: fixed bug with procedures without parameters
-                              (they must have brackets)  
-   v.1.70-stable; 16.09.2013: Initial Commit
-
-*}
-
 interface
 
 {$I jedi.inc}
