@@ -23,15 +23,6 @@ unit sdl2_image;
   2. Altered source versions must be plainly marked as such, and must not be
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
-
-  ChangeLog (Header-Translation):
-  -------------------------------
-
-  v.1.72-stable; 29.09.2013: fixed bug with procedure without parameters 
-                             (they must have brackets)
-  v.1.70-stable; 11.09.2013: MacOS compatibility (with Delphi)
-  v.1.33-Alpha; 31.07.2013: Initial Commit
-
 *}
 
 {$DEFINE SDL_IMAGE}

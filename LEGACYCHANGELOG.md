@@ -68,6 +68,15 @@ v.1.10-Alpha; 09.07.2013: Added "sdl_render.h"
 
 v.1.00-Alpha; 05.07.2013: Initial Alpha-Release.
 
+## Extracted from sdl2_image.pas
+
+v.1.72-stable; 29.09.2013: fixed bug with procedure without parameters
+                           (they must have brackets)
+
+v.1.70-stable; 11.09.2013: MacOS compatibility (with Delphi)
+
+v.1.33-Alpha; 31.07.2013: Initial Commit
+
 ## Extracted from sdl2_mixer.pas
 
 v.1.72-stable; 29.09.2013: fixed bug with procedures without parameters
