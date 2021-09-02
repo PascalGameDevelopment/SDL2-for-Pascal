@@ -1,4 +1,6 @@
-# Legacy Changelog (not updated)
+# Legacy Changelogs (not updated)
+
+## Extracted from sdl2.pas
 
 ? 31.01.2016: updated sdlevents.inc to SDL2 2.0.4, adressing issue #24 (thx to imantsg)
 
@@ -65,3 +67,9 @@ v.1.20-Alpha; 19.07.2013: Added "sdl_timer.h"
 v.1.10-Alpha; 09.07.2013: Added "sdl_render.h"
 
 v.1.00-Alpha; 05.07.2013: Initial Alpha-Release.
+
+## Extracted from sdl2_ttf.pas
+
+v.1.72-stable; 29.09.2013: fixed bug with procedures without parameters
+                              (they must have brackets)
+v.1.70-stable; 11.09.2013: Initial Commit

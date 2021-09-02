@@ -26,15 +26,6 @@ unit sdl2_ttf;
     http://www.freetype.org/
 *}
 
-{* ChangeLog: (Header Translation)
-   ----------
-
-   v.1.72-stable; 29.09.2013: fixed bug with procedures without parameters
-                              (they must have brackets)
-   v.1.70-stable; 11.09.2013: Initial Commit
-
-*}
-
 interface
 
 {$I jedi.inc}
