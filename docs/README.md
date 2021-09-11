@@ -2,4 +2,4 @@
 
 See issue #22.
 
-Delete this file if the first example program has been added.
+Delete this file if the first doc has been added.
