@@ -66,6 +66,14 @@ The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pa
 - replaced all aliases by typed enums
 - improve Delphi-compatibility (and even more important, DO NOT break it)
 
+### v2.1 (Compatibility Release)
+
+- This release has all commits until the change of the project folder structure (see PR #27). Compare the disucssion in issue #22.
+- Moving the units to a new location may (1) raise difficulties in committing new changes if the branch was started before and (2) make updates of project research pathes necessary.
+- updates of SDL2_Mixer, SDL2_Image, SDL2_TTF and some include files
+- introduce float point types
+- bugfixes
+
 ### v2.0
 
 - first official release of the PGD community fork of the [Pascal-SDL-2-Headers](https://github.com/ev1313/Pascal-SDL-2-Headers)
