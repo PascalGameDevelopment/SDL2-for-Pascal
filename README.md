@@ -32,7 +32,7 @@ Please use the GitHub issue tracker for bug reports.
 - (Continously atm.) Translate integer aliases into typed enums.
 See part Enums on the [Cheat sheet](CHEATSHEET.md) for reference.
 - (Continously) Check FPC/Delphi compatibility.
-- (Continously) Adapt comments to [FPDoc format](https://www.freepascal.org/docs-html/fpdoc/fpdoc.html). (See issue #22)
+- (Continously) Adapt comments to [PasDoc format](https://pasdoc.github.io). (See issue #22)
 
 ## Code style guidelines
 
