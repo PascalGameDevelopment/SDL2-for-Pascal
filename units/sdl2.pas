@@ -97,11 +97,17 @@ interface
 
   {$IFDEF WINDOWS}
     uses
+      {$IFDEF FPC}
+      ctypes,
+      {$ENDIF}
       Windows;
   {$ENDIF}
 
   {$IF DEFINED(UNIX) AND NOT DEFINED(ANDROID)}
     uses
+      {$IFDEF FPC}
+      ctypes,
+      {$ENDIF}
       {$IFDEF DARWIN}
       CocoaAll;
       {$ELSE}
