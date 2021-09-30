@@ -6,69 +6,135 @@ type
   DWord = LongWord;
 
   PUInt8Array = ^TUInt8Array;
-  PUInt8 = ^UInt8;    
-  PPUInt8 = ^PUInt8;
-  UInt8 = Byte;
+  {$IFDEF FPC}
+    PUInt8 = pcuint8;
+    PPUInt8 = ^pcuint8;
+    UInt8 = cuint8;
+  {$ELSE}
+    PUInt8 = ^UInt8;
+    PPUInt8 = ^PUInt8;
+    UInt8 = Byte;
+  {$ENDIF}
   {$EXTERNALSYM UInt8}
   TUInt8Array = array [0..MAXINT shr 1] of UInt8;
 
-  PUInt16 = ^UInt16;
-  UInt16 = Word;
+  {$IFDEF FPC}
+    PUInt16 = pcuint16;
+    UInt16 = cuint16;
+  {$ELSE}
+    PUInt16 = ^UInt16;
+    UInt16 = Word;
+  {$ENDIF}
   {$EXTERNALSYM UInt16}
 
-  PSInt8 = ^SInt8;
-  SInt8 = ShortInt;
+  {$IFDEF FPC}
+    PSInt8 = pcint8;
+    SInt8 = cint8;
+  {$ELSE}
+    PSInt8 = ^SInt8;
+    SInt8 = ShortInt;
+  {$ENDIF}
   {$EXTERNALSYM SInt8}
 
-  PSInt16 = ^SInt16;
-  SInt16 = SmallInt;
+  {$IFDEF FPC}
+    PSInt16 = pcint16;
+    SInt16 = cint16;
+  {$ELSE}
+    PSInt16 = ^SInt16;
+    SInt16 = SmallInt;
+  {$ENDIF}
   {$EXTERNALSYM SInt16}
 
-  PUInt32 = ^UInt32;
-  UInt32 = Cardinal;
+  {$IFDEF FPC}
+    PUInt32 = pcuint32;
+    UInt32 = cuint32;
+  {$ELSE}
+    PUInt32 = ^UInt32;
+    UInt32 = Cardinal;
+  {$ENDIF}
   {$EXTERNALSYM UInt32}
 
-  PSInt32 = ^SInt32;
-  SInt32 = LongInt;
+  {$IFDEF FPC}
+    PSInt32 = pcint32;
+    SInt32 = cint32;
+  {$ELSE}
+    PSInt32 = ^SInt32;
+    SInt32 = LongInt;
+  {$ENDIF}
   {$EXTERNALSYM SInt32}
 
-  PFloat = ^Float;
-  PInt = ^LongInt;
-
-  PShortInt = ^ShortInt;
-
-  {$IFNDEF Has_Int64}
-  PUInt64 = ^UInt64;
-  UInt64 = record
-    hi: UInt32;
-    lo: UInt32;
-  end;
-  {$EXTERNALSYM UInt64}
-
-  PInt64 = ^Int64;
-  Int64 = record
-    hi: UInt32;
-    lo: UInt32;
-  end;
-  {$EXTERNALSYM Int64}
-
-  PSInt64 = ^SInt64;
-  SInt64 = Int64;
-  {$EXTERNALSYM SInt64}
+  {$IFDEF FPC}
+    PFloat = pcfloat;
+    Float = cfloat;
   {$ELSE}
-  PSInt64 = ^SInt64;
-  SInt64 = Int64;
+    PFloat = ^Float;
+    Float = Single;
+  {$ENDIF}
+  {$EXTERNALSYM Float}
+
+  {$IFDEF FPC}
+    PInt = pcint;
+  {$ELSE}
+    PInt = ^LongInt;
   {$ENDIF}
 
-  {$IFNDEF WIN64}
-    size_t = UInt32;
+  {$IFDEF FPC}
+    PShortInt = pcshort;
   {$ELSE}
-    size_t = UInt64;
+    PShortInt = ^ShortInt;
+  {$ENDIF}
+
+  {$IFDEF FPC}
+    PUInt64 = pcuint64;
+    UInt64 = cuint64;
+    {$EXTERNALSYM UInt64}
+
+    PInt64 = pcint64;
+    Int64 = cint64;
+    {$EXTERNALSYM Int64}
+
+    PSInt64 = PInt64;
+    SInt64 = Int64;
+    {$EXTERNALSYM SInt64}
+  {$ELSE}
+    {$IFNDEF Has_Int64}
+      PUInt64 = ^UInt64;
+      UInt64 = record
+        hi: UInt32;
+        lo: UInt32;
+      end;
+      {$EXTERNALSYM UInt64}
+
+      PInt64 = ^Int64;
+      Int64 = record
+        hi: UInt32;
+        lo: UInt32;
+      end;
+    {$EXTERNALSYM Int64}
+
+    PSInt64 = ^SInt64;
+    SInt64 = Int64;
+    {$EXTERNALSYM SInt64}
+    {$ELSE}
+
+      { Int64/UInt64 def. missing here ? }
+
+      PSInt64 = ^SInt64;
+      SInt64 = Int64;
+    {$ENDIF}
+  {$ENDIF}
+
+  {$IFDEF FPC}
+    size_t = csize_t;
+  {$ELSE}
+    {$IFNDEF WIN64}
+      size_t = UInt32;
+    {$ELSE}
+      size_t = UInt64;
+    {$ENDIF}
   {$ENDIF}
   {$EXTERNALSYM SIZE_T}
 
-  Float = Single;
-  {$EXTERNALSYM Float}
 
 {**
 *  Free memory returned by functions like SDL_GetBasePath(), SDL_GetPrefPath(), etc.
