@@ -25,7 +25,15 @@ unit sdl2_net;
 
 interface
 
-uses SDL2;
+{$IFNDEF FPC}
+  {$I ctypes.inc}  // C-types conversion if ctypes unit is not available (part of FPC)
+{$ENDIF}
+
+uses
+  {$IFDEF FPC}
+  ctypes,
+  {$ENDIF}
+  SDL2;
 
 const
    {$IFDEF WINDOWS}
