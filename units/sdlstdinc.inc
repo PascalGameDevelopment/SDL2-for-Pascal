@@ -94,8 +94,8 @@ type
     {$EXTERNALSYM Int64}
 
     PSInt64 = PInt64;
-    SInt64 = Int64;
-    {$EXTERNALSYM SInt64}
+    cint64 = Int64;
+    {$EXTERNALSYM cint64}
   {$ELSE}
     {$IFNDEF Has_Int64}
       PUInt64 = ^UInt64;
@@ -112,15 +112,15 @@ type
       end;
     {$EXTERNALSYM Int64}
 
-    PSInt64 = ^SInt64;
-    SInt64 = Int64;
-    {$EXTERNALSYM SInt64}
+    PSInt64 = ^cint64;
+    cint64 = Int64;
+    {$EXTERNALSYM cint64}
     {$ELSE}
 
       { Int64/UInt64 def. missing here ? }
 
-      PSInt64 = ^SInt64;
-      SInt64 = Int64;
+      PSInt64 = ^cint64;
+      cint64 = Int64;
     {$ENDIF}
   {$ENDIF}
 

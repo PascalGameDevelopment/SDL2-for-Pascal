@@ -246,17 +246,17 @@ end;
 
 //from "sdl_rwops.h"
 
-function SDL_RWsize(ctx: PSDL_RWops): SInt64;
+function SDL_RWsize(ctx: PSDL_RWops): cint64;
 begin
   Result := ctx^.size(ctx);
 end;
 
-function SDL_RWseek(ctx: PSDL_RWops; offset: SInt64; whence: cint32): SInt64;
+function SDL_RWseek(ctx: PSDL_RWops; offset: cint64; whence: cint32): cint64;
 begin
   Result := ctx^.seek(ctx,offset,whence);
 end;
 
-function SDL_RWtell(ctx: PSDL_RWops): SInt64;
+function SDL_RWtell(ctx: PSDL_RWops): cint64;
 begin
   Result := ctx^.seek(ctx, 0, RW_SEEK_CUR);
 end;

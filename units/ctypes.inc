@@ -4,6 +4,6 @@
 
 type
 
-  cint32 = Longint;
-
+  cint32 = LongInt;
+  cint64 = Int64;
 }

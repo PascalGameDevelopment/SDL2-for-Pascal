@@ -19,7 +19,7 @@ type
   {**
    *  Return the size of the file in this rwops, or -1 if unknown
    *}
-  TSize = function(context: PSDL_RWops): SInt64; {$IFNDEF GPC} cdecl; {$ENDIF}
+  TSize = function(context: PSDL_RWops): cint64; {$IFNDEF GPC} cdecl; {$ENDIF}
 
   {**
    *  Seek to offset relative to whence, one of stdio's whence values:
@@ -27,7 +27,7 @@ type
    *
    *  the final offset in the data stream, or -1 on error.
    *}
-  TSeek = function(context: PSDL_RWops; offset: SInt64; whence: cint32): SInt64; {$IFNDEF GPC} cdecl; {$ENDIF}
+  TSeek = function(context: PSDL_RWops; offset: cint64; whence: cint32): cint64; {$IFNDEF GPC} cdecl; {$ENDIF}
                    
   {**
    *  Read up to maxnum objects each of size size from the data
@@ -147,9 +147,9 @@ const
    *  Macros to easily read and write from an SDL_RWops structure.
    *}
 
-  function SDL_RWsize(ctx: PSDL_RWops): SInt64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
-  function SDL_RWseek(ctx: PSDL_RWops; offset: SInt64; whence: cint32): SInt64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
-  function SDL_RWtell(ctx: PSDL_RWops): SInt64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
+  function SDL_RWsize(ctx: PSDL_RWops): cint64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
+  function SDL_RWseek(ctx: PSDL_RWops; offset: cint64; whence: cint32): cint64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
+  function SDL_RWtell(ctx: PSDL_RWops): cint64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWread(ctx: PSDL_RWops; ptr: Pointer; size: size_t; n: size_t): size_t; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWwrite(ctx: PSDL_RWops; ptr: Pointer; size: size_t; n: size_t): size_t; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWclose(ctx: PSDL_RWops): cint32; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
