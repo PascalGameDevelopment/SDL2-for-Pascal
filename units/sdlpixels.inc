@@ -370,10 +370,10 @@ type
 
   PSDL_Palette = ^TSDL_Palette;
   TSDL_Palette = record
-    ncolors: SInt32;
+    ncolors: cint32;
     colors: PSDL_Color;
     version: UInt32;
-    refcount: SInt32;
+    refcount: cint32;
   end;
 
   {**
@@ -399,7 +399,7 @@ type
     Gshift: UInt8;
     Bshift: UInt8;
     Ashift: UInt8;
-    refcount: SInt32;
+    refcount: cint32;
     next: PSDL_PixelFormat;
   end;
 
@@ -428,7 +428,7 @@ function SDL_PixelFormatEnumToMasks(format: UInt32; bpp: PInt; Rmask: PUInt32; G
    *  SDL_PixelFormatEnumToMasks()
    *}
 
-function SDL_MasksToPixelFormatEnum(bpp: SInt32; Rmask: UInt32; Gmask: UInt32; Bmask: UInt32; Amask: UInt32): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MasksToPixelFormatEnum' {$ENDIF} {$ENDIF};
+function SDL_MasksToPixelFormatEnum(bpp: cint32; Rmask: UInt32; Gmask: UInt32; Bmask: UInt32; Amask: UInt32): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MasksToPixelFormatEnum' {$ENDIF} {$ENDIF};
 
   {**
    *  Create an SDL_PixelFormat structure from a pixel format enum.
@@ -453,13 +453,13 @@ procedure SDL_FreeFormat(format: PSDL_PixelFormat) cdecl; external SDL_LibName {
    *  SDL_FreePalette()
    *}
 
-function SDL_AllocPalette(ncolors: SInt32): PSDL_Palette cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AllocPalette' {$ENDIF} {$ENDIF};
+function SDL_AllocPalette(ncolors: cint32): PSDL_Palette cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AllocPalette' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the palette for a pixel format structure.
    *}
 
-function SDL_SetPixelFormatPalette(format: PSDL_PixelFormat; palette: PSDL_Palette): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetPixelFormatPalette' {$ENDIF} {$ENDIF};
+function SDL_SetPixelFormatPalette(format: PSDL_PixelFormat; palette: PSDL_Palette): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetPixelFormatPalette' {$ENDIF} {$ENDIF};
 
   {**
    *  Set a range of colors in a palette.
@@ -472,7 +472,7 @@ function SDL_SetPixelFormatPalette(format: PSDL_PixelFormat; palette: PSDL_Palet
    *  0 on success, or -1 if not all of the colors could be set.
    *}
 
-function SDL_SetPaletteColors(palette: PSDL_Palette; const colors: PSDL_Color; firstcolor: SInt32; ncolors: SInt32): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetPaletteColors' {$ENDIF} {$ENDIF};
+function SDL_SetPaletteColors(palette: PSDL_Palette; const colors: PSDL_Color; firstcolor: cint32; ncolors: cint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetPaletteColors' {$ENDIF} {$ENDIF};
 
   {**
    *  Free a palette created with SDL_AllocPalette().

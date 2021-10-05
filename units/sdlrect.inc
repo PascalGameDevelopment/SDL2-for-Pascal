@@ -6,8 +6,8 @@ type
    *}
   PSDL_Point = ^TSDL_Point;
   TSDL_Point = record
-    x: SInt32;
-    y: SInt32;
+    x: cint32;
+    y: cint32;
   end;
 
   {**
@@ -24,8 +24,8 @@ type
    *}
   PSDL_Rect = ^TSDL_Rect;
   TSDL_Rect = record
-    x,y: SInt32;
-    w,h: SInt32;
+    x,y: cint32;
+    w,h: cint32;
   end;
 
   {**
@@ -84,7 +84,7 @@ procedure SDL_UnionRect(const A, B: PSDL_Rect; result: PSDL_Rect) cdecl; externa
    *  SDL_TRUE if any points were within the clipping rect
    *}
 
-function SDL_EnclosePoints(const points: PSDL_Point; count: SInt32; const clip: PSDL_Rect; result: PSDL_Rect): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EnclosePoints' {$ENDIF} {$ENDIF};
+function SDL_EnclosePoints(const points: PSDL_Point; count: cint32; const clip: PSDL_Rect; result: PSDL_Rect): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EnclosePoints' {$ENDIF} {$ENDIF};
 
   {**
    *  Calculate the intersection of a rectangle and line segment.

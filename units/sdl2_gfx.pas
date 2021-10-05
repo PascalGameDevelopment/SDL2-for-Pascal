@@ -103,13 +103,13 @@ Type
 Procedure SDL_initFramerate(manager: PFPSManager);
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_initFramerate' {$ENDIF};
 
-Function SDL_setFramerate(manager: PFPSManager; rate: uInt32):sInt32;
+Function SDL_setFramerate(manager: PFPSManager; rate: uInt32):cint32;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_setFramerate' {$ENDIF};
    
-Function SDL_getFramerate(manager: PFPSManager):sInt32;
+Function SDL_getFramerate(manager: PFPSManager):cint32;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_getFramerate' {$ENDIF};
    
-Function SDL_getFramecount(manager: PFPSManager):sInt32;
+Function SDL_getFramecount(manager: PFPSManager):cint32;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_getFramecount' {$ENDIF};
 
 Function SDL_framerateDelay(manager: PFPSManager):uInt32;
@@ -128,214 +128,214 @@ Const
 
 {* Pixel *}
 
-Function pixelColor(renderer: PSDL_Renderer; x, y: sInt16; colour: uInt32):sInt32; cdecl;
+Function pixelColor(renderer: PSDL_Renderer; x, y: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_pixelColor' {$ENDIF};
       
-Function pixelRGBA(renderer: PSDL_Renderer; x, y: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function pixelRGBA(renderer: PSDL_Renderer; x, y: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_pixelRGBA' {$ENDIF};
 
 { Horizontal line }
 
-Function hlineColor(renderer: PSDL_Renderer; x1, x2, y: sInt16; colour: uInt32):sInt32; cdecl;
+Function hlineColor(renderer: PSDL_Renderer; x1, x2, y: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_hlineColor' {$ENDIF};
    
-Function hlineRGBA(renderer: PSDL_Renderer; x1, x2, y:sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function hlineRGBA(renderer: PSDL_Renderer; x1, x2, y:sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_hlineRGBA' {$ENDIF};
 
 { Vertical line }
 
-Function vlineColor(renderer: PSDL_Renderer; x, y1, y2: sInt16; colour: uInt32):sInt32; cdecl;
+Function vlineColor(renderer: PSDL_Renderer; x, y1, y2: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_vlineColor' {$ENDIF};
    
-Function vlineRGBA(renderer: PSDL_Renderer; x, y1, y2: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function vlineRGBA(renderer: PSDL_Renderer; x, y1, y2: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_vlineRGBA' {$ENDIF};
 
 { Rectangle }
 
-Function rectangleColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; colour: uInt32):sInt32; cdecl;
+Function rectangleColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rectangleColor' {$ENDIF};
    
-Function rectangleRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function rectangleRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rectangleRGBA' {$ENDIF};
 
 { Rounded-Corner Rectangle }
 
-Function roundedRectangleColor(renderer: PSDL_Renderer; x1, y1, x2, y2, rad: sInt16; colour: uInt32):sInt32; cdecl;
+Function roundedRectangleColor(renderer: PSDL_Renderer; x1, y1, x2, y2, rad: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_roundedRectangleColor' {$ENDIF};
    
-Function roundedRectangleRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, rad: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function roundedRectangleRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, rad: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_roundedRectangleRGBA' {$ENDIF};
 
 { Filled rectangle (Box) }
 
-Function boxColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; colour: uInt32):sInt32; cdecl;
+Function boxColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_boxColor' {$ENDIF};
    
-Function boxRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function boxRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_boxRGBA' {$ENDIF};
 
 { Rounded-Corner Filled rectangle (Box) }
 
-Function roundedBoxColor(renderer: PSDL_Renderer; x1, y1, x2, y2, rad: sInt16; colour: uInt32):sInt32; cdecl;
+Function roundedBoxColor(renderer: PSDL_Renderer; x1, y1, x2, y2, rad: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_roundedBoxColor' {$ENDIF};
    
-Function roundedBoxRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, rad: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function roundedBoxRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, rad: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_roundedBoxRGBA' {$ENDIF};
 
 { Line }
 
-Function lineColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; colour: uInt32):sInt32; cdecl;
+Function lineColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_lineColor' {$ENDIF};
    
-Function lineRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function lineRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_lineRGBA' {$ENDIF};
 
 { AA Line }
 
-Function aalineColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; colour: uInt32):sInt32; cdecl;
+Function aalineColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aalineColor' {$ENDIF};
    
-Function aalineRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function aalineRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aalineRGBA' {$ENDIF};
 
 { Thick Line }
-Function thickLineColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; width: uInt8; colour: uInt32):sInt32; cdecl;
+Function thickLineColor(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; width: uInt8; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_thickLineColor' {$ENDIF};
    
-Function thickLineRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; width, r, g, b, a: uInt8):sInt32; cdecl;
+Function thickLineRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2: sInt16; width, r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_thickLineRGBA' {$ENDIF};
 
 { Circle }
 
-Function circleColor(renderer: PSDL_Renderer; x, y, rad: sInt16; colour: uInt32):sInt32; cdecl;
+Function circleColor(renderer: PSDL_Renderer; x, y, rad: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_circleColor' {$ENDIF};
    
-Function circleRGBA(renderer: PSDL_Renderer; x, y, rad: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function circleRGBA(renderer: PSDL_Renderer; x, y, rad: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_circleRGBA' {$ENDIF};
 
 { Arc }
 
-Function arcColor(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; colour: uInt32):sInt32; cdecl;
+Function arcColor(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_arcColor' {$ENDIF};
    
-Function arcRGBA(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function arcRGBA(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_arcRGBA' {$ENDIF};
 
 { AA Circle }
 
-Function aacircleColor(renderer: PSDL_Renderer; x, y, rad: sInt16; colour: uInt32):sInt32; cdecl;
+Function aacircleColor(renderer: PSDL_Renderer; x, y, rad: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aacircleColor' {$ENDIF};
    
-Function aacircleRGBA(renderer: PSDL_Renderer; x, y, rad: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function aacircleRGBA(renderer: PSDL_Renderer; x, y, rad: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aacircleRGBA' {$ENDIF};
 
 { Filled Circle }
 
-Function filledCircleColor(renderer: PSDL_Renderer; x, y, rad: sInt16; colour: uInt32):sInt32; cdecl;
+Function filledCircleColor(renderer: PSDL_Renderer; x, y, rad: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledCircleColor' {$ENDIF};
    
-Function filledCircleRGBA(renderer: PSDL_Renderer; x, y, rad: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function filledCircleRGBA(renderer: PSDL_Renderer; x, y, rad: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledCircleRGBA' {$ENDIF};
 
 { Ellipse }
 
-Function ellipseColor(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; colour: uInt32):sInt32; cdecl;
+Function ellipseColor(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_ellipseColor' {$ENDIF};
    
-Function ellipseRGBA(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function ellipseRGBA(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_ellipseRGBA' {$ENDIF};
 
 { AA Ellipse }
 
-Function aaellipseColor(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; colour: uInt32):sInt32; cdecl;
+Function aaellipseColor(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aaellipseColor' {$ENDIF};
    
-Function aaellipseRGBA(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function aaellipseRGBA(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aaellipseRGBA' {$ENDIF};
 
 { Filled Ellipse }
 
-Function filledEllipseColor(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; colour: uInt32):sInt32; cdecl;
+Function filledEllipseColor(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledEllipseColor' {$ENDIF};
    
-Function filledEllipseRGBA(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function filledEllipseRGBA(renderer: PSDL_Renderer; x, y, rx, ry: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledEllipseRGBA' {$ENDIF};
 
 { Pie }
 
-Function pieColor(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; colour: uInt32):sInt32; cdecl;
+Function pieColor(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_pieColor' {$ENDIF};
    
-Function pieRGBA(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function pieRGBA(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_pieRGBA' {$ENDIF};
 
 { Filled Pie }
 
-Function filledPieColor(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; colour: uInt32):sInt32; cdecl;
+Function filledPieColor(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledPieColor' {$ENDIF};
    
-Function filledPieRGBA(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function filledPieRGBA(renderer: PSDL_Renderer; x, y, rad, start, finish: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledPieRGBA' {$ENDIF};
 
 { Trigon }
 
-Function trigonColor(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; colour: uInt32):sInt32; cdecl;
+Function trigonColor(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_trigonColor' {$ENDIF};
    
-Function trigonRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function trigonRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_trigonRGBA' {$ENDIF};
 
 { AA-Trigon }
 
-Function aatrigonColor(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; colour: uInt32):sInt32; cdecl;
+Function aatrigonColor(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aatrigonColor' {$ENDIF};
    
-Function aatrigonRGBA(renderer: PSDL_Renderer;  x1, y1, x2, y2, x3, y3: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function aatrigonRGBA(renderer: PSDL_Renderer;  x1, y1, x2, y2, x3, y3: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aatrigonRGBA' {$ENDIF};
 
 { Filled Trigon }
 
-Function filledTrigonColor(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; colour: uInt32):sInt32; cdecl;
+Function filledTrigonColor(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledTrigonColor' {$ENDIF};
    
-Function filledTrigonRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; r, g, b, a: uInt8):sInt32; cdecl;
+Function filledTrigonRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: sInt16; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledTrigonRGBA' {$ENDIF};
 
 { Polygon }
 
-Function polygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: sInt32; colour: uInt32):sInt32; cdecl;
+Function polygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_polygonColor' {$ENDIF};
    
-Function polygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: sInt32; r, g, b, a: uInt8):sInt32; cdecl;
+Function polygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_polugonRGBA' {$ENDIF};
 
 { AA-Polygon }
 
-Function aapolygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: sInt32; colour: uInt32):sInt32; cdecl;
+Function aapolygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aapolygonColor' {$ENDIF};
    
-Function aapolygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: sInt32; r, g, b, a: uInt8):sInt32; cdecl;
+Function aapolygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aapolygonRGBA' {$ENDIF};
 
 { Filled Polygon }
 
-Function filledPolygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: sInt32; colour: uInt32):sInt32; cdecl;
+Function filledPolygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledPolygonColor' {$ENDIF};
    
-Function filledPolygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: sInt32; r, g, b, a: uInt8):sInt32; cdecl;
+Function filledPolygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledPolygonRGBA' {$ENDIF};
 
 { Textured Polygon }
 
-Function texturedPolygon(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: sInt32; texture: PSDL_Surface; texture_dx, texture_dy: sInt32):sInt32; cdecl;
+Function texturedPolygon(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; texture: PSDL_Surface; texture_dx, texture_dy: cint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_texturedPolygon' {$ENDIF};
 
 { Bezier }
 
-Function bezierColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n, s: sInt32; colour: uInt32):sInt32; cdecl;
+Function bezierColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n, s: cint32; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_bezierColor' {$ENDIF};
    
-Function bezierRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n, s: sInt32; r, g, b, a: uInt8):sInt32; cdecl;
+Function bezierRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n, s: cint32; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_bezierRGBA' {$ENDIF};
 
 { Characters/Strings }
@@ -347,17 +347,17 @@ Procedure gfxPrimitivesSetFontRotation(rotation: uInt32); cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_gfxPrimitivesSetFontRotation' {$ENDIF};
 
 
-Function characterColor(renderer: PSDL_Renderer; x, y: sInt16; c: Char; colour: uInt32):sInt32; cdecl;
+Function characterColor(renderer: PSDL_Renderer; x, y: sInt16; c: Char; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_characterColor' {$ENDIF};
    
-Function characterRGBA(renderer: PSDL_Renderer; x, y: sInt16; c: Char; r, g, b, a: uInt8):sInt32; cdecl;
+Function characterRGBA(renderer: PSDL_Renderer; x, y: sInt16; c: Char; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_characterRGBA' {$ENDIF};
    
    
-Function stringColor(renderer: PSDL_Renderer; x, y: sInt16; Const str: PChar; colour: uInt32):sInt32; cdecl;
+Function stringColor(renderer: PSDL_Renderer; x, y: sInt16; Const str: PChar; colour: uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_stringColor' {$ENDIF};
    
-Function stringRGBA(renderer: PSDL_Renderer; x, y: sInt16; Const syt: PChar; r, g, b, a: uInt8):sInt32; cdecl;
+Function stringRGBA(renderer: PSDL_Renderer; x, y: sInt16; Const syt: PChar; r, g, b, a: uInt8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_stringRGBA' {$ENDIF};
 
 
@@ -370,7 +370,7 @@ Function stringRGBA(renderer: PSDL_Renderer; x, y: sInt16; Const syt: PChar; r, 
  *  3.) Convolution routines do not have C routines at this time.                      *)
 
 // Detect MMX capability in CPU
-Function SDL_imageFilterMMXdetect():sInt32; cdecl;
+Function SDL_imageFilterMMXdetect():cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterMMXdetect' {$ENDIF};
 
 // Force use of MMX off (or turn possible use back on)
@@ -382,7 +382,7 @@ Procedure SDL_imageFilterMMXon(); cdecl;
 
 
 //  SDL_imageFilterAdd: D = saturation255(S1 + S2)
-Function SDL_imageFilterAdd(Src1, Src2, Dest : PuInt8; Length : uInt32):sInt32; cdecl;
+Function SDL_imageFilterAdd(Src1, Src2, Dest : PuInt8; Length : uInt32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterAdd' {$ENDIF};
 
 //  SDL_imageFilterMean: D = S1/2 + S2/2
@@ -495,7 +495,7 @@ Function SDL_imageFilterClipToRange(Src1, Dest : PuInt8; Length:uInt32; Tmin, Tm
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterClipToRange' {$ENDIF};
 
 //  SDL_imageFilterNormalizeLinear: D = saturation255((Nmax - Nmin)/(Cmax - Cmin)*(S - Cmin) + Nmin)
-Function SDL_imageFilterNormalizeLinear(Src, Dest: PuInt8; Length, Cmin, Cmax, Nmin, Nmax: sInt32):Sint32; cdecl;
+Function SDL_imageFilterNormalizeLinear(Src, Dest: PuInt8; Length, Cmin, Cmax, Nmin, Nmax: cint32):Sint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterNormalizeLinear' {$ENDIF};
 
 
@@ -514,36 +514,36 @@ Const
 
 { Rotozoom functions }
 
-Function rotozoomSurface(src: PSDL_Surface; angle, zoom: Double; smooth: sInt32):PSDL_Surface; cdecl;
+Function rotozoomSurface(src: PSDL_Surface; angle, zoom: Double; smooth: cint32):PSDL_Surface; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rotozoomSurface' {$ENDIF};
 
-Function rotozoomSurfaceXY(src: PSDL_Surface; angle, zoomx, zoomy: Double; smooth: sInt32):PSDL_Surface; cdecl;
+Function rotozoomSurfaceXY(src: PSDL_Surface; angle, zoomx, zoomy: Double; smooth: cint32):PSDL_Surface; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rotozoomSurfaceXY' {$ENDIF};
 
 
-Procedure rotozoomSurfaceSize(width, height: sInt32; angle, zoom: Double; dstwidth, dstheight: PuInt32); cdecl;
+Procedure rotozoomSurfaceSize(width, height: cint32; angle, zoom: Double; dstwidth, dstheight: PuInt32); cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rotozoomSurfaceSize' {$ENDIF};
 
-Procedure rotozoomSurfaceSizeXY(width, height: sInt32; angle, zoomx, zoomy: Double; dstwidth, dstheight:PuInt32); cdecl;
+Procedure rotozoomSurfaceSizeXY(width, height: cint32; angle, zoomx, zoomy: Double; dstwidth, dstheight:PuInt32); cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rotozoomSurfaceSizeXY' {$ENDIF};
 
 
 { Zooming functions }
 
-Function zoomSurface(src: PSDL_Surface; zoomx, zoomy: Double; smooth: sInt32):PSDL_Surface; cdecl;
+Function zoomSurface(src: PSDL_Surface; zoomx, zoomy: Double; smooth: cint32):PSDL_Surface; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_zoomSurface' {$ENDIF};
 
-Procedure zoomSurfaceSize(width, height: sInt32; zoomx, zoomy: Double; dstwidth, dstheight: PuInt32); cdecl;
+Procedure zoomSurfaceSize(width, height: cint32; zoomx, zoomy: Double; dstwidth, dstheight: PuInt32); cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_zoomSurfaceSize' {$ENDIF};
 
 { Shrinking functions }
 
-Function shrinkSurface(src: PSDL_Surface; factorx, factory: sInt32):PSDL_Surface; cdecl;
+Function shrinkSurface(src: PSDL_Surface; factorx, factory: cint32):PSDL_Surface; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_shrinkSurface' {$ENDIF};
 
 { Specialized rotation functions }
 
-Function rotateSurface90Degrees(src: PSDL_Surface; numClockwiseTurns: sInt32):PSDL_Surface; cdecl;
+Function rotateSurface90Degrees(src: PSDL_Surface; numClockwiseTurns: cint32):PSDL_Surface; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rotateSurface90Degrees' {$ENDIF};
 
 

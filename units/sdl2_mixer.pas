@@ -25,7 +25,14 @@ interface
 
 {$I jedi.inc}
 
+{$IFNDEF FPC}
+  {$I ctypes.inc}  // C-types conversion if ctypes unit is not available (part of FPC)
+{$ENDIF}
+
 uses
+  {$IFDEF FPC}
+  ctypes,
+  {$ENDIF}
   SDL2;
 
 const
@@ -660,7 +667,7 @@ function Mix_GetChunk(channel: Integer): PMix_Chunk cdecl; external MIX_LibName 
 procedure Mix_CloseAudio cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CloseAudio' {$ENDIF} {$ENDIF};
 
 {* We'll use SDL for reporting errors *}
-function Mix_SetError(const fmt: PAnsiChar): SInt32; cdecl;
+function Mix_SetError(const fmt: PAnsiChar): cint32; cdecl;
 function Mix_GetError: PAnsiChar; cdecl;
 procedure Mix_ClearError(); cdecl;
 
@@ -693,7 +700,7 @@ begin
   Result := Mix_LoadWAV_RW(SDL_RWFromFile(_file, 'rb'), 1);
 end;
 
-function Mix_SetError(const fmt: PAnsiChar): SInt32; cdecl;
+function Mix_SetError(const fmt: PAnsiChar): cint32; cdecl;
 begin
   Result := SDL_SetError(fmt);
 end;

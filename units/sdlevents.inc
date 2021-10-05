@@ -147,8 +147,8 @@ type
     padding1: UInt8;
     padding2: UInt8;
     padding3: UInt8;
-    data1: SInt32;       // event dependent data
-    data2: SInt32;       // event dependent data 
+    data1: cint32;       // event dependent data
+    data2: cint32;       // event dependent data 
   end;
 
   {**
@@ -179,8 +179,8 @@ type
     timestamp: UInt32;
     windowID: UInt32;                            // The window with keyboard focus, if any
     text: array[0..SDL_TEXTEDITINGEVENT_TEXT_SIZE] of Char;  // The editing text 
-    start: SInt32;                               // The start cursor of selected editing text
-    length: SInt32;                              // The length of selected editing text
+    start: cint32;                               // The start cursor of selected editing text
+    length: cint32;                              // The length of selected editing text
   end;
 
 const
@@ -212,10 +212,10 @@ type
     padding1: UInt8;
     padding2: UInt8;
     padding3: UInt8;
-    x: SInt32;           // X coordinate, relative to window
-    y: SInt32;           // Y coordinate, relative to window
-    xrel: SInt32;        // The relative motion in the X direction 
-    yrel: SInt32;        // The relative motion in the Y direction
+    x: cint32;           // X coordinate, relative to window
+    y: cint32;           // Y coordinate, relative to window
+    xrel: cint32;        // The relative motion in the X direction 
+    yrel: cint32;        // The relative motion in the Y direction
   end;
 
   {**
@@ -231,8 +231,8 @@ type
     state: UInt8;        // SDL_PRESSED or SDL_RELEASED
     clicks: UInt8;       // 1 for single-click, 2 for double-click, etc.
     padding1: UInt8;
-    x: SInt32;           // X coordinate, relative to window
-    y: SInt32;           // Y coordinate, relative to window 
+    x: cint32;           // X coordinate, relative to window
+    y: cint32;           // Y coordinate, relative to window 
   end;
 
   {**
@@ -244,8 +244,8 @@ type
     timestamp: UInt32;
     windowID: UInt32;    // The window with mouse focus, if any
     which: UInt32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
-    x: SInt32;           // The amount scrolled horizontally 
-    y: SInt32;           // The amount scrolled vertically
+    x: cint32;           // The amount scrolled horizontally 
+    y: cint32;           // The amount scrolled vertically
     direction: UInt32;   // Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back
   end;
 
@@ -322,7 +322,7 @@ type
   TSDL_JoyDeviceEvent = record
     type_: UInt32;      // SDL_JOYDEVICEADDED or SDL_JOYDEVICEREMOVED
     timestamp: UInt32;
-    which: SInt32;      // The joystick device index for the ADDED event, instance id for the REMOVED event
+    which: cint32;      // The joystick device index for the ADDED event, instance id for the REMOVED event
   end;
 
   {**
@@ -363,7 +363,7 @@ type
   TSDL_ControllerDeviceEvent = record
     type_: UInt32;       // SDL_CONTROLLERDEVICEADDED, SDL_CONTROLLERDEVICEREMOVED, or SDL_CONTROLLERDEVICEREMAPPED
     timestamp: UInt32;
-    which: SInt32;       // The joystick device index for the ADDED event, instance id for the REMOVED or REMAPPED event
+    which: cint32;       // The joystick device index for the ADDED event, instance id for the REMOVED or REMAPPED event
   end;
 
   {**
@@ -455,7 +455,7 @@ type
     type_: UInt32;       // SDL_USEREVENT through SDL_NUMEVENTS-1
     timestamp: UInt32;
     windowID: UInt32;    // The associated window if any
-    code: SInt32;        // User defined event code
+    code: cint32;        // User defined event code
     data1: Pointer;      // User defined data pointer
     data2: Pointer;      // User defined data pointer
   end;
@@ -567,7 +567,7 @@ type
    *  This function is thread-safe.
    *}
 
-  function SDL_PeepEvents(events: PSDL_Event; numevents: SInt32; action: TSDL_EventAction; minType, maxType: TSDL_EventType): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PeepEvents' {$ENDIF} {$ENDIF};
+  function SDL_PeepEvents(events: PSDL_Event; numevents: cint32; action: TSDL_EventAction; minType, maxType: TSDL_EventType): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PeepEvents' {$ENDIF} {$ENDIF};
 
   {**
    *  Checks to see if certain event types are in the event queue.
@@ -592,7 +592,7 @@ type
    *               stored in that area.
    *}
 
-  function SDL_PollEvent(event: PSDL_Event): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PollEvent' {$ENDIF} {$ENDIF};
+  function SDL_PollEvent(event: PSDL_Event): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PollEvent' {$ENDIF} {$ENDIF};
 
   {**
    *  Waits indefinitely for the next available event.
@@ -603,7 +603,7 @@ type
    *  stored in that area.
    *}
 
-  function SDL_WaitEvent(event: PSDL_Event): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEvent' {$ENDIF} {$ENDIF};
+  function SDL_WaitEvent(event: PSDL_Event): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEvent' {$ENDIF} {$ENDIF};
 
   {**
    *  Waits until the specified timeout (in milliseconds) for the next
@@ -615,7 +615,7 @@ type
    *  stored in that area.
    *}
  
-  function SDL_WaitEventTimeout(event: PSDL_Event; timeout: SInt32): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEventTimeout' {$ENDIF} {$ENDIF};
+  function SDL_WaitEventTimeout(event: PSDL_Event; timeout: cint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEventTimeout' {$ENDIF} {$ENDIF};
 
   {**
    *  Add an event to the event queue.
@@ -624,7 +624,7 @@ type
    *  was full or there was some other error.
    *}
 
-  function SDL_PushEvent(event: PSDL_Event): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PumpEvents' {$ENDIF} {$ENDIF};
+  function SDL_PushEvent(event: PSDL_Event): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PumpEvents' {$ENDIF} {$ENDIF};
 
 type
   PSDL_EventFilter = ^TSDL_EventFilter;
@@ -700,7 +700,7 @@ const
    *     current processing state of the specified event.
    *}
 
-  function SDL_EventState(type_: TSDL_EventType; state: SInt32): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventState' {$ENDIF} {$ENDIF};
+  function SDL_EventState(type_: TSDL_EventType; state: cint32): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventState' {$ENDIF} {$ENDIF};
 
   function SDL_GetEventState(type_: TSDL_EventType): UInt8;
 
@@ -712,4 +712,4 @@ const
    *  returns (Uint32)-1
    *}
 
-  function SDL_RegisterEvents(numevents: SInt32): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RegisterEvents' {$ENDIF} {$ENDIF};
+  function SDL_RegisterEvents(numevents: cint32): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RegisterEvents' {$ENDIF} {$ENDIF};

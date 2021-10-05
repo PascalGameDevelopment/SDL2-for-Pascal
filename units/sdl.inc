@@ -40,13 +40,13 @@ const
  *  signal handlers for some commonly ignored fatal signals (like SIGSEGV).
  *}
 
-function SDL_Init(flags: TSDL_Init): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Init' {$ENDIF} {$ENDIF};
+function SDL_Init(flags: TSDL_Init): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Init' {$ENDIF} {$ENDIF};
 
 {**
  *  This function initializes specific SDL subsystems
  *}
 
-function SDL_InitSubSystem(flags: TSDL_Init): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_InitSubSystem' {$ENDIF} {$ENDIF};
+function SDL_InitSubSystem(flags: TSDL_Init): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_InitSubSystem' {$ENDIF} {$ENDIF};
 
 {**
  *  This function cleans up specific SDL subsystems

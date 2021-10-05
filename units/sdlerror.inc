@@ -6,7 +6,7 @@ const
   {* Public functions *}
 
   {* SDL_SetError() unconditionally returns -1. *}
-function SDL_SetError(const fmt: PAnsiChar): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetError' {$ENDIF} {$ENDIF};
+function SDL_SetError(const fmt: PAnsiChar): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetError' {$ENDIF} {$ENDIF};
 function SDL_GetError: PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetError' {$ENDIF} {$ENDIF};
 procedure SDL_ClearError cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearError' {$ENDIF} {$ENDIF};
   {*Internal error functions*}
@@ -31,7 +31,7 @@ type
 
   TSDL_Error = record
     {* This is a numeric value corresponding to the current error *}
-    error: SInt32;
+    error: cint32;
 
     {* This is a key used to index into a language hashtable containing
        internationalized versions of the SDL error messages.  If the key
@@ -41,15 +41,15 @@ type
     key: String[ERR_MAX_STRLEN];
 
     {* These are the arguments for the error functions *}
-    argc: SInt32;
-    case SInt32 of
+    argc: cint32;
+    case cint32 of
          {* What is a character anyway?  (UNICODE issues) *}
       0: (value_c: Byte;);
       1: (value_ptr: Pointer;);
-      2: (value_i: SInt32;);
+      2: (value_i: cint32;);
       3: (value_f: Double;);
       4: (buf: String[ERR_MAX_STRLEN];);
   end;
 
   {* SDL_Error() unconditionally returns -1. *}
-function SDL_Error(code: TSDL_ErrorCode): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Error' {$ENDIF} {$ENDIF};
+function SDL_Error(code: TSDL_ErrorCode): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Error' {$ENDIF} {$ENDIF};

@@ -79,7 +79,7 @@ function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): Integer cdecl
    * 
    *  Returns number of mappings added, -1 on error
    *}
-function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: SInt32):SInt32;
+function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: cint32):cint32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerAddMappingsFromRW' {$ENDIF} {$ENDIF};
 
   {**
@@ -254,4 +254,4 @@ function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
 
 
-function SDL_GameControllerAddMappingsFromFile(Const FilePath:PAnsiChar):SInt32;
+function SDL_GameControllerAddMappingsFromFile(Const FilePath:PAnsiChar):cint32;

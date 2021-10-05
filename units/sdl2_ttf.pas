@@ -268,7 +268,7 @@ function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch, ch: UInt16):
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
 
 {* We'll use SDL for reporting errors *}
-function TTF_SetError(const fmt: PAnsiChar): SInt32; cdecl;
+function TTF_SetError(const fmt: PAnsiChar): cint32; cdecl;
 function TTF_GetError: PAnsiChar; cdecl;
 
 implementation
@@ -280,7 +280,7 @@ begin
   x.patch := SDL_TTF_PATCHLEVEL;
 end;
 
-function TTF_SetError(const fmt: PAnsiChar): SInt32; cdecl;
+function TTF_SetError(const fmt: PAnsiChar): cint32; cdecl;
 begin
   Result := SDL_SetError(fmt);
 end;

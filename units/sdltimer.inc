@@ -37,7 +37,7 @@ type
   {**
    * Definition of the timer ID type.
    *}
-  TSDL_TimerID = SInt32;
+  TSDL_TimerID = cint32;
 
   {**
    *  Add a new timer to the pool of timers already running.

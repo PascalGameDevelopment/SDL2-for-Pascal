@@ -210,7 +210,7 @@ begin
 end;
 
 //from "sdl_mouse.h"
-function SDL_Button(button: SInt32): SInt32;
+function SDL_Button(button: cint32): cint32;
 begin
   Result := 1 shl (button - 1); 
 end;
@@ -251,7 +251,7 @@ begin
   Result := ctx^.size(ctx);
 end;
 
-function SDL_RWseek(ctx: PSDL_RWops; offset: SInt64; whence: SInt32): SInt64;
+function SDL_RWseek(ctx: PSDL_RWops; offset: SInt64; whence: cint32): SInt64;
 begin
   Result := ctx^.seek(ctx,offset,whence);
 end;
@@ -271,7 +271,7 @@ begin
   Result := ctx^.write(ctx, ptr, size, n);
 end;
 
-function SDL_RWclose(ctx: PSDL_RWops): SInt32;
+function SDL_RWclose(ctx: PSDL_RWops): cint32;
 begin
   Result := ctx^.close(ctx);
 end;
@@ -358,7 +358,7 @@ begin
 end;
 
 function SDL_SaveBMP(const surface: PSDL_Surface; const filename: AnsiString
-  ): sInt32;
+  ): cint32;
 begin
    Result := SDL_SaveBMP_RW(surface, SDL_RWFromFile(PAnsiChar(filename), 'wb'), 1)
 end;
@@ -418,7 +418,7 @@ end;
    *  Load a set of mappings from a file, filtered by the current SDL_GetPlatform()
    *}
 function SDL_GameControllerAddMappingsFromFile(const FilePath: PAnsiChar
-  ): SInt32;
+  ): cint32;
 begin
   Result := SDL_GameControllerAddMappingsFromRW(SDL_RWFromFile(FilePath, 'rb'), 1)
 end;

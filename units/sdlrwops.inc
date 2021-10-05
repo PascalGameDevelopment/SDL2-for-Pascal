@@ -27,7 +27,7 @@ type
    *
    *  the final offset in the data stream, or -1 on error.
    *}
-  TSeek = function(context: PSDL_RWops; offset: SInt64; whence: SInt32): SInt64; {$IFNDEF GPC} cdecl; {$ENDIF}
+  TSeek = function(context: PSDL_RWops; offset: SInt64; whence: cint32): SInt64; {$IFNDEF GPC} cdecl; {$ENDIF}
                    
   {**
    *  Read up to maxnum objects each of size size from the data
@@ -53,7 +53,7 @@ type
    *  0 if successful or -1 on write error when flushing data.
    *}
 
-  TClose =  function(context: PSDL_RWops): SInt32; {$IFNDEF GPC} cdecl; {$ENDIF}
+  TClose =  function(context: PSDL_RWops): cint32; {$IFNDEF GPC} cdecl; {$ENDIF}
 
   TStdio = record
     autoclose: TSDL_Bool;
@@ -79,7 +79,7 @@ type
     position: LongInt;
     size: LongInt;
     offset: LongInt;
-    fd: SInt32;
+    fd: cint32;
   end;
 
   TWindowsIOBuffer = record
@@ -127,8 +127,8 @@ function SDL_RWFromFile(const _file: PAnsiChar; const mode: PAnsiChar): PSDL_RWo
 
 function SDL_RWFromFP(fp: Pointer; autoclose: TSDL_Bool): PSDL_RWops; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RWFromFP' {$ENDIF} {$ENDIF};
 
-function SDL_RWFromMem(mem: Pointer; size: SInt32): PSDL_RWops; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RWFromMem' {$ENDIF} {$ENDIF};
-function SDL_RWFromConstMem(const mem: Pointer; size: SInt32): PSDL_RWops; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RWFromConstMem' {$ENDIF} {$ENDIF};
+function SDL_RWFromMem(mem: Pointer; size: cint32): PSDL_RWops; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RWFromMem' {$ENDIF} {$ENDIF};
+function SDL_RWFromConstMem(const mem: Pointer; size: cint32): PSDL_RWops; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RWFromConstMem' {$ENDIF} {$ENDIF};
 
 {*RWFrom functions*}
 
@@ -148,11 +148,11 @@ const
    *}
 
   function SDL_RWsize(ctx: PSDL_RWops): SInt64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
-  function SDL_RWseek(ctx: PSDL_RWops; offset: SInt64; whence: SInt32): SInt64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
+  function SDL_RWseek(ctx: PSDL_RWops; offset: SInt64; whence: cint32): SInt64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWtell(ctx: PSDL_RWops): SInt64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWread(ctx: PSDL_RWops; ptr: Pointer; size: size_t; n: size_t): size_t; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWwrite(ctx: PSDL_RWops; ptr: Pointer; size: size_t; n: size_t): size_t; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
-  function SDL_RWclose(ctx: PSDL_RWops): SInt32; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
+  function SDL_RWclose(ctx: PSDL_RWops): cint32; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   { Read/write macros }
 
 

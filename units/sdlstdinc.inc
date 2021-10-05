@@ -56,12 +56,12 @@ type
 
   {$IFDEF FPC}
     PSInt32 = pcint32;
-    SInt32 = cint32;
+    //cint32 = cint32;
   {$ELSE}
-    PSInt32 = ^SInt32;
-    SInt32 = LongInt;
+    PSInt32 = ^cint32;
+    cint32 = LongInt;
   {$ENDIF}
-  {$EXTERNALSYM SInt32}
+  {$EXTERNALSYM cint32}
 
   {$IFDEF FPC}
     PFloat = pcfloat;

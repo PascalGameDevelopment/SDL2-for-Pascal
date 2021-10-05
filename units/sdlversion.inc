@@ -113,4 +113,4 @@ function SDL_GetRevision: PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} 
    *  library in use. It is an incrementing number based on commits to
    *  hg.libsdl.org.
    *}
-function SDL_GetRevisionNumber: SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRevisionNumber' {$ENDIF} {$ENDIF};
+function SDL_GetRevisionNumber: cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRevisionNumber' {$ENDIF} {$ENDIF};

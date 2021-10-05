@@ -417,7 +417,7 @@ const
 type
   TSDL_HapticDirection = record
     _type: UInt8;               {**< The type of encoding. *}
-    dir: array[0..2] of SInt32; {**< The encoded direction. *}
+    dir: array[0..2] of cint32; {**< The encoded direction. *}
   end;
 
   {**

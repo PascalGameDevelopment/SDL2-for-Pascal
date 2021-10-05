@@ -49,7 +49,7 @@ type
  *}
 type 
   PSDL_LogPriority = ^TSDL_LogPriority;
-  TSDL_LogPriority = type SInt32;
+  TSDL_LogPriority = type cint32;
 const
   SDL_LOG_PRIORITY_VERBOSE = TSDL_LogPriority(1);
   SDL_LOG_PRIORITY_DEBUG = TSDL_LogPriority(2);

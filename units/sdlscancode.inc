@@ -375,7 +375,7 @@ const
    *}
 type
   PSDL_KeyCode = ^TSDL_KeyCode;
-  TSDL_KeyCode = type SInt32;
+  TSDL_KeyCode = type cint32;
 
 const
   SDLK_SCANCODE_MASK = 1 shl 30;
