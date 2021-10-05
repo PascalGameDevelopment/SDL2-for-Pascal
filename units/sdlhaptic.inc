@@ -438,7 +438,7 @@ type
     direction: TSDL_HapticDirection; {**< Direction of the effect. *}
 
     {* Replay *}
-    length: UInt32;          {**< Duration of the effect. *}
+    length: cuint32;          {**< Duration of the effect. *}
     delay: UInt16;           {**< Delay before starting the effect. *}
 
     {* Trigger *}
@@ -521,7 +521,7 @@ type
     direction: TSDL_HapticDirection;  {**< Direction of the effect. *}
 
     {* Replay *}
-    length: UInt32;          {**< Duration of the effect. *}
+    length: cuint32;          {**< Duration of the effect. *}
     delay: UInt16;           {**< Delay before starting the effect. *}
 
     {* Trigger *}
@@ -573,7 +573,7 @@ type
     direction: TSDL_HapticDirection;  {**< Direction of the effect - Not used ATM. *}
 
     {* Replay *}
-    length: UInt32;                   {**< Duration of the effect. *}
+    length: cuint32;                   {**< Duration of the effect. *}
     delay: UInt16;                    {**< Delay before starting the effect. *}
 
     {* Trigger *}
@@ -609,7 +609,7 @@ type
     direction: TSDL_HapticDirection;  {**< Direction of the effect. *}
 
     {* Replay *}
-    length: UInt32;                   {**< Duration of the effect. *}
+    length: cuint32;                   {**< Duration of the effect. *}
     delay: UInt16;                    {**< Delay before starting the effect. *}
 
     {* Trigger *}
@@ -647,7 +647,7 @@ type
     direction: TSDL_HapticDirection;  {**< Direction of the effect. *}
 
     {* Replay *}
-    length: UInt32;                   {**< Duration of the effect. *}
+    length: cuint32;                   {**< Duration of the effect. *}
     delay: UInt16;                    {**< Delay before starting the effect. *}
 
     {* Trigger *}
@@ -920,7 +920,7 @@ function SDL_HapticNumEffectsPlaying(haptic: PSDL_Haptic): Integer cdecl; extern
    *   SDL_HapticNumEffects
    *   SDL_HapticEffectSupported
    *}
-function SDL_HapticQuery(haptic: PSDL_Haptic): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticQuery' {$ENDIF} {$ENDIF};
+function SDL_HapticQuery(haptic: PSDL_Haptic): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticQuery' {$ENDIF} {$ENDIF};
 
   {**
    *   Gets the number of haptic axes the device has.
@@ -991,7 +991,7 @@ function SDL_HapticUpdateEffect(haptic: PSDL_Haptic; effect: Integer; data: PSDL
    *   SDL_HapticDestroyEffect
    *   SDL_HapticGetEffectStatus
    *}
-function SDL_HapticRunEffect(haptic: PSDL_Haptic; effect: Integer; iterations: UInt32): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRunEffect' {$ENDIF} {$ENDIF};
+function SDL_HapticRunEffect(haptic: PSDL_Haptic; effect: Integer; iterations: cuint32): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRunEffect' {$ENDIF} {$ENDIF};
 
   {**
    *   Stops the haptic effect on its associated haptic device.
@@ -1139,7 +1139,7 @@ function SDL_HapticRumbleInit(haptic: PSDL_Haptic): Integer cdecl; external SDL_
    *   SDL_HapticRumbleInit
    *   SDL_HapticRumbleStop
    *}
-function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: Float; length: UInt32): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumblePlay' {$ENDIF} {$ENDIF};
+function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: Float; length: cuint32): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumblePlay' {$ENDIF} {$ENDIF};
 
   {**
    *   Stops the simple rumble on a haptic device.

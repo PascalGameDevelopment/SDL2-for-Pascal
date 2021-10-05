@@ -12,7 +12,7 @@ type
     scancode: TSDL_ScanCode;      // SDL physical key code - see SDL_Scancode for details
     sym: TSDL_KeyCode;            // SDL virtual key code - see SDL_Keycode for details
     _mod: UInt16;                 // current key modifiers
-    unicode: UInt32;              // (deprecated) use SDL_TextInputEvent instead
+    unicode: cuint32;              // (deprecated) use SDL_TextInputEvent instead
   end;
 
   {**

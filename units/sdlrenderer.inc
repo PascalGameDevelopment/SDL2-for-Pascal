@@ -22,9 +22,9 @@ type
   PSDL_RendererInfo = ^TSDL_RendererInfo;
   TSDL_RendererInfo = record  
     name: PAnsiChar;                         {**< The name of the renderer *}
-    flags: UInt32;                           {**< Supported ::SDL_RendererFlags *}
-    num_texture_formats: UInt32;             {**< The number of available texture formats *}
-    texture_formats: array[0..15] of UInt32; {**< The available texture formats *}
+    flags: cuint32;                           {**< Supported ::SDL_RendererFlags *}
+    num_texture_formats: cuint32;             {**< The number of available texture formats *}
+    texture_formats: array[0..15] of cuint32; {**< The available texture formats *}
     max_texture_width: cint32;               {**< The maximimum texture width *}
     max_texture_height: cint32;              {**< The maximimum texture height *}
   end;
@@ -117,7 +117,7 @@ function SDL_GetRenderDriverInfo(index: cint32; info: PSDL_RendererInfo): cint32
    *
    *   0 on success, or -1 on error
    *}
-function SDL_CreateWindowAndRenderer(width: cint32; height: cint32; window_flags: UInt32; window: PPSDL_Window; renderer: PPSDL_Renderer): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateWindowAndRenderer' {$ENDIF} {$ENDIF};
+function SDL_CreateWindowAndRenderer(width: cint32; height: cint32; window_flags: cuint32; window: PPSDL_Window; renderer: PPSDL_Renderer): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateWindowAndRenderer' {$ENDIF} {$ENDIF};
 
   {**
    *  Create a 2D rendering context for a window.
@@ -133,7 +133,7 @@ function SDL_CreateWindowAndRenderer(width: cint32; height: cint32; window_flags
    *   SDL_GetRendererInfo()
    *   SDL_DestroyRenderer()
    *}
-function SDL_CreateRenderer(window: PSDL_Window; index: cint32; flags: UInt32): PSDL_Renderer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRenderer' {$ENDIF} {$ENDIF};
+function SDL_CreateRenderer(window: PSDL_Window; index: cint32; flags: cuint32): PSDL_Renderer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRenderer' {$ENDIF} {$ENDIF};
 
   {**
    *  Create a 2D software rendering context for a surface.
@@ -179,7 +179,7 @@ function SDL_GetRendererOutputSize(renderer: PSDL_Renderer; w: PInt; h: PInt): c
    *  SDL_UpdateTexture()
    *  SDL_DestroyTexture()
    *}
-function SDL_CreateTexture(renderer: PSDL_Renderer; format: UInt32; access: cint32; w: cint32; h: cint32): PSDL_Texture cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateTexture' {$ENDIF} {$ENDIF};
+function SDL_CreateTexture(renderer: PSDL_Renderer; format: cuint32; access: cint32; w: cint32; h: cint32): PSDL_Texture cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateTexture' {$ENDIF} {$ENDIF};
 
   {**
    *  Create a texture from an existing surface.
@@ -834,7 +834,7 @@ function SDL_RenderCopyExF(renderer: PSDL_Renderer; texture: PSDL_Texture; const
    *
    *   This is a very slow operation, and should not be used frequently.
    *}
-function SDL_RenderReadPixels(renderer: PSDL_Renderer; rect: PSDL_Rect; format: UInt32; pixels: Pointer; pitch: cint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderReadPixels' {$ENDIF} {$ENDIF};
+function SDL_RenderReadPixels(renderer: PSDL_Renderer; rect: PSDL_Rect; format: cuint32; pixels: Pointer; pitch: cint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderReadPixels' {$ENDIF} {$ENDIF};
 
   {**
    *  Update the screen with rendering performed.

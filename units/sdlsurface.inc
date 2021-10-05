@@ -29,7 +29,7 @@ type
 
   PSDL_Surface = ^TSDL_Surface;
   TSDL_Surface = record
-    flags: UInt32;              {**< Read-only *}
+    flags: cuint32;              {**< Read-only *}
     format: PSDL_PixelFormat;   {**< Read-only *}
     w, h: cint32;               {**< Read-only *}
     pitch: cint32;              {**< Read-only *}
@@ -73,9 +73,9 @@ function SDL_MUSTLOCK(Const S:PSDL_Surface):Boolean;
    *  flags The flags are obsolete and should be set to 0.
    *}
 
-function SDL_CreateRGBSurface(flags: UInt32; width: cint32; height: cint32; depth: cint32; Rmask: UInt32; Gmask: UInt32; Bmask: UInt32; Amask: UInt32): PSDL_Surface cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurface' {$ENDIF} {$ENDIF};
+function SDL_CreateRGBSurface(flags: cuint32; width: cint32; height: cint32; depth: cint32; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurface' {$ENDIF} {$ENDIF};
 function SDL_CreateRGBSurfaceWithFormat(flags: Uint32; width, height, depth: cint32; format: Uint32):PSDL_Surface; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurfaceWithFormat' {$ENDIF} {$ENDIF};
-function SDL_CreateRGBSurfaceFrom(pixels: Pointer; width: cint32; height: cint32; depth: cint32; pitch: cint32; Rmask: UInt32; Gmask: UInt32; Bmask: UInt32; Amask: UInt32): PSDL_Surface cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurfaceFrom' {$ENDIF} {$ENDIF};
+function SDL_CreateRGBSurfaceFrom(pixels: Pointer; width: cint32; height: cint32; depth: cint32; pitch: cint32; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurfaceFrom' {$ENDIF} {$ENDIF};
 function SDL_CreateRGBSurfaceWithFormatFrom(pixels: Pointer; width, height, depth, pitch: cint32; format: Uint32):PSDL_Surface; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurfaceWithFormatFrom' {$ENDIF} {$ENDIF};
 procedure SDL_FreeSurface(surface: PSDL_Surface) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FreeSurface' {$ENDIF} {$ENDIF};
 
@@ -175,7 +175,7 @@ function SDL_SetSurfaceRLE(surface: PSDL_Surface; flag: cint32): cint32 cdecl; e
    *  You can pass SDL_RLEACCEL to enable RLE accelerated blits.
    *}
 
-function SDL_SetColorKey(surface: PSDL_Surface; flag: cint32; key: UInt32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetColorKey' {$ENDIF} {$ENDIF};
+function SDL_SetColorKey(surface: PSDL_Surface; flag: cint32; key: cuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetColorKey' {$ENDIF} {$ENDIF};
 
   {**
    *  Gets the color key (transparent pixel) in a blittable surface.
@@ -308,8 +308,8 @@ procedure SDL_GetClipRect(surface: PSDL_Surface; rect: PSDL_Rect) cdecl; externa
    *  surface.
    *}
 
-function SDL_ConvertSurface(src: PSDL_Surface; fmt: PSDL_PixelFormat; flags: UInt32): PSDL_Surface cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertSurface' {$ENDIF} {$ENDIF};
-function SDL_ConvertSurfaceFormat(src: PSDL_Surface; pixel_format: UInt32; flags: UInt32): PSDL_Surface cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertSurfaceFormat' {$ENDIF} {$ENDIF};
+function SDL_ConvertSurface(src: PSDL_Surface; fmt: PSDL_PixelFormat; flags: cuint32): PSDL_Surface cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertSurface' {$ENDIF} {$ENDIF};
+function SDL_ConvertSurfaceFormat(src: PSDL_Surface; pixel_format: cuint32; flags: cuint32): PSDL_Surface cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertSurfaceFormat' {$ENDIF} {$ENDIF};
 
   {**
    *  Copy a block of pixels of one format to another format
@@ -317,7 +317,7 @@ function SDL_ConvertSurfaceFormat(src: PSDL_Surface; pixel_format: UInt32; flags
    *  0 on success, or -1 if there was an error
    *}
 
-function SDL_ConvertPixels(width: cint32; height: cint32; src_format: UInt32; const src: Pointer; src_pitch: cint32; dst_format: UInt32; dst: Pointer; dst_pitch: cint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertPixels' {$ENDIF} {$ENDIF};
+function SDL_ConvertPixels(width: cint32; height: cint32; src_format: cuint32; const src: Pointer; src_pitch: cint32; dst_format: cuint32; dst: Pointer; dst_pitch: cint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertPixels' {$ENDIF} {$ENDIF};
 
   {**
    *  Performs a fast fill of the given rectangle with color.
@@ -330,8 +330,8 @@ function SDL_ConvertPixels(width: cint32; height: cint32; src_format: UInt32; co
    *  0 on success, or -1 on error.
    *}
 
-function SDL_FillRect(dst: PSDL_Surface; const rect: PSDL_Rect; color: UInt32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FillRect' {$ENDIF} {$ENDIF};
-function SDL_FillRects(dst: PSDL_Surface; const rects: PSDL_Rect; count: cint32; color: UInt32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FillRects' {$ENDIF} {$ENDIF};
+function SDL_FillRect(dst: PSDL_Surface; const rect: PSDL_Rect; color: cuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FillRect' {$ENDIF} {$ENDIF};
+function SDL_FillRects(dst: PSDL_Surface; const rects: PSDL_Rect; count: cint32; color: cuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FillRects' {$ENDIF} {$ENDIF};
 
   {**
    *  Performs a fast blit from the source surface to the destination surface.

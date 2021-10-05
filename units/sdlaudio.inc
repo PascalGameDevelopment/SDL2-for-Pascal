@@ -129,7 +129,7 @@ type
     silence: UInt8;               {**< Audio buffer silence value (calculated) *}
     samples: UInt16;              {**< Audio buffer size in samples (power of 2) *}
     padding: UInt16;              {**< Necessary for some compile environments *}
-    size: UInt32;                 {**< Audio buffer size in bytes (calculated) *}
+    size: cuint32;                 {**< Audio buffer size in bytes (calculated) *}
     callback: TSDL_AudioCallback;
     userdata: Pointer;
   end;
@@ -238,7 +238,7 @@ function SDL_OpenAudio(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): Integ
    *  specific, or capture devices.
    *}
 type
-  TSDL_AudioDeviceID = UInt32;
+  TSDL_AudioDeviceID = cuint32;
 
   {**
    *  Get the number of available devices exposed by the current driver.
@@ -388,14 +388,14 @@ const
    *  for full audio volume.  Note this does not change hardware volume.
    *  This is provided for convenience -- you can mix your own audio data.
    *}
-procedure SDL_MixAudio(dst: PUInt8; src: PUInt8; len: UInt32; volume: Integer) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudio' {$ENDIF} {$ENDIF};
+procedure SDL_MixAudio(dst: PUInt8; src: PUInt8; len: cuint32; volume: Integer) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudio' {$ENDIF} {$ENDIF};
 
   {**
    *  This works like SDL_MixAudio(), but you specify the audio format instead of
    *  using the format of audio device 1. Thus it can be used when no audio
    *  device is open at all.
    *}
-procedure SDL_MixAudioFormat(dst: PUInt8; src: PUInt8; format: TSDL_AudioFormat; len: UInt32; volume: Integer) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudioFormat' {$ENDIF} {$ENDIF};
+procedure SDL_MixAudioFormat(dst: PUInt8; src: PUInt8; format: TSDL_AudioFormat; len: cuint32; volume: Integer) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudioFormat' {$ENDIF} {$ENDIF};
 
   {**
    *  Queue more audio on non-callback devices.
@@ -432,7 +432,7 @@ procedure SDL_MixAudioFormat(dst: PUInt8; src: PUInt8; format: TSDL_AudioFormat;
    *  \sa SDL_GetQueuedAudioSize
    *  \sa SDL_ClearQueuedAudio
    *}
-function SDL_QueueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: UInt32): cint32; cdecl;
+function SDL_QueueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_QueueAudio' {$ENDIF} {$ENDIF};
 
   {**
@@ -507,7 +507,7 @@ function SDL_DequeueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len:Uint32):Ui
    *  \sa SDL_QueueAudio
    *  \sa SDL_ClearQueuedAudio
    *}
-function SDL_GetQueuedAudioSize(dev: TSDL_AudioDeviceID): UInt32; cdecl;
+function SDL_GetQueuedAudioSize(dev: TSDL_AudioDeviceID): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetQueuedAudioSize' {$ENDIF} {$ENDIF};
 
   {**

@@ -7,7 +7,7 @@
     window: PSDL_Window;
 
     {* The user's specified coordinates for the window, for once we give it a shape. *}
-    userx,usery: UInt32;
+    userx,usery: cuint32;
 
     {* The parameters for shape calculation. *}
     mode: TSDL_WindowShapeMode;
@@ -72,7 +72,7 @@
 
   PSDL_DisplayMode = ^TSDL_DisplayMode;
   TSDL_DisplayMode = record
-    format: UInt32;              {**< pixel format *}
+    format: cuint32;              {**< pixel format *}
     w: cint32;                   {**< width *}
     h: cint32;                   {**< height *}
     refresh_rate: cint32;        {**< refresh rate (or zero for unspecified) *}
@@ -110,15 +110,15 @@
   {* Define the SDL window structure, corresponding to toplevel windows *}
   TSDL_Window = record
     magic: Pointer;
-    id: UInt32;
+    id: cuint32;
     title: PAnsiChar;
     icon: PSDL_Surface;
     x,y: cint32;
     w,h: cint32;
     min_w, min_h: cint32;
     max_w, max_h: cint32;
-    flags: UInt32;
-    last_fullscreen_flags: UInt32;
+    flags: cuint32;
+    last_fullscreen_flags: cuint32;
 
     {* Stored position and size for windowed mode * }
     windowed: TSDL_Rect;
@@ -205,7 +205,7 @@ function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode
    *
    *  SDL_DestroyWindow()
    *}
-function SDL_CreateShapedWindow(title: PAnsiChar; x: UInt32; y: UInt32; w: UInt32; h: UInt32; flags: UInt32): PSDL_Window cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateShapedWindow' {$ENDIF} {$ENDIF};
+function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint32; y: cuint32; w: cuint32; h: cuint32; flags: cuint32): PSDL_Window cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateShapedWindow' {$ENDIF} {$ENDIF};
 
   {**
    * Return whether the given window is a shaped window.
@@ -588,7 +588,7 @@ function SDL_GetWindowDisplayMode(window: PSDL_Window; mode: PSDL_DisplayMode): 
    *  Get the pixel format associated with the window.
    *}
 
-function SDL_GetWindowPixelFormat(window: PSDL_Window): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowPixelFormat' {$ENDIF} {$ENDIF};
+function SDL_GetWindowPixelFormat(window: PSDL_Window): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowPixelFormat' {$ENDIF} {$ENDIF};
 
   {**
    *  \brief Create a window with the specified position, dimensions, and flags.
@@ -633,7 +633,7 @@ function SDL_GetWindowPixelFormat(window: PSDL_Window): UInt32 cdecl; external S
    *  \sa SDL_Vulkan_LoadLibrary()
    *}
 
-function SDL_CreateWindow(const title: PAnsiChar; x: cint32; y: cint32; w: cint32; h: cint32; flags: UInt32): PSDL_Window cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateWindow' {$ENDIF} {$ENDIF};
+function SDL_CreateWindow(const title: PAnsiChar; x: cint32; y: cint32; w: cint32; h: cint32; flags: cuint32): PSDL_Window cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateWindow' {$ENDIF} {$ENDIF};
 
   {**
    *  Create an SDL window from an existing native window.
@@ -651,19 +651,19 @@ function SDL_CreateWindowFrom(const data: Pointer): PSDL_Window cdecl; external 
    *  Get the numeric ID of a window, for logging purposes.
    *}
 
-function SDL_GetWindowID(window: PSDL_Window): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowID' {$ENDIF} {$ENDIF};
+function SDL_GetWindowID(window: PSDL_Window): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowID' {$ENDIF} {$ENDIF};
 
   {**
    *  Get a window from a stored ID, or nil if it doesn't exist.
    *}
 
-function SDL_GetWindowFromID(id: UInt32): PSDL_Window cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowFromID' {$ENDIF} {$ENDIF};
+function SDL_GetWindowFromID(id: cuint32): PSDL_Window cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowFromID' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the window flags.
    *}
 
-function SDL_GetWindowFlags(window: PSDL_Window): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowFlags' {$ENDIF} {$ENDIF};
+function SDL_GetWindowFlags(window: PSDL_Window): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowFlags' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the title of a window, in UTF-8 format.
@@ -932,7 +932,7 @@ procedure SDL_RestoreWindow(window: PSDL_Window) cdecl; external SDL_LibName {$I
    *  SDL_GetWindowDisplayMode()
    *}
 
-function SDL_SetWindowFullscreen(window: PSDL_Window; flags: UInt32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowFullscreen' {$ENDIF} {$ENDIF};
+function SDL_SetWindowFullscreen(window: PSDL_Window; flags: cuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowFullscreen' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the SDL surface associated with the window.

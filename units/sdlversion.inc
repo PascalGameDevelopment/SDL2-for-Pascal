@@ -55,7 +55,7 @@ procedure SDL_VERSION(Out x: TSDL_Version);
  *
  *  This assumes that there will never be more than 100 patchlevels.
  *}
-function SDL_VERSIONNUM(X,Y,Z: UInt32): Cardinal;
+function SDL_VERSIONNUM(X,Y,Z: cuint32): Cardinal;
 
   {**
    *  This is the version number macro for the current SDL version.

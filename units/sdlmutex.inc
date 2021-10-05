@@ -68,7 +68,7 @@ type
   {**
    *  Create a semaphore, initialized with value, returns NULL on failure.
    *}
-function SDL_CreateSemaphore(initial_value: UInt32): PSDL_sem cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateSemaphore' {$ENDIF} {$ENDIF};
+function SDL_CreateSemaphore(initial_value: cuint32): PSDL_sem cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateSemaphore' {$ENDIF} {$ENDIF};
 
   {**
    *  Destroy a semaphore.
@@ -99,7 +99,7 @@ function SDL_SemTryWait(sem: PSDL_Sem): cint32 cdecl; external SDL_LibName {$IFD
    *   On some platforms this function is implemented by looping with a
    *   delay of 1 ms, and so should be avoided if possible.
    *}
-function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: UInt32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemWaitTimeout' {$ENDIF} {$ENDIF};
+function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: cuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemWaitTimeout' {$ENDIF} {$ENDIF};
 
   {**
    *  Atomically increases the semaphore'_S count (not blocking).
@@ -111,7 +111,7 @@ function SDL_SemPost(sem: PSDL_Sem): cint32 cdecl; external SDL_LibName {$IFDEF 
   {**
    *  Returns the current count of the semaphore.
    *}
-function SDL_SemValue(sem: PSDL_Sem): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemValue' {$ENDIF} {$ENDIF};
+function SDL_SemValue(sem: PSDL_Sem): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemValue' {$ENDIF} {$ENDIF};
 
   {*Semaphore functions*}
 
@@ -191,4 +191,4 @@ function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint32 cdecl; externa
    *   On some platforms this function is implemented by looping with a
    *   delay of 1 ms, and so should be avoided if possible.
    *}
-function SDL_CondWaitTimeout(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: UInt32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondWaitTimeout' {$ENDIF} {$ENDIF};
+function SDL_CondWaitTimeout(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondWaitTimeout' {$ENDIF} {$ENDIF};

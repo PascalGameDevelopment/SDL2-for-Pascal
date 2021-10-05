@@ -27,7 +27,7 @@ type
 type
   PSDL_MessageBoxButtonData = ^TSDL_MessageBoxButtonData;
   TSDL_MessageBoxButtonData = record
-    flags: UInt32;     {**< ::SDL_MessageBoxButtonFlags *}
+    flags: cuint32;     {**< ::SDL_MessageBoxButtonFlags *}
     buttonid: Integer; {**< User defined button id (value returned via SDL_ShowMessageBox) *}
     text: PAnsiChar;   {**< The UTF-8 button text *}
   end;
@@ -65,7 +65,7 @@ type
 type
   PSDL_MessageBoxData = ^TSDL_MessageBoxData;
   TSDL_MessageBoxData = record
-    flags: UInt32;             {**< SDL_MessageBoxFlags *}
+    flags: cuint32;             {**< SDL_MessageBoxFlags *}
     window: PSDL_Window;       {**< Parent window, can be NULL *}
     title: PAnsiChar;          {**< UTF-8 title *}
     _message: PAnsiChar;       {**< UTF-8 message text *}
@@ -104,5 +104,5 @@ function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: PInt)
    *
    *   SDL_ShowMessageBox
    *}
-function SDL_ShowSimpleMessageBox(flags: UInt32; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowSimpleMessageBox' {$ENDIF} {$ENDIF};
+function SDL_ShowSimpleMessageBox(flags: cuint32; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowSimpleMessageBox' {$ENDIF} {$ENDIF};
 

@@ -452,7 +452,7 @@ function SDL_JoystickGetButton(joystick: PSDL_Joystick; button: cint32): UInt8; 
  *
  *  \return 0, or -1 if rumble isn't supported on this joystick
  *}
-function SDL_JoystickRumble(joystick: PSDL_Joystick; low_frequency_rumble: UInt16; high_frequency_rumble: UInt16; duration_ms: UInt32): cint32; cdecl;
+function SDL_JoystickRumble(joystick: PSDL_Joystick; low_frequency_rumble: UInt16; high_frequency_rumble: UInt16; duration_ms: cuint32): cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickRumble' {$ENDIF} {$ENDIF};
 
 {**
@@ -466,7 +466,7 @@ function SDL_JoystickRumble(joystick: PSDL_Joystick; low_frequency_rumble: UInt1
  *
  *  \return 0, or -1 if trigger rumble isn't supported on this joystick
  *}
-function SDL_JoystickRumbleTriggerse(joystick: PSDL_Joystick; left_rumble: UInt16; right_rumble: UInt16; duration_ms: UInt32): cint32; cdecl;
+function SDL_JoystickRumbleTriggerse(joystick: PSDL_Joystick; left_rumble: UInt16; right_rumble: UInt16; duration_ms: cuint32): cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickRumbleTriggers' {$ENDIF} {$ENDIF};
 
 {**

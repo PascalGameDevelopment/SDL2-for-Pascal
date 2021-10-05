@@ -192,7 +192,7 @@ begin
   x.patch := SDL_PATCHLEVEL;
 end;
 
-function SDL_VERSIONNUM(X,Y,Z: UInt32): Cardinal;
+function SDL_VERSIONNUM(X,Y,Z: cuint32): Cardinal;
 begin
   Result := X*1000 + Y*100 + Z;
 end;
@@ -408,7 +408,7 @@ begin
 end;
 
 // from "sdl_timer.h"
-function SDL_TICKS_PASSED(const A, B: UInt32): Boolean;
+function SDL_TICKS_PASSED(const A, B: cuint32): Boolean;
 begin
    Result := ((Int64(B) - Int64(A)) <= 0)
 end;

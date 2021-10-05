@@ -17,7 +17,7 @@ type
 
 {* Used as the device ID for mouse events simulated with touch input *}
 const
-  SDL_TOUCH_MOUSEID = UInt32(-1);
+  SDL_TOUCH_MOUSEID = cuint32(-1);
 
   {* Function prototypes *}
 

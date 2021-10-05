@@ -84,7 +84,7 @@ type
   {* IPv4 hostname resolution API                                        *}
   {***********************************************************************}
   TIPaddress = record
-    host: UInt32;            {* 32-bit IPv4 host address *}
+    host: cuint32;            {* 32-bit IPv4 host address *}
     port: UInt16;            {* 16-bit protocol port *}
   end;
   PIPaddress = ^TIPaddress;
@@ -324,7 +324,7 @@ function SDLNet_DelSocket(set_: TSDLNet_SocketSet; sock: TSDLNet_GenericSocket):
    first.  This function returns the number of sockets ready for reading,
    or -1 if there was an error with the select() system call.
 *}
-function SDLNet_CheckSockets(set_: TSDLNet_SocketSet; timeout: UInt32): Integer cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_CheckSockets' {$ENDIF} {$ENDIF};
+function SDLNet_CheckSockets(set_: TSDLNet_SocketSet; timeout: cuint32): Integer cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_CheckSockets' {$ENDIF} {$ENDIF};
 
 {* After calling SDLNet_CheckSockets(), you can use this function on a
    socket that was in the socket set, to find out if data is available
@@ -349,11 +349,11 @@ function SDLNet_GetError(): PAnsiChar; cdecl;
 {* Write a 16/32-bit value to network packet buffer *}
 
 //procedure SDLNet_Write16(value: UInt16; areap: Pointer); inline;
-//procedure SDLNet_Write32(value: UInt32; areap: Pointer); inline;
+//procedure SDLNet_Write32(value: cuint32; areap: Pointer); inline;
 
 {* Read a 16/32-bit value from network packet buffer *}
 //function SDLNet_Read16(const areap: Pointer): UInt16; inline;
-//function SDLNet_Read32(const areap: Pointer): UInt32; inline;
+//function SDLNet_Read32(const areap: Pointer): cuint32; inline;
 
 implementation
 
@@ -407,7 +407,7 @@ end;
     PUInt16(areap) := SDL_SwapBE16(value);
   end;
 
-  procedure SDLNet_Write32(value: UInt32; areap: Pointer);
+  procedure SDLNet_Write32(value: cuint32; areap: Pointer);
   begin
     PUInt32(areap) := SDL_SwapBE32(value);
   end;
@@ -418,7 +418,7 @@ end;
     Result := SDL_SwapBE16(PUInt16(areap));
   end;
 
-  function SDLNet_Read32(const areap: Pointer): UInt32;
+  function SDLNet_Read32(const areap: Pointer): cuint32;
   begin
     Result := SDL_SwapBE32(PUInt32(areap));
   end;

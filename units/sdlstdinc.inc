@@ -47,12 +47,12 @@ type
 
   {$IFDEF FPC}
     PUInt32 = pcuint32;
-    UInt32 = cuint32;
+    //cuint32 = cuint32;
   {$ELSE}
-    PUInt32 = ^UInt32;
-    UInt32 = Cardinal;
+    PUInt32 = ^cuint32;
+    cuint32 = Cardinal;
   {$ENDIF}
-  {$EXTERNALSYM UInt32}
+  {$EXTERNALSYM cuint32}
 
   {$IFDEF FPC}
     PSInt32 = pcint32;
@@ -100,15 +100,15 @@ type
     {$IFNDEF Has_Int64}
       PUInt64 = ^UInt64;
       UInt64 = record
-        hi: UInt32;
-        lo: UInt32;
+        hi: cuint32;
+        lo: cuint32;
       end;
       {$EXTERNALSYM UInt64}
 
       PInt64 = ^Int64;
       Int64 = record
-        hi: UInt32;
-        lo: UInt32;
+        hi: cuint32;
+        lo: cuint32;
       end;
     {$EXTERNALSYM Int64}
 
@@ -128,7 +128,7 @@ type
     size_t = csize_t;
   {$ELSE}
     {$IFNDEF WIN64}
-      size_t = UInt32;
+      size_t = cuint32;
     {$ELSE}
       size_t = UInt64;
     {$ENDIF}
