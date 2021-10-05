@@ -29,12 +29,12 @@ type
 
   {$IFDEF FPC}
     PSInt8 = pcint8;
-    SInt8 = cint8;
+    //cint8 = cint8;
   {$ELSE}
-    PSInt8 = ^SInt8;
-    SInt8 = ShortInt;
+    PSInt8 = ^cint8;
+    cint8 = ShortInt;
   {$ENDIF}
-  {$EXTERNALSYM SInt8}
+  {$EXTERNALSYM cint8}
 
   {$IFDEF FPC}
     PSInt16 = pcint16;
