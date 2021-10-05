@@ -261,7 +261,7 @@ type
     padding1: UInt8;
     padding2: UInt8;
     padding3: UInt8;
-    value: SInt16;         // The axis value (range: -32768 to 32767)
+    value: cint16;         // The axis value (range: -32768 to 32767)
     padding4: UInt16;
   end;
 
@@ -277,8 +277,8 @@ type
     padding1: UInt8;
     padding2: UInt8;
     padding3: UInt8;
-    xrel: SInt16;          // The relative motion in the X direction
-    yrel: SInt16;          // The relative motion in the Y direction
+    xrel: cint16;          // The relative motion in the X direction
+    yrel: cint16;          // The relative motion in the Y direction
   end;
 
   {**
@@ -337,7 +337,7 @@ type
     padding1: UInt8;
     padding2: UInt8;
     padding3: UInt8;
-    value: SInt16;         // The axis value (range: -32768 to 32767)
+    value: cint16;         // The axis value (range: -32768 to 32767)
     padding4: UInt16;
   end;
 

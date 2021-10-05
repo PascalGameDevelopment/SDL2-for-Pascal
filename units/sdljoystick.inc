@@ -220,7 +220,7 @@ function SDL_JoystickIsVirtual(device_index: cint32): TSDL_Bool; cdecl;
  *
  * Returns 0 on success, -1 on error.
  *}
-function SDL_JoystickSetVirtualAxis(joystick: PSDL_Joystick; axis: cint32; value: SInt16): cint32; cdecl;
+function SDL_JoystickSetVirtualAxis(joystick: PSDL_Joystick; axis: cint32; value: cint16): cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickSetVirtualAxis' {$ENDIF} {$ENDIF};
 
 function SDL_JoystickSetVirtualButton(joystick: PSDL_Joystick; button: cint32; value: UInt8): cint32; cdecl;
@@ -375,7 +375,7 @@ const
  *
  *  The axis indices start at index 0.
  *}
-function SDL_JoystickGetAxis(joystick: PSDL_Joystick; axis: cint32): SInt16; cdecl;
+function SDL_JoystickGetAxis(joystick: PSDL_Joystick; axis: cint32): cint16; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickGetAxis' {$ENDIF} {$ENDIF};
 
 {**

@@ -38,12 +38,12 @@ type
 
   {$IFDEF FPC}
     PSInt16 = pcint16;
-    SInt16 = cint16;
+    //cint16 = cint16;
   {$ELSE}
-    PSInt16 = ^SInt16;
-    SInt16 = SmallInt;
+    PSInt16 = ^cint16;
+    cint16 = SmallInt;
   {$ENDIF}
-  {$EXTERNALSYM SInt16}
+  {$EXTERNALSYM cint16}
 
   {$IFDEF FPC}
     PUInt32 = pcuint32;

@@ -446,7 +446,7 @@ type
     interval: UInt16;        {**< How soon it can be triggered again after button. *}
 
     {* Constant *}
-    level: SInt16;           {**< Strength of the constant effect. *}
+    level: cint16;           {**< Strength of the constant effect. *}
 
     {* Envelope *}
     attack_length: UInt16;   {**< Duration of the attack. *}
@@ -530,8 +530,8 @@ type
 
     {* Periodic *}
     period: UInt16;          {**< Period of the wave. *}
-    magnitude: SInt16;       {**< Peak value. *}
-    offset: SInt16;          {**< Mean value of the wave. *}
+    magnitude: cint16;       {**< Peak value. *}
+    offset: cint16;          {**< Mean value of the wave. *}
     phase: UInt16;           {**< Horizontal shift given by hundredth of a cycle. *}
 
     {* Envelope *}
@@ -583,10 +583,10 @@ type
     {* Condition *}
     right_sat: array[0..2] of UInt16; {**< Level when joystick is to the positive side. *}
     left_sat: array[0..2] of UInt16;  {**< Level when joystick is to the negative side. *}
-    right_coeff: array[0..2] of SInt16;  {**< How fast to increase the force towards the positive side. *}
-    left_coeff: array[0..2] of SInt16;   {**< How fast to increase the force towards the negative side. *}
+    right_coeff: array[0..2] of cint16;  {**< How fast to increase the force towards the positive side. *}
+    left_coeff: array[0..2] of cint16;   {**< How fast to increase the force towards the negative side. *}
     deadband: array[0..2] of UInt16;     {**< Size of the dead zone. *}
-    center: array[0..2] of SInt16;       {**< Position of the dead zone. *}
+    center: array[0..2] of cint16;       {**< Position of the dead zone. *}
   end;
 
   {**
@@ -617,8 +617,8 @@ type
     interval: UInt16;                 {**< How soon it can be triggered again after button. *}
 
     {* Ramp *}
-    start: SInt16;                    {**< Beginning strength level. *}
-    _end: SInt16;                     {**< Ending strength level. *}
+    start: cint16;                    {**< Beginning strength level. *}
+    _end: cint16;                     {**< Ending strength level. *}
 
     {* Envelope *}
     attack_length: UInt16;            {**< Duration of the attack. *}
