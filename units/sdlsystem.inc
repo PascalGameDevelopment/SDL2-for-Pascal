@@ -7,7 +7,7 @@
    *  \brief Set a function that is called for every windows message, before TranslateMessage()
    *}
 Type
-  TSDL_WindowsMessageHook = Procedure(userdata, hWnd: Pointer; mesage: cuint32; wParam: UInt64; lParam: cint64); cdecl;
+  TSDL_WindowsMessageHook = Procedure(userdata, hWnd: Pointer; mesage: cuint32; wParam: cuint64; lParam: cint64); cdecl;
 
 Procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata: Pointer); cdecl;
   external SDL_LibName;

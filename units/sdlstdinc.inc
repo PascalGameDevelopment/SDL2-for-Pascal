@@ -86,8 +86,8 @@ type
 
   {$IFDEF FPC}
     PUInt64 = pcuint64;
-    UInt64 = cuint64;
-    {$EXTERNALSYM UInt64}
+    cuint64 = cuint64;
+    {$EXTERNALSYM cuint64}
 
     PInt64 = pcint64;
     Int64 = cint64;
@@ -98,12 +98,12 @@ type
     {$EXTERNALSYM cint64}
   {$ELSE}
     {$IFNDEF Has_Int64}
-      PUInt64 = ^UInt64;
-      UInt64 = record
+      PUInt64 = ^cuint64;
+      cuint64 = record
         hi: cuint32;
         lo: cuint32;
       end;
-      {$EXTERNALSYM UInt64}
+      {$EXTERNALSYM cuint64}
 
       PInt64 = ^Int64;
       Int64 = record
@@ -117,7 +117,7 @@ type
     {$EXTERNALSYM cint64}
     {$ELSE}
 
-      { Int64/UInt64 def. missing here ? }
+      { Int64/cuint64 def. missing here ? }
 
       PSInt64 = ^cint64;
       cint64 = Int64;
@@ -130,7 +130,7 @@ type
     {$IFNDEF WIN64}
       size_t = cuint32;
     {$ELSE}
-      size_t = UInt64;
+      size_t = cuint64;
     {$ENDIF}
   {$ENDIF}
   {$EXTERNALSYM SIZE_T}

@@ -10,12 +10,12 @@ function SDL_GetTicks: cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFD
   {**
    *  Get the current value of the high resolution counter
    *}
-function SDL_GetPerformanceCounter: UInt64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceCounter' {$ENDIF} {$ENDIF};
+function SDL_GetPerformanceCounter: cuint64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceCounter' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the count per second of the high resolution counter
    *}
-function SDL_GetPerformanceFrequency: UInt64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceFrequency' {$ENDIF} {$ENDIF};
+function SDL_GetPerformanceFrequency: cuint64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceFrequency' {$ENDIF} {$ENDIF};
 
   {**
    *  Wait a specified number of milliseconds before returning.
