@@ -359,10 +359,10 @@ const
 type
   PSDL_Color = ^TSDL_Color;
   TSDL_Color = record
-    r: UInt8;
-    g: UInt8;
-    b: UInt8;
-    a: UInt8;
+    r: cuint8;
+    g: cuint8;
+    b: cuint8;
+    a: cuint8;
   end;
 
   TSDL_Colour = TSDL_Color;
@@ -384,21 +384,21 @@ type
   TSDL_PixelFormat = record
     format: cuint32;
     palette: PSDL_Palette;
-    BitsPerPixel: UInt8;
-    BytesPerPixel: UInt8;
-    padding: array[0..1] of UInt8;
+    BitsPerPixel: cuint8;
+    BytesPerPixel: cuint8;
+    padding: array[0..1] of cuint8;
     Rmask: cuint32;
     Gmask: cuint32;
     Bmask: cuint32;
     Amask: cuint32;
-    Rloss: UInt8;
-    Gloss: UInt8;
-    Bloss: UInt8;
-    Aloss: UInt8;
-    Rshift: UInt8;
-    Gshift: UInt8;
-    Bshift: UInt8;
-    Ashift: UInt8;
+    Rloss: cuint8;
+    Gloss: cuint8;
+    Bloss: cuint8;
+    Aloss: cuint8;
+    Rshift: cuint8;
+    Gshift: cuint8;
+    Bshift: cuint8;
+    Ashift: cuint8;
     refcount: cint32;
     next: PSDL_PixelFormat;
   end;
@@ -488,7 +488,7 @@ procedure SDL_FreePalette(palette: PSDL_Palette) cdecl; external SDL_LibName {$I
    *  SDL_MapRGBA
    *}
 
-function SDL_MapRGB(const format: PSDL_PixelFormat; r: UInt8; g: UInt8; b: UInt8): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MapRGB' {$ENDIF} {$ENDIF};
+function SDL_MapRGB(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MapRGB' {$ENDIF} {$ENDIF};
 
   {**
    *  Maps an RGBA quadruple to a pixel value for a given pixel format.
@@ -496,7 +496,7 @@ function SDL_MapRGB(const format: PSDL_PixelFormat; r: UInt8; g: UInt8; b: UInt8
    *  SDL_MapRGB
    *}
 
-function SDL_MapRGBA(const format: PSDL_PixelFormat; r: UInt8; g: UInt8; b: UInt8; a: UInt8): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MapRGBA' {$ENDIF} {$ENDIF};
+function SDL_MapRGBA(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MapRGBA' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the RGB components from a pixel of the specified format.

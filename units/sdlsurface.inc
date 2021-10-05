@@ -203,7 +203,7 @@ function SDL_GetColorKey(surface: PSDL_Surface; key: PUInt32): cint32 cdecl; ext
    *  SDL_GetSurfaceColorMod()
    *}
 
-function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: UInt8; g: UInt8; b: UInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceColorMod' {$ENDIF} {$ENDIF};
+function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: cuint8; g: cuint8; b: cuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceColorMod' {$ENDIF} {$ENDIF};
 
  {**
    *  Get the additional color value used in blit operations.
@@ -231,7 +231,7 @@ function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: PUInt8; g: PUInt8; b: 
    *  SDL_GetSurfaceAlphaMod()
    *}
 
-function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: UInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceAlphaMod' {$ENDIF} {$ENDIF};
+function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: cuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceAlphaMod' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the additional alpha value used in blit operations.

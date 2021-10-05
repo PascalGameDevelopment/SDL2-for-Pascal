@@ -38,7 +38,7 @@ type
 type
   PSDL_MessageBoxColor = ^TSDL_MessageBoxColor;
   TSDL_MessageBoxColor = record
-    r, g, b: UInt8;
+    r, g, b: cuint8;
   end;
 
   PSDL_MessageBoxColorType = ^TSDL_MessageBoxColorType;

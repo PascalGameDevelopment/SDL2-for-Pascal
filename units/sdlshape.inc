@@ -29,7 +29,7 @@ type
   TSDL_WindowShapeParams = record
     case Integer of
       {** a cutoff alpha value for binarization of the window shape's alpha channel. *}
-      0: (binarizationCutoff: UInt8;);
+      0: (binarizationCutoff: cuint8;);
       1: (colorKey: TSDL_Color;);
   end;
 

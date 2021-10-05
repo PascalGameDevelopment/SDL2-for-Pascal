@@ -224,7 +224,7 @@ function SDL_QueryTexture(texture: PSDL_Texture; format: PUInt32; access: PInt; 
    *
    *   SDL_GetTextureColorMod()
    *}
-function SDL_SetTextureColorMod(texture: PSDL_Texture; r: UInt8; g: UInt8; b: UInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureColorMod' {$ENDIF} {$ENDIF};
+function SDL_SetTextureColorMod(texture: PSDL_Texture; r: cuint8; g: cuint8; b: cuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureColorMod' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the additional color value used in render copy operations.
@@ -251,7 +251,7 @@ function SDL_GetTextureColorMod(texture: PSDL_Texture; r: PUInt8; g: PUInt8; b: 
    *
    *   SDL_GetTextureAlphaMod()
    *}
-function SDL_SetTextureAlphaMod(texture: PSDL_Texture; alpha: UInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureAlphaMod' {$ENDIF} {$ENDIF};
+function SDL_SetTextureAlphaMod(texture: PSDL_Texture; alpha: cuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureAlphaMod' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the additional alpha value used in render copy operations.
@@ -522,7 +522,7 @@ procedure SDL_RenderGetScale(renderer: PSDL_Renderer; scaleX: PFloat; scaleY: PF
    *
    *   0 on success, or -1 on error
    *}
-function SDL_SetRenderDrawColor(renderer: PSDL_Renderer; r: UInt8; g: UInt8; b: UInt8; a: UInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderDrawColor' {$ENDIF} {$ENDIF};
+function SDL_SetRenderDrawColor(renderer: PSDL_Renderer; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderDrawColor' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the color used for drawing operations (Rect, Line and Clear).

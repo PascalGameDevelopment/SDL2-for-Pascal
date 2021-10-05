@@ -143,10 +143,10 @@ type
     type_: cuint32;       // SDL_WINDOWEVENT
     timestamp: cuint32;
     windowID: cuint32;    // The associated window
-    event: UInt8;        // SDL_WindowEventID
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
+    event: cuint8;        // SDL_WindowEventID
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
     data1: cint32;       // event dependent data
     data2: cint32;       // event dependent data 
   end;
@@ -158,10 +158,10 @@ type
     type_: cuint32;        // SDL_KEYDOWN or SDL_KEYUP
     timestamp: cuint32;
     windowID: cuint32;     // The window with keyboard focus, if any
-    state: UInt8;         // SDL_PRESSED or SDL_RELEASED 
-    _repeat: UInt8;       // Non-zero if this is a key repeat
-    padding2: UInt8;
-    padding3: UInt8;
+    state: cuint8;         // SDL_PRESSED or SDL_RELEASED 
+    _repeat: cuint8;       // Non-zero if this is a key repeat
+    padding2: cuint8;
+    padding3: cuint8;
     keysym: TSDL_KeySym;  // The key that was pressed or released
   end;
 
@@ -208,10 +208,10 @@ type
     timestamp: cuint32;
     windowID: cuint32;    // The window with mouse focus, if any
     which: cuint32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
-    state: UInt8;        // The current button state 
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
+    state: cuint8;        // The current button state 
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
     x: cint32;           // X coordinate, relative to window
     y: cint32;           // Y coordinate, relative to window
     xrel: cint32;        // The relative motion in the X direction 
@@ -227,10 +227,10 @@ type
     timestamp: cuint32;
     windowID: cuint32;    // The window with mouse focus, if any
     which: cuint32;       // The mouse instance id, or SDL_TOUCH_MOUSEID 
-    button: UInt8;       // The mouse button index
-    state: UInt8;        // SDL_PRESSED or SDL_RELEASED
-    clicks: UInt8;       // 1 for single-click, 2 for double-click, etc.
-    padding1: UInt8;
+    button: cuint8;       // The mouse button index
+    state: cuint8;        // SDL_PRESSED or SDL_RELEASED
+    clicks: cuint8;       // 1 for single-click, 2 for double-click, etc.
+    padding1: cuint8;
     x: cint32;           // X coordinate, relative to window
     y: cint32;           // Y coordinate, relative to window 
   end;
@@ -257,12 +257,12 @@ type
     type_: cuint32;         // SDL_JOYAXISMOTION 
     timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    axis: UInt8;           // The joystick axis index 
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
+    axis: cuint8;           // The joystick axis index 
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
     value: cint16;         // The axis value (range: -32768 to 32767)
-    padding4: UInt16;
+    padding4: cuint16;
   end;
 
   {**
@@ -273,10 +273,10 @@ type
     type_: cuint32;         // SDL_JOYBALLMOTION
     timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    ball: UInt8;           // The joystick trackball index
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
+    ball: cuint8;           // The joystick trackball index
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
     xrel: cint16;          // The relative motion in the X direction
     yrel: cint16;          // The relative motion in the Y direction
   end;
@@ -289,16 +289,16 @@ type
     type_: cuint32;         // SDL_JOYHATMOTION
     timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    hat: UInt8;            // The joystick hat index
-    value: UInt8;         {*  The hat position value.
+    hat: cuint8;            // The joystick hat index
+    value: cuint8;         {*  The hat position value.
                            *  SDL_HAT_LEFTUP   SDL_HAT_UP       SDL_HAT_RIGHTUP
                            *  SDL_HAT_LEFT     SDL_HAT_CENTERED SDL_HAT_RIGHT
                            *  SDL_HAT_LEFTDOWN SDL_HAT_DOWN     SDL_HAT_RIGHTDOWN
                            *
                            *  Note that zero means the POV is centered.
                            *}
-    padding1: UInt8;
-    padding2: UInt8;
+    padding1: cuint8;
+    padding2: cuint8;
   end;
 
   {**
@@ -309,10 +309,10 @@ type
     type_: cuint32;        // SDL_JOYBUTTONDOWN or SDL_JOYBUTTONUP
     timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id 
-    button: UInt8;         // The joystick button index
-    state: UInt8;          // SDL_PRESSED or SDL_RELEASED
-    padding1: UInt8;
-    padding2: UInt8;
+    button: cuint8;         // The joystick button index
+    state: cuint8;          // SDL_PRESSED or SDL_RELEASED
+    padding1: cuint8;
+    padding2: cuint8;
   end;
 
   {**
@@ -333,12 +333,12 @@ type
     type_: cuint32;         // SDL_CONTROLLERAXISMOTION
     timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    axis: UInt8;           // The controller axis (SDL_GameControllerAxis)
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
+    axis: cuint8;           // The controller axis (SDL_GameControllerAxis)
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
     value: cint16;         // The axis value (range: -32768 to 32767)
-    padding4: UInt16;
+    padding4: cuint16;
   end;
 
   {**
@@ -349,10 +349,10 @@ type
     type_: cuint32;         // SDL_CONTROLLERBUTTONDOWN or SDL_CONTROLLERBUTTONUP
     timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    button: UInt8;         // The controller button (SDL_GameControllerButton)
-    state: UInt8;          // SDL_PRESSED or SDL_RELEASED
-    padding1: UInt8;
-    padding2: UInt8;
+    button: cuint8;         // The controller button (SDL_GameControllerButton)
+    state: cuint8;          // SDL_PRESSED or SDL_RELEASED
+    padding1: cuint8;
+    padding2: cuint8;
   end;
 
 
@@ -374,10 +374,10 @@ type
     type_: cuint32;        // ::SDL_AUDIODEVICEADDED, or ::SDL_AUDIODEVICEREMOVED
     timestamp: cuint32;
     which: cuint32;        // The audio device index for the ADDED event (valid until next SDL_GetNumAudioDevices() call), SDL_AudioDeviceID for the REMOVED event
-    iscapture: UInt8;     // zero if an output device, non-zero if a capture device.
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
+    iscapture: cuint8;     // zero if an output device, non-zero if a capture device.
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
   end;
 
 
@@ -408,8 +408,8 @@ type
     dDist: Float;
     x: Float;
     y: Float;
-    numFingers: UInt16;
-    padding: UInt16;
+    numFingers: cuint16;
+    padding: cuint16;
   end;
 
 
@@ -700,9 +700,9 @@ const
    *     current processing state of the specified event.
    *}
 
-  function SDL_EventState(type_: TSDL_EventType; state: cint32): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventState' {$ENDIF} {$ENDIF};
+  function SDL_EventState(type_: TSDL_EventType; state: cint32): cuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventState' {$ENDIF} {$ENDIF};
 
-  function SDL_GetEventState(type_: TSDL_EventType): UInt8;
+  function SDL_GetEventState(type_: TSDL_EventType): cuint8;
 
   {**
    *  This function allocates a set of user-defined events, and returns

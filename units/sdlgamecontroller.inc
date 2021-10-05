@@ -246,7 +246,7 @@ function SDL_GameControllerGetBindForButton(gamecontroller: PSDL_GameController;
  *
  *  The button indices start at index 0.
  *}
-function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetButton' {$ENDIF} {$ENDIF};
+function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): cuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetButton' {$ENDIF} {$ENDIF};
 
 {**
  *  Close a controller previously opened with SDL_GameControllerOpen().

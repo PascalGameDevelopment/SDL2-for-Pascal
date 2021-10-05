@@ -19,7 +19,7 @@
    *  There are macros in SDL 2.0 and later to query these bits.
    *}
 type
-  TSDL_AudioFormat = UInt16;
+  TSDL_AudioFormat = cuint16;
 
   {**
    *   Audio flags
@@ -125,10 +125,10 @@ type
   TSDL_AudioSpec = record
     freq: Integer;                {**< DSP frequency -- samples per second *}
     format: TSDL_AudioFormat;     {**< Audio data format *}
-    channels: UInt8;              {**< Number of channels: 1 mono, 2 stereo *}
-    silence: UInt8;               {**< Audio buffer silence value (calculated) *}
-    samples: UInt16;              {**< Audio buffer size in samples (power of 2) *}
-    padding: UInt16;              {**< Necessary for some compile environments *}
+    channels: cuint8;              {**< Number of channels: 1 mono, 2 stereo *}
+    silence: cuint8;               {**< Audio buffer silence value (calculated) *}
+    samples: cuint16;              {**< Audio buffer size in samples (power of 2) *}
+    padding: cuint16;              {**< Necessary for some compile environments *}
     size: cuint32;                 {**< Audio buffer size in bytes (calculated) *}
     callback: TSDL_AudioCallback;
     userdata: Pointer;
@@ -360,10 +360,10 @@ function SDL_LoadWAV_RW(src: PSDL_RWops; freesrc: Integer; spec: PSDL_AudioSpec;
    *}
 function SDL_BuildAudioCVT(cvt: PSDL_AudioCVT;
                            src_format: TSDL_AudioFormat;
-                           src_channels: UInt8;
+                           src_channels: cuint8;
                            src_rate: Integer;
                            dst_format: TSDL_AudioFormat;
-                           dst_channels: UInt8;
+                           dst_channels: cuint8;
                            dst_rate: Integer): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BuildAudioCVT' {$ENDIF} {$ENDIF};
 
 {**

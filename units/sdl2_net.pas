@@ -85,7 +85,7 @@ type
   {***********************************************************************}
   TIPaddress = record
     host: cuint32;            {* 32-bit IPv4 host address *}
-    port: UInt16;            {* 16-bit protocol port *}
+    port: cuint16;            {* 16-bit protocol port *}
   end;
   PIPaddress = ^TIPaddress;
 
@@ -101,7 +101,7 @@ const
    INADDR_LOOPBACK  = $7f000001;
    INADDR_BROADCAST = $FFFFFFFF;
 
-function SDLNet_ResolveHost(address: PIPaddress; const host: PAnsiChar; port: UInt16): Integer cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_ResolveHost' {$ENDIF} {$ENDIF};
+function SDLNet_ResolveHost(address: PIPaddress; const host: PAnsiChar; port: cuint16): Integer cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_ResolveHost' {$ENDIF} {$ENDIF};
 
 {* Resolve an ip address to a host name in canonical form.
    If the ip couldn't be resolved, this function returns NULL,
@@ -208,7 +208,7 @@ procedure SDLNet_FreePacketV(packetV: PPUDPPacket) cdecl; external SDLNet_LibNam
    internally in network (big endian) byte order, in addresses, etc.
    This allows other systems to send to this socket via a known port.
 *}
-function SDLNet_UDP_Open(port: UInt16): TUDPSocket cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_UDP_Open' {$ENDIF} {$ENDIF};
+function SDLNet_UDP_Open(port: cuint16): TUDPSocket cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_UDP_Open' {$ENDIF} {$ENDIF};
 
 {* Set the percentage of simulated packet loss for packets sent on the socket. *}
 procedure SDLNet_UDP_SetPacketLoss(sock: TUDPSocket; percent: Integer) cdecl; external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_UDP_SetPacketLoss' {$ENDIF} {$ENDIF};
@@ -348,11 +348,11 @@ function SDLNet_GetError(): PAnsiChar; cdecl;
 
 {* Write a 16/32-bit value to network packet buffer *}
 
-//procedure SDLNet_Write16(value: UInt16; areap: Pointer); inline;
+//procedure SDLNet_Write16(value: cuint16; areap: Pointer); inline;
 //procedure SDLNet_Write32(value: cuint32; areap: Pointer); inline;
 
 {* Read a 16/32-bit value from network packet buffer *}
-//function SDLNet_Read16(const areap: Pointer): UInt16; inline;
+//function SDLNet_Read16(const areap: Pointer): cuint16; inline;
 //function SDLNet_Read32(const areap: Pointer): cuint32; inline;
 
 implementation
@@ -402,7 +402,7 @@ begin
 end;
 
 (*
-  procedure SDLNet_Write16(value: UInt16; areap: Pointer);
+  procedure SDLNet_Write16(value: cuint16; areap: Pointer);
   begin
     PUInt16(areap) := SDL_SwapBE16(value);
   end;
@@ -413,7 +413,7 @@ end;
   end;
 
   {* Read a 16/32-bit value from network packet buffer *}
-  function SDLNet_Read16(const areap: Pointer): UInt16;
+  function SDLNet_Read16(const areap: Pointer): cuint16;
   begin
     Result := SDL_SwapBE16(PUInt16(areap));
   end;

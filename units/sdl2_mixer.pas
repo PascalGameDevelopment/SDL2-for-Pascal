@@ -138,7 +138,7 @@ type
     allocated: Integer;
     abuf: PUInt8;
     alen: cuint32;
-    volume: UInt8;       {* Per-sample volume, 0-128 *}
+    volume: cuint8;       {* Per-sample volume, 0-128 *}
   end;
 
   {* The different fading types supported *}
@@ -164,7 +164,7 @@ type
   TMix_Music = record end;
 
   {* Open the mixer with a certain audio format *}
-function Mix_OpenAudio(frequency: Integer; format: UInt16; channels: Integer; chunksize: Integer): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_OpenAudio' {$ENDIF} {$ENDIF};
+function Mix_OpenAudio(frequency: Integer; format: cuint16; channels: Integer; chunksize: Integer): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_OpenAudio' {$ENDIF} {$ENDIF};
 
   {* Dynamically change the number of channels managed by the mixer.
      If decreasing the number of channels, the upper channels are
@@ -420,7 +420,7 @@ const
    *  mode is a no-op, but this call will return successful in that case.
    *  Error messages can be retrieved from Mix_GetError().
    *}
-function Mix_SetPanning(channel: Integer; left: UInt8; right: UInt8): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPanning' {$ENDIF} {$ENDIF};
+function Mix_SetPanning(channel: Integer; left: cuint8; right: cuint8): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPanning' {$ENDIF} {$ENDIF};
 
   {* Set the position of a channel. (angle) is an integer from 0 to 360, that
    *  specifies the location of the sound in relation to the listener. (angle)
@@ -459,7 +459,7 @@ function Mix_SetPanning(channel: Integer; left: UInt8; right: UInt8): Integer cd
    *  nonzero if position effect is enabled.
    *  Error messages can be retrieved from Mix_GetError().
    *}
-function Mix_SetPosition(channel: Integer; angle: cint16; distance: UInt8): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPosition' {$ENDIF} {$ENDIF};
+function Mix_SetPosition(channel: Integer; angle: cint16; distance: cuint8): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPosition' {$ENDIF} {$ENDIF};
 
   {* Set the "distance" of a channel. (distance) is an integer from 0 to 255
    *  that specifies the location of the sound in relation to the listener.
@@ -488,7 +488,7 @@ function Mix_SetPosition(channel: Integer; angle: cint16; distance: UInt8): Inte
    *  nonzero if position effect is enabled.
    *  Error messages can be retrieved from Mix_GetError().
    *}
-function Mix_SetDistance(channel: Integer; distance: UInt8): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetDistance' {$ENDIF} {$ENDIF};
+function Mix_SetDistance(channel: Integer; distance: cuint8): Integer cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetDistance' {$ENDIF} {$ENDIF};
 
 {*
  * !!! FIXME : Haven't implemented, since the effect goes past the

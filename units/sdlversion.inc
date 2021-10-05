@@ -17,7 +17,7 @@ type
   TSDL_Version = record
     major,         {**< major version *}
     minor,         {**< minor version *}
-    patch: UInt8;  {**< update version *}
+    patch: cuint8;  {**< update version *}
   end;
 
 {*

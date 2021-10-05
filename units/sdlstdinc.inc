@@ -9,23 +9,23 @@ type
   {$IFDEF FPC}
     PUInt8 = pcuint8;
     PPUInt8 = ^pcuint8;
-    UInt8 = cuint8;
+    //cuint8 = cuint8;
   {$ELSE}
-    PUInt8 = ^UInt8;
+    PUInt8 = ^cuint8;
     PPUInt8 = ^PUInt8;
-    UInt8 = Byte;
+    cuint8 = Byte;
   {$ENDIF}
-  {$EXTERNALSYM UInt8}
-  TUInt8Array = array [0..MAXINT shr 1] of UInt8;
+  {$EXTERNALSYM cuint8}
+  TUInt8Array = array [0..MAXINT shr 1] of cuint8;
 
   {$IFDEF FPC}
     PUInt16 = pcuint16;
-    UInt16 = cuint16;
+    //cuint16 = cuint16;
   {$ELSE}
-    PUInt16 = ^UInt16;
-    UInt16 = Word;
+    PUInt16 = ^cuint16;
+    cuint16 = Word;
   {$ENDIF}
-  {$EXTERNALSYM UInt16}
+  {$EXTERNALSYM cuint16}
 
   {$IFDEF FPC}
     PSInt8 = pcint8;
@@ -86,7 +86,7 @@ type
 
   {$IFDEF FPC}
     PUInt64 = pcuint64;
-    cuint64 = cuint64;
+    //cuint64 = cuint64;
     {$EXTERNALSYM cuint64}
 
     PInt64 = pcint64;

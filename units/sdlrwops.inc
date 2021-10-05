@@ -162,9 +162,9 @@ const
    *  Read an item of the specified endianness and return in native format.
    *}
 
-function SDL_ReadU8(src: PSDL_RWops): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU8' {$ENDIF} {$ENDIF};
-function SDL_ReadLE16(src: PSDL_RWops): UInt16 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadLE16' {$ENDIF} {$ENDIF};
-function SDL_ReadBE16(src: PSDL_RWops): UInt16 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadBE16' {$ENDIF} {$ENDIF};
+function SDL_ReadU8(src: PSDL_RWops): cuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU8' {$ENDIF} {$ENDIF};
+function SDL_ReadLE16(src: PSDL_RWops): cuint16 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadLE16' {$ENDIF} {$ENDIF};
+function SDL_ReadBE16(src: PSDL_RWops): cuint16 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadBE16' {$ENDIF} {$ENDIF};
 function SDL_ReadLE32(src: PSDL_RWops): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadLE32' {$ENDIF} {$ENDIF};
 function SDL_ReadBE32(src: PSDL_RWops): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadBE32' {$ENDIF} {$ENDIF};
 function SDL_ReadLE64(src: PSDL_RWops): cuint64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadLE64' {$ENDIF} {$ENDIF};
@@ -178,9 +178,9 @@ function SDL_ReadBE64(src: PSDL_RWops): cuint64 cdecl; external SDL_LibName {$IF
    *  Write an item of native format to the specified endianness.
    *}
 
-function SDL_WriteU8(dst: PSDL_RWops; value: UInt8): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU8' {$ENDIF} {$ENDIF};
-function SDL_WriteLE16(dst: PSDL_RWops; value: UInt16): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE16' {$ENDIF} {$ENDIF};
-function SDL_WriteBE16(dst: PSDL_RWops; value: UInt16): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE16' {$ENDIF} {$ENDIF};
+function SDL_WriteU8(dst: PSDL_RWops; value: cuint8): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU8' {$ENDIF} {$ENDIF};
+function SDL_WriteLE16(dst: PSDL_RWops; value: cuint16): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE16' {$ENDIF} {$ENDIF};
+function SDL_WriteBE16(dst: PSDL_RWops; value: cuint16): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE16' {$ENDIF} {$ENDIF};
 function SDL_WriteLE32(dst: PSDL_RWops; value: cuint32): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE32' {$ENDIF} {$ENDIF};
 function SDL_WriteBE32(dst: PSDL_RWops; value: cuint32): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE32' {$ENDIF} {$ENDIF};
 function SDL_WriteLE64(dst: PSDL_RWops; value: cuint64): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE64' {$ENDIF} {$ENDIF};

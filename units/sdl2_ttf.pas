@@ -159,13 +159,13 @@ function TTF_FontFaceFamilyName(font: PTTF_Font): PAnsiChar cdecl; external TTF_
 function TTF_FontFaceStyleName(font: PTTF_Font): PAnsiChar cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceStyleName' {$ENDIF} {$ENDIF};
 
 {* Check wether a glyph is provided by the font or not *}
-function TTF_GlyphIsProvided(font: PTTF_Font; ch: UInt16): Integer cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided' {$ENDIF} {$ENDIF};
+function TTF_GlyphIsProvided(font: PTTF_Font; ch: cuint16): Integer cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided' {$ENDIF} {$ENDIF};
 
 {* Get the metrics (dimensions) of a glyph
    To understand what these metrics mean, here is a useful link:
     http://freetype.sourceforge.net/freetype2/docs/tutorial/step2.html
  *}
-function TTF_GlyphMetrics(font: PTTF_Font; ch: UInt16;
+function TTF_GlyphMetrics(font: PTTF_Font; ch: cuint16;
                           minx, maxx: PInt;
                           miny, maxy: PInt; advance: PInt): Integer cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics' {$ENDIF} {$ENDIF};
 
@@ -191,7 +191,7 @@ function TTF_RenderUNICODE_Solid(font: PTTF_Font; text: PUInt16; fg: TSDL_Color)
    centering in the X direction, and aligned normally in the Y direction.
    This function returns the new surface, or NULL if there was an error.
 *}
-function TTF_RenderGlyph_Solid(font: PTTF_Font; ch: UInt16; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Solid(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid' {$ENDIF} {$ENDIF};
 
 {* Create an 8-bit palettized surface and render the given text at
    high quality with the given font and colors.  The 0 pixel is background,
@@ -209,7 +209,7 @@ function TTF_RenderUNICODE_Shaded(font: PTTF_Font; text: PUInt16; fg, bg: TSDL_C
    direction, and aligned normally in the Y direction.
    This function returns the new surface, or NULL if there was an error.
 *}
-function TTF_RenderGlyph_Shaded(font: PTTF_Font; ch: UInt16; fg, bg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Shaded' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Shaded(font: PTTF_Font; ch: cuint16; fg, bg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Shaded' {$ENDIF} {$ENDIF};
 
 {* Create a 32-bit ARGB surface and render the given text at high quality,
    using alpha blending to dither the font with the given color.
@@ -235,7 +235,7 @@ function TTF_RenderUNICODE_Blended_Wrapped(font: PTTF_Font; text: PUInt16; fg: T
    direction, and aligned normally in the Y direction.
    This function returns the new surface, or NULL if there was an error.
 *}
-function TTF_RenderGlyph_Blended(font: PTTF_Font; ch: UInt16; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Blended' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Blended(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Blended' {$ENDIF} {$ENDIF};
 
 {* For compatibility with previous versions, here are the old functions *}
 function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
@@ -264,7 +264,7 @@ function TTF_GetFontKerningSize(font: PTTF_Font; prev_index, index: Integer): In
   deprecated 'This function requires FreeType font indexes, not glyphs. Use TTF_GetFontKerningSizeGlyphs() instead';
 
 {* Get the kerning size of two glyphs *}
-function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch, ch: UInt16): Integer cdecl;
+function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch, ch: cuint16): Integer cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
 
 {* We'll use SDL for reporting errors *}

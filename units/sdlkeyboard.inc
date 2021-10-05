@@ -2,7 +2,7 @@
 
 type
   PKeyStateArr = ^TKeyStateArr;
-  TKeyStateArr = array[0..65000] of UInt8;
+  TKeyStateArr = array[0..65000] of cuint8;
 
   {**
    *  The SDL keysym structure, used in key events.
@@ -11,7 +11,7 @@ type
   TSDL_Keysym = record
     scancode: TSDL_ScanCode;      // SDL physical key code - see SDL_Scancode for details
     sym: TSDL_KeyCode;            // SDL virtual key code - see SDL_Keycode for details
-    _mod: UInt16;                 // current key modifiers
+    _mod: cuint16;                 // current key modifiers
     unicode: cuint32;              // (deprecated) use SDL_TextInputEvent instead
   end;
 
