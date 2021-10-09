@@ -125,7 +125,7 @@ type
   {$ENDIF}
 
   {$IFDEF FPC}
-    csize_t = csize_t;
+    //csize_t = csize_t;
   {$ELSE}
     {$IFNDEF WIN64}
       csize_t = cuint32;
