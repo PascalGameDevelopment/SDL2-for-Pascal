@@ -36,7 +36,7 @@ type
    *  the number of objects read, or 0 at error or end of file.
    *}
 
-   TRead = function(context: PSDL_RWops; ptr: Pointer; size: size_t; maxnum: size_t): size_t; {$IFNDEF GPC} cdecl; {$ENDIF}
+   TRead = function(context: PSDL_RWops; ptr: Pointer; size: csize_t; maxnum: csize_t): csize_t; {$IFNDEF GPC} cdecl; {$ENDIF}
 
   {**
    *  Write exactly num objects each of size size from the area
@@ -45,7 +45,7 @@ type
    *  the number of objects written, or 0 at error or end of file.
    *}
 	
-   TWrite = function(context: PSDL_RWops; const ptr: Pointer; size: size_t; num: size_t): size_t; {$IFNDEF GPC} cdecl; {$ENDIF}
+   TWrite = function(context: PSDL_RWops; const ptr: Pointer; size: csize_t; num: csize_t): csize_t; {$IFNDEF GPC} cdecl; {$ENDIF}
 	
   {**
    *  Close and free an allocated SDL_RWops structure.
@@ -84,8 +84,8 @@ type
 
   TWindowsIOBuffer = record
     data: Pointer;
-	size: size_t;
-	left: size_t;
+	size: csize_t;
+	left: csize_t;
   end;
 
   TWindowsIO = record
@@ -150,8 +150,8 @@ const
   function SDL_RWsize(ctx: PSDL_RWops): cint64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWseek(ctx: PSDL_RWops; offset: cint64; whence: cint32): cint64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWtell(ctx: PSDL_RWops): cint64; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
-  function SDL_RWread(ctx: PSDL_RWops; ptr: Pointer; size: size_t; n: size_t): size_t; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
-  function SDL_RWwrite(ctx: PSDL_RWops; ptr: Pointer; size: size_t; n: size_t): size_t; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
+  function SDL_RWread(ctx: PSDL_RWops; ptr: Pointer; size: csize_t; n: csize_t): csize_t; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
+  function SDL_RWwrite(ctx: PSDL_RWops; ptr: Pointer; size: csize_t; n: csize_t): csize_t; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   function SDL_RWclose(ctx: PSDL_RWops): cint32; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
   { Read/write macros }
 
@@ -178,11 +178,11 @@ function SDL_ReadBE64(src: PSDL_RWops): cuint64 cdecl; external SDL_LibName {$IF
    *  Write an item of native format to the specified endianness.
    *}
 
-function SDL_WriteU8(dst: PSDL_RWops; value: cuint8): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU8' {$ENDIF} {$ENDIF};
-function SDL_WriteLE16(dst: PSDL_RWops; value: cuint16): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE16' {$ENDIF} {$ENDIF};
-function SDL_WriteBE16(dst: PSDL_RWops; value: cuint16): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE16' {$ENDIF} {$ENDIF};
-function SDL_WriteLE32(dst: PSDL_RWops; value: cuint32): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE32' {$ENDIF} {$ENDIF};
-function SDL_WriteBE32(dst: PSDL_RWops; value: cuint32): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE32' {$ENDIF} {$ENDIF};
-function SDL_WriteLE64(dst: PSDL_RWops; value: cuint64): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE64' {$ENDIF} {$ENDIF};
-function SDL_WriteBE64(dst: PSDL_RWops; value: cuint64): size_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE64' {$ENDIF} {$ENDIF};
+function SDL_WriteU8(dst: PSDL_RWops; value: cuint8): csize_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU8' {$ENDIF} {$ENDIF};
+function SDL_WriteLE16(dst: PSDL_RWops; value: cuint16): csize_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE16' {$ENDIF} {$ENDIF};
+function SDL_WriteBE16(dst: PSDL_RWops; value: cuint16): csize_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE16' {$ENDIF} {$ENDIF};
+function SDL_WriteLE32(dst: PSDL_RWops; value: cuint32): csize_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE32' {$ENDIF} {$ENDIF};
+function SDL_WriteBE32(dst: PSDL_RWops; value: cuint32): csize_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE32' {$ENDIF} {$ENDIF};
+function SDL_WriteLE64(dst: PSDL_RWops; value: cuint64): csize_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteLE64' {$ENDIF} {$ENDIF};
+function SDL_WriteBE64(dst: PSDL_RWops; value: cuint64): csize_t cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteBE64' {$ENDIF} {$ENDIF};
   { Write endian functions }

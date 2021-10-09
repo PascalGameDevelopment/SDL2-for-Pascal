@@ -125,12 +125,12 @@ type
   {$ENDIF}
 
   {$IFDEF FPC}
-    size_t = csize_t;
+    csize_t = csize_t;
   {$ELSE}
     {$IFNDEF WIN64}
-      size_t = cuint32;
+      csize_t = cuint32;
     {$ELSE}
-      size_t = cuint64;
+      csize_t = cuint64;
     {$ENDIF}
   {$ENDIF}
   {$EXTERNALSYM SIZE_T}

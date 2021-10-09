@@ -261,12 +261,12 @@ begin
   Result := ctx^.seek(ctx, 0, RW_SEEK_CUR);
 end;
 
-function SDL_RWread(ctx: PSDL_RWops; ptr: Pointer; size: size_t; n: size_t): size_t;
+function SDL_RWread(ctx: PSDL_RWops; ptr: Pointer; size: csize_t; n: csize_t): csize_t;
 begin
   Result := ctx^.read(ctx, ptr, size, n);
 end;
 
-function SDL_RWwrite(ctx: PSDL_RWops; ptr: Pointer; size: size_t; n: size_t): size_t;
+function SDL_RWwrite(ctx: PSDL_RWops; ptr: Pointer; size: csize_t; n: csize_t): csize_t;
 begin
   Result := ctx^.write(ctx, ptr, size, n);
 end;
