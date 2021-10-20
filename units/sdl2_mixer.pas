@@ -21,19 +21,17 @@ unit sdl2_mixer;
   3. This notice may not be removed or altered from any source distribution.
 *}
 
-interface
-
 {$I jedi.inc}
 
-{$IFNDEF FPC}
-  {$I ctypes.inc}  // C-types conversion if ctypes unit is not available (part of FPC)
-{$ENDIF}
+interface
 
 uses
   {$IFDEF FPC}
   ctypes,
   {$ENDIF}
   SDL2;
+
+{$I ctypes.inc}
 
 const
   {$IFDEF WINDOWS}

@@ -31,15 +31,13 @@ unit sdl2_image;
 
 interface
 
-{$IFNDEF FPC}
-  {$I ctypes.inc}  // C-types conversion if ctypes unit is not available (part of FPC)
-{$ENDIF}
-
 uses
   {$IFDEF FPC}
   ctypes,
   {$ENDIF}
   SDL2;
+
+{$I ctypes.inc}
 
 const
   {$IFDEF WINDOWS}
