@@ -46,15 +46,6 @@ type
   {$EXTERNALSYM cint16}
 
   {$IFDEF FPC}
-    PUInt32 = pcuint32;
-    //cuint32 = cuint32;
-  {$ELSE}
-    PUInt32 = ^cuint32;
-    cuint32 = Cardinal;
-  {$ENDIF}
-  {$EXTERNALSYM cuint32}
-
-  {$IFDEF FPC}
     PFloat = pcfloat;
     Float = cfloat;
   {$ELSE}

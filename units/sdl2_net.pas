@@ -417,7 +417,7 @@ end;
 
   procedure SDLNet_Write32(value: cuint32; areap: Pointer);
   begin
-    PUInt32(areap) := SDL_SwapBE32(value);
+    pcuint32(areap) := SDL_SwapBE32(value);
   end;
 
   {* Read a 16/32-bit value from network packet buffer *}
@@ -428,7 +428,7 @@ end;
 
   function SDLNet_Read32(const areap: Pointer): cuint32;
   begin
-    Result := SDL_SwapBE32(PUInt32(areap));
+    Result := SDL_SwapBE32(pcuint32(areap));
   end;
 *)
 end.

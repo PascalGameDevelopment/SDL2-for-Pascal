@@ -335,14 +335,14 @@ procedure SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID; pause_on: cint) cdecl; e
    *  wave file cannot be opened, uses an unknown data format, or is
    *  corrupt.  Currently raw and MS-ADPCM WAVE files are supported.
    *}
-function SDL_LoadWAV_RW(src: PSDL_RWops; freesrc: cint; spec: PSDL_AudioSpec; audio_buf: PPUInt8; audio_len: PUInt32): PSDL_AudioSpec cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadWAV_RW' {$ENDIF} {$ENDIF};
+function SDL_LoadWAV_RW(src: PSDL_RWops; freesrc: cint; spec: PSDL_AudioSpec; audio_buf: PPUInt8; audio_len: pcuint32): PSDL_AudioSpec cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadWAV_RW' {$ENDIF} {$ENDIF};
 
   {**
    *  Loads a WAV from a file.
    *  Compatibility convenience function.
    *}
 
-   function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: PPUInt8; audio_len: PUInt32): PSDL_AudioSpec;
+   function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: PPUInt8; audio_len: pcuint32): PSDL_AudioSpec;
 
   {**
    *  This function frees data previously allocated with SDL_LoadWAV_RW()

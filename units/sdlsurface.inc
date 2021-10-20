@@ -188,7 +188,7 @@ function SDL_SetColorKey(surface: PSDL_Surface; flag: cint32; key: cuint32): cin
    *  enabled.
    *}
 
-function SDL_GetColorKey(surface: PSDL_Surface; key: PUInt32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetColorKey' {$ENDIF} {$ENDIF};
+function SDL_GetColorKey(surface: PSDL_Surface; key: pcuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetColorKey' {$ENDIF} {$ENDIF};
 
   {**
    *  Set an additional color value used in blit operations.

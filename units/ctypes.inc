@@ -13,7 +13,9 @@ type
   cint32 = LongInt;
   {$EXTERNALSYM cint32}
 
+  pcuint32 = ^cuint32;
   cuint32 = LongWord;
+  {$EXTERNALSYM cuint32}
 
   {$IFNDEF Has_Int64}
      pcint64 = ^cint64;

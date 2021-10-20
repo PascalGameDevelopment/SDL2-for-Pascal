@@ -209,7 +209,7 @@ function SDL_CreateTextureFromSurface(renderer: PSDL_Renderer; surface: PSDL_Sur
    *
    *   0 on success, or -1 if the texture is not valid.
    *}
-function SDL_QueryTexture(texture: PSDL_Texture; format: PUInt32; access: PInt; w: PInt; h: PInt): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_QueryTexture' {$ENDIF} {$ENDIF};
+function SDL_QueryTexture(texture: PSDL_Texture; format: pcuint32; access: PInt; w: PInt; h: PInt): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_QueryTexture' {$ENDIF} {$ENDIF};
 
   {**
    *  Set an additional color value used in render copy operations.
