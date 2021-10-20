@@ -11,12 +11,6 @@ type
   ppcuint8 = ^pcuint8;
 
   {$IFDEF FPC}
-    PInt = pcint;
-  {$ELSE}
-    PInt = ^LongInt;
-  {$ENDIF}
-
-  {$IFDEF FPC}
     PShortInt = pcshort;
   {$ELSE}
     PShortInt = ^ShortInt;

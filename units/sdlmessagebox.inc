@@ -90,7 +90,7 @@ type
    *   block execution of that thread until the user clicks a button or
    *   closes the messagebox.
    *}
-function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: PInt): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowMessageBox' {$ENDIF} {$ENDIF};
+function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowMessageBox' {$ENDIF} {$ENDIF};
 
   {**
    *   Create a simple modal message box

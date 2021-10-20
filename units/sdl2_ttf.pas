@@ -173,13 +173,13 @@ function TTF_GlyphIsProvided(font: PTTF_Font; ch: cuint16): cint cdecl; external
     http://freetype.sourceforge.net/freetype2/docs/tutorial/step2.html
  *}
 function TTF_GlyphMetrics(font: PTTF_Font; ch: cuint16;
-                          minx, maxx: PInt;
-                          miny, maxy: PInt; advance: PInt): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics' {$ENDIF} {$ENDIF};
+                          minx, maxx: pcint;
+                          miny, maxy: pcint; advance: pcint): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics' {$ENDIF} {$ENDIF};
 
 {* Get the dimensions of a rendered string of text *}
-function TTF_SizeText(font: PTTF_Font; text: PAnsiChar; w, h: PInt): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeText' {$ENDIF} {$ENDIF};
-function TTF_SizeUTF8(font: PTTF_Font; text: PAnsiChar; w, h: PInt): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUTF8' {$ENDIF} {$ENDIF};
-function TTF_SizeUNICODE(font: PTTF_Font; text: pcuint16; w, h: PInt): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUNICODE' {$ENDIF} {$ENDIF};
+function TTF_SizeText(font: PTTF_Font; text: PAnsiChar; w, h: pcint): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeText' {$ENDIF} {$ENDIF};
+function TTF_SizeUTF8(font: PTTF_Font; text: PAnsiChar; w, h: pcint): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUTF8' {$ENDIF} {$ENDIF};
+function TTF_SizeUNICODE(font: PTTF_Font; text: pcuint16; w, h: pcint): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUNICODE' {$ENDIF} {$ENDIF};
 
 {* Create an 8-bit palettized surface and render the given text at
    fast quality with the given font and color.  The 0 pixel is the

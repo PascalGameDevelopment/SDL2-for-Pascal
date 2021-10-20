@@ -417,7 +417,7 @@ function SDL_GetPixelFormatName(format: cuint32): PAnsiChar cdecl; external SDL_
    *  SDL_MasksToPixelFormatEnum()
    *}
 
-function SDL_PixelFormatEnumToMasks(format: cuint32; bpp: PInt; Rmask: pcuint32; Gmask: pcuint32; Bmask: pcuint32; Amask: pcuint32): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PixelFormatEnumToMasks' {$ENDIF} {$ENDIF};
+function SDL_PixelFormatEnumToMasks(format: cuint32; bpp: pcint; Rmask: pcuint32; Gmask: pcuint32; Bmask: pcuint32; Amask: pcuint32): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PixelFormatEnumToMasks' {$ENDIF} {$ENDIF};
 
   {**
    *  Convert a bpp and RGBA masks to an enumerated pixel format.

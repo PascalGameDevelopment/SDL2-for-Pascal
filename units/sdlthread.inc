@@ -134,7 +134,7 @@ function SDL_SetThreadPriority(priority: TSDL_ThreadPriority): cint32 cdecl; ext
    *  The return code for the thread function is placed in the area
    *  pointed to by status, if status is not NULL.
    *}
-procedure SDL_WaitThread(thread: PSDL_Thread; status: PInt) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitThread' {$ENDIF}{$ENDIF};
+procedure SDL_WaitThread(thread: PSDL_Thread; status: pcint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitThread' {$ENDIF}{$ENDIF};
 
   {**
    *  A thread may be "detached" to signify that it should not remain until

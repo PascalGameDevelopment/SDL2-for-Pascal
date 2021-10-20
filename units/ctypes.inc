@@ -4,6 +4,10 @@
 
 type
 
+  pcint = ^cint;
+  cint = Integer;
+  {$EXTERNALSYM cint}
+
   pcint8 = ^cint8;
   cint8 = ShortInt;
   {$EXTERNALSYM cint8}
@@ -52,11 +56,6 @@ type
     cuint64 = UInt64;
     {$EXTERNALSYM cuint64}
   {$ENDIF}
-
-
-
-
-  cint = Integer;
 
   {$IFNDEF WIN64}
     csize_t = cuint32;

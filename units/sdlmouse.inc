@@ -44,7 +44,7 @@ const
    * SDL_Button = 1 shl ((X)-1)
    *}
 
-  function SDL_GetMouseState(x: PInt; y: PInt): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetMouseState' {$ENDIF}{$ENDIF};
+  function SDL_GetMouseState(x: pcint; y: pcint): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetMouseState' {$ENDIF}{$ENDIF};
 
 
   {**
@@ -81,7 +81,7 @@ const
    *  mouse deltas since the last call to SDL_GetRelativeMouseState().
    *}
 
-  function SDL_GetRelativeMouseState(x: PInt; y: PInt): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRelativeMouseState' {$ENDIF}{$ENDIF};
+  function SDL_GetRelativeMouseState(x: pcint; y: pcint): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRelativeMouseState' {$ENDIF}{$ENDIF};
 
   {**
    *  Moves the mouse to the given position within the window.

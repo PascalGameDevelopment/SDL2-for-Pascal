@@ -160,7 +160,7 @@ function SDL_GetRendererInfo(renderer: PSDL_Renderer; info: PSDL_RendererInfo): 
   {**
    *  Get the output size of a rendering context.
    *}
-function SDL_GetRendererOutputSize(renderer: PSDL_Renderer; w: PInt; h: PInt): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRendererOutputSize' {$ENDIF} {$ENDIF};
+function SDL_GetRendererOutputSize(renderer: PSDL_Renderer; w: pcint; h: pcint): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRendererOutputSize' {$ENDIF} {$ENDIF};
 
   {**
    *  Create a texture for a rendering context.
@@ -209,7 +209,7 @@ function SDL_CreateTextureFromSurface(renderer: PSDL_Renderer; surface: PSDL_Sur
    *
    *   0 on success, or -1 if the texture is not valid.
    *}
-function SDL_QueryTexture(texture: PSDL_Texture; format: pcuint32; access: PInt; w: PInt; h: PInt): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_QueryTexture' {$ENDIF} {$ENDIF};
+function SDL_QueryTexture(texture: PSDL_Texture; format: pcuint32; access: pcint; w: pcint; h: pcint): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_QueryTexture' {$ENDIF} {$ENDIF};
 
   {**
    *  Set an additional color value used in render copy operations.
@@ -323,7 +323,7 @@ function SDL_UpdateTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: Point
    *
    *   SDL_UnlockTexture()
    *}
-function SDL_LockTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: PPointer; pitch: PInt): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockTexture' {$ENDIF} {$ENDIF};
+function SDL_LockTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: PPointer; pitch: pcint): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockTexture' {$ENDIF} {$ENDIF};
 
   {**
    *  Unlock a texture, uploading the changes to video memory, if needed.
@@ -396,7 +396,7 @@ function SDL_RenderSetLogicalSize(renderer: PSDL_Renderer; w: cint32; h: cint32)
    *
    *   SDL_RenderSetLogicalSize()
    *}
-procedure SDL_RenderGetLogicalSize(renderer: PSDL_Renderer; w: PInt; h: PInt) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetLogicalSize' {$ENDIF} {$ENDIF};
+procedure SDL_RenderGetLogicalSize(renderer: PSDL_Renderer; w: pcint; h: pcint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetLogicalSize' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Set whether to force integer scales for resolution-independent rendering

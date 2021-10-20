@@ -176,7 +176,7 @@ function Mix_AllocateChannels(numchans: cint): cint cdecl; external MIX_LibName 
   {* Find out what the actual audio device parameters are.
      This function returns 1 if the audio has been opened, 0 otherwise.
    *}
-function Mix_QuerySpec(frequency: PInt; format: pcuint16; channels: PInt): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_QuerySpec' {$ENDIF} {$ENDIF};
+function Mix_QuerySpec(frequency: pcint; format: pcuint16; channels: pcint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_QuerySpec' {$ENDIF} {$ENDIF};
 
   {* Load a wave file or a music (.mod .s3m .it .xm) file *}
 function Mix_LoadWAV_RW(src: PSDL_RWops; freesrc: cint): PMix_Chunk cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadWAV_RW' {$ENDIF} {$ENDIF};

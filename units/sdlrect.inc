@@ -92,4 +92,4 @@ function SDL_EnclosePoints(const points: PSDL_Point; count: cint32; const clip: 
    *  SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
    *}
 
-function SDL_IntersectRectAndLine(const rect: PSDL_Rect; X1, Y1, X2, Y2: PInt): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IntersectRectAndLine' {$ENDIF} {$ENDIF};
+function SDL_IntersectRectAndLine(const rect: PSDL_Rect; X1, Y1, X2, Y2: pcint): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IntersectRectAndLine' {$ENDIF} {$ENDIF};

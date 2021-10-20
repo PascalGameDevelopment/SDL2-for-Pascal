@@ -30,7 +30,7 @@ type
    *
    *}
 
-  function SDL_GetKeyboardState(numkeys: PInt): pcuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardState' {$ENDIF}{$ENDIF};
+  function SDL_GetKeyboardState(numkeys: pcint): pcuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardState' {$ENDIF}{$ENDIF};
 
   {**
    *  Get the current key modifier state for the keyboard.

@@ -743,7 +743,7 @@ procedure SDL_SetWindowPosition(window: PSDL_Window; x: cint32; y: cint32) cdecl
    *  SDL_SetWindowPosition()
    *}
 
-procedure SDL_GetWindowPosition(window: PSDL_Window; x: PInt; y: PInt) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowPosition' {$ENDIF} {$ENDIF};
+procedure SDL_GetWindowPosition(window: PSDL_Window; x: pcint; y: pcint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowPosition' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the size of a window's client area.
@@ -768,7 +768,7 @@ procedure SDL_SetWindowSize(window: PSDL_Window; w: cint32; h: cint32) cdecl; ex
    *  SDL_SetWindowSize()
    *}
 
-procedure SDL_GetWindowSize(window: PSDL_Window; w: PInt; h: PInt) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowSize' {$ENDIF} {$ENDIF};
+procedure SDL_GetWindowSize(window: PSDL_Window; w: pcint; h: pcint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowSize' {$ENDIF} {$ENDIF};
 
   {**
    *  \brief Get the size of a window's borders (decorations) around the client area.
@@ -813,7 +813,7 @@ procedure SDL_SetWindowMinimumSize(window: PSDL_Window; min_w: cint32; min_h: ci
    *  SDL_SetWindowMinimumSize()
    *}
 
-procedure SDL_GetWindowMinimumSize(window: PSDL_Window; w: PInt; h: PInt) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMinimumSize' {$ENDIF} {$ENDIF};
+procedure SDL_GetWindowMinimumSize(window: PSDL_Window; w: pcint; h: pcint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMinimumSize' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the maximum size of a window's client area.
@@ -840,7 +840,7 @@ procedure SDL_SetWindowMaximumSize(window: PSDL_Window; max_w: cint32; max_h: ci
    *  SDL_SetWindowMaximumSize()
    *}
 
-procedure SDL_GetWindowMaximumSize(window: PSDL_Window; w: PInt; h: PInt) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMaximumSize' {$ENDIF} {$ENDIF};
+procedure SDL_GetWindowMaximumSize(window: PSDL_Window; w: pcint; h: pcint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMaximumSize' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the border state of a window.
@@ -1250,7 +1250,7 @@ function SDL_GL_SetAttribute(attr: TSDL_GLattr; value: cint32): cint32 cdecl; ex
    *  Get the actual value for an attribute from the current context.
    *}
 
-function SDL_GL_GetAttribute(attr: TSDL_GLattr; value: PInt): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetAttribute' {$ENDIF} {$ENDIF};
+function SDL_GL_GetAttribute(attr: TSDL_GLattr; value: pcint): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetAttribute' {$ENDIF} {$ENDIF};
 
   {**
    *  Create an OpenGL context for use with an OpenGL window, and make it
@@ -1296,7 +1296,7 @@ function SDL_GL_GetCurrentContext: TSDL_GLContext cdecl; external SDL_LibName {$
    *  SDL_CreateWindow()
    *}
    
-procedure SDL_GL_GetDrawableSize(window: PSDL_Window; w: PInt; h: PInt); cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetDrawableSize' {$ENDIF} {$ENDIF};
+procedure SDL_GL_GetDrawableSize(window: PSDL_Window; w: pcint; h: pcint); cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetDrawableSize' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the swap interval for the current OpenGL context.
