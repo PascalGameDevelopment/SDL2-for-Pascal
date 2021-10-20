@@ -312,39 +312,39 @@ Function filledTrigonRGBA(renderer: PSDL_Renderer; x1, y1, x2, y2, x3, y3: cint1
 
 { Polygon }
 
-Function polygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; colour: cuint32):cint32; cdecl;
+Function polygonColor(renderer: PSDL_Renderer; Const vx, vy: pcint16; n: cint32; colour: cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_polygonColor' {$ENDIF};
    
-Function polygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; r, g, b, a: cuint8):cint32; cdecl;
+Function polygonRGBA(renderer: PSDL_Renderer; Const vx, vy: pcint16; n: cint32; r, g, b, a: cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_polugonRGBA' {$ENDIF};
 
 { AA-Polygon }
 
-Function aapolygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; colour: cuint32):cint32; cdecl;
+Function aapolygonColor(renderer: PSDL_Renderer; Const vx, vy: pcint16; n: cint32; colour: cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aapolygonColor' {$ENDIF};
    
-Function aapolygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; r, g, b, a: cuint8):cint32; cdecl;
+Function aapolygonRGBA(renderer: PSDL_Renderer; Const vx, vy: pcint16; n: cint32; r, g, b, a: cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_aapolygonRGBA' {$ENDIF};
 
 { Filled Polygon }
 
-Function filledPolygonColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; colour: cuint32):cint32; cdecl;
+Function filledPolygonColor(renderer: PSDL_Renderer; Const vx, vy: pcint16; n: cint32; colour: cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledPolygonColor' {$ENDIF};
    
-Function filledPolygonRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; r, g, b, a: cuint8):cint32; cdecl;
+Function filledPolygonRGBA(renderer: PSDL_Renderer; Const vx, vy: pcint16; n: cint32; r, g, b, a: cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_filledPolygonRGBA' {$ENDIF};
 
 { Textured Polygon }
 
-Function texturedPolygon(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n: cint32; texture: PSDL_Surface; texture_dx, texture_dy: cint32):cint32; cdecl;
+Function texturedPolygon(renderer: PSDL_Renderer; Const vx, vy: pcint16; n: cint32; texture: PSDL_Surface; texture_dx, texture_dy: cint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_texturedPolygon' {$ENDIF};
 
 { Bezier }
 
-Function bezierColor(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n, s: cint32; colour: cuint32):cint32; cdecl;
+Function bezierColor(renderer: PSDL_Renderer; Const vx, vy: pcint16; n, s: cint32; colour: cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_bezierColor' {$ENDIF};
    
-Function bezierRGBA(renderer: PSDL_Renderer; Const vx, vy: PsInt16; n, s: cint32; r, g, b, a: cuint8):cint32; cdecl;
+Function bezierRGBA(renderer: PSDL_Renderer; Const vx, vy: pcint16; n, s: cint32; r, g, b, a: cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_bezierRGBA' {$ENDIF};
 
 { Characters/Strings }
@@ -391,120 +391,120 @@ Procedure SDL_imageFilterMMXon(); cdecl;
 
 
 //  SDL_imageFilterAdd: D = saturation255(S1 + S2)
-Function SDL_imageFilterAdd(Src1, Src2, Dest : PuInt8; Length : cuint32):cint32; cdecl;
+Function SDL_imageFilterAdd(Src1, Src2, Dest : pcuint8; Length : cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterAdd' {$ENDIF};
 
 //  SDL_imageFilterMean: D = S1/2 + S2/2
-Function SDL_imageFilterMean(Src1, Src2, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterMean(Src1, Src2, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterMean' {$ENDIF};
 
 //  SDL_imageFilterSub: D = saturation0(S1 - S2)
-Function SDL_imageFilterSub(Src1, Src2, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterSub(Src1, Src2, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterSub' {$ENDIF};
 
 //  SDL_imageFilterAbsDiff: D = | S1 - S2 |
-Function SDL_imageFilterAbsDiff(Src1, Src2, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterAbsDiff(Src1, Src2, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterAbsDiff' {$ENDIF};
 
 
 //  SDL_imageFilterMult: D = saturation(S1 * S2)
-Function SDL_imageFilterMult(Src1, Src2, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterMult(Src1, Src2, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterMult' {$ENDIF};
 
 //  SDL_imageFilterMultNor: D = S1 * S2   (non-MMX)
-Function SDL_imageFilterMultNor(Src1, Src2, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterMultNor(Src1, Src2, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterMultNor' {$ENDIF};
 
 //  SDL_imageFilterMultDivby2: D = saturation255(S1/2 * S2)
-Function SDL_imageFilterMultDivby2(Src1, Src2, Dest : PuInt8; Length: cuint32):cint32; cdecl;
+Function SDL_imageFilterMultDivby2(Src1, Src2, Dest : pcuint8; Length: cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterMultDivby2' {$ENDIF};
 
 //  SDL_imageFilterMultDivby4: D = saturation255(S1/2 * S2/2)
-Function SDL_imageFilterMultDivby4(Src1, Src2, Dest : PuInt8; Length : cuint32):cint32; cdecl;
+Function SDL_imageFilterMultDivby4(Src1, Src2, Dest : pcuint8; Length : cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterMultDivby4' {$ENDIF};
 
 
 //  SDL_imageFilterBitAnd: D = S1 & S2
-Function SDL_imageFilterBitAnd(Src1, Src2, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterBitAnd(Src1, Src2, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterBitAnd' {$ENDIF};
 
 //  SDL_imageFilterBitOr: D = S1 | S2
-Function SDL_imageFilterBitOr(Src1, Src2, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterBitOr(Src1, Src2, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterBitOr' {$ENDIF};
 
 
 //  SDL_imageFilterDiv: D = S1 / S2   (non-MMX)
-Function SDL_imageFilterDiv(Src1, Src2, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterDiv(Src1, Src2, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterDiv' {$ENDIF};
 
 //  SDL_imageFilterBitNegation: D = !S
-Function SDL_imageFilterBitNegation(Src1, Dest : PuInt8; Length:cuint32):cint32; cdecl;
+Function SDL_imageFilterBitNegation(Src1, Dest : pcuint8; Length:cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterBitNegation' {$ENDIF};
 
 
 //  SDL_imageFilterAddByte: D = saturation255(S + C)
-Function SDL_imageFilterAddByte(Src1, Dest : PuInt8; Length:cuint32; C : cuint8):cint32; cdecl;
+Function SDL_imageFilterAddByte(Src1, Dest : pcuint8; Length:cuint32; C : cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterAddByte' {$ENDIF};
 
 //  SDL_imageFilterAddUsInt32: D = saturation255(S + (usInt32)C)
-Function SDL_imageFilterAddUsInt32(Src1, Dest : PuInt8; Length:cuint32; C : cuint32):cint32; cdecl;
+Function SDL_imageFilterAddUsInt32(Src1, Dest : pcuint8; Length:cuint32; C : cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterAddUsInt32' {$ENDIF};
 
 //  SDL_imageFilterAddByteToHalf: D = saturation255(S/2 + C)
-Function SDL_imageFilterAddByteToHalf(Src1, Dest : PuInt8; Length:cuint32; C : cuint8):cint32; cdecl;
+Function SDL_imageFilterAddByteToHalf(Src1, Dest : pcuint8; Length:cuint32; C : cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterAddByteToHalf' {$ENDIF};
 
 
 //  SDL_imageFilterSubByte: D = saturation0(S - C)
-Function SDL_imageFilterSubByte(Src1, Dest : PuInt8; Length:cuint32; C : cuint8):cint32; cdecl;
+Function SDL_imageFilterSubByte(Src1, Dest : pcuint8; Length:cuint32; C : cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterSubByte' {$ENDIF};
 
 //  SDL_imageFilterSubUsInt32: D = saturation0(S - (usInt32)C)
-Function SDL_imageFilterSubUsInt32(Src1, Dest : PuInt8; Length:cuint32; C : cuint32):cint32; cdecl;
+Function SDL_imageFilterSubUsInt32(Src1, Dest : pcuint8; Length:cuint32; C : cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterSubUsInt32' {$ENDIF};
 
 
 //  SDL_imageFilterShiftRight: D = saturation0(S >> N)
-Function SDL_imageFilterShiftRight(Src1, Dest : PuInt8; Length:cuint32; N : cuint8):cint32; cdecl;
+Function SDL_imageFilterShiftRight(Src1, Dest : pcuint8; Length:cuint32; N : cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterShiftRight' {$ENDIF};
 
 //  SDL_imageFilterShiftRightUsInt32: D = saturation0((usInt32)S >> N)
-Function SDL_imageFilterShiftRightUsInt32(Src1, Dest : PuInt8; Length:cuint32; N : cuint8):cint32; cdecl;
+Function SDL_imageFilterShiftRightUsInt32(Src1, Dest : pcuint8; Length:cuint32; N : cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterShiftRightUsInt32' {$ENDIF};
 
 
 //  SDL_imageFilterMultByByte: D = saturation255(S * C)
-Function SDL_imageFilterMultByByte(Src1, Dest : PuInt8; Length:cuint32; C : cuint8):cint32; cdecl;
+Function SDL_imageFilterMultByByte(Src1, Dest : pcuint8; Length:cuint32; C : cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterMultByByte' {$ENDIF};
 
 //  SDL_imageFilterShiftRightAndMultByByte: D = saturation255((S >> N) * C)
-Function SDL_imageFilterShiftRightAndMultByByte(Src1, Dest : PuInt8; Length:cuint32; N, C : cuint8):cint32; cdecl;
+Function SDL_imageFilterShiftRightAndMultByByte(Src1, Dest : pcuint8; Length:cuint32; N, C : cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterShiftRightAndMultByByte' {$ENDIF};
 
 
 //  SDL_imageFilterShiftLeftByte: D = (S << N)
-Function SDL_imageFilterShiftLeftByte(Src1, Dest : PuInt8; Length:cuint32; N: cuint8):cint32; cdecl;
+Function SDL_imageFilterShiftLeftByte(Src1, Dest : pcuint8; Length:cuint32; N: cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterShiftLeftByte' {$ENDIF};
 
 //  SDL_imageFilterShiftLeftUsInt32: D = ((usInt32)S << N)
-Function SDL_imageFilterShiftLeftUsInt32(Src1, Dest : PuInt8; Length:cuint32; N:cuint8):cint32; cdecl;
+Function SDL_imageFilterShiftLeftUsInt32(Src1, Dest : pcuint8; Length:cuint32; N:cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterShiftLeftUsInt32' {$ENDIF};
 
 //  SDL_imageFilterShiftLeft: D = saturation255(S << N)
-Function SDL_imageFilterShiftLeft(Src1, Dest : PuInt8; Length:cuint32; N : cuint8):cint32; cdecl;
+Function SDL_imageFilterShiftLeft(Src1, Dest : pcuint8; Length:cuint32; N : cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterShiftLeft' {$ENDIF};
 
 
 //  SDL_imageFilterBinarizeUsingThreshold: D = S >= T ? 255:0
-Function SDL_imageFilterBinarizeUsingThreshold(Src1, Dest : PuInt8; Length:cuint32; T: cuint8):cint32; cdecl;
+Function SDL_imageFilterBinarizeUsingThreshold(Src1, Dest : pcuint8; Length:cuint32; T: cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterBinarizeUsingThreshold' {$ENDIF};
 
 //  SDL_imageFilterClipToRange: D = (S >= Tmin) & (S <= Tmax) 255:0
-Function SDL_imageFilterClipToRange(Src1, Dest : PuInt8; Length:cuint32; Tmin, Tmax: cuint8):cint32; cdecl;
+Function SDL_imageFilterClipToRange(Src1, Dest : pcuint8; Length:cuint32; Tmin, Tmax: cuint8):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterClipToRange' {$ENDIF};
 
 //  SDL_imageFilterNormalizeLinear: D = saturation255((Nmax - Nmin)/(Cmax - Cmin)*(S - Cmin) + Nmin)
-Function SDL_imageFilterNormalizeLinear(Src, Dest: PuInt8; Length, Cmin, Cmax, Nmin, Nmax: cint32):cint32; cdecl;
+Function SDL_imageFilterNormalizeLinear(Src, Dest: pcuint8; Length, Cmin, Cmax, Nmin, Nmax: cint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_imageFilterNormalizeLinear' {$ENDIF};
 
 
@@ -530,10 +530,10 @@ Function rotozoomSurfaceXY(src: PSDL_Surface; angle, zoomx, zoomy: Double; smoot
    external GFX_LibName {$IFDEF DELMAC} name '_rotozoomSurfaceXY' {$ENDIF};
 
 
-Procedure rotozoomSurfaceSize(width, height: cint32; angle, zoom: Double; dstwidth, dstheight: PuInt32); cdecl;
+Procedure rotozoomSurfaceSize(width, height: cint32; angle, zoom: Double; dstwidth, dstheight: pcuint32); cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rotozoomSurfaceSize' {$ENDIF};
 
-Procedure rotozoomSurfaceSizeXY(width, height: cint32; angle, zoomx, zoomy: Double; dstwidth, dstheight:PuInt32); cdecl;
+Procedure rotozoomSurfaceSizeXY(width, height: cint32; angle, zoomx, zoomy: Double; dstwidth, dstheight:pcuint32); cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_rotozoomSurfaceSizeXY' {$ENDIF};
 
 
@@ -542,7 +542,7 @@ Procedure rotozoomSurfaceSizeXY(width, height: cint32; angle, zoomx, zoomy: Doub
 Function zoomSurface(src: PSDL_Surface; zoomx, zoomy: Double; smooth: cint32):PSDL_Surface; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_zoomSurface' {$ENDIF};
 
-Procedure zoomSurfaceSize(width, height: cint32; zoomx, zoomy: Double; dstwidth, dstheight: PuInt32); cdecl;
+Procedure zoomSurfaceSize(width, height: cint32; zoomx, zoomy: Double; dstwidth, dstheight: pcuint32); cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_zoomSurfaceSize' {$ENDIF};
 
 { Shrinking functions }
