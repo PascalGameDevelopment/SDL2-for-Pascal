@@ -20,12 +20,6 @@
   types defined by SDL which can be found in sdlstdinc.inc.
 }
 
-type
-  PUInt8Array = ^TUInt8Array;
-  TUInt8Array = array [0..MAXINT shr 1] of cuint8;
-
-  ppcuint8 = ^pcuint8;
-
 {$IFNDEF FPC}
 type
   DWord = LongWord;
@@ -93,4 +87,11 @@ type
   cfloat = Single;
   {$EXTERNALSYM cfloat}
 {$ENDIF}
+
+{ Data types for all compilers }
+type
+  PUInt8Array = ^TUInt8Array;
+  TUInt8Array = array [0..MAXINT shr 1] of cuint8;
+
+  ppcuint8 = ^pcuint8;
 
