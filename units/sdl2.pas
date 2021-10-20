@@ -410,7 +410,7 @@ end;
 // from "sdl_timer.h"
 function SDL_TICKS_PASSED(const A, B: cuint32): Boolean;
 begin
-   Result := ((Int64(B) - Int64(A)) <= 0)
+   Result := ((cint64(B) - cint64(A)) <= 0)
 end;
 
 // from "sdl_gamecontroller.h"
