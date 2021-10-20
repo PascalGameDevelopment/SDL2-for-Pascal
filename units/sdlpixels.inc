@@ -331,30 +331,30 @@ const
     {$ENDIF}
 
     {**< Planar mode: Y + V + U  (3 planes) *}
-    SDL_PIXELFORMAT_YV12 = (Integer('Y')       ) or
-                           (Integer('V') shl  8) or
-                           (Integer('1') shl 16) or
-                           (Integer('2') shl 24);
+    SDL_PIXELFORMAT_YV12 = (cint('Y')       ) or
+                           (cint('V') shl  8) or
+                           (cint('1') shl 16) or
+                           (cint('2') shl 24);
     {**< Planar mode: Y + U + V  (3 planes) *}
-    SDL_PIXELFORMAT_IYUV = (Integer('I')       ) or
-                           (Integer('Y') shl  8) or
-                           (Integer('U') shl 16) or
-                           (Integer('V') shl 24);
+    SDL_PIXELFORMAT_IYUV = (cint('I')       ) or
+                           (cint('Y') shl  8) or
+                           (cint('U') shl 16) or
+                           (cint('V') shl 24);
     {**< Packed mode: Y0+U0+Y1+V0 (1 plane) *}
-    SDL_PIXELFORMAT_YUY2 = (Integer('Y')       ) or
-                           (Integer('U') shl  8) or
-                           (Integer('Y') shl 16) or
-                           (Integer('2') shl 24);
+    SDL_PIXELFORMAT_YUY2 = (cint('Y')       ) or
+                           (cint('U') shl  8) or
+                           (cint('Y') shl 16) or
+                           (cint('2') shl 24);
     {**< Packed mode: U0+Y0+V0+Y1 (1 plane) *}
-    SDL_PIXELFORMAT_UYVY = (Integer('U')       ) or
-                           (Integer('Y') shl  8) or
-                           (Integer('V') shl 16) or
-                           (Integer('Y') shl 24);
+    SDL_PIXELFORMAT_UYVY = (cint('U')       ) or
+                           (cint('Y') shl  8) or
+                           (cint('V') shl 16) or
+                           (cint('Y') shl 24);
     {**< Packed mode: Y0+V0+Y1+U0 (1 plane) *}
-    SDL_PIXELFORMAT_YVYU = (Integer('Y')       ) or
-                           (Integer('V') shl  8) or
-                           (Integer('Y') shl 16) or
-                           (Integer('U') shl 24);
+    SDL_PIXELFORMAT_YVYU = (cint('Y')       ) or
+                           (cint('V') shl  8) or
+                           (cint('Y') shl 16) or
+                           (cint('U') shl 24);
 
 type
   PSDL_Color = ^TSDL_Color;

@@ -103,7 +103,7 @@ type
 
     _type: cuint32;
 
-	case Integer of
+	case cint of
 	  0: (stdio: TStdio);
 	  1: (mem: TMem);
 	  2: (unknown: TUnknown);

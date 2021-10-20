@@ -12,6 +12,7 @@ type
   cuint32 = LongWord;
   cint64 = Int64;
   cuint64 = UInt64;
+  cint = Integer;
 
   {$IFNDEF WIN64}
     csize_t = cuint32;

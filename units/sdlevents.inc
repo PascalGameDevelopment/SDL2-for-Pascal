@@ -480,7 +480,7 @@ type
 
   PSDL_Event = ^TSDL_Event;
   TSDL_Event = record
-    case Integer of
+    case cint of
       0:  (type_: cuint32);
 
       SDL_COMMONEVENT:  (common: TSDL_CommonEvent);
@@ -629,9 +629,9 @@ type
 type
   PSDL_EventFilter = ^TSDL_EventFilter;
   {$IFNDEF GPC}
-    TSDL_EventFilter = function(userdata: Pointer; event: PSDL_Event): Integer; cdecl;
+    TSDL_EventFilter = function(userdata: Pointer; event: PSDL_Event): cint; cdecl;
   {$ELSE}
-    TSDL_EventFilter = function( userdata: Pointer; event: PSDL_Event ): Integer;
+    TSDL_EventFilter = function( userdata: Pointer; event: PSDL_Event ): cint;
   {$ENDIF}
 
   {**

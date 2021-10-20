@@ -16,7 +16,7 @@ type
      It is passed a void* user context parameter and returns an int.
    *}
   PSDL_ThreadFunction = ^TSDL_ThreadFunction;
-  TSDL_ThreadFunction = function(data: Pointer): Integer; cdecl;
+  TSDL_ThreadFunction = function(data: Pointer): cint; cdecl;
 
   {* The SDL thread ID *}
   TSDL_ThreadID = LongWord;
@@ -64,9 +64,9 @@ type
     TThreadID = Cardinal;
   {$ENDIF}
 
-  TpfnSDL_CurrentBeginThread = function(SecurityAttributes: Pointer; StackSize: LongWord; ThreadFunc: TThreadFunc; Parameter: Pointer; CreationFlags: LongWord; var ThreadId: TThreadID): Integer;
+  TpfnSDL_CurrentBeginThread = function(SecurityAttributes: Pointer; StackSize: LongWord; ThreadFunc: TThreadFunc; Parameter: Pointer; CreationFlags: LongWord; var ThreadId: TThreadID): cint;
 
-  TpfnSDL_CurrentEndThread = procedure(ExitCode: Integer);
+  TpfnSDL_CurrentEndThread = procedure(ExitCode: cint);
 
   {**
    *  Create a thread.
