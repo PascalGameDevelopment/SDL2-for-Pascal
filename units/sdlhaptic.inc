@@ -658,7 +658,7 @@ type
     channels: cuint8;                  {**< Axes to use, minimum of one. *}
     period: cuint16;                   {**< Sample periods. *}
     samples: cuint16;                  {**< Amount of samples. *}
-    data: PUInt16;                    {**< Should contain channels*samples items. *}
+    data: pcuint16;                    {**< Should contain channels*samples items. *}
 
     {* Envelope *}
     attack_length: cuint16;            {**< Duration of the attack. *}

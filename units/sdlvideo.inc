@@ -128,8 +128,8 @@
     opacity: Float;
 
     brightness: Float;
-    gamma: PUInt16;
-    saved_gamma: PUInt16;  {* (just offset into gamma) *}
+    gamma: pcuint16;
+    saved_gamma: pcuint16;  {* (just offset into gamma) *}
 
     surface: PSDL_Surface;
     surface_valid: TSDL_Bool;
@@ -1097,7 +1097,7 @@ function SDL_SetWindowInputFocus(window: PSDL_Window):cint32; cdecl;
    *  SDL_GetWindowGammaRamp()
    *}
 
-function SDL_SetWindowGammaRamp(window: PSDL_Window; const red: PUInt16; const green: PUInt16; const blue: PUInt16): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowGammaRamp' {$ENDIF} {$ENDIF};
+function SDL_SetWindowGammaRamp(window: PSDL_Window; const red: pcuint16; const green: pcuint16; const blue: pcuint16): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowGammaRamp' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the gamma ramp for a window.
@@ -1114,7 +1114,7 @@ function SDL_SetWindowGammaRamp(window: PSDL_Window; const red: PUInt16; const g
    *  SDL_SetWindowGammaRamp()
    *}
 
-function SDL_GetWindowGammaRamp(window: PSDL_Window; red: PUInt16; green: PUInt16; blue: PUInt16): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowGammaRamp' {$ENDIF} {$ENDIF};
+function SDL_GetWindowGammaRamp(window: PSDL_Window; red: pcuint16; green: pcuint16; blue: pcuint16): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowGammaRamp' {$ENDIF} {$ENDIF};
 
   {**
    *  \brief Provide a callback that decides if a window region has special properties.

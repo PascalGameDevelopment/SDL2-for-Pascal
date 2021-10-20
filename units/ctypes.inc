@@ -6,8 +6,14 @@ type
 
   cint8 = ShortInt;
   cuint8 = Byte;
+
+  pcint16 = ^cint16;
   cint16 = SmallInt;
+  {$EXTERNALSYM cint16}
+
+  pcuint16 = ^cuint16;
   cuint16 = Word;
+  {$EXTERNALSYM cuint16}
 
   pcint32 = ^cint32;
   cint32 = LongInt;

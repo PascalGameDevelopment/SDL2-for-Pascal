@@ -19,15 +19,6 @@ type
   TUInt8Array = array [0..MAXINT shr 1] of cuint8;
 
   {$IFDEF FPC}
-    PUInt16 = pcuint16;
-    //cuint16 = cuint16;
-  {$ELSE}
-    PUInt16 = ^cuint16;
-    cuint16 = Word;
-  {$ENDIF}
-  {$EXTERNALSYM cuint16}
-
-  {$IFDEF FPC}
     PSInt8 = pcint8;
     //cint8 = cint8;
   {$ELSE}
@@ -35,15 +26,6 @@ type
     cint8 = ShortInt;
   {$ENDIF}
   {$EXTERNALSYM cint8}
-
-  {$IFDEF FPC}
-    PSInt16 = pcint16;
-    //cint16 = cint16;
-  {$ELSE}
-    PSInt16 = ^cint16;
-    cint16 = SmallInt;
-  {$ENDIF}
-  {$EXTERNALSYM cint16}
 
   {$IFDEF FPC}
     PFloat = pcfloat;

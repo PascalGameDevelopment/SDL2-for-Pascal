@@ -518,4 +518,4 @@ procedure SDL_GetRGBA(pixel: cuint32; const format: PSDL_PixelFormat; r: PUInt8;
    *  Calculate a 256 entry gamma ramp for a gamma value.
    *}
 
-procedure SDL_CalculateGammaRamp(gamma: Float; ramp: PUInt16) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CalculateGammaRamp' {$ENDIF} {$ENDIF};
+procedure SDL_CalculateGammaRamp(gamma: Float; ramp: pcuint16) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CalculateGammaRamp' {$ENDIF} {$ENDIF};

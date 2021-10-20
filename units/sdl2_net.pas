@@ -412,7 +412,7 @@ end;
 (*
   procedure SDLNet_Write16(value: cuint16; areap: Pointer);
   begin
-    PUInt16(areap) := SDL_SwapBE16(value);
+    pcuint16(areap) := SDL_SwapBE16(value);
   end;
 
   procedure SDLNet_Write32(value: cuint32; areap: Pointer);
@@ -423,7 +423,7 @@ end;
   {* Read a 16/32-bit value from network packet buffer *}
   function SDLNet_Read16(const areap: Pointer): cuint16;
   begin
-    Result := SDL_SwapBE16(PUInt16(areap));
+    Result := SDL_SwapBE16(pcuint16(areap));
   end;
 
   function SDLNet_Read32(const areap: Pointer): cuint32;

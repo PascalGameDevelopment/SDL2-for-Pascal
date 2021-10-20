@@ -387,7 +387,7 @@ function SDL_JoystickGetAxis(joystick: PSDL_Joystick; axis: cint32): cint16; cde
  *
  *  \return SDL_TRUE if this axis has any initial value, or SDL_FALSE if not.
  *}
-function SDL_JoystickGetAxisInitialState(joystick: PSDL_Joystick; axis: cint32; state: PSInt16): TSDL_Bool; cdecl;
+function SDL_JoystickGetAxisInitialState(joystick: PSDL_Joystick; axis: cint32; state: pcint16): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickGetAxisInitialState' {$ENDIF} {$ENDIF};
 
 {**
