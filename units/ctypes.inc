@@ -64,4 +64,8 @@ type
     csize_t = cuint64;
   {$ENDIF}
   {$EXTERNALSYM SIZE_T}
+
+  pcfloat = ^cfloat;
+  cfloat = Single;
+  {$EXTERNALSYM cfloat}
 }

@@ -215,7 +215,7 @@ function SDL_SensorGetInstanceID(sensor: PSDL_Sensor): TSDL_SensorID; cdecl;
  *
  *  \return 0 or -1 if an error occurred.
  *}
-function SDL_SensorGetData(sensor: PSDL_Sensor; data: PSingle; num_values: cint32): cint32; cdecl;
+function SDL_SensorGetData(sensor: PSDL_Sensor; data: pcfloat; num_values: cint32): cint32; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetData' {$ENDIF} {$ENDIF};
 
 {**

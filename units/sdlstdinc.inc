@@ -11,15 +11,6 @@ type
   ppcuint8 = ^pcuint8;
 
   {$IFDEF FPC}
-    PFloat = pcfloat;
-    Float = cfloat;
-  {$ELSE}
-    PFloat = ^Float;
-    Float = Single;
-  {$ENDIF}
-  {$EXTERNALSYM Float}
-
-  {$IFDEF FPC}
     PInt = pcint;
   {$ELSE}
     PInt = ^LongInt;

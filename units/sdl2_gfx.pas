@@ -101,7 +101,7 @@ Type
    
    TFPSManager = record
       framecount : cuint32;
-      rateticks : Single; // float rateticks;
+      rateticks : cfloat; // float rateticks;
       baseticks : cuint32;
       lastticks : cuint32;
       rate : cuint32;

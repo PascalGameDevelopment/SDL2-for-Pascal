@@ -15,8 +15,8 @@ type
    *}
   PSDL_FPoint = ^TSDL_FPoint;
   TSDL_FPoint = record
-    x: Single;
-    y: Single;
+    x: cfloat;
+    y: cfloat;
   end;
 
   {**
@@ -33,8 +33,8 @@ type
    *}
   PSDL_FRect = ^TSDL_FRect;
   TSDL_FRect = record
-    x,y: Single;
-    w,h: Single;
+    x,y: cfloat;
+    w,h: cfloat;
   end;
 
   {**

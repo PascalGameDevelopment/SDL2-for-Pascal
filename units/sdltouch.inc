@@ -10,9 +10,9 @@ type
   PSDL_Finger = ^TSDL_Finger;
   TSDL_Finger = record
     id: TSDL_FingerID;
-    x: Float;
-    y: Float;
-    pressure: Float;
+    x: cfloat;
+    y: cfloat;
+    pressure: cfloat;
   end;
 
 {* Used as the device ID for mouse events simulated with touch input *}

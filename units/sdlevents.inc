@@ -390,11 +390,11 @@ type
     timestamp: cuint32;
     touchId: TSDL_TouchID;  // The touch device id
     fingerId: TSDL_FingerID;
-    x: Float;              // Normalized in the range 0...1
-    y: Float;              // Normalized in the range 0...1
-    dx: Float;             // Normalized in the range 0...1
-    dy: Float;             // Normalized in the range 0...1
-    pressure: Float;       // Normalized in the range 0...1
+    x: cfloat;              // Normalized in the range 0...1
+    y: cfloat;              // Normalized in the range 0...1
+    dx: cfloat;             // Normalized in the range 0...1
+    dy: cfloat;             // Normalized in the range 0...1
+    pressure: cfloat;       // Normalized in the range 0...1
   end;
 
   {**
@@ -404,10 +404,10 @@ type
     type_: cuint32;        // SDL_MULTIGESTURE
     timestamp: cuint32;
     touchId: TSDL_TouchID; // The touch device index
-    dTheta: Float;
-    dDist: Float;
-    x: Float;
-    y: Float;
+    dTheta: cfloat;
+    dDist: cfloat;
+    x: cfloat;
+    y: cfloat;
     numFingers: cuint16;
     padding: cuint16;
   end;
@@ -420,9 +420,9 @@ type
     touchId: TSDL_TouchID;  // The touch device id
     gestureId: TSDL_GestureID;
     numFingers: cuint32;
-    error: Float;
-    x: Float;              // Normalized center of gesture
-    y: Float;              // Normalized center of gesture
+    error: cfloat;
+    x: cfloat;              // Normalized center of gesture
+    y: cfloat;              // Normalized center of gesture
   end;
 
 

@@ -125,9 +125,9 @@
 
     fullscreen_mode: TSDL_DisplayMode;
 
-    opacity: Float;
+    opacity: cfloat;
 
-    brightness: Float;
+    brightness: cfloat;
     gamma: pcuint16;
     saved_gamma: pcuint16;  {* (just offset into gamma) *}
 
@@ -469,7 +469,7 @@ function SDL_GetDisplayBounds(displayIndex: cint32; rect: PSDL_Rect): cint32 cde
    *
    *  \sa SDL_GetNumVideoDisplays()
    *}
-function SDL_GetDisplayDPI(displayIndex: cint32; ddpi, hdpi, vdpi: PSingle): cint32; cdecl; 
+function SDL_GetDisplayDPI(displayIndex: cint32; ddpi, hdpi, vdpi: pcfloat): cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetDisplayDPI' {$ENDIF} {$ENDIF}; 
 
   {**
@@ -1011,7 +1011,7 @@ function SDL_GetGrabbedWindow(): PSDL_Window; cdecl;
    *  SDL_SetWindowGammaRamp()
    *}
 
-function SDL_SetWindowBrightness(window: PSDL_Window; brightness: Float): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowBrightness' {$ENDIF} {$ENDIF};
+function SDL_SetWindowBrightness(window: PSDL_Window; brightness: cfloat): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowBrightness' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the brightness (gamma correction) for a window.
@@ -1021,7 +1021,7 @@ function SDL_SetWindowBrightness(window: PSDL_Window; brightness: Float): cint32
    *  SDL_SetWindowBrightness()
    *}
 
-function SDL_GetWindowBrightness(window: PSDL_Window): Float cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowBrightness' {$ENDIF} {$ENDIF};
+function SDL_GetWindowBrightness(window: PSDL_Window): cfloat cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowBrightness' {$ENDIF} {$ENDIF};
 
   {**
    *  \brief Set the opacity for a window
@@ -1034,7 +1034,7 @@ function SDL_GetWindowBrightness(window: PSDL_Window): Float cdecl; external SDL
    *
    *  \sa SDL_GetWindowOpacity()
    *}
-function SDL_SetWindowOpacity(window: PSDL_Window; opacity: Float):cint32; cdecl;
+function SDL_SetWindowOpacity(window: PSDL_Window; opacity: cfloat):cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowOpacity' {$ENDIF} {$ENDIF};
 
   {**
@@ -1050,7 +1050,7 @@ function SDL_SetWindowOpacity(window: PSDL_Window; opacity: Float):cint32; cdecl
    *
    *  \sa SDL_SetWindowOpacity()
    *}
-function SDL_GetWindowOpacity(window: PSDL_Window; out_opacity: PFloat):cint32; cdecl;
+function SDL_GetWindowOpacity(window: PSDL_Window; out_opacity: pcfloat):cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowOpacity' {$ENDIF} {$ENDIF};
 
   {** 

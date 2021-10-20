@@ -497,7 +497,7 @@ function SDL_RenderIsClipEnabled(renderer: PSDL_Renderer): TSDL_Bool; cdecl;
    *   SDL_RenderGetScale()
    *   SDL_RenderSetLogicalSize()
    *}
-function SDL_RenderSetScale(renderer: PSDL_Renderer; scaleX: Float; scaleY: Float): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderSetScale' {$ENDIF} {$ENDIF};
+function SDL_RenderSetScale(renderer: PSDL_Renderer; scaleX: cfloat; scaleY: cfloat): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderSetScale' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the drawing scale for the current target.
@@ -508,7 +508,7 @@ function SDL_RenderSetScale(renderer: PSDL_Renderer; scaleX: Float; scaleY: Floa
    *
    *   SDL_RenderSetScale()
    *}
-procedure SDL_RenderGetScale(renderer: PSDL_Renderer; scaleX: PFloat; scaleY: PFloat) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetScale' {$ENDIF} {$ENDIF};
+procedure SDL_RenderGetScale(renderer: PSDL_Renderer; scaleX: pcfloat; scaleY: pcfloat) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetScale' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the color used for drawing operations (Rect, Line and Clear).
@@ -867,7 +867,7 @@ procedure SDL_DestroyRenderer(renderer: PSDL_Renderer) cdecl; external SDL_LibNa
    *
    *   0 on success, or -1 if the operation is not supported
    *}
-function SDL_GL_BindTexture(texture: PSDL_Texture; texw: PFloat; texh: PFloat): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_BindTexture' {$ENDIF} {$ENDIF};
+function SDL_GL_BindTexture(texture: PSDL_Texture; texw: pcfloat; texh: pcfloat): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_BindTexture' {$ENDIF} {$ENDIF};
 
   {**
    *  Unbind a texture from the current OpenGL/ES/ES2 context.

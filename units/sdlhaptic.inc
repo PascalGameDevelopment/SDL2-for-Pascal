@@ -1139,7 +1139,7 @@ function SDL_HapticRumbleInit(haptic: PSDL_Haptic): cint cdecl; external SDL_Lib
    *   SDL_HapticRumbleInit
    *   SDL_HapticRumbleStop
    *}
-function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: Float; length: cuint32): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumblePlay' {$ENDIF} {$ENDIF};
+function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumblePlay' {$ENDIF} {$ENDIF};
 
   {**
    *   Stops the simple rumble on a haptic device.
