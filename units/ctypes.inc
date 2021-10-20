@@ -1,8 +1,34 @@
-// C-types
+// C data types
 
 {
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+
+  Pascal-Header-Conversion
+  Copyright (C) 2012-2020 Tim Blume aka End/EV1313
+
+  SDL2-for-Pascal
+  Copyright (C) 2020-2021 PGD Community
+
+  This file is part of the project above. It has solely the purpose
+  to map common C data types correctly by Pascal compilers.
+
+  FPC: Most C data types are found in the native ctypes unit.
+  Delphi + others: Relies on this file for C data type mapping.
+
+  These native C types should be strictly separated from
+  types defined by SDL which can be found in sdlstdinc.inc.
+}
 
 type
+  PUInt8Array = ^TUInt8Array;
+  TUInt8Array = array [0..MAXINT shr 1] of cuint8;
+
+  ppcuint8 = ^pcuint8;
+
+{$IFNDEF FPC}
+type
+  DWord = LongWord;
 
   pcint = ^cint;
   cint = Integer;
@@ -12,7 +38,6 @@ type
   cint8 = ShortInt;
   {$EXTERNALSYM cint8}
 
-  //ppcuint8 = ^pcuint8; // See sdlstdinc.inc!
   pcuint8 = ^cuint8;
   cuint8 = Byte;
   {$EXTERNALSYM cuint8}
@@ -67,4 +92,5 @@ type
   pcfloat = ^cfloat;
   cfloat = Single;
   {$EXTERNALSYM cfloat}
-}
+{$ENDIF}
+

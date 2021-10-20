@@ -141,9 +141,8 @@ const
     {$ENDIF}
   {$ENDIF}
 
-{$IFNDEF FPC}
-  {$I ctypes.inc}  // C-types conversion if ctypes unit is not available (part of FPC)
-{$ENDIF}
+
+{$I ctypes.inc}  // C data types
 {$I sdlstdinc.inc}
 {$I sdlversion.inc}
 {$I sdlerror.inc}
