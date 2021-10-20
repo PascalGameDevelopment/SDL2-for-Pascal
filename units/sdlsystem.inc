@@ -30,7 +30,7 @@ Function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9;
  * These can be passed to EnumAdapters and EnumOutputs respectively to get the objects
  *  required to create a DX10 or DX11 device and swap chain.
  *}
-function SDL_DXGIGetOutputInfo(displayIndex :cint32; adapterIndex, outputIndex :PSInt32): TSDL_Bool;
+function SDL_DXGIGetOutputInfo(displayIndex :cint32; adapterIndex, outputIndex :pcint32): TSDL_Bool;
    cdecl; external SDL_LibName;
 
 {$IFEND}

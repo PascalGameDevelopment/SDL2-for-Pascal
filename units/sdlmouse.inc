@@ -70,7 +70,7 @@ const
    *
    *  \sa SDL_GetMouseState
    *}
-  function SDL_GetGlobalMouseState(x, y: PSInt32): cuint32; cdecl;
+  function SDL_GetGlobalMouseState(x, y: pcint32): cuint32; cdecl;
     external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetGlobalMouseState' {$ENDIF}{$ENDIF};
 
   {**

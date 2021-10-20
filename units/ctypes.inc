@@ -8,7 +8,11 @@ type
   cuint8 = Byte;
   cint16 = SmallInt;
   cuint16 = Word;
+
+  pcint32 = ^cint32;
   cint32 = LongInt;
+  {$EXTERNALSYM cint32}
+
   cuint32 = LongWord;
   cint64 = Int64;
   cuint64 = UInt64;

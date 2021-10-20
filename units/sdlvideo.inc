@@ -785,7 +785,7 @@ procedure SDL_GetWindowSize(window: PSDL_Window; w: PInt; h: PInt) cdecl; extern
    *        initialized to 0, 0, 0, 0 (if a non-NULL pointer is provided), as
    *        if the window in question was borderless.
    *}
-function SDL_GetWindowBordersSize(window: PSDL_Window; top, left, bottom, right: PsInt32):cint32; cdecl;
+function SDL_GetWindowBordersSize(window: PSDL_Window; top, left, bottom, right: pcint32):cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowBordersSize' {$ENDIF} {$ENDIF};
 
   {**

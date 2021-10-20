@@ -55,15 +55,6 @@ type
   {$EXTERNALSYM cuint32}
 
   {$IFDEF FPC}
-    PSInt32 = pcint32;
-    //cint32 = cint32;
-  {$ELSE}
-    PSInt32 = ^cint32;
-    cint32 = LongInt;
-  {$ENDIF}
-  {$EXTERNALSYM cint32}
-
-  {$IFDEF FPC}
     PFloat = pcfloat;
     Float = cfloat;
   {$ELSE}

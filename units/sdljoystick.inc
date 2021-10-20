@@ -430,7 +430,7 @@ function SDL_JoystickGetHat(joystick: PSDL_Joystick; hat: cint32): cuint8; cdecl
  *
  *  The ball indices start at index 0.
  *}
-function SDL_JoystickGetBall(joystick: PSDL_Joystick; ball: cint32; dx: PSInt32; dy: PSInt32): cint32; cdecl;
+function SDL_JoystickGetBall(joystick: PSDL_Joystick; ball: cint32; dx: pcint32; dy: pcint32): cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickGetBall' {$ENDIF} {$ENDIF};
 
 {**
