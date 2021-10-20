@@ -6,26 +6,9 @@ type
   DWord = LongWord;
 
   PUInt8Array = ^TUInt8Array;
-  {$IFDEF FPC}
-    PUInt8 = pcuint8;
-    PPUInt8 = ^pcuint8;
-    //cuint8 = cuint8;
-  {$ELSE}
-    PUInt8 = ^cuint8;
-    PPUInt8 = ^PUInt8;
-    cuint8 = Byte;
-  {$ENDIF}
-  {$EXTERNALSYM cuint8}
   TUInt8Array = array [0..MAXINT shr 1] of cuint8;
 
-  {$IFDEF FPC}
-    PSInt8 = pcint8;
-    //cint8 = cint8;
-  {$ELSE}
-    PSInt8 = ^cint8;
-    cint8 = ShortInt;
-  {$ENDIF}
-  {$EXTERNALSYM cint8}
+  ppcuint8 = ^pcuint8;
 
   {$IFDEF FPC}
     PFloat = pcfloat;

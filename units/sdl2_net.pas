@@ -186,7 +186,7 @@ type
 
   TUDPPacket = record
     channel: cint;     {* The src/dst channel of the packet *}
-    data: PUInt8;         {* The packet data *}
+    data: pcuint8;         {* The packet data *}
     len: cint;         {* The length of the packet data *}
     maxlen: cint;      {* The size of the data buffer *}
     status: cint;      {* packet status after sending *}

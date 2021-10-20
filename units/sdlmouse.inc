@@ -185,7 +185,7 @@ const
    *  SDL_FreeCursor()
    *}
 
-  function SDL_CreateCursor(const data: PUInt8; const mask: PUInt8; w: cint32; h: cint32; hot_x: cint32; hot_y: cint32): PSDL_Cursor cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateCursor' {$ENDIF}{$ENDIF};
+  function SDL_CreateCursor(const data: pcuint8; const mask: pcuint8; w: cint32; h: cint32; hot_x: cint32; hot_y: cint32): PSDL_Cursor cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateCursor' {$ENDIF}{$ENDIF};
 
   {**
    *  Create a color cursor.

@@ -4,8 +4,14 @@
 
 type
 
+  pcint8 = ^cint8;
   cint8 = ShortInt;
+  {$EXTERNALSYM cint8}
+
+  //ppcuint8 = ^pcuint8; // See sdlstdinc.inc!
+  pcuint8 = ^cuint8;
   cuint8 = Byte;
+  {$EXTERNALSYM cuint8}
 
   pcint16 = ^cint16;
   cint16 = SmallInt;

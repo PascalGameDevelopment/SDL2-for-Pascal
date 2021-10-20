@@ -218,7 +218,7 @@ function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: cuint8; g: cuint8; b: 
    *  SDL_SetSurfaceColorMod()
    *}
 
-function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: PUInt8; g: PUInt8; b: PUInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceColorMod' {$ENDIF} {$ENDIF};
+function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b: pcuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceColorMod' {$ENDIF} {$ENDIF};
 
   {**
    *  Set an additional alpha value used in blit operations.
@@ -244,7 +244,7 @@ function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: cuint8): cint32 cd
    *  SDL_SetSurfaceAlphaMod()
    *}
 
-function SDL_GetSurfaceAlphaMod(surface: PSDL_Surface; alpha: PUInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceAlphaMod' {$ENDIF} {$ENDIF};
+function SDL_GetSurfaceAlphaMod(surface: PSDL_Surface; alpha: pcuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceAlphaMod' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the blend mode used for blit operations.

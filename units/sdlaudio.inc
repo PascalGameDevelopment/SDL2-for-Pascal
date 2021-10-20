@@ -115,7 +115,7 @@ const
    *  Stereo samples are stored in a LRLRLR ordering.
    *}
 type
-  TSDL_AudioCallback = procedure(userdata: Pointer; stream: PUInt8; len: cint) cdecl;
+  TSDL_AudioCallback = procedure(userdata: Pointer; stream: pcuint8; len: cint) cdecl;
 
   {**
    *  The calculated values in this structure are calculated by SDL_OpenAudio().
@@ -145,7 +145,7 @@ type
     src_format: TSDL_AudioFormat;              {**< Source audio format *}
     dst_format: TSDL_AudioFormat;                {**< Target audio format *}
     rate_incr: Double;                        {**< Rate conversion increment *}
-    buf: PUInt8;                             {**< Buffer to hold entire audio data *}
+    buf: pcuint8;                             {**< Buffer to hold entire audio data *}
     len: cint;                               {**< Length of original audio buffer *}
     len_cvt: cint;                           {**< Length of converted audio buffer *}
     len_mult: cint;                          {**< buffer must be len*len_mult big *}
@@ -335,19 +335,19 @@ procedure SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID; pause_on: cint) cdecl; e
    *  wave file cannot be opened, uses an unknown data format, or is
    *  corrupt.  Currently raw and MS-ADPCM WAVE files are supported.
    *}
-function SDL_LoadWAV_RW(src: PSDL_RWops; freesrc: cint; spec: PSDL_AudioSpec; audio_buf: PPUInt8; audio_len: pcuint32): PSDL_AudioSpec cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadWAV_RW' {$ENDIF} {$ENDIF};
+function SDL_LoadWAV_RW(src: PSDL_RWops; freesrc: cint; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): PSDL_AudioSpec cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadWAV_RW' {$ENDIF} {$ENDIF};
 
   {**
    *  Loads a WAV from a file.
    *  Compatibility convenience function.
    *}
 
-   function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: PPUInt8; audio_len: pcuint32): PSDL_AudioSpec;
+   function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): PSDL_AudioSpec;
 
   {**
    *  This function frees data previously allocated with SDL_LoadWAV_RW()
    *}
-  procedure SDL_FreeWAV(audio_buf: PUInt8) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FreeWAV' {$ENDIF} {$ENDIF};
+  procedure SDL_FreeWAV(audio_buf: pcuint8) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FreeWAV' {$ENDIF} {$ENDIF};
 
   {**
    *  This function takes a source format and rate and a destination format
@@ -388,14 +388,14 @@ const
    *  for full audio volume.  Note this does not change hardware volume.
    *  This is provided for convenience -- you can mix your own audio data.
    *}
-procedure SDL_MixAudio(dst: PUInt8; src: PUInt8; len: cuint32; volume: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudio' {$ENDIF} {$ENDIF};
+procedure SDL_MixAudio(dst: pcuint8; src: pcuint8; len: cuint32; volume: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudio' {$ENDIF} {$ENDIF};
 
   {**
    *  This works like SDL_MixAudio(), but you specify the audio format instead of
    *  using the format of audio device 1. Thus it can be used when no audio
    *  device is open at all.
    *}
-procedure SDL_MixAudioFormat(dst: PUInt8; src: PUInt8; format: TSDL_AudioFormat; len: cuint32; volume: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudioFormat' {$ENDIF} {$ENDIF};
+procedure SDL_MixAudioFormat(dst: pcuint8; src: pcuint8; format: TSDL_AudioFormat; len: cuint32; volume: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudioFormat' {$ENDIF} {$ENDIF};
 
   {**
    *  Queue more audio on non-callback devices.

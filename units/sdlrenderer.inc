@@ -238,7 +238,7 @@ function SDL_SetTextureColorMod(texture: PSDL_Texture; r: cuint8; g: cuint8; b: 
    *
    *   SDL_SetTextureColorMod()
    *}
-function SDL_GetTextureColorMod(texture: PSDL_Texture; r: PUInt8; g: PUInt8; b: PUInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureColorMod' {$ENDIF} {$ENDIF};
+function SDL_GetTextureColorMod(texture: PSDL_Texture; r: pcuint8; g: pcuint8; b: pcuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureColorMod' {$ENDIF} {$ENDIF};
 
   {**
    *  Set an additional alpha value used in render copy operations.
@@ -263,7 +263,7 @@ function SDL_SetTextureAlphaMod(texture: PSDL_Texture; alpha: cuint8): cint32 cd
    *
    *   SDL_SetTextureAlphaMod()
    *}
-function SDL_GetTextureAlphaMod(texture: PSDL_Texture; alpha: PUInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureAlphaMod' {$ENDIF} {$ENDIF};
+function SDL_GetTextureAlphaMod(texture: PSDL_Texture; alpha: pcuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureAlphaMod' {$ENDIF} {$ENDIF};
 
   {**
    *   Set the blend mode used for texture copy operations.
@@ -536,7 +536,7 @@ function SDL_SetRenderDrawColor(renderer: PSDL_Renderer; r: cuint8; g: cuint8; b
    *
    *   0 on success, or -1 on error
    *}
-function SDL_GetRenderDrawColor(renderer: PSDL_Renderer; r: PUInt8; g: PUInt8; b: PUInt8; a: PUInt8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderDrawColor' {$ENDIF} {$ENDIF};
+function SDL_GetRenderDrawColor(renderer: PSDL_Renderer; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderDrawColor' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the blend mode used for drawing operations (Fill and Line).
@@ -896,5 +896,5 @@ function SDL_GL_UnbindTexture(texture: PSDL_Texture): cint32 cdecl; external SDL
    *  a contiguous block of Y and U/V planes in the proper order, but
    *  this function is available if your pixel data is not contiguous.
    *}
-function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: PUInt8; Ypitch: cint32; Uplane: PUInt8; UPitch: cint32; Vplane: PUInt8; VPitch: cint32):cint32;
+function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: pcuint8; Ypitch: cint32; Uplane: pcuint8; UPitch: cint32; Vplane: pcuint8; VPitch: cint32):cint32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateYUVTexture' {$ENDIF} {$ENDIF};

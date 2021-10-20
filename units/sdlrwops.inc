@@ -61,9 +61,9 @@ type
   end;
   
   TMem = record
-    base: PUInt8;
-	here: PUInt8;
-	stop: PUInt8;
+    base: pcuint8;
+	here: pcuint8;
+	stop: pcuint8;
   end;
   
   TUnknown = record

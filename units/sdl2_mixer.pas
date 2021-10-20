@@ -136,7 +136,7 @@ type
   PMix_Chunk = ^TMix_Chunk;
   TMix_Chunk = record
     allocated: cint;
-    abuf: PUInt8;
+    abuf: pcuint8;
     alen: cuint32;
     volume: cuint8;       {* Per-sample volume, 0-128 *}
   end;
@@ -191,10 +191,10 @@ function Mix_LoadMUS_RW(src: PSDL_RWops; freesrc: cint): PMix_Music cdecl; exter
 function Mix_LoadMUSType_RW(src: PSDL_RWops; _type: TMix_MusicType; freesrc: cint): PMix_Music cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadMUSType_RW' {$ENDIF} {$ENDIF};
 
   {* Load a wave file of the mixer format from a memory buffer *}
-function Mix_QuickLoad_WAV(mem: PUInt8): PMix_Chunk cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_QuickLoad_WAV' {$ENDIF} {$ENDIF};
+function Mix_QuickLoad_WAV(mem: pcuint8): PMix_Chunk cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_QuickLoad_WAV' {$ENDIF} {$ENDIF};
 
   {* Load raw audio data of the mixer format from a memory buffer *}
-function Mix_QuickLoad_RAW(mem: PUInt8; len: cuint32): PMix_Chunk cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_QuickLoad_RAW' {$ENDIF} {$ENDIF};
+function Mix_QuickLoad_RAW(mem: pcuint8; len: cuint32): PMix_Chunk cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_QuickLoad_RAW' {$ENDIF} {$ENDIF};
 
   {* Free an audio chunk previously loaded *}
 procedure Mix_FreeChunk(chunk: PMix_Chunk) cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_FreeChunk' {$ENDIF} {$ENDIF};
@@ -242,7 +242,7 @@ function Mix_GetMusicType(music: TMix_Music): TMix_MusicType cdecl; external MIX
      or add a custom mixer filter for the stream data.
   *}
 type
-  TMix_Func = procedure(udata: Pointer; stream: PUInt8; len: cint) cdecl;
+  TMix_Func = procedure(udata: Pointer; stream: pcuint8; len: cint) cdecl;
 
 procedure Mix_SetPostMix(func: TMix_Func; arg: Pointer) cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPostMix' {$ENDIF} {$ENDIF};
 

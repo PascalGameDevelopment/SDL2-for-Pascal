@@ -504,7 +504,7 @@ function SDL_MapRGBA(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cu
    *  SDL_GetRGBA
    *}
 
-procedure SDL_GetRGB(pixel: cuint32; const format: PSDL_PixelFormat; r: PUInt8; g: PUInt8; b: PUInt8) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRGB' {$ENDIF} {$ENDIF};
+procedure SDL_GetRGB(pixel: cuint32; const format: PSDL_PixelFormat; r: pcuint8; g: pcuint8; b: pcuint8) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRGB' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the RGBA components from a pixel of the specified format.
@@ -512,7 +512,7 @@ procedure SDL_GetRGB(pixel: cuint32; const format: PSDL_PixelFormat; r: PUInt8; 
    *  SDL_GetRGB
    *}
 
-procedure SDL_GetRGBA(pixel: cuint32; const format: PSDL_PixelFormat; r: PUInt8; g: PUInt8; b: PUInt8; a: PUInt8) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRGBA' {$ENDIF} {$ENDIF};
+procedure SDL_GetRGBA(pixel: cuint32; const format: PSDL_PixelFormat; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRGBA' {$ENDIF} {$ENDIF};
 
   {**
    *  Calculate a 256 entry gamma ramp for a gamma value.
