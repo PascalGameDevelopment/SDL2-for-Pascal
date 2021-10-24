@@ -183,7 +183,7 @@ const
 
 implementation
 
-//from "sdl_version.h"
+// Macros from "sdl_version.h"
 procedure SDL_VERSION(out x: TSDL_Version);
 begin
   x.major := SDL_MAJOR_VERSION;
@@ -191,7 +191,7 @@ begin
   x.patch := SDL_PATCHLEVEL;
 end;
 
-function SDL_VERSIONNUM(X,Y,Z: cuint32): Cardinal;
+function SDL_VERSIONNUM(X,Y,Z: cuint8): Cardinal;
 begin
   Result := X*1000 + Y*100 + Z;
 end;
@@ -203,7 +203,7 @@ begin
                            SDL_PATCHLEVEL);
 end;
 
-function SDL_VERSION_ATLEAST(X,Y,Z: Cardinal): Boolean;
+function SDL_VERSION_ATLEAST(X,Y,Z: cuint8): Boolean;
 begin
   Result := SDL_COMPILEDVERSION >= SDL_VERSIONNUM(X,Y,Z);
 end;
