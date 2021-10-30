@@ -48,11 +48,11 @@ Ex: `SDL_INIT_VIDEO` does not change into `SDLInitVideo`.
 Ex.: `type` in C function `SDL_HasEvent(Uint32 type)` changes into `type_`
 in Pascal function `SDL_HasEvent(type_: TSDL_EventType)`.
 
-3. Use C data types like `UInt8`, `UInt16`, `UInt32`, `SInt8`, `SInt16`,
-`SInt32`, `Float` and so on as often as possible if it is used  in the
+3. Use C data types like `cuint8`, `cuint16`, `cuint32`, `cint8`, `cint16`,
+`cint32`, `cfloat` and so on as often as possible if it is used  in the
 original code. Do not replace them by Pascal equivalents.
-Ex.: Use `UInt32` (if used in
-the original code) instead of `Cardinal`, `LongWord` or `DWord` .
+Ex.: Use `cuint32` (if `Uint32` is used in
+the original code) instead of `UInt32`, `Cardinal`, `LongWord` or `DWord`.
 
 4. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
 
