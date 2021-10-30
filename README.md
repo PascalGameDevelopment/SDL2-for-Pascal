@@ -65,10 +65,12 @@ The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pa
 - be up-to-date with version 2.0.14 of the `SDL2 library`
 - replaced all aliases by typed enums
 - improve Delphi-compatibility (and even more important, DO NOT break it)
+- (done) add folders to project
+- (done) shift all units into unit folder (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27))
 
 ### v2.1 (Compatibility Release)
 
-- This release has all commits until the change of the project folder structure (see PR #27). Compare the disucssion in issue #22.
+- This release has all commits until the change of the project folder structure (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27)). Compare the disucssion in issue #22.
 - Moving the units to a new location may (1) raise difficulties in committing new changes if the branch was started before and (2) make updates of project research pathes necessary.
 - updates of SDL2_Mixer, SDL2_Image, SDL2_TTF and some include files
 - introduce float point types
