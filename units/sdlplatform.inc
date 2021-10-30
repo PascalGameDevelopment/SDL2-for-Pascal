@@ -1,4 +1,4 @@
-//from sdl_platform.h
+// based on "sdl_platform.h" (2.0.14)
 
 {**
  *  Gets the name of the platform.
