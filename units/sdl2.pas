@@ -145,6 +145,7 @@ const
 {$I ctypes.inc}  // C data types
 {$I sdlstdinc.inc}
 {$I sdlversion.inc}
+{$I sdlerror_c.inc}
 {$I sdlerror.inc}
 {$I sdlplatform.inc}
 {$I sdlpower.inc}
