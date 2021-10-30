@@ -5,22 +5,22 @@
    *
    *  This value wraps if the program runs for more than ~49 days.
    *}
-function SDL_GetTicks: UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks' {$ENDIF} {$ENDIF};
+function SDL_GetTicks: cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the current value of the high resolution counter
    *}
-function SDL_GetPerformanceCounter: UInt64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceCounter' {$ENDIF} {$ENDIF};
+function SDL_GetPerformanceCounter: cuint64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceCounter' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the count per second of the high resolution counter
    *}
-function SDL_GetPerformanceFrequency: UInt64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceFrequency' {$ENDIF} {$ENDIF};
+function SDL_GetPerformanceFrequency: cuint64 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceFrequency' {$ENDIF} {$ENDIF};
 
   {**
    *  Wait a specified number of milliseconds before returning.
    *}
-procedure SDL_Delay(ms: UInt32) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Delay' {$ENDIF} {$ENDIF};
+procedure SDL_Delay(ms: cuint32) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Delay' {$ENDIF} {$ENDIF};
 
   {**
    *  Function prototype for the timer callback function.
@@ -32,19 +32,19 @@ procedure SDL_Delay(ms: UInt32) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IF
    *}
 
 type
-  TSDL_TimerCallback = function(interval: UInt32; param: Pointer): UInt32; cdecl;
+  TSDL_TimerCallback = function(interval: cuint32; param: Pointer): cuint32; cdecl;
 
   {**
    * Definition of the timer ID type.
    *}
-  TSDL_TimerID = SInt32;
+  TSDL_TimerID = cint32;
 
   {**
    *  Add a new timer to the pool of timers already running.
    *
    *  A timer ID, or NULL when an error occurs.
    *}
-function SDL_AddTimer(interval: UInt32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddTimer' {$ENDIF} {$ENDIF};
+function SDL_AddTimer(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddTimer' {$ENDIF} {$ENDIF};
 
   {**
    *  Remove a timer knowing its ID.
@@ -58,4 +58,4 @@ function SDL_RemoveTimer(id: TSDL_TimerID): Boolean cdecl; external SDL_LibName 
   {**
   *   Compare SDL ticks values, and return true if A has passed B.
   *}
-function SDL_TICKS_PASSED(Const A, B:UInt32):Boolean;
+function SDL_TICKS_PASSED(Const A, B:cuint32):Boolean;

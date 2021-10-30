@@ -23,4 +23,4 @@ type
    *
    *  The state of the battery (if any).
    *}
-function SDL_GetPowerInfo(secs: PInt; pct: PInt): TSDL_PowerState cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPowerInfo' {$ENDIF} {$ENDIF};
+function SDL_GetPowerInfo(secs: pcint; pct: pcint): TSDL_PowerState cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPowerInfo' {$ENDIF} {$ENDIF};

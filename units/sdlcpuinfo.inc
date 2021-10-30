@@ -10,7 +10,7 @@ const
 {**
  *  This function returns the number of CPU cores available.
  *}
-function SDL_GetCPUCount(): Integer; cdecl external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCPUCount' {$ENDIF} {$ENDIF};
+function SDL_GetCPUCount(): cint; cdecl external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCPUCount' {$ENDIF} {$ENDIF};
 
 {**
  *  This function returns the L1 cache line size of the CPU
@@ -18,7 +18,7 @@ function SDL_GetCPUCount(): Integer; cdecl external SDL_LibName {$IFDEF DELPHI} 
  *  This is useful for determining multi-threaded structure padding
  *  or SIMD prefetch sizes.
  *}
-function SDL_GetCPUCacheLineSize(): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCPUCacheLineSize' {$ENDIF} {$ENDIF};
+function SDL_GetCPUCacheLineSize(): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCPUCacheLineSize' {$ENDIF} {$ENDIF};
 
 {**
  *  This function returns true if the CPU has the RDTSC instruction.
@@ -78,5 +78,5 @@ function SDL_HasAVX2(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$
 {**
  *  This function returns the amount of RAM configured in the system, in MB.
  *}
-function SDL_GetSystemRAM(): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSystemRAM' {$ENDIF} {$ENDIF};
+function SDL_GetSystemRAM(): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSystemRAM' {$ENDIF} {$ENDIF};
 

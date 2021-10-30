@@ -49,7 +49,7 @@ type
  *}
 type 
   PSDL_LogPriority = ^TSDL_LogPriority;
-  TSDL_LogPriority = type SInt32;
+  TSDL_LogPriority = type cint32;
 const
   SDL_LOG_PRIORITY_VERBOSE = TSDL_LogPriority(1);
   SDL_LOG_PRIORITY_DEBUG = TSDL_LogPriority(2);
@@ -68,12 +68,12 @@ procedure SDL_LogSetAllPriority(priority: TSDL_LogPriority) cdecl; external SDL_
 {**
  *  \brief Set the priority of a particular log category
  *}
-procedure SDL_LogSetPriority(category: Integer; priority: TSDL_LogPriority) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogSetPriority' {$ENDIF} {$ENDIF};
+procedure SDL_LogSetPriority(category: cint; priority: TSDL_LogPriority) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogSetPriority' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Get the priority of a particular log category
  *}
-function SDL_LogGetPriority(category: Integer): TSDL_LogPriority cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogGetPriority' {$ENDIF} {$ENDIF};
+function SDL_LogGetPriority(category: cint): TSDL_LogPriority cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogGetPriority' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Reset all priorities to default.
@@ -90,48 +90,48 @@ procedure SDL_Log(const fmt: PAnsiChar; pars: array of const) cdecl; external SD
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_VERBOSE
  *}
-procedure SDL_LogVerbose(category: Integer; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogVerbose' {$ENDIF} {$ENDIF};
+procedure SDL_LogVerbose(category: cint; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogVerbose' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_DEBUG
  *}
-procedure SDL_LogDebug(category: Integer; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogDebug' {$ENDIF} {$ENDIF};
+procedure SDL_LogDebug(category: cint; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogDebug' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_INFO
  *}
-procedure SDL_LogInfo(category: Integer; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogInfo' {$ENDIF} {$ENDIF};
+procedure SDL_LogInfo(category: cint; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogInfo' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_WARN
  *}
-procedure SDL_LogWarn(category: Integer; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogWarn' {$ENDIF} {$ENDIF};
+procedure SDL_LogWarn(category: cint; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogWarn' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_ERROR
  *}
-procedure SDL_LogError(category: Integer; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogError' {$ENDIF} {$ENDIF};
+procedure SDL_LogError(category: cint; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogError' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_CRITICAL
  *}
-procedure SDL_LogCritical(category: Integer; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogCritical' {$ENDIF} {$ENDIF};
+procedure SDL_LogCritical(category: cint; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogCritical' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Log a message with the specified category and priority.
  *}
-procedure SDL_LogMessage(category: Integer; priority: TSDL_LogPriority; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogMessage' {$ENDIF} {$ENDIF};
+procedure SDL_LogMessage(category: cint; priority: TSDL_LogPriority; const fmt: PAnsiChar; pars: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogMessage' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief Log a message with the specified category and priority.
  *}
-procedure SDL_LogMessageV(category: Integer; priority: TSDL_LogPriority; const fmt: PAnsiChar; ap: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogMessageV' {$ENDIF} {$ENDIF};
+procedure SDL_LogMessageV(category: cint; priority: TSDL_LogPriority; const fmt: PAnsiChar; ap: array of const) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogMessageV' {$ENDIF} {$ENDIF};
 
 {**
  *  \brief The prototype for the log output function
  *}
 type
-  TSDL_LogOutputFunction = procedure(userdata: Pointer; category: Integer; priority: TSDL_LogPriority; const msg: PAnsiChar);
+  TSDL_LogOutputFunction = procedure(userdata: Pointer; category: cint; priority: TSDL_LogPriority; const msg: PAnsiChar);
   PSDL_LogOutputFunction = ^TSDL_LogOutputFunction;
   
 {**

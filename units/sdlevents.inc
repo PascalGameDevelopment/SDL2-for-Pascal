@@ -2,7 +2,7 @@
 
 type
   PSDL_EventType = ^TSDL_EventType;
-  TSDL_EventType = type UInt32;
+  TSDL_EventType = type cuint32;
 
   {**
    *  The types of events that can be delivered.
@@ -131,8 +131,8 @@ type
    *}
 
   TSDL_CommonEvent = record
-    type_: UInt32;
-    timestamp: UInt32;
+    type_: cuint32;
+    timestamp: cuint32;
   end;
 
   {**
@@ -140,28 +140,28 @@ type
    *}
 
   TSDL_WindowEvent = record
-    type_: UInt32;       // SDL_WINDOWEVENT
-    timestamp: UInt32;
-    windowID: UInt32;    // The associated window
-    event: UInt8;        // SDL_WindowEventID
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
-    data1: SInt32;       // event dependent data
-    data2: SInt32;       // event dependent data 
+    type_: cuint32;       // SDL_WINDOWEVENT
+    timestamp: cuint32;
+    windowID: cuint32;    // The associated window
+    event: cuint8;        // SDL_WindowEventID
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
+    data1: cint32;       // event dependent data
+    data2: cint32;       // event dependent data 
   end;
 
   {**
    *  Keyboard button event structure (event.key.*)
    *}
   TSDL_KeyboardEvent = record
-    type_: UInt32;        // SDL_KEYDOWN or SDL_KEYUP
-    timestamp: UInt32;
-    windowID: UInt32;     // The window with keyboard focus, if any
-    state: UInt8;         // SDL_PRESSED or SDL_RELEASED 
-    _repeat: UInt8;       // Non-zero if this is a key repeat
-    padding2: UInt8;
-    padding3: UInt8;
+    type_: cuint32;        // SDL_KEYDOWN or SDL_KEYUP
+    timestamp: cuint32;
+    windowID: cuint32;     // The window with keyboard focus, if any
+    state: cuint8;         // SDL_PRESSED or SDL_RELEASED 
+    _repeat: cuint8;       // Non-zero if this is a key repeat
+    padding2: cuint8;
+    padding3: cuint8;
     keysym: TSDL_KeySym;  // The key that was pressed or released
   end;
 
@@ -175,12 +175,12 @@ type
    *}
 
   TSDL_TextEditingEvent = record
-    type_: UInt32;                               // SDL_TEXTEDITING 
-    timestamp: UInt32;
-    windowID: UInt32;                            // The window with keyboard focus, if any
+    type_: cuint32;                               // SDL_TEXTEDITING 
+    timestamp: cuint32;
+    windowID: cuint32;                            // The window with keyboard focus, if any
     text: array[0..SDL_TEXTEDITINGEVENT_TEXT_SIZE] of Char;  // The editing text 
-    start: SInt32;                               // The start cursor of selected editing text
-    length: SInt32;                              // The length of selected editing text
+    start: cint32;                               // The start cursor of selected editing text
+    length: cint32;                              // The length of selected editing text
   end;
 
 const
@@ -193,9 +193,9 @@ type
    *}
 
   TSDL_TextInputEvent = record
-    type_: UInt32;                                          // SDL_TEXTINPUT 
-    timestamp: UInt32;
-    windowID: UInt32;                                       // The window with keyboard focus, if any
+    type_: cuint32;                                          // SDL_TEXTINPUT 
+    timestamp: cuint32;
+    windowID: cuint32;                                       // The window with keyboard focus, if any
     text: array[0..SDL_TEXTINPUTEVENT_TEXT_SIZE] of Char;   // The input text 
   end;
 
@@ -204,18 +204,18 @@ type
    *}
  
   TSDL_MouseMotionEvent = record
-    type_: UInt32;       // SDL_MOUSEMOTION
-    timestamp: UInt32;
-    windowID: UInt32;    // The window with mouse focus, if any
-    which: UInt32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
-    state: UInt8;        // The current button state 
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
-    x: SInt32;           // X coordinate, relative to window
-    y: SInt32;           // Y coordinate, relative to window
-    xrel: SInt32;        // The relative motion in the X direction 
-    yrel: SInt32;        // The relative motion in the Y direction
+    type_: cuint32;       // SDL_MOUSEMOTION
+    timestamp: cuint32;
+    windowID: cuint32;    // The window with mouse focus, if any
+    which: cuint32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
+    state: cuint8;        // The current button state 
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
+    x: cint32;           // X coordinate, relative to window
+    y: cint32;           // Y coordinate, relative to window
+    xrel: cint32;        // The relative motion in the X direction 
+    yrel: cint32;        // The relative motion in the Y direction
   end;
 
   {**
@@ -223,16 +223,16 @@ type
    *}
 
   TSDL_MouseButtonEvent = record
-    type_: UInt32;       // SDL_MOUSEBUTTONDOWN or SDL_MOUSEBUTTONUP 
-    timestamp: UInt32;
-    windowID: UInt32;    // The window with mouse focus, if any
-    which: UInt32;       // The mouse instance id, or SDL_TOUCH_MOUSEID 
-    button: UInt8;       // The mouse button index
-    state: UInt8;        // SDL_PRESSED or SDL_RELEASED
-    clicks: UInt8;       // 1 for single-click, 2 for double-click, etc.
-    padding1: UInt8;
-    x: SInt32;           // X coordinate, relative to window
-    y: SInt32;           // Y coordinate, relative to window 
+    type_: cuint32;       // SDL_MOUSEBUTTONDOWN or SDL_MOUSEBUTTONUP 
+    timestamp: cuint32;
+    windowID: cuint32;    // The window with mouse focus, if any
+    which: cuint32;       // The mouse instance id, or SDL_TOUCH_MOUSEID 
+    button: cuint8;       // The mouse button index
+    state: cuint8;        // SDL_PRESSED or SDL_RELEASED
+    clicks: cuint8;       // 1 for single-click, 2 for double-click, etc.
+    padding1: cuint8;
+    x: cint32;           // X coordinate, relative to window
+    y: cint32;           // Y coordinate, relative to window 
   end;
 
   {**
@@ -240,13 +240,13 @@ type
    *}
  
   TSDL_MouseWheelEvent = record
-    type_: UInt32;        // SDL_MOUSEWHEEL
-    timestamp: UInt32;
-    windowID: UInt32;    // The window with mouse focus, if any
-    which: UInt32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
-    x: SInt32;           // The amount scrolled horizontally 
-    y: SInt32;           // The amount scrolled vertically
-    direction: UInt32;   // Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back
+    type_: cuint32;        // SDL_MOUSEWHEEL
+    timestamp: cuint32;
+    windowID: cuint32;    // The window with mouse focus, if any
+    which: cuint32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
+    x: cint32;           // The amount scrolled horizontally 
+    y: cint32;           // The amount scrolled vertically
+    direction: cuint32;   // Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back
   end;
 
   {**
@@ -254,15 +254,15 @@ type
    *}
 
   TSDL_JoyAxisEvent = record
-    type_: UInt32;         // SDL_JOYAXISMOTION 
-    timestamp: UInt32;
+    type_: cuint32;         // SDL_JOYAXISMOTION 
+    timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    axis: UInt8;           // The joystick axis index 
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
-    value: SInt16;         // The axis value (range: -32768 to 32767)
-    padding4: UInt16;
+    axis: cuint8;           // The joystick axis index 
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
+    value: cint16;         // The axis value (range: -32768 to 32767)
+    padding4: cuint16;
   end;
 
   {**
@@ -270,15 +270,15 @@ type
    *}
 
   TSDL_JoyBallEvent = record
-    type_: UInt32;         // SDL_JOYBALLMOTION
-    timestamp: UInt32;
+    type_: cuint32;         // SDL_JOYBALLMOTION
+    timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    ball: UInt8;           // The joystick trackball index
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
-    xrel: SInt16;          // The relative motion in the X direction
-    yrel: SInt16;          // The relative motion in the Y direction
+    ball: cuint8;           // The joystick trackball index
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
+    xrel: cint16;          // The relative motion in the X direction
+    yrel: cint16;          // The relative motion in the Y direction
   end;
 
   {**
@@ -286,19 +286,19 @@ type
    *}
 
   TSDL_JoyHatEvent = record
-    type_: UInt32;         // SDL_JOYHATMOTION
-    timestamp: UInt32;
+    type_: cuint32;         // SDL_JOYHATMOTION
+    timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    hat: UInt8;            // The joystick hat index
-    value: UInt8;         {*  The hat position value.
+    hat: cuint8;            // The joystick hat index
+    value: cuint8;         {*  The hat position value.
                            *  SDL_HAT_LEFTUP   SDL_HAT_UP       SDL_HAT_RIGHTUP
                            *  SDL_HAT_LEFT     SDL_HAT_CENTERED SDL_HAT_RIGHT
                            *  SDL_HAT_LEFTDOWN SDL_HAT_DOWN     SDL_HAT_RIGHTDOWN
                            *
                            *  Note that zero means the POV is centered.
                            *}
-    padding1: UInt8;
-    padding2: UInt8;
+    padding1: cuint8;
+    padding2: cuint8;
   end;
 
   {**
@@ -306,13 +306,13 @@ type
    *}
 
   TSDL_JoyButtonEvent = record
-    type_: UInt32;        // SDL_JOYBUTTONDOWN or SDL_JOYBUTTONUP
-    timestamp: UInt32;
+    type_: cuint32;        // SDL_JOYBUTTONDOWN or SDL_JOYBUTTONUP
+    timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id 
-    button: UInt8;         // The joystick button index
-    state: UInt8;          // SDL_PRESSED or SDL_RELEASED
-    padding1: UInt8;
-    padding2: UInt8;
+    button: cuint8;         // The joystick button index
+    state: cuint8;          // SDL_PRESSED or SDL_RELEASED
+    padding1: cuint8;
+    padding2: cuint8;
   end;
 
   {**
@@ -320,9 +320,9 @@ type
    *}
 
   TSDL_JoyDeviceEvent = record
-    type_: UInt32;      // SDL_JOYDEVICEADDED or SDL_JOYDEVICEREMOVED
-    timestamp: UInt32;
-    which: SInt32;      // The joystick device index for the ADDED event, instance id for the REMOVED event
+    type_: cuint32;      // SDL_JOYDEVICEADDED or SDL_JOYDEVICEREMOVED
+    timestamp: cuint32;
+    which: cint32;      // The joystick device index for the ADDED event, instance id for the REMOVED event
   end;
 
   {**
@@ -330,15 +330,15 @@ type
    *}
 
   TSDL_ControllerAxisEvent = record
-    type_: UInt32;         // SDL_CONTROLLERAXISMOTION
-    timestamp: UInt32;
+    type_: cuint32;         // SDL_CONTROLLERAXISMOTION
+    timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    axis: UInt8;           // The controller axis (SDL_GameControllerAxis)
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
-    value: SInt16;         // The axis value (range: -32768 to 32767)
-    padding4: UInt16;
+    axis: cuint8;           // The controller axis (SDL_GameControllerAxis)
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
+    value: cint16;         // The axis value (range: -32768 to 32767)
+    padding4: cuint16;
   end;
 
   {**
@@ -346,13 +346,13 @@ type
    *}
 
   TSDL_ControllerButtonEvent = record
-    type_: UInt32;         // SDL_CONTROLLERBUTTONDOWN or SDL_CONTROLLERBUTTONUP
-    timestamp: UInt32;
+    type_: cuint32;         // SDL_CONTROLLERBUTTONDOWN or SDL_CONTROLLERBUTTONUP
+    timestamp: cuint32;
     which: TSDL_JoystickID; // The joystick instance id
-    button: UInt8;         // The controller button (SDL_GameControllerButton)
-    state: UInt8;          // SDL_PRESSED or SDL_RELEASED
-    padding1: UInt8;
-    padding2: UInt8;
+    button: cuint8;         // The controller button (SDL_GameControllerButton)
+    state: cuint8;          // SDL_PRESSED or SDL_RELEASED
+    padding1: cuint8;
+    padding2: cuint8;
   end;
 
 
@@ -361,9 +361,9 @@ type
    *}
 
   TSDL_ControllerDeviceEvent = record
-    type_: UInt32;       // SDL_CONTROLLERDEVICEADDED, SDL_CONTROLLERDEVICEREMOVED, or SDL_CONTROLLERDEVICEREMAPPED
-    timestamp: UInt32;
-    which: SInt32;       // The joystick device index for the ADDED event, instance id for the REMOVED or REMAPPED event
+    type_: cuint32;       // SDL_CONTROLLERDEVICEADDED, SDL_CONTROLLERDEVICEREMOVED, or SDL_CONTROLLERDEVICEREMAPPED
+    timestamp: cuint32;
+    which: cint32;       // The joystick device index for the ADDED event, instance id for the REMOVED or REMAPPED event
   end;
 
   {**
@@ -371,13 +371,13 @@ type
    *}
 
   TSDL_AudioDeviceEvent = record
-    type_: UInt32;        // ::SDL_AUDIODEVICEADDED, or ::SDL_AUDIODEVICEREMOVED
-    timestamp: UInt32;
-    which: UInt32;        // The audio device index for the ADDED event (valid until next SDL_GetNumAudioDevices() call), SDL_AudioDeviceID for the REMOVED event
-    iscapture: UInt8;     // zero if an output device, non-zero if a capture device.
-    padding1: UInt8;
-    padding2: UInt8;
-    padding3: UInt8;
+    type_: cuint32;        // ::SDL_AUDIODEVICEADDED, or ::SDL_AUDIODEVICEREMOVED
+    timestamp: cuint32;
+    which: cuint32;        // The audio device index for the ADDED event (valid until next SDL_GetNumAudioDevices() call), SDL_AudioDeviceID for the REMOVED event
+    iscapture: cuint8;     // zero if an output device, non-zero if a capture device.
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
   end;
 
 
@@ -386,43 +386,43 @@ type
    *}
 
   TSDL_TouchFingerEvent = record
-    type_: UInt32;         // SDL_FINGERMOTION or SDL_FINGERDOWN or SDL_FINGERUP
-    timestamp: UInt32;
+    type_: cuint32;         // SDL_FINGERMOTION or SDL_FINGERDOWN or SDL_FINGERUP
+    timestamp: cuint32;
     touchId: TSDL_TouchID;  // The touch device id
     fingerId: TSDL_FingerID;
-    x: Float;              // Normalized in the range 0...1
-    y: Float;              // Normalized in the range 0...1
-    dx: Float;             // Normalized in the range 0...1
-    dy: Float;             // Normalized in the range 0...1
-    pressure: Float;       // Normalized in the range 0...1
+    x: cfloat;              // Normalized in the range 0...1
+    y: cfloat;              // Normalized in the range 0...1
+    dx: cfloat;             // Normalized in the range 0...1
+    dy: cfloat;             // Normalized in the range 0...1
+    pressure: cfloat;       // Normalized in the range 0...1
   end;
 
   {**
    *  Multiple Finger Gesture Event (event.mgesture.*)
    *}
   TSDL_MultiGestureEvent = record
-    type_: UInt32;        // SDL_MULTIGESTURE
-    timestamp: UInt32;
+    type_: cuint32;        // SDL_MULTIGESTURE
+    timestamp: cuint32;
     touchId: TSDL_TouchID; // The touch device index
-    dTheta: Float;
-    dDist: Float;
-    x: Float;
-    y: Float;
-    numFingers: UInt16;
-    padding: UInt16;
+    dTheta: cfloat;
+    dDist: cfloat;
+    x: cfloat;
+    y: cfloat;
+    numFingers: cuint16;
+    padding: cuint16;
   end;
 
 
   {* (event.dgesture.*) *}
   TSDL_DollarGestureEvent = record
-    type_: UInt32;         // SDL_DOLLARGESTURE
-    timestamp: UInt32;
+    type_: cuint32;         // SDL_DOLLARGESTURE
+    timestamp: cuint32;
     touchId: TSDL_TouchID;  // The touch device id
     gestureId: TSDL_GestureID;
-    numFingers: UInt32;
-    error: Float;
-    x: Float;              // Normalized center of gesture
-    y: Float;              // Normalized center of gesture
+    numFingers: cuint32;
+    error: cfloat;
+    x: cfloat;              // Normalized center of gesture
+    y: cfloat;              // Normalized center of gesture
   end;
 
 
@@ -433,8 +433,8 @@ type
    *}
 
   TSDL_DropEvent = record
-    type_: UInt32;      // SDL_DROPFILE
-    timestamp: UInt32;
+    type_: cuint32;      // SDL_DROPFILE
+    timestamp: cuint32;
     _file: PAnsiChar;   // The file name, which should be freed with SDL_free()
   end;
 
@@ -443,8 +443,8 @@ type
    *}
 
   TSDL_QuitEvent = record
-    type_: UInt32;        // SDL_QUIT
-    timestamp: UInt32;
+    type_: cuint32;        // SDL_QUIT
+    timestamp: cuint32;
   end;
 
   {**
@@ -452,10 +452,10 @@ type
    *}
 
   TSDL_UserEvent = record
-    type_: UInt32;       // SDL_USEREVENT through SDL_NUMEVENTS-1
-    timestamp: UInt32;
-    windowID: UInt32;    // The associated window if any
-    code: SInt32;        // User defined event code
+    type_: cuint32;       // SDL_USEREVENT through SDL_NUMEVENTS-1
+    timestamp: cuint32;
+    windowID: cuint32;    // The associated window if any
+    code: cint32;        // User defined event code
     data1: Pointer;      // User defined data pointer
     data2: Pointer;      // User defined data pointer
   end;
@@ -469,8 +469,8 @@ type
 
   PSDL_SysWMEvent = ^TSDL_SysWMEvent;
   TSDL_SysWMEvent = record
-    type_: UInt32;       // SDL_SYSWMEVENT
-    timestamp: UInt32;
+    type_: cuint32;       // SDL_SYSWMEVENT
+    timestamp: cuint32;
     msg: PSDL_SysWMmsg;  // driver dependent data (defined in SDL_syswm.h)
   end;
 
@@ -480,8 +480,8 @@ type
 
   PSDL_Event = ^TSDL_Event;
   TSDL_Event = record
-    case Integer of
-      0:  (type_: UInt32);
+    case cint of
+      0:  (type_: cuint32);
 
       SDL_COMMONEVENT:  (common: TSDL_CommonEvent);
       SDL_WINDOWEVENT:  (window: TSDL_WindowEvent);
@@ -567,7 +567,7 @@ type
    *  This function is thread-safe.
    *}
 
-  function SDL_PeepEvents(events: PSDL_Event; numevents: SInt32; action: TSDL_EventAction; minType, maxType: TSDL_EventType): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PeepEvents' {$ENDIF} {$ENDIF};
+  function SDL_PeepEvents(events: PSDL_Event; numevents: cint32; action: TSDL_EventAction; minType, maxType: TSDL_EventType): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PeepEvents' {$ENDIF} {$ENDIF};
 
   {**
    *  Checks to see if certain event types are in the event queue.
@@ -592,7 +592,7 @@ type
    *               stored in that area.
    *}
 
-  function SDL_PollEvent(event: PSDL_Event): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PollEvent' {$ENDIF} {$ENDIF};
+  function SDL_PollEvent(event: PSDL_Event): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PollEvent' {$ENDIF} {$ENDIF};
 
   {**
    *  Waits indefinitely for the next available event.
@@ -603,7 +603,7 @@ type
    *  stored in that area.
    *}
 
-  function SDL_WaitEvent(event: PSDL_Event): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEvent' {$ENDIF} {$ENDIF};
+  function SDL_WaitEvent(event: PSDL_Event): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEvent' {$ENDIF} {$ENDIF};
 
   {**
    *  Waits until the specified timeout (in milliseconds) for the next
@@ -615,7 +615,7 @@ type
    *  stored in that area.
    *}
  
-  function SDL_WaitEventTimeout(event: PSDL_Event; timeout: SInt32): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEventTimeout' {$ENDIF} {$ENDIF};
+  function SDL_WaitEventTimeout(event: PSDL_Event; timeout: cint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEventTimeout' {$ENDIF} {$ENDIF};
 
   {**
    *  Add an event to the event queue.
@@ -624,14 +624,14 @@ type
    *  was full or there was some other error.
    *}
 
-  function SDL_PushEvent(event: PSDL_Event): SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PumpEvents' {$ENDIF} {$ENDIF};
+  function SDL_PushEvent(event: PSDL_Event): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PumpEvents' {$ENDIF} {$ENDIF};
 
 type
   PSDL_EventFilter = ^TSDL_EventFilter;
   {$IFNDEF GPC}
-    TSDL_EventFilter = function(userdata: Pointer; event: PSDL_Event): Integer; cdecl;
+    TSDL_EventFilter = function(userdata: Pointer; event: PSDL_Event): cint; cdecl;
   {$ELSE}
-    TSDL_EventFilter = function( userdata: Pointer; event: PSDL_Event ): Integer;
+    TSDL_EventFilter = function( userdata: Pointer; event: PSDL_Event ): cint;
   {$ENDIF}
 
   {**
@@ -700,9 +700,9 @@ const
    *     current processing state of the specified event.
    *}
 
-  function SDL_EventState(type_: TSDL_EventType; state: SInt32): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventState' {$ENDIF} {$ENDIF};
+  function SDL_EventState(type_: TSDL_EventType; state: cint32): cuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventState' {$ENDIF} {$ENDIF};
 
-  function SDL_GetEventState(type_: TSDL_EventType): UInt8;
+  function SDL_GetEventState(type_: TSDL_EventType): cuint8;
 
   {**
    *  This function allocates a set of user-defined events, and returns
@@ -712,4 +712,4 @@ const
    *  returns (Uint32)-1
    *}
 
-  function SDL_RegisterEvents(numevents: SInt32): UInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RegisterEvents' {$ENDIF} {$ENDIF};
+  function SDL_RegisterEvents(numevents: cint32): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RegisterEvents' {$ENDIF} {$ENDIF};

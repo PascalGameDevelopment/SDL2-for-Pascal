@@ -27,8 +27,8 @@ type
 type
   PSDL_MessageBoxButtonData = ^TSDL_MessageBoxButtonData;
   TSDL_MessageBoxButtonData = record
-    flags: UInt32;     {**< ::SDL_MessageBoxButtonFlags *}
-    buttonid: Integer; {**< User defined button id (value returned via SDL_ShowMessageBox) *}
+    flags: cuint32;     {**< ::SDL_MessageBoxButtonFlags *}
+    buttonid: cint; {**< User defined button id (value returned via SDL_ShowMessageBox) *}
     text: PAnsiChar;   {**< The UTF-8 button text *}
   end;
 
@@ -38,7 +38,7 @@ type
 type
   PSDL_MessageBoxColor = ^TSDL_MessageBoxColor;
   TSDL_MessageBoxColor = record
-    r, g, b: UInt8;
+    r, g, b: cuint8;
   end;
 
   PSDL_MessageBoxColorType = ^TSDL_MessageBoxColorType;
@@ -65,12 +65,12 @@ type
 type
   PSDL_MessageBoxData = ^TSDL_MessageBoxData;
   TSDL_MessageBoxData = record
-    flags: UInt32;             {**< SDL_MessageBoxFlags *}
+    flags: cuint32;             {**< SDL_MessageBoxFlags *}
     window: PSDL_Window;       {**< Parent window, can be NULL *}
     title: PAnsiChar;          {**< UTF-8 title *}
     _message: PAnsiChar;       {**< UTF-8 message text *}
 
-    numbuttons: Integer;
+    numbuttons: cint;
     buttons: PSDL_MessageBoxButtonData;
 
     colorScheme: PSDL_MessageBoxColorScheme;   {**< SDL_MessageBoxColorScheme, can be NULL to use system settings *}
@@ -90,7 +90,7 @@ type
    *   block execution of that thread until the user clicks a button or
    *   closes the messagebox.
    *}
-function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: PInt): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowMessageBox' {$ENDIF} {$ENDIF};
+function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowMessageBox' {$ENDIF} {$ENDIF};
 
   {**
    *   Create a simple modal message box
@@ -104,5 +104,5 @@ function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: PInt)
    *
    *   SDL_ShowMessageBox
    *}
-function SDL_ShowSimpleMessageBox(flags: UInt32; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowSimpleMessageBox' {$ENDIF} {$ENDIF};
+function SDL_ShowSimpleMessageBox(flags: cuint32; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowSimpleMessageBox' {$ENDIF} {$ENDIF};
 

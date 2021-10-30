@@ -17,7 +17,7 @@ type
   TSDL_Version = record
     major,         {**< major version *}
     minor,         {**< minor version *}
-    patch: UInt8;  {**< update version *}
+    patch: cuint8;  {**< update version *}
   end;
 
 {*
@@ -55,7 +55,7 @@ procedure SDL_VERSION(Out x: TSDL_Version);
  *
  *  This assumes that there will never be more than 100 patchlevels.
  *}
-function SDL_VERSIONNUM(X,Y,Z: UInt32): Cardinal;
+function SDL_VERSIONNUM(X,Y,Z: cuint32): Cardinal;
 
   {**
    *  This is the version number macro for the current SDL version.
@@ -113,4 +113,4 @@ function SDL_GetRevision: PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} 
    *  library in use. It is an incrementing number based on commits to
    *  hg.libsdl.org.
    *}
-function SDL_GetRevisionNumber: SInt32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRevisionNumber' {$ENDIF} {$ENDIF};
+function SDL_GetRevisionNumber: cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRevisionNumber' {$ENDIF} {$ENDIF};

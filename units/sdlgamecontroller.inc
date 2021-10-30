@@ -26,15 +26,15 @@ type
    *  Get the SDL joystick layer binding for this controller button/axis mapping
    *}
   THat = record
-    hat: Integer;
-    hat_mask: Integer;
+    hat: cint;
+    hat_mask: cint;
   end;
 
   TSDL_GameControllerButtonBind = record
     bindType: TSDL_GameControllerBindType;
-    case Integer of
-      0: ( button: Integer; );
-      1: ( axis: Integer; );
+    case cint of
+      0: ( button: cint; );
+      1: ( axis: cint; );
       2: ( hat: THat; );
   end;
 
@@ -69,7 +69,7 @@ type
    *
    *  1 if mapping is added, 0 if updated, -1 on error
    *}
-function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerAddMapping' {$ENDIF} {$ENDIF};
+function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerAddMapping' {$ENDIF} {$ENDIF};
 
   {**
    *  Load a set of mappings from a seekable SDL data stream (memory or file), filtered by the current SDL_GetPlatform()
@@ -79,7 +79,7 @@ function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): Integer cdecl
    * 
    *  Returns number of mappings added, -1 on error
    *}
-function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: SInt32):SInt32;
+function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: cint32):cint32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerAddMappingsFromRW' {$ENDIF} {$ENDIF};
 
   {**
@@ -99,14 +99,14 @@ function SDL_GameControllerMapping( gamecontroller: PSDL_GameController ): PAnsi
   {**
    *  Is the joystick on this index supported by the game controller interface?
    *}
-function SDL_IsGameController(joystick_index: Integer): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsGameController' {$ENDIF} {$ENDIF};
+function SDL_IsGameController(joystick_index: cint): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsGameController' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the implementation dependent name of a game controller.
    *  This can be called before any controllers are opened.
    *  If no name can be found, this function returns NULL.
    *}
-function SDL_GameControllerNameForIndex(joystick_index: Integer): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerNameForIndex' {$ENDIF} {$ENDIF};
+function SDL_GameControllerNameForIndex(joystick_index: cint): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerNameForIndex' {$ENDIF} {$ENDIF};
 
   {**
    *  Open a game controller for use.
@@ -116,7 +116,7 @@ function SDL_GameControllerNameForIndex(joystick_index: Integer): PAnsiChar cdec
    *
    *   A controller identifier, or NULL if an error occurred.
    *}
-function SDL_GameControllerOpen(joystick_index: Integer): PSDL_GameController cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerOpen' {$ENDIF} {$ENDIF};
+function SDL_GameControllerOpen(joystick_index: cint): PSDL_GameController cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerOpen' {$ENDIF} {$ENDIF};
 
   {**
    * Return the SDL_GameController associated with an instance id.
@@ -149,7 +149,7 @@ function SDL_GameControllerGetJoystick(gamecontroller: PSDL_GameController): PSD
    *
    *  The state can be one of ::SDL_QUERY, ::SDL_ENABLE or ::SDL_IGNORE.
    *}
-function SDL_GameControllerEventState(state: Integer): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerEventState' {$ENDIF} {$ENDIF};
+function SDL_GameControllerEventState(state: cint): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerEventState' {$ENDIF} {$ENDIF};
 
   {**
    *  Update the current state of the open game controllers.
@@ -198,7 +198,7 @@ function SDL_GameControllerGetBindForAxis(gamecontroller: PSDL_GameController; a
    *
    *  The axis indices start at index 0.
    *}
-function SDL_GameControllerGetAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): SInt16 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAxis' {$ENDIF} {$ENDIF};
+function SDL_GameControllerGetAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): cint16 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAxis' {$ENDIF} {$ENDIF};
 
   {**
    *  The list of buttons available from a controller
@@ -246,7 +246,7 @@ function SDL_GameControllerGetBindForButton(gamecontroller: PSDL_GameController;
  *
  *  The button indices start at index 0.
  *}
-function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): UInt8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetButton' {$ENDIF} {$ENDIF};
+function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): cuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetButton' {$ENDIF} {$ENDIF};
 
 {**
  *  Close a controller previously opened with SDL_GameControllerOpen().
@@ -254,4 +254,4 @@ function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
 
 
-function SDL_GameControllerAddMappingsFromFile(Const FilePath:PAnsiChar):SInt32;
+function SDL_GameControllerAddMappingsFromFile(Const FilePath:PAnsiChar):cint32;

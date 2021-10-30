@@ -6,7 +6,7 @@
  *
  * \sa SDL_GetClipboardText()
  *}
-function SDL_SetClipboardText(const text: PAnsiChar): Integer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetClipboardText' {$ENDIF} {$ENDIF};
+function SDL_SetClipboardText(const text: PAnsiChar): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetClipboardText' {$ENDIF} {$ENDIF};
 
 {**
  * \brief Get UTF-8 text from the clipboard, which must be freed with SDL_free()
