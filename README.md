@@ -32,7 +32,7 @@ Please use the GitHub issue tracker for bug reports.
 - (Continously atm.) Translate integer aliases into typed enums.
 See part Enums on the [Cheat sheet](CHEATSHEET.md) for reference.
 - (Continously) Check FPC/Delphi compatibility.
-- (Continously) Adapt comments to [PasDoc format](https://pasdoc.github.io). (See issue #22)
+- (Continously) Adapt comments to [PasDoc format](https://pasdoc.github.io). (See issue [#22](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/22))
 
 ## Code style guidelines
 
@@ -53,6 +53,7 @@ in Pascal function `SDL_HasEvent(type_: TSDL_EventType)`.
 original code. Do not replace them by Pascal equivalents.
 Ex.: Use `cuint32` (if `Uint32` is used in
 the original code) instead of `UInt32`, `Cardinal`, `LongWord` or `DWord`.
+Exceptions: Replace `*char` by `PAnsiChar` (see issue [#26](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/26)) and `SDL_bool` by `Boolean` (see issue [#30](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/30)). 
 
 4. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
 
