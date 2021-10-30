@@ -56,7 +56,7 @@ Pascal:
 
 ```
 type
-  TSDL_JoystickPowerLevel = type SInt32;
+  TSDL_JoystickPowerLevel = type cint32;
 
 const
   SDL_JOYSTICK_POWER_UNKNOWN = TSDL_JoystickPowerLevel(-1);
@@ -84,7 +84,7 @@ Pascal:
 procedure SDL_LockJoysticks(); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockJoysticks' {$ENDIF} {$ENDIF};
 
-function SDL_JoystickNameForIndex(device_index: SInt32): PAnsiChar; cdecl;
+function SDL_JoystickNameForIndex(device_index: cint): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickNameForIndex' {$ENDIF} {$ENDIF};
 ```
 
