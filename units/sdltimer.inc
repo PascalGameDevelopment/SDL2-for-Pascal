@@ -13,9 +13,9 @@ function SDL_GetTicks: cuint32; cdecl;
  *
  * e.g. if you want to wait 100 ms, you could do this:
  *  Uint32 timeout = SDL_GetTicks() + 100;
- *  while (!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
+ *  while (!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) [
  *      ... do work until timeout has elapsed
- *  }
+ *  ]
  *}
 // #define SDL_TICKS_PASSED(A, B)  ((Sint32)((B) - (A)) <= 0)
 { Type conversion unnecessary bc. types are declared in func. param. list! }
