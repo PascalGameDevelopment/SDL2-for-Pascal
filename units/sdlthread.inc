@@ -32,12 +32,6 @@ type
   PSDL_ThreadFunction = ^TSDL_ThreadFunction;
   TSDL_ThreadFunction = function(data: Pointer): cint; cdecl;
 
-  {* The SDL thread ID *}
-  TSDL_ThreadID = LongWord;
-   {
-  PSDL_Thread = Pointer;
-     }
-
   PSDL_Thread = ^TSDL_Thread;
   TSDL_Thread = record
     threadid: TSDL_ThreadID;
@@ -47,8 +41,6 @@ type
     name: PAnsiChar;
     data: Pointer;
   end;
-
-  TSDL_TLSID = Cardinal;
 
 {$IFDEF WINDOWS}
   {**
