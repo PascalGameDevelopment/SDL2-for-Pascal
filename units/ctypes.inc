@@ -52,6 +52,12 @@ type
   cuint32 = LongWord;
   {$EXTERNALSYM cuint32}
 
+  culong = LongWord;
+  {$EXTERNALSYM culong}
+
+  cuint = LongWord;
+  {$EXTERNALSYM cuint}
+
   {$IFNDEF Has_Int64}
      pcint64 = ^cint64;
      cint64 = record
