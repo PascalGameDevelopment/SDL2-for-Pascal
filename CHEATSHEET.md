@@ -56,7 +56,7 @@ Pascal:
 
 ```
 type
-  TSDL_JoystickPowerLevel = type cint32;
+  TSDL_JoystickPowerLevel = type Integer;
 
 const
   SDL_JOYSTICK_POWER_UNKNOWN = TSDL_JoystickPowerLevel(-1);
@@ -67,6 +67,15 @@ const
   SDL_JOYSTICK_POWER_WIRED   = TSDL_JoystickPowerLevel(4);
   SDL_JOYSTICK_POWER_MAX     = TSDL_JoystickPowerLevel(5);
 ```
+
+Hint 1: C enums start at 0 if no explicit value is set.
+
+Hint 2: The type should be Word if only unsigned values are possible. Otherwise
+it should be Integer.
+
+Hint 3: Do not translate C enums to Pascal enums. C enums are handled like plain
+integers which will make bitwise operations (e. g. in macros) possible
+without typecasting.
 
 ## Functions
 
