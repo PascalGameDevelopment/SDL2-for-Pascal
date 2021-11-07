@@ -347,7 +347,6 @@ end;
 
 function SDL_IsPixelFormat_FOURCC(format: Variant): Boolean;
 begin
-  {* The flag is set to 1 because 0x1? is not in the printable ASCII range *}
   Result := format and SDL_PIXELFLAG(format) <> 1;
 end;
 
