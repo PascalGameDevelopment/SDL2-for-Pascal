@@ -226,6 +226,14 @@ end;
 {$ENDIF}
 
 //from "sdl_rect.h"
+function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): Boolean;
+begin
+  Result :=
+    (p^.x >= r^.x) and (p^.x < (r^.x + r^.w))
+    and
+    (p^.y >= r^.y) and (p^.y < (r^.y + r^.h))
+end;
+
 function SDL_RectEmpty(const r: PSDL_Rect): Boolean;
 begin
   Result := (r^.w <= 0) or (r^.h <= 0);
@@ -234,14 +242,6 @@ end;
 function SDL_RectEquals(const a, b: PSDL_Rect): Boolean;
 begin
   Result := (a^.x = b^.x) and (a^.y = b^.y) and (a^.w = b^.w) and (a^.h = b^.h);
-end;
-
-function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): Boolean;
-begin
-  Result := 
-    (p^.x >= r^.x) and (p^.x < (r^.x + r^.w)) 
-    and 
-    (p^.y >= r^.y) and (p^.y < (r^.y + r^.h))
 end;
 
 //from "sdl_rwops.h"
