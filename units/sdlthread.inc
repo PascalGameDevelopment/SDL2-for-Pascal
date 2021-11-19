@@ -1,28 +1,36 @@
-//from "sdl_thread.h"
+// based on "sdl_thread.h"
 
 {* The SDL thread structure, defined in SDL_thread.c *}
-//todo!
+{ TODO : Update this file }
 type
-  {* The SDL thread priority
-   *
-   * Note: On many systems you require special privileges to set high priority.
-   *}
 
+  {* The SDL thread ID *}
+  TSDL_threadID = culong;
+
+  {* Thread local storage ID, 0 is the invalid ID *}
+  TSDL_TLSID = cuint;
+
+
+ {**
+ *  The SDL thread priority.
+ *
+ *  SDL will make system changes as necessary in order to apply the thread priority.
+ *  Code which attempts to control thread state related to priority should be aware
+ *  that calling SDL_SetThreadPriority may alter such state.
+ *  SDL_HINT_THREAD_PRIORITY_POLICY can be used to control aspects of this behavior.
+ *
+ *  \note On many systems you require special privileges to set high or time critical priority.
+ *}
   TSDL_ThreadPriority = (SDL_THREAD_PRIORITY_LOW,
                          SDL_THREAD_PRIORITY_NORMAL,
-                         SDL_THREAD_PRIORITY_HIGH);
+                         SDL_THREAD_PRIORITY_HIGH,
+                         SDL_THREAD_PRIORITY_TIME_CRITICAL);
 
   {* The function passed to SDL_CreateThread()
      It is passed a void* user context parameter and returns an int.
    *}
   PSDL_ThreadFunction = ^TSDL_ThreadFunction;
   TSDL_ThreadFunction = function(data: Pointer): cint; cdecl;
-
-  {* The SDL thread ID *}
-  TSDL_ThreadID = LongWord;
-   {
-  PSDL_Thread = Pointer;
-     }
 
   PSDL_Thread = ^TSDL_Thread;
   TSDL_Thread = record
@@ -33,8 +41,6 @@ type
     name: PAnsiChar;
     data: Pointer;
   end;
-
-  TSDL_TLSID = Cardinal;
 
 {$IFDEF WINDOWS}
   {**
@@ -71,12 +77,15 @@ type
   {**
    *  Create a thread.
    *}
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar; data: Pointer; pfnBeginThread: TpfnSDL_CurrentBeginThread; pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThread' {$ENDIF} {$ENDIF};
+function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  data: Pointer; pfnBeginThread: TpfnSDL_CurrentBeginThread; pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThread' {$ENDIF} {$ENDIF};
 
   {**
    *  Create a thread.
    *}
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar; data: Pointer): PSDL_Thread; overload;
+function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  data: Pointer): PSDL_Thread; overload;
 
 {$ELSE}
 
@@ -98,7 +107,9 @@ function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar; data: Pointe
    *    it (truncate, etc), but the original string contents will be available
    *    from SDL_GetThreadName().
    *}
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar; data: Pointer): PSDL_Thread; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThread' {$ENDIF} {$ENDIF};
+function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  data: Pointer): PSDL_Thread; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThread' {$ENDIF} {$ENDIF};
 
 {$ENDIF}
 

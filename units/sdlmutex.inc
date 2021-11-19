@@ -1,4 +1,5 @@
-//from "sdl_mutex.h"
+// based on "sdl_mutex.h" (2.0.14)
+{ TODO : Add type definitions (see todos below).  }
 
   {**
    *  Synchronization functions which can time out return this value
@@ -17,13 +18,14 @@ const
    *  Mutex functions
    *}
 type
-  {* The SDL mutex structure, defined in SDL_mutex.c *}
+  {*The SDL mutex structure, defined in SDL_sysmutex.c *}
   PSDL_Mutex = Pointer; //todo!
 
   {**
    *  Create a mutex, initialized unlocked.
    *}
-function SDL_CreateMutex: PSDL_Mutex cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateMutex' {$ENDIF} {$ENDIF};
+function SDL_CreateMutex: PSDL_Mutex; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateMutex' {$ENDIF} {$ENDIF};
 
   {**
    *  Lock the mutex.
@@ -31,14 +33,16 @@ function SDL_CreateMutex: PSDL_Mutex cdecl; external SDL_LibName {$IFDEF DELPHI}
    *   0, or -1 on error.
    *}
 //#define SDL_mutexP(m)   SDL_LockMutex(m)
-function SDL_LockMutex(mutex: PSDL_Mutex): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockMutex' {$ENDIF} {$ENDIF};
+function SDL_LockMutex(mutex: PSDL_Mutex): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockMutex' {$ENDIF} {$ENDIF};
 
   {**
    *  Try to lock the mutex
    *
    *   0, SDL_MUTEX_TIMEDOUT, or -1 on error
    *}
-function SDL_TryLockMutex(mutex: PSDL_Mutex): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TryLockMutex' {$ENDIF} {$ENDIF};
+function SDL_TryLockMutex(mutex: PSDL_Mutex): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TryLockMutex' {$ENDIF} {$ENDIF};
 
   {**
    *  Unlock the mutex.
@@ -49,12 +53,14 @@ function SDL_TryLockMutex(mutex: PSDL_Mutex): cint32 cdecl; external SDL_LibName
    *   the current thread, and doing so results in undefined behavior.
    *}
 //#define SDL_mutexV(m)   SDL_UnlockMutex(m)
-function SDL_UnlockMutex(mutex: PSDL_Mutex): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockMutex' {$ENDIF} {$ENDIF};
+function SDL_UnlockMutex(mutex: PSDL_Mutex): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockMutex' {$ENDIF} {$ENDIF};
 
   {**
    *  Destroy a mutex.
    *}
-procedure SDL_DestroyMutex(mutex: PSDL_Mutex) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyMutex' {$ENDIF} {$ENDIF};
+procedure SDL_DestroyMutex(mutex: PSDL_Mutex); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyMutex' {$ENDIF} {$ENDIF};
 
   {*Mutex functions*}
 
@@ -68,19 +74,22 @@ type
   {**
    *  Create a semaphore, initialized with value, returns NULL on failure.
    *}
-function SDL_CreateSemaphore(initial_value: cuint32): PSDL_sem cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateSemaphore' {$ENDIF} {$ENDIF};
+function SDL_CreateSemaphore(initial_value: cuint32): PSDL_sem; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateSemaphore' {$ENDIF} {$ENDIF};
 
   {**
    *  Destroy a semaphore.
    *}
-procedure SDL_DestroySemaphore(sem: PSDL_Sem) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroySemaphore' {$ENDIF} {$ENDIF};
+procedure SDL_DestroySemaphore(sem: PSDL_Sem); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroySemaphore' {$ENDIF} {$ENDIF};
 
   {**
    *  This function suspends the calling thread until the semaphore pointed
    *  to by sem has a positive count. It then atomically decreases the
    *  semaphore count.
    *}
-function SDL_SemWait(sem: PSDL_Sem): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemWait' {$ENDIF} {$ENDIF};
+function SDL_SemWait(sem: PSDL_Sem): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemWait' {$ENDIF} {$ENDIF};
 
   {**
    *  Non-blocking variant of SDL_SemWait().
@@ -88,7 +97,8 @@ function SDL_SemWait(sem: PSDL_Sem): cint32 cdecl; external SDL_LibName {$IFDEF 
    *   0 if the wait succeeds, SDL_MUTEX_TIMEDOUT if the wait would
    *   block, and -1 on error.
    *}
-function SDL_SemTryWait(sem: PSDL_Sem): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemTryWait' {$ENDIF} {$ENDIF};
+function SDL_SemTryWait(sem: PSDL_Sem): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemTryWait' {$ENDIF} {$ENDIF};
 
   {**
    *  Variant of SDL_SemWait() with a timeout in milliseconds.
@@ -99,19 +109,22 @@ function SDL_SemTryWait(sem: PSDL_Sem): cint32 cdecl; external SDL_LibName {$IFD
    *   On some platforms this function is implemented by looping with a
    *   delay of 1 ms, and so should be avoided if possible.
    *}
-function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: cuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemWaitTimeout' {$ENDIF} {$ENDIF};
+function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemWaitTimeout' {$ENDIF} {$ENDIF};
 
   {**
    *  Atomically increases the semaphore'_S count (not blocking).
    *
    *   0, or -1 on error.
    *}
-function SDL_SemPost(sem: PSDL_Sem): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemPost' {$ENDIF} {$ENDIF};
+function SDL_SemPost(sem: PSDL_Sem): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemPost' {$ENDIF} {$ENDIF};
 
   {**
    *  Returns the current count of the semaphore.
    *}
-function SDL_SemValue(sem: PSDL_Sem): cuint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemValue' {$ENDIF} {$ENDIF};
+function SDL_SemValue(sem: PSDL_Sem): cuint32; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemValue' {$ENDIF} {$ENDIF};
 
   {*Semaphore functions*}
 
@@ -151,26 +164,30 @@ type
    *  In general it'_S safer to signal the condition variable while the
    *  mutex is locked.
    *}
-function SDL_CreateCond: PSDL_Cond cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateCond' {$ENDIF} {$ENDIF};
+function SDL_CreateCond: PSDL_Cond; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateCond' {$ENDIF} {$ENDIF};
 
   {**
    *  Destroy a condition variable.
    *}
-procedure SDL_DestroyCond(cond: PSDL_Cond) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyCond' {$ENDIF} {$ENDIF};
+procedure SDL_DestroyCond(cond: PSDL_Cond); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyCond' {$ENDIF} {$ENDIF};
 
   {**
    *  Restart one of the threads that are waiting on the condition variable.
    *
    *   0 or -1 on error.
    *}
-function SDL_CondSignal(cond: PSDL_Cond): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondSignal' {$ENDIF} {$ENDIF};
+function SDL_CondSignal(cond: PSDL_Cond): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondSignal' {$ENDIF} {$ENDIF};
 
   {**
    *  Restart all threads that are waiting on the condition variable.
    *
    *   0 or -1 on error.
    *}
-function SDL_CondBroadcast(cond: PSDL_Cond): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondBroadcast' {$ENDIF} {$ENDIF};
+function SDL_CondBroadcast(cond: PSDL_Cond): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondBroadcast' {$ENDIF} {$ENDIF};
 
   {**
    *  Wait on the condition variable, unlocking the provided mutex.
@@ -181,7 +198,8 @@ function SDL_CondBroadcast(cond: PSDL_Cond): cint32 cdecl; external SDL_LibName 
    *
    *   0 when it is signaled, or -1 on error.
    *}
-function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondWait' {$ENDIF} {$ENDIF};
+function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondWait' {$ENDIF} {$ENDIF};
 
   {**
    *  Waits for at most ms milliseconds, and returns 0 if the condition
@@ -191,4 +209,5 @@ function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint32 cdecl; externa
    *   On some platforms this function is implemented by looping with a
    *   delay of 1 ms, and so should be avoided if possible.
    *}
-function SDL_CondWaitTimeout(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondWaitTimeout' {$ENDIF} {$ENDIF};
+function SDL_CondWaitTimeout(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondWaitTimeout' {$ENDIF} {$ENDIF};

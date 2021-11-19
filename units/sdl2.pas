@@ -142,18 +142,21 @@ const
   {$ENDIF}
 
 
-{$I ctypes.inc}  // C data types
+{$I ctypes.inc}                  // C data types
+
+                                 {SDL2 version of the represented header file}
 {$I sdlstdinc.inc}
-{$I sdlversion.inc}
-{$I sdlerror.inc}
-{$I sdlplatform.inc}
-{$I sdlpower.inc}
+{$I sdlversion.inc}              // 2.0.14
+{$I sdlerror_c.inc}              // 2.0.14
+{$I sdlerror.inc}                // 2.0.14
+{$I sdlplatform.inc}             // 2.0.14
+{$I sdlpower.inc}                // 2.0.14
 {$I sdlthread.inc}
-{$I sdlmutex.inc}
-{$I sdltimer.inc}
-{$I sdlpixels.inc}
-{$I sdlrect.inc}
-{$I sdlrwops.inc}
+{$I sdlmutex.inc}                // 2.0.14 WIP
+{$I sdltimer.inc}                // 2.0.14
+{$I sdlpixels.inc}               // 2.0.14 WIP
+{$I sdlrect.inc}                 // 2.0.14
+{$I sdlrwops.inc}                // 2.0.14
 {$I sdlaudio.inc}
 {$I sdlblendmode.inc}
 {$I sdlsurface.inc}
@@ -183,7 +186,7 @@ const
 
 implementation
 
-//from "sdl_version.h"
+// Macros from "sdl_version.h"
 procedure SDL_VERSION(out x: TSDL_Version);
 begin
   x.major := SDL_MAJOR_VERSION;
@@ -191,7 +194,7 @@ begin
   x.patch := SDL_PATCHLEVEL;
 end;
 
-function SDL_VERSIONNUM(X,Y,Z: cuint32): Cardinal;
+function SDL_VERSIONNUM(X,Y,Z: cuint8): Cardinal;
 begin
   Result := X*1000 + Y*100 + Z;
 end;
@@ -203,7 +206,7 @@ begin
                            SDL_PATCHLEVEL);
 end;
 
-function SDL_VERSION_ATLEAST(X,Y,Z: Cardinal): Boolean;
+function SDL_VERSION_ATLEAST(X,Y,Z: cuint8): Boolean;
 begin
   Result := SDL_COMPILEDVERSION >= SDL_VERSIONNUM(X,Y,Z);
 end;
@@ -225,6 +228,14 @@ end;
 {$ENDIF}
 
 //from "sdl_rect.h"
+function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): Boolean;
+begin
+  Result :=
+    (p^.x >= r^.x) and (p^.x < (r^.x + r^.w))
+    and
+    (p^.y >= r^.y) and (p^.y < (r^.y + r^.h))
+end;
+
 function SDL_RectEmpty(const r: PSDL_Rect): Boolean;
 begin
   Result := (r^.w <= 0) or (r^.h <= 0);
@@ -233,46 +244,6 @@ end;
 function SDL_RectEquals(const a, b: PSDL_Rect): Boolean;
 begin
   Result := (a^.x = b^.x) and (a^.y = b^.y) and (a^.w = b^.w) and (a^.h = b^.h);
-end;
-
-function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): Boolean;
-begin
-  Result := 
-    (p^.x >= r^.x) and (p^.x < (r^.x + r^.w)) 
-    and 
-    (p^.y >= r^.y) and (p^.y < (r^.y + r^.h))
-end;
-
-//from "sdl_rwops.h"
-
-function SDL_RWsize(ctx: PSDL_RWops): cint64;
-begin
-  Result := ctx^.size(ctx);
-end;
-
-function SDL_RWseek(ctx: PSDL_RWops; offset: cint64; whence: cint32): cint64;
-begin
-  Result := ctx^.seek(ctx,offset,whence);
-end;
-
-function SDL_RWtell(ctx: PSDL_RWops): cint64;
-begin
-  Result := ctx^.seek(ctx, 0, RW_SEEK_CUR);
-end;
-
-function SDL_RWread(ctx: PSDL_RWops; ptr: Pointer; size: csize_t; n: csize_t): csize_t;
-begin
-  Result := ctx^.read(ctx, ptr, size, n);
-end;
-
-function SDL_RWwrite(ctx: PSDL_RWops; ptr: Pointer; size: csize_t; n: csize_t): csize_t;
-begin
-  Result := ctx^.write(ctx, ptr, size, n);
-end;
-
-function SDL_RWclose(ctx: PSDL_RWops): cint32;
-begin
-  Result := ctx^.close(ctx);
 end;
 
 //from "sdl_audio.h"
@@ -346,7 +317,6 @@ end;
 
 function SDL_IsPixelFormat_FOURCC(format: Variant): Boolean;
 begin
-  {* The flag is set to 1 because 0x1? is not in the printable ASCII range *}
   Result := format and SDL_PIXELFLAG(format) <> 1;
 end;
 
@@ -407,9 +377,9 @@ begin
 end;
 
 // from "sdl_timer.h"
-function SDL_TICKS_PASSED(const A, B: cuint32): Boolean;
+function SDL_TICKS_PASSED(const A, B: cint32): Boolean;
 begin
-   Result := ((cint64(B) - cint64(A)) <= 0)
+  Result := ((B - A) <= 0);
 end;
 
 // from "sdl_gamecontroller.h"
