@@ -142,19 +142,21 @@ const
   {$ENDIF}
 
 
-{$I ctypes.inc}  // C data types
+{$I ctypes.inc}                  // C data types
+
+                                 {SDL2 version of the represented header file}
 {$I sdlstdinc.inc}
-{$I sdlversion.inc}
-{$I sdlerror_c.inc}
-{$I sdlerror.inc}
-{$I sdlplatform.inc}
-{$I sdlpower.inc}
+{$I sdlversion.inc}              // 2.0.14
+{$I sdlerror_c.inc}              // 2.0.14
+{$I sdlerror.inc}                // 2.0.14
+{$I sdlplatform.inc}             // 2.0.14
+{$I sdlpower.inc}                // 2.0.14
 {$I sdlthread.inc}
-{$I sdlmutex.inc}
-{$I sdltimer.inc}
-{$I sdlpixels.inc}
-{$I sdlrect.inc}
-{$I sdlrwops.inc}
+{$I sdlmutex.inc}                // 2.0.14 WIP
+{$I sdltimer.inc}                // 2.0.14
+{$I sdlpixels.inc}               // 2.0.14 WIP
+{$I sdlrect.inc}                 // 2.0.14
+{$I sdlrwops.inc}                // 2.0.14
 {$I sdlaudio.inc}
 {$I sdlblendmode.inc}
 {$I sdlsurface.inc}
