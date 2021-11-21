@@ -45,12 +45,15 @@ type
   end;
 
   PSDL_MessageBoxColorType = ^TSDL_MessageBoxColorType;
-  TSDL_MessageBoxColorType = (SDL_MESSAGEBOX_COLOR_BACKGROUND,
-                              SDL_MESSAGEBOX_COLOR_TEXT,
-                              SDL_MESSAGEBOX_COLOR_BUTTON_BORDER,
-                              SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND,
-                              SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED,
-                              SDL_MESSAGEBOX_COLOR_MAX);
+  TSDL_MessageBoxColorType = type Word;
+
+const
+  SDL_MESSAGEBOX_COLOR_BACKGROUND        = TSDL_MessageBoxColorType(0);
+  SDL_MESSAGEBOX_COLOR_TEXT              = TSDL_MessageBoxColorType(1);
+  SDL_MESSAGEBOX_COLOR_BUTTON_BORDER     = TSDL_MessageBoxColorType(2);
+  SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND = TSDL_MessageBoxColorType(3);
+  SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED   = TSDL_MessageBoxColorType(4);
+  SDL_MESSAGEBOX_COLOR_MAX               = TSDL_MessageBoxColorType(5);
 
   {**
    *  A set of colors to use for message box dialogs
@@ -58,8 +61,7 @@ type
 type
   PSDL_MessageBoxColorScheme = ^TSDL_MessageBoxColorScheme;
   TSDL_MessageBoxColorScheme = record
-    //colors: array[0..SDL_MESSAGEBOX_COLOR_MAX-1] of TSDL_MessageBoxColor;
-    colors: array[0..4] of TSDL_MessageBoxColor;   //right?!
+    colors: array[0..SDL_MESSAGEBOX_COLOR_MAX-1] of TSDL_MessageBoxColor;
   end;
 
   {**
