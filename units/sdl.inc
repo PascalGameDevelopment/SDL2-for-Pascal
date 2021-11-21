@@ -60,7 +60,7 @@ procedure SDL_QuitSubSystem(flags: TSDL_Init); cdecl;
  *  
  *  If flags is 0, it returns a mask of all initialized subsystems.
  *}
-function SDL_WasInit(flags: TSDL_Init): cuint32 cdecl;
+function SDL_WasInit(flags: TSDL_Init): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WasInit' {$ENDIF} {$ENDIF};
 
 {**
