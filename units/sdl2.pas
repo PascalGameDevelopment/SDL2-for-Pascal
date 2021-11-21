@@ -182,7 +182,7 @@ const
 {$I sdlfilesystem.inc}
 {$I sdllog.inc}
 {$I sdlsystem.inc}
-{$I sdl.inc}
+{$I sdl.inc}                     // 2.0.14
 
 implementation
 
