@@ -1,40 +1,43 @@
 //from "sdl_messagebox.h"
 
-  {**
-   *  SDL_MessageBox flags. If supported will display warning icon, etc.
-   *}
- 
-const
-  SDL_MESSAGEBOX_ERROR        = $00000010;   {**< error dialog *}
-  SDL_MESSAGEBOX_WARNING      = $00000020;   {**< warning dialog *}
-  SDL_MESSAGEBOX_INFORMATION  = $00000040;   {**< informational dialog *}
-
+{**
+ *  SDL_MessageBox flags. If supported will display warning icon, etc.
+ *}
 type
-  TSDL_MessageBoxFlags = Byte;
+  TSDL_MessageBoxFlags = type cuint32;
 
-  {**
-   *  Flags for SDL_MessageBoxButtonData.
-   *}
 const
-  SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT = $00000001;  {**< Marks the default button when return is hit *}
-  SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT = $00000002;   {**< Marks the default button when escape is hit *}
-type
-  TSDL_MessageBoxButtonFlags = Byte;
+  SDL_MESSAGEBOX_ERROR                 = TSDL_MessageBoxFlags($00000010);   {**< error dialog *}
+  SDL_MESSAGEBOX_WARNING               = TSDL_MessageBoxFlags($00000020);   {**< warning dialog *}
+  SDL_MESSAGEBOX_INFORMATION           = TSDL_MessageBoxFlags($00000040);   {**< informational dialog *}
+  SDL_MESSAGEBOX_BUTTONS_LEFT_TO_RIGHT = TSDL_MessageBoxFlags($00000080);   {/**< buttons placed left to right */}
+  SDL_MESSAGEBOX_BUTTONS_RIGHT_TO_LEFT = TSDL_MessageBoxFlags($00000100);   {/**< buttons placed right to left */}
 
-  {**
-   *   Individual button data.
-   *}
+{**
+ *  Flags for SDL_MessageBoxButtonData.
+ *}
+type
+  TSDL_MessageBoxButtonFlags = type cuint32;
+
+const
+  SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT = TSDL_MessageBoxButtonFlags($00000001);  {**< Marks the default button when return is hit *}
+  SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT = TSDL_MessageBoxButtonFlags($00000002);  {**< Marks the default button when escape is hit *}
+
+
+{**
+ *   Individual button data.
+ *}
 type
   PSDL_MessageBoxButtonData = ^TSDL_MessageBoxButtonData;
   TSDL_MessageBoxButtonData = record
-    flags: cuint32;     {**< ::SDL_MessageBoxButtonFlags *}
-    buttonid: cint; {**< User defined button id (value returned via SDL_ShowMessageBox) *}
-    text: PAnsiChar;   {**< The UTF-8 button text *}
+    flags: TSDL_MessageBoxButtonFlags;  {**< ::SDL_MessageBoxButtonFlags *}
+    buttonid: cint;                     {**< User defined button id (value returned via SDL_ShowMessageBox) *}
+    text: PAnsiChar;                    {**< The UTF-8 button text *}
   end;
 
-  {**
-   *  RGB value used in a message box color scheme
-   *}
+{**
+ *  RGB value used in a message box color scheme
+ *}
 type
   PSDL_MessageBoxColor = ^TSDL_MessageBoxColor;
   TSDL_MessageBoxColor = record
@@ -65,10 +68,10 @@ type
 type
   PSDL_MessageBoxData = ^TSDL_MessageBoxData;
   TSDL_MessageBoxData = record
-    flags: cuint32;             {**< SDL_MessageBoxFlags *}
-    window: PSDL_Window;       {**< Parent window, can be NULL *}
-    title: PAnsiChar;          {**< UTF-8 title *}
-    _message: PAnsiChar;       {**< UTF-8 message text *}
+    flags: TSDL_MessageBoxFlags;             {**< SDL_MessageBoxFlags *}
+    window: PSDL_Window;                     {**< Parent window, can be NULL *}
+    title: PAnsiChar;                        {**< UTF-8 title *}
+    _message: PAnsiChar;                     {**< UTF-8 message text *}
 
     numbuttons: cint;
     buttons: PSDL_MessageBoxButtonData;
@@ -76,33 +79,35 @@ type
     colorScheme: PSDL_MessageBoxColorScheme;   {**< SDL_MessageBoxColorScheme, can be NULL to use system settings *}
   end;
 
-  {**
-   *   Create a modal message box.
-   *
-   *   messageboxdata The SDL_MessageBoxData structure with title, text, etc.
-   *   buttonid The pointer to which user id of hit button should be copied.
-   *
-   *   -1 on error, otherwise 0 and buttonid contains user id of button
-   *   hit or -1 if dialog was closed.
-   *
-   *   This function should be called on the thread that created the parent
-   *   window, or on the main thread if the messagebox has no parent.  It will
-   *   block execution of that thread until the user clicks a button or
-   *   closes the messagebox.
-   *}
-function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowMessageBox' {$ENDIF} {$ENDIF};
+{**
+ *   Create a modal message box.
+ *
+ *   messageboxdata The SDL_MessageBoxData structure with title, text, etc.
+ *   buttonid The pointer to which user id of hit button should be copied.
+ *
+ *   -1 on error, otherwise 0 and buttonid contains user id of button
+ *   hit or -1 if dialog was closed.
+ *
+ *   This function should be called on the thread that created the parent
+ *   window, or on the main thread if the messagebox has no parent.  It will
+ *   block execution of that thread until the user clicks a button or
+ *   closes the messagebox.
+ *}
+function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowMessageBox' {$ENDIF} {$ENDIF};
 
-  {**
-   *   Create a simple modal message box
-   *
-   *   flags    SDL_MessageBoxFlags
-   *   title    UTF-8 title text
-   *   message  UTF-8 message text
-   *   window   The parent window, or NULL for no parent
-   *
-   *   0 on success, -1 on error
-   *
-   *   SDL_ShowMessageBox
-   *}
-function SDL_ShowSimpleMessageBox(flags: cuint32; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowSimpleMessageBox' {$ENDIF} {$ENDIF};
+{**
+ *   Create a simple modal message box
+ *
+ *   flags    SDL_MessageBoxFlags
+ *   title    UTF-8 title text
+ *   message  UTF-8 message text
+ *   window   The parent window, or NULL for no parent
+ *
+ *   0 on success, -1 on error
+ *
+ *   SDL_ShowMessageBox
+ *}
+function SDL_ShowSimpleMessageBox(flags: TSDL_MessageBoxFlags; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowSimpleMessageBox' {$ENDIF} {$ENDIF};
 
