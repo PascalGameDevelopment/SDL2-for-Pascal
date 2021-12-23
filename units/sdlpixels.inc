@@ -143,7 +143,7 @@ function SDL_BITSPERPIXEL(X: Cardinal): Cardinal;
        }
 
 {* The flag is set to 1 because 0x1? is not in the printable ASCII range *}
-function SDL_IsPixelFormat_FOURCC(format: Variant): Boolean;
+function SDL_ISPIXELFORMAT_FOURCC(format: Variant): Boolean;
 
   { TODO : Use SDL_DEFINE_FORMAT macro? Examine results in detail. }
 {* Note: If you modify this list, update SDL_GetPixelFormatName() *}

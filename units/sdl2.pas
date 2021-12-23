@@ -315,9 +315,9 @@ begin
   Result := (X shr 8) and $FF;
 end;
 
-function SDL_IsPixelFormat_FOURCC(format: Variant): Boolean;
+function SDL_ISPIXELFORMAT_FOURCC(format: Variant): Boolean;
 begin
-  Result := format and SDL_PIXELFLAG(format) <> 1;
+  Result := (format and (SDL_PIXELFLAG(format) <> 1));
 end;
 
 //from "sdl_surface.h"
