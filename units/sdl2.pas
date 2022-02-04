@@ -158,7 +158,7 @@ const
 {$I sdlrect.inc}                 // 2.0.14
 {$I sdlrwops.inc}                // 2.0.14
 {$I sdlaudio.inc}
-{$I sdlblendmode.inc}
+{$I sdlblendmode.inc}            // 2.0.14
 {$I sdlsurface.inc}              // 2.0.14
 {$I sdlshape.inc}
 {$I sdlvideo.inc}
