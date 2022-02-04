@@ -159,7 +159,7 @@ const
 {$I sdlrwops.inc}                // 2.0.14
 {$I sdlaudio.inc}
 {$I sdlblendmode.inc}
-{$I sdlsurface.inc}
+{$I sdlsurface.inc}              // 2.0.14
 {$I sdlshape.inc}
 {$I sdlvideo.inc}
 {$I sdlhints.inc}
@@ -320,14 +320,14 @@ begin
   Result := (format and (SDL_PIXELFLAG(format) <> 1));
 end;
 
-//from "sdl_surface.h"
+// Macros from "sdl_surface.h"
 function SDL_LoadBMP(_file: PAnsiChar): PSDL_Surface;
 begin
   Result := SDL_LoadBMP_RW(SDL_RWFromFile(_file, 'rb'), 1);
 end;
 
 function SDL_SaveBMP(const surface: PSDL_Surface; const filename: AnsiString
-  ): cint32;
+  ): cint;
 begin
    Result := SDL_SaveBMP_RW(surface, SDL_RWFromFile(PAnsiChar(filename), 'wb'), 1)
 end;
