@@ -160,7 +160,7 @@ const
 {$I sdlaudio.inc}
 {$I sdlblendmode.inc}            // 2.0.14
 {$I sdlsurface.inc}              // 2.0.14
-{$I sdlshape.inc}
+{$I sdlshape.inc}                // 2.0.14
 {$I sdlvideo.inc}
 {$I sdlhints.inc}
 {$I sdlloadso.inc}
@@ -338,6 +338,12 @@ end;
 function SDL_MUSTLOCK(const S: PSDL_Surface): Boolean;
 begin
   Result := ((S^.flags and SDL_RLEACCEL) <> 0)
+end;
+
+// Macros from "sdl_shape.h"
+function SDL_SHAPEMODEALPHA(mode: TWindowShapeMode): Boolean;
+begin
+  Result := (mode = ShapeModeDefault) or (mode = ShapeModeBinarizeAlpha) or (mode = ShapeModeReverseBinarizeAlpha);
 end;
 
 //from "sdl_sysvideo.h"

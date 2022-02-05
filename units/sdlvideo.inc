@@ -1,5 +1,9 @@
 //from "sdl_video.h" and "sdl_sysvideo.h" and "sdl_shape.h"
 
+type
+  PPSDL_Window = ^PSDL_Window;
+  PSDL_Window = ^TSDL_Window;
+
   {* Define the SDL window-shaper structure *}
   PSDL_WindowShaper = ^TSDL_WindowShaper;
   TSDL_WindowShaper = record
@@ -153,39 +157,9 @@
 
   function FULLSCREEN_VISIBLE(W: PSDL_Window): Variant;
 
-  { Functions from "sdl_shape.h" }
+{ Functions from "sdl_shape.h" }
 
-  {**
-   * Get the shape parameters of a shaped window.
-   *
-   *  window The shaped window whose parameters should be retrieved.
-   *  shape_mode An empty shape-mode structure to fill, or NULL to check whether the window has a shape.
-   *
-   *  0 if the window has a shape and, provided shape_mode was not NULL, shape_mode has been filled with the mode
-   *  data, SDL_NONSHAPEABLE_WINDOW if the SDL_Window given is not a shaped window, or SDL_WINDOW_LACKS_SHAPE if
-   *  the SDL_Window* given is a shapeable window currently lacking a shape.
-   *
-   *  SDL_WindowShapeMode
-   *  SDL_SetWindowShape
-   *}
-function SDL_GetShapedWindowMode(window: PSDL_Window; shape_mode: TSDL_WindowShapeMode): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetShapedWindowMode' {$ENDIF} {$ENDIF};
-
-  {**
-   * Set the shape and parameters of a shaped window.
-   *
-   *  window The shaped window whose parameters should be set.
-   *  shape A surface encoding the desired shape for the window.
-   *  shape_mode The parameters to set for the shaped window.
-   *
-   *  0 on success, SDL_INVALID_SHAPE_ARGUMENT on invalid an invalid shape argument, or SDL_NONSHAPEABLE_WINDOW
-   *  if the SDL_Window* given does not reference a valid shaped window.
-   *
-   *  SDL_WindowShapeMode
-   *  SDL_GetShapedWindowMode.
-   *}
-function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowShape' {$ENDIF} {$ENDIF};
-
-  {**
+   {**
    *  Create a window that can be shaped with the specified position, dimensions, and flags.
    *
    *   title The title of the window, in UTF-8 encoding.
@@ -205,7 +179,8 @@ function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode
    *
    *  SDL_DestroyWindow()
    *}
-function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint32; y: cuint32; w: cuint32; h: cuint32; flags: cuint32): PSDL_Window cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateShapedWindow' {$ENDIF} {$ENDIF};
+function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint; y: cuint; w: cuint; h: cuint; flags: cuint32): PSDL_Window; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateShapedWindow' {$ENDIF} {$ENDIF};
 
   {**
    * Return whether the given window is a shaped window.
@@ -215,7 +190,40 @@ function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint32; y: cuint32; w: cui
    *  SDL_TRUE if the window is a window that can be shaped, SDL_FALSE if the window is unshaped or NULL.
    *  SDL_CreateShapedWindow
    *}
-function SDL_IsShapedWindow(window: PSDL_Window): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsShapedWindow' {$ENDIF} {$ENDIF};
+function SDL_IsShapedWindow(window: PSDL_Window): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsShapedWindow' {$ENDIF} {$ENDIF};
+
+   {**
+   * Set the shape and parameters of a shaped window.
+   *
+   *  window The shaped window whose parameters should be set.
+   *  shape A surface encoding the desired shape for the window.
+   *  shape_mode The parameters to set for the shaped window.
+   *
+   *  0 on success, SDL_INVALID_SHAPE_ARGUMENT on invalid an invalid shape argument, or SDL_NONSHAPEABLE_WINDOW
+   *  if the SDL_Window* given does not reference a valid shaped window.
+   *
+   *  SDL_WindowShapeMode
+   *  SDL_GetShapedWindowMode.
+   *}
+function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowShape' {$ENDIF} {$ENDIF};
+
+  {**
+   * Get the shape parameters of a shaped window.
+   *
+   *  window The shaped window whose parameters should be retrieved.
+   *  shape_mode An empty shape-mode structure to fill, or NULL to check whether the window has a shape.
+   *
+   *  0 if the window has a shape and, provided shape_mode was not NULL, shape_mode has been filled with the mode
+   *  data, SDL_NONSHAPEABLE_WINDOW if the SDL_Window given is not a shaped window, or SDL_WINDOW_LACKS_SHAPE if
+   *  the SDL_Window* given is a shapeable window currently lacking a shape.
+   *
+   *  SDL_WindowShapeMode
+   *  SDL_SetWindowShape
+   *}
+function SDL_GetShapedWindowMode(window: PSDL_Window; shape_mode: TSDL_WindowShapeMode): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetShapedWindowMode' {$ENDIF} {$ENDIF};
 
 const
   {**
