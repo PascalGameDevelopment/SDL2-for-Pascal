@@ -77,6 +77,56 @@ Hint 3: Do not translate C enums to Pascal enums. C enums are handled like plain
 integers which will make bitwise operations (e. g. in macros) possible
 without typecasting.
 
+## Structs
+
+C:
+
+```
+typedef struct SDL_version
+{
+    Uint8 major;        /**< major version */
+    Uint8 minor;        /**< minor version */
+    Uint8 patch;        /**< update version */
+} SDL_version;
+```
+
+Pascal:
+
+```
+type
+  PSDL_Version = ^TSDL_Version;
+  TSDL_Version = record
+    major: cuint8    { major version }
+    minor: cuint8    { minor version }
+    patch: cuint8;   { update version }
+  end;
+```
+
+## Unions
+
+C:
+
+```
+typedef union {
+    /** \brief A cutoff alpha value for binarization of the window shape's alpha channel. */
+    Uint8 binarizationCutoff;
+    SDL_Color colorKey;
+} SDL_WindowShapeParams;
+```
+
+Pascal:
+
+```
+type
+  PSDL_WindowShapeParams = ^TSDL_WindowShapeParams;
+  TSDL_WindowShapeParams = record
+  case cint of
+    { A cutoff alpha value for binarization of the window shape's alpha channel. }
+    0: (binarizationCutoff: cuint8);
+    1: (colorKey: TSDL_ColorKey);
+  end;
+```
+
 ## Functions
 
 C:
