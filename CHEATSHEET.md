@@ -102,6 +102,9 @@ type
   end;
 ```
 
+Hint 1: If you have something like ```typedef struct name name```. it is likely
+that the declaration is somewhere else (even other file).
+
 ## Unions
 
 C:
