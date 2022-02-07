@@ -161,7 +161,7 @@ const
 {$I sdlblendmode.inc}            // 2.0.14
 {$I sdlsurface.inc}              // 2.0.14
 {$I sdlshape.inc}                // 2.0.14
-{$I sdlvideo.inc}
+{$I sdlvideo.inc}                // 2.0.14
 {$I sdlhints.inc}
 {$I sdlloadso.inc}
 {$I sdlmessagebox.inc}           // 2.0.14
