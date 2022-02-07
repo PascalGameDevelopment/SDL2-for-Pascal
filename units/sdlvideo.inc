@@ -261,7 +261,7 @@ function SDL_GetShapedWindowMode(window: PSDL_Window; shape_mode: TSDL_WindowSha
  *   SDL_GetWindowFlags()
  *}
 type
-  TSDL_WindowFlags = type DWord;
+  TSDL_WindowFlags = type cuint32;
 
 const
   SDL_WINDOW_FULLSCREEN    = TSDL_WindowFlags($00000001);      {**< fullscreen window *}
@@ -714,7 +714,7 @@ function SDL_GetWindowPixelFormat(window: PSDL_Window): cuint32; cdecl;
    *  \sa SDL_Vulkan_LoadLibrary()
    *}
 
-function SDL_CreateWindow(const title: PAnsiChar; x: cint; y: cint; w: cint; h: cint; flags: cuint32): PSDL_Window; cdecl;
+function SDL_CreateWindow(const title: PAnsiChar; x: cint; y: cint; w: cint; h: cint; flags: TSDL_WindowFlags): PSDL_Window; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateWindow' {$ENDIF} {$ENDIF};
 
   {**
@@ -748,7 +748,7 @@ function SDL_GetWindowFromID(id: cuint32): PSDL_Window; cdecl;
    *  Get the window flags.
    *}
 
-function SDL_GetWindowFlags(window: PSDL_Window): cuint32; cdecl;
+function SDL_GetWindowFlags(window: PSDL_Window): TSDL_WindowFlags; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowFlags' {$ENDIF} {$ENDIF};
 
   {**
@@ -880,7 +880,7 @@ procedure SDL_GetWindowSize(window: PSDL_Window; w: pcint; h: pcint); cdecl;
    *        initialized to 0, 0, 0, 0 (if a non-NULL pointer is provided), as
    *        if the window in question was borderless.
    *}
-function SDL_GetWindowBordersSize(window: PSDL_Window; top, left, bottom, right: pcint):cint; cdecl;
+function SDL_GetWindowBordersSize(window: PSDL_Window; top, left, bottom, right: pcint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowBordersSize' {$ENDIF} {$ENDIF};
 
   {**
@@ -1038,7 +1038,7 @@ procedure SDL_RestoreWindow(window: PSDL_Window); cdecl;
    *  SDL_GetWindowDisplayMode()
    *}
 
-function SDL_SetWindowFullscreen(window: PSDL_Window; flags: cuint32): cint; cdecl;
+function SDL_SetWindowFullscreen(window: PSDL_Window; flags: TSDL_WindowFlags): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowFullscreen' {$ENDIF} {$ENDIF};
 
   {**
