@@ -281,6 +281,26 @@ SDL_HINT_IDLE_TIMER_DISABLED = 'SDL_IOS_IDLE_TIMER_DISABLED';
  */}
 SDL_HINT_ORIENTATIONS = 'SDL_IOS_ORIENTATIONS';
 
+{**
+ *  \brief Specify an application name.
+ *
+ * This hint lets you specify the application name sent to the OS when
+ * required. For example, this will often appear in volume control applets for
+ * audio streams, and in lists of applications which are inhibiting the
+ * screensaver.  You should use a string that describes your program ("My Game
+ * 2: The Revenge")
+ *
+ * Setting this to "" or leaving it unset will have SDL use a reasonable
+ * default: probably the application's name or "SDL Application" if SDL
+ * doesn't have any better information.
+ *
+ * Note that, for audio streams, this can be overridden with
+ * SDL_HINT_AUDIO_DEVICE_APP_NAME.
+ *
+ * On targets where this is not supported, this hint does nothing.
+ *}
+SDL_HINT_APP_NAME = 'SDL_APP_NAME';
+
 {/**
  *  \brief  A variable controlling whether controllers used with the Apple TV
  *  generate UI events.
