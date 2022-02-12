@@ -208,6 +208,35 @@ SDL_HINT_RENDER_VSYNC = 'SDL_RENDER_VSYNC';
 SDL_HINT_VIDEO_ALLOW_SCREENSAVER = 'SDL_VIDEO_ALLOW_SCREENSAVER';
 
 {/**
+ * \brief A variable controlling whether X11 should use GLX or EGL by default
+ *
+ * This variable can be set to the following values:
+ * "0" - Use GLX
+ * "1" - Use EGL
+ *
+ * By default SDL will use GLX when both are present.
+ */}
+SDL_HINT_VIDEO_X11_FORCE_EGL = 'SDL_VIDEO_X11_FORCE_EGL';
+
+{/**
+ * \brief A variable controlling whether the X11 _NET_WM_BYPASS_COMPOSITOR hint should be used.
+ *
+ * This variable can be set to the following values:
+ * "0" - Disable _NET_WM_BYPASS_COMPOSITOR
+ * "1" - Enable _NET_WM_BYPASS_COMPOSITOR
+ *
+ * By default SDL will use _NET_WM_BYPASS_COMPOSITOR
+ *
+ */}
+SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR = 'SDL_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR';
+
+{/**
+ *  \brief  A variable forcing the visual ID chosen for new X11 windows
+ *
+ */}
+SDL_HINT_VIDEO_X11_WINDOW_VISUALID = 'SDL_VIDEO_X11_WINDOW_VISUALID';
+
+{/**
  *  \brief  A variable controlling whether the X11 VidMode extension should be used.
  *
  *  This variable can be set to the following values:
