@@ -58,6 +58,30 @@ const
 SDL_HINT_FRAMEBUFFER_ACCELERATION  = 'SDL_FRAMEBUFFER_ACCELERATION';
 
 {/**
+ *  \brief  A variable controlling whether the 2D render API is compatible or efficient.
+ *
+ *  This variable can be set to the following values:
+ *
+ *    "0"     - Don't use batching to make rendering more efficient.
+ *    "1"     - Use batching, but might cause problems if app makes its own direct OpenGL calls.
+ *
+ *  Up to SDL 2.0.9, the render API would draw immediately when requested. Now
+ *  it batches up draw requests and sends them all to the GPU only when forced
+ *  to (during SDL_RenderPresent, when changing render targets, by updating a
+ *  texture that the batch needs, etc). This is significantly more efficient,
+ *  but it can cause problems for apps that expect to render on top of the
+ *  render API's output. As such, SDL will disable batching if a specific
+ *  render backend is requested (since this might indicate that the app is
+ *  planning to use the underlying graphics API directly). This hint can
+ *  be used to explicitly request batching in this instance. It is a contract
+ *  that you will either never use the underlying graphics API directly, or
+ *  if you do, you will call SDL_RenderFlush() before you do so any current
+ *  batch goes to the GPU before your work begins. Not following this contract
+ *  will result in undefined behavior.
+ */}
+SDL_HINT_RENDER_BATCHING = 'SDL_RENDER_BATCHING';
+
+{/**
  *  \brief  A variable specifying which render driver to use.
  *
  *  If the application doesn't pick a specific renderer to use, this variable
@@ -75,6 +99,30 @@ SDL_HINT_FRAMEBUFFER_ACCELERATION  = 'SDL_FRAMEBUFFER_ACCELERATION';
  *  is available on the current platform.
  */}
 SDL_HINT_RENDER_DRIVER = 'SDL_RENDER_DRIVER';
+
+{/**
+ *  \brief  A variable controlling how the 2D render API renders lines
+ *
+ *  This variable can be set to the following values:
+ *    "0"     - Use the default line drawing method (Bresenham's line algorithm as of SDL 2.0.20)
+ *    "1"     - Use the driver point API using Bresenham's line algorithm (correct, draws many points)
+ *    "2"     - Use the driver line API (occasionally misses line endpoints based on hardware driver quirks, was the default before 2.0.20)
+ *    "3"     - Use the driver geometry API (correct, draws thicker diagonal lines)
+ *
+ *  This variable should be set when the renderer is created.
+ */}
+SDL_HINT_RENDER_LINE_METHOD = 'SDL_RENDER_LINE_METHOD';
+
+{/**
+ *  \brief  A variable controlling the scaling policy for SDL_RenderSetLogicalSize.
+ *
+ *  This variable can be set to the following values:
+ *    "0" or "letterbox" - Uses letterbox/sidebars to fit the entire rendering on screen
+ *    "1" or "overscan"  - Will zoom the rendering so it fills the entire screen, allowing edges to be drawn offscreen
+ *
+ *  By default letterbox is used
+ */}
+SDL_HINT_RENDER_LOGICAL_SIZE_MODE = 'SDL_RENDER_LOGICAL_SIZE_MODE';
 
 {/**
  *  \brief  A variable controlling whether the OpenGL render driver uses shaders if they are available.
