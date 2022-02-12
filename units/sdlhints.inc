@@ -682,6 +682,217 @@ SDL_HINT_GAMECONTROLLERCONFIG = 'SDL_GAMECONTROLLERCONFIG';
 SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS = 'SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS';
 
 {/**
+  *  \brief  A comma separated list of devices to open as joysticks
+  *
+  *  This variable is currently only used by the Linux joystick driver.
+  *}
+SDL_HINT_JOYSTICK_DEVICE = 'SDL_JOYSTICK_DEVICE';
+
+{/**
+ *  \brief  A variable controlling whether the HIDAPI joystick drivers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI drivers are not used
+ *    "1"       - HIDAPI drivers are used (the default)
+ *
+ *  This variable is the default for all drivers, but can be overridden by the hints for specific drivers below.
+ */}
+SDL_HINT_JOYSTICK_HIDAPI = 'SDL_JOYSTICK_HIDAPI';
+
+{/**
+ *  \brief  A variable controlling whether the HIDAPI driver for Nintendo GameCube controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_GAMECUBE = 'SDL_JOYSTICK_HIDAPI_GAMECUBE';
+
+{/**
+  *  \brief  A variable controlling whether Switch Joy-Cons should be treated the same as Switch Pro Controllers when using the HIDAPI driver.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - basic Joy-Con support with no analog input (the default)
+  *    "1"       - Joy-Cons treated as half full Pro Controllers with analog inputs and sensors
+  *
+  *  This does not combine Joy-Cons into a single controller. That's up to the user.
+  */}
+SDL_HINT_JOYSTICK_HIDAPI_JOY_CONS = 'SDL_JOYSTICK_HIDAPI_JOY_CONS';
+
+{/**
+  *  \brief  A variable controlling whether the HIDAPI driver for Amazon Luna controllers connected via Bluetooth should be used.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - HIDAPI driver is not used
+  *    "1"       - HIDAPI driver is used
+  *
+  *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
+  */}
+SDL_HINT_JOYSTICK_HIDAPI_LUNA = 'SDL_JOYSTICK_HIDAPI_LUNA';
+
+{/**
+ *  \brief  A variable controlling whether the HIDAPI driver for PS4 controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_PS4 = 'SDL_JOYSTICK_HIDAPI_PS4';
+
+{/**
+ *  \brief  A variable controlling whether extended input reports should be used for PS4 controllers when using the HIDAPI driver.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - extended reports are not enabled (the default)
+ *    "1"       - extended reports
+ *
+ *  Extended input reports allow rumble on Bluetooth PS4 controllers, but
+ *  break DirectInput handling for applications that don't use SDL.
+ *
+ *  Once extended reports are enabled, they can not be disabled without
+ *  power cycling the controller.
+ *
+ *  For compatibility with applications written for versions of SDL prior
+ *  to the introduction of PS5 controller support, this value will also
+ *  control the state of extended reports on PS5 controllers when the
+ *  SDL_HINT_JOYSTICK_HIDAPI_PS5_RUMBLE hint is not explicitly set.
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_PS4_RUMBLE = 'SDL_JOYSTICK_HIDAPI_PS4_RUMBLE';
+
+{/**
+ *  \brief  A variable controlling whether the HIDAPI driver for PS5 controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_PS5 = 'SDL_JOYSTICK_HIDAPI_PS5';
+
+{/**
+ *  \brief  A variable controlling whether the player LEDs should be lit to indicate which player is associated with a PS5 controller.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - player LEDs are not enabled
+ *    "1"       - player LEDs are enabled (the default)
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_PS5_PLAYER_LED = 'SDL_JOYSTICK_HIDAPI_PS5_PLAYER_LED';
+
+{/**
+ *  \brief  A variable controlling whether extended input reports should be used for PS5 controllers when using the HIDAPI driver.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - extended reports are not enabled (the default)
+ *    "1"       - extended reports
+ *
+ *  Extended input reports allow rumble on Bluetooth PS5 controllers, but
+ *  break DirectInput handling for applications that don't use SDL.
+ *
+ *  Once extended reports are enabled, they can not be disabled without
+ *  power cycling the controller.
+ *
+ *  For compatibility with applications written for versions of SDL prior
+ *  to the introduction of PS5 controller support, this value defaults to
+ *  the value of SDL_HINT_JOYSTICK_HIDAPI_PS4_RUMBLE.
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_PS5_RUMBLE = 'SDL_JOYSTICK_HIDAPI_PS5_RUMBLE';
+
+{/**
+ *  \brief  A variable controlling whether the HIDAPI driver for Google Stadia controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_STADIA = 'SDL_JOYSTICK_HIDAPI_STADIA';
+
+{/**
+ *  \brief  A variable controlling whether the HIDAPI driver for Steam Controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used for Steam Controllers, which requires Bluetooth access
+ *                and may prompt the user for permission on iOS and Android.
+ *
+ *  The default is "0"
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_STEAM = 'SDL_JOYSTICK_HIDAPI_STEAM';
+
+{/**
+ *  \brief  A variable controlling whether the HIDAPI driver for Nintendo Switch controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_SWITCH = 'SDL_JOYSTICK_HIDAPI_SWITCH';
+
+{/**
+ *  \brief  A variable controlling whether the Home button LED should be turned on when a Nintendo Switch controller is opened
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - home button LED is turned off
+ *    "1"       - home button LED is turned on
+ *
+ *  By default the Home button LED state is not changed.
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_SWITCH_HOME_LED = 'SDL_JOYSTICK_HIDAPI_SWITCH_HOME_LED';
+
+{/**
+ *  \brief  A variable controlling whether the HIDAPI driver for XBox controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is "0" on Windows, otherwise the value of SDL_HINT_JOYSTICK_HIDAPI
+ */}
+SDL_HINT_JOYSTICK_HIDAPI_XBOX   = 'SDL_JOYSTICK_HIDAPI_XBOX';
+
+{/**
+  *  \brief  A variable controlling whether the RAWINPUT joystick drivers should be used for better handling XInput-capable devices.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - RAWINPUT drivers are not used
+  *    "1"       - RAWINPUT drivers are used (the default)
+  *
+  */}
+SDL_HINT_JOYSTICK_RAWINPUT = 'SDL_JOYSTICK_RAWINPUT';
+
+{/**
+  *  \brief  A variable controlling whether the RAWINPUT driver should pull correlated data from XInput.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - RAWINPUT driver will only use data from raw input APIs
+  *    "1"       - RAWINPUT driver will also pull data from XInput, providing
+  *                better trigger axes, guide button presses, and rumble support
+  *                for Xbox controllers
+  *
+  *  The default is "1".  This hint applies to any joysticks opened after setting the hint.
+  */}
+SDL_HINT_JOYSTICK_RAWINPUT_CORRELATE_XINPUT  = 'SDL_JOYSTICK_RAWINPUT_CORRELATE_XINPUT';
+
+{/**
+  *  \brief  A variable controlling whether a separate thread should be used
+  *          for handling joystick detection and raw input messages on Windows
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - A separate thread is not used (the default)
+  *    "1"       - A separate thread is used for handling raw input messages
+  *
+  */}
+SDL_HINT_JOYSTICK_THREAD = 'SDL_JOYSTICK_THREAD';
+
+{/**
  *  \brief If set to 0 then never set the top most bit on a SDL Window, even if the video mode expects it.
  *      This is a debugging aid for developers and not expected to be used by end users. The default is "1"
  *
