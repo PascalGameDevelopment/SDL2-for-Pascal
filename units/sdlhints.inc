@@ -355,6 +355,126 @@ SDL_HINT_ACCELEROMETER_AS_JOYSTICK = 'SDL_ACCELEROMETER_AS_JOYSTICK';
 SDL_HINT_ALLOW_ALT_TAB_WHILE_GRABBED = 'SDL_ALLOW_ALT_TAB_WHILE_GRABBED';
 
 {/**
+ *  \brief  A variable controlling the audio category on iOS and Mac OS X
+ *
+ *  This variable can be set to the following values:
+ *
+ *    "ambient"     - Use the AVAudioSessionCategoryAmbient audio category, will be muted by the phone mute switch (default)
+ *    "playback"    - Use the AVAudioSessionCategoryPlayback category
+ *
+ *  For more information, see Apple's documentation:
+ *  https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionCategoriesandModes/AudioSessionCategoriesandModes.html
+ */}
+SDL_HINT_AUDIO_CATEGORY = 'SDL_AUDIO_CATEGORY';
+
+{/**
+ *  \brief Specify an application name for an audio device.
+ *
+ * Some audio backends (such as PulseAudio) allow you to describe your audio
+ * stream. Among other things, this description might show up in a system
+ * control panel that lets the user adjust the volume on specific audio
+ * streams instead of using one giant master volume slider.
+ *
+ * This hints lets you transmit that information to the OS. The contents of
+ * this hint are used while opening an audio device. You should use a string
+ * that describes your program ("My Game 2: The Revenge")
+ *
+ * Setting this to "" or leaving it unset will have SDL use a reasonable
+ * default: this will be the name set with SDL_HINT_APP_NAME, if that hint is
+ * set. Otherwise, it'll probably the application's name or "SDL Application"
+ * if SDL doesn't have any better information.
+ *
+ * On targets where this is not supported, this hint does nothing.
+ *}
+SDL_HINT_AUDIO_DEVICE_APP_NAME = 'SDL_AUDIO_DEVICE_APP_NAME';
+
+{/**
+ *  \brief Specify an application name for an audio device.
+ *
+ * Some audio backends (such as PulseAudio) allow you to describe your audio
+ * stream. Among other things, this description might show up in a system
+ * control panel that lets the user adjust the volume on specific audio
+ * streams instead of using one giant master volume slider.
+ *
+ * This hints lets you transmit that information to the OS. The contents of
+ * this hint are used while opening an audio device. You should use a string
+ * that describes your what your program is playing ("audio stream" is
+ * probably sufficient in many cases, but this could be useful for something
+ * like "team chat" if you have a headset playing VoIP audio separately).
+ *
+ * Setting this to "" or leaving it unset will have SDL use a reasonable
+ * default: "audio stream" or something similar.
+ *
+ * On targets where this is not supported, this hint does nothing.
+ */}
+SDL_HINT_AUDIO_DEVICE_STREAM_NAME = 'SDL_AUDIO_DEVICE_STREAM_NAME';
+
+{/**
+ *  \brief Specify an application role for an audio device.
+ *
+ * Some audio backends (such as Pipewire) allow you to describe the role of
+ * your audio stream. Among other things, this description might show up in
+ * a system control panel or software for displaying and manipulating media
+ * playback/capture graphs.
+ *
+ * This hints lets you transmit that information to the OS. The contents of
+ * this hint are used while opening an audio device. You should use a string
+ * that describes your what your program is playing (Game, Music, Movie,
+ * etc...).
+ *
+ * Setting this to "" or leaving it unset will have SDL use a reasonable
+ * default: "Game" or something similar.
+ *
+ * On targets where this is not supported, this hint does nothing.
+ */}
+SDL_HINT_AUDIO_DEVICE_STREAM_ROLE = 'SDL_AUDIO_DEVICE_STREAM_ROLE';
+
+{/**
+ *  \brief  A variable that causes SDL to not ignore audio "monitors"
+ *
+ *  This is currently only used for PulseAudio and ignored elsewhere.
+ *
+ *  By default, SDL ignores audio devices that aren't associated with physical
+ *  hardware. Changing this hint to "1" will expose anything SDL sees that
+ *  appears to be an audio source or sink. This will add "devices" to the list
+ *  that the user probably doesn't want or need, but it can be useful in
+ *  scenarios where you want to hook up SDL to some sort of virtual device,
+ *  etc.
+ *
+ *  The default value is "0".  This hint must be set before SDL_Init().
+ *
+ *  This hint is available since SDL 2.0.16. Before then, virtual devices are
+ *  always ignored.
+ */}
+SDL_HINT_AUDIO_INCLUDE_MONITORS = 'SDL_AUDIO_INCLUDE_MONITORS';
+
+{/**
+ *  \brief  A variable controlling speed/quality tradeoff of audio resampling.
+ *
+ *  If available, SDL can use libsamplerate ( http://www.mega-nerd.com/SRC/ )
+ *  to handle audio resampling. There are different resampling modes available
+ *  that produce different levels of quality, using more CPU.
+ *
+ *  If this hint isn't specified to a valid setting, or libsamplerate isn't
+ *  available, SDL will use the default, internal resampling algorithm.
+ *
+ *  Note that this is currently only applicable to resampling audio that is
+ *  being written to a device for playback or audio being read from a device
+ *  for capture. SDL_AudioCVT always uses the default resampler (although this
+ *  might change for SDL 2.1).
+ *
+ *  This hint is currently only checked at audio subsystem initialization.
+ *
+ *  This variable can be set to the following values:
+ *
+ *    "0" or "default" - Use SDL's internal resampling (Default when not set - low quality, fast)
+ *    "1" or "fast"    - Use fast, slightly higher quality resampling, if available
+ *    "2" or "medium"  - Use medium quality resampling, if available
+ *    "3" or "best"    - Use high quality resampling, if available
+ */}
+SDL_HINT_AUDIO_RESAMPLING_MODE = 'SDL_AUDIO_RESAMPLING_MODE';
+
+{/**
  *  \brief  A variable that lets you disable the detection and use of Xinput gamepad devices
  *
  *  The variable can be set to the following values:
