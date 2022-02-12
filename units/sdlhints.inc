@@ -723,6 +723,26 @@ SDL_HINT_THREAD_STACK_SIZE = 'SDL_THREAD_STACK_SIZE';
 SDL_HINT_VIDEO_HIGHDPI_DISABLED = 'SDL_VIDEO_HIGHDPI_DISABLED';
 
 {/**
+  *  \brief  A variable controlling whether to use the classic /dev/input/js* joystick interface or the newer /dev/input/event* joystick interface on Linux
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - Use /dev/input/event*
+  *    "1"       - Use /dev/input/js*
+  *
+  *  By default the /dev/input/event* interfaces are used
+  */}
+SDL_HINT_LINUX_JOYSTICK_CLASSIC = 'SDL_LINUX_JOYSTICK_CLASSIC';
+
+{/**
+  *  \brief  A variable controlling whether joysticks on Linux adhere to their HID-defined deadzones or return unfiltered values.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - Return unfiltered joystick axis values (the default)
+  *    "1"       - Return axis values with deadzones taken into account
+  */}
+SDL_HINT_LINUX_JOYSTICK_DEADZONES = 'SDL_LINUX_JOYSTICK_DEADZONES';
+
+{/**
  *  \brief A variable that determines whether ctrl+click should generate a right-click event on Mac
  *
  *  If present, holding ctrl while left clicking will generate a right click
