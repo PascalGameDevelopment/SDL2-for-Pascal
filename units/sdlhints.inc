@@ -315,6 +315,17 @@ SDL_HINT_VIDEO_X11_NET_WM_PING = 'SDL_VIDEO_X11_NET_WM_PING';
 SDL_HINT_WINDOW_FRAME_USABLE_WHILE_CURSOR_HIDDEN = 'SDL_WINDOW_FRAME_USABLE_WHILE_CURSOR_HIDDEN';
 
 {/**
+*  \brief  A variable controlling whether the window is activated when the SDL_ShowWindow function is called
+*
+*  This variable can be set to the following values:
+*    "0"       - The window is activated when the SDL_ShowWindow function is called
+*    "1"       - The window is not activated when the SDL_ShowWindow function is called
+*
+*  By default SDL will activate the window when the SDL_ShowWindow function is called
+*/}
+SDL_HINT_WINDOW_NO_ACTIVATION_WHEN_SHOWN = 'SDL_WINDOW_NO_ACTIVATION_WHEN_SHOWN';
+
+{/**
  *  \brief  A variable controlling whether the windows message loop is processed by SDL 
  *
  *  This variable can be set to the following values:
