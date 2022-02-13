@@ -1518,6 +1518,18 @@ SDL_HINT_BMP_SAVE_LEGACY_FORMAT = 'SDL_BMP_SAVE_LEGACY_FORMAT';
 SDL_HINT_WINDOWS_DISABLE_THREAD_NAMING = 'SDL_WINDOWS_DISABLE_THREAD_NAMING';  
 
 {/**
+ * \brief A variable to control whether the return key on the soft keyboard
+ *        should hide the soft keyboard on Android and iOS.
+ *
+ * The variable can be set to the following values:
+ *   "0"       - The return key will be handled as a key event. This is the behaviour of SDL <= 2.0.3. (default)
+ *   "1"       - The return key will hide the keyboard.
+ *
+ * The value of this hint is used at runtime, so it can be changed at any time.
+ */}
+SDL_HINT_RETURN_KEY_HIDES_IME = 'SDL_RETURN_KEY_HIDES_IME';
+
+{/**
  * \brief Tell SDL which Dispmanx layer to use on a Raspberry PI
  *
  * Also known as Z-order. The variable can take a negative or positive value.
