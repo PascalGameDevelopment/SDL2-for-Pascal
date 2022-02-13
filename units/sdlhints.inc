@@ -781,6 +781,18 @@ SDL_HINT_AUTO_UPDATE_JOYSTICKS = 'SDL_AUTO_UPDATE_JOYSTICKS';
 SDL_HINT_AUTO_UPDATE_SENSORS = 'SDL_AUTO_UPDATE_SENSORS';
 
 {/**
+ *  \brief Mark X11 windows as override-redirect.
+ *
+ *  If set, this _might_ increase framerate at the expense of the desktop
+ *  not working as expected. Override-redirect windows aren't noticed by the
+ *  window manager at all.
+ *
+ *  You should probably only use this for fullscreen windows, and you probably
+ *  shouldn't even use it for that. But it's here if you want to try!
+ */}
+SDL_HINT_X11_FORCE_OVERRIDE_REDIRECT = 'SDL_X11_FORCE_OVERRIDE_REDIRECT';
+
+{/**
  *  \brief  A variable that lets you disable the detection and use of Xinput gamepad devices
  *
  *  The variable can be set to the following values:
