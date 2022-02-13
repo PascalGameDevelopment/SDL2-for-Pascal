@@ -564,6 +564,22 @@ SDL_HINT_IDLE_TIMER_DISABLED = 'SDL_IOS_IDLE_TIMER_DISABLED';
 SDL_HINT_ORIENTATIONS = 'SDL_IOS_ORIENTATIONS';
 
 {/**
+ *  \brief  A variable controlling the use of a sentinel event when polling the event queue
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Disable poll sentinels
+ *    "1"       - Enable poll sentinels
+ *
+ *  When polling for events, SDL_PumpEvents is used to gather new events from devices.
+ *  If a device keeps producing new events between calls to SDL_PumpEvents, a poll loop will
+ *  become stuck until the new events stop.
+ *  This is most noticable when moving a high frequency mouse.
+ *
+ *  By default, poll sentinels are enabled.
+ */}
+SDL_HINT_POLL_SENTINEL = 'SDL_POLL_SENTINEL';
+
+{/**
  *  \brief Override for SDL_GetPreferredLocales()
  *
  *  If set, this will be favored over anything the OS might report for the
