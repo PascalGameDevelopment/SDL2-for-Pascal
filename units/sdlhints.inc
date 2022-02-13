@@ -263,6 +263,62 @@ SDL_HINT_RENDER_VSYNC = 'SDL_RENDER_VSYNC';
 SDL_HINT_VIDEO_ALLOW_SCREENSAVER = 'SDL_VIDEO_ALLOW_SCREENSAVER';
 
 {/**
+ * \brief Tell the video driver that we only want a double buffer.
+ *
+ * By default, most lowlevel 2D APIs will use a triple buffer scheme that
+ * wastes no CPU time on waiting for vsync after issuing a flip, but
+ * introduces a frame of latency. On the other hand, using a double buffer
+ * scheme instead is recommended for cases where low latency is an important
+ * factor because we save a whole frame of latency.
+ * We do so by waiting for vsync immediately after issuing a flip, usually just
+ * after eglSwapBuffers call in the backend's *_SwapWindow function.
+ *
+ * Since it's driver-specific, it's only supported where possible and
+ * implemented. Currently supported the following drivers:
+ *
+ * - KMSDRM (kmsdrm)
+ * - Raspberry Pi (raspberrypi)
+ */}
+SDL_HINT_VIDEO_DOUBLE_BUFFER = 'SDL_VIDEO_DOUBLE_BUFFER';
+
+{/**
+ * \brief A variable controlling whether the EGL window is allowed to be
+ * composited as transparent, rather than opaque.
+ *
+ * Most window systems will always render windows opaque, even if the surface
+ * format has an alpha channel. This is not always true, however, so by default
+ * SDL will try to enforce opaque composition. To override this behavior, you
+ * can set this hint to "1".
+ */}
+SDL_HINT_VIDEO_EGL_ALLOW_TRANSPARENCY = 'SDL_VIDEO_EGL_ALLOW_TRANSPARENCY';
+
+{/**
+ * \brief A variable controlling whether the graphics context is externally managed.
+ *
+ * This variable can be set to the following values:
+ *  "0"         - SDL will manage graphics contexts that are attached to windows.
+ *  "1"         - Disable graphics context management on windows.
+ *
+ * By default SDL will manage OpenGL contexts in certain situations. For example, on Android the
+ * context will be automatically saved and restored when pausing the application. Additionally, some
+ * platforms will assume usage of OpenGL if Vulkan isn't used. Setting this to "1" will prevent this
+ * behavior, which is desireable when the application manages the graphics context, such as
+ * an externally managed OpenGL context or attaching a Vulkan surface to the window.
+ */}
+SDL_HINT_VIDEO_EXTERNAL_CONTEXT = 'SDL_VIDEO_EXTERNAL_CONTEXT';
+
+{/**
+ *  \brief  A variable controlling whether the libdecor Wayland backend is allowed to be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - libdecor use is disabled.
+ *    "1"       - libdecor use is enabled (default).
+ *
+ *  libdecor is used over xdg-shell when xdg-decoration protocol is unavailable.
+ */}
+SDL_HINT_VIDEO_WAYLAND_ALLOW_LIBDECOR = 'SDL_VIDEO_WAYLAND_ALLOW_LIBDECOR';
+
+{/**
  *  \brief Specify an "activity name" for screensaver inhibition.
  *
  * Some platforms, notably Linux desktops, list the applications which are
