@@ -208,6 +208,26 @@ SDL_HINT_RENDER_VSYNC = 'SDL_RENDER_VSYNC';
 SDL_HINT_VIDEO_ALLOW_SCREENSAVER = 'SDL_VIDEO_ALLOW_SCREENSAVER';
 
 {/**
+ *  \brief Specify an "activity name" for screensaver inhibition.
+ *
+ * Some platforms, notably Linux desktops, list the applications which are
+ * inhibiting the screensaver or other power-saving features.
+ *
+ * This hint lets you specify the "activity name" sent to the OS when
+ * SDL_DisableScreenSaver() is used (or the screensaver is automatically
+ * disabled). The contents of this hint are used when the screensaver is
+ * disabled. You should use a string that describes what your program is doing
+ * (and, therefore, why the screensaver is disabled).  For example, "Playing a
+ * game" or "Watching a video".
+ *
+ * Setting this to "" or leaving it unset will have SDL use a reasonable
+ * default: "Playing a game" or something similar.
+ *
+ * On targets where this is not supported, this hint does nothing.
+ */}
+SDL_HINT_SCREENSAVER_INHIBIT_ACTIVITY_NAME = 'SDL_SCREENSAVER_INHIBIT_ACTIVITY_NAME';
+
+{/**
  * \brief A variable controlling whether X11 should use GLX or EGL by default
  *
  * This variable can be set to the following values:
