@@ -1300,6 +1300,17 @@ SDL_HINT_THREAD_PRIORITY_POLICY = 'SDL_THREAD_PRIORITY_POLICY';
 SDL_HINT_THREAD_STACK_SIZE = 'SDL_THREAD_STACK_SIZE';
 
 {/**
+ *  \brief  A variable controlling whether touch events should generate synthetic mouse events
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Touch events will not generate mouse events
+ *    "1"       - Touch events will generate mouse events
+ *
+ *  By default SDL will generate mouse events for touch events
+ */}
+SDL_HINT_TOUCH_MOUSE_EVENTS = 'SDL_TOUCH_MOUSE_EVENTS';
+
+{/**
  *  \brief If set to 1, then do not allow high-DPI windows. ("Retina" on Mac and iOS)
  */}
 SDL_HINT_VIDEO_HIGHDPI_DISABLED = 'SDL_VIDEO_HIGHDPI_DISABLED';
