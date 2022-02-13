@@ -1564,6 +1564,15 @@ SDL_HINT_ANDROID_APK_EXPANSION_PATCH_FILE_VERSION = 'SDL_ANDROID_APK_EXPANSION_P
 SDL_HINT_IME_INTERNAL_EDITING = 'SDL_IME_INTERNAL_EDITING';
 
 {/**
+ * \brief A variable to control whether certain IMEs should show native UI components (such as the Candidate List) instead of suppressing them.
+ *
+ * The variable can be set to the following values:
+ *   "0"       - Native UI components are not display. (default)
+ *   "1"       - Native UI components are displayed.
+ */}
+SDL_HINT_IME_SHOW_UI = 'SDL_IME_SHOW_UI';
+
+{/**
  * \brief A variable to control whether mouse and touch events are to be treated together or separately
  *
  * The variable can be set to the following values:
