@@ -1311,6 +1311,16 @@ SDL_HINT_THREAD_STACK_SIZE = 'SDL_THREAD_STACK_SIZE';
 SDL_HINT_TOUCH_MOUSE_EVENTS = 'SDL_TOUCH_MOUSE_EVENTS';
 
 {/**
+ *  \brief  A variable controlling whether the Android / tvOS remotes
+ *  should be listed as joystick devices, instead of sending keyboard events.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Remotes send enter/escape/arrow key events
+ *    "1"       - Remotes are available as 2 axis, 2 button joysticks (the default).
+ */}
+SDL_HINT_TV_REMOTE_AS_JOYSTICK = 'SDL_TV_REMOTE_AS_JOYSTICK';
+
+{/**
  *  \brief If set to 1, then do not allow high-DPI windows. ("Retina" on Mac and iOS)
  */}
 SDL_HINT_VIDEO_HIGHDPI_DISABLED = 'SDL_VIDEO_HIGHDPI_DISABLED';
