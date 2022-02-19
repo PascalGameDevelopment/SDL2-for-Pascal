@@ -53,6 +53,10 @@
   {$ENDIF}
 {$ELSE}
   {$MODE DELPHI}
+  {$IFDEF VER3_2}
+    {$WARN 6058 OFF} { Turn off compiler hint: Call to subroutine "..." marked as inline is not inlined
+                       See: https://forum.lazarus.freepascal.org/index.php?topic=50585.0 }
+  {$ENDIF}
 {$ENDIF}
 
 {$IFDEF LINUX}
