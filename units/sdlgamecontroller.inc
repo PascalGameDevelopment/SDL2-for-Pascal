@@ -42,11 +42,12 @@ type
    *  To count the number of game controllers in the system for the following:
    *  int nJoysticks = SDL_NumJoysticks();
    *  int nGameControllers = 0;
-   *  for ( int i = 0; i < nJoysticks; i++ ) {
-   *      if ( SDL_IsGameController(i) ) {
+   *  for ( int i = 0; i < nJoysticks; i++ ) [
+   *      if ( SDL_IsGameController(i) ) [
    *          nGameControllers++;
    *
-   *
+   *    !! Pascal Conv.: Changed curly to square brackets in above example code
+                         to prevent opening comment blocks!
    *
    *  Using the SDL_HINT_GAMECONTROLLERCONFIG hint or the SDL_GameControllerAddMapping you can add support for controllers SDL is unaware of or cause an existing controller to have a different binding. The format is:
    *  guid,name,mappings
