@@ -183,7 +183,7 @@ function SDL_LoadBMP(_file: PAnsiChar): PSDL_Surface;
  *}
 
 function SDL_SaveBMP_RW(surface: PSDL_Surface; dst: PSDL_RWops; freedst: cint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadBMP_RW' {$ENDIF} {$ENDIF};
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveBMP_RW' {$ENDIF} {$ENDIF};
 
   {**
    *  Save a surface to a file.
