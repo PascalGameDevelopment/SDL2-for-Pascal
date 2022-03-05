@@ -124,4 +124,9 @@ jobs:
         with:
           source: units/sdl2_ttf.pas
           verbosity: ewnh
+      - name: Test 1 - Compile Init Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testinit.pas
+          verbosity: ewnh
 
