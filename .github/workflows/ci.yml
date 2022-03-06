@@ -54,3 +54,6 @@ jobs:
         with:
           source: tests/testinit.pas
           verbosity: ewnh
+      - name: Test 1 - Run Init Test
+        run: |
+          ./tests/testinit
