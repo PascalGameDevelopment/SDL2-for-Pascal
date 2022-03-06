@@ -7,45 +7,6 @@ on:
     branches: [ master ]
 
 jobs:
-  macos-11:
-    runs-on: macos-11
-    steps:
-      - name: Install FPC
-        run: |
-          brew update
-          brew install fpc
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Compile SDL2 unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2.pas
-          verbosity: ewnh
-      - name: Compile SDL2_gfx unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_gfx.pas
-          verbosity: ewnh
-      - name: Compile SDL2_image unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_image.pas
-          verbosity: ewnh
-      - name: Compile SDL2_mixer unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_mixer.pas
-          verbosity: ewnh
-      - name: Compile SDL2_net unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_net.pas
-          verbosity: ewnh
-      - name: Compile SDL2_ttf unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_ttf.pas
-          verbosity: ewnh
   ubuntu-20-04:
     runs-on: ubuntu-20.04
     steps:
@@ -93,47 +54,3 @@ jobs:
         with:
           source: tests/testinit.pas
           verbosity: ewnh
-  windows-2022:
-    runs-on: windows-2022
-    steps:
-      - name: Install Lazarus
-        run: |
-          choco install lazarus
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Compile SDL2 unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2.pas
-          verbosity: ewnh
-      - name: Compile SDL2_gfx unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_gfx.pas
-          verbosity: ewnh
-      - name: Compile SDL2_image unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_image.pas
-          verbosity: ewnh
-      - name: Compile SDL2_mixer unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_mixer.pas
-          verbosity: ewnh
-      - name: Compile SDL2_net unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_net.pas
-          verbosity: ewnh
-      - name: Compile SDL2_ttf unit
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: units/sdl2_ttf.pas
-          verbosity: ewnh
-      - name: Test 1 - Compile Init Test
-        uses: suve/GHActions-FPC@v0.3.2
-        with:
-          source: tests/testinit.pas
-          verbosity: ewnh
-
