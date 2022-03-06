@@ -49,6 +49,7 @@ jobs:
         uses: suve/GHActions-FPC@v0.3.2
         with:
           source: tests/testinit.pas
+          flags: Flunits
           verbosity: ewnh
       - name: Test 1 - Run Init Test
         run: |
