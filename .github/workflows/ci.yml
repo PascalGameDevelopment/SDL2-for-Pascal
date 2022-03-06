@@ -86,6 +86,13 @@ jobs:
         with:
           source: units/sdl2_ttf.pas
           verbosity: ewnh
+      - name: Install SDL2 library
+        run: sudo apt-get install libsdl2-dev
+      - name: Test 1 - Compile Init Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testinit.pas
+          verbosity: ewnh
   windows-2022:
     runs-on: windows-2022
     steps:
