@@ -56,4 +56,6 @@ jobs:
           verbosity: ewnh
       - name: Test 1 - Run Init Test
         run: |
+          mkdir ~/tmp
+          export XDG_RUNTIME_DIR=~/tmp
           ./tests/testinit
