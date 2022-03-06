@@ -7,14 +7,12 @@ on:
     branches: [ master ]
 
 jobs:
-  ubuntu-20-04:
-    runs-on: ubuntu-20.04
+  windows-2022:
+    runs-on: windows-2022
     steps:
-      - name: Install FPC
+      - name: Install Lazarus
         run: |
-           export DEBIAN_FRONTEND=noninteractive
-           sudo apt update
-           sudo apt install fpc
+          choco install lazarus
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Compile SDL2 unit
@@ -47,8 +45,6 @@ jobs:
         with:
           source: units/sdl2_ttf.pas
           verbosity: ewnh
-      - name: Install SDL2 library
-        run: sudo apt-get install libsdl2-dev
       - name: Test 1 - Compile Init Test
         uses: suve/GHActions-FPC@v0.3.2
         with:
@@ -56,6 +52,4 @@ jobs:
           verbosity: ewnh
       - name: Test 1 - Run Init Test
         run: |
-          mkdir ~/tmp
-          export XDG_RUNTIME_DIR=~/tmp
-          ./tests/testinit
+          ./tests/testinit.exe
