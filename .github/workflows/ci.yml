@@ -54,3 +54,8 @@ jobs:
       - name: Test 1 - Run Init Test
         run: |
           ./tests/testinit.exe
+      #  !!! Since no SDL2.DLL is available via chocolatey, the run will fail.
+      #      TODO: Find solution.
+      #  - name: Test 1 - Run Init Test
+      #    run: |
+      #      ./tests/testinit.exe
