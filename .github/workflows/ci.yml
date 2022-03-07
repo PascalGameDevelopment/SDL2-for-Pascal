@@ -58,3 +58,6 @@ jobs:
           source: tests/testinit.pas
           flags: Fl/usr/local/lib
           verbosity: ewnh
+      - name: Test 1 - Run Init Test
+        run: |
+          ./tests/testinit
