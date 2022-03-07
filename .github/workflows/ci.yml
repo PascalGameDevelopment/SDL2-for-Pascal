@@ -48,10 +48,10 @@ jobs:
           verbosity: ewnh
       - name: Install SDL2 library
         run: brew install sdl2
-      - name: Check SDL2 library version
-        run: sdl2-config --version
-      - name: Get SDL2 library path
-        run: sdl2-config --libs
+      - name: Get SDL2 library version and path(s)
+        run: |
+          sdl2-config --version
+          sdl2-config --libs
       - name: Test 1 - Compile Init Test
         uses: suve/GHActions-FPC@v0.3.2
         with:
