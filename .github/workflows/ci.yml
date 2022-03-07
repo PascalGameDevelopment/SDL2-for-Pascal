@@ -56,6 +56,7 @@ jobs:
         uses: suve/GHActions-FPC@v0.3.2
         with:
           source: tests/testinit.pas
+          flags: Fl/usr/local/lib
           verbosity: ewnh
   macos-11-big-sur:
     runs-on: macos-11
@@ -106,4 +107,5 @@ jobs:
         uses: suve/GHActions-FPC@v0.3.2
         with:
           source: tests/testinit.pas
+          flags: Fl/usr/local/lib
           verbosity: ewnh
