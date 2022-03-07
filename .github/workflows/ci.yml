@@ -61,3 +61,104 @@ jobs:
       - name: Test 1 - Run Init Test
         run: |
           ./tests/testinit
+  ubuntu-20-04:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Install FPC
+        run: |
+           export DEBIAN_FRONTEND=noninteractive
+           sudo apt update
+           sudo apt install fpc
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Compile SDL2 unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2.pas
+          verbosity: ewnh
+      - name: Compile SDL2_gfx unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_gfx.pas
+          verbosity: ewnh
+      - name: Compile SDL2_image unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_image.pas
+          verbosity: ewnh
+      - name: Compile SDL2_mixer unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_mixer.pas
+          verbosity: ewnh
+      - name: Compile SDL2_net unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_net.pas
+          verbosity: ewnh
+      - name: Compile SDL2_ttf unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_ttf.pas
+          verbosity: ewnh
+      - name: Install SDL2 library
+        run: sudo apt-get install libsdl2-dev
+      - name: Test 1 - Compile Init Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testinit.pas
+          verbosity: ewnh
+      - name: Test 1 - Run Init Test
+        run: |
+          mkdir ~/tmp
+          export XDG_RUNTIME_DIR=~/tmp
+          ./tests/testinit
+  windows-2022:
+    runs-on: windows-2022
+    steps:
+      - name: Install Lazarus
+        run: |
+          choco install lazarus
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Compile SDL2 unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2.pas
+          verbosity: ewnh
+      - name: Compile SDL2_gfx unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_gfx.pas
+          verbosity: ewnh
+      - name: Compile SDL2_image unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_image.pas
+          verbosity: ewnh
+      - name: Compile SDL2_mixer unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_mixer.pas
+          verbosity: ewnh
+      - name: Compile SDL2_net unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_net.pas
+          verbosity: ewnh
+      - name: Compile SDL2_ttf unit
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: units/sdl2_ttf.pas
+          verbosity: ewnh
+      - name: Test 1 - Compile Init Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testinit.pas
+          flags: Flunits
+          verbosity: ewnh
+      #  !!! Since no SDL2.DLL is available via chocolatey, the run will fail.
+      #      TODO: Find solution to install SDL2 binary.
+      #  - name: Test 1 - Run Init Test
+      #    run: |
+      #      ./tests/testinit.exe
