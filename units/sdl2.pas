@@ -180,7 +180,7 @@ const
 {$I sdlclipboard.inc}
 {$I sdlcpuinfo.inc}
 {$I sdlfilesystem.inc}
-{$I sdllog.inc}
+{$I sdllog.inc}                  // 2.0.14
 {$I sdlsystem.inc}
 {$I sdl.inc}                     // 2.0.14
 
