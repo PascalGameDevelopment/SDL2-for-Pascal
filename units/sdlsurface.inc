@@ -28,6 +28,7 @@ type
     map: Pointer;
   end;
 
+  PPSDL_Surface = ^PSDL_Surface;
   PSDL_Surface = ^TSDL_Surface;
   TSDL_Surface = record
     flags: cuint32;              {**< Read-only *}
