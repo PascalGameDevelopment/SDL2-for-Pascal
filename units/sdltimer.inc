@@ -9,6 +9,17 @@ function SDL_GetTicks: cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the number of milliseconds since SDL library initialization.
+ *
+ * Note that you should not use the SDL_TICKS_PASSED macro with values
+ * returned by this function, as that macro does clever math to compensate for
+ * the 32-bit overflow every ~49 days that SDL_GetTicks() suffers from. 64-bit
+ * values from this function can be safely compared directly.
+ *}
+function SDL_GetTicks64: cuint64; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks64' {$ENDIF} {$ENDIF};
+
+{**
  * \brief Compare SDL ticks values, and return true if A has passed B
  *
  * e.g. if you want to wait 100 ms, you could do this:
