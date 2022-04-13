@@ -29,7 +29,45 @@ function SDL_AtomicLock(lock: PSDL_SpinLock): TSDL_bool; cdecl;
  * Unlock a spin lock by setting it to 0.
  *
  * Always returns immediately.
- *} 
+ *}
 procedure SDL_AtomicUnlock(lock: PSDL_SpinLock); cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicUnlock' {$ENDIF} {$ENDIF};
+
+type
+	PSDL_Atomic = ^TSDL_Atomic;
+	{**
+	 * A type representing an atomic integer value.  It is a record
+	 * so people don't accidentally use numeric operations on it.
+	 *}
+	TSDL_Atomic = record
+		Value: cint
+	end;
+
+{**
+ * Set an atomic variable to a new value if it is currently an old value.
+ *}
+function SDL_AtomicCAS(atomic: PSDL_Atomic; oldValue, newValue: cint): TSDL_bool; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicCAS' {$ENDIF} {$ENDIF};
+
+{**
+ * Set an atomic variable to a new value and return the old one.
+ *
+ * This function also acts as a full memory barrier.
+ *}
+function SDL_AtomicSet(atomic: PSDL_Atomic; value: cint): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicSet' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the value of an atomic variable.
+ *}
+function SDL_AtomicGet(atomic: PSDL_Atomic): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicGet' {$ENDIF} {$ENDIF};
+
+{**
+ * Add to an atomic variable, and return the old value.
+ *
+ * This function also acts as a full memory barrier.
+ *}
+function SDL_AtomicAdd(atomic: PSDL_Atomic; value: cint): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicAdd' {$ENDIF} {$ENDIF};
 
