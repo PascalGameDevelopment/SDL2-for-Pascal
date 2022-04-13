@@ -81,3 +81,21 @@ function SDL_AtomicIncRef(atomic: PSDL_Atomic): cint;
  *}
 function SDL_AtomicDecRef(atomic: PSDL_Atomic): TSDL_bool;
 
+{**
+ * Set a pointer to a new value if it is currently an old value.
+ *}
+function SDL_AtomicCASPtr(ptr: PPointer; oldValue, newValue: Pointer): TSDL_bool; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicCASPtr' {$ENDIF} {$ENDIF};
+
+{**
+ * Set a pointer to a new value atomically, and return the old value.
+ *}
+function SDL_AtomicSetPtr(ptr: PPointer; value: Pointer): Pointer; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicSetPtr' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the value of a pointer atomically.
+ *}
+function SDL_AtomicGetPtr(ptr: PPointer): Pointer; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicGetPtr' {$ENDIF} {$ENDIF};
+
