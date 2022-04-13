@@ -152,6 +152,7 @@ const
 {$I sdlplatform.inc}             // 2.0.14
 {$I sdlpower.inc}                // 2.0.14
 {$I sdlthread.inc}
+{$I sdlatomic.inc}               // 2.0.6  WIP
 {$I sdlmutex.inc}                // 2.0.14 WIP
 {$I sdltimer.inc}                // 2.0.14
 {$I sdlpixels.inc}               // 2.0.14 WIP
