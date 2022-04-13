@@ -6,7 +6,7 @@ type
 		// A language name, like 'en' for English.
 		language: PAnsiChar;
 		// A country, like 'US' for America. Can be NIL.
-		country: PAnsiChar
+		country: PAnsiChar;
 	end;
 
 {**
