@@ -21,57 +21,80 @@ function SDL_GetCPUCount(): cint; cdecl external SDL_LibName {$IFDEF DELPHI} {$I
 function SDL_GetCPUCacheLineSize(): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCPUCacheLineSize' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has the RDTSC instruction.
+ * This function returns true if the CPU has the RDTSC instruction.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasRDTSC(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasRDTSC' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has AltiVec features.
+ * This function returns true if the CPU has AltiVec features.
+ * 
+ * This always returns false on CPUs that aren't using PowerPC
+ * instruction sets.
  *}
 function SDL_HasAltiVec(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAltiVec' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has MMX features.
+ * This function returns true if the CPU has MMX features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasMMX(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasMMX' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has 3DNow! features.
+ * This function returns true if the CPU has 3DNow! features.
+ *
+ * This always returns false on CPUs that aren't using AMD instruction sets.
  *}
 function SDL_Has3DNow(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Has3DNow' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has SSE features.
+ * This function returns true if the CPU has SSE features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasSSE(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE' {$ENDIF} {$ENDIF};
 
 {**
  *  This function returns true if the CPU has SSE2 features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasSSE2(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE2' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has SSE3 features.
+ * This function returns true if the CPU has SSE3 features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasSSE3(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE3' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has SSE4.1 features.
+ * This function returns true if the CPU has SSE4.1 features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasSSE41(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE41' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has SSE4.2 features.
+ * This function returns true if the CPU has SSE4.2 features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasSSE42(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE42' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has AVX features.
+ * This function returns true if the CPU has AVX features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasAVX(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAVX' {$ENDIF} {$ENDIF};
 
 {**
- *  This function returns true if the CPU has AVX2 features.
+ * This function returns true if the CPU has AVX2 features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
  *}
 function SDL_HasAVX2(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAVX2' {$ENDIF} {$ENDIF};
 
