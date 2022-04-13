@@ -53,6 +53,11 @@ const
    * Called on Android in onResume()               *}
   SDL_APP_DIDENTERFOREGROUND = TSDL_EventType($106); 
 
+  {* The user's locale preferences have changed. *}
+  SDL_LOCALECHANGED    = TSDL_EventType($107);
+
+  { Display events }
+  SDL_DISPLAYEVENT     = TSDL_EventType($150);  // Display state change
 
   { Window events }
   SDL_WINDOWEVENT      = TSDL_EventType($200);  // Window state change

@@ -180,6 +180,7 @@ const
 {$I sdlsensor.inc}
 {$I sdlsyswm.inc}
 {$I sdlevents.inc}
+{$I sdllocale.inc}               // 2.0.14
 {$I sdlclipboard.inc}
 {$I sdlcpuinfo.inc}
 {$I sdlfilesystem.inc}
