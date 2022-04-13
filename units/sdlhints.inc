@@ -1839,7 +1839,7 @@ const
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-function SDL_SetHintWithPriority(const name: PChar; const value: PChar; priority: TSDL_HintPriority) : boolean; cdecl;
+function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority) : boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHintWithPriority' {$ENDIF} {$ENDIF};
 
 {/**
@@ -1847,7 +1847,7 @@ function SDL_SetHintWithPriority(const name: PChar; const value: PChar; priority
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-function SDL_SetHint(const name: PChar; const value: PChar): boolean; cdecl;
+function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHint' {$ENDIF} {$ENDIF};
 
 {/**
@@ -1855,7 +1855,7 @@ function SDL_SetHint(const name: PChar; const value: PChar): boolean; cdecl;
  *
  *  \return The string value of a hint variable.
  */}
-function SDL_GetHint(const name: PChar): PChar; cdecl;
+function SDL_GetHint(const name: PAnsiChar): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetHint' {$ENDIF} {$ENDIF};
 
 {/**
@@ -1863,7 +1863,7 @@ function SDL_GetHint(const name: PChar): PChar; cdecl;
  *
  *  \return The boolean value of a hint variable.
  */}
-function SDL_GetHintBoolean(const name: PChar; default_value: boolean): boolean; cdecl;
+function SDL_GetHintBoolean(const name: PAnsiChar; default_value: boolean): boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetHintBoolean' {$ENDIF} {$ENDIF};
 
 {/**
@@ -1874,9 +1874,9 @@ function SDL_GetHintBoolean(const name: PChar; default_value: boolean): boolean;
  *  \param userdata A pointer to pass to the callback function
  */}
 type
-  TSDL_HintCallback = procedure(userdata: Pointer; const name: PChar; const oldValue: PChar; const newValue: PChar);
+  TSDL_HintCallback = procedure(userdata: Pointer; const name: PAnsiChar; const oldValue: PAnsiChar; const newValue: PAnsiChar);
 
-procedure SDL_AddHintCallback(const name: PChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
+procedure SDL_AddHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddHintCallback' {$ENDIF} {$ENDIF};
 
 {/**
@@ -1886,7 +1886,7 @@ procedure SDL_AddHintCallback(const name: PChar; callback: TSDL_HintCallback; us
  *  \param callback The function being called when the hint value changes
  *  \param userdata A pointer being passed to the callback function
  */}
-procedure SDL_DelHintCallback(const name: PChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
+procedure SDL_DelHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DelHintCallback' {$ENDIF} {$ENDIF};
 
 {/**
