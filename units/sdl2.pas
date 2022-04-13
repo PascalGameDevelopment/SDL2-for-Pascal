@@ -178,7 +178,7 @@ const
 {$I sdlsyswm.inc}
 {$I sdlevents.inc}
 {$I sdlclipboard.inc}
-{$I sdlcpuinfo.inc}
+{$I sdlcpuinfo.inc}              // 2.0.14
 {$I sdlfilesystem.inc}
 {$I sdllog.inc}                  // 2.0.14
 {$I sdlsystem.inc}
