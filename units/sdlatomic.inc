@@ -71,3 +71,13 @@ function SDL_AtomicGet(atomic: PSDL_Atomic): cint; cdecl;
 function SDL_AtomicAdd(atomic: PSDL_Atomic; value: cint): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicAdd' {$ENDIF} {$ENDIF};
 
+{**
+ * Increment an atomic variable used as a reference count.
+ *}
+function SDL_AtomicIncRef(atomic: PSDL_Atomic): cint;
+{**
+ * Decrement an atomic variable used as a reference count
+ * and check if it reached zero after decrementing.
+ *}
+function SDL_AtomicDecRef(atomic: PSDL_Atomic): TSDL_bool;
+

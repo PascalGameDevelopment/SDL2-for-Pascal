@@ -247,6 +247,20 @@ begin
   Result := (a^.x = b^.x) and (a^.y = b^.y) and (a^.w = b^.w) and (a^.h = b^.h);
 end;
 
+//from "sdl_atomic.h"
+function SDL_AtomicIncRef(atomic: PSDL_Atomic): cint;
+begin
+  Result := SDL_AtomicAdd(atomic, 1)
+end;
+
+function SDL_AtomicDecRef(atomic: PSDL_Atomic): TSDL_bool;
+begin
+  If SDL_AtomicAdd(atomic, -1) = 1 then
+    Result := SDL_TRUE
+  else
+    Result := SDL_FALSE
+end;
+
 //from "sdl_audio.h"
 
 function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): PSDL_AudioSpec;
