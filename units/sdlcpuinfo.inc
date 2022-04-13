@@ -76,6 +76,28 @@ function SDL_HasAVX(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$I
 function SDL_HasAVX2(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAVX2' {$ENDIF} {$ENDIF};
 
 {**
+ * Determine whether the CPU has AVX-512F (foundation) features.
+ *
+ * This always returns false on CPUs that aren't using Intel instruction sets.
+ *}
+function SDL_HasAVX512F(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAVX512F' {$ENDIF} {$ENDIF};
+
+{**
+ * Determine whether the CPU has ARM SIMD (ARMv6) features.
+ * This is different from ARM NEON, which is a different instruction set.
+ *
+ * This always returns false on CPUs that aren't using ARM instruction sets.
+ *}
+function SDL_HasARMSIMD(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasARMSIMD' {$ENDIF} {$ENDIF};
+
+{**
+ * Determine whether the CPU has NEON (ARM SIMD) features.
+ *
+ * This always returns false on CPUs that aren't using ARM instruction sets.
+ *}
+function SDL_HasNEON(): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasNEON' {$ENDIF} {$ENDIF};
+
+{**
  *  This function returns the amount of RAM configured in the system, in MB.
  *}
 function SDL_GetSystemRAM(): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSystemRAM' {$ENDIF} {$ENDIF};
