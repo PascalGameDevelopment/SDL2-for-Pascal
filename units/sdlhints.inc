@@ -1819,12 +1819,16 @@ SDL_HINT_RETURN_KEY_HIDES_IME = 'SDL_RETURN_KEY_HIDES_IME';
  */}
 SDL_HINT_RPI_VIDEO_LAYER = 'SDL_RPI_VIDEO_LAYER';
 
-type
-
 {/**
  *  \brief  An enumeration of hint priorities
  */}
-SDL_HintPriority = (SDL_HINT_DEFAULT, SDL_HINT_NORMAL, SDL_HINT_OVERRIDE);
+type
+  TSDL_HintPriority = type Integer;
+
+const
+  SDL_HINT_DEFAULT   = TSDL_HintPriority(0);
+  SDL_HINT_NORMAL    = TSDL_HintPriority(1);
+  SDL_HINT_OVERRIDE  = TSDL_HintPriority(2);
 
 {/**
  *  \brief Set a hint with a specific priority
@@ -1835,7 +1839,7 @@ SDL_HintPriority = (SDL_HINT_DEFAULT, SDL_HINT_NORMAL, SDL_HINT_OVERRIDE);
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-function SDL_SetHintWithPriority(const name: PChar; const value: PChar; priority: SDL_HintPriority) : boolean; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHintWithPriority' {$ENDIF} {$ENDIF};
+function SDL_SetHintWithPriority(const name: PChar; const value: PChar; priority: TSDL_HintPriority) : boolean; cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHintWithPriority' {$ENDIF} {$ENDIF};
 
 {/**
  *  \brief Set a hint with normal priority
