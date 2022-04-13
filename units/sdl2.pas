@@ -152,7 +152,7 @@ const
 {$I sdlplatform.inc}             // 2.0.14
 {$I sdlpower.inc}                // 2.0.14
 {$I sdlthread.inc}
-{$I sdlatomic.inc}               // 2.0.6  WIP
+{$I sdlatomic.inc}               // 2.0.6, missing SDL_CompilerBarrier()
 {$I sdlmutex.inc}                // 2.0.14 WIP
 {$I sdltimer.inc}                // 2.0.14
 {$I sdlpixels.inc}               // 2.0.14 WIP
@@ -253,12 +253,9 @@ begin
   Result := SDL_AtomicAdd(atomic, 1)
 end;
 
-function SDL_AtomicDecRef(atomic: PSDL_Atomic): TSDL_bool;
+function SDL_AtomicDecRef(atomic: PSDL_Atomic): Boolean;
 begin
-  If SDL_AtomicAdd(atomic, -1) = 1 then
-    Result := SDL_TRUE
-  else
-    Result := SDL_FALSE
+  Result := SDL_AtomicAdd(atomic, -1) = 1
 end;
 
 //from "sdl_audio.h"

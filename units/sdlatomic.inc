@@ -79,7 +79,7 @@ function SDL_AtomicIncRef(atomic: PSDL_Atomic): cint;
  * Decrement an atomic variable used as a reference count
  * and check if it reached zero after decrementing.
  *}
-function SDL_AtomicDecRef(atomic: PSDL_Atomic): TSDL_bool;
+function SDL_AtomicDecRef(atomic: PSDL_Atomic): Boolean;
 
 {**
  * Set a pointer to a new value if it is currently an old value.
