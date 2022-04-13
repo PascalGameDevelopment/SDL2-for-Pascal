@@ -182,7 +182,7 @@ const
 {$I sdlevents.inc}
 {$I sdllocale.inc}               // 2.0.14
 {$I sdlclipboard.inc}
-{$I sdlcpuinfo.inc}
+{$I sdlcpuinfo.inc}              // 2.0.14
 {$I sdlfilesystem.inc}
 {$I sdllog.inc}                  // 2.0.14
 {$I sdlmisc.inc}                 // 2.0.14
