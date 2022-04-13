@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  macos-11:
+  macos-11-big-sur:
     runs-on: macos-11
     steps:
       - name: Install FPC
@@ -46,6 +46,21 @@ jobs:
         with:
           source: units/sdl2_ttf.pas
           verbosity: ewnh
+      - name: Install SDL2 library
+        run: brew install sdl2
+      - name: Get SDL2 library version and path(s)
+        run: |
+          sdl2-config --version
+          sdl2-config --libs
+      - name: Test 1 - Compile Init Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testinit.pas
+          flags: Fl/usr/local/lib
+          verbosity: ewnh
+      - name: Test 1 - Run Init Test
+        run: |
+          ./tests/testinit
   ubuntu-20-04:
     runs-on: ubuntu-20.04
     steps:
@@ -86,6 +101,18 @@ jobs:
         with:
           source: units/sdl2_ttf.pas
           verbosity: ewnh
+      - name: Install SDL2 library
+        run: sudo apt-get install libsdl2-dev
+      - name: Test 1 - Compile Init Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testinit.pas
+          verbosity: ewnh
+      - name: Test 1 - Run Init Test
+        run: |
+          mkdir ~/tmp
+          export XDG_RUNTIME_DIR=~/tmp
+          ./tests/testinit
   windows-2022:
     runs-on: windows-2022
     steps:
@@ -124,4 +151,14 @@ jobs:
         with:
           source: units/sdl2_ttf.pas
           verbosity: ewnh
-
+      - name: Test 1 - Compile Init Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testinit.pas
+          flags: Flunits
+          verbosity: ewnh
+      #  !!! Since no SDL2.DLL is available via chocolatey, the run will fail.
+      #      TODO: Find solution to install SDL2 binary.
+      #  - name: Test 1 - Run Init Test
+      #    run: |
+      #      ./tests/testinit.exe
