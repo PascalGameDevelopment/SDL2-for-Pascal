@@ -168,7 +168,7 @@ const
 {$I sdlhints.inc}                // 2.0.20
 {$I sdlloadso.inc}
 {$I sdlmessagebox.inc}           // 2.0.14
-{$I sdlrenderer.inc}
+{$I sdlrenderer.inc}             // 2.0.22
 {$I sdlscancode.inc}
 {$I sdlkeyboard.inc}
 {$I sdlmouse.inc}
