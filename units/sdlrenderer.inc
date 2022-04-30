@@ -29,6 +29,19 @@ type
     max_texture_height: cint32;              {**< The maximimum texture height *}
   end;
 
+  PSDL_Vertex = ^TSDL_Vertex;
+  TSDL_Vertex = record
+    position: TSDL_FPoint;
+    color: TSDL_Color;
+    tex_coord: TSDL_FPoint;
+  end;
+
+  TSDL_ScaleMode = (
+    SDL_ScaleModeNearest,
+    SDL_ScaleModeLinear,
+    SDL_ScaleModeBest
+  );
+
   {**
    *  The access pattern allowed for a texture.
    *}
