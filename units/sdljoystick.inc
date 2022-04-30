@@ -466,7 +466,7 @@ function SDL_JoystickRumble(joystick: PSDL_Joystick; low_frequency_rumble: cuint
  *
  *  \return 0, or -1 if trigger rumble isn't supported on this joystick
  *}
-function SDL_JoystickRumbleTriggerse(joystick: PSDL_Joystick; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): cint32; cdecl;
+function SDL_JoystickRumbleTriggers(joystick: PSDL_Joystick; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickRumbleTriggers' {$ENDIF} {$ENDIF};
 
 {**
