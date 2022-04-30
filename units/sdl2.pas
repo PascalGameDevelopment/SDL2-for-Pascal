@@ -258,6 +258,20 @@ begin
   Result := SDL_AtomicAdd(atomic, -1) = 1
 end;
 
+procedure SDL_CompilerBarrier();
+{$IFDEF FPC}
+begin
+  ReadWriteBarrier()
+{$ELSE}
+var
+  lock: TSDL_SpinLock;
+begin
+  lock := 0;
+  SDL_AtomicLock(@lock);
+  SDL_AtomicUnlock(@lock)
+{$ENDIF}
+end;
+
 //from "sdl_audio.h"
 
 function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): PSDL_AudioSpec;

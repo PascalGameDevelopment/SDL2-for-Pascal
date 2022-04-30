@@ -33,6 +33,12 @@ function SDL_AtomicLock(lock: PSDL_SpinLock): TSDL_bool; cdecl;
 procedure SDL_AtomicUnlock(lock: PSDL_SpinLock); cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AtomicUnlock' {$ENDIF} {$ENDIF};
 
+{**
+ * The compiler barrier prevents the compiler from reordering
+ * reads and writes to globally visible variables across the call.
+ *}
+procedure SDL_CompilerBarrier();
+
 type
 	PSDL_Atomic = ^TSDL_Atomic;
 	{**
