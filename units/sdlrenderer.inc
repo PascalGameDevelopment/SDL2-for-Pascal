@@ -1013,6 +1013,12 @@ function SDL_GL_BindTexture(texture: PSDL_Texture; texw: pcfloat; texh: pcfloat)
    *}
 function SDL_GL_UnbindTexture(texture: PSDL_Texture): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_UnbindTexture' {$ENDIF} {$ENDIF};
 
+{**
+ * Toggle VSync of the given renderer.
+ *}
+function SDL_RenderSetVSync(renderer: PSDL_Renderer; vsync: cint): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderSetVSync' {$ENDIF} {$ENDIF};
+
   {**
    *  Update a rectangle within a planar YV12 or IYUV texture with new pixel data.
    *
