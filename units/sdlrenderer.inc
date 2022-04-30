@@ -574,6 +574,22 @@ function SDL_RenderSetScale(renderer: PSDL_Renderer; scaleX: cfloat; scaleY: cfl
    *}
 procedure SDL_RenderGetScale(renderer: PSDL_Renderer; scaleX: pcfloat; scaleY: pcfloat) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetScale' {$ENDIF} {$ENDIF};
 
+{**
+ * Get logical coordinates of point in renderer when given real coordinates of
+ * point in window. Logical coordinates will differ from real coordinates when
+ * render is scaled and logical renderer size set.
+ *}
+procedure SDL_RenderWindowToLogical(renderer: PSDL_Renderer; windowX, windowY: cint; logicalX, logicalY: PSingle); cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderWindowToLogical' {$ENDIF} {$ENDIF};
+
+{**
+ * Get real coordinates of point in window when given logical coordinates of
+ * point in renderer. Logical coordinates will differ from real coordinate
+ * when render is scaled and logical renderer size set.
+ *}
+procedure SDL_RenderLogicalToWindow(renderer: PSDL_Renderer; logicalX, logicalY: Single; windowX, windowY: Pcint); cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderLogicalToWindow' {$ENDIF} {$ENDIF};
+
   {**
    *  Set the color used for drawing operations (Rect, Line and Clear).
    *
