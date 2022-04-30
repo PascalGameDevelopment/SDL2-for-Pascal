@@ -962,3 +962,18 @@ function SDL_GL_UnbindTexture(texture: PSDL_Texture): cint32 cdecl; external SDL
    *}
 function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: pcuint8; Ypitch: cint32; Uplane: pcuint8; UPitch: cint32; Vplane: pcuint8; VPitch: cint32):cint32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateYUVTexture' {$ENDIF} {$ENDIF};
+
+{**
+ * Update a rectangle within a planar NV12 or NV21 texture with new pixels.
+ *
+ * You can use SDL_UpdateTexture() as long as your pixel data is a contiguous
+ * block of NV12/21 planes in the proper order, but this function is available
+ * if your pixel data is not contiguous.
+ *}
+function SDL_UpdateNVTexture(
+	texture: PSDL_Texture;
+	Const rect: PSDL_Rect;
+	Const Yplane: Pcuint8; Ypitch: cint;
+	Const UVplane: Pcuint8; UVpitch: cint
+): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateNVTexture' {$ENDIF} {$ENDIF};
