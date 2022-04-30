@@ -899,6 +899,35 @@ function SDL_RenderCopyEx(renderer: PSDL_Renderer; texture: PSDL_Texture; const 
 function SDL_RenderCopyExF(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: Double; center: PSDL_FPoint; flip: cint): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCopyExF' {$ENDIF} {$ENDIF};
 
+{**
+ * Render a list of triangles, optionally using a texture and indices into the
+ * vertex array. Color and alpha modulation is done per vertex.
+ * SDL_SetTextureColorMod and SDL_SetTextureAlphaMod are ignored.
+ *}
+function SDL_RenderGeometry(
+	renderer: PSDL_Renderer;
+	texture: PSDL_Texture;
+	Const vertices: PSDL_Vertex; num_vertices: cint;
+	Const indices: Pcint; num_indices: cint
+): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGeometry' {$ENDIF} {$ENDIF};
+
+{**
+ * Render a list of triangles, optionally using a texture and indices into the
+ * vertex arrays. Color and alpha modulation is done per vertex.
+ * SDL_SetTextureColorMod and SDL_SetTextureAlphaMod are ignored.
+ *}
+function SDL_RenderGeometryRaw(
+	renderer: PSDL_Renderer;
+	texture: PSDL_Texture;
+	Const xy: PSingle; xy_stride: cint;
+	Const color: PSDL_Color; color_stride: cint;
+	Const uv: PSingle; uv_stride: cint;
+	num_vertices: cint;
+	Const indices: Pointer; num_indices, size_indices: cint
+): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGeometryRaw' {$ENDIF} {$ENDIF};
+
   {**
    *  Read pixels from the current rendering target.
    *
