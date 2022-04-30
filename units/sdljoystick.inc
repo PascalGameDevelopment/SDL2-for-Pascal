@@ -476,7 +476,7 @@ function SDL_JoystickRumbleTriggers(joystick: PSDL_Joystick; left_rumble: cuint1
  *
  *  \return SDL_TRUE, or SDL_FALSE if this joystick does not have a modifiable LED
  *}
-function SDL_JoystickHasLED(joystick: PSDL_Joystick; button: cint32): TSDL_Bool; cdecl;
+function SDL_JoystickHasLED(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickHasLED' {$ENDIF} {$ENDIF};
 
 {**
