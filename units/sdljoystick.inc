@@ -442,6 +442,16 @@ function SDL_JoystickGetButton(joystick: PSDL_Joystick; button: cint32): cuint8;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickGetButton' {$ENDIF} {$ENDIF};
 
 {**
+  * Query whether a joystick has rumble support.
+  *
+  * \param joystick The joystick to query
+  *
+  * \return SDL_TRUE if the joystick has rumble, SDL_FALSE otherwise.
+ *}
+function SDL_JoystickHasRumble(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickHasRumble' {$ENDIF} {$ENDIF};
+
+{**
  *  Start a rumble effect
  *  Each call to this function cancels any previous rumble effect, and calling it with 0 intensity stops any rumbling.
  *
@@ -454,6 +464,16 @@ function SDL_JoystickGetButton(joystick: PSDL_Joystick; button: cint32): cuint8;
  *}
 function SDL_JoystickRumble(joystick: PSDL_Joystick; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): cint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickRumble' {$ENDIF} {$ENDIF};
+
+{**
+  * Query whether a joystick has rumble support on triggers.
+  *
+  * \param joystick The joystick to query
+  *
+  * \return SDL_TRUE if the joystick has trigger rumble, SDL_FALSE otherwise.
+ *}
+function SDL_JoystickHasRumbleTriggers(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickHasRumbleTriggers' {$ENDIF} {$ENDIF};
 
 {**
  *  Start a rumble effect in the joystick's triggers
