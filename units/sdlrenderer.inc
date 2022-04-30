@@ -36,6 +36,7 @@ type
     tex_coord: TSDL_FPoint;
   end;
 
+  PSDL_ScaleMode = ^TSDL_ScaleMode;
   TSDL_ScaleMode = (
     SDL_ScaleModeNearest,
     SDL_ScaleModeLinear,
@@ -311,6 +312,19 @@ function SDL_SetTextureBlendMode(texture: PSDL_Texture; blendMode: TSDL_BlendMod
    *   SDL_SetTextureBlendMode()
    *}
 function SDL_GetTextureBlendMode(texture: PSDL_Texture; blendMode: PSDL_BlendMode): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureBlendMode' {$ENDIF} {$ENDIF};
+
+{**
+ * Set the scale mode used for texture scale operations.
+ * If the scale mode is not supported, the closest supported mode is chosen.
+ *}
+function SDL_SetTextureScaleMode(texture: PSDL_Texture; scaleMode: TSDL_ScaleMode): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureScaleMode' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the scale mode used for texture scale operations.
+ *}
+function SDL_GetTextureScaleMode(texture: PSDL_Texture; scaleMode: PSDL_ScaleMode): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureScaleMode' {$ENDIF} {$ENDIF};
 
   {**
    *  Update the given texture rectangle with new pixel data.
