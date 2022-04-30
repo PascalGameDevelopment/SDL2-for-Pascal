@@ -326,6 +326,18 @@ function SDL_SetTextureScaleMode(texture: PSDL_Texture; scaleMode: TSDL_ScaleMod
 function SDL_GetTextureScaleMode(texture: PSDL_Texture; scaleMode: PSDL_ScaleMode): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureScaleMode' {$ENDIF} {$ENDIF};
 
+{**
+ * Associate a user-specified pointer with a texture.
+ *}
+function SDL_SetTextureUserData(texture: PSDL_Texture; userdata: Pointer): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureUserData' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the user-specified pointer associated with a texture.
+ *}
+function SDL_GetTextureUserData(texture: PSDL_Texture): Pointer; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureUserData' {$ENDIF} {$ENDIF};
+
   {**
    *  Update the given texture rectangle with new pixel data.
    *
