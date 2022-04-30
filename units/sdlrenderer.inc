@@ -165,6 +165,12 @@ function SDL_CreateSoftwareRenderer(surface: PSDL_Surface): PSDL_Renderer cdecl;
    *}
 function SDL_GetRenderer(window: PSDL_Window): PSDL_Renderer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderer' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the window associated with a renderer.
+ *}
+function SDL_RenderGetWindow(renderer: PSDL_Renderer): PSDL_Window; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetWindow' {$ENDIF} {$ENDIF};
+
   {**
    *  Get information about a rendering context.
    *}
