@@ -1019,6 +1019,30 @@ function SDL_GL_BindTexture(texture: PSDL_Texture; texw: pcfloat; texh: pcfloat)
 function SDL_GL_UnbindTexture(texture: PSDL_Texture): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_UnbindTexture' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the CAMetalLayer associated with the given Metal renderer.
+ *
+ * This function returns a raw Pointer, so SDL doesn't have to include Metal's headers,
+ * but it can be safely cast to a pointer to `CAMetalLayer`.
+ *
+ *}
+function SDL_RenderGetMetalLayer(renderer: PSDL_Renderer): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetMetalLayer' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the Metal command encoder for the current frame
+ *
+ * This function returns a raw Pointer, so SDL doesn't have to include Metal's headers,
+ * but it can be safely cast to an `id<MTLRenderCommandEncoder>`.
+ *
+ * Note that as of SDL 2.0.18, this will return NULL if Metal refuses to give
+ * SDL a drawable to render to, which might happen if the window is
+ * hidden/minimized/offscreen. This doesn't apply to command encoders for
+ * render targets, just the window's backbacker. Check your return values!
+ *}
+function SDL_RenderGetMetalCommandEncoder(renderer: PSDL_Renderer): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetMetalCommandEncoder' {$ENDIF} {$ENDIF};
+
+{**
  * Toggle VSync of the given renderer.
  *}
 function SDL_RenderSetVSync(renderer: PSDL_Renderer; vsync: cint): cint; cdecl;
