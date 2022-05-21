@@ -1494,6 +1494,18 @@ SDL_HINT_THREAD_STACK_SIZE = 'SDL_THREAD_STACK_SIZE';
  */}
 SDL_HINT_TOUCH_MOUSE_EVENTS = 'SDL_TOUCH_MOUSE_EVENTS';
 
+{**
+ *  \brief  A variable controlling which touchpad should generate synthetic mouse events
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Only front touchpad should generate mouse events. Default
+ *    "1"       - Only back touchpad should generate mouse events.
+ *    "2"       - Both touchpads should generate mouse events.
+ *
+ *  By default SDL will generate mouse events for all touch devices
+ *}
+SDL_HINT_VITA_TOUCH_MOUSE_DEVICE = 'SDL_HINT_VITA_TOUCH_MOUSE_DEVICE';
+
 {/**
  *  \brief  A variable controlling whether the Android / tvOS remotes
  *  should be listed as joystick devices, instead of sending keyboard events.
