@@ -15,7 +15,7 @@
 {* The gamecontroller structure used to identify an SDL game controller *}
 type
   PSDL_GameController = ^TSDL_GameController;
-  TSDL_GameController = Pointer; //todo
+  TSDL_GameController = record end;
 
   TSDL_GameControllerBindType = (SDL_CONTROLLER_BINDTYPE_NONE,
                                  SDL_CONTROLLER_BINDTYPE_BUTTON,
