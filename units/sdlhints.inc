@@ -1492,6 +1492,28 @@ SDL_HINT_VIDEO_WIN_D3DCOMPILER = 'SDL_VIDEO_WIN_D3DCOMPILER';
  */}
 SDL_HINT_VIDEO_WINDOW_SHARE_PIXEL_FORMAT = 'SDL_VIDEO_WINDOW_SHARE_PIXEL_FORMAT';
 
+{**
+ *  \brief  When calling SDL_CreateWindowFrom(), make the window compatible with OpenGL.
+ *
+ * This variable can be set to the following values:
+ * "0" - Don't add any graphics flags to the SDL_WindowFlags
+ * "1" - Add SDL_WINDOW_OPENGL to the SDL_WindowFlags
+ *
+ * By default SDL will not make the foreign window compatible with OpenGL.
+ *}
+SDL_HINT_VIDEO_FOREIGN_WINDOW_OPENGL = 'SDL_VIDEO_FOREIGN_WINDOW_OPENGL';
+
+{**
+ *  \brief  When calling SDL_CreateWindowFrom(), make the window compatible with Vulkan.
+ *
+ * This variable can be set to the following values:
+ * "0" - Don't add any graphics flags to the SDL_WindowFlags
+ * "1" - Add SDL_WINDOW_VULKAN to the SDL_WindowFlags
+ *
+ * By default SDL will not make the foreign window compatible with Vulkan.
+ *}
+SDL_HINT_VIDEO_FOREIGN_WINDOW_VULKAN = 'SDL_VIDEO_FOREIGN_WINDOW_VULKAN';
+
 {/**
  *  \brief A URL to a WinRT app's privacy policy
  *
