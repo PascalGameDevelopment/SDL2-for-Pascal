@@ -36,19 +36,23 @@ type
     tex_coord: TSDL_FPoint;
   end;
 
+{**
+ * The scaling mode for a texture.
+ *}
   PSDL_ScaleMode = ^TSDL_ScaleMode;
-  TSDL_ScaleMode = (
-    SDL_ScaleModeNearest,
-    SDL_ScaleModeLinear,
-    SDL_ScaleModeBest
-  );
+  TSDL_ScaleMode = type cint;
+
+const
+  SDL_ScaleModeNearest = TSDL_ScaleMode(0); {**< nearest pixel sampling *}
+  SDL_ScaleModeLinear  = TSDL_ScaleMode(1); {**< linear filtering *}
+  SDL_ScaleModeBest    = TSDL_ScaleMode(2); {**< anisotropic filtering *}
 
   {**
    *  The access pattern allowed for a texture.
    *}
 type
   PSDL_TextureAccess = ^TSDL_TextureAccess;
-  TSDL_TextureAccess = cint32;
+  TSDL_TextureAccess = type cint;
 
 const
   SDL_TEXTUREACCESS_STATIC    = 0; {**< Changes rarely, not lockable *}
@@ -60,11 +64,12 @@ type
    *  The texture channel modulation used in SDL_RenderCopy().
    *}
   PSDL_TextureModulate = ^TSDL_TextureModulate;
-  TSDL_TextureModulate = (
-                          SDL_TEXTUREMODULATE_NONE,     {**< No modulation *}
-                          SDL_TEXTUREMODULATE_COLOR,    {**< srcC = srcC * color *}
-                          SDL_TEXTUREMODULATE_ALPHA     {**< srcA = srcA * alpha *}
-                          );
+  TSDL_TextureModulate = type cint;
+
+const
+  SDL_TEXTUREMODULATE_NONE  = TSDL_TextureModulate(0); {**< No modulation *}
+  SDL_TEXTUREMODULATE_COLOR = TSDL_TextureModulate(1); {**< srcC = srcC * color *}
+  SDL_TEXTUREMODULATE_ALPHA = TSDL_TextureModulate(2); {**< srcA = srcA * alpha *}
 
   {**
    *  Flip constants for SDL_RenderCopyEx
