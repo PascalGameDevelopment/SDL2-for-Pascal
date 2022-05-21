@@ -1929,6 +1929,52 @@ SDL_HINT_RETURN_KEY_HIDES_IME = 'SDL_RETURN_KEY_HIDES_IME';
  */}
 SDL_HINT_RPI_VIDEO_LAYER = 'SDL_RPI_VIDEO_LAYER';
 
+{**
+ *  \brief  A variable that decides what audio backend to use.
+ *
+ *  By default, SDL will try all available audio backends in a reasonable
+ *  order until it finds one that can work, but this hint allows the app
+ *  or user to force a specific target, such as "alsa" if, say, you are
+ *  on PulseAudio but want to try talking to the lower level instead.
+ *
+ *  This functionality has existed since SDL 2.0.0 (indeed, before that)
+ *  but before 2.0.22 this was an environment variable only. In 2.0.22,
+ *  it was upgraded to a full SDL hint, so you can set the environment
+ *  variable as usual or programatically set the hint with SDL_SetHint,
+ *  which won't propagate to child processes.
+ *
+ *  The default value is unset, in which case SDL will try to figure out
+ *  the best audio backend on your behalf. This hint needs to be set
+ *  before SDL_Init() is called to be useful.
+ *
+ *  This hint is available since SDL 2.0.22. Before then, you could set
+ *  the environment variable to get the same effect.
+ *}
+SDL_HINT_AUDIODRIVER = 'SDL_AUDIODRIVER';
+
+{**
+ *  \brief  A variable that decides what video backend to use.
+ *
+ *  By default, SDL will try all available video backends in a reasonable
+ *  order until it finds one that can work, but this hint allows the app
+ *  or user to force a specific target, such as "x11" if, say, you are
+ *  on Wayland but want to try talking to the X server instead.
+ *
+ *  This functionality has existed since SDL 2.0.0 (indeed, before that)
+ *  but before 2.0.22 this was an environment variable only. In 2.0.22,
+ *  it was upgraded to a full SDL hint, so you can set the environment
+ *  variable as usual or programatically set the hint with SDL_SetHint,
+ *  which won't propagate to child processes.
+ *
+ *  The default value is unset, in which case SDL will try to figure out
+ *  the best video backend on your behalf. This hint needs to be set
+ *  before SDL_Init() is called to be useful.
+ *
+ *  This hint is available since SDL 2.0.22. Before then, you could set
+ *  the environment variable to get the same effect.
+ *}
+SDL_HINT_VIDEODRIVER = 'SDL_VIDEODRIVER';
+
 {/**
  *  \brief  An enumeration of hint priorities
  */}
