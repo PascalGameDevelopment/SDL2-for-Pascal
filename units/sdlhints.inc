@@ -506,6 +506,19 @@ SDL_HINT_WINDOWS_USE_D3D9EX = 'SDL_WINDOWS_USE_D3D9EX';
  */}
 SDL_HINT_GRAB_KEYBOARD = 'SDL_GRAB_KEYBOARD';
 
+{**
+ *  \brief  A variable controlling whether the mouse is captured while mouse buttons are pressed
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - The mouse is not captured while mouse buttons are pressed
+ *    "1"       - The mouse is captured while mouse buttons are pressed
+ *
+ *  By default the mouse is captured while mouse buttons are pressed so if the mouse is dragged
+ *  outside the window, the application continues to receive mouse events until the button is
+ *  released.
+ *}
+SDL_HINT_MOUSE_AUTO_CAPTURE = 'SDL_MOUSE_AUTO_CAPTURE';
+
 {/**
  *  \brief  A variable setting the double click radius, in pixels.
  */}
@@ -531,6 +544,22 @@ SDL_HINT_MOUSE_FOCUS_CLICKTHROUGH = 'SDL_MOUSE_FOCUS_CLICKTHROUGH';
  *  \brief  A variable setting the speed scale for mouse motion, in floating point, when the mouse is not in relative mode
  */}
 SDL_HINT_MOUSE_NORMAL_SPEED_SCALE = 'SDL_MOUSE_NORMAL_SPEED_SCALE';
+
+{**
+ *  \brief  A variable controlling whether relative mouse mode constrains the mouse to the center of the window
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Relative mouse mode constrains the mouse to the window
+ *    "1"       - Relative mouse mode constrains the mouse to the center of the window
+ *
+ *  Constraining to the center of the window works better for FPS games and when the
+ *  application is running over RDP. Constraining to the whole window works better
+ *  for 2D games and increases the chance that the mouse will be in the correct
+ *  position when using high DPI mice.
+ *
+ *  By default SDL will constrain the mouse to the center of the window
+ *}
+SDL_HINT_MOUSE_RELATIVE_MODE_CENTER = 'SDL_MOUSE_RELATIVE_MODE_CENTER';
 
 {/**
  *  \brief  A variable controlling whether relative mouse mode is implemented using mouse warping
