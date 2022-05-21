@@ -2069,7 +2069,7 @@ function SDL_GetHintBoolean(const name: PAnsiChar; default_value: boolean): bool
  *  \param userdata A pointer to pass to the callback function
  */}
 type
-  TSDL_HintCallback = procedure(userdata: Pointer; const name: PAnsiChar; const oldValue: PAnsiChar; const newValue: PAnsiChar);
+  TSDL_HintCallback = procedure(userdata: Pointer; const name: PAnsiChar; const oldValue: PAnsiChar; const newValue: PAnsiChar); cdecl;
 
 procedure SDL_AddHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddHintCallback' {$ENDIF} {$ENDIF};
