@@ -1758,6 +1758,30 @@ SDL_HINT_EMSCRIPTEN_KEYBOARD_ELEMENT = 'SDL_EMSCRIPTEN_KEYBOARD_ELEMENT';
  */} 
 SDL_HINT_NO_SIGNAL_HANDLERS = 'SDL_NO_SIGNAL_HANDLERS';
 
+{**
+ *  \brief  A variable that decides whether to send SDL_QUIT when closing the final window.
+ *
+ *  By default, SDL sends an SDL_QUIT event when there is only one window
+ *  and it receives an SDL_WINDOWEVENT_CLOSE event, under the assumption most
+ *  apps would also take the loss of this window as a signal to terminate the
+ *  program.
+ *
+ *  However, it's not unreasonable in some cases to have the program continue
+ *  to live on, perhaps to create new windows later.
+ *
+ *  Changing this hint to "0" will cause SDL to not send an SDL_QUIT event
+ *  when the final window is requesting to close. Note that in this case,
+ *  there are still other legitimate reasons one might get an SDL_QUIT
+ *  event: choosing "Quit" from the macOS menu bar, sending a SIGINT (ctrl-c)
+ *  on Unix, etc.
+ *
+ *  The default value is "1".  This hint can be changed at any time.
+ *
+ *  This hint is available since SDL 2.0.22. Before then, you always get
+ *  an SDL_QUIT event when closing the final window.
+ *}
+SDL_HINT_QUIT_ON_LAST_WINDOW_CLOSE = 'SDL_QUIT_ON_LAST_WINDOW_CLOSE';
+
 {/**
  *  \brief Tell SDL not to generate window-close events for Alt+F4 on Windows.
  *
