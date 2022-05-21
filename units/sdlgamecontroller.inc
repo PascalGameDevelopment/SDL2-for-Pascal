@@ -17,14 +17,17 @@ type
   PSDL_GameController = ^TSDL_GameController;
   TSDL_GameController = record end;
 
-  TSDL_GameControllerBindType = (SDL_CONTROLLER_BINDTYPE_NONE,
-                                 SDL_CONTROLLER_BINDTYPE_BUTTON,
-                                 SDL_CONTROLLER_BINDTYPE_AXIS,
-                                 SDL_CONTROLLER_BINDTYPE_HAT);
+  TSDL_GameControllerBindType = type cint;
+const
+  SDL_CONTROLLER_BINDTYPE_NONE   = TSDL_GameControllerBindType(0);
+  SDL_CONTROLLER_BINDTYPE_BUTTON = TSDL_GameControllerBindType(1);
+  SDL_CONTROLLER_BINDTYPE_AXIS   = TSDL_GameControllerBindType(2);
+  SDL_CONTROLLER_BINDTYPE_HAT    = TSDL_GameControllerBindType(3);
 
   {**
    *  Get the SDL joystick layer binding for this controller button/axis mapping
    *}
+type
   THat = record
     hat: cint;
     hat_mask: cint;
