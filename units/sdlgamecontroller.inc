@@ -323,23 +323,29 @@ type
   PSDL_GameControllerButton = ^TSDL_GameControllerButton;
   TSDL_GameControllerButton = type cint;
 const
-  SDL_CONTROLLER_BUTTON_INVALID = TSDL_GameControllerButton(-1);
-  SDL_CONTROLLER_BUTTON_A = TSDL_GameControllerButton(0);
-  SDL_CONTROLLER_BUTTON_B = TSDL_GameControllerButton(1);
-  SDL_CONTROLLER_BUTTON_X = TSDL_GameControllerButton(2);
-  SDL_CONTROLLER_BUTTON_Y = TSDL_GameControllerButton(3);
-  SDL_CONTROLLER_BUTTON_BACK = TSDL_GameControllerButton(4);
-  SDL_CONTROLLER_BUTTON_GUIDE = TSDL_GameControllerButton(5);
-  SDL_CONTROLLER_BUTTON_START = TSDL_GameControllerButton(6);
-  SDL_CONTROLLER_BUTTON_LEFTSTICK = TSDL_GameControllerButton(7);
-  SDL_CONTROLLER_BUTTON_RIGHTSTICK = TSDL_GameControllerButton(8);
-  SDL_CONTROLLER_BUTTON_LEFTSHOULDER = TSDL_GameControllerButton(9);
+  SDL_CONTROLLER_BUTTON_INVALID       = TSDL_GameControllerButton(-1);
+  SDL_CONTROLLER_BUTTON_A             = TSDL_GameControllerButton(0);
+  SDL_CONTROLLER_BUTTON_B             = TSDL_GameControllerButton(1);
+  SDL_CONTROLLER_BUTTON_X             = TSDL_GameControllerButton(2);
+  SDL_CONTROLLER_BUTTON_Y             = TSDL_GameControllerButton(3);
+  SDL_CONTROLLER_BUTTON_BACK          = TSDL_GameControllerButton(4);
+  SDL_CONTROLLER_BUTTON_GUIDE         = TSDL_GameControllerButton(5);
+  SDL_CONTROLLER_BUTTON_START         = TSDL_GameControllerButton(6);
+  SDL_CONTROLLER_BUTTON_LEFTSTICK     = TSDL_GameControllerButton(7);
+  SDL_CONTROLLER_BUTTON_RIGHTSTICK    = TSDL_GameControllerButton(8);
+  SDL_CONTROLLER_BUTTON_LEFTSHOULDER  = TSDL_GameControllerButton(9);
   SDL_CONTROLLER_BUTTON_RIGHTSHOULDER = TSDL_GameControllerButton(10);
-  SDL_CONTROLLER_BUTTON_DPAD_UP = TSDL_GameControllerButton(11);
-  SDL_CONTROLLER_BUTTON_DPAD_DOWN = TSDL_GameControllerButton(12);
-  SDL_CONTROLLER_BUTTON_DPAD_LEFT = TSDL_GameControllerButton(13);
-  SDL_CONTROLLER_BUTTON_DPAD_RIGHT = TSDL_GameControllerButton(14);
-  SDL_CONTROLLER_BUTTON_MAX = TSDL_GameControllerButton(15);
+  SDL_CONTROLLER_BUTTON_DPAD_UP       = TSDL_GameControllerButton(11);
+  SDL_CONTROLLER_BUTTON_DPAD_DOWN     = TSDL_GameControllerButton(12);
+  SDL_CONTROLLER_BUTTON_DPAD_LEFT     = TSDL_GameControllerButton(13);
+  SDL_CONTROLLER_BUTTON_DPAD_RIGHT    = TSDL_GameControllerButton(14);
+  SDL_CONTROLLER_BUTTON_MISC1         = TSDL_GameControllerButton(15); {**< Xbox Series X share button, PS5 microphone button, Nintendo Switch Pro capture button, Amazon Luna microphone button *}
+  SDL_CONTROLLER_BUTTON_PADDLE1       = TSDL_GameControllerButton(16); {**< Xbox Elite paddle P1 *}
+  SDL_CONTROLLER_BUTTON_PADDLE2       = TSDL_GameControllerButton(17); {**< Xbox Elite paddle P3 *}
+  SDL_CONTROLLER_BUTTON_PADDLE3       = TSDL_GameControllerButton(18); {**< Xbox Elite paddle P2 *}
+  SDL_CONTROLLER_BUTTON_PADDLE4       = TSDL_GameControllerButton(19); {**< Xbox Elite paddle P4 *}
+  SDL_CONTROLLER_BUTTON_TOUCHPAD      = TSDL_GameControllerButton(20); {**< PS4/PS5 touchpad button *}
+  SDL_CONTROLLER_BUTTON_MAX           = TSDL_GameControllerButton(21);
 
   {**
    *  turn this string into a button mapping
