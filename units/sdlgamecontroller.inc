@@ -512,5 +512,25 @@ function SDL_GameControllerSendEffect(gamecontroller: PSDL_GameController; data:
  *}
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
 
+{**
+ * Return the sfSymbolsName for a given axis on a game controller
+ * on Apple platforms.
+ *
+ * Returns the sfSymbolsName, or NIL if the name can't be found.
+ * Do _not_ pass this string to SDL_free().
+ *}
+function SDL_GameControllerGetAppleSFSymbolsNameForAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAppleSFSymbolsNameForAxis' {$ENDIF} {$ENDIF};
+
+{**
+ * Return the sfSymbolsName for a given button on a game controller
+ * on Apple platforms.
+ *
+ * Returns the sfSymbolsName, or NIL if the name can't be found.
+ * Do _not_ pass this string to SDL_free().
+ *}
+function SDL_GameControllerGetAppleSFSymbolsNameForButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAppleSFSymbolsNameForButton' {$ENDIF} {$ENDIF};
+
 
 function SDL_GameControllerAddMappingsFromFile(Const FilePath:PAnsiChar):cint32;
