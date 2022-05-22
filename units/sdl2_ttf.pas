@@ -371,8 +371,10 @@ function TTF_GetFontKerningSize(font: PTTF_Font; prev_index, index: cint): cint 
   deprecated 'This function requires FreeType font indexes, not glyphs. Use TTF_GetFontKerningSizeGlyphs() instead';
 
 {* Get the kerning size of two glyphs *}
-function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch, ch: cuint16): cint cdecl;
-  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
+function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch, ch: cUint16): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
+function TTF_GetFontKerningSizeGlyphs32(font: PTTF_Font; previous_ch, ch: cUint32): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs32' {$ENDIF} {$ENDIF};
 
 {* Enable Signed Distance Field rendering (with the Blended APIs) *}
 function TTF_SetFontSDF(font: PTTF_Font; on_off: TSDL_Bool): cint;
