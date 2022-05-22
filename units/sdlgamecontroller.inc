@@ -499,6 +499,15 @@ function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, gree
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetLED' {$ENDIF} {$ENDIF};
 
 {**
+ * Send a controller-specific effect packet.
+ *
+ * Returns 0, or -1 if this controller or driver does not
+ * support effect packets.
+ *}
+function SDL_GameControllerSendEffect(gamecontroller: PSDL_GameController; data: Pointer; size: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSendEffect' {$ENDIF} {$ENDIF};
+
+{**
  *  Close a controller previously opened with SDL_GameControllerOpen().
  *}
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
