@@ -438,6 +438,53 @@ function SDL_GameControllerGetSensorData(gamecontroller: PSDL_GameController; se
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSensorData' {$ENDIF} {$ENDIF};
 
 {**
+ * Query whether a game controller has rumble support.
+ *}
+function SDL_GameControllerHasRumble(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasRumble' {$ENDIF} {$ENDIF};
+
+{**
+ * Start a rumble effect on a game controller.
+ *
+ * Each call to this function cancels any previous rumble effect, and calling
+ * it with 0 intensity stops any rumbling.
+ *
+ * Returns 0, or -1 if rumble isn't supported on this controller.
+ *}
+function SDL_GameControllerRumble(
+  gamecontroller: PSDL_GameController;
+  low_frequency_rumble, high_frequency_rumble: cUint16;
+  duration_ms: cUint32
+): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerRumble' {$ENDIF} {$ENDIF};
+
+{**
+ * Query whether a game controller has rumble support on triggers.
+ *}
+function SDL_GameControllerHasRumbleTriggers(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasRumbleTriggers' {$ENDIF} {$ENDIF};
+
+{**
+ * Start a rumble effect in the game controller's triggers.
+ *
+ * Each call to this function cancels any previous trigger rumble effect, and
+ * calling it with 0 intensity stops any rumbling.
+ *
+ * Note that this is rumbling of the _triggers_ and not the game controller as
+ * a whole. This is currently only supported on Xbox One controllers. If you
+ * want the (more common) whole-controller rumble, use
+ * SDL_GameControllerRumble() instead.
+ *
+ * Returns 0, or -1 if trigger rumble isn't supported on this controller
+ *}
+function SDL_GameControllerRumbleTriggers(
+  gamecontroller: PSDL_GameController;
+  left_rumble, right_rumble: cUint16;
+  duration_ms: cUint32
+): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerRumbleTriggers' {$ENDIF} {$ENDIF};
+
+{**
  *  Close a controller previously opened with SDL_GameControllerOpen().
  *}
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
