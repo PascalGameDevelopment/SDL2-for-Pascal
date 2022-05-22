@@ -29,12 +29,30 @@ type
     max_texture_height: cint32;              {**< The maximimum texture height *}
   end;
 
+  PSDL_Vertex = ^TSDL_Vertex;
+  TSDL_Vertex = record
+    position: TSDL_FPoint;
+    color: TSDL_Color;
+    tex_coord: TSDL_FPoint;
+  end;
+
+{**
+ * The scaling mode for a texture.
+ *}
+  PSDL_ScaleMode = ^TSDL_ScaleMode;
+  TSDL_ScaleMode = type cint;
+
+const
+  SDL_ScaleModeNearest = TSDL_ScaleMode(0); {**< nearest pixel sampling *}
+  SDL_ScaleModeLinear  = TSDL_ScaleMode(1); {**< linear filtering *}
+  SDL_ScaleModeBest    = TSDL_ScaleMode(2); {**< anisotropic filtering *}
+
   {**
    *  The access pattern allowed for a texture.
    *}
 type
   PSDL_TextureAccess = ^TSDL_TextureAccess;
-  TSDL_TextureAccess = cint32;
+  TSDL_TextureAccess = type cint;
 
 const
   SDL_TEXTUREACCESS_STATIC    = 0; {**< Changes rarely, not lockable *}
@@ -46,11 +64,12 @@ type
    *  The texture channel modulation used in SDL_RenderCopy().
    *}
   PSDL_TextureModulate = ^TSDL_TextureModulate;
-  TSDL_TextureModulate = (
-                          SDL_TEXTUREMODULATE_NONE,     {**< No modulation *}
-                          SDL_TEXTUREMODULATE_COLOR,    {**< srcC = srcC * color *}
-                          SDL_TEXTUREMODULATE_ALPHA     {**< srcA = srcA * alpha *}
-                          );
+  TSDL_TextureModulate = type cint;
+
+const
+  SDL_TEXTUREMODULATE_NONE  = TSDL_TextureModulate(0); {**< No modulation *}
+  SDL_TEXTUREMODULATE_COLOR = TSDL_TextureModulate(1); {**< srcC = srcC * color *}
+  SDL_TEXTUREMODULATE_ALPHA = TSDL_TextureModulate(2); {**< srcA = srcA * alpha *}
 
   {**
    *  Flip constants for SDL_RenderCopyEx
@@ -151,6 +170,12 @@ function SDL_CreateSoftwareRenderer(surface: PSDL_Surface): PSDL_Renderer cdecl;
    *  Get the renderer associated with a window.
    *}
 function SDL_GetRenderer(window: PSDL_Window): PSDL_Renderer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderer' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the window associated with a renderer.
+ *}
+function SDL_RenderGetWindow(renderer: PSDL_Renderer): PSDL_Window; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetWindow' {$ENDIF} {$ENDIF};
 
   {**
    *  Get information about a rendering context.
@@ -292,6 +317,31 @@ function SDL_SetTextureBlendMode(texture: PSDL_Texture; blendMode: TSDL_BlendMod
    *   SDL_SetTextureBlendMode()
    *}
 function SDL_GetTextureBlendMode(texture: PSDL_Texture; blendMode: PSDL_BlendMode): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureBlendMode' {$ENDIF} {$ENDIF};
+
+{**
+ * Set the scale mode used for texture scale operations.
+ * If the scale mode is not supported, the closest supported mode is chosen.
+ *}
+function SDL_SetTextureScaleMode(texture: PSDL_Texture; scaleMode: TSDL_ScaleMode): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureScaleMode' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the scale mode used for texture scale operations.
+ *}
+function SDL_GetTextureScaleMode(texture: PSDL_Texture; scaleMode: PSDL_ScaleMode): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureScaleMode' {$ENDIF} {$ENDIF};
+
+{**
+ * Associate a user-specified pointer with a texture.
+ *}
+function SDL_SetTextureUserData(texture: PSDL_Texture; userdata: Pointer): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureUserData' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the user-specified pointer associated with a texture.
+ *}
+function SDL_GetTextureUserData(texture: PSDL_Texture): Pointer; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureUserData' {$ENDIF} {$ENDIF};
 
   {**
    *  Update the given texture rectangle with new pixel data.
@@ -528,6 +578,22 @@ function SDL_RenderSetScale(renderer: PSDL_Renderer; scaleX: cfloat; scaleY: cfl
    *   SDL_RenderSetScale()
    *}
 procedure SDL_RenderGetScale(renderer: PSDL_Renderer; scaleX: pcfloat; scaleY: pcfloat) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetScale' {$ENDIF} {$ENDIF};
+
+{**
+ * Get logical coordinates of point in renderer when given real coordinates of
+ * point in window. Logical coordinates will differ from real coordinates when
+ * render is scaled and logical renderer size set.
+ *}
+procedure SDL_RenderWindowToLogical(renderer: PSDL_Renderer; windowX, windowY: cint; logicalX, logicalY: PSingle); cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderWindowToLogical' {$ENDIF} {$ENDIF};
+
+{**
+ * Get real coordinates of point in window when given logical coordinates of
+ * point in renderer. Logical coordinates will differ from real coordinate
+ * when render is scaled and logical renderer size set.
+ *}
+procedure SDL_RenderLogicalToWindow(renderer: PSDL_Renderer; logicalX, logicalY: Single; windowX, windowY: Pcint); cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderLogicalToWindow' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the color used for drawing operations (Rect, Line and Clear).
@@ -838,6 +904,35 @@ function SDL_RenderCopyEx(renderer: PSDL_Renderer; texture: PSDL_Texture; const 
 function SDL_RenderCopyExF(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: Double; center: PSDL_FPoint; flip: cint): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCopyExF' {$ENDIF} {$ENDIF};
 
+{**
+ * Render a list of triangles, optionally using a texture and indices into the
+ * vertex array. Color and alpha modulation is done per vertex.
+ * SDL_SetTextureColorMod and SDL_SetTextureAlphaMod are ignored.
+ *}
+function SDL_RenderGeometry(
+	renderer: PSDL_Renderer;
+	texture: PSDL_Texture;
+	Const vertices: PSDL_Vertex; num_vertices: cint;
+	Const indices: Pcint; num_indices: cint
+): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGeometry' {$ENDIF} {$ENDIF};
+
+{**
+ * Render a list of triangles, optionally using a texture and indices into the
+ * vertex arrays. Color and alpha modulation is done per vertex.
+ * SDL_SetTextureColorMod and SDL_SetTextureAlphaMod are ignored.
+ *}
+function SDL_RenderGeometryRaw(
+	renderer: PSDL_Renderer;
+	texture: PSDL_Texture;
+	Const xy: PSingle; xy_stride: cint;
+	Const color: PSDL_Color; color_stride: cint;
+	Const uv: PSingle; uv_stride: cint;
+	num_vertices: cint;
+	Const indices: Pointer; num_indices, size_indices: cint
+): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGeometryRaw' {$ENDIF} {$ENDIF};
+
   {**
    *  Read pixels from the current rendering target.
    *
@@ -876,6 +971,32 @@ procedure SDL_DestroyTexture(texture: PSDL_Texture) cdecl; external SDL_LibName 
    *}
 procedure SDL_DestroyRenderer(renderer: PSDL_Renderer) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyRenderer' {$ENDIF} {$ENDIF};
 
+{**
+ * Force the rendering context to flush any pending commands to the underlying
+ * rendering API.
+ *
+ * You do not need to (and in fact, shouldn't) call this function unless you
+ * are planning to call into OpenGL/Direct3D/Metal/whatever directly in
+ * addition to using an SDL_Renderer.
+ *
+ * This is for a very-specific case: if you are using SDL's render API, you
+ * asked for a specific renderer backend (OpenGL, Direct3D, etc), you set
+ * SDL_HINT_RENDER_BATCHING to "1", and you plan to make OpenGL/D3D/whatever
+ * calls in addition to SDL render API calls. If all of this applies, you
+ * should call SDL_RenderFlush() between calls to SDL's render API and the
+ * low-level API you're using in cooperation.
+ *
+ * In all other cases, you can ignore this function. This is only here to get
+ * maximum performance out of a specific situation. In all other cases, SDL
+ * will do the right thing, perhaps at a performance loss.
+ *
+ * This function is first available in SDL 2.0.10, and is not needed in 2.0.9
+ * and earlier, as earlier versions did not queue rendering commands at all,
+ * instead flushing them to the OS immediately.
+ *}
+function SDL_RenderFlush(renderer: PSDL_Renderer): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderFlush' {$ENDIF} {$ENDIF};
+
   {**
    *  Bind the texture to the current OpenGL/ES/ES2 context for use with
    *  OpenGL instructions.
@@ -897,6 +1018,36 @@ function SDL_GL_BindTexture(texture: PSDL_Texture; texw: pcfloat; texh: pcfloat)
    *}
 function SDL_GL_UnbindTexture(texture: PSDL_Texture): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_UnbindTexture' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the CAMetalLayer associated with the given Metal renderer.
+ *
+ * This function returns a raw Pointer, so SDL doesn't have to include Metal's headers,
+ * but it can be safely cast to a pointer to `CAMetalLayer`.
+ *
+ *}
+function SDL_RenderGetMetalLayer(renderer: PSDL_Renderer): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetMetalLayer' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the Metal command encoder for the current frame
+ *
+ * This function returns a raw Pointer, so SDL doesn't have to include Metal's headers,
+ * but it can be safely cast to an `id<MTLRenderCommandEncoder>`.
+ *
+ * Note that as of SDL 2.0.18, this will return NULL if Metal refuses to give
+ * SDL a drawable to render to, which might happen if the window is
+ * hidden/minimized/offscreen. This doesn't apply to command encoders for
+ * render targets, just the window's backbacker. Check your return values!
+ *}
+function SDL_RenderGetMetalCommandEncoder(renderer: PSDL_Renderer): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetMetalCommandEncoder' {$ENDIF} {$ENDIF};
+
+{**
+ * Toggle VSync of the given renderer.
+ *}
+function SDL_RenderSetVSync(renderer: PSDL_Renderer; vsync: cint): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderSetVSync' {$ENDIF} {$ENDIF};
+
   {**
    *  Update a rectangle within a planar YV12 or IYUV texture with new pixel data.
    *
@@ -917,3 +1068,18 @@ function SDL_GL_UnbindTexture(texture: PSDL_Texture): cint32 cdecl; external SDL
    *}
 function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: pcuint8; Ypitch: cint32; Uplane: pcuint8; UPitch: cint32; Vplane: pcuint8; VPitch: cint32):cint32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateYUVTexture' {$ENDIF} {$ENDIF};
+
+{**
+ * Update a rectangle within a planar NV12 or NV21 texture with new pixels.
+ *
+ * You can use SDL_UpdateTexture() as long as your pixel data is a contiguous
+ * block of NV12/21 planes in the proper order, but this function is available
+ * if your pixel data is not contiguous.
+ *}
+function SDL_UpdateNVTexture(
+	texture: PSDL_Texture;
+	Const rect: PSDL_Rect;
+	Const Yplane: Pcuint8; Ypitch: cint;
+	Const UVplane: Pcuint8; UVpitch: cint
+): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateNVTexture' {$ENDIF} {$ENDIF};
