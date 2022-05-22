@@ -374,6 +374,12 @@ function TTF_GetFontKerningSize(font: PTTF_Font; prev_index, index: cint): cint 
 function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch, ch: cuint16): cint cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
 
+{* Enable Signed Distance Field rendering (with the Blended APIs) *}
+function TTF_SetFontSDF(font: PTTF_Font; on_off: TSDL_Bool): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSDF' {$ENDIF} {$ENDIF};
+function TTF_GetFontSDF(font: PTTF_Font): TSDL_Bool;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontSDF' {$ENDIF} {$ENDIF};
+
 {* We'll use SDL for reporting errors *}
 function TTF_SetError(const fmt: PAnsiChar): cint32; cdecl;
 function TTF_GetError: PAnsiChar; cdecl;
