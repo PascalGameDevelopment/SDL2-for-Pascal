@@ -100,12 +100,27 @@ function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): cint cdecl; e
 function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: cint32):cint32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerAddMappingsFromRW' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the number of mappings installed.
+  *}
+function SDL_GameControllerNumMappings():cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerNumMappings' {$ENDIF} {$ENDIF};
+
   {**
    *  Get a mapping string for a GUID
    *
    *   the mapping string.  Must be freed with SDL_free.  Returns NULL if no mapping is available
    *}
 function SDL_GameControllerMappingForGUID( guid: TSDL_JoystickGUID ): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMappingForGUID' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the mapping at a particular index.
+ *
+ * Returns the mapping string. Must be freed with SDL_free().
+ * Returns NIL if the index is out of range.
+ *}
+function SDL_GameControllerMappingForIndex(mapping_index: cint): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMappingForIndex' {$ENDIF} {$ENDIF};
 
   {**
    *  Get a mapping string for an open GameController
@@ -125,6 +140,23 @@ function SDL_IsGameController(joystick_index: cint): TSDL_Bool cdecl; external S
    *  If no name can be found, this function returns NULL.
    *}
 function SDL_GameControllerNameForIndex(joystick_index: cint): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerNameForIndex' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the type of a game controller.
+ * This can be called before any controllers are opened.
+ *}
+function SDL_GameControllerTypeForIndex(joystick_index: cint): TSDL_GameControllerType; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerTypeForIndex' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the mapping of a game controller.
+ * This can be called before any controllers are opened.
+ *
+ * Returns the mapping string. Must be freed with SDL_free().
+ * Returns NIL if no mapping is available.
+ *}
+function SDL_GameControllerMappingForDeviceIndex(joystick_index: cint): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMappingForDeviceIndex' {$ENDIF} {$ENDIF};
 
   {**
    *  Open a game controller for use.
