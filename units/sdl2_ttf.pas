@@ -68,7 +68,7 @@ const
 const
   SDL_TTF_MAJOR_VERSION = 2;
   SDL_TTF_MINOR_VERSION = 0;
-  SDL_TTF_PATCHLEVEL    = 15;
+  SDL_TTF_PATCHLEVEL    = 18;
 
 Procedure SDL_TTF_VERSION(Out X:TSDL_Version);
 
