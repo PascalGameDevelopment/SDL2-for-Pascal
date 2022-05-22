@@ -274,6 +274,21 @@ function TTF_RenderText_Shaded(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Co
 function TTF_RenderUTF8_Shaded(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Shaded' {$ENDIF} {$ENDIF};
 function TTF_RenderUNICODE_Shaded(font: PTTF_Font; text: pcuint16; fg, bg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Shaded' {$ENDIF} {$ENDIF};
 
+{* Create an 8-bit palettized surface and render the given text at
+   high quality with the given font and colors.  The 0 pixel is background,
+   while other pixels have varying degrees of the foreground color.
+   Text is wrapped to multiple lines on line endings and on word boundaries
+   if it extends beyond wrapLength in pixels.
+   If wrapLength is 0, only wrap on new lines.
+   This function returns the new surface, or NULL if there was an error.
+*}
+function TTF_RenderText_Shaded_Wrapped(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color; wrapLength: cUint32): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Shaded_Wrapped' {$ENDIF} {$ENDIF};
+function TTF_RenderUTF8_Shaded_Wrapped(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color; wrapLength: cUint32): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Shaded_Wrapped' {$ENDIF} {$ENDIF};
+function TTF_RenderUNICODE_Shaded_Wrapped(font: PTTF_Font; text: pcUint16; fg, bg: TSDL_Color; wrapLength: cUint32): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Shaded_Wrapped' {$ENDIF} {$ENDIF};
+
 {* Create an 8-bit palettized surface and render the given glyph at
    high quality with the given font and colors.  The 0 pixel is background,
    while other pixels have varying degrees of the foreground color.
