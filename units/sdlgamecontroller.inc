@@ -379,6 +379,29 @@ function SDL_GameControllerHasButton(gamecontroller: PSDL_GameController; button
 function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): cuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetButton' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the number of touchpads on a game controller.
+ *}
+function SDL_GameControllerGetNumTouchpads(gamecontroller: PSDL_GameController): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetNumTouchpads' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the number of supported simultaneous fingers on a touchpad on a game controller.
+ *}
+function SDL_GameControllerGetNumTouchpadFingers(gamecontroller: PSDL_GameController; touchpad: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetNumTouchpadFingers' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the current state of a finger on a touchpad on a game controller.
+ *}
+function SDL_GameControllerGetTouchpadFinger(
+  gamecontroller: PSDL_GameController;
+  touchpad, finger: cint;
+  state: pcuint8;
+  x, y, pressure: pcfloat
+): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetTouchpadFinger' {$ENDIF} {$ENDIF};
+
+{**
  *  Close a controller previously opened with SDL_GameControllerOpen().
  *}
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
