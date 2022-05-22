@@ -272,7 +272,7 @@ procedure SDL_GameControllerUpdate() cdecl; external SDL_LibName {$IFDEF DELPHI}
 
 type
   PSDL_GameControllerAxis = ^TSDL_GameControllerAxis;
-  TSDL_GameControllerAxis = type Byte;
+  TSDL_GameControllerAxis = type cint;
 const
   SDL_CONTROLLER_AXIS_INVALID = TSDL_GameControllerAxis(-1);
   SDL_CONTROLLER_AXIS_LEFTX = TSDL_GameControllerAxis(0);
@@ -321,7 +321,7 @@ function SDL_GameControllerGetAxis(gamecontroller: PSDL_GameController; axis: TS
    *}
 type
   PSDL_GameControllerButton = ^TSDL_GameControllerButton;
-  TSDL_GameControllerButton = type Byte;
+  TSDL_GameControllerButton = type cint;
 const
   SDL_CONTROLLER_BUTTON_INVALID = TSDL_GameControllerButton(-1);
   SDL_CONTROLLER_BUTTON_A = TSDL_GameControllerButton(0);
