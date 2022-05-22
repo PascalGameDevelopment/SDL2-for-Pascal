@@ -124,6 +124,18 @@ function TTF_OpenFontIndex(_file: PAnsiChar; ptsize: cint; index: LongInt): PTTF
 function TTF_OpenFontRW(src: PSDL_RWops; freesrc: cint; ptsize: LongInt): PTTF_Font cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontRW' {$ENDIF} {$ENDIF};
 function TTF_OpenFontIndexRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index: LongInt): PTTF_Font cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexRW' {$ENDIF} {$ENDIF};
 
+{* Opens a font using the given horizontal and vertical target resolutions (in DPI).
+ * DPI scaling only applies to scalable fonts (e.g. TrueType).
+ *}
+function TTF_OpenFontDPI(file_: PAnsiChar; ptsize: cint; hdpi, vdpi: cuint): PTTF_Font;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPI' {$ENDIF} {$ENDIF};
+function TTF_OpenFontIndexDPI(file_: PAnsiChar; ptsize: cint; index: clong; hdpi, vdpi: cuint): PTTF_Font;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPI' {$ENDIF} {$ENDIF};
+function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc, ptsize: cint; hdpi, vdpi: cuint): PTTF_Font;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPIRW' {$ENDIF} {$ENDIF};
+function TTF_OpenFontIndexDPIRW(src: PSDL_RWops; freesrc, ptsize: cuint; index: clong; hdpi, vdpi: cuint): PTTF_Font;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPIRW' {$ENDIF} {$ENDIF};
+
 {* Set and retrieve the font style *}
 const
   TTF_STYLE_NORMAL        = $00;
