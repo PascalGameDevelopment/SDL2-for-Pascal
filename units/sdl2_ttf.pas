@@ -136,6 +136,12 @@ function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc, ptsize: cint; hdpi, vdpi: c
 function TTF_OpenFontIndexDPIRW(src: PSDL_RWops; freesrc, ptsize: cuint; index: clong; hdpi, vdpi: cuint): PTTF_Font;
   cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPIRW' {$ENDIF} {$ENDIF};
 
+{* Set font size dynamically *}
+function TTF_SetFontSize(font: PTTF_Font; ptsize: cint): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSize' {$ENDIF} {$ENDIF};
+function TTF_SetFontSizeDPI(font: PTTF_Font; ptsize: cint; hdpi, vdpi: cuint): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSizeDPI' {$ENDIF} {$ENDIF};
+
 {* Set and retrieve the font style *}
 const
   TTF_STYLE_NORMAL        = $00;
