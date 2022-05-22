@@ -263,7 +263,10 @@ function TTF_RenderUNICODE_Solid_Wrapped(font: PTTF_Font; text: pcUint16; fg: TS
    centering in the X direction, and aligned normally in the Y direction.
    This function returns the new surface, or NULL if there was an error.
 *}
-function TTF_RenderGlyph_Solid(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Solid(font: PTTF_Font; ch: cUint16; fg: TSDL_Color): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Solid32(font: PTTF_Font; ch: cUint32; fg: TSDL_Color): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid32' {$ENDIF} {$ENDIF};
 
 {* Create an 8-bit palettized surface and render the given text at
    high quality with the given font and colors.  The 0 pixel is background,
@@ -296,7 +299,10 @@ function TTF_RenderUNICODE_Shaded_Wrapped(font: PTTF_Font; text: pcUint16; fg, b
    direction, and aligned normally in the Y direction.
    This function returns the new surface, or NULL if there was an error.
 *}
-function TTF_RenderGlyph_Shaded(font: PTTF_Font; ch: cuint16; fg, bg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Shaded' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Shaded(font: PTTF_Font; ch: cUint16; fg, bg: TSDL_Color): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Shaded' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Shaded32(font: PTTF_Font; ch: cUint32; fg, bg: TSDL_Color): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Shaded32' {$ENDIF} {$ENDIF};
 
 {* Create a 32-bit ARGB surface and render the given text at high quality,
    using alpha blending to dither the font with the given color.
@@ -322,7 +328,10 @@ function TTF_RenderUNICODE_Blended_Wrapped(font: PTTF_Font; text: pcuint16; fg: 
    direction, and aligned normally in the Y direction.
    This function returns the new surface, or NULL if there was an error.
 *}
-function TTF_RenderGlyph_Blended(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Blended' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Blended(font: PTTF_Font; ch: cUint16; fg: TSDL_Color): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Blended' {$ENDIF} {$ENDIF};
+function TTF_RenderGlyph_Blended32(font: PTTF_Font; ch: cUint32; fg: TSDL_Color): PSDL_Surface;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Blended32' {$ENDIF} {$ENDIF};
 
 {* For compatibility with previous versions, here are the old functions *}
 function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
