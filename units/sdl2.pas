@@ -174,7 +174,7 @@ const
 {$I sdlmouse.inc}
 {$I sdljoystick.inc}
 {$I sdlsensor.inc}
-{$I sdlgamecontroller.inc}
+{$I sdlgamecontroller.inc}       // 2.0.22
 {$I sdlhaptic.inc}
 {$I sdltouch.inc}
 {$I sdlgesture.inc}
