@@ -298,6 +298,15 @@ function SDL_GameControllerGetStringForAxis(axis: TSDL_GameControllerAxis): PAns
    *}
 function SDL_GameControllerGetBindForAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_GameControllerButtonBind cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetBindForAxis' {$ENDIF} {$ENDIF};
 
+{**
+ * Query whether a game controller has a given axis.
+ *
+ * This merely reports whether the controller's mapping defined this axis,
+ * as that is all the information SDL has about the physical device.
+ *}
+function SDL_GameControllerHasAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasAxis' {$ENDIF} {$ENDIF};
+
   {**
    *  Get the current state of an axis control on a game controller.
    *
@@ -347,6 +356,14 @@ function SDL_GameControllerGetStringForButton(button: TSDL_GameControllerButton)
  *}
 function SDL_GameControllerGetBindForButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_GameControllerButtonBind cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetBindForButton' {$ENDIF} {$ENDIF};
 
+{**
+ * Query whether a game controller has a given button.
+ *
+ * This merely reports whether the controller's mapping defined this button,
+ * as that is all the information SDL has about the physical device.
+ *}
+function SDL_GameControllerHasButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasButton' {$ENDIF} {$ENDIF};
 
 {**
  *  Get the current state of a button on a game controller.
