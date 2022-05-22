@@ -485,6 +485,20 @@ function SDL_GameControllerRumbleTriggers(
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerRumbleTriggers' {$ENDIF} {$ENDIF};
 
 {**
+ * Query whether a game controller has an LED.
+ *}
+function SDL_GameControllerHasLED(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasLED' {$ENDIF} {$ENDIF};
+
+{**
+ * Update a game controller's LED color.
+ *
+ * Returns 0, or -1 if this controller does not have a modifiable LED.
+ *}
+function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, green, blue: cUint8): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetLED' {$ENDIF} {$ENDIF};
+
+{**
  *  Close a controller previously opened with SDL_GameControllerOpen().
  *}
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
