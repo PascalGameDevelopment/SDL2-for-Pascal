@@ -213,6 +213,29 @@ function SDL_GameControllerGetPlayerIndex(gamecontroller: PSDL_GameController): 
 procedure SDL_GameControllerSetPlayerIndex(gamecontroller: PSDL_GameController; player_index: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetPlayerIndex' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the USB product ID of an opened controller, if available.
+ * If the product ID isn't available, this function returns 0.
+ *}
+function SDL_GameControllerGetProduct(gamecontroller: PSDL_GameController): cUint16; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetProduct' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the product version of an opened controller, if available.
+ * If the product version isn't available, this function returns 0.
+ *}
+function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController): cUint16; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetProductVersion' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the serial number of an opened controller, if available.
+ *
+ * Returns a string containing the serial number of the controller,
+ * or NIL if it is not available. Do _not_ free the string with SDL_free().
+ *}
+function SDL_GameControllerGetSerial(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSerial' {$ENDIF} {$ENDIF};
+
   {**
    *  Returns SDL_TRUE if the controller has been opened and currently connected,
    *  or SDL_FALSE if it has not.
