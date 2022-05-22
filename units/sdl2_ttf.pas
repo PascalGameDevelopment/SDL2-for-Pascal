@@ -214,6 +214,22 @@ function TTF_SizeText(font: PTTF_Font; text: PAnsiChar; w, h: pcint): cint cdecl
 function TTF_SizeUTF8(font: PTTF_Font; text: PAnsiChar; w, h: pcint): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUTF8' {$ENDIF} {$ENDIF};
 function TTF_SizeUNICODE(font: PTTF_Font; text: pcuint16; w, h: pcint): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUNICODE' {$ENDIF} {$ENDIF};
 
+{* Get the measurement string of text without rendering
+   e.g. the number of characters that can be rendered before reaching 'measure_width'
+
+   inputs:
+     measure_width - in pixels to measure this text
+   outputs:
+     count  - number of characters that can be rendered
+     extent - latest calculated width
+*}
+function TTF_MeasureText(font: PTTF_Font; text: PAnsiChar; measure_width: cint; extent, count: pcint): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureText' {$ENDIF} {$ENDIF};
+function TTF_MeasureUTF8(font: PTTF_Font; text: PAnsiChar; measure_width: cint; extent, count: pcint): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureUTF8' {$ENDIF} {$ENDIF};
+function TTF_MeasureUNICODE(font: PTTF_Font; text: pcUint16; measure_width: cint; extent, count: pcint): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureUNICODE' {$ENDIF} {$ENDIF};
+
 {* Create an 8-bit palettized surface and render the given text at
    fast quality with the given font and color.  The 0 pixel is the
    colorkey, giving a transparent background, and the 1 pixel is set
