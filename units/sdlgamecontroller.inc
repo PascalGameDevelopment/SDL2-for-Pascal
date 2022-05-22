@@ -190,6 +190,15 @@ function SDL_GameControllerFromPlayerIndex(player_index: cint): PSDL_GameControl
 function SDL_GameControllerName(gamecontroller: PSDL_GameController): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerName' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the type of this currently opened controller
+ *
+ * This is the same name as returned by SDL_GameControllerTypeForIndex(), but
+ * it takes a controller identifier instead of the (unstable) device index.
+ *}
+function SDL_GameControllerGetType(gamecontroller: PSDL_GameController): TSDL_GameControllerType; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetType' {$ENDIF} {$ENDIF};
+
+{**
  * Get the player index of an opened game controller.
  * For XInput controllers this returns the XInput user index.
  *
