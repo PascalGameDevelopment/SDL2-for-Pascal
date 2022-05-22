@@ -84,6 +84,18 @@ const
  *}
 function TTF_Linked_Version: PSDL_Version cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Linked_Version' {$ENDIF} {$ENDIF};
 
+{* This function stores the version of the FreeType2 library in use.
+   TTF_Init() should be called before calling this function.
+ *}
+procedure TTF_GetFreeTypeVersion(major, minor, path: pcint);
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFreeTypeVersion' {$ENDIF} {$ENDIF};
+
+{* This function stores the version of the HarfBuzz library in use,
+   or 0 if HarfBuzz is not available.
+ *}
+procedure TTF_GetHarfBuzzVersion(major, minor, path: pcint);
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetHarfBuzzVersion' {$ENDIF} {$ENDIF};
+
 {* ZERO WIDTH NO-BREAKSPACE (Unicode byte order mark) *}
 const
   UNICODE_BOM_NATIVE  = $FEFF;
