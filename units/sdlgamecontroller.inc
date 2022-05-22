@@ -402,6 +402,42 @@ function SDL_GameControllerGetTouchpadFinger(
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetTouchpadFinger' {$ENDIF} {$ENDIF};
 
 {**
+ * Return whether a game controller has a particular sensor.
+ *}
+function SDL_GameControllerHasSensor(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasSensor' {$ENDIF} {$ENDIF};
+
+{**
+ * Set whether data reporting for a game controller sensor is enabled.
+ *}
+function SDL_GameControllerSetSensorEnabled(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; enabled: TSDL_bool): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetSensorEnabled' {$ENDIF} {$ENDIF};
+
+{**
+ * Query whether sensor data reporting is enabled for a game controller.
+ *}
+function SDL_GameControllerIsSensorEnabled(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerIsSensorEnabled' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the data rate (number of events per second) of
+ * a game controller sensor.
+ *
+ * Returns the data rate, or 0.0 if the data rate is not available.
+ *}
+function SDL_GameControllerGetSensorDataRate(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSensorDataRate' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the current state of a game controller sensor.
+ *
+ * The number of values and interpretation of the data is sensor dependent.
+ * See sdlsensor.inc for the details for each type of sensor.
+ *}
+function SDL_GameControllerGetSensorData(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; data: pcfloat; num_values: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSensorData' {$ENDIF} {$ENDIF};
+
+{**
  *  Close a controller previously opened with SDL_GameControllerOpen().
  *}
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};

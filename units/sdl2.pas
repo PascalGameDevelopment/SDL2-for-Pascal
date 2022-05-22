@@ -173,11 +173,11 @@ const
 {$I sdlkeyboard.inc}
 {$I sdlmouse.inc}
 {$I sdljoystick.inc}
+{$I sdlsensor.inc}
 {$I sdlgamecontroller.inc}
 {$I sdlhaptic.inc}
 {$I sdltouch.inc}
 {$I sdlgesture.inc}
-{$I sdlsensor.inc}
 {$I sdlsyswm.inc}
 {$I sdlevents.inc}
 {$I sdllocale.inc}               // 2.0.14
