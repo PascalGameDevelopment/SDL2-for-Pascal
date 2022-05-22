@@ -119,10 +119,16 @@ function TTF_Init(): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MA
  * Some .fon fonts will have several sizes embedded in the file, so the
  * point size becomes the index of choosing which size.  If the value
  * is too high, the last indexed size will be the default. *}
-function TTF_OpenFont(_file: PAnsiChar; ptsize: cint): PTTF_Font cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFont' {$ENDIF} {$ENDIF};
-function TTF_OpenFontIndex(_file: PAnsiChar; ptsize: cint; index: LongInt): PTTF_Font cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndex' {$ENDIF} {$ENDIF};
-function TTF_OpenFontRW(src: PSDL_RWops; freesrc: cint; ptsize: LongInt): PTTF_Font cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontRW' {$ENDIF} {$ENDIF};
-function TTF_OpenFontIndexRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index: LongInt): PTTF_Font cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexRW' {$ENDIF} {$ENDIF};
+function TTF_OpenFont(_file: PAnsiChar; ptsize: cint): PTTF_Font;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFont' {$ENDIF} {$ENDIF};
+function TTF_OpenFontIndex(_file: PAnsiChar; ptsize: cint; index: clong): PTTF_Font;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndex' {$ENDIF} {$ENDIF};
+{* Open a font file from a SDL_RWops: 'src' must be kept alive for the lifetime of the TTF_Font.
+ * 'freesrc' can be set so that TTF_CloseFont closes the RWops *}
+function TTF_OpenFontRW(src: PSDL_RWops; freesrc, ptsize: cint): PTTF_Font;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontRW' {$ENDIF} {$ENDIF};
+function TTF_OpenFontIndexRW(src: PSDL_RWops; freesrc, ptsize: cint; index: clong): PTTF_Font;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexRW' {$ENDIF} {$ENDIF};
 
 {* Opens a font using the given horizontal and vertical target resolutions (in DPI).
  * DPI scaling only applies to scalable fonts (e.g. TrueType).
