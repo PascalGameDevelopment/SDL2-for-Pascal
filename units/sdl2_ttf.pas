@@ -338,6 +338,17 @@ function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): P
 function TTF_RenderUTF8(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
 function TTF_RenderUNICODE(font: PTTF_Font; text: pcuint16; fg, bg: TSDL_Color): PSDL_Surface;
 
+{* Set Direction and Script to be used for text shaping, when using HarfBuzz.
+   - direction is of type hb_direction_t
+   - script is of type hb_script_t
+
+   This functions returns always 0, or -1 if SDL_ttf is not compiled with HarfBuzz
+*}
+function TTF_SetDirection(direction: cint): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetDirection' {$ENDIF} {$ENDIF};
+function TTF_SetScript(script: cint): cint;
+  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetScript' {$ENDIF} {$ENDIF};
+
 {* Close an opened font file *}
 procedure TTF_CloseFont(font: PTTF_Font) cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CloseFont' {$ENDIF} {$ENDIF};
 
