@@ -157,10 +157,11 @@ procedure TTF_SetFontOutline(font: PTTF_Font; outline: cint) cdecl; external TTF
 
 {* Set and retrieve FreeType hinter settings *}
 const
-  TTF_HINTING_NORMAL  = 0;
-  TTF_HINTING_LIGHT   = 1;
-  TTF_HINTING_MONO    = 2;
-  TTF_HINTING_NONE    = 3;
+  TTF_HINTING_NORMAL         = 0;
+  TTF_HINTING_LIGHT          = 1;
+  TTF_HINTING_MONO           = 2;
+  TTF_HINTING_NONE           = 3;
+  TTF_HINTING_LIGHT_SUBPIXEL = 4;
 
 function TTF_GetFontHinting(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontHinting' {$ENDIF} {$ENDIF};
 procedure TTF_SetFontHinting(font: PTTF_Font; hinting: cint) cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontHinting' {$ENDIF} {$ENDIF};
