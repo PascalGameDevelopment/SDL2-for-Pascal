@@ -174,10 +174,35 @@ function SDL_GameControllerOpen(joystick_index: cint): PSDL_GameController cdecl
 function SDL_GameControllerFromInstanceID(joyid: TSDL_JoystickID): PSDL_GameController; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerFromInstanceID' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the SDL_GameController associated with a player index.
+ *
+ * Please note that the player index is _not_ the device index, nor is it the
+ * instance id!
+ *
+ *}
+function SDL_GameControllerFromPlayerIndex(player_index: cint): PSDL_GameController; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerFromPlayerIndex' {$ENDIF} {$ENDIF};
+
   {**
    *  Return the name for this currently opened controller
    *}
 function SDL_GameControllerName(gamecontroller: PSDL_GameController): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerName' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the player index of an opened game controller.
+ * For XInput controllers this returns the XInput user index.
+ *
+ * Returns the player index for controller, or -1 if it's not available.
+ *}
+function SDL_GameControllerGetPlayerIndex(gamecontroller: PSDL_GameController): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetPlayerIndex' {$ENDIF} {$ENDIF};
+
+{**
+ * Set the player index of an opened game controller.
+ *}
+procedure SDL_GameControllerSetPlayerIndex(gamecontroller: PSDL_GameController; player_index: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetPlayerIndex' {$ENDIF} {$ENDIF};
 
   {**
    *  Returns SDL_TRUE if the controller has been opened and currently connected,
