@@ -134,8 +134,7 @@ const
       {$ELSE}
         SDL_LibName = 'libSDL2.so.0';
       {$ENDIF}
-      {$HINT Known MESA bug generating float-point exception in software graphics mode!
-             See https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/56 for reference.}
+      {$HINT Known MESA bug generating float-point exception in software graphics mode! See https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/56 for reference.}
     {$ENDIF}
   {$ENDIF}
 
