@@ -1842,7 +1842,7 @@ SDL_HINT_IME_SUPPORT_EXTENDED_TEXT = 'SDL_IME_SUPPORT_EXTENDED_TEXT';
  *       Use SDL_HINT_MOUSE_TOUCH_EVENTS and SDL_HINT_TOUCH_MOUSE_EVENTS
  *       for generating synthetic touch/mouse events.
  */}
-SDL_HINT_ANDROID_SEPARATE_MOUSE_AND_TOUCH = 'SDL_ANDROID_SEPARATE_MOUSE_AND_TOUCH' {$IFDEF FPC}deprecated{$ENDIF};
+SDL_HINT_ANDROID_SEPARATE_MOUSE_AND_TOUCH = 'SDL_ANDROID_SEPARATE_MOUSE_AND_TOUCH' deprecated;
 
 {/**
  *  \brief Disable giving back control to the browser automatically
