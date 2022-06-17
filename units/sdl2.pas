@@ -165,7 +165,7 @@ const
 {$I sdlsurface.inc}              // 2.0.14
 {$I sdlshape.inc}                // 2.0.14
 {$I sdlvideo.inc}                // 2.0.14
-{$I sdlhints.inc}                // 2.0.20
+{$I sdlhints.inc}                // 2.0.22
 {$I sdlloadso.inc}
 {$I sdlmessagebox.inc}           // 2.0.14
 {$I sdlrenderer.inc}
