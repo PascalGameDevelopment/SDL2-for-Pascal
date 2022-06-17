@@ -156,6 +156,7 @@ const
 {$I sdlplatform.inc}             // 2.0.14
 {$I sdlpower.inc}                // 2.0.14
 {$I sdlthread.inc}
+{$I sdlatomic.inc}               // 2.0.20
 {$I sdlmutex.inc}                // 2.0.14 WIP
 {$I sdltimer.inc}                // 2.0.18
 {$I sdlpixels.inc}               // 2.0.14 WIP
@@ -250,6 +251,31 @@ end;
 function SDL_RectEquals(const a, b: PSDL_Rect): Boolean;
 begin
   Result := (a^.x = b^.x) and (a^.y = b^.y) and (a^.w = b^.w) and (a^.h = b^.h);
+end;
+
+//from "sdl_atomic.h"
+function SDL_AtomicIncRef(atomic: PSDL_Atomic): cint;
+begin
+  Result := SDL_AtomicAdd(atomic, 1)
+end;
+
+function SDL_AtomicDecRef(atomic: PSDL_Atomic): Boolean;
+begin
+  Result := SDL_AtomicAdd(atomic, -1) = 1
+end;
+
+procedure SDL_CompilerBarrier();
+{$IFDEF FPC}
+begin
+  ReadWriteBarrier()
+{$ELSE}
+var
+  lock: TSDL_SpinLock;
+begin
+  lock := 0;
+  SDL_AtomicLock(@lock);
+  SDL_AtomicUnlock(@lock)
+{$ENDIF}
 end;
 
 //from "sdl_audio.h"
