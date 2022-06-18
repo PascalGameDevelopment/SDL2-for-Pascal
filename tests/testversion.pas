@@ -26,12 +26,6 @@ var
 begin
   write('Start SDL2 version test... ');
 
-  if SDL_Init(SDL_INIT_EVERYTHING) <> 0 then
-  begin
-    SDL_Quit;
-    raise ESDL2Error.Create('SDL_Init(SDL_INIT_EVERYTHING) failed');
-  end;
-
   try
     if (SDL_VERSIONNUM(1,2,3) <> 1203) then
       raise ESDL2Error.Create('SDL_VERSIONNUM failed: 1203 expected, found: ' + IntToStr(SDL_VERSIONNUM(1,2,3)));
@@ -54,8 +48,7 @@ begin
       raise ESDL2Error.Create('SDL_GetVersion failed: Returns 0.0.0 .');
   except
   end;
-  SDL_Quit;
 
-  writeln(' finished.');
+  writeln('finished.');
 end.
 
