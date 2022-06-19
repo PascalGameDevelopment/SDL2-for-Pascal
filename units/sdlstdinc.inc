@@ -1,5 +1,11 @@
 //types from SDL_stdinc.h
 
+{ SDL-For-Pascal: A lot of the functions are missing. Some functions are useless
+                  if working with Pascal (e. g. memory management functions),
+                  others could be useful (e. g. math functions).
+
+  TODO: Investigate header file and translate potentially useful functions. }
+
 type
   TSDL_Bool = type cint;
 
