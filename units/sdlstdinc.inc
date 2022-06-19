@@ -1,7 +1,11 @@
 //types from SDL_stdinc.h
-type
 
-  TSDL_Bool = (SDL_FALSE = 0,SDL_TRUE = 1);
+type
+  TSDL_Bool = type cint;
+
+const
+  SDL_FALSE = TSDL_Bool(0);
+  SDL_TRUE  = TSDL_Bool(1);
 
 {**
 *  Free memory returned by functions like SDL_GetBasePath(), SDL_GetPrefPath(), etc.
