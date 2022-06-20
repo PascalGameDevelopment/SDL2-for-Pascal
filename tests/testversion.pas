@@ -34,10 +34,10 @@ begin
     if (SDL_COMPILEDVERSION <> SDL_VERSIONNUM(CompiledVersion.major, CompiledVersion.minor, CompiledVersion.patch)) then
       raise ESDL2Error.Create('SDL_VERSION or SDL_COMPILEDVERSION failed: Version results do not match!');
 
-    if (SDL_VERSION_ATLEAST(2,0,0) <> True) then
+    if not SDL_VERSION_ATLEAST(2,0,0) then
       raise ESDL2Error.Create('SDL_VERSION_ATLEAST failed: Version at least 2.0.0 should be true!');
 
-    if (SDL_VERSION_ATLEAST(99,99,99) <> False) then
+    if not SDL_VERSION_ATLEAST(99,99,99) then
       raise ESDL2Error.Create('SDL_VERSION_ATLEAST failed: Version at least 99.99.99 should be false!');
 
     SDL_GetVersion(@LinkedVersion);
