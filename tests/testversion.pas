@@ -23,12 +23,14 @@ type
 var
   CompiledVersion: TSDL_Version = (major: 0; minor: 0; patch: 0);
   LinkedVersion: TSDL_Version = (major: 0; minor: 0; patch: 0);
+  VersionNum: Cardinal = 0;
 begin
   write('Start SDL2 version test... ');
 
   try
-    if (SDL_VERSIONNUM(1,2,3) <> 1203) then
-      raise ESDL2Error.Create('SDL_VERSIONNUM failed: 1203 expected, found: ' + IntToStr(SDL_VERSIONNUM(1,2,3)));
+    VersionNum := SDL_VERSIONNUM(1,2,3);
+    if (VersionNum <> 1203) then
+      raise ESDL2Error.Create('SDL_VERSIONNUM failed: 1203 expected, found: ' + IntToStr(VersionNum));
 
     SDL_VERSION(CompiledVersion);
     if (SDL_COMPILEDVERSION <> SDL_VERSIONNUM(CompiledVersion.major, CompiledVersion.minor, CompiledVersion.patch)) then
