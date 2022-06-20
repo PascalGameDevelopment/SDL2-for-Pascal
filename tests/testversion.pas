@@ -39,8 +39,8 @@ begin
     if not SDL_VERSION_ATLEAST(2,0,0) then
       raise ESDL2Error.Create('SDL_VERSION_ATLEAST failed: Version at least 2.0.0 should be true!');
 
-    if not SDL_VERSION_ATLEAST(9,9,9) then
-      raise ESDL2Error.Create('SDL_VERSION_ATLEAST failed: Version at least 9.9.9 should be false!');
+    if SDL_VERSION_ATLEAST(3,0,0) then
+      raise ESDL2Error.Create('SDL_VERSION_ATLEAST failed: Version at least 3.0.0 should be false!');
 
     SDL_GetVersion(@LinkedVersion);
     if @LinkedVersion = nil then
