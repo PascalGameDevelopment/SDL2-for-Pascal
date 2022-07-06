@@ -116,6 +116,11 @@ interface
       {$ENDIF}
   {$ENDIF}
 
+  {$IF DEFINED(UNIX) AND DEFINED(ANDROID) AND DEFINED(FPC)}
+    uses
+      ctypes;
+  {$ENDIF}
+
 const
 
   {$IFDEF WINDOWS}
