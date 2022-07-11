@@ -33,7 +33,6 @@ Please use the GitHub issue tracker for bug reports.
 See part Enums on the [Cheat sheet](CHEATSHEET.md) for reference.
 - (Continously) Check FPC/Delphi compatibility.
 - (Continously) Adapt comments to [PasDoc format](https://pasdoc.github.io). (See issue [#22](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/22))
-- Update sdlthread.inc
 
 ## Code style guidelines
 
