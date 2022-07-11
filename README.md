@@ -31,7 +31,7 @@ Please use the GitHub issue tracker for bug reports.
 - (Continously) Update files by new SDL2 functions and types which are present in more recent SDL2 versions.
 - (Continously atm.) Translate integer aliases into typed enums.
 See part Enums on the [Cheat sheet](CHEATSHEET.md) for reference.
-- (Continously) Check FPC/Delphi compatibility.
+- (Continously) improve Delphi-compatibility (and even more important, DO NOT break it)
 - (Continously) Adapt comments to [PasDoc format](https://pasdoc.github.io). (See issue [#22](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/22))
 
 ## Code style guidelines
@@ -65,7 +65,6 @@ The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pa
 
 - be up-to-date with _at least_ version 2.0.14 of the `SDL2 library`
 - replaced all aliases by typed enums
-- improve Delphi-compatibility (and even more important, DO NOT break it)
 - (done) replace data types by c data types (see PR [#29](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/29)) 
 - (done) add folders to project
 - (done) shift all units into unit folder (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27))
