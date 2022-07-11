@@ -64,7 +64,7 @@ The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pa
 
 ### v2.x (work in progress)
 
-- be up-to-date with version 2.0.14 of the `SDL2 library`
+- be up-to-date with _at least_ version 2.0.14 of the `SDL2 library`
 - replaced all aliases by typed enums
 - improve Delphi-compatibility (and even more important, DO NOT break it)
 - (done) replace data types by c data types (see PR [#29](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/29)) 
