@@ -102,8 +102,24 @@ type
   end;
 ```
 
-Hint 1: If you have something like ```typedef struct name name```. it is likely
-that the declaration is somewhere else (even other file).
+Hint 1: If you have something like ```typedef struct name name```. the concrete
+structure is probably opaque. You should translate it as follows, although
+the best way to handle this is still not finally decided on. (see issue
+[#63](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/63))
+
+C:
+
+```
+typedef struct SDL_Window SDL_Window;
+```
+
+Pascal:
+
+```
+type
+  PSDL_Window = ^TSDL_Window;
+  TSDL_Window = record end;
+```
 
 ## Unions
 
