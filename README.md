@@ -49,11 +49,15 @@ Ex.: `type` in C function `SDL_HasEvent(Uint32 type)` changes into `type_`
 in Pascal function `SDL_HasEvent(type_: TSDL_EventType)`.
 
 3. Use C data types like `cuint8`, `cuint16`, `cuint32`, `cint8`, `cint16`,
-`cint32`, `cfloat` and so on as often as possible if it is used  in the
-original code. Do not replace them by Pascal equivalents.
-Ex.: Use `cuint32` (if `Uint32` is used in
+`cint32`, `cfloat` and so on if native C data types are used  in the
+original code. Note: For FPC you need to add the unit `ctypes` to use these C
+data types. For Delphi we have a temporary solution provided. (see issue [#67](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/67)
+
+**Example:** Use `cuint32` (if `Uint32` is used in
 the original code) instead of `UInt32`, `Cardinal`, `LongWord` or `DWord`.
-Exceptions: Replace `*char` by `PAnsiChar` (see issue [#26](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/26)) and `SDL_bool` by `Boolean` (see issue [#30](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/30)). 
+Exception: Replace `*char` by `PAnsiChar`! (see issue [#26](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/26)
+
+**Hint:** Use `TSDL_Bool` to translate `SDL_bool`. For macro-functions use `Boolean`. (see issue [#30](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/30)).
 
 4. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
 
