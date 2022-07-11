@@ -57,7 +57,7 @@ data types. For Delphi we have a temporary solution provided. (see issue [#67](h
 the original code) instead of `UInt32`, `Cardinal`, `LongWord` or `DWord`.
 Exception: Replace `*char` by `PAnsiChar`! (see issue [#26](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/26))
 
-**Hint:** Use `TSDL_Bool` to translate `SDL_bool`. For macro-functions use `Boolean`. (see issue [#30](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/30)).
+**Hint:** Use `TSDL_Bool` to translate `SDL_bool`. For [macro functions](CHEATSHEET.md) use `Boolean`. (see issue [#30](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/30)).
 
 4. If an identifier or a function declaration is gone, mark them as `deprecated`. (see issue [#34](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/34))
 
