@@ -61,6 +61,15 @@ jobs:
       - name: Test 1 - Run Init Test
         run: |
           ./tests/testinit
+      - name: Test 2 - Compile Version Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testversion.pas
+          flags: Fl/usr/local/lib
+          verbosity: ewnh
+      - name: Test 2 - Run Version Test
+        run: |
+          ./tests/testversion
   ubuntu-20-04:
     runs-on: ubuntu-20.04
     steps:
@@ -113,6 +122,14 @@ jobs:
           mkdir ~/tmp
           export XDG_RUNTIME_DIR=~/tmp
           ./tests/testinit
+      - name: Test 2 - Compile Version Test
+        uses: suve/GHActions-FPC@v0.3.2
+        with:
+          source: tests/testversion.pas
+          verbosity: ewnh
+      - name: Test 2 - Run Version Test
+        run: |
+          ./tests/testversion
   windows-2022:
     runs-on: windows-2022
     steps:
