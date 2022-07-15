@@ -121,6 +121,9 @@ TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer)
    *   SDL_GetWindowData()
    *   SDL_GetWindowFlags()
    *   SDL_GetWindowGrab()
+   *   SDL_GetWindowKeyboardGrab()
+   *   SDL_GetWindowMouseGrab()
+   *   SDL_GetWindowMouseRect()
    *   SDL_GetWindowPosition()
    *   SDL_GetWindowSize()
    *   SDL_GetWindowTitle()
@@ -132,6 +135,9 @@ TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer)
    *   SDL_SetWindowData()
    *   SDL_SetWindowFullscreen()
    *   SDL_SetWindowGrab()
+   *   SDL_SetWindowKeyboardGrab()
+   *   SDL_SetWindowMouseGrab()
+   *   SDL_SetWindowMouseRect()
    *   SDL_SetWindowIcon()
    *   SDL_SetWindowPosition()
    *   SDL_SetWindowSize()
@@ -1103,6 +1109,75 @@ procedure SDL_SetWindowGrab(window: PSDL_Window; grabbed: TSDL_Bool); cdecl;
 
 function SDL_GetWindowGrab(window: PSDL_Window): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowGrab' {$ENDIF} {$ENDIF};
+  
+  {**
+   *  Set a window's keyboard grab mode.
+   *
+   *  window The window for which the keyboard grab mode should be set.
+   *  rect This is SDL_TRUE to grab keyboard, and SDL_FALSE to release.
+   *
+   *  SDL_GetWindowKeyboardGrab()
+   *}
+
+procedure SDL_SetWindowKeyboardGrab(window: PSDL_Window; rect: PSDL_Rect); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowKeyboardGrab' {$ENDIF} {$ENDIF};
+
+  {**
+   *  Get a window's keyboard grab mode.
+   *
+   *  Returns SDL_TRUE if keyboard is grabbed, and SDL_FALSE otherwise.
+   *
+   *  SDL_SetWindowKeyboardGrab()
+   *}
+
+function SDL_GetWindowKeyboardGrab(window: PSDL_Window): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowKeyboardGrab' {$ENDIF} {$ENDIF};
+
+  {**
+   *  Set a window's mouse grab mode.
+   *
+   *  window The window for which the mouse grab mode should be set.
+   *  grabbed This is SDL_TRUE to grab mouse, and SDL_FALSE to release.
+   *
+   *  SDL_GetWindowMouseGrab()
+   *}
+
+procedure SDL_SetWindowMouseGrab(window: PSDL_Window; grabbed: TSDL_Bool); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowMouseGrab' {$ENDIF} {$ENDIF};
+
+  {**
+   *  Get a window's mouse grab mode.
+   *
+   *  Returns SDL_TRUE if mouse is grabbed, and SDL_FALSE otherwise.
+   *
+   *  SDL_SetWindowMouseGrab()
+   *}
+
+function SDL_GetWindowMouseGrab(window: PSDL_Window): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMouseGrab' {$ENDIF} {$ENDIF};
+
+  {**
+   *  Confines the cursor to the specified area of a window.
+   *
+   *  window The window that will be associated with the barrier.
+   *  rect A rectangle area in window-relative coordinates. If NULL the barrier for the specified window will be destroyed.
+   *
+   *  SDL_GetWindowMouseRect()
+   *}
+
+procedure SDL_SetWindowMouseRect(window: PSDL_Window; rect: PSDL_Rect); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowMouseRect' {$ENDIF} {$ENDIF};
+
+  {**
+   *  Get the mouse confinement rectangle of a window.
+   *
+   *  Returns A pointer to the mouse confinement rectangle of a window, or NULL if there isn't one.
+   *
+   *  SDL_SetWindowMouseRect()
+   *}
+
+function SDL_GetWindowMouseRect(window: PSDL_Window): PSDL_Rect; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMouseRect' {$ENDIF} {$ENDIF};
 
   {**
    *  \brief Get the window that currently has an input grab enabled.
