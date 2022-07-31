@@ -217,14 +217,14 @@ procedure SDL_GameControllerSetPlayerIndex(gamecontroller: PSDL_GameController; 
  * Get the USB product ID of an opened controller, if available.
  * If the product ID isn't available, this function returns 0.
  *}
-function SDL_GameControllerGetProduct(gamecontroller: PSDL_GameController): cUint16; cdecl;
+function SDL_GameControllerGetProduct(gamecontroller: PSDL_GameController): cuint16; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetProduct' {$ENDIF} {$ENDIF};
 
 {**
  * Get the product version of an opened controller, if available.
  * If the product version isn't available, this function returns 0.
  *}
-function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController): cUint16; cdecl;
+function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController): cuint16; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetProductVersion' {$ENDIF} {$ENDIF};
 
 {**
@@ -453,8 +453,8 @@ function SDL_GameControllerHasRumble(gamecontroller: PSDL_GameController): TSDL_
  *}
 function SDL_GameControllerRumble(
   gamecontroller: PSDL_GameController;
-  low_frequency_rumble, high_frequency_rumble: cUint16;
-  duration_ms: cUint32
+  low_frequency_rumble, high_frequency_rumble: cuint16;
+  duration_ms: cuint32
 ): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerRumble' {$ENDIF} {$ENDIF};
 
@@ -479,8 +479,8 @@ function SDL_GameControllerHasRumbleTriggers(gamecontroller: PSDL_GameController
  *}
 function SDL_GameControllerRumbleTriggers(
   gamecontroller: PSDL_GameController;
-  left_rumble, right_rumble: cUint16;
-  duration_ms: cUint32
+  left_rumble, right_rumble: cuint16;
+  duration_ms: cuint32
 ): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerRumbleTriggers' {$ENDIF} {$ENDIF};
 
@@ -495,7 +495,7 @@ function SDL_GameControllerHasLED(gamecontroller: PSDL_GameController): TSDL_Boo
  *
  * Returns 0, or -1 if this controller does not have a modifiable LED.
  *}
-function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, green, blue: cUint8): cint; cdecl;
+function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, green, blue: cuint8): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetLED' {$ENDIF} {$ENDIF};
 
 {**
