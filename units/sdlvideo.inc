@@ -360,6 +360,17 @@ const
   SDL_ORIENTATION_PORTRAIT_FLIPPED  = TSDL_DisplayOrientation(4);   {**< The display is in portrait mode, upside down *}
 
   {**
+   *  \brief Window flash operation
+   *}
+type
+  TSDL_FlashOperation = type Integer;
+
+const
+  SDL_FLASH_CANCEL               = TSDL_FlashOperation(0);   {**< Cancel any window flash state *}
+  SDL_FLASH_BRIEFLY              = TSDL_FlashOperation(1);   {**< Flash the window briefly to get attention *}
+  SDL_FLASH_UNTIL_FOCUSED        = TSDL_FlashOperation(2);   {**< Flash the window until it gets focus *}
+
+  {**
    *  An opaque handle to an OpenGL context.
    *}
 type
