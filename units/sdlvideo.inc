@@ -1366,6 +1366,19 @@ function SDL_SetWindowHitTest(window: PSDL_Window; callback: TSDL_HitTest; callb
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowHitTest' {$ENDIF} {$ENDIF};
 
   {**
+   * Request a window to demand attention from the user.
+   *
+   * \param window the window to be flashed
+   * \param operation the flash operation
+   * \returns 0 on success or a negative error code on failure; call
+   *          SDL_GetError() for more information.
+   *
+   * \since This function is available since SDL 2.0.16.
+   *}
+function SDL_FlashWindow(window: PSDL_Window; operation: TSDL_FlashOperation): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlashWindow' {$ENDIF} {$ENDIF};
+
+  {**
    *  Destroy a window.
    *}
 
