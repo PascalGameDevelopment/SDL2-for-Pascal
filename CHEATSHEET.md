@@ -202,3 +202,42 @@ function should return a Boolean value. The context does not suggest to use,
 e. g., TSDL_Bool here, although in a different context this could be the better
 translation.
 
+## When to use TSDL_Bool?
+
+TSDL_Bool is memory compatible with C's bool (integer size, e. g. 2 or 4 bytes).
+Pascal's Boolean is different and always 1 byte in size.
+
+* SDL functions which have a SDL_Bool return value should be converted to return TSDL_Bool
+* SDL functions which need SDL_Bool value as argument will treat them correctly obviously
+* DO NOT use TSDL_Bool for macro functions which evaluate to a boolean value (exception: the value is an argument for a SDL_Bool parameter)
+
+_Example code_
+```
+program SDLBoolTest;
+
+uses SDL2, ctypes, SysUtils;
+
+var
+  a, b: Integer;
+
+function BoolTest(a, b: Integer): TSDL_Bool;
+begin
+  // works
+  //Result := TSDL_Bool(a > b);
+
+  // works, too
+  Result := (a > b);
+end;
+
+begin
+  writeln('Bool Test a > b');
+  for a:= 0 to 3 do
+    for b := 0 to 3 do
+      begin
+        write('a = ' + IntToStr(a) + '; b = ' + IntToStr(b) +';    Result = ');
+        writeln(BoolTest(a, b));
+      end;
+
+  readln;
+end.
+```
