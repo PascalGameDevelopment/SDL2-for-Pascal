@@ -24,6 +24,10 @@
 type
   DWord = LongWord;
 
+  pcbool = ^cbool;
+  cbool = LongBool;
+  {$EXTERNALSYM cbool}
+
   pcint = ^cint;
   cint = Integer;
   {$EXTERNALSYM cint}

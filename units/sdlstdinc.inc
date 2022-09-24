@@ -7,7 +7,7 @@
   TODO: Investigate header file and translate potentially useful functions. }
 
 type
-  TSDL_Bool = type cint;
+  TSDL_Bool = cbool;
 
 const
   SDL_FALSE = TSDL_Bool(0);
