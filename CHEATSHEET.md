@@ -205,11 +205,10 @@ translation.
 ## When to use TSDL_Bool?
 
 TSDL_Bool is memory compatible with C's bool (integer size, e. g. 2 or 4 bytes).
-Pascal's Boolean is different and always 1 byte in size.
+Pascal's Boolean is different and typically 1 byte in size. ([FPC Ref.](https://www.freepascal.org/docs-html/current/ref/refsu4.html#x26-270003.1.1))
 
-* SDL functions which have a SDL_Bool return value should be converted to return TSDL_Bool
-* SDL functions which need SDL_Bool value as argument will treat them correctly obviously
-* DO NOT use TSDL_Bool for macro functions which evaluate to a boolean value (exception: the value is an argument for a SDL_Bool parameter)
+* return values and paramters of original SDL functions which are of SDL_Bool type, should be translated with TSDL_Bool
+* DO NOT use TSDL_Bool for macro functions which evaluate to a boolean value, use Pascal's Boolean instead (exception: the value is an argument for a SDL_Bool parameter)
 
 _Example code_
 ```
