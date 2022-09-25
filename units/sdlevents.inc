@@ -247,11 +247,13 @@ type
   TSDL_MouseWheelEvent = record
     type_: cuint32;        // SDL_MOUSEWHEEL
     timestamp: cuint32;
-    windowID: cuint32;    // The window with mouse focus, if any
-    which: cuint32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
-    x: cint32;           // The amount scrolled horizontally 
-    y: cint32;           // The amount scrolled vertically
-    direction: cuint32;   // Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back
+    windowID: cuint32;     // The window with mouse focus, if any
+    which: cuint32;        // The mouse instance id, or SDL_TOUCH_MOUSEID
+    x: cint32;             // The amount scrolled horizontally
+    y: cint32;             // The amount scrolled vertically
+    direction: cuint32;    // Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back
+    preciseX: cfloat;      // The amount scrolled horizontally, positive to the right and negative to the left, with float precision (added in 2.0.18)
+    preciseY: cfloat;      // The amount scrolled vertically, positive away from the user and negative toward the user, with float precision (added in 2.0.18)
   end;
 
   {**
