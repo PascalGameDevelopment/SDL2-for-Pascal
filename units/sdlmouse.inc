@@ -9,6 +9,7 @@ type
 type
   PSDL_SystemCursor = ^TSDL_SystemCursor;
   TSDL_SystemCursor = type Integer;
+
 const
   SDL_SYSTEM_CURSOR_ARROW = TSDL_SystemCursor(0);      // Arrow
   SDL_SYSTEM_CURSOR_IBEAM = TSDL_SystemCursor(1);      // I-beam
@@ -24,6 +25,12 @@ const
   SDL_SYSTEM_CURSOR_HAND = TSDL_SystemCursor(11);      // Hand
   SDL_NUM_SYSTEM_CURSORS = TSDL_SystemCursor(12);
 
+type
+  TSDL_MouseWheelDirection = tyoe Integer;
+
+const
+  SDL_MOUSEWHEEL_NORMAL   = TSDL_MouseWheelDirection(0);   {**< The scroll direction is normal *}
+  SDL_MOUSEWHEEL_FLIPPED  = TSDL_MouseWheelDirection(1);   {**< The scroll direction is flipped / natural *}
 
   {* Function prototypes *}
 
