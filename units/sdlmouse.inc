@@ -26,7 +26,7 @@ const
   SDL_NUM_SYSTEM_CURSORS = TSDL_SystemCursor(12);
 
 type
-  TSDL_MouseWheelDirection = tyoe Integer;
+  TSDL_MouseWheelDirection = type Integer;
 
 const
   SDL_MOUSEWHEEL_NORMAL   = TSDL_MouseWheelDirection(0);   {**< The scroll direction is normal *}
@@ -417,7 +417,7 @@ procedure SDL_FreeCursor(cursor: PSDL_Cursor); cdecl;
 function SDL_ShowCursor(toggle: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowCursor' {$ENDIF}{$ENDIF};
 
-  function SDL_Button(button: cint32): cint32; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
+function SDL_Button(button: cint32): cint32; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
 
 const
   {**
