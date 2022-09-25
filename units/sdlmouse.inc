@@ -1,7 +1,7 @@
 //from "sdl_mouse.h"
 
 type
-  PSDL_Cursor = Pointer;  {**< Implementation dependent *}
+  PSDL_Cursor = type Pointer;  {**< Implementation dependent *}
 
 {**
 *  Cursor types for SDL_CreateSystemCursor.
