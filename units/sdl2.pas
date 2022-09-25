@@ -178,7 +178,7 @@ const
 {$I sdlrenderer.inc}             // 2.0.22
 {$I sdlscancode.inc}
 {$I sdlkeyboard.inc}
-{$I sdlmouse.inc}
+{$I sdlmouse.inc}                // 2.0.24
 {$I sdljoystick.inc}
 {$I sdlsensor.inc}
 {$I sdlgamecontroller.inc}       // 2.0.22
