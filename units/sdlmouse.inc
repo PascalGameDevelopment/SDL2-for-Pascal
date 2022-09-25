@@ -417,21 +417,22 @@ procedure SDL_FreeCursor(cursor: PSDL_Cursor); cdecl;
 function SDL_ShowCursor(toggle: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowCursor' {$ENDIF}{$ENDIF};
 
-function SDL_Button(button: cint32): cint32; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
-
+{**
+ *  Used as a mask when testing buttons in buttonstate.
+ *   - Button 1:  Left mouse button
+ *   - Button 2:  Middle mouse button
+ *   - Button 3:  Right mouse button
+ *}
+function SDL_Button(X: cint): cint; {$IFNDEF DELPHI} inline; {$ELSE} {$IFDEF DELPHI10UP} inline; {$ENDIF} {$ENDIF}
 const
-  {**
-   *  Used as a mask when testing buttons in buttonstate.
-   *   - Button 1:  Left mouse button
-   *   - Button 2:  Middle mouse button
-   *   - Button 3:  Right mouse button
-   *}
-
-  SDL_BUTTON_LEFT	= 1;
-  SDL_BUTTON_MIDDLE	= 2;
-  SDL_BUTTON_RIGHT	= 3;
+  SDL_BUTTON_LEFT   = 1;
+  SDL_BUTTON_MIDDLE = 2;
+  SDL_BUTTON_RIGHT  = 3;
   SDL_BUTTON_X1	    = 4;
   SDL_BUTTON_X2	    = 5;
+  { Pascal Conv.: For better performance instead of using the
+                  SDL_Button(X) macro, the following defines are
+                  implemented directly. }
   SDL_BUTTON_LMASK  = 1 shl ((SDL_BUTTON_LEFT) - 1);
   SDL_BUTTON_MMASK  = 1 shl ((SDL_BUTTON_MIDDLE) - 1);
   SDL_BUTTON_RMASK  = 1 shl ((SDL_BUTTON_RIGHT) - 1);

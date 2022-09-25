@@ -223,10 +223,10 @@ begin
   Result := SDL_COMPILEDVERSION >= SDL_VERSIONNUM(X,Y,Z);
 end;
 
-//from "sdl_mouse.h"
-function SDL_Button(button: cint32): cint32;
+//Macros from "sdl_mouse.h"
+function SDL_Button(X: cint): cint;
 begin
-  Result := 1 shl (button - 1); 
+  Result := 1 shl (X - 1);
 end;
 
 {$IFDEF WINDOWS}
