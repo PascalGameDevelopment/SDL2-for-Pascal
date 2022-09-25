@@ -1,25 +1,25 @@
 //from "sdl_mouse.h"
 
 type
-  PSDL_Cursor = Pointer;
+  PSDL_Cursor = Pointer;  {**< Implementation dependent *}
 
 {**
 *  Cursor types for SDL_CreateSystemCursor.
 *}
 type
   PSDL_SystemCursor = ^TSDL_SystemCursor;
-  TSDL_SystemCursor = type Word;
+  TSDL_SystemCursor = type Integer;
 const
-  SDL_SYSTEM_CURSOR_ARROW = TSDL_SystemCursor(0);     // Arrow
-  SDL_SYSTEM_CURSOR_IBEAM = TSDL_SystemCursor(1);     // I-beam
-  SDL_SYSTEM_CURSOR_WAIT = TSDL_SystemCursor(2);      // Wait
-  SDL_SYSTEM_CURSOR_CROSSHAIR = TSDL_SystemCursor(3); // Crosshair
-  SDL_SYSTEM_CURSOR_WAITARROW = TSDL_SystemCursor(4); // Small wait cursor (or Wait if not available)
-  SDL_SYSTEM_CURSOR_SIZENWSE = TSDL_SystemCursor(5);  // Double arrow pointing northwest and southeast
-  SDL_SYSTEM_CURSOR_SIZENESW = TSDL_SystemCursor(6);  // Double arrow pointing northeast and southwest
-  SDL_SYSTEM_CURSOR_SIZEWE = TSDL_SystemCursor(7);    // Double arrow pointing west and east
-  SDL_SYSTEM_CURSOR_SIZENS = TSDL_SystemCursor(8);    // Double arrow pointing north and south
-  SDL_SYSTEM_CURSOR_SIZEALL = TSDL_SystemCursor(9);   // Four pointed arrow pointing north, south, east, and west
+  SDL_SYSTEM_CURSOR_ARROW = TSDL_SystemCursor(0);      // Arrow
+  SDL_SYSTEM_CURSOR_IBEAM = TSDL_SystemCursor(1);      // I-beam
+  SDL_SYSTEM_CURSOR_WAIT = TSDL_SystemCursor(2);       // Wait
+  SDL_SYSTEM_CURSOR_CROSSHAIR = TSDL_SystemCursor(3);  // Crosshair
+  SDL_SYSTEM_CURSOR_WAITARROW = TSDL_SystemCursor(4);  // Small wait cursor (or Wait if not available)
+  SDL_SYSTEM_CURSOR_SIZENWSE = TSDL_SystemCursor(5);   // Double arrow pointing northwest and southeast
+  SDL_SYSTEM_CURSOR_SIZENESW = TSDL_SystemCursor(6);   // Double arrow pointing northeast and southwest
+  SDL_SYSTEM_CURSOR_SIZEWE = TSDL_SystemCursor(7);     // Double arrow pointing west and east
+  SDL_SYSTEM_CURSOR_SIZENS = TSDL_SystemCursor(8);     // Double arrow pointing north and south
+  SDL_SYSTEM_CURSOR_SIZEALL = TSDL_SystemCursor(9);    // Four pointed arrow pointing north, south, east, and west
   SDL_SYSTEM_CURSOR_NO = TSDL_SystemCursor(10);        // Slashed circle or crossbones
   SDL_SYSTEM_CURSOR_HAND = TSDL_SystemCursor(11);      // Hand
   SDL_NUM_SYSTEM_CURSORS = TSDL_SystemCursor(12);
