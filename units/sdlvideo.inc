@@ -360,6 +360,17 @@ const
   SDL_ORIENTATION_PORTRAIT_FLIPPED  = TSDL_DisplayOrientation(4);   {**< The display is in portrait mode, upside down *}
 
   {**
+   *  \brief Window flash operation
+   *}
+type
+  TSDL_FlashOperation = type Integer;
+
+const
+  SDL_FLASH_CANCEL               = TSDL_FlashOperation(0);   {**< Cancel any window flash state *}
+  SDL_FLASH_BRIEFLY              = TSDL_FlashOperation(1);   {**< Flash the window briefly to get attention *}
+  SDL_FLASH_UNTIL_FOCUSED        = TSDL_FlashOperation(2);   {**< Flash the window until it gets focus *}
+
+  {**
    *  An opaque handle to an OpenGL context.
    *}
 type
@@ -1353,6 +1364,19 @@ function SDL_GetWindowGammaRamp(window: PSDL_Window; red: pcuint16; green: pcuin
    *}
 function SDL_SetWindowHitTest(window: PSDL_Window; callback: TSDL_HitTest; callback_data: Pointer): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowHitTest' {$ENDIF} {$ENDIF};
+
+  {**
+   * Request a window to demand attention from the user.
+   *
+   * \param window the window to be flashed
+   * \param operation the flash operation
+   * \returns 0 on success or a negative error code on failure; call
+   *          SDL_GetError() for more information.
+   *
+   * \since This function is available since SDL 2.0.16.
+   *}
+function SDL_FlashWindow(window: PSDL_Window; operation: TSDL_FlashOperation): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlashWindow' {$ENDIF} {$ENDIF};
 
   {**
    *  Destroy a window.
