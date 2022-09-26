@@ -178,7 +178,7 @@ const
 {$I sdlrenderer.inc}             // 2.0.22
 {$I sdlscancode.inc}
 {$I sdlkeyboard.inc}
-{$I sdlmouse.inc}
+{$I sdlmouse.inc}                // 2.0.24
 {$I sdljoystick.inc}
 {$I sdlsensor.inc}
 {$I sdlgamecontroller.inc}       // 2.0.22
@@ -223,10 +223,10 @@ begin
   Result := SDL_COMPILEDVERSION >= SDL_VERSIONNUM(X,Y,Z);
 end;
 
-//from "sdl_mouse.h"
-function SDL_Button(button: cint32): cint32;
+//Macros from "sdl_mouse.h"
+function SDL_Button(X: cint): cint;
 begin
-  Result := 1 shl (button - 1); 
+  Result := 1 shl (X - 1);
 end;
 
 {$IFDEF WINDOWS}
