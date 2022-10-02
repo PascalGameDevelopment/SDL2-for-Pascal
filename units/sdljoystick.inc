@@ -321,7 +321,45 @@ function SDL_JoystickFromPlayerIndex(player_index: cint): PSDL_Joystick; cdecl;
 function SDL_JoystickAttachVirtual(type_: TSDL_JoystickType; naxes: cint; nbuttons: cint; nhats: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickAttachVirtual' {$ENDIF} {$ENDIF};
 
-{ SDL2-for-Pascal: TODO: typedef struct SDL_VirtualJoystickDesc missing here! }
+type
+  {**
+ * The structure that defines an extended virtual joystick description
+ *
+ * The caller must zero the structure and then initialize the version with `SDL_VIRTUAL_JOYSTICK_DESC_VERSION` before passing it to SDL_JoystickAttachVirtualEx()
+ *  All other elements of this structure are optional and can be left 0.
+ *
+ * \sa SDL_JoystickAttachVirtualEx
+ *}
+  PSDL_VirtualJoystickDesc = ^TSDL_VirtualJoystickDesc;
+  TUpdateProc = procedure(userdata: Pointer); cdecl;
+  TSetPlayerIndexProc = procedure(userdata: Pointer; player_index: cint); cdecl;
+  TRumbleFunc = function(userdata: Pointer; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16): cint; cdecl;
+  TRumbleTriggersFunc = function(userdata: Pointer; left_rumble: cuint16; right_rumble: cuint16): cint; cdecl;
+  TSetLEDFunc = function(userdata: Pointer; red: cuint8; green: cuint8; blue: cuint8): cint; cdecl;
+  TSendEffectFunc = function(userdata: Pointer; const data: Pointer; size: cint): cint; cdecl;
+  TSDL_VirtualJoystickDesc = record
+    version: cuint16;     {**< `SDL_VIRTUAL_JOYSTICK_DESC_VERSION` *}
+    type_: cuint16;       {**< `SDL_JoystickType` }
+    naxes: cuint16;       {**< the number of axes on this joystick *}
+    nbuttons: cuint16;    {**< the number of buttons on this joystick *}
+    nhats: cuint16;       {**< the number of hats on this joystick *}
+    vendor_id: cuint16;   {**< the USB vendor ID of this joystick *}
+    product_id: cuint16;  {**< the USB product ID of this joystick *}
+    padding: cuint16;     {**< unused *}
+    button_mask: cuint16; {**< A mask of which buttons are valid for this controller
+                             e.g. (1 << SDL_CONTROLLER_BUTTON_A) *}
+    axis_mask: cuint32;   {**< A mask of which axes are valid for this controller
+                             e.g. (1 << SDL_CONTROLLER_AXIS_LEFTX) *}
+    name: PAnsiChar;      {**< the name of the joystick *}
+
+    userdata: Pointer;    {**< User data pointer passed to callbacks *}
+    Update: TUpdateProc;  {**< Called when the joystick state should be updated *}
+    SetPlayerIndex: TSetPlayerIndexProc;     {**< Called when the player index is set *}
+    Rumble: TRumbleFunc;                 {**< Implements SDL_JoystickRumble() *}
+    RumbleTriggers: TRumbleTriggersFunc; {**< Implements SDL_JoystickRumbleTriggers() *}
+    SetLED: TSetLEDFunc;                 {**< Implements SDL_JoystickSetLED() *}
+    SendEffect: TSendEffectFunc;         {**< Implements SDL_JoystickSendEffect() *}
+  end;
 
 {**
  * \brief The current version of the SDL_VirtualJoystickDesc structure
