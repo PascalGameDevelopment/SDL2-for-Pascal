@@ -179,7 +179,7 @@ const
 {$I sdlscancode.inc}
 {$I sdlkeyboard.inc}
 {$I sdlmouse.inc}                // 2.0.24
-{$I sdljoystick.inc}
+{$I sdljoystick.inc}             // 2.24.0
 {$I sdlsensor.inc}
 {$I sdlgamecontroller.inc}       // 2.0.22
 {$I sdlhaptic.inc}
