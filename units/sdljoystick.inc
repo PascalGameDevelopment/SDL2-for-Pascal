@@ -1,5 +1,3 @@
-// based on sdl_joystick.h (2.0.14)
-
 {**
  *  \file SDL_joystick.h
  *
