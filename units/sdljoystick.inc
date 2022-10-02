@@ -49,7 +49,7 @@ type
   TSDL_JoystickID = type cint32;
 
 type
-  TSDL_JoystickType = type cint32;
+  TSDL_JoystickType = type Integer;
 
 const
   SDL_JOYSTICK_TYPE_UNKNOWN        = TSDL_JoystickType(0);
@@ -64,7 +64,7 @@ const
   SDL_JOYSTICK_TYPE_THROTTLE       = TSDL_JoystickType(9);
 
 type
-  TSDL_JoystickPowerLevel = type cint32;
+  TSDL_JoystickPowerLevel = type Integer;
 
 const
   SDL_JOYSTICK_POWER_UNKNOWN = TSDL_JoystickPowerLevel(-1);
