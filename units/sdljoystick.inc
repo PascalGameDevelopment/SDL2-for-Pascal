@@ -33,9 +33,7 @@ type
   PSDL_Joystick = ^TSDL_Joystick;
 
   {* A structure that encodes the stable unique id for a joystick device *}
-  TSDL_JoystickGUID = record
-    data: array[0..15] of cuint8;
-  end;
+  TSDL_JoystickGUID = type TSDL_GUID;
 
  {**
   * This is a unique ID for a joystick for the time it is connected to the system,
