@@ -46,7 +46,7 @@ type
   *
   * The ID value starts at 0 and increments from there. The value -1 is an invalid ID.
   *}
-  TSDL_JoystickID = cint32;
+  TSDL_JoystickID = type cint32;
 
 type
   TSDL_JoystickType = type cint32;
