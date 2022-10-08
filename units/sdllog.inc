@@ -146,13 +146,13 @@ procedure SDL_LogMessageV(category: TSDL_LogCategory; priority: TSDL_LogPriority
  *  \brief The prototype for the log output function
  *}
 type
+  PSDL_LogOutputFunction = ^TSDL_LogOutputFunction;
   TSDL_LogOutputFunction = procedure(
     userdata: Pointer;
     category: TSDL_LogCategory;
     priority: TSDL_LogPriority;
-    const msg: PAnsiChar);
-  PSDL_LogOutputFunction = ^TSDL_LogOutputFunction;
-  
+    const msg: PAnsiChar); cdecl;
+
 {**
  *  \brief Get the current log output function.
  *}
