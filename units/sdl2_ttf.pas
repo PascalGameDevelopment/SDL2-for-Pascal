@@ -78,23 +78,52 @@ const
   TTF_MINOR_VERSION = SDL_TTF_MINOR_VERSION;
   TTF_PATCHLEVEL    = SDL_TTF_PATCHLEVEL;
 
- {* This function gets the version of the dynamically linked SDL_ttf library.
-   it should NOT be used to fill a version structure, instead you should
-   use the SDL_TTF_VERSION() macro.
- *}
-function TTF_Linked_Version: PSDL_Version cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Linked_Version' {$ENDIF} {$ENDIF};
+{*
+ * Query the version of SDL_ttf that the program is linked against.
+ *
+ * This function gets the version of the dynamically linked SDL_ttf library.
+ * This is separate from the SDL_TTF_VERSION() macro, which tells you what
+ * version of the SDL_ttf headers you compiled against.
+ *
+ * This returns static internal data; do not free or modify it!
+ *
+ * \returns a pointer to the version information.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+(* Const before type ignored *)
+function TTF_Linked_Version: PSDL_version; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Linked_Version' {$ENDIF} {$ENDIF};
 
-{* This function stores the version of the FreeType2 library in use.
-   TTF_Init() should be called before calling this function.
- *}
-procedure TTF_GetFreeTypeVersion(major, minor, path: pcint);
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFreeTypeVersion' {$ENDIF} {$ENDIF};
+{*
+ * Query the version of the FreeType library in use.
+ *
+ * TTF_Init() should be called before calling this function.
+ *
+ * \param major to be filled in with the major version number. Can be nil.
+ * \param minor to be filled in with the minor version number. Can be nil.
+ * \param patch to be filled in with the param version number. Can be nil.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_Init
+  }
+procedure TTF_GetFreeTypeVersion(major: pcint; minor: pcint; patch: pcint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFreeTypeVersion' {$ENDIF} {$ENDIF};
 
-{* This function stores the version of the HarfBuzz library in use,
-   or 0 if HarfBuzz is not available.
- *}
-procedure TTF_GetHarfBuzzVersion(major, minor, path: pcint);
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetHarfBuzzVersion' {$ENDIF} {$ENDIF};
+{*
+ * Query the version of the HarfBuzz library in use.
+ *
+ * If HarfBuzz is not available, the version reported is 0.0.0.
+ *
+ * \param major to be filled in with the major version number. Can be nil.
+ * \param minor to be filled in with the minor version number. Can be nil.
+ * \param patch to be filled in with the param version number. Can be nil.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+  }
+procedure TTF_GetHarfBuzzVersion(major: pcint; minor: pcint; patch: pcint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetHarfBuzzVersion' {$ENDIF} {$ENDIF};
 
 {* ZERO WIDTH NO-BREAKSPACE (Unicode byte order mark) *}
 const
