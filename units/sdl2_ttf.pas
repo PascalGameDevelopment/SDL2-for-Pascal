@@ -125,24 +125,53 @@ procedure TTF_GetFreeTypeVersion(major: pcint; minor: pcint; patch: pcint); cdec
 procedure TTF_GetHarfBuzzVersion(major: pcint; minor: pcint; patch: pcint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetHarfBuzzVersion' {$ENDIF} {$ENDIF};
 
-{* ZERO WIDTH NO-BREAKSPACE (Unicode byte order mark) *}
+{*
+ * ZERO WIDTH NO-BREAKSPACE (Unicode byte order mark)
+  }
 const
   UNICODE_BOM_NATIVE  = $FEFF;
   UNICODE_BOM_SWAPPED = $FFFE;
 
-{* This function tells the library whether UNICODE text is generally
-   byteswapped.  A UNICODE BOM character in a string will override
-   this setting for the remainder of that string.
-*}
-procedure TTF_ByteSwappedUNICODE(swapped: cint) cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_ByteSwappedUNICODE' {$ENDIF} {$ENDIF};
+{*
+ * Tell SDL_ttf whether UNICODE text is generally byteswapped.
+ *
+ * A UNICODE BOM character in a string will override this setting for the
+ * remainder of that string.
+ *
+ * \param swapped boolean to indicate whether text is byteswapped
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+procedure TTF_ByteSwappedUNICODE(swapped: TSDL_bool); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_ByteSwappedUNICODE' {$ENDIF} {$ENDIF};
 
 {* The internal structure containing font information *}
 type
   PTTF_Font = ^TTTF_Font;
   TTTF_Font = record  end; //todo?
 
-{* Initialize the TTF engine - returns 0 if successful, -1 on error *}
-function TTF_Init(): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Init' {$ENDIF} {$ENDIF};
+{*
+ * Initialize SDL_ttf.
+ *
+ * You must successfully call this function before it is safe to call any
+ * other function in this library, with one exception: a human-readable error
+ * message can be retrieved from TTF_GetError() if this function fails.
+ *
+ * SDL must be initialized before calls to functions in this library, because
+ * this library uses utility functions from the SDL library.
+ *
+ * It is safe to call this more than once; the library keeps a counter of init
+ * calls, and decrements it on each call to TTF_Quit, so you must pair your
+ * init and quit calls.
+ *
+ * \returns 0 on success, -1 on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_Quit
+  }
+function TTF_Init(): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Init' {$ENDIF} {$ENDIF};
 
 {* Open a font file and create a font of the specified point size.
  * Some .fon fonts will have several sizes embedded in the file, so the
