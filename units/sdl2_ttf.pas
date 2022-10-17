@@ -503,7 +503,9 @@ function TTF_GetFontOutline(font: PTTF_Font): cint; cdecl;
 procedure TTF_SetFontOutline(font: PTTF_Font; outline: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontOutline' {$ENDIF} {$ENDIF};
 
-{* Set and retrieve FreeType hinter settings *}
+{*
+ * Hinting flags
+  }
 const
   TTF_HINTING_NORMAL         = 0;
   TTF_HINTING_LIGHT          = 1;
