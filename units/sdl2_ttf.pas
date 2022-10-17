@@ -393,11 +393,35 @@ function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; hdpi: c
 function TTF_OpenFontIndexDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index: clong; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPIRW' {$ENDIF} {$ENDIF};
 
-{* Set font size dynamically *}
-function TTF_SetFontSize(font: PTTF_Font; ptsize: cint): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSize' {$ENDIF} {$ENDIF};
-function TTF_SetFontSizeDPI(font: PTTF_Font; ptsize: cint; hdpi, vdpi: cuint): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSizeDPI' {$ENDIF} {$ENDIF};
+{*
+ * Set a font's size dynamically.
+ *
+ * This clears already-generated glyphs, if any, from the cache.
+ *
+ * \param font the font to resize.
+ * \param ptsize the new point size.
+ * \returns 0 if successful, -1 on error
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+  }
+function TTF_SetFontSize(font: PTTF_Font; ptsize: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSize' {$ENDIF} {$ENDIF};
+
+{*
+ * Set font size dynamically with target resolutions (in DPI).
+ *
+ * This clears already-generated glyphs, if any, from the cache.
+ *
+ * \param font the font to resize.
+ * \param ptsize the new point size.
+ * \param hdpi the target horizontal DPI.
+ * \param vdpi the target vertical DPI.
+ * \returns 0 if successful, -1 on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+  }
+function TTF_SetFontSizeDPI(font: PTTF_Font; ptsize: cint; hdpi: cuint; vdpi: cuint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSizeDPI' {$ENDIF} {$ENDIF};
 
 {* Set and retrieve the font style *}
 const
