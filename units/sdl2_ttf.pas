@@ -2143,11 +2143,47 @@ function TTF_GetFontKerningSize(font: PTTF_Font; prev_index: cint; index: cint):
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSize' {$ENDIF} {$ENDIF};
   deprecated 'This function requires FreeType font indexes, not glyphs. Use TTF_GetFontKerningSizeGlyphs() instead';
 
-{* Get the kerning size of two glyphs *}
-function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch, ch: cUint16): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
-function TTF_GetFontKerningSizeGlyphs32(font: PTTF_Font; previous_ch, ch: cUint32): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs32' {$ENDIF} {$ENDIF};
+{*
+ * Query the kerning size of two 16-bit glyphs.
+ *
+ * Note that this version of the function takes 16-bit character
+ * codes, which covers the Basic Multilingual Plane, but is insufficient
+ * to cover the entire set of possible Unicode values, including emoji
+ * glyphs. You should use TTF_GetFontKerningSizeGlyphs32() instead, which
+ * offers the same functionality but takes a 32-bit codepoints instead.
+ *
+ * The only reason to use this function is that it was available since
+ * the beginning of time, more or less.
+ *
+ * \param font the font to query.
+ * \param previous_ch the previous character's code, 16 bits.
+ * \param ch the current character's code, 16 bits.
+ * \returns The kerning size between the two specified characters, in pixels, or -1 on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.14.
+ *
+ * \sa TTF_GetFontKerningSizeGlyphs32
+  }
+function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch: cuint16; ch: cuint16): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
+
+{*
+ * Query the kerning size of two 32-bit glyphs.
+ *
+ * This is the same as TTF_GetFontKerningSizeGlyphs(), but takes 32-bit
+ * characters instead of 16-bit, and thus can manage a larger range. If
+ * you are sure you'll have an SDL_ttf that's version 2.0.18 or newer,
+ * there's no reason not to use this function exclusively.
+ *
+ * \param font the font to query.
+ * \param previous_ch the previous character's code, 32 bits.
+ * \param ch the current character's code, 32 bits.
+ * \returns The kerning size between the two specified characters, in pixels, or -1 on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+  }
+function TTF_GetFontKerningSizeGlyphs32(font: PTTF_Font; previous_ch: cuint32; ch: cuint32): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs32' {$ENDIF} {$ENDIF};
 
 {* Enable Signed Distance Field rendering (with the Blended APIs) *}
 function TTF_SetFontSDF(font: PTTF_Font; on_off: TSDL_Bool): cint;
