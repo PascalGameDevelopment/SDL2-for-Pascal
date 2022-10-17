@@ -680,13 +680,67 @@ function TTF_GetFontKerning(font: PTTF_Font): cint; cdecl;
 procedure TTF_SetFontKerning(font: PTTF_Font; allowed: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontKerning' {$ENDIF} {$ENDIF};
 
-{* Get the number of faces of the font *}
-function TTF_FontFaces(font: PTTF_Font): LongInt cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaces' {$ENDIF} {$ENDIF};
+{*
+ * Query the number of faces of a font.
+ *
+ * \param font the font to query.
+ * \returns the number of FreeType font faces.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_FontFaces(font: PTTF_Font): clong; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaces' {$ENDIF} {$ENDIF};
 
-{* Get the font face attributes, if any *}
-function TTF_FontFaceIsFixedWidth(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceIsFixedWidth' {$ENDIF} {$ENDIF};
-function TTF_FontFaceFamilyName(font: PTTF_Font): PAnsiChar cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceFamilyName' {$ENDIF} {$ENDIF};
-function TTF_FontFaceStyleName(font: PTTF_Font): PAnsiChar cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceStyleName' {$ENDIF} {$ENDIF};
+{*
+ * Query whether a font is fixed-width.
+ *
+ * A "fixed-width" font means all glyphs are the same width across; a
+ * lowercase 'i' will be the same size across as a capital 'W', for example.
+ * This is common for terminals and text editors, and other apps that treat
+ * text as a grid. Most other things (WYSIWYG word processors, web pages, etc)
+ * are more likely to not be fixed-width in most cases.
+ *
+ * \param font the font to query.
+ * \returns non-zero if fixed-width, zero if not.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_FontFaceIsFixedWidth(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceIsFixedWidth' {$ENDIF} {$ENDIF};
+
+{*
+ * Query a font's family name.
+ *
+ * This string is dictated by the contents of the font file.
+ *
+ * Note that the returned string is to internal storage, and should not be
+ * modifed or free'd by the caller. The string becomes invalid, with the rest
+ * of the font, when `font` is handed to TTF_CloseFont().
+ *
+ * \param font the font to query.
+ * \returns the font's family name.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_FontFaceFamilyName(font: PTTF_Font): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceFamilyName' {$ENDIF} {$ENDIF};
+
+{*
+ * Query a font's style name.
+ *
+ * This string is dictated by the contents of the font file.
+ *
+ * Note that the returned string is to internal storage, and should not be
+ * modifed or free'd by the caller. The string becomes invalid, with the rest
+ * of the font, when `font` is handed to TTF_CloseFont().
+ *
+ * \param font the font to query.
+ * \returns the font's style name.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_FontFaceStyleName(font: PTTF_Font): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceStyleName' {$ENDIF} {$ENDIF};
 
 {* Check wether a glyph is provided by the font or not *}
 function TTF_GlyphIsProvided(font: PTTF_Font; ch: cuint16): cint;
