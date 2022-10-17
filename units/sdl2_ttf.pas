@@ -2048,14 +2048,77 @@ function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): P
 function TTF_RenderUTF8(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
 function TTF_RenderUNICODE(font: PTTF_Font; text: pcuint16; fg, bg: TSDL_Color): PSDL_Surface;
 
-{* Close an opened font file *}
-procedure TTF_CloseFont(font: PTTF_Font) cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CloseFont' {$ENDIF} {$ENDIF};
+{*
+ * Dispose of a previously-created font.
+ *
+ * Call this when done with a font. This function will free any resources
+ * associated with it. It is safe to call this function on nil, for example
+ * on the result of a failed call to TTF_OpenFont().
+ *
+ * The font is not valid after being passed to this function. String pointers
+ * from functions that return information on this font, such as
+ * TTF_FontFaceFamilyName() and TTF_FontFaceStyleName(), are no longer valid
+ * after this call, as well.
+ *
+ * \param font the font to dispose of.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_OpenFontIndexDPIRW
+ * \sa TTF_OpenFontRW
+ * \sa TTF_OpenFontDPI
+ * \sa TTF_OpenFontDPIRW
+ * \sa TTF_OpenFontIndex
+ * \sa TTF_OpenFontIndexDPI
+ * \sa TTF_OpenFontIndexDPIRW
+ * \sa TTF_OpenFontIndexRW
+  }
+procedure TTF_CloseFont(font: PTTF_Font); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CloseFont' {$ENDIF} {$ENDIF};
 
-{* De-initialize the TTF engine *}
-procedure TTF_Quit() cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Quit' {$ENDIF} {$ENDIF};
+{*
+ * Deinitialize SDL_ttf.
+ *
+ * You must call this when done with the library, to free internal resources.
+ * It is safe to call this when the library isn't initialized, as it will just
+ * return immediately.
+ *
+ * Once you have as many quit calls as you have had successful calls to
+ * TTF_Init, the library will actually deinitialize.
+ *
+ * Please note that this does not automatically close any fonts that are still
+ * open at the time of deinitialization, and it is possibly not safe to close
+ * them afterwards, as parts of the library will no longer be initialized to
+ * deal with it. A well-written program should call TTF_CloseFont() on any
+ * open fonts before calling this function!
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+procedure TTF_Quit(); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Quit' {$ENDIF} {$ENDIF};
 
-{* Check if the TTF engine is initialized *}
-function TTF_WasInit: Boolean cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_WasInit' {$ENDIF} {$ENDIF};
+{*
+ * Check if SDL_ttf is initialized.
+ *
+ * This reports the number of times the library has been initialized by a call
+ * to TTF_Init(), without a paired deinitialization request from TTF_Quit().
+ *
+ * In short: if it's greater than zero, the library is currently initialized
+ * and ready to work. If zero, it is not initialized.
+ *
+ * Despite the return value being a signed integer, this function should not
+ * return a negative number.
+ *
+ * \returns the current number of initialization calls, that need to
+ *          eventually be paired with this many calls to TTF_Quit().
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_Init
+ * \sa TTF_Quit
+  }
+function TTF_WasInit: cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_WasInit' {$ENDIF} {$ENDIF};
 
 {* Get the kerning size of two glyphs
 
