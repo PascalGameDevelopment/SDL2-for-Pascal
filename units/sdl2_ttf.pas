@@ -2185,11 +2185,40 @@ function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch: cuint16; ch:
 function TTF_GetFontKerningSizeGlyphs32(font: PTTF_Font; previous_ch: cuint32; ch: cuint32): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs32' {$ENDIF} {$ENDIF};
 
-{* Enable Signed Distance Field rendering (with the Blended APIs) *}
-function TTF_SetFontSDF(font: PTTF_Font; on_off: TSDL_Bool): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSDF' {$ENDIF} {$ENDIF};
-function TTF_GetFontSDF(font: PTTF_Font): TSDL_Bool;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontSDF' {$ENDIF} {$ENDIF};
+{*
+ * Enable Signed Distance Field rendering for a font.
+ *
+ * This works with the Blended APIs. SDF is a technique that
+ * helps fonts look sharp even when scaling and rotating.
+ *
+ * This clears already-generated glyphs, if any, from the cache.
+ *
+ * \param font the font to set SDF support on.
+ * \param on_off SDL_TRUE to enable SDF, SDL_FALSE to disable.
+ *
+ * \returns 0 on success, -1 on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_GetFontSDF
+  }
+function TTF_SetFontSDF(font: PTTF_Font; on_off: TSDL_bool): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSDF' {$ENDIF} {$ENDIF};
+
+{*
+ * Query whether Signed Distance Field rendering is enabled for a font.
+ *
+ * \param font the font to query
+ *
+ * \returns SDL_TRUE if enabled, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_SetFontSDF
+  }
+(* Const before type ignored *)
+function TTF_GetFontSDF(font: PTTF_Font): TSDL_bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontSDF' {$ENDIF} {$ENDIF};
 
 {* We'll use SDL for reporting errors *}
 function TTF_SetError(const fmt: PAnsiChar): cint32; cdecl;
