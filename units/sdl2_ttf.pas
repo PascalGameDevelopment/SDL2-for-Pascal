@@ -987,43 +987,266 @@ function TTF_MeasureUTF8(font: PTTF_Font; text: PAnsiChar; measure_width: cint; 
 function TTF_MeasureUNICODE(font: PTTF_Font; text: pcuint16; measure_width: cint; extent: pcint; count: pcint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureUNICODE' {$ENDIF} {$ENDIF};
 
-{* Create an 8-bit palettized surface and render the given text at
-   fast quality with the given font and color.  The 0 pixel is the
-   colorkey, giving a transparent background, and the 1 pixel is set
-   to the text color.
-   This function returns the new surface, or NULL if there was an error.
-*}
-function TTF_RenderText_Solid(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Solid' {$ENDIF} {$ENDIF};
-function TTF_RenderUTF8_Solid(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Solid' {$ENDIF} {$ENDIF};
-function TTF_RenderUNICODE_Solid(font: PTTF_Font; text: pcuint16; fg: TSDL_Color): PSDL_Surface cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Solid' {$ENDIF} {$ENDIF};
+{*
+ * Render Latin1 text at fast quality to a new 8-bit surface.
+ *
+ * This function will allocate a new 8-bit, palettized surface. The surface's
+ * 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+ * will be set to the text color.
+ *
+ * This will not word-wrap the string; you'll get a surface with a single line
+ * of text, as long as the string requires. You can use
+ * TTF_RenderText_Solid_Wrapped() instead if you need to wrap the output to
+ * multiple lines.
+ *
+ * This will not wrap on newline characters.
+ *
+ * You almost certainly want TTF_RenderUTF8_Solid() unless you're sure you
+ * have a 1-byte Latin1 encoding. US ASCII characters will work with either
+ * function, but most other Unicode characters packed into a `const char *`
+ * will need UTF-8.
+ *
+ * You can render at other quality levels with TTF_RenderText_Shaded,
+ * TTF_RenderText_Blended, and TTF_RenderText_LCD.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in Latin1 encoding.
+ * \param fg the foreground color for the text.
+ * \returns a new 8-bit, palettized surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_RenderUTF8_Solid
+ * \sa TTF_RenderUNICODE_Solid
+  }
+function TTF_RenderText_Solid(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Solid' {$ENDIF} {$ENDIF};
 
-{* Create an 8-bit palettized surface and render the given text at
-   fast quality with the given font and color.  The 0 pixel is the
-   colorkey, giving a transparent background, and the 1 pixel is set
-   to the text color.
-   Text is wrapped to multiple lines on line endings and on word boundaries
-   if it extends beyond wrapLength in pixels.
-   If wrapLength is 0, only wrap on new lines.
-   This function returns the new surface, or NULL if there was an error.
-*}
-function TTF_RenderText_Solid_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; wrapLength: cUint32): PSDL_Surface;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Solid_Wrapped' {$ENDIF} {$ENDIF};
-function TTF_RenderUTF8_Solid_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; wrapLength: cUint32): PSDL_Surface;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Solid_Wrapped' {$ENDIF} {$ENDIF};
-function TTF_RenderUNICODE_Solid_Wrapped(font: PTTF_Font; text: pcUint16; fg: TSDL_Color; wrapLength: cUint32): PSDL_Surface;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Solid_Wrapped' {$ENDIF} {$ENDIF};
+{*
+ * Render UTF-8 text at fast quality to a new 8-bit surface.
+ *
+ * This function will allocate a new 8-bit, palettized surface. The surface's
+ * 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+ * will be set to the text color.
+ *
+ * This will not word-wrap the string; you'll get a surface with a single line
+ * of text, as long as the string requires. You can use
+ * TTF_RenderUTF8_Solid_Wrapped() instead if you need to wrap the output to
+ * multiple lines.
+ *
+ * This will not wrap on newline characters.
+ *
+ * You can render at other quality levels with TTF_RenderUTF8_Shaded,
+ * TTF_RenderUTF8_Blended, and TTF_RenderUTF8_LCD.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in UTF-8 encoding.
+ * \param fg the foreground color for the text.
+ * \returns a new 8-bit, palettized surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_RenderUTF8_Shaded
+ * \sa TTF_RenderUTF8_Blended
+ * \sa TTF_RenderUTF8_LCD
+  }
+function TTF_RenderUTF8_Solid(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Solid' {$ENDIF} {$ENDIF};
 
-{* Create an 8-bit palettized surface and render the given glyph at
-   fast quality with the given font and color.  The 0 pixel is the
-   colorkey, giving a transparent background, and the 1 pixel is set
-   to the text color.  The glyph is rendered without any padding or
-   centering in the X direction, and aligned normally in the Y direction.
-   This function returns the new surface, or NULL if there was an error.
-*}
-function TTF_RenderGlyph_Solid(font: PTTF_Font; ch: cUint16; fg: TSDL_Color): PSDL_Surface;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid' {$ENDIF} {$ENDIF};
-function TTF_RenderGlyph_Solid32(font: PTTF_Font; ch: cUint32; fg: TSDL_Color): PSDL_Surface;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid32' {$ENDIF} {$ENDIF};
+{*
+ * Render UCS-2 text at fast quality to a new 8-bit surface.
+ *
+ * This function will allocate a new 8-bit, palettized surface. The surface's
+ * 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+ * will be set to the text color.
+ *
+ * This will not word-wrap the string; you'll get a surface with a single line
+ * of text, as long as the string requires. You can use
+ * TTF_RenderUNICODE_Solid_Wrapped() instead if you need to wrap the output to
+ * multiple lines.
+ *
+ * This will not wrap on newline characters.
+ *
+ * Please note that this function is named "Unicode" but currently expects
+ * UCS-2 encoding (16 bits per codepoint). This does not give you access to
+ * large Unicode values, such as emoji glyphs. These codepoints are accessible
+ * through the UTF-8 version of this function.
+ *
+ * You can render at other quality levels with TTF_RenderUNICODE_Shaded,
+ * TTF_RenderUNICODE_Blended, and TTF_RenderUNICODE_LCD.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in UCS-2 encoding.
+ * \param fg the foreground color for the text.
+ * \returns a new 8-bit, palettized surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_RenderUTF8_Solid
+  }
+function TTF_RenderUNICODE_Solid(font: PTTF_Font; text: pcuint16; fg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Solid' {$ENDIF} {$ENDIF};
+
+{*
+ * Render word-wrapped Latin1 text at fast quality to a new 8-bit surface.
+ *
+ * This function will allocate a new 8-bit, palettized surface. The surface's
+ * 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+ * will be set to the text color.
+ *
+ * Text is wrapped to multiple lines on line endings and on word boundaries if
+ * it extends beyond `wrapLength` in pixels.
+ *
+ * If wrapLength is 0, this function will only wrap on newline characters.
+ *
+ * You almost certainly want TTF_RenderUTF8_Solid_Wrapped() unless you're sure
+ * you have a 1-byte Latin1 encoding. US ASCII characters will work with
+ * either function, but most other Unicode characters packed into a `const
+ * char *` will need UTF-8.
+ *
+ * You can render at other quality levels with TTF_RenderText_Shaded_Wrapped,
+ * TTF_RenderText_Blended_Wrapped, and TTF_RenderText_LCD_Wrapped.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in Latin1 encoding.
+ * \param fg the foreground color for the text.
+ * \returns a new 8-bit, palettized surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_RenderUTF8_Solid_Wrapped
+ * \sa TTF_RenderUNICODE_Solid_Wrapped
+  }
+function TTF_RenderText_Solid_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Solid_Wrapped' {$ENDIF} {$ENDIF};
+
+{*
+ * Render word-wrapped UTF-8 text at fast quality to a new 8-bit surface.
+ *
+ * This function will allocate a new 8-bit, palettized surface. The surface's
+ * 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+ * will be set to the text color.
+ *
+ * Text is wrapped to multiple lines on line endings and on word boundaries if
+ * it extends beyond `wrapLength` in pixels.
+ *
+ * If wrapLength is 0, this function will only wrap on newline characters.
+ *
+ * You can render at other quality levels with TTF_RenderUTF8_Shaded_Wrapped,
+ * TTF_RenderUTF8_Blended_Wrapped, and TTF_RenderUTF8_LCD_Wrapped.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in UTF-8 encoding.
+ * \param fg the foreground color for the text.
+ * \returns a new 8-bit, palettized surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_RenderUTF8_Shaded_Wrapped
+ * \sa TTF_RenderUTF8_Blended_Wrapped
+ * \sa TTF_RenderUTF8_LCD_Wrapped
+  }
+function TTF_RenderUTF8_Solid_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Solid_Wrapped' {$ENDIF} {$ENDIF};
+
+{*
+ * Render word-wrapped UCS-2 text at fast quality to a new 8-bit surface.
+ *
+ * This function will allocate a new 8-bit, palettized surface. The surface's
+ * 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+ * will be set to the text color.
+ *
+ * Text is wrapped to multiple lines on line endings and on word boundaries if
+ * it extends beyond `wrapLength` in pixels.
+ *
+ * If wrapLength is 0, this function will only wrap on newline characters.
+ *
+ * Please note that this function is named "Unicode" but currently expects
+ * UCS-2 encoding (16 bits per codepoint). This does not give you access to
+ * large Unicode values, such as emoji glyphs. These codepoints are accessible
+ * through the UTF-8 version of this function.
+ *
+ * You can render at other quality levels with
+ * TTF_RenderUNICODE_Shaded_Wrapped, TTF_RenderUNICODE_Blended_Wrapped, and
+ * TTF_RenderUNICODE_LCD_Wrapped.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in UCS-2 encoding.
+ * \param fg the foreground color for the text.
+ * \returns a new 8-bit, palettized surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_RenderUTF8_Solid_Wrapped
+  }
+function TTF_RenderUNICODE_Solid_Wrapped(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Solid_Wrapped' {$ENDIF} {$ENDIF};
+
+{*
+ * Render a single 16-bit glyph at fast quality to a new 8-bit surface.
+ *
+ * This function will allocate a new 8-bit, palettized surface. The surface's
+ * 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+ * will be set to the text color.
+ *
+ * The glyph is rendered without any padding or centering in the X direction,
+ * and aligned normally in the Y direction.
+ *
+ * Note that this version of the function takes a 16-bit character code, which
+ * covers the Basic Multilingual Plane, but is insufficient to cover the
+ * entire set of possible Unicode values, including emoji glyphs. You should
+ * use TTF_RenderGlyph32_Solid() instead, which offers the same functionality
+ * but takes a 32-bit codepoint instead.
+ *
+ * The only reason to use this function is that it was available since the
+ * beginning of time, more or less.
+ *
+ * You can render at other quality levels with TTF_RenderGlyph_Shaded,
+ * TTF_RenderGlyph_Blended, and TTF_RenderGlyph_LCD.
+ *
+ * \param font the font to render with.
+ * \param ch the character to render.
+ * \param fg the foreground color for the text.
+ * \returns a new 8-bit, palettized surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_RenderGlyph32_Solid
+  }
+function TTF_RenderGlyph_Solid(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid' {$ENDIF} {$ENDIF};
+
+{*
+ * Render a single 32-bit glyph at fast quality to a new 8-bit surface.
+ *
+ * This function will allocate a new 8-bit, palettized surface. The surface's
+ * 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+ * will be set to the text color.
+ *
+ * The glyph is rendered without any padding or centering in the X direction,
+ * and aligned normally in the Y direction.
+ *
+ * This is the same as TTF_RenderGlyph_Solid(), but takes a 32-bit character
+ * instead of 16-bit, and thus can render a larger range. If you are sure
+ * you'll have an SDL_ttf that's version 2.0.18 or newer, there's no reason
+ * not to use this function exclusively.
+ *
+ * You can render at other quality levels with TTF_RenderGlyph32_Shaded,
+ * TTF_RenderGlyph32_Blended, and TTF_RenderGlyph32_LCD.
+ *
+ * \param font the font to render with.
+ * \param ch the character to render.
+ * \param fg the foreground color for the text.
+ * \returns a new 8-bit, palettized surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_RenderGlyph32_Shaded
+ * \sa TTF_RenderGlyph32_Blended
+ * \sa TTF_RenderGlyph32_LCD
+  }
+function TTF_RenderGlyph32_Solid(font: PTTF_Font; ch: cuint32; fg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_Solid' {$ENDIF} {$ENDIF};
 
 {* Create an 8-bit palettized surface and render the given text at
    high quality with the given font and colors.  The 0 pixel is background,
