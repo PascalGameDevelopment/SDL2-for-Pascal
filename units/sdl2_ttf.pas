@@ -173,32 +173,225 @@ type
 function TTF_Init(): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Init' {$ENDIF} {$ENDIF};
 
-{* Open a font file and create a font of the specified point size.
- * Some .fon fonts will have several sizes embedded in the file, so the
- * point size becomes the index of choosing which size.  If the value
- * is too high, the last indexed size will be the default. *}
-function TTF_OpenFont(_file: PAnsiChar; ptsize: cint): PTTF_Font;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFont' {$ENDIF} {$ENDIF};
-function TTF_OpenFontIndex(_file: PAnsiChar; ptsize: cint; index: clong): PTTF_Font;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndex' {$ENDIF} {$ENDIF};
-{* Open a font file from a SDL_RWops: 'src' must be kept alive for the lifetime of the TTF_Font.
- * 'freesrc' can be set so that TTF_CloseFont closes the RWops *}
-function TTF_OpenFontRW(src: PSDL_RWops; freesrc, ptsize: cint): PTTF_Font;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontRW' {$ENDIF} {$ENDIF};
-function TTF_OpenFontIndexRW(src: PSDL_RWops; freesrc, ptsize: cint; index: clong): PTTF_Font;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexRW' {$ENDIF} {$ENDIF};
+{*
+ * Create a font from a file, using a specified point size.
+ *
+ * Some .fon fonts will have several sizes embedded in the file, so the point
+ * size becomes the index of choosing which size. If the value is too high,
+ * the last indexed size will be the default.
+ *
+ * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
+ *
+ * \param file path to font file.
+ * \param ptsize point size to use for the newly-opened font.
+ * \returns a valid TTF_Font, or nil on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_CloseFont
+  }
+function TTF_OpenFont(file: PAnsiChar; ptsize: cint): PTTF_Font; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFont' {$ENDIF} {$ENDIF};
 
-{* Opens a font using the given horizontal and vertical target resolutions (in DPI).
+{*
+ * Create a font from a file, using a specified face index.
+ *
+ * Some .fon fonts will have several sizes embedded in the file, so the point
+ * size becomes the index of choosing which size. If the value is too high,
+ * the last indexed size will be the default.
+ *
+ * Some fonts have multiple "faces" included. The index specifies which face
+ * to use from the font file. Font files with only one face should specify
+ * zero for the index.
+ *
+ * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
+ *
+ * \param file path to font file.
+ * \param ptsize point size to use for the newly-opened font.
+ * \param index index of the face in the font file.
+ * \returns a valid TTF_Font, or nil on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_CloseFont
+  }
+function TTF_OpenFontIndex(file: PAnsiChar; ptsize: cint; index: clong): PTTF_Font; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndex' {$ENDIF} {$ENDIF};
+
+{*
+ * Create a font from an SDL_RWops, using a specified point size.
+ *
+ * Some .fon fonts will have several sizes embedded in the file, so the point
+ * size becomes the index of choosing which size. If the value is too high,
+ * the last indexed size will be the default.
+ *
+ * If `freesrc` is non-zero, the RWops will be closed before returning,
+ * whether this function succeeds or not. SDL_ttf reads everything it needs
+ * from the RWops during this call in any case.
+ *
+ * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
+ *
+ * \param src an SDL_RWops to provide a font file's data.
+ * \param freesrc non-zero to close the RWops before returning, zero to leave
+ *                it open.
+ * \param ptsize point size to use for the newly-opened font.
+ * \returns a valid TTF_Font, or nil on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_CloseFont
+  }
+function TTF_OpenFontRW(src: PSDL_RWops; freesrc: cint; ptsize: cint): PTTF_Font; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontRW' {$ENDIF} {$ENDIF};
+
+{*
+ * Create a font from an SDL_RWops, using a specified face index.
+ *
+ * Some .fon fonts will have several sizes embedded in the file, so the point
+ * size becomes the index of choosing which size. If the value is too high,
+ * the last indexed size will be the default.
+ *
+ * If `freesrc` is non-zero, the RWops will be closed before returning,
+ * whether this function succeeds or not. SDL_ttf reads everything it needs
+ * from the RWops during this call in any case.
+ *
+ * Some fonts have multiple "faces" included. The index specifies which face
+ * to use from the font file. Font files with only one face should specify
+ * zero for the index.
+ *
+ * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
+ *
+ * \param src an SDL_RWops to provide a font file's data.
+ * \param freesrc non-zero to close the RWops before returning, zero to leave
+ *                it open.
+ * \param ptsize point size to use for the newly-opened font.
+ * \param index index of the face in the font file.
+ * \returns a valid TTF_Font, or nil on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_CloseFont
+  }
+function TTF_OpenFontIndexRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index: clong): PTTF_Font; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexRW' {$ENDIF} {$ENDIF};
+
+{*
+ * Create a font from a file, using target resolutions (in DPI).
+ *
  * DPI scaling only applies to scalable fonts (e.g. TrueType).
- *}
-function TTF_OpenFontDPI(file_: PAnsiChar; ptsize: cint; hdpi, vdpi: cuint): PTTF_Font;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPI' {$ENDIF} {$ENDIF};
-function TTF_OpenFontIndexDPI(file_: PAnsiChar; ptsize: cint; index: clong; hdpi, vdpi: cuint): PTTF_Font;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPI' {$ENDIF} {$ENDIF};
-function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc, ptsize: cint; hdpi, vdpi: cuint): PTTF_Font;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPIRW' {$ENDIF} {$ENDIF};
-function TTF_OpenFontIndexDPIRW(src: PSDL_RWops; freesrc, ptsize: cuint; index: clong; hdpi, vdpi: cuint): PTTF_Font;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPIRW' {$ENDIF} {$ENDIF};
+ *
+ * Some .fon fonts will have several sizes embedded in the file, so the point
+ * size becomes the index of choosing which size. If the value is too high,
+ * the last indexed size will be the default.
+ *
+ * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
+ *
+ * \param file path to font file.
+ * \param ptsize point size to use for the newly-opened font.
+ * \param hdpi the target horizontal DPI.
+ * \param vdpi the target vertical DPI.
+ * \returns a valid TTF_Font, or nil on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_CloseFont
+  }
+function TTF_OpenFontDPI(file: PAnsiChar; ptsize: cint; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPI' {$ENDIF} {$ENDIF};
+
+{*
+ * Create a font from a file, using target resolutions (in DPI).
+ *
+ * DPI scaling only applies to scalable fonts (e.g. TrueType).
+ *
+ * Some .fon fonts will have several sizes embedded in the file, so the point
+ * size becomes the index of choosing which size. If the value is too high,
+ * the last indexed size will be the default.
+ *
+ * Some fonts have multiple "faces" included. The index specifies which face
+ * to use from the font file. Font files with only one face should specify
+ * zero for the index.
+ *
+ * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
+ *
+ * \param file path to font file.
+ * \param ptsize point size to use for the newly-opened font.
+ * \param index index of the face in the font file.
+ * \param hdpi the target horizontal DPI.
+ * \param vdpi the target vertical DPI.
+ * \returns a valid TTF_Font, or nil on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_CloseFont
+  }
+function TTF_OpenFontIndexDPI(file: PAnsiChar; ptsize: cint; index: clong; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPI' {$ENDIF} {$ENDIF};
+
+{*
+ * Opens a font from an SDL_RWops with target resolutions (in DPI).
+ *
+ * DPI scaling only applies to scalable fonts (e.g. TrueType).
+ *
+ * Some .fon fonts will have several sizes embedded in the file, so the point
+ * size becomes the index of choosing which size. If the value is too high,
+ * the last indexed size will be the default.
+ *
+ * If `freesrc` is non-zero, the RWops will be closed before returning,
+ * whether this function succeeds or not. SDL_ttf reads everything it needs
+ * from the RWops during this call in any case.
+ *
+ * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
+ *
+ * \param src an SDL_RWops to provide a font file's data.
+ * \param freesrc non-zero to close the RWops before returning, zero to leave
+ *                it open.
+ * \param ptsize point size to use for the newly-opened font.
+ * \param hdpi the target horizontal DPI.
+ * \param vdpi the target vertical DPI.
+ * \returns a valid TTF_Font, or nil on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_CloseFont
+  }
+function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPIRW' {$ENDIF} {$ENDIF};
+
+{*
+ * Opens a font from an SDL_RWops with target resolutions (in DPI).
+ *
+ * DPI scaling only applies to scalable fonts (e.g. TrueType).
+ *
+ * Some .fon fonts will have several sizes embedded in the file, so the point
+ * size becomes the index of choosing which size. If the value is too high,
+ * the last indexed size will be the default.
+ *
+ * If `freesrc` is non-zero, the RWops will be closed before returning,
+ * whether this function succeeds or not. SDL_ttf reads everything it needs
+ * from the RWops during this call in any case.
+ *
+ * Some fonts have multiple "faces" included. The index specifies which face
+ * to use from the font file. Font files with only one face should specify
+ * zero for the index.
+ *
+ * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
+ *
+ * \param src an SDL_RWops to provide a font file's data.
+ * \param freesrc non-zero to close the RWops before returning, zero to leave
+ *                it open.
+ * \param ptsize point size to use for the newly-opened font.
+ * \param index index of the face in the font file.
+ * \param hdpi the target horizontal DPI.
+ * \param vdpi the target vertical DPI.
+ * \returns a valid TTF_Font, or nil on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_CloseFont
+  }
+function TTF_OpenFontIndexDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index: clong; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPIRW' {$ENDIF} {$ENDIF};
 
 {* Set font size dynamically *}
 function TTF_SetFontSize(font: PTTF_Font; ptsize: cint): cint;
