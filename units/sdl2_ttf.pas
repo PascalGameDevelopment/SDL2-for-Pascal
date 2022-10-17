@@ -603,25 +603,82 @@ function TTF_GetFontWrappedAlign(font: PTTF_Font): cint; cdecl;
 procedure TTF_SetFontWrappedAlign(font: PTTF_Font; align: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontWrappedAlign' {$ENDIF} {$ENDIF};
 
-{* Get the total height of the font - usually equal to point size *}
-function TTF_FontHeight(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontHeight' {$ENDIF} {$ENDIF};
+{*
+ * Query the total height of a font.
+ *
+ * This is usually equal to point size.
+ *
+ * \param font the font to query.
+ * \returns the font's height.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_FontHeight(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontHeight' {$ENDIF} {$ENDIF};
 
-{* Get the offset from the baseline to the top of the font
-   This is a positive value, relative to the baseline.
- *}
-function TTF_FontAscent(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontAscent' {$ENDIF} {$ENDIF};
+{*
+ * Query the offset from the baseline to the top of a font.
+ *
+ * This is a positive value, relative to the baseline.
+ *
+ * \param font the font to query.
+ * \returns the font's ascent.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_FontAscent(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontAscent' {$ENDIF} {$ENDIF};
 
-{* Get the offset from the baseline to the bottom of the font
-   This is a negative value, relative to the baseline.
- *}
-function TTF_FontDescent(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontDescent' {$ENDIF} {$ENDIF};
+{*
+ * Query the offset from the baseline to the bottom of a font.
+ *
+ * This is a negative value, relative to the baseline.
+ *
+ * \param font the font to query.
+ * \returns the font's descent.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_FontDescent(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontDescent' {$ENDIF} {$ENDIF};
 
-{* Get the recommended spacing between lines of text for this font *}
-function TTF_FontLineSkip(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontLineSkip' {$ENDIF} {$ENDIF};
+{*
+ * Query the recommended spacing between lines of text for a font.
+ *
+ * \param font the font to query.
+ * \returns the font's recommended spacing.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_FontLineSkip(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontLineSkip' {$ENDIF} {$ENDIF};
 
-{* Get/Set whether or not kerning is allowed for this font *}
-function TTF_GetFontKerning(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerning' {$ENDIF} {$ENDIF};
-procedure TTF_SetFontKerning(font: PTTF_Font; allowed: cint) cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontKerning' {$ENDIF} {$ENDIF};
+{*
+ * Query whether or not kerning is allowed for a font.
+ *
+ * \param font the font to query.
+ * \returns non-zero if kerning is enabled, zero otherwise.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+function TTF_GetFontKerning(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerning' {$ENDIF} {$ENDIF};
+
+{*
+ * Set if kerning is allowed for a font.
+ *
+ * Newly-opened fonts default to allowing kerning. This is generally a good
+ * policy unless you have a strong reason to disable it, as it tends to
+ * produce better rendering (with kerning disabled, some fonts might render
+ * the word `kerning` as something that looks like `keming` for example).
+ *
+ * \param font the font to set kerning on.
+ * \param allowed non-zero to allow kerning, zero to disallow.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+  }
+procedure TTF_SetFontKerning(font: PTTF_Font; allowed: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontKerning' {$ENDIF} {$ENDIF};
 
 {* Get the number of faces of the font *}
 function TTF_FontFaces(font: PTTF_Font): LongInt cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaces' {$ENDIF} {$ENDIF};
