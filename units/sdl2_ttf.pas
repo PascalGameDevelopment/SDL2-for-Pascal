@@ -742,20 +742,91 @@ function TTF_FontFaceFamilyName(font: PTTF_Font): PAnsiChar; cdecl;
 function TTF_FontFaceStyleName(font: PTTF_Font): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceStyleName' {$ENDIF} {$ENDIF};
 
-{* Check wether a glyph is provided by the font or not *}
-function TTF_GlyphIsProvided(font: PTTF_Font; ch: cuint16): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided' {$ENDIF} {$ENDIF};
-function TTF_GlyphIsProvided32(font: PTTF_Font; ch: cuint32): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided32' {$ENDIF} {$ENDIF};
+{*
+ * Check whether a glyph is provided by the font for a 16-bit codepoint.
+ *
+ * Note that this version of the function takes a 16-bit character code, which
+ * covers the Basic Multilingual Plane, but is insufficient to cover the
+ * entire set of possible Unicode values, including emoji glyphs. You should
+ * use TTF_GlyphIsProvided32() instead, which offers the same functionality
+ * but takes a 32-bit codepoint instead.
+ *
+ * The only reason to use this function is that it was available since the
+ * beginning of time, more or less.
+ *
+ * \param font the font to query.
+ * \param ch the character code to check.
+ * \returns non-zero if font provides a glyph for this character, zero if not.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_GlyphIsProvided32
+  }
+function TTF_GlyphIsProvided(font: PTTF_Font; ch: cuint16): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided' {$ENDIF} {$ENDIF};
 
-{* Get the metrics (dimensions) of a glyph
-   To understand what these metrics mean, here is a useful link:
-    http://freetype.sourceforge.net/freetype2/docs/tutorial/step2.html
- *}
-function TTF_GlyphMetrics(font: PTTF_Font; ch: cuint16; minX, maxX, minY, maxY, advance: pcint): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics' {$ENDIF} {$ENDIF};
-function TTF_GlyphMetrics32(font: PTTF_Font; ch: cuint32; minX, maxX, minY, maxY, advance: pcint): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics32' {$ENDIF} {$ENDIF};
+{*
+ * Check whether a glyph is provided by the font for a 32-bit codepoint.
+ *
+ * This is the same as TTF_GlyphIsProvided(), but takes a 32-bit character
+ * instead of 16-bit, and thus can query a larger range. If you are sure
+ * you'll have an SDL_ttf that's version 2.0.18 or newer, there's no reason
+ * not to use this function exclusively.
+ *
+ * \param font the font to query.
+ * \param ch the character code to check.
+ * \returns non-zero if font provides a glyph for this character, zero if not.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+  }
+function TTF_GlyphIsProvided32(font: PTTF_Font; ch: cuint32): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided32' {$ENDIF} {$ENDIF};
+
+{*
+ * Query the metrics (dimensions) of a font's 16-bit glyph.
+ *
+ * To understand what these metrics mean, here is a useful link:
+ *
+ * https://freetype.sourceforge.net/freetype2/docs/tutorial/step2.html
+ *
+ * Note that this version of the function takes a 16-bit character code, which
+ * covers the Basic Multilingual Plane, but is insufficient to cover the
+ * entire set of possible Unicode values, including emoji glyphs. You should
+ * use TTF_GlyphMetrics32() instead, which offers the same functionality but
+ * takes a 32-bit codepoint instead.
+ *
+ * The only reason to use this function is that it was available since the
+ * beginning of time, more or less.
+ *
+ * \param font the font to query.
+ * \param ch the character code to check.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_GlyphMetrics32
+  }
+function TTF_GlyphMetrics(font: PTTF_Font; ch: cuint16; minx: pcint; maxx: pcint; miny: pcint; maxy: pcint; advance: pcint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics' {$ENDIF} {$ENDIF};
+
+{*
+ * Query the metrics (dimensions) of a font's 32-bit glyph.
+ *
+ * To understand what these metrics mean, here is a useful link:
+ *
+ * https://freetype.sourceforge.net/freetype2/docs/tutorial/step2.html
+ *
+ * This is the same as TTF_GlyphMetrics(), but takes a 32-bit character
+ * instead of 16-bit, and thus can query a larger range. If you are sure
+ * you'll have an SDL_ttf that's version 2.0.18 or newer, there's no reason
+ * not to use this function exclusively.
+ *
+ * \param font the font to query.
+ * \param ch the character code to check.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+  }
+function TTF_GlyphMetrics32(font: PTTF_Font; ch: cuint32; minx: pcint; maxx: pcint; miny: pcint; maxy: pcint; advance: pcint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics32' {$ENDIF} {$ENDIF};
 
 {* Get the dimensions of a rendered string of text *}
 function TTF_SizeText(font: PTTF_Font; text: PAnsiChar; w, h: pcint): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeText' {$ENDIF} {$ENDIF};
