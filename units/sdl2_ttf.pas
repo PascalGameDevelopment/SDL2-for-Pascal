@@ -2120,16 +2120,27 @@ procedure TTF_Quit(); cdecl;
 function TTF_WasInit: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_WasInit' {$ENDIF} {$ENDIF};
 
-{* Get the kerning size of two glyphs
-
-   DEPRECATED: this function requires FreeType font indexes, not glyphs,
-     by accident, which we don't expose through this API, so it could give
-     wildly incorrect results, especially with non-ASCII values.
-     Going forward, please use TTF_GetFontKerningSizeGlyphs() instead, which
-     does what you probably expected this function to do.
-*}
-function TTF_GetFontKerningSize(font: PTTF_Font; prev_index, index: cint): cint cdecl;
-  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSize' {$ENDIF} {$ENDIF};
+{*
+ * Query the kerning size of two glyphs indices.
+ *
+ * \deprecated This function accidentally requires FreeType font indexes,
+ *             not codepoints, which we don't expose through this API, so
+ *             it could give wildly incorrect results, especially with
+ *             non-ASCII values. Going forward, please use
+ *             TTF_GetFontKerningSizeGlyphs() instead, which does what you
+ *             probably expected this function to do.
+ *
+ * \param font the font to query.
+ * \param prev_index the font index, NOT codepoint, of the previous character.
+ * \param index the font index, NOT codepoint, of the current character.
+ * \returns The kerning size between the two specified characters, in pixels, or -1 on error.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_GetFontKerningSizeGlyphs
+  }
+function TTF_GetFontKerningSize(font: PTTF_Font; prev_index: cint; index: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSize' {$ENDIF} {$ENDIF};
   deprecated 'This function requires FreeType font indexes, not glyphs. Use TTF_GetFontKerningSizeGlyphs() instead';
 
 {* Get the kerning size of two glyphs *}
