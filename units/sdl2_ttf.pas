@@ -2220,8 +2220,18 @@ function TTF_SetFontSDF(font: PTTF_Font; on_off: TSDL_bool): cint; cdecl;
 function TTF_GetFontSDF(font: PTTF_Font): TSDL_bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontSDF' {$ENDIF} {$ENDIF};
 
-{* We'll use SDL for reporting errors *}
-function TTF_SetError(const fmt: PAnsiChar): cint32; cdecl;
+{*
+ * Report SDL_ttf errors
+ *
+ * \sa TTF_GetError
+  }
+function TTF_SetError(const fmt: PAnsiChar): cint; cdecl;
+
+{*
+ * Get last SDL_ttf error
+ *
+ * \sa TTF_SetError
+  }
 function TTF_GetError: PAnsiChar; cdecl;
 
 {* Set Direction and Script to be used for text shaping, when using HarfBuzz.
