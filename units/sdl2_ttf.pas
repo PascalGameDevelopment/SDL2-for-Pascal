@@ -423,7 +423,9 @@ function TTF_SetFontSize(font: PTTF_Font; ptsize: cint): cint; cdecl;
 function TTF_SetFontSizeDPI(font: PTTF_Font; ptsize: cint; hdpi: cuint; vdpi: cuint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSizeDPI' {$ENDIF} {$ENDIF};
 
-{* Set and retrieve the font style *}
+{*
+ * Font style flags
+  }
 const
   TTF_STYLE_NORMAL        = $00;
   TTF_STYLE_BOLD          = $01;
@@ -431,10 +433,75 @@ const
   TTF_STYLE_UNDERLINE     = $04;
   TTF_STYLE_STRIKETHROUGH = $08;
 
-function TTF_GetFontStyle(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontStyle' {$ENDIF} {$ENDIF};
-procedure TTF_SetFontStyle(font: PTTF_Font; style: cint) cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontStyle' {$ENDIF} {$ENDIF};
-function TTF_GetFontOutline(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontOutline' {$ENDIF} {$ENDIF};
-procedure TTF_SetFontOutline(font: PTTF_Font; outline: cint) cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontOutline' {$ENDIF} {$ENDIF};
+{*
+ * Query a font's current style.
+ *
+ * The font styles are a set of bit flags, OR'd together:
+ *
+ * - `TTF_STYLE_NORMAL` (is zero)
+ * - `TTF_STYLE_BOLD`
+ * - `TTF_STYLE_ITALIC`
+ * - `TTF_STYLE_UNDERLINE`
+ * - `TTF_STYLE_STRIKETHROUGH`
+ *
+ * \param font the font to query.
+ * \returns the current font style, as a set of bit flags.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_SetFontStyle
+  }
+function TTF_GetFontStyle(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontStyle' {$ENDIF} {$ENDIF};
+
+{*
+ * Set a font's current style.
+ *
+ * Setting the style clears already-generated glyphs, if any, from the cache.
+ *
+ * The font styles are a set of bit flags, OR'd together:
+ *
+ * - `TTF_STYLE_NORMAL` (is zero)
+ * - `TTF_STYLE_BOLD`
+ * - `TTF_STYLE_ITALIC`
+ * - `TTF_STYLE_UNDERLINE`
+ * - `TTF_STYLE_STRIKETHROUGH`
+ *
+ * \param font the font to set a new style on.
+ * \param style the new style values to set, OR'd together.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_GetFontStyle
+  }
+procedure TTF_SetFontStyle(font: PTTF_Font; style: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontStyle' {$ENDIF} {$ENDIF};
+
+{*
+ * Query a font's current outline.
+ *
+ * \param font the font to query.
+ * \returns the font's current outline value.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_SetFontOutline
+  }
+function TTF_GetFontOutline(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontOutline' {$ENDIF} {$ENDIF};
+
+{*
+ * Set a font's current outline.
+ *
+ * \param font the font to set a new outline on.
+ * \param outline positive outline value, 0 to default.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_GetFontOutline
+  }
+procedure TTF_SetFontOutline(font: PTTF_Font; outline: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontOutline' {$ENDIF} {$ENDIF};
 
 {* Set and retrieve FreeType hinter settings *}
 const
