@@ -513,8 +513,49 @@ const
   TTF_HINTING_NONE           = 3;
   TTF_HINTING_LIGHT_SUBPIXEL = 4;
 
-function TTF_GetFontHinting(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontHinting' {$ENDIF} {$ENDIF};
-procedure TTF_SetFontHinting(font: PTTF_Font; hinting: cint) cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontHinting' {$ENDIF} {$ENDIF};
+{*
+ * Query a font's current FreeType hinter setting.
+ *
+ * The hinter setting is a single value:
+ *
+ * - `TTF_HINTING_NORMAL`
+ * - `TTF_HINTING_LIGHT`
+ * - `TTF_HINTING_MONO`
+ * - `TTF_HINTING_NONE`
+ * - `TTF_HINTING_LIGHT_SUBPIXEL` (available in SDL_ttf 2.0.18 and later)
+ *
+ * \param font the font to query.
+ * \returns the font's current hinter value.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_SetFontHinting
+  }
+function TTF_GetFontHinting(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontHinting' {$ENDIF} {$ENDIF};
+
+{*
+ * Set a font's current hinter setting.
+ *
+ * Setting it clears already-generated glyphs, if any, from the cache.
+ *
+ * The hinter setting is a single value:
+ *
+ * - `TTF_HINTING_NORMAL`
+ * - `TTF_HINTING_LIGHT`
+ * - `TTF_HINTING_MONO`
+ * - `TTF_HINTING_NONE`
+ * - `TTF_HINTING_LIGHT_SUBPIXEL` (available in SDL_ttf 2.0.18 and later)
+ *
+ * \param font the font to set a new hinter setting on.
+ * \param hinting the new hinter setting.
+ *
+ * \since This function is available since SDL_ttf 2.0.12.
+ *
+ * \sa TTF_GetFontHinting
+  }
+procedure TTF_SetFontHinting(font: PTTF_Font; hinting: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontHinting' {$ENDIF} {$ENDIF};
 
 {* Get the total height of the font - usually equal to point size *}
 function TTF_FontHeight(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontHeight' {$ENDIF} {$ENDIF};
