@@ -557,6 +557,14 @@ function TTF_GetFontHinting(font: PTTF_Font): cint; cdecl;
 procedure TTF_SetFontHinting(font: PTTF_Font; hinting: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontHinting' {$ENDIF} {$ENDIF};
 
+{*
+ * Special layout option for rendering wrapped text
+  }
+const
+  TTF_WRAPPED_ALIGN_LEFT   = 0;
+  TTF_WRAPPED_ALIGN_CENTER = 1;
+  TTF_WRAPPED_ALIGN_RIGHT  = 2;
+
 {* Get the total height of the font - usually equal to point size *}
 function TTF_FontHeight(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontHeight' {$ENDIF} {$ENDIF};
 
