@@ -565,6 +565,44 @@ const
   TTF_WRAPPED_ALIGN_CENTER = 1;
   TTF_WRAPPED_ALIGN_RIGHT  = 2;
 
+{*
+ * Query a font's current wrap alignment option.
+ *
+ * The wrap alignment option can be one of the following:
+ *
+ * - `TTF_WRAPPED_ALIGN_LEFT`
+ * - `TTF_WRAPPED_ALIGN_CENTER`
+ * - `TTF_WRAPPED_ALIGN_RIGHT`
+ *
+ * \param font the font to query.
+ * \returns the font's current wrap alignment option.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_SetFontWrappedAlign
+  }
+function TTF_GetFontWrappedAlign(font: PTTF_Font): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontWrappedAlign' {$ENDIF} {$ENDIF};
+
+{*
+ * Set a font's current wrap alignment option.
+ *
+ * The wrap alignment option can be one of the following:
+ *
+ * - `TTF_WRAPPED_ALIGN_LEFT`
+ * - `TTF_WRAPPED_ALIGN_CENTER`
+ * - `TTF_WRAPPED_ALIGN_RIGHT`
+ *
+ * \param font the font to set a new wrap alignment option on.
+ * \param align the new wrap alignment option.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_GetFontWrappedAlign
+  }
+procedure TTF_SetFontWrappedAlign(font: PTTF_Font; align: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontWrappedAlign' {$ENDIF} {$ENDIF};
+
 {* Get the total height of the font - usually equal to point size *}
 function TTF_FontHeight(font: PTTF_Font): cint cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontHeight' {$ENDIF} {$ENDIF};
 
