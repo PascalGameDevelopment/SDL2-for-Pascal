@@ -1774,6 +1774,275 @@ function TTF_RenderGlyph_Blended(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): 
 function TTF_RenderGlyph32_Blended(font: PTTF_Font; ch: cuint32; fg: TSDL_Color): PSDL_Surface; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_Blended' {$ENDIF} {$ENDIF};
 
+{*
+ * Render Latin1 text at LCD subpixel quality to a new ARGB surface.
+ *
+ * This function will allocate a new 32-bit, ARGB surface, and render
+ * alpha-blended text using FreeType's LCD subpixel rendering. This function
+ * returns the new surface, or nil if there was an error.
+ *
+ * This will not word-wrap the string; you'll get a surface with a single line
+ * of text, as long as the string requires. You can use
+ * TTF_RenderText_LCD_Wrapped() instead if you need to wrap the output to
+ * multiple lines.
+ *
+ * This will not wrap on newline characters.
+ *
+ * You almost certainly want TTF_RenderUTF8_LCD() unless you're sure you have
+ * a 1-byte Latin1 encoding. US ASCII characters will work with either
+ * function, but most other Unicode characters packed into a `const char *`
+ * will need UTF-8.
+ *
+ * You can render at other quality levels with TTF_RenderText_Solid,
+ * TTF_RenderText_Shaded, and TTF_RenderText_Blended.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in Latin1 encoding.
+ * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
+ * \returns a new 32-bit, ARGB surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_RenderUTF8_LCD
+ * \sa TTF_RenderUNICODE_LCD
+  }
+function TTF_RenderText_LCD(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_LCD' {$ENDIF} {$ENDIF};
+
+{*
+ * Render UTF-8 text at LCD subpixel quality to a new ARGB surface.
+ *
+ * This function will allocate a new 32-bit, ARGB surface, and render
+ * alpha-blended text using FreeType's LCD subpixel rendering. This function
+ * returns the new surface, or nil if there was an error.
+ *
+ * This will not word-wrap the string; you'll get a surface with a single line
+ * of text, as long as the string requires. You can use
+ * TTF_RenderUTF8_LCD_Wrapped() instead if you need to wrap the output to
+ * multiple lines.
+ *
+ * This will not wrap on newline characters.
+ *
+ * You can render at other quality levels with TTF_RenderUTF8_Solid,
+ * TTF_RenderUTF8_Shaded, and TTF_RenderUTF8_Blended.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in UTF-8 encoding.
+ * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
+ * \returns a new 32-bit, ARGB surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_RenderUNICODE_LCD
+  }
+function TTF_RenderUTF8_LCD(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_LCD' {$ENDIF} {$ENDIF};
+
+{*
+ * Render UCS-2 text at LCD subpixel quality to a new ARGB surface.
+ *
+ * This function will allocate a new 32-bit, ARGB surface, and render
+ * alpha-blended text using FreeType's LCD subpixel rendering. This function
+ * returns the new surface, or nil if there was an error.
+ *
+ * This will not word-wrap the string; you'll get a surface with a single line
+ * of text, as long as the string requires. You can use
+ * TTF_RenderUNICODE_LCD_Wrapped() instead if you need to wrap the output to
+ * multiple lines.
+ *
+ * This will not wrap on newline characters.
+ *
+ * Please note that this function is named "Unicode" but currently expects
+ * UCS-2 encoding (16 bits per codepoint). This does not give you access to
+ * large Unicode values, such as emoji glyphs. These codepoints are accessible
+ * through the UTF-8 version of this function.
+ *
+ * You can render at other quality levels with TTF_RenderUNICODE_Solid,
+ * TTF_RenderUNICODE_Shaded, and TTF_RenderUNICODE_Blended.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in UCS-2 encoding.
+ * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
+ * \returns a new 32-bit, ARGB surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_RenderUTF8_LCD
+  }
+function TTF_RenderUNICODE_LCD(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_LCD' {$ENDIF} {$ENDIF};
+
+{*
+ * Render word-wrapped Latin1 text at LCD subpixel quality to a new ARGB
+ * surface.
+ *
+ * This function will allocate a new 32-bit, ARGB surface, and render
+ * alpha-blended text using FreeType's LCD subpixel rendering. This function
+ * returns the new surface, or nil if there was an error.
+ *
+ * Text is wrapped to multiple lines on line endings and on word boundaries if
+ * it extends beyond `wrapLength` in pixels.
+ *
+ * If wrapLength is 0, this function will only wrap on newline characters.
+ *
+ * You almost certainly want TTF_RenderUTF8_LCD_Wrapped() unless you're sure
+ * you have a 1-byte Latin1 encoding. US ASCII characters will work with
+ * either function, but most other Unicode characters packed into a `const
+ * char *` will need UTF-8.
+ *
+ * You can render at other quality levels with TTF_RenderText_Solid_Wrapped,
+ * TTF_RenderText_Shaded_Wrapped, and TTF_RenderText_Blended_Wrapped.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in Latin1 encoding.
+ * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
+ * \returns a new 32-bit, ARGB surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_RenderUTF8_LCD_Wrapped
+ * \sa TTF_RenderUNICODE_LCD_Wrapped
+  }
+function TTF_RenderText_LCD_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_LCD_Wrapped' {$ENDIF} {$ENDIF};
+
+{*
+ * Render word-wrapped UTF-8 text at LCD subpixel quality to a new ARGB
+ * surface.
+ *
+ * This function will allocate a new 32-bit, ARGB surface, and render
+ * alpha-blended text using FreeType's LCD subpixel rendering. This function
+ * returns the new surface, or nil if there was an error.
+ *
+ * Text is wrapped to multiple lines on line endings and on word boundaries if
+ * it extends beyond `wrapLength` in pixels.
+ *
+ * If wrapLength is 0, this function will only wrap on newline characters.
+ *
+ * You can render at other quality levels with TTF_RenderUTF8_Solid_Wrapped,
+ * TTF_RenderUTF8_Shaded_Wrapped, and TTF_RenderUTF8_Blended_Wrapped.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in UTF-8 encoding.
+ * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
+ * \returns a new 32-bit, ARGB surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_RenderUTF8_Solid_Wrapped
+ * \sa TTF_RenderUTF8_Shaded_Wrapped
+ * \sa TTF_RenderUTF8_Blended_Wrapped
+  }
+function TTF_RenderUTF8_LCD_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_LCD_Wrapped' {$ENDIF} {$ENDIF};
+
+{*
+ * Render word-wrapped UCS-2 text at LCD subpixel quality to a new ARGB
+ * surface.
+ *
+ * This function will allocate a new 32-bit, ARGB surface, and render
+ * alpha-blended text using FreeType's LCD subpixel rendering. This function
+ * returns the new surface, or nil if there was an error.
+ *
+ * Text is wrapped to multiple lines on line endings and on word boundaries if
+ * it extends beyond `wrapLength` in pixels.
+ *
+ * If wrapLength is 0, this function will only wrap on newline characters.
+ *
+ * Please note that this function is named "Unicode" but currently expects
+ * UCS-2 encoding (16 bits per codepoint). This does not give you access to
+ * large Unicode values, such as emoji glyphs. These codepoints are accessible
+ * through the UTF-8 version of this function.
+ *
+ * You can render at other quality levels with
+ * TTF_RenderUNICODE_Solid_Wrapped, TTF_RenderUNICODE_Shaded_Wrapped, and
+ * TTF_RenderUNICODE_Blended_Wrapped.
+ *
+ * \param font the font to render with.
+ * \param text text to render, in UCS-2 encoding.
+ * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
+ * \returns a new 32-bit, ARGB surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_RenderUTF8_LCD_Wrapped
+  }
+function TTF_RenderUNICODE_LCD_Wrapped(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_LCD_Wrapped' {$ENDIF} {$ENDIF};
+
+{*
+ * Render a single 16-bit glyph at LCD subpixel quality to a new ARGB surface.
+ *
+ * This function will allocate a new 32-bit, ARGB surface, and render
+ * alpha-blended text using FreeType's LCD subpixel rendering. This function
+ * returns the new surface, or nil if there was an error.
+ *
+ * The glyph is rendered without any padding or centering in the X direction,
+ * and aligned normally in the Y direction.
+ *
+ * Note that this version of the function takes a 16-bit character code, which
+ * covers the Basic Multilingual Plane, but is insufficient to cover the
+ * entire set of possible Unicode values, including emoji glyphs. You should
+ * use TTF_RenderGlyph32_LCD() instead, which offers the same functionality
+ * but takes a 32-bit codepoint instead.
+ *
+ * This function only exists for consistency with the existing API at the time
+ * of its addition.
+ *
+ * You can render at other quality levels with TTF_RenderGlyph_Solid,
+ * TTF_RenderGlyph_Shaded, and TTF_RenderGlyph_Blended.
+ *
+ * \param font the font to render with.
+ * \param ch the character to render.
+ * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
+ * \returns a new 32-bit, ARGB surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_RenderGlyph32_LCD
+  }
+function TTF_RenderGlyph_LCD(font: PTTF_Font; ch: cuint16; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_LCD' {$ENDIF} {$ENDIF};
+
+{*
+ * Render a single 32-bit glyph at LCD subpixel quality to a new ARGB surface.
+ *
+ * This function will allocate a new 32-bit, ARGB surface, and render
+ * alpha-blended text using FreeType's LCD subpixel rendering. This function
+ * returns the new surface, or nil if there was an error.
+ *
+ * The glyph is rendered without any padding or centering in the X direction,
+ * and aligned normally in the Y direction.
+ *
+ * This is the same as TTF_RenderGlyph_LCD(), but takes a 32-bit character
+ * instead of 16-bit, and thus can render a larger range. Between the two, you
+ * should always use this function.
+ *
+ * You can render at other quality levels with TTF_RenderGlyph32_Solid,
+ * TTF_RenderGlyph32_Shaded, and TTF_RenderGlyph32_Blended.
+ *
+ * \param font the font to render with.
+ * \param ch the character to render.
+ * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
+ * \returns a new 32-bit, ARGB surface, or nil if there was an error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+ *
+ * \sa TTF_RenderGlyph32_Solid
+ * \sa TTF_RenderGlyph32_Shaded
+ * \sa TTF_RenderGlyph32_Blended
+  }
+function TTF_RenderGlyph32_LCD(font: PTTF_Font; ch: cuint32; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_LCD' {$ENDIF} {$ENDIF};
+
 {* For compatibility with previous versions, here are the old functions *}
 function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
 function TTF_RenderUTF8(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
