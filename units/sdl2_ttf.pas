@@ -84,6 +84,7 @@ const
   TTF_MAJOR_VERSION = SDL_TTF_MAJOR_VERSION;
   TTF_MINOR_VERSION = SDL_TTF_MINOR_VERSION;
   TTF_PATCHLEVEL    = SDL_TTF_PATCHLEVEL;
+procedure TTF_VERSION(Out X: TSDL_Version);
 
 {*
  * Query the version of SDL_ttf that the program is linked against.
@@ -2359,6 +2360,11 @@ begin
   x.major := SDL_TTF_MAJOR_VERSION;
   x.minor := SDL_TTF_MINOR_VERSION;
   x.patch := SDL_TTF_PATCHLEVEL;
+end;
+
+procedure TTF_VERSION(out X: TSDL_Version);
+begin
+  SDL_TTF_VERSION(X);
 end;
 
 function TTF_SetError(const fmt: PAnsiChar): cint; cdecl;
