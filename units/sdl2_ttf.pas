@@ -217,7 +217,7 @@ function TTF_Init(): cint; cdecl;
  *
  * \sa TTF_CloseFont
   }
-function TTF_OpenFont(file: PAnsiChar; ptsize: cint): PTTF_Font; cdecl;
+function TTF_OpenFont(file_: PAnsiChar; ptsize: cint): PTTF_Font; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFont' {$ENDIF} {$ENDIF};
 
 {*
@@ -242,7 +242,7 @@ function TTF_OpenFont(file: PAnsiChar; ptsize: cint): PTTF_Font; cdecl;
  *
  * \sa TTF_CloseFont
   }
-function TTF_OpenFontIndex(file: PAnsiChar; ptsize: cint; index: clong): PTTF_Font; cdecl;
+function TTF_OpenFontIndex(file_: PAnsiChar; ptsize: cint; index: clong): PTTF_Font; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndex' {$ENDIF} {$ENDIF};
 
 {*
@@ -323,7 +323,7 @@ function TTF_OpenFontIndexRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index
  *
  * \sa TTF_CloseFont
   }
-function TTF_OpenFontDPI(file: PAnsiChar; ptsize: cint; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
+function TTF_OpenFontDPI(file_: PAnsiChar; ptsize: cint; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPI' {$ENDIF} {$ENDIF};
 
 {*
@@ -352,7 +352,7 @@ function TTF_OpenFontDPI(file: PAnsiChar; ptsize: cint; hdpi: cuint; vdpi: cuint
  *
  * \sa TTF_CloseFont
   }
-function TTF_OpenFontIndexDPI(file: PAnsiChar; ptsize: cint; index: clong; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
+function TTF_OpenFontIndexDPI(file_: PAnsiChar; ptsize: cint; index: clong; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPI' {$ENDIF} {$ENDIF};
 
 {*
