@@ -67,8 +67,8 @@ const
 {* Printable format: "%d.%d.%d", MAJOR, MINOR, PATCHLEVEL *}
 const
   SDL_TTF_MAJOR_VERSION = 2;
-  SDL_TTF_MINOR_VERSION = 0;
-  SDL_TTF_PATCHLEVEL    = 18;
+  SDL_TTF_MINOR_VERSION = 21;
+  SDL_TTF_PATCHLEVEL    = 0;
 
 Procedure SDL_TTF_VERSION(Out X:TSDL_Version);
 
