@@ -21,10 +21,19 @@ unit sdl2_ttf;
   3. This notice may not be removed or altered from any source distribution.
 *}
 
-{* This library is a wrapper around the excellent FreeType 2.0 library,
-   available at:
-    http://www.freetype.org/
-*}
+{*
+ *  \file SDL_ttf.h
+ *
+ *  Header file for SDL_ttf library
+ *
+ *  This library is a wrapper around the excellent FreeType 2.0 library,
+ *  available at: https://www.freetype.org/
+ *
+ *  Note: In many places, SDL_ttf will say "glyph" when it means "code point."
+ *  Unicode is hard, we learn as we go, and we apologize for adding to the
+ *  confusion.
+ *
+  }
 
 interface
 
@@ -61,8 +70,6 @@ const
       {$linklib libSDL2_ttf}
     {$ENDIF}
   {$ENDIF}
-
-{* Set up for C function definitions, even when using C++ *}
 
 {* Printable format: "%d.%d.%d", MAJOR, MINOR, PATCHLEVEL *}
 const
