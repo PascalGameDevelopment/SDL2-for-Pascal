@@ -77,7 +77,7 @@ const
   SDL_TTF_MINOR_VERSION = 21;
   SDL_TTF_PATCHLEVEL    = 0;
 
-Procedure SDL_TTF_VERSION(Out X:TSDL_Version);
+procedure SDL_TTF_VERSION(Out X:TSDL_Version);
 
 {* Backwards compatibility *}
 const
@@ -2354,7 +2354,7 @@ function TTF_SetFontScriptName(font: PTTF_Font; script: PAnsiChar): cint; cdecl;
 
 implementation
 
-Procedure SDL_TTF_VERSION(Out X:TSDL_Version);
+procedure SDL_TTF_VERSION(Out X:TSDL_Version);
 begin
   x.major := SDL_TTF_MAJOR_VERSION;
   x.minor := SDL_TTF_MINOR_VERSION;
