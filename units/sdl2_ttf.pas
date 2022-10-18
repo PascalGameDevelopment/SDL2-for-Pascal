@@ -2301,6 +2301,50 @@ function TTF_SetScript(script: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetScript' {$ENDIF} {$ENDIF};
   deprecated; { hb_script_t  }
 
+{*
+ * Set direction to be used for text shaping by a font.
+ *
+ * Any value supplied here will override the global direction set with the
+ * deprecated TTF_SetDirection().
+ *
+ * Possible direction values are:
+ *
+ * - `TTF_DIRECTION_LTR` (Left to Right)
+ * - `TTF_DIRECTION_RTL` (Right to Left)
+ * - `TTF_DIRECTION_TTB` (Top to Bottom)
+ * - `TTF_DIRECTION_BTT` (Bottom to Top)
+ *
+ * If SDL_ttf was not built with HarfBuzz support, this function returns -1.
+ *
+ * \param font the font to specify a direction for.
+ * \param direction the new direction for text to flow.
+ * \returns 0 on success, or -1 on error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+  }
+function TTF_SetFontDirection(font: PTTF_Font; direction: TTTF_Direction): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontDirection' {$ENDIF} {$ENDIF};
+
+{*
+ * Set script to be used for text shaping by a font.
+ *
+ * Any value supplied here will override the global script set with the
+ * deprecated TTF_SetScript().
+ *
+ * The supplied script value must be a null-terminated string of exactly four
+ * characters.
+ *
+ * If SDL_ttf was not built with HarfBuzz support, this function returns -1.
+ *
+ * \param font the font to specify a direction for.
+ * \param script null-terminated string of exactly 4 characters.
+ * \returns 0 on success, or -1 on error.
+ *
+ * \since This function is available since SDL_ttf 2.20.0.
+  }
+function TTF_SetFontScriptName(font: PTTF_Font; script: PAnsiChar): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontScriptName' {$ENDIF} {$ENDIF};
+
 implementation
 
 Procedure SDL_TTF_VERSION(Out X:TSDL_Version);
