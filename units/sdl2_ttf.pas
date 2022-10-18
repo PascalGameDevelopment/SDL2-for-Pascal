@@ -2273,8 +2273,9 @@ const
   }
 function TTF_SetDirection(direction: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetDirection' {$ENDIF} {$ENDIF};
+  deprecated; { hb_direction_t  }
 
-{ hb_direction_t  }
+
 {*
  * Set a global script to be used for text shaping.
  *
@@ -2298,6 +2299,7 @@ function TTF_SetDirection(direction: cint): cint; cdecl;
   }
 function TTF_SetScript(script: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetScript' {$ENDIF} {$ENDIF};
+  deprecated; { hb_script_t  }
 
 implementation
 
