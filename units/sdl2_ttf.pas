@@ -87,6 +87,20 @@ const
 procedure TTF_VERSION(Out X: TSDL_Version);
 
 {**
+ *  This is the version number macro for the current SDL_ttf version.
+ *
+ *  In versions higher than 2.9.0, the minor version overflows into
+ *  the thousands digit: for example, 2.23.0 is encoded as 4300.
+ *  This macro will not be available in SDL 3.x or SDL_ttf 3.x.
+ *
+ *  \deprecated, use SDL_TTF_VERSION_ATLEAST or SDL_TTF_VERSION instead.
+ *}
+ { SDL2-for-Pascal: This conditional and deprecated macro is not translated.
+                    It could be done easily but nobody ever asked for it and
+                    it is probably for little use. }
+// function SDL_TTF_COMPILEDVERSION: Integer;
+
+{**
  *  This macro will evaluate to true if compiled with SDL_ttf at least X.Y.Z.
  *}
 function SDL_TTF_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
