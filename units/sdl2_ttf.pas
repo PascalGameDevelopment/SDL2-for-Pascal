@@ -2249,16 +2249,55 @@ const
   TTF_DIRECTION_TTB = TTTF_Direction(2);          { Top to Bottom  }
   TTF_DIRECTION_BTT = TTTF_Direction(3);          { Bottom to Top  }
 
-{* Set Direction and Script to be used for text shaping, when using HarfBuzz.
-   - direction is of type hb_direction_t
-   - script is of type hb_script_t
+{*
+ * Set a global direction to be used for text shaping.
+ *
+ * \deprecated This function expects an hb_direction_t value, from HarfBuzz,
+ *             cast to an int, and affects all fonts globally. Please use
+ *             TTF_SetFontDirection() instead, which uses an enum supplied by
+ *             SDL_ttf itself and operates on a per-font basis.
+ *
+ *             This is a global setting; fonts will favor a value set with
+ *             TTF_SetFontDirection(), but if they have not had one explicitly
+ *             set, they will use the value specified here.
+ *
+ *             The default value is `HB_DIRECTION_LTR` (left-to-right text
+ *             flow).
+ *
+ * \param direction an hb_direction_t value.
+ * \returns 0, or -1 if SDL_ttf is not compiled with HarfBuzz support.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_SetFontDirection
+  }
+function TTF_SetDirection(direction: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetDirection' {$ENDIF} {$ENDIF};
 
-   This functions returns always 0, or -1 if SDL_ttf is not compiled with HarfBuzz
-*}
-function TTF_SetDirection(direction: cint): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetDirection' {$ENDIF} {$ENDIF};
-function TTF_SetScript(script: cint): cint;
-  cdecl; external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetScript' {$ENDIF} {$ENDIF};
+{ hb_direction_t  }
+{*
+ * Set a global script to be used for text shaping.
+ *
+ * \deprecated This function expects an hb_script_t value, from HarfBuzz, cast
+ *             to an int, and affects all fonts globally. Please use
+ *             TTF_SetFontScriptName() instead, which accepts a string that is
+ *             converted to an equivalent int internally, and operates on a
+ *             per-font basis.
+ *
+ *             This is a global setting; fonts will favor a value set with
+ *             TTF_SetFontScriptName(), but if they have not had one
+ *             explicitly set, they will use the value specified here.
+ *
+ *             The default value is `HB_SCRIPT_UNKNOWN`.
+ *
+ * \returns 0, or -1 if SDL_ttf is not compiled with HarfBuzz support.
+ *
+ * \since This function is available since SDL_ttf 2.0.18.
+ *
+ * \sa TTF_SetFontScriptName
+  }
+function TTF_SetScript(script: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetScript' {$ENDIF} {$ENDIF};
 
 implementation
 
