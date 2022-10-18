@@ -86,6 +86,11 @@ const
   TTF_PATCHLEVEL    = SDL_TTF_PATCHLEVEL;
 procedure TTF_VERSION(Out X: TSDL_Version);
 
+{**
+ *  This macro will evaluate to true if compiled with SDL_ttf at least X.Y.Z.
+ *}
+function SDL_TTF_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
+
 {*
  * Query the version of SDL_ttf that the program is linked against.
  *
@@ -2365,6 +2370,13 @@ end;
 procedure TTF_VERSION(out X: TSDL_Version);
 begin
   SDL_TTF_VERSION(X);
+end;
+
+function SDL_TTF_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
+begin
+  Result := (SDL_TTF_MAJOR_VERSION >= X) and
+            ((SDL_TTF_MAJOR_VERSION > X) or (SDL_TTF_MINOR_VERSION >= Y)) and
+            ((SDL_TTF_MAJOR_VERSION > X) or (SDL_TTF_MINOR_VERSION > Y) or (SDL_TTF_PATCHLEVEL >= Z));
 end;
 
 function TTF_SetError(const fmt: PAnsiChar): cint; cdecl;
