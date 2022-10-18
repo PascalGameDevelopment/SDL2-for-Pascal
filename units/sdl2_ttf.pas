@@ -2234,6 +2234,21 @@ function TTF_SetError(const fmt: PAnsiChar): cint; cdecl;
   }
 function TTF_GetError: PAnsiChar; cdecl;
 
+{*
+ * Direction flags
+ *
+ * \sa TTF_SetFontDirection
+  }
+type
+  PTTF_Direction = ^TTTF_Direction;
+  TTTF_Direction =  type Integer;
+
+const
+  TTF_DIRECTION_LTR = TTTF_Direction(0);          { Left to Right  }
+  TTF_DIRECTION_RTL = TTTF_Direction(1);          { Right to Left  }
+  TTF_DIRECTION_TTB = TTTF_Direction(2);          { Top to Bottom  }
+  TTF_DIRECTION_BTT = TTTF_Direction(3);          { Bottom to Top  }
+
 {* Set Direction and Script to be used for text shaping, when using HarfBuzz.
    - direction is of type hb_direction_t
    - script is of type hb_script_t
