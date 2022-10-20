@@ -86,7 +86,7 @@ function SDL_SetPrimarySelectionText(text: PAnsiChar): cint; cdecl;
  * \sa SDL_HasPrimarySelectionText
  * \sa SDL_SetPrimarySelectionText
   }
-function SDL_GetPrimarySelectionText: PAnsiChar; cdecl;
+function SDL_GetPrimarySelectionText(): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPrimarySelectionText' {$ENDIF} {$ENDIF};
 
 {*
@@ -101,5 +101,5 @@ function SDL_GetPrimarySelectionText: PAnsiChar; cdecl;
  * \sa SDL_GetPrimarySelectionText
  * \sa SDL_SetPrimarySelectionText
   }
-function SDL_HasPrimarySelectionText: TSDL_bool; cdecl;
+function SDL_HasPrimarySelectionText(): TSDL_bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasPrimarySelectionText' {$ENDIF} {$ENDIF};
