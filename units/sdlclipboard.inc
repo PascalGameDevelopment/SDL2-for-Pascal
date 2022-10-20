@@ -1,4 +1,10 @@
 
+{*
+ * \file SDL_clipboard.h
+ *
+ * Include file for SDL clipboard handling
+  }
+
 {* Function prototypes *}
 
 {**
