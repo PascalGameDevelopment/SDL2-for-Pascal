@@ -1,3 +1,8 @@
+{*
+ *  \file SDL_filesystem.h
+ *
+ *  \brief Include file for filesystem SDL API functions
+  }
 
 {**
  * \brief Get the path where the application resides.
