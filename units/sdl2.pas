@@ -177,7 +177,7 @@ const
 {$I sdlmessagebox.inc}           // 2.0.14
 {$I sdlrenderer.inc}             // 2.0.22
 {$I sdlscancode.inc}
-{$I sdlkeyboard.inc}
+{$I sdlkeyboard.inc}             // 2.24.1
 {$I sdlmouse.inc}                // 2.0.24
 {$I sdlguid.inc}                 // 2.24.0
 {$I sdljoystick.inc}             // 2.24.0
