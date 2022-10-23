@@ -10,9 +10,11 @@ type
   PKeyStateArr = ^TKeyStateArr;
   TKeyStateArr = array[0..65000] of cuint8;
 
-  {**
-   *  The SDL keysym structure, used in key events.
-   *}
+  {*
+   *  \brief The SDL keysym structure, used in key events.
+   *
+   *  \note  If you are looking for translated character input, see the:: SDL_TEXTINPUT event.
+    }
   PSDL_Keysym = ^TSDL_Keysym;
   TSDL_Keysym = record
     scancode: TSDL_ScanCode;       // SDL physical key code - see SDL_Scancode for details
