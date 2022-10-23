@@ -7,6 +7,10 @@
   }
 
 type
+  { SDL2-for-Pascal:
+      - Is this type used/needed anywhere?
+      - It doesn't seem to be part of sdl_keyboard.h
+      - If not, should be commented out or deleted }
   PKeyStateArr = ^TKeyStateArr;
   TKeyStateArr = array[0..65000] of cuint8;
 
