@@ -15,103 +15,207 @@ type
     unicode: cuint32;              // (deprecated) use SDL_TextInputEvent instead
   end;
 
-  {**
-   *  Get the window which currently has keyboard focus.
-   *}
+{ Function prototypes  }
 
-  function SDL_GetKeyboardFocus: PSDL_Window cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardFocus' {$ENDIF}{$ENDIF};
+{*
+ * Query the window which currently has keyboard focus.
+ *
+ * \returns the window with keyboard focus.
+ *
+ * \since This function is available since SDL 2.0.0.
+  }
+function SDL_GetKeyboardFocus: PSDL_Window; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardFocus' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Get a snapshot of the current state of the keyboard.
-   *
-   *  numkeys if non-nil, receives the length of the returned array.
-   *  
-   *  An array of key states. Indexes into this array are obtained by using SDL_Scancode values.
-   *
-   *}
+{*
+ * Get a snapshot of the current state of the keyboard.
+ *
+ * The pointer returned is a pointer to an internal SDL array. It will be
+ * valid for the whole lifetime of the application and should not be freed by
+ * the caller.
+ *
+ * A array element with a value of 1 means that the key is pressed and a value
+ * of 0 means that it is not. Indexes into this array are obtained by using
+ * SDL_Scancode values.
+ *
+ * Use SDL_PumpEvents() to update the state array.
+ *
+ * This function gives you the current state after all events have been
+ * processed, so if a key or button has been pressed and released before you
+ * process events, then the pressed state will never show up in the
+ * SDL_GetKeyboardState() calls.
+ *
+ * Note: This function doesn't take into account whether shift has been
+ * pressed or not.
+ *
+ * \param numkeys if non-nil, receives the length of the returned array
+ * \returns a pointer to an array of key states.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_PumpEvents
+ * \sa SDL_ResetKeyboard
+  }
+function SDL_GetKeyboardState(numkeys: pcint): pcuint8; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardState' {$ENDIF} {$ENDIF};
 
-  function SDL_GetKeyboardState(numkeys: pcint): pcuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardState' {$ENDIF}{$ENDIF};
+{*
+ * Clear the state of the keyboard
+ *
+ * This function will generate key up events for all pressed keys.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *
+ * \sa SDL_GetKeyboardState
+  }
+procedure SDL_ResetKeyboard; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResetKeyboard' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Get the current key modifier state for the keyboard.
-   *}
+{*
+ * Get the current key modifier state for the keyboard.
+ *
+ * \returns an OR'd combination of the modifier keys for the keyboard. See
+ *          SDL_Keymod for details.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetKeyboardState
+ * \sa SDL_SetModState
+  }
+function SDL_GetModState: TSDL_Keymod; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetModState' {$ENDIF} {$ENDIF};
 
-  function SDL_GetModState: TSDL_KeyMod cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetModState' {$ENDIF}{$ENDIF};
+{*
+ * Set the current key modifier state for the keyboard.
+ *
+ * The inverse of SDL_GetModState(), SDL_SetModState() allows you to impose
+ * modifier key states on your application. Simply pass your desired modifier
+ * states into `modstate`. This value may be a bitwise, OR'd combination of
+ * SDL_Keymod values.
+ *
+ * This does not change the keyboard state, only the key modifier flags that
+ * SDL reports.
+ *
+ * \param modstate the desired SDL_Keymod for the keyboard
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetModState
+  }
+procedure SDL_SetModState(modstate: TSDL_Keymod); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetModState' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Set the current key modifier state for the keyboard.
-   *  
-   *  This does not change the keyboard state, only the key modifier flags.
-   *}
+{*
+ * Get the key code corresponding to the given scancode according to the
+ * current keyboard layout.
+ *
+ * See SDL_Keycode for details.
+ *
+ * \param scancode the desired SDL_Scancode to query
+ * \returns the SDL_Keycode that corresponds to the given SDL_Scancode.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetKeyName
+ * \sa SDL_GetScancodeFromKey
+  }
+function SDL_GetKeyFromScancode(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyFromScancode' {$ENDIF} {$ENDIF};
 
-  procedure SDL_SetModState(modstate: TSDL_KeyMod) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetModState' {$ENDIF}{$ENDIF};
+{*
+ * Get the scancode corresponding to the given key code according to the
+ * current keyboard layout.
+ *
+ * See SDL_Scancode for details.
+ *
+ * \param key the desired SDL_Keycode to query
+ * \returns the SDL_Scancode that corresponds to the given SDL_Keycode.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetKeyFromScancode
+ * \sa SDL_GetScancodeName
+  }
+function SDL_GetScancodeFromKey(key: TSDL_Keycode): TSDL_Scancode; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeFromKey' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Get the key code corresponding to the given scancode according
-   *         to the current keyboard layout.
-   *
-   *  See SDL_Keycode for details.
-   *  
-   *  SDL_GetKeyName()
-   *}
+{*
+ * Get a human-readable name for a scancode.
+ *
+ * See SDL_Scancode for details.
+ *
+ * **Warning**: The returned name is by design not stable across platforms,
+ * e.g. the name for `SDL_SCANCODE_LGUI` is "Left GUI" under Linux but "Left
+ * Windows" under Microsoft Windows, and some scancodes like
+ * `SDL_SCANCODE_NONUSBACKSLASH` don't have any name at all. There are even
+ * scancodes that share names, e.g. `SDL_SCANCODE_RETURN` and
+ * `SDL_SCANCODE_RETURN2` (both called "Return"). This function is therefore
+ * unsuitable for creating a stable cross-platform two-way mapping between
+ * strings and scancodes.
+ *
+ * \param scancode the desired SDL_Scancode to query
+ * \returns a pointer to the name for the scancode. If the scancode doesn't
+ *          have a name this function returns an empty string ("").
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetScancodeFromKey
+ * \sa SDL_GetScancodeFromName
+  }
+function SDL_GetScancodeName(scancode: TSDL_Scancode): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeName' {$ENDIF} {$ENDIF};
 
-  function SDL_GetKeyFromScancode(scancode: TSDL_ScanCode): TSDL_KeyCode cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyFromScancode' {$ENDIF}{$ENDIF};
+{*
+ * Get a scancode from a human-readable name.
+ *
+ * \param name the human-readable scancode name
+ * \returns the SDL_Scancode, or `SDL_SCANCODE_UNKNOWN` if the name wasn't
+ *          recognized; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetKeyFromName
+ * \sa SDL_GetScancodeFromKey
+ * \sa SDL_GetScancodeName
+  }
+function SDL_GetScancodeFromName(name: PAnsiChar): TSDL_Scancode; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeFromName' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Get the scancode corresponding to the given key code according to the
-   *         current keyboard layout.
-   *
-   *  See SDL_Scancode for details.
-   *
-   *  SDL_GetScancodeName()
-   *}
+{*
+ * Get a human-readable name for a key.
+ *
+ * See SDL_Scancode and SDL_Keycode for details.
+ *
+ * \param key the desired SDL_Keycode to query
+ * \returns a pointer to a UTF-8 string that stays valid at least until the
+ *          next call to this function. If you need it around any longer, you
+ *          must copy it. If the key doesn't have a name, this function
+ *          returns an empty string ("").
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetKeyFromName
+ * \sa SDL_GetKeyFromScancode
+ * \sa SDL_GetScancodeFromKey
+  }
+function SDL_GetKeyName(key: TSDL_Keycode): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyName' {$ENDIF} {$ENDIF};
 
-  function SDL_GetScancodeFromKey(key: TSDL_KeyCode): TSDL_ScanCode cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeFromKey' {$ENDIF}{$ENDIF};
-
-  {**
-   *  Get a human-readable name for a scancode.
-   *
-   *  A pointer to the name for the scancode.
-   *
-   *  If the scancode doesn't have a name, this function returns
-   *  an empty string ("").
-   *
-   *}
-
-  function SDL_GetScancodeName(scancode: TSDL_ScanCode): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeName' {$ENDIF}{$ENDIF};
-
-  {**
-   *  Get a scancode from a human-readable name
-   *
-   *  scancode, or SDL_SCANCODE_UNKNOWN if the name wasn't recognized
-   *
-   *  SDL_Scancode
-   *}
-
-  function SDL_GetScancodeFromName(const name: PAnsiChar): TSDL_ScanCode cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeFromName' {$ENDIF}{$ENDIF};
-
-  {**
-   *  Get a human-readable name for a key.
-   *
-   *  A pointer to a UTF-8 string that stays valid at least until the next
-   *  call to this function. If you need it around any longer, you must
-   *  copy it.  If the key doesn't have a name, this function returns an
-   *  empty string ("").
-   *  
-   *  SDL_Key
-   *}
-
-  function SDL_GetKeyName(key: TSDL_KeyCode): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyName' {$ENDIF}{$ENDIF};
-
-  {**
-   *  Get a key code from a human-readable name
-   *
-   *  key code, or SDLK_UNKNOWN if the name wasn't recognized
-   *
-   *  SDL_Keycode
-   *}
-
-  function SDL_GetKeyFromName(const name: PAnsiChar): TSDL_KeyCode cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyFromName' {$ENDIF}{$ENDIF};
+{*
+ * Get a key code from a human-readable name.
+ *
+ * \param name the human-readable key name
+ * \returns key code, or `SDLK_UNKNOWN` if the name wasn't recognized; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetKeyFromScancode
+ * \sa SDL_GetKeyName
+ * \sa SDL_GetScancodeFromName
+  }
+function SDL_GetKeyFromName(name: PAnsiChar): TSDL_Keycode; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyFromName' {$ENDIF} {$ENDIF};
 
   {**
    *  Start accepting Unicode text input events.
