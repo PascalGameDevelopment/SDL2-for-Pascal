@@ -258,6 +258,25 @@ procedure SDL_StopTextInput; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopTextInput' {$ENDIF} {$ENDIF};
 
 {*
+ * Dismiss the composition window/IME without disabling the subsystem.
+ *
+ * \since This function is available since SDL 2.0.22.
+ *
+ * \sa SDL_StartTextInput
+ * \sa SDL_StopTextInput
+  }
+procedure SDL_ClearComposition; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearComposition' {$ENDIF} {$ENDIF};
+
+{*
+ * Returns if an IME Composite or Candidate window is currently shown.
+ *
+ * \since This function is available since SDL 2.0.22.
+  }
+function SDL_IsTextInputShown: TSDL_bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsTextInputShown' {$ENDIF} {$ENDIF};
+
+{*
  * Set the rectangle used to type Unicode text inputs.
  *
  * To start text input in a given location, this function is intended to be
