@@ -9,9 +9,9 @@ type
    *}
   PSDL_Keysym = ^TSDL_Keysym;
   TSDL_Keysym = record
-    scancode: TSDL_ScanCode;      // SDL physical key code - see SDL_Scancode for details
-    sym: TSDL_KeyCode;            // SDL virtual key code - see SDL_Keycode for details
-    _mod: cuint16;                 // current key modifiers
+    scancode: TSDL_ScanCode;       // SDL physical key code - see SDL_Scancode for details
+    sym: TSDL_KeyCode;             // SDL virtual key code - see SDL_Keycode for details
+    mod_: cuint16;                 // current key modifiers
     unicode: cuint32;              // (deprecated) use SDL_TextInputEvent instead
   end;
 
