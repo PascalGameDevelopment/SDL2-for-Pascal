@@ -1,5 +1,11 @@
 //from "sdl_keyboard.h"
 
+{*
+ *  \file SDL_keyboard.h
+ *
+ *  Include file for SDL keyboard event handling
+  }
+
 type
   PKeyStateArr = ^TKeyStateArr;
   TKeyStateArr = array[0..65000] of cuint8;
