@@ -217,44 +217,66 @@ function SDL_GetKeyName(key: TSDL_Keycode): PAnsiChar; cdecl;
 function SDL_GetKeyFromName(name: PAnsiChar): TSDL_Keycode; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyFromName' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Start accepting Unicode text input events.
-   *  This function will show the on-screen keyboard if supported.
-   *  
-   *  SDL_StopTextInput()
-   *  SDL_SetTextInputRect()
-   *  SDL_HasScreenKeyboardSupport()
-   *}
+{*
+ * Start accepting Unicode text input events.
+ *
+ * This function will start accepting Unicode text input events in the focused
+ * SDL window, and start emitting SDL_TextInputEvent (SDL_TEXTINPUT) and
+ * SDL_TextEditingEvent (SDL_TEXTEDITING) events. Please use this function in
+ * pair with SDL_StopTextInput().
+ *
+ * On some platforms using this function activates the screen keyboard.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_SetTextInputRect
+ * \sa SDL_StopTextInput
+  }
+procedure SDL_StartTextInput; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StartTextInput' {$ENDIF} {$ENDIF};
 
-  procedure SDL_StartTextInput cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StartTextInput' {$ENDIF}{$ENDIF};
+{*
+ * Check whether or not Unicode text input events are enabled.
+ *
+ * \returns SDL_TRUE if text input events are enabled else SDL_FALSE.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_StartTextInput
+  }
+function SDL_IsTextInputActive: TSDL_bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsTextInputActive' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Return whether or not Unicode text input events are enabled.
-   *
-   *  SDL_StartTextInput()
-   *  SDL_StopTextInput()
-   *}
+{*
+ * Stop receiving any text input events.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_StartTextInput
+  }
+procedure SDL_StopTextInput; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopTextInput' {$ENDIF} {$ENDIF};
 
-  function SDL_IsTextInputActive: TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsTextInputActive' {$ENDIF}{$ENDIF};
-
-  {**
-   *  Stop receiving any text input events.
-   *  This function will hide the on-screen keyboard if supported.
-   *  
-   *  SDL_StartTextInput()
-   *  SDL_HasScreenKeyboardSupport()
-   *}
-
-  procedure SDL_StopTextInput cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopTextInput' {$ENDIF}{$ENDIF};
-
-  {**
-   *  Set the rectangle used to type Unicode text inputs.
-   *  This is used as a hint for IME and on-screen keyboard placement.
-   *  
-   *  SDL_StartTextInput()
-   *}
-
-  procedure SDL_SetTextInputRect(rect: PSDL_Rect) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextInputRect' {$ENDIF}{$ENDIF};
+{*
+ * Set the rectangle used to type Unicode text inputs.
+ *
+ * To start text input in a given location, this function is intended to be
+ * called before SDL_StartTextInput, although some platforms support moving
+ * the rectangle even while text input (and a composition) is active.
+ *
+ * Note: If you want to use the system native IME window, try setting hint
+ * **SDL_HINT_IME_SHOW_UI** to **1**, otherwise this function won't give you
+ * any feedback.
+ *
+ * \param rect the SDL_Rect structure representing the rectangle to receive
+ *             text (ignored if nil)
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_StartTextInput
+  }
+procedure SDL_SetTextInputRect(rect: PSDL_Rect); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextInputRect' {$ENDIF} {$ENDIF};
 
   {**
    *  Returns whether the platform has some screen keyboard support.
