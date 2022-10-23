@@ -297,26 +297,30 @@ function SDL_IsTextInputShown: TSDL_bool; cdecl;
 procedure SDL_SetTextInputRect(rect: PSDL_Rect); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextInputRect' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Returns whether the platform has some screen keyboard support.
-   *  
-   *  SDL_TRUE if some keyboard support is available else SDL_FALSE.
-   *
-   *  Not all screen keyboard functions are supported on all platforms.
-   *
-   *  SDL_IsScreenKeyboardShown()
-   *}
+{*
+ * Check whether the platform has screen keyboard support.
+ *
+ * \returns SDL_TRUE if the platform has some screen keyboard support or
+ *          SDL_FALSE if not.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_StartTextInput
+ * \sa SDL_IsScreenKeyboardShown
+  }
+function SDL_HasScreenKeyboardSupport: TSDL_bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasScreenKeyboardSupport' {$ENDIF} {$ENDIF};
 
-  function SDL_HasScreenKeyboardSupport: TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasScreenKeyboardSupport' {$ENDIF}{$ENDIF};
+{*
+ * Check whether the screen keyboard is shown for given window.
+ *
+ * \param window the window for which screen keyboard should be queried
+ * \returns SDL_TRUE if screen keyboard is shown or SDL_FALSE if not.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_HasScreenKeyboardSupport
+  }
+function SDL_IsScreenKeyboardShown(window: PSDL_Window): TSDL_bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsScreenKeyboardShown' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Returns whether the screen keyboard is shown for given window.
-   *
-   *  window The window for which screen keyboard should be queried.
-   *
-   *  Result - SDL_TRUE if screen keyboard is shown else SDL_FALSE.
-   *
-   *  SDL_HasScreenKeyboardSupport()
-   *}
-
-  function SDL_IsScreenKeyboardShown(window: PSDL_Window): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsScreenKeyboardShown' {$ENDIF}{$ENDIF};
