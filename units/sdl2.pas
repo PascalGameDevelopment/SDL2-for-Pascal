@@ -189,7 +189,7 @@ const
 {$I sdlsyswm.inc}
 {$I sdlevents.inc}
 {$I sdllocale.inc}               // 2.0.14
-{$I sdlclipboard.inc}
+{$I sdlclipboard.inc}            // 2.24.1
 {$I sdlcpuinfo.inc}              // 2.0.14
 {$I sdlfilesystem.inc}
 {$I sdllog.inc}                  // 2.0.14
