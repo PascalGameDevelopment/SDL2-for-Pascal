@@ -191,7 +191,7 @@ const
 {$I sdllocale.inc}               // 2.0.14
 {$I sdlclipboard.inc}            // 2.24.1
 {$I sdlcpuinfo.inc}              // 2.0.14
-{$I sdlfilesystem.inc}
+{$I sdlfilesystem.inc}           // 2.24.1
 {$I sdllog.inc}                  // 2.0.14
 {$I sdlmisc.inc}                 // 2.0.14
 {$I sdlsystem.inc}
