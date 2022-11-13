@@ -120,7 +120,7 @@ function SDL_TTF_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
   }
 (* Const before type ignored *)
 function TTF_Linked_Version: PSDL_version; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Linked_Version' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Linked_Version' {$ENDIF} {$ENDIF};
 
 {*
  * Query the version of the FreeType library in use.
@@ -136,7 +136,7 @@ function TTF_Linked_Version: PSDL_version; cdecl;
  * \sa TTF_Init
   }
 procedure TTF_GetFreeTypeVersion(major: pcint; minor: pcint; patch: pcint); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFreeTypeVersion' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFreeTypeVersion' {$ENDIF} {$ENDIF};
 
 {*
  * Query the version of the HarfBuzz library in use.
@@ -150,7 +150,7 @@ procedure TTF_GetFreeTypeVersion(major: pcint; minor: pcint; patch: pcint); cdec
  * \since This function is available since SDL_ttf 2.0.18.
   }
 procedure TTF_GetHarfBuzzVersion(major: pcint; minor: pcint; patch: pcint); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetHarfBuzzVersion' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetHarfBuzzVersion' {$ENDIF} {$ENDIF};
 
 {*
  * ZERO WIDTH NO-BREAKSPACE (Unicode byte order mark)
@@ -170,7 +170,7 @@ const
  * \since This function is available since SDL_ttf 2.0.12.
   }
 procedure TTF_ByteSwappedUNICODE(swapped: TSDL_bool); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_ByteSwappedUNICODE' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_ByteSwappedUNICODE' {$ENDIF} {$ENDIF};
 
 {* The internal structure containing font information *}
 type
@@ -198,7 +198,7 @@ type
  * \sa TTF_Quit
   }
 function TTF_Init(): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Init' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Init' {$ENDIF} {$ENDIF};
 
 {*
  * Create a font from a file, using a specified point size.
@@ -218,7 +218,7 @@ function TTF_Init(): cint; cdecl;
  * \sa TTF_CloseFont
   }
 function TTF_OpenFont(file_: PAnsiChar; ptsize: cint): PTTF_Font; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFont' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFont' {$ENDIF} {$ENDIF};
 
 {*
  * Create a font from a file, using a specified face index.
@@ -243,7 +243,7 @@ function TTF_OpenFont(file_: PAnsiChar; ptsize: cint): PTTF_Font; cdecl;
  * \sa TTF_CloseFont
   }
 function TTF_OpenFontIndex(file_: PAnsiChar; ptsize: cint; index: clong): PTTF_Font; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndex' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndex' {$ENDIF} {$ENDIF};
 
 {*
  * Create a font from an SDL_RWops, using a specified point size.
@@ -269,7 +269,7 @@ function TTF_OpenFontIndex(file_: PAnsiChar; ptsize: cint; index: clong): PTTF_F
  * \sa TTF_CloseFont
   }
 function TTF_OpenFontRW(src: PSDL_RWops; freesrc: cint; ptsize: cint): PTTF_Font; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontRW' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontRW' {$ENDIF} {$ENDIF};
 
 {*
  * Create a font from an SDL_RWops, using a specified face index.
@@ -300,7 +300,7 @@ function TTF_OpenFontRW(src: PSDL_RWops; freesrc: cint; ptsize: cint): PTTF_Font
  * \sa TTF_CloseFont
   }
 function TTF_OpenFontIndexRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index: clong): PTTF_Font; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexRW' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexRW' {$ENDIF} {$ENDIF};
 
 {*
  * Create a font from a file, using target resolutions (in DPI).
@@ -324,7 +324,7 @@ function TTF_OpenFontIndexRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index
  * \sa TTF_CloseFont
   }
 function TTF_OpenFontDPI(file_: PAnsiChar; ptsize: cint; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPI' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPI' {$ENDIF} {$ENDIF};
 
 {*
  * Create a font from a file, using target resolutions (in DPI).
@@ -353,7 +353,7 @@ function TTF_OpenFontDPI(file_: PAnsiChar; ptsize: cint; hdpi: cuint; vdpi: cuin
  * \sa TTF_CloseFont
   }
 function TTF_OpenFontIndexDPI(file_: PAnsiChar; ptsize: cint; index: clong; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPI' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPI' {$ENDIF} {$ENDIF};
 
 {*
  * Opens a font from an SDL_RWops with target resolutions (in DPI).
@@ -383,7 +383,7 @@ function TTF_OpenFontIndexDPI(file_: PAnsiChar; ptsize: cint; index: clong; hdpi
  * \sa TTF_CloseFont
   }
 function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPIRW' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontDPIRW' {$ENDIF} {$ENDIF};
 
 {*
  * Opens a font from an SDL_RWops with target resolutions (in DPI).
@@ -418,7 +418,7 @@ function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; hdpi: c
  * \sa TTF_CloseFont
   }
 function TTF_OpenFontIndexDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; index: clong; hdpi: cuint; vdpi: cuint): PTTF_Font; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPIRW' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIndexDPIRW' {$ENDIF} {$ENDIF};
 
 {*
  * Set a font's size dynamically.
@@ -432,7 +432,7 @@ function TTF_OpenFontIndexDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; in
  * \since This function is available since SDL_ttf 2.0.18.
   }
 function TTF_SetFontSize(font: PTTF_Font; ptsize: cint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSize' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSize' {$ENDIF} {$ENDIF};
 
 {*
  * Set font size dynamically with target resolutions (in DPI).
@@ -448,7 +448,7 @@ function TTF_SetFontSize(font: PTTF_Font; ptsize: cint): cint; cdecl;
  * \since This function is available since SDL_ttf 2.0.18.
   }
 function TTF_SetFontSizeDPI(font: PTTF_Font; ptsize: cint; hdpi: cuint; vdpi: cuint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSizeDPI' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSizeDPI' {$ENDIF} {$ENDIF};
 
 {*
  * Font style flags
@@ -479,7 +479,7 @@ const
  * \sa TTF_SetFontStyle
   }
 function TTF_GetFontStyle(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontStyle' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontStyle' {$ENDIF} {$ENDIF};
 
 {*
  * Set a font's current style.
@@ -502,7 +502,7 @@ function TTF_GetFontStyle(font: PTTF_Font): cint; cdecl;
  * \sa TTF_GetFontStyle
   }
 procedure TTF_SetFontStyle(font: PTTF_Font; style: cint); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontStyle' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontStyle' {$ENDIF} {$ENDIF};
 
 {*
  * Query a font's current outline.
@@ -515,7 +515,7 @@ procedure TTF_SetFontStyle(font: PTTF_Font; style: cint); cdecl;
  * \sa TTF_SetFontOutline
   }
 function TTF_GetFontOutline(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontOutline' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontOutline' {$ENDIF} {$ENDIF};
 
 {*
  * Set a font's current outline.
@@ -528,7 +528,7 @@ function TTF_GetFontOutline(font: PTTF_Font): cint; cdecl;
  * \sa TTF_GetFontOutline
   }
 procedure TTF_SetFontOutline(font: PTTF_Font; outline: cint); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontOutline' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontOutline' {$ENDIF} {$ENDIF};
 
 {*
  * Hinting flags
@@ -559,7 +559,7 @@ const
  * \sa TTF_SetFontHinting
   }
 function TTF_GetFontHinting(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontHinting' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontHinting' {$ENDIF} {$ENDIF};
 
 {*
  * Set a font's current hinter setting.
@@ -582,7 +582,7 @@ function TTF_GetFontHinting(font: PTTF_Font): cint; cdecl;
  * \sa TTF_GetFontHinting
   }
 procedure TTF_SetFontHinting(font: PTTF_Font; hinting: cint); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontHinting' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontHinting' {$ENDIF} {$ENDIF};
 
 {*
  * Special layout option for rendering wrapped text
@@ -609,7 +609,7 @@ const
  * \sa TTF_SetFontWrappedAlign
   }
 function TTF_GetFontWrappedAlign(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontWrappedAlign' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontWrappedAlign' {$ENDIF} {$ENDIF};
 
 {*
  * Set a font's current wrap alignment option.
@@ -628,7 +628,7 @@ function TTF_GetFontWrappedAlign(font: PTTF_Font): cint; cdecl;
  * \sa TTF_GetFontWrappedAlign
   }
 procedure TTF_SetFontWrappedAlign(font: PTTF_Font; align: cint); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontWrappedAlign' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontWrappedAlign' {$ENDIF} {$ENDIF};
 
 {*
  * Query the total height of a font.
@@ -641,7 +641,7 @@ procedure TTF_SetFontWrappedAlign(font: PTTF_Font; align: cint); cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontHeight(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontHeight' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontHeight' {$ENDIF} {$ENDIF};
 
 {*
  * Query the offset from the baseline to the top of a font.
@@ -654,7 +654,7 @@ function TTF_FontHeight(font: PTTF_Font): cint; cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontAscent(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontAscent' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontAscent' {$ENDIF} {$ENDIF};
 
 {*
  * Query the offset from the baseline to the bottom of a font.
@@ -667,7 +667,7 @@ function TTF_FontAscent(font: PTTF_Font): cint; cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontDescent(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontDescent' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontDescent' {$ENDIF} {$ENDIF};
 
 {*
  * Query the recommended spacing between lines of text for a font.
@@ -678,7 +678,7 @@ function TTF_FontDescent(font: PTTF_Font): cint; cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontLineSkip(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontLineSkip' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontLineSkip' {$ENDIF} {$ENDIF};
 
 {*
  * Query whether or not kerning is allowed for a font.
@@ -689,7 +689,7 @@ function TTF_FontLineSkip(font: PTTF_Font): cint; cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_GetFontKerning(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerning' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerning' {$ENDIF} {$ENDIF};
 
 {*
  * Set if kerning is allowed for a font.
@@ -705,7 +705,7 @@ function TTF_GetFontKerning(font: PTTF_Font): cint; cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 procedure TTF_SetFontKerning(font: PTTF_Font; allowed: cint); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontKerning' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontKerning' {$ENDIF} {$ENDIF};
 
 {*
  * Query the number of faces of a font.
@@ -716,7 +716,7 @@ procedure TTF_SetFontKerning(font: PTTF_Font; allowed: cint); cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontFaces(font: PTTF_Font): clong; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaces' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaces' {$ENDIF} {$ENDIF};
 
 {*
  * Query whether a font is fixed-width.
@@ -733,7 +733,7 @@ function TTF_FontFaces(font: PTTF_Font): clong; cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontFaceIsFixedWidth(font: PTTF_Font): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceIsFixedWidth' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceIsFixedWidth' {$ENDIF} {$ENDIF};
 
 {*
  * Query a font's family name.
@@ -750,7 +750,7 @@ function TTF_FontFaceIsFixedWidth(font: PTTF_Font): cint; cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontFaceFamilyName(font: PTTF_Font): PAnsiChar; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceFamilyName' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceFamilyName' {$ENDIF} {$ENDIF};
 
 {*
  * Query a font's style name.
@@ -767,7 +767,7 @@ function TTF_FontFaceFamilyName(font: PTTF_Font): PAnsiChar; cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontFaceStyleName(font: PTTF_Font): PAnsiChar; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceStyleName' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontFaceStyleName' {$ENDIF} {$ENDIF};
 
 {*
  * Check whether a glyph is provided by the font for a 16-bit codepoint.
@@ -790,7 +790,7 @@ function TTF_FontFaceStyleName(font: PTTF_Font): PAnsiChar; cdecl;
  * \sa TTF_GlyphIsProvided32
   }
 function TTF_GlyphIsProvided(font: PTTF_Font; ch: cuint16): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided' {$ENDIF} {$ENDIF};
 
 {*
  * Check whether a glyph is provided by the font for a 32-bit codepoint.
@@ -807,7 +807,7 @@ function TTF_GlyphIsProvided(font: PTTF_Font; ch: cuint16): cint; cdecl;
  * \since This function is available since SDL_ttf 2.0.18.
   }
 function TTF_GlyphIsProvided32(font: PTTF_Font; ch: cuint32): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided32' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphIsProvided32' {$ENDIF} {$ENDIF};
 
 {*
  * Query the metrics (dimensions) of a font's 16-bit glyph.
@@ -833,7 +833,7 @@ function TTF_GlyphIsProvided32(font: PTTF_Font; ch: cuint32): cint; cdecl;
  * \sa TTF_GlyphMetrics32
   }
 function TTF_GlyphMetrics(font: PTTF_Font; ch: cuint16; minx: pcint; maxx: pcint; miny: pcint; maxy: pcint; advance: pcint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics' {$ENDIF} {$ENDIF};
 
 {*
  * Query the metrics (dimensions) of a font's 32-bit glyph.
@@ -853,7 +853,7 @@ function TTF_GlyphMetrics(font: PTTF_Font; ch: cuint16; minx: pcint; maxx: pcint
  * \since This function is available since SDL_ttf 2.0.18.
   }
 function TTF_GlyphMetrics32(font: PTTF_Font; ch: cuint32; minx: pcint; maxx: pcint; miny: pcint; maxy: pcint; advance: pcint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics32' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GlyphMetrics32' {$ENDIF} {$ENDIF};
 
 {*
  * Calculate the dimensions of a rendered string of Latin1 text.
@@ -880,7 +880,7 @@ function TTF_GlyphMetrics32(font: PTTF_Font; ch: cuint32; minx: pcint; maxx: pci
  * \sa TTF_SizeUNICODE
   }
 function TTF_SizeText(font: PTTF_Font; text: PAnsiChar; w: pcint; h: pcint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeText' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeText' {$ENDIF} {$ENDIF};
 
 {*
  * Calculate the dimensions of a rendered string of UTF-8 text.
@@ -901,7 +901,7 @@ function TTF_SizeText(font: PTTF_Font; text: PAnsiChar; w: pcint; h: pcint): cin
  * \sa TTF_SizeUNICODE
   }
 function TTF_SizeUTF8(font: PTTF_Font; text: PAnsiChar; w: pcint; h: pcint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUTF8' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUTF8' {$ENDIF} {$ENDIF};
 
 {*
  * Calculate the dimensions of a rendered string of UCS-2 text.
@@ -927,7 +927,7 @@ function TTF_SizeUTF8(font: PTTF_Font; text: PAnsiChar; w: pcint; h: pcint): cin
  * \sa TTF_SizeUTF8
   }
 function TTF_SizeUNICODE(font: PTTF_Font; text: pcuint16; w: pcint; h: pcint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUNICODE' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SizeUNICODE' {$ENDIF} {$ENDIF};
 
 {*
  * Calculate how much of a Latin1 string will fit in a given width.
@@ -957,7 +957,7 @@ function TTF_SizeUNICODE(font: PTTF_Font; text: pcuint16; w: pcint; h: pcint): c
  * \sa TTF_MeasureUNICODE
   }
 function TTF_MeasureText(font: PTTF_Font; text: PAnsiChar; measure_width: cint; extent: pcint; count: pcint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureText' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureText' {$ENDIF} {$ENDIF};
 
 {*
  * Calculate how much of a UTF-8 string will fit in a given width.
@@ -982,7 +982,7 @@ function TTF_MeasureText(font: PTTF_Font; text: PAnsiChar; measure_width: cint; 
  * \sa TTF_MeasureUNICODE
   }
 function TTF_MeasureUTF8(font: PTTF_Font; text: PAnsiChar; measure_width: cint; extent: pcint; count: pcint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureUTF8' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureUTF8' {$ENDIF} {$ENDIF};
 
 {*
  * Calculate how much of a UCS-2 string will fit in a given width.
@@ -1012,7 +1012,7 @@ function TTF_MeasureUTF8(font: PTTF_Font; text: PAnsiChar; measure_width: cint; 
  * \sa TTF_MeasureUNICODE
   }
 function TTF_MeasureUNICODE(font: PTTF_Font; text: pcuint16; measure_width: cint; extent: pcint; count: pcint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureUNICODE' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureUNICODE' {$ENDIF} {$ENDIF};
 
 {*
  * Render Latin1 text at fast quality to a new 8-bit surface.
@@ -1047,7 +1047,7 @@ function TTF_MeasureUNICODE(font: PTTF_Font; text: pcuint16; measure_width: cint
  * \sa TTF_RenderUNICODE_Solid
   }
 function TTF_RenderText_Solid(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Solid' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Solid' {$ENDIF} {$ENDIF};
 
 {*
  * Render UTF-8 text at fast quality to a new 8-bit surface.
@@ -1078,7 +1078,7 @@ function TTF_RenderText_Solid(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color):
  * \sa TTF_RenderUTF8_LCD
   }
 function TTF_RenderUTF8_Solid(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Solid' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Solid' {$ENDIF} {$ENDIF};
 
 {*
  * Render UCS-2 text at fast quality to a new 8-bit surface.
@@ -1112,7 +1112,7 @@ function TTF_RenderUTF8_Solid(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color):
  * \sa TTF_RenderUTF8_Solid
   }
 function TTF_RenderUNICODE_Solid(font: PTTF_Font; text: pcuint16; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Solid' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Solid' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped Latin1 text at fast quality to a new 8-bit surface.
@@ -1145,7 +1145,7 @@ function TTF_RenderUNICODE_Solid(font: PTTF_Font; text: pcuint16; fg: TSDL_Color
  * \sa TTF_RenderUNICODE_Solid_Wrapped
   }
 function TTF_RenderText_Solid_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Solid_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Solid_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped UTF-8 text at fast quality to a new 8-bit surface.
@@ -1174,7 +1174,7 @@ function TTF_RenderText_Solid_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL
  * \sa TTF_RenderUTF8_LCD_Wrapped
   }
 function TTF_RenderUTF8_Solid_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Solid_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Solid_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped UCS-2 text at fast quality to a new 8-bit surface.
@@ -1207,7 +1207,7 @@ function TTF_RenderUTF8_Solid_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL
  * \sa TTF_RenderUTF8_Solid_Wrapped
   }
 function TTF_RenderUNICODE_Solid_Wrapped(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Solid_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Solid_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render a single 16-bit glyph at fast quality to a new 8-bit surface.
@@ -1241,7 +1241,7 @@ function TTF_RenderUNICODE_Solid_Wrapped(font: PTTF_Font; text: pcuint16; fg: TS
  * \sa TTF_RenderGlyph32_Solid
   }
 function TTF_RenderGlyph_Solid(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Solid' {$ENDIF} {$ENDIF};
 
 {*
  * Render a single 32-bit glyph at fast quality to a new 8-bit surface.
@@ -1273,7 +1273,7 @@ function TTF_RenderGlyph_Solid(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): PS
  * \sa TTF_RenderGlyph32_LCD
   }
 function TTF_RenderGlyph32_Solid(font: PTTF_Font; ch: cuint32; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_Solid' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_Solid' {$ENDIF} {$ENDIF};
 
 {*
  * Render Latin1 text at high quality to a new 8-bit surface.
@@ -1309,7 +1309,7 @@ function TTF_RenderGlyph32_Solid(font: PTTF_Font; ch: cuint32; fg: TSDL_Color): 
  * \sa TTF_RenderUNICODE_Shaded
   }
 function TTF_RenderText_Shaded(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Shaded' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Shaded' {$ENDIF} {$ENDIF};
 
 {*
  * Render UTF-8 text at high quality to a new 8-bit surface.
@@ -1339,7 +1339,7 @@ function TTF_RenderText_Shaded(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color;
  * \sa TTF_RenderUNICODE_Shaded
   }
 function TTF_RenderUTF8_Shaded(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Shaded' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Shaded' {$ENDIF} {$ENDIF};
 
 {*
  * Render UCS-2 text at high quality to a new 8-bit surface.
@@ -1374,7 +1374,7 @@ function TTF_RenderUTF8_Shaded(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color;
  * \sa TTF_RenderUTF8_Shaded
   }
 function TTF_RenderUNICODE_Shaded(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Shaded' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Shaded' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped Latin1 text at high quality to a new 8-bit surface.
@@ -1408,7 +1408,7 @@ function TTF_RenderUNICODE_Shaded(font: PTTF_Font; text: pcuint16; fg: TSDL_Colo
  * \sa TTF_RenderUNICODE_Shaded_Wrapped
   }
 function TTF_RenderText_Shaded_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Shaded_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Shaded_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped UTF-8 text at high quality to a new 8-bit surface.
@@ -1438,7 +1438,7 @@ function TTF_RenderText_Shaded_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSD
  * \sa TTF_RenderUTF8_LCD_Wrapped
   }
 function TTF_RenderUTF8_Shaded_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Shaded_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Shaded_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped UCS-2 text at high quality to a new 8-bit surface.
@@ -1472,7 +1472,7 @@ function TTF_RenderUTF8_Shaded_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSD
  * \sa TTF_RenderUTF8_Shaded_Wrapped
   }
 function TTF_RenderUNICODE_Shaded_Wrapped(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Shaded_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Shaded_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render a single 16-bit glyph at high quality to a new 8-bit surface.
@@ -1507,7 +1507,7 @@ function TTF_RenderUNICODE_Shaded_Wrapped(font: PTTF_Font; text: pcuint16; fg: T
  * \sa TTF_RenderGlyph32_Shaded
   }
 function TTF_RenderGlyph_Shaded(font: PTTF_Font; ch: cuint16; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Shaded' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Shaded' {$ENDIF} {$ENDIF};
 
 {*
  * Render a single 32-bit glyph at high quality to a new 8-bit surface.
@@ -1540,7 +1540,7 @@ function TTF_RenderGlyph_Shaded(font: PTTF_Font; ch: cuint16; fg: TSDL_Color; bg
  * \sa TTF_RenderGlyph32_LCD
   }
 function TTF_RenderGlyph32_Shaded(font: PTTF_Font; ch: cuint32; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_Shaded' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_Shaded' {$ENDIF} {$ENDIF};
 
 {*
  * Render Latin1 text at high quality to a new ARGB surface.
@@ -1575,7 +1575,7 @@ function TTF_RenderGlyph32_Shaded(font: PTTF_Font; ch: cuint32; fg: TSDL_Color; 
  * \sa TTF_RenderUNICODE_Shaded
   }
 function TTF_RenderText_Blended(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Blended' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Blended' {$ENDIF} {$ENDIF};
 
 {*
  * Render UTF-8 text at high quality to a new ARGB surface.
@@ -1604,7 +1604,7 @@ function TTF_RenderText_Blended(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color
  * \sa TTF_RenderUNICODE_Blended
   }
 function TTF_RenderUTF8_Blended(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Blended' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Blended' {$ENDIF} {$ENDIF};
 
 {*
  * Render UCS-2 text at high quality to a new ARGB surface.
@@ -1638,7 +1638,7 @@ function TTF_RenderUTF8_Blended(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color
  * \sa TTF_RenderUTF8_Blended
   }
 function TTF_RenderUNICODE_Blended(font: PTTF_Font; text: pcuint16; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Blended' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Blended' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped Latin1 text at high quality to a new ARGB surface.
@@ -1671,7 +1671,7 @@ function TTF_RenderUNICODE_Blended(font: PTTF_Font; text: pcuint16; fg: TSDL_Col
  * \sa TTF_RenderUNICODE_Blended_Wrapped
   }
 function TTF_RenderText_Blended_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Blended_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_Blended_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped UTF-8 text at high quality to a new ARGB surface.
@@ -1700,7 +1700,7 @@ function TTF_RenderText_Blended_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TS
  * \sa TTF_RenderUTF8_LCD_Wrapped
   }
 function TTF_RenderUTF8_Blended_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Blended_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_Blended_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped UCS-2 text at high quality to a new ARGB surface.
@@ -1733,7 +1733,7 @@ function TTF_RenderUTF8_Blended_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TS
  * \sa TTF_RenderUTF8_Blended_Wrapped
   }
 function TTF_RenderUNICODE_Blended_Wrapped(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Blended_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_Blended_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render a single 16-bit glyph at high quality to a new ARGB surface.
@@ -1767,7 +1767,7 @@ function TTF_RenderUNICODE_Blended_Wrapped(font: PTTF_Font; text: pcuint16; fg: 
  * \sa TTF_RenderGlyph32_Blended
   }
 function TTF_RenderGlyph_Blended(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Blended' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_Blended' {$ENDIF} {$ENDIF};
 
 {*
  * Render a single 32-bit glyph at high quality to a new ARGB surface.
@@ -1799,7 +1799,7 @@ function TTF_RenderGlyph_Blended(font: PTTF_Font; ch: cuint16; fg: TSDL_Color): 
  * \sa TTF_RenderGlyph32_LCD
   }
 function TTF_RenderGlyph32_Blended(font: PTTF_Font; ch: cuint32; fg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_Blended' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_Blended' {$ENDIF} {$ENDIF};
 
 {*
  * Render Latin1 text at LCD subpixel quality to a new ARGB surface.
@@ -1835,7 +1835,7 @@ function TTF_RenderGlyph32_Blended(font: PTTF_Font; ch: cuint32; fg: TSDL_Color)
  * \sa TTF_RenderUNICODE_LCD
   }
 function TTF_RenderText_LCD(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_LCD' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_LCD' {$ENDIF} {$ENDIF};
 
 {*
  * Render UTF-8 text at LCD subpixel quality to a new ARGB surface.
@@ -1865,7 +1865,7 @@ function TTF_RenderText_LCD(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg
  * \sa TTF_RenderUNICODE_LCD
   }
 function TTF_RenderUTF8_LCD(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_LCD' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_LCD' {$ENDIF} {$ENDIF};
 
 {*
  * Render UCS-2 text at LCD subpixel quality to a new ARGB surface.
@@ -1900,7 +1900,7 @@ function TTF_RenderUTF8_LCD(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg
  * \sa TTF_RenderUTF8_LCD
   }
 function TTF_RenderUNICODE_LCD(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_LCD' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_LCD' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped Latin1 text at LCD subpixel quality to a new ARGB
@@ -1935,7 +1935,7 @@ function TTF_RenderUNICODE_LCD(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; 
  * \sa TTF_RenderUNICODE_LCD_Wrapped
   }
 function TTF_RenderText_LCD_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_LCD_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderText_LCD_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped UTF-8 text at LCD subpixel quality to a new ARGB
@@ -1966,7 +1966,7 @@ function TTF_RenderText_LCD_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_C
  * \sa TTF_RenderUTF8_Blended_Wrapped
   }
 function TTF_RenderUTF8_LCD_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_LCD_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUTF8_LCD_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render word-wrapped UCS-2 text at LCD subpixel quality to a new ARGB
@@ -2001,7 +2001,7 @@ function TTF_RenderUTF8_LCD_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSDL_C
  * \sa TTF_RenderUTF8_LCD_Wrapped
   }
 function TTF_RenderUNICODE_LCD_Wrapped(font: PTTF_Font; text: pcuint16; fg: TSDL_Color; bg: TSDL_Color; wrapLength: cuint32): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_LCD_Wrapped' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderUNICODE_LCD_Wrapped' {$ENDIF} {$ENDIF};
 
 {*
  * Render a single 16-bit glyph at LCD subpixel quality to a new ARGB surface.
@@ -2036,7 +2036,7 @@ function TTF_RenderUNICODE_LCD_Wrapped(font: PTTF_Font; text: pcuint16; fg: TSDL
  * \sa TTF_RenderGlyph32_LCD
   }
 function TTF_RenderGlyph_LCD(font: PTTF_Font; ch: cuint16; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_LCD' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph_LCD' {$ENDIF} {$ENDIF};
 
 {*
  * Render a single 32-bit glyph at LCD subpixel quality to a new ARGB surface.
@@ -2068,7 +2068,7 @@ function TTF_RenderGlyph_LCD(font: PTTF_Font; ch: cuint16; fg: TSDL_Color; bg: T
  * \sa TTF_RenderGlyph32_Blended
   }
 function TTF_RenderGlyph32_LCD(font: PTTF_Font; ch: cuint32; fg: TSDL_Color; bg: TSDL_Color): PSDL_Surface; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_LCD' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_LCD' {$ENDIF} {$ENDIF};
 
 {* For compatibility with previous versions, here are the old functions *}
 function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
@@ -2101,7 +2101,7 @@ function TTF_RenderUNICODE(font: PTTF_Font; text: pcuint16; fg, bg: TSDL_Color):
  * \sa TTF_OpenFontIndexRW
   }
 procedure TTF_CloseFont(font: PTTF_Font); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CloseFont' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CloseFont' {$ENDIF} {$ENDIF};
 
 {*
  * Deinitialize SDL_ttf.
@@ -2122,7 +2122,7 @@ procedure TTF_CloseFont(font: PTTF_Font); cdecl;
  * \since This function is available since SDL_ttf 2.0.12.
   }
 procedure TTF_Quit(); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Quit' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Quit' {$ENDIF} {$ENDIF};
 
 {*
  * Check if SDL_ttf is initialized.
@@ -2145,7 +2145,7 @@ procedure TTF_Quit(); cdecl;
  * \sa TTF_Quit
   }
 function TTF_WasInit: cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_WasInit' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_WasInit' {$ENDIF} {$ENDIF};
 
 {*
  * Query the kerning size of two glyphs indices.
@@ -2167,7 +2167,7 @@ function TTF_WasInit: cint; cdecl;
  * \sa TTF_GetFontKerningSizeGlyphs
   }
 function TTF_GetFontKerningSize(font: PTTF_Font; prev_index: cint; index: cint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSize' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSize' {$ENDIF} {$ENDIF};
   deprecated 'This function requires FreeType font indexes, not glyphs. Use TTF_GetFontKerningSizeGlyphs() instead';
 
 {*
@@ -2192,7 +2192,7 @@ function TTF_GetFontKerningSize(font: PTTF_Font; prev_index: cint; index: cint):
  * \sa TTF_GetFontKerningSizeGlyphs32
   }
 function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch: cuint16; ch: cuint16): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs' {$ENDIF} {$ENDIF};
 
 {*
  * Query the kerning size of two 32-bit glyphs.
@@ -2210,7 +2210,7 @@ function TTF_GetFontKerningSizeGlyphs(font: PTTF_Font; previous_ch: cuint16; ch:
  * \since This function is available since SDL_ttf 2.0.18.
   }
 function TTF_GetFontKerningSizeGlyphs32(font: PTTF_Font; previous_ch: cuint32; ch: cuint32): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs32' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerningSizeGlyphs32' {$ENDIF} {$ENDIF};
 
 {*
  * Enable Signed Distance Field rendering for a font.
@@ -2230,7 +2230,7 @@ function TTF_GetFontKerningSizeGlyphs32(font: PTTF_Font; previous_ch: cuint32; c
  * \sa TTF_GetFontSDF
   }
 function TTF_SetFontSDF(font: PTTF_Font; on_off: TSDL_bool): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSDF' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSDF' {$ENDIF} {$ENDIF};
 
 {*
  * Query whether Signed Distance Field rendering is enabled for a font.
@@ -2245,7 +2245,7 @@ function TTF_SetFontSDF(font: PTTF_Font; on_off: TSDL_bool): cint; cdecl;
   }
 (* Const before type ignored *)
 function TTF_GetFontSDF(font: PTTF_Font): TSDL_bool; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontSDF' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontSDF' {$ENDIF} {$ENDIF};
 
 {*
  * Report SDL_ttf errors
@@ -2299,7 +2299,7 @@ const
  * \sa TTF_SetFontDirection
   }
 function TTF_SetDirection(direction: cint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetDirection' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetDirection' {$ENDIF} {$ENDIF};
   deprecated; { hb_direction_t  }
 
 
@@ -2325,7 +2325,7 @@ function TTF_SetDirection(direction: cint): cint; cdecl;
  * \sa TTF_SetFontScriptName
   }
 function TTF_SetScript(script: cint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetScript' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetScript' {$ENDIF} {$ENDIF};
   deprecated; { hb_script_t  }
 
 {*
@@ -2350,7 +2350,7 @@ function TTF_SetScript(script: cint): cint; cdecl;
  * \since This function is available since SDL_ttf 2.20.0.
   }
 function TTF_SetFontDirection(font: PTTF_Font; direction: TTTF_Direction): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontDirection' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontDirection' {$ENDIF} {$ENDIF};
 
 {*
  * Set script to be used for text shaping by a font.
@@ -2370,7 +2370,7 @@ function TTF_SetFontDirection(font: PTTF_Font; direction: TTTF_Direction): cint;
  * \since This function is available since SDL_ttf 2.20.0.
   }
 function TTF_SetFontScriptName(font: PTTF_Font; script: PAnsiChar): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontScriptName' {$ENDIF} {$ENDIF};
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontScriptName' {$ENDIF} {$ENDIF};
 
 implementation
 
