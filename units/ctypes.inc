@@ -86,6 +86,7 @@ type
     {$EXTERNALSYM cuint64}
   {$ENDIF}
 
+  pcsize_t = ^csize_t;
   {$IFNDEF WIN64}
     csize_t = cuint32;
   {$ELSE}
