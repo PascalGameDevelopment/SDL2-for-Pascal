@@ -666,8 +666,14 @@ procedure Mix_CloseAudio cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MAC
 
 {* We'll use SDL for reporting errors *}
 function Mix_SetError(const fmt: PAnsiChar): cint32; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_SetError' {$ELSE} 'SDL_SetError' {$ENDIF};
 function Mix_GetError: PAnsiChar; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_GetError' {$ELSE} 'SDL_GetError' {$ENDIF};
 procedure Mix_ClearError(); cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_ClearError' {$ELSE} 'SDL_ClearError' {$ENDIF};
 
 implementation
 
@@ -696,21 +702,6 @@ end;
 function Mix_LoadWAV(_file: PAnsiChar): PMix_Chunk;
 begin
   Result := Mix_LoadWAV_RW(SDL_RWFromFile(_file, 'rb'), 1);
-end;
-
-function Mix_SetError(const fmt: PAnsiChar): cint32; cdecl;
-begin
-  Result := SDL_SetError(fmt);
-end;
-
-function Mix_GetError: PAnsiChar; cdecl;
-begin
-  Result := SDL_GetError();
-end;
-
-procedure Mix_ClearError; cdecl;
-begin
-  SDL_ClearError()
 end;
 
 end.
