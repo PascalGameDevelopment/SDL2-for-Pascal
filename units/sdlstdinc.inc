@@ -26,6 +26,19 @@ type
   TSDL_free_func = procedure(mem: Pointer); cdecl;
   PSDL_free_func = ^TSDL_free_func;
 
+{**
+ * Get the original set of SDL memory functions
+ *
+ * \since This function is available since SDL 2.24.0.
+ *}
+procedure SDL_GetOriginalMemoryFunctions(
+  malloc_func: PSDL_malloc_func;
+  calloc_func: PSDL_calloc_func;
+  realloc_func: PSDL_realloc_func;
+  free_func: PSDL_free_func
+); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetOriginalMemoryFunctions' {$ENDIF} {$ENDIF};
+
 (**
  * Get the current set of SDL memory functions
  *
