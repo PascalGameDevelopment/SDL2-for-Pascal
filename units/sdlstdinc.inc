@@ -13,6 +13,45 @@ const
   SDL_FALSE = TSDL_Bool(0);
   SDL_TRUE  = TSDL_Bool(1);
 
+type
+  TSDL_malloc_func = function(size: csize_t): Pointer; cdecl;
+  PSDL_malloc_func = ^TSDL_malloc_func;
+
+  TSDL_calloc_func = function(nmemb, size: csize_t): Pointer; cdecl;
+  PSDL_calloc_func = ^TSDL_calloc_func;
+
+  TSDL_realloc_func = function(mem: Pointer; size: csize_t): Pointer; cdecl;
+  PSDL_realloc_func = ^TSDL_realloc_func;
+
+  TSDL_free_func = procedure(mem: Pointer); cdecl;
+  PSDL_free_func = ^TSDL_free_func;
+
+(**
+ * Get the current set of SDL memory functions
+ *
+ * \since This function is available since SDL 2.0.7.
+ *)
+procedure SDL_GetMemoryFunctions(
+  malloc_func: PSDL_malloc_func;
+  calloc_func: PSDL_calloc_func;
+  realloc_func: PSDL_realloc_func;
+  free_func: PSDL_free_func
+); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetMemoryFunctions' {$ENDIF} {$ENDIF};
+
+(**
+ * Replace SDL's memory allocation functions with a custom set
+ *
+ * \since This function is available since SDL 2.0.7.
+ *)
+function SDL_SetMemoryFunctions(
+  malloc_func: TSDL_malloc_func;
+  calloc_func: TSDL_calloc_func;
+  realloc_func: TSDL_realloc_func;
+  free_func: TSDL_free_func
+): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetMemoryFunctions' {$ENDIF} {$ENDIF};
+
 {**
 *  Free memory returned by functions like SDL_GetBasePath(), SDL_GetPrefPath(), etc.
 *}
