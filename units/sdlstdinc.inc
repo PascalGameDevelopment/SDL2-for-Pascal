@@ -65,8 +65,33 @@ function SDL_SetMemoryFunctions(
 ): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetMemoryFunctions' {$ENDIF} {$ENDIF};
 
-{**
-*  Free memory returned by functions like SDL_GetBasePath(), SDL_GetPrefPath(), etc.
-*}
+(**
+ * Allocate a block of memory. The memory is *not* initialized.
+ *)
+function SDL_malloc(size: csize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_malloc' {$ENDIF} {$ENDIF};
+
+(**
+ * Allocate a block of memory that can fit an array of nmemb elements, each of given size.
+ * The memory is initialized by setting every byte to 0.
+ *)
+function SDL_calloc(nmemb, size: csize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_calloc' {$ENDIF} {$ENDIF};
+
+(**
+ * Resize a block of memory allocated previously with SDL_malloc() or SDL_calloc().
+ *
+ * The returned pointer may or may not be the same as the original pointer.
+ * If the new size is larger than the old size, any new memory will *not* be initialized.
+ *)
+function SDL_realloc(mem: Pointer; size: csize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_realloc' {$ENDIF} {$ENDIF};
+
+(**
+ * Free memory returned by functions like SDL_GetBasePath(), SDL_GetPrefPath(), etc.
+ *
+ * Calling SDL_free() on the same pointer twice is undefined behaviour and may cause
+ * your program to crash or behave in unexpected ways.
+ *)
 procedure SDL_free(mem: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_free' {$ENDIF} {$ENDIF};
