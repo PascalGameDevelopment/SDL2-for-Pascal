@@ -66,6 +66,14 @@ function SDL_SetMemoryFunctions(
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetMemoryFunctions' {$ENDIF} {$ENDIF};
 
 (**
+ * Get the number of outstanding (unfreed) allocations
+ *
+ * \since This function is available since SDL 2.0.7.
+ *)
+function SDL_GetNumAllocations(): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAllocations' {$ENDIF} {$ENDIF};
+
+(**
  * Allocate a block of memory. The memory is *not* initialized.
  *)
 function SDL_malloc(size: csize_t): Pointer; cdecl;
