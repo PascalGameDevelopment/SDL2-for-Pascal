@@ -78,13 +78,14 @@ const
   SDL_MOUSEWHEEL       = TSDL_EventType($403);  // Mouse wheel motion
 
   { Joystick events }
-  SDL_JOYAXISMOTION    = TSDL_EventType($600);  // Joystick axis motion
-  SDL_JOYBALLMOTION    = TSDL_EventType($601);  // Joystick trackball motion
-  SDL_JOYHATMOTION     = TSDL_EventType($602);  // Joystick hat position change
-  SDL_JOYBUTTONDOWN    = TSDL_EventType($603);  // Joystick button pressed
-  SDL_JOYBUTTONUP      = TSDL_EventType($604);  // Joystick button released
-  SDL_JOYDEVICEADDED   = TSDL_EventType($605);  // A new joystick has been inserted into the system 
-  SDL_JOYDEVICEREMOVED = TSDL_EventType($606);  // An opened joystick has been removed 
+  SDL_JOYAXISMOTION     = TSDL_EventType($600);  // Joystick axis motion
+  SDL_JOYBALLMOTION     = TSDL_EventType($601);  // Joystick trackball motion
+  SDL_JOYHATMOTION      = TSDL_EventType($602);  // Joystick hat position change
+  SDL_JOYBUTTONDOWN     = TSDL_EventType($603);  // Joystick button pressed
+  SDL_JOYBUTTONUP       = TSDL_EventType($604);  // Joystick button released
+  SDL_JOYDEVICEADDED    = TSDL_EventType($605);  // A new joystick has been inserted into the system
+  SDL_JOYDEVICEREMOVED  = TSDL_EventType($606);  // An opened joystick has been removed
+  SDL_JOYBATTERYUPDATED = TSDL_EventType($607);  // Joystick battery level change
 
   { Game controller events }
   SDL_CONTROLLERAXISMOTION     = TSDL_EventType($650);  // Game controller axis motion
