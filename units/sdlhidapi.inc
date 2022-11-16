@@ -242,3 +242,46 @@ function SDL_hid_open_path(path: PAnsiChar; bExclusive: cuint): PSDL_hid_device;
  *)
 function SDL_hid_write(dev: PSDL_hid_device; data: pcUint8; length: csize_t): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_write' {$ENDIF} {$ENDIF};
+
+(**
+ * Read an Input report from a HID device with timeout.
+ *
+ * Input reports are returned to the host through the INTERRUPT IN endpoint.
+ * The first byte will contain the Report number if the device uses numbered
+ * reports.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ * \param data A buffer to put the read data into.
+ * \param length The number of bytes to read. For devices with multiple
+ *               reports, make sure to read an extra byte for the report
+ *               number.
+ * \param milliseconds timeout in milliseconds or -1 for blocking wait.
+ * \returns the actual number of bytes read and -1 on error. If no packet was
+ *          available to be read within the timeout period, this function
+ *          returns 0.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_read_timeout(dev: PSDL_hid_device; data: pcUint8; length: csize_t; milliseconds: cint): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_read_timeout' {$ENDIF} {$ENDIF};
+
+(**
+ * Read an Input report from a HID device.
+ *
+ * Input reports are returned to the host through the INTERRUPT IN endpoint.
+ * The first byte will contain the Report number if the device uses numbered
+ * reports.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ * \param data A buffer to put the read data into.
+ * \param length The number of bytes to read. For devices with multiple
+ *               reports, make sure to read an extra byte for the report
+ *               number.
+ * \returns the actual number of bytes read and -1 on error. If no packet was
+ *          available to be read and the handle is in non-blocking mode, this
+ *          function returns 0.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_read(dev: PSDL_hid_device; data: pcUint8; length: csize_t): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_read' {$ENDIF} {$ENDIF};
