@@ -39,10 +39,6 @@
  *)
 
 type
-	// TODO: Move this to ctypes.inc
-	pcwchar_t = ^cwchar_t;
-	cwchar_t = uint32;
-
 	(**
  	 *  \brief  A handle representing an open HID device.
  	 *)

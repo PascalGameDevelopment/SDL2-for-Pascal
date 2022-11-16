@@ -107,6 +107,7 @@ interface
     uses
       {$IFDEF FPC}
       ctypes,
+      UnixType,
       {$ENDIF}
       {$IFDEF DARWIN}
       CocoaAll;
@@ -118,7 +119,8 @@ interface
 
   {$IF DEFINED(UNIX) AND DEFINED(ANDROID) AND DEFINED(FPC)}
     uses
-      ctypes;
+      ctypes,
+      UnixType;
   {$ENDIF}
 
 const
