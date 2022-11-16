@@ -127,3 +127,25 @@ function SDL_hid_init(): cint; cdecl;
  *)
 function SDL_hid_exit(): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_exit' {$ENDIF} {$ENDIF};
+
+(**
+ * Check to see if devices may have been added or removed.
+ *
+ * Enumerating the HID devices is an expensive operation, so you can call this
+ * to see if there have been any system device changes since the last call to
+ * this function. A change in the counter returned doesn't necessarily mean
+ * that anything has changed, but you can call SDL_hid_enumerate() to get an
+ * updated device list.
+ *
+ * Calling this function for the first time may cause a thread or other system
+ * resource to be allocated to track device change notifications.
+ *
+ * \returns a change counter that is incremented with each potential device
+ *          change, or 0 if device change detection isn't available.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *
+ * \sa SDL_hid_enumerate
+ *)
+function SDL_hid_device_change_count(): cUint32; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_device_change_count' {$ENDIF} {$ENDIF};
