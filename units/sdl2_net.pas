@@ -345,8 +345,11 @@ procedure SDLNet_FreeSocketSet(set_: TSDLNet_SocketSet) cdecl; external SDLNet_L
 {* Error reporting functions                                           *}
 {***********************************************************************}
 
-procedure SDLNet_SetError(const fmt: PAnsiChar); cdecl;
+procedure SDLNet_SetError(const fmt: PAnsiChar; args: array of const); cdecl;
+external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_SetError' {$ENDIF} {$ENDIF};
+
 function SDLNet_GetError(): PAnsiChar; cdecl;
+external SDLNet_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDLNet_GetError' {$ENDIF} {$ENDIF};
 
 {***********************************************************************}
 {* Inline functions to read/write network data                         *}
@@ -395,16 +398,6 @@ end;
 function SDLNet_SocketReady(sock: TSDLNet_GenericSocket): cint;
 begin
   Result := sock.ready;
-end;
-
-procedure SDLNet_SetError(const fmt: PAnsiChar); cdecl;
-begin
-  SDL_SetError(fmt);
-end;
-
-function SDLNet_GetError(): PAnsiChar; cdecl;
-begin
-  Result := SDL_GetError();
 end;
 
 (*
