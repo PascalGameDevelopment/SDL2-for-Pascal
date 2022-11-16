@@ -149,3 +149,39 @@ function SDL_hid_exit(): cint; cdecl;
  *)
 function SDL_hid_device_change_count(): cUint32; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_device_change_count' {$ENDIF} {$ENDIF};
+
+(**
+ * Enumerate the HID Devices.
+ *
+ * This function returns a linked list of all the HID devices attached to the
+ * system which match vendor_id and product_id. If `vendor_id` is set to 0
+ * then any vendor matches. If `product_id` is set to 0 then any product
+ * matches. If `vendor_id` and `product_id` are both set to 0, then all HID
+ * devices will be returned.
+ *
+ * \param vendor_id The Vendor ID (VID) of the types of device to open.
+ * \param product_id The Product ID (PID) of the types of device to open.
+ * \returns a pointer to a linked list of type SDL_hid_device_info, containing
+ *          information about the HID devices attached to the system, or NULL
+ *          in the case of failure. Free this linked list by calling
+ *          SDL_hid_free_enumeration().
+ *
+ * \since This function is available since SDL 2.0.18.
+ *
+ * \sa SDL_hid_device_change_count
+ *)
+function SDL_hid_enumerate(vendor_id, product_id: cushort): PSDL_hid_device_info; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_enumerate' {$ENDIF} {$ENDIF};
+
+(**
+ * Free an enumeration Linked List
+ *
+ * This function frees a linked list created by SDL_hid_enumerate().
+ *
+ * \param devs Pointer to a list of struct_device returned from
+ *             SDL_hid_enumerate().
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+procedure SDL_hid_free_enumeration(devs: PSDL_hid_device_info); cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_free_enumeration' {$ENDIF} {$ENDIF};
