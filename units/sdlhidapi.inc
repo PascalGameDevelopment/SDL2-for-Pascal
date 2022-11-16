@@ -415,3 +415,13 @@ function SDL_hid_get_serial_number_string(dev: PSDL_hid_device; str: pcwchar_t; 
  *)
 function SDL_hid_get_indexed_string(dev: PSDL_hid_device; string_index: cint; str: pcwchar_t; maxlen: csize_t): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_get_indexed_string' {$ENDIF} {$ENDIF};
+
+(**
+ * Start or stop a BLE scan on iOS and tvOS to pair Steam Controllers
+ *
+ * \param active SDL_TRUE to start the scan, SDL_FALSE to stop the scan
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+procedure SDL_hid_ble_scan(active: TSDL_bool); cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_ble_scan' {$ENDIF} {$ENDIF};
