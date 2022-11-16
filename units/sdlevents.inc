@@ -188,7 +188,7 @@ type
     timestamp: cuint32;
     windowID: cuint32;     // The window with keyboard focus, if any
     state: cuint8;         // SDL_PRESSED or SDL_RELEASED 
-    _repeat: cuint8;       // Non-zero if this is a key repeat
+    repeat_: cuint8;       // Non-zero if this is a key repeat
     padding2: cuint8;
     padding3: cuint8;
     keysym: TSDL_KeySym;  // The key that was pressed or released
@@ -198,11 +198,9 @@ const
   SDL_TEXTEDITINGEVENT_TEXT_SIZE = 32;
 
 type
- 
   {**
    *  Keyboard text editing event structure (event.edit.*)
    *}
-
   TSDL_TextEditingEvent = record
     type_: cuint32;                               // SDL_TEXTEDITING 
     timestamp: cuint32;
@@ -244,16 +242,12 @@ type
   {**
    *  Mouse motion event structure (event.motion.*)
    *}
- 
   TSDL_MouseMotionEvent = record
-    type_: cuint32;       // SDL_MOUSEMOTION
-    timestamp: cuint32;
-    windowID: cuint32;    // The window with mouse focus, if any
-    which: cuint32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
-    state: cuint8;        // The current button state 
-    padding1: cuint8;
-    padding2: cuint8;
-    padding3: cuint8;
+    type_: cuint32;      // SDL_MOUSEMOTION
+    timestamp: cuint32;  // In milliseconds, populated using SDL_GetTicks()
+    windowID: cuint32;   // The window with mouse focus, if any
+    which: cuint32;      // The mouse instance id, or SDL_TOUCH_MOUSEID
+    state: cuint32;      // The current button state
     x: cint32;           // X coordinate, relative to window
     y: cint32;           // Y coordinate, relative to window
     xrel: cint32;        // The relative motion in the X direction 
@@ -474,6 +468,7 @@ type
     dx: cfloat;             // Normalized in the range 0...1
     dy: cfloat;             // Normalized in the range 0...1
     pressure: cfloat;       // Normalized in the range 0...1
+    window: cuint32;        // The window underneath the finger, if any
   end;
 
   {**
@@ -510,11 +505,11 @@ type
    *  This event is disabled by default, you can enable it with SDL_EventState()
    *  If you enable this event, you must free the filename in the event.
    *}
-
   TSDL_DropEvent = record
-    type_: cuint32;      // SDL_DROPFILE
+    type_: cuint32;      // SDL_DROPBEGIN or SDL_DROPFILE or SDL_DROPTEXT or SDL_DROPCOMPLETE
     timestamp: cuint32;
-    _file: PAnsiChar;   // The file name, which should be freed with SDL_free()
+    file_: PAnsiChar;   // The file name, which should be freed with SDL_free(), is NIL on begin/complete
+    windowID: cuint32;  // The window that was dropped on, if any
   end;
 
   {**
@@ -530,7 +525,6 @@ type
   {**
    *  The "quit requested" event
    *}
-
   TSDL_QuitEvent = record
     type_: cuint32;        // SDL_QUIT
     timestamp: cuint32;
@@ -539,7 +533,6 @@ type
   {**
    *  A user-defined event type (event.user.*)
    *}
-
   TSDL_UserEvent = record
     type_: cuint32;       // SDL_USEREVENT through SDL_NUMEVENTS-1
     timestamp: cuint32;
