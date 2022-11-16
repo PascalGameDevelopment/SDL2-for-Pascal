@@ -48,6 +48,10 @@ type
   cuint16 = Word;
   {$EXTERNALSYM cuint16}
 
+  pcushort = ^cushort;
+  cushort = Word;
+  {$EXTERNALSYM cushort}
+
   pcint32 = ^cint32;
   cint32 = LongInt;
   {$EXTERNALSYM cint32}
