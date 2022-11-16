@@ -2258,7 +2258,7 @@ function TTF_GetFontSDF(font: PTTF_Font): TSDL_bool; cdecl;
  *
  * \sa TTF_GetError
   }
-function TTF_SetError(const fmt: PAnsiChar): cint; cdecl;
+function TTF_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
   external SDL_LibName
   name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_SetError' {$ELSE} 'SDL_SetError' {$ENDIF};
 

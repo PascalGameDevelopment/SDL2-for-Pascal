@@ -665,7 +665,7 @@ function Mix_GetChunk(channel: cint): PMix_Chunk cdecl; external MIX_LibName {$I
 procedure Mix_CloseAudio cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CloseAudio' {$ENDIF} {$ENDIF};
 
 {* We'll use SDL for reporting errors *}
-function Mix_SetError(const fmt: PAnsiChar): cint32; cdecl;
+function Mix_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
   external SDL_LibName
   name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_SetError' {$ELSE} 'SDL_SetError' {$ENDIF};
 function Mix_GetError: PAnsiChar; cdecl;
