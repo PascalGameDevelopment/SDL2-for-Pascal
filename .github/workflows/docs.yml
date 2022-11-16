@@ -1,4 +1,4 @@
-name: Build documentation using PasDoc and deploy to GitHub Pages
+name: Build and deploy documentation
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Install PasDoc
         run: |
