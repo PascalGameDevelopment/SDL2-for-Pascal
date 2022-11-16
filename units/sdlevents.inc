@@ -518,6 +518,16 @@ type
   end;
 
   {**
+   *  Sensor event structure (event.sensor.*)
+   *}
+  TSDL_SensorEvent = record
+    type_: cuint32;              // SDL_SENSORUPDATED
+    timestamp: cuint32;          // In milliseconds, populated using SDL_GetTicks()
+    which: cint32;               // The instance ID of the sensor
+    data: array[0..5] of cfloat; // Up to 6 values from the sensor - additional values can be queried using SDL_SensorGetData()
+  end;
+
+  {**
    *  The "quit requested" event
    *}
 
@@ -599,6 +609,8 @@ type
 
       SDL_AUDIODEVICEADDED,
       SDL_AUDIODEVICEREMOVED: (adevice: TSDL_AudioDeviceEvent);
+
+      SDL_SENSORUPDATED: (sensor: TSDL_SensorEvent);
 
       SDL_QUITEV: (quit: TSDL_QuitEvent);
 
