@@ -89,11 +89,15 @@ const
 
   { Game controller events }
   SDL_CONTROLLERAXISMOTION     = TSDL_EventType($650);  // Game controller axis motion
-  SDL_CONTROLLERBUTTONDOWN     = TSDL_EventType($651);  // Game controller button pressed 
+  SDL_CONTROLLERBUTTONDOWN     = TSDL_EventType($651);  // Game controller button pressed
   SDL_CONTROLLERBUTTONUP       = TSDL_EventType($652);  // Game controller button released
-  SDL_CONTROLLERDEVICEADDED    = TSDL_EventType($653);  // A new Game controller has been inserted into the system 
-  SDL_CONTROLLERDEVICEREMOVED  = TSDL_EventType($654);  // An opened Game controller has been removed 
-  SDL_CONTROLLERDEVICEREMAPPED = TSDL_EventType($655);  // The controller mapping was updated 
+  SDL_CONTROLLERDEVICEADDED    = TSDL_EventType($653);  // A new Game controller has been inserted into the system
+  SDL_CONTROLLERDEVICEREMOVED  = TSDL_EventType($654);  // An opened Game controller has been removed
+  SDL_CONTROLLERDEVICEREMAPPED = TSDL_EventType($655);  // The controller mapping was updated
+  SDL_CONTROLLERTOUCHPADDOWN   = TSDL_EventType($666);  // Game controller touchpad was touched
+  SDL_CONTROLLERTOUCHPADMOTION = TSDL_EventType($667);  // Game controller touchpad finger was moved
+  SDL_CONTROLLERTOUCHPADUP     = TSDL_EventType($668);  // Game controller touchpad finger was lifted
+  SDL_CONTROLLERSENSORUPDATE   = TSDL_EventType($669);  // Game controller sensor was updated
    
   { Touch events }
   SDL_FINGERDOWN      = TSDL_EventType($700);
