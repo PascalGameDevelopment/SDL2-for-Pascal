@@ -285,3 +285,22 @@ function SDL_hid_read_timeout(dev: PSDL_hid_device; data: pcUint8; length: csize
  *)
 function SDL_hid_read(dev: PSDL_hid_device; data: pcUint8; length: csize_t): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_read' {$ENDIF} {$ENDIF};
+
+(**
+ * Set the device handle to be non-blocking.
+ *
+ * In non-blocking mode calls to SDL_hid_read() will return immediately with a
+ * value of 0 if there is no data to be read. In blocking mode, SDL_hid_read()
+ * will wait (block) until there is data to read before returning.
+ *
+ * Nonblocking can be turned on and off at any time.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ * \param nonblock enable or not the nonblocking reads - 1 to enable
+ *                 nonblocking - 0 to disable nonblocking.
+ * \returns 0 on success and -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_set_nonblocking(dev: PSDL_hid_device; nonblock: cint): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_set_nonblocking' {$ENDIF} {$ENDIF};
