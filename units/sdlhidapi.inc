@@ -158,7 +158,7 @@ function SDL_hid_device_change_count(): cUint32; cdecl;
  * \param vendor_id The Vendor ID (VID) of the types of device to open.
  * \param product_id The Product ID (PID) of the types of device to open.
  * \returns a pointer to a linked list of type SDL_hid_device_info, containing
- *          information about the HID devices attached to the system, or NULL
+ *          information about the HID devices attached to the system, or NIL
  *          in the case of failure. Free this linked list by calling
  *          SDL_hid_free_enumeration().
  *
@@ -181,3 +181,37 @@ function SDL_hid_enumerate(vendor_id, product_id: cushort): PSDL_hid_device_info
  *)
 procedure SDL_hid_free_enumeration(devs: PSDL_hid_device_info); cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_free_enumeration' {$ENDIF} {$ENDIF};
+
+(**
+ * Open a HID device using a Vendor ID (VID), Product ID (PID) and optionally
+ * a serial number.
+ *
+ * If `serial_number` is NULL, the first device with the specified VID and PID
+ * is opened.
+ *
+ * \param vendor_id The Vendor ID (VID) of the device to open.
+ * \param product_id The Product ID (PID) of the device to open.
+ * \param serial_number The Serial Number of the device to open
+ *                      (optionally NIL).
+ * \returns a pointer to a SDL_hid_device object on success or NIL on
+ *          failure.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_open(vendor_id, product_id: cushort; serial_number: pcwchar_t): PSDL_hid_device; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_open' {$ENDIF} {$ENDIF};
+
+(**
+ * Open a HID device by its path name.
+ *
+ * The path name be determined by calling SDL_hid_enumerate(), or a
+ * platform-specific path name can be used (eg: /dev/hidraw0 on Linux).
+ *
+ * \param path The path name of the device to open
+ * \returns a pointer to a SDL_hid_device object on success
+ *          or NIL on failure.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_open_path(path: PAnsiChar; bExclusive: cuint): PSDL_hid_device; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_open_path' {$ENDIF} {$ENDIF};
