@@ -146,16 +146,28 @@ type
   {**
    *  Fields shared by every event
    *}
-
   TSDL_CommonEvent = record
     type_: cuint32;
     timestamp: cuint32;
   end;
 
   {**
+   * Display state change event data (event.display.*)
+   *}
+  TSDL_DisplayEvent = record
+    type_: cuint32;     // SDL_DISPLAYEVENT
+    timestamp: cuint32; // In milliseconds, populated using SDL_GetTicks()
+    display: cuint32;   // The associated display index
+    event: cuint8;      // SDL_DisplayEventID
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
+    data1: cint32;      // event dependent data
+  end;
+
+  {**
    *  Window state change event data (event.window.*)
    *}
-
   TSDL_WindowEvent = record
     type_: cuint32;       // SDL_WINDOWEVENT
     timestamp: cuint32;
@@ -503,6 +515,7 @@ type
       0:  (type_: cuint32);
 
       SDL_COMMONEVENT:  (common: TSDL_CommonEvent);
+      SDL_DISPLAYEVENT: (display: TSDL_DisplayEvent);
       SDL_WINDOWEVENT:  (window: TSDL_WindowEvent);
 
       SDL_KEYUP,
