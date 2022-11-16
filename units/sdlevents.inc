@@ -69,6 +69,7 @@ const
   SDL_TEXTEDITING      = TSDL_EventType($302);  // Keyboard text editing (composition)
   SDL_TEXTINPUT        = TSDL_EventType($303);  // Keyboard text input
   SDL_KEYMAPCHANGED    = TSDL_EventType($304);  // Keymap changed due to a system event such as an input language or keyboard layout change.
+  SDL_TEXTEDITING_EXT  = TSDL_EventType($305);  // Extended keyboard text editing (composition)
 
   { Mouse events }
   SDL_MOUSEMOTION      = TSDL_EventType($400);  // Mouse moved
