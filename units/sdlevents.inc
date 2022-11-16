@@ -212,6 +212,19 @@ type
     length: cint32;                              // The length of selected editing text
   end;
 
+  {**
+   *  Extended keyboard text editing event structure (event.editExt.*) when text would be
+   *  truncated if stored in the text buffer SDL_TextEditingEvent
+   *}
+  TSDL_TextEditingExtEvent = record
+    type_: cuint32;     // SDL_TEXTEDITING_EXT
+    timestamp: cuint32; // In milliseconds, populated using SDL_GetTicks()
+    windowID: cuint32;  // The window with keyboard focus, if any
+    text: PAnsiChar;    // The editing text, which should be freed with SDL_free(), and will not be NIL
+    start: cint32;      // The start cursor of selected editing text
+    length: cint32;     // The length of selected editing text
+  end;
+
 const
   SDL_TEXTINPUTEVENT_TEXT_SIZE = 32;
 
@@ -521,6 +534,7 @@ type
       SDL_KEYUP,
       SDL_KEYDOWN:  (key: TSDL_KeyboardEvent);
       SDL_TEXTEDITING:  (edit: TSDL_TextEditingEvent);
+      SDL_TEXTEDITING_EXT: (exitExt: TSDL_TextEditingExtEvent);
       SDL_TEXTINPUT:  (text: TSDL_TextInputEvent);
 
       SDL_MOUSEMOTION:  (motion: TSDL_MouseMotionEvent);
