@@ -92,3 +92,38 @@ type
 		(** Pointer to the next device *)
 		next: PSDL_hid_device_info;
 	end;
+
+(**
+ * Initialize the HIDAPI library.
+ *
+ * This function initializes the HIDAPI library. Calling it is not strictly
+ * necessary, as it will be called automatically by SDL_hid_enumerate() and
+ * any of the SDL_hid_open_*() functions if it is needed. This function should
+ * be called at the beginning of execution however, if there is a chance of
+ * HIDAPI handles being opened by different threads simultaneously.
+ *
+ * Each call to this function should have a matching call to SDL_hid_exit()
+ *
+ * \returns 0 on success and -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *
+ * \sa SDL_hid_exit
+ *)
+function SDL_hid_init(): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_init' {$ENDIF} {$ENDIF};
+
+(**
+ * Finalize the HIDAPI library.
+ *
+ * This function frees all of the static data associated with HIDAPI. It
+ * should be called at the end of execution to avoid memory leaks.
+ *
+ * \returns 0 on success and -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *
+ * \sa SDL_hid_init
+ *)
+function SDL_hid_exit(): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_exit' {$ENDIF} {$ENDIF};
