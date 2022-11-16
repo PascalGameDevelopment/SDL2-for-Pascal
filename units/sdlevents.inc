@@ -421,6 +421,20 @@ type
   end;
 
   {**
+   *  Game controller touchpad event structure (event.ctouchpad.*)
+   *}
+  TSDL_ControllerTouchpadEvent = record
+    type_: cuint32;         // SDL_CONTROLLERTOUCHPADDOWN or SDL_CONTROLLERTOUCHPADMOTION or SDL_CONTROLLERTOUCHPADUP
+    timestamp: cuint32;     // In milliseconds, populated using SDL_GetTicks()
+    which: TSDL_JoystickID; // The joystick instance id
+    touchpad: cint32;       // The index of the touchpad
+    finger: cint32;         // The index of the finger on the touchpad
+    x: cfloat;              // Normalized in the range 0...1 with 0 being on the left
+    y: cfloat;              // Normalized in the range 0...1 with 0 being at the top
+    pressure: cfloat;       // Normalized in the range 0...1
+  end;
+
+  {**
    *  Audio device event structure (event.adevice.*)
    *}
 
@@ -567,6 +581,9 @@ type
       SDL_CONTROLLERDEVICEADDED,
       SDL_CONTROLLERDEVICEREMOVED,
       SDL_CONTROLLERDEVICEREMAPPED: (cdevice: TSDL_ControllerDeviceEvent);
+      SDL_CONTROLLERTOUCHPADDOWN,
+      SDL_CONTROLLERTOUCHPADMOTION,
+      SDL_CONTROLLERTOUCHPADUP: (ctouchpad: TSDL_ControllerTouchpadEvent);
 
       SDL_AUDIODEVICEADDED,
       SDL_AUDIODEVICEREMOVED: (adevice: TSDL_AudioDeviceEvent);
