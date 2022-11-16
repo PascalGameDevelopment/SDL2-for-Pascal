@@ -128,7 +128,10 @@ const
   { Render events }
   SDL_RENDER_TARGETS_RESET = TSDL_EventType($2000); // The render targets have been reset
   SDL_RENDER_DEVICE_RESET  = TSDL_EventType($2001); // The device has been reset and all textures need to be recreated
-  
+
+  { Internal events }
+  SDL_POLLSENTINEL = TSDL_EventType($7F00); // Signals the end of an event poll cycle
+
   {** Events SDL_USEREVENT through SDL_LASTEVENT are for your use,
    *  and should be allocated with SDL_RegisterEvents()
    *}
