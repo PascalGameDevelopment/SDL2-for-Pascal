@@ -304,3 +304,28 @@ function SDL_hid_read(dev: PSDL_hid_device; data: pcUint8; length: csize_t): cin
  *)
 function SDL_hid_set_nonblocking(dev: PSDL_hid_device; nonblock: cint): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_set_nonblocking' {$ENDIF} {$ENDIF};
+
+(**
+ * Send a Feature report to the device.
+ *
+ * Feature reports are sent over the Control endpoint as a Set_Report
+ * transfer. The first byte of `data` must contain the Report ID. For devices
+ * which only support a single report, this must be set to 0x0. The remaining
+ * bytes contain the report data. Since the Report ID is mandatory, calls to
+ * SDL_hid_send_feature_report() will always contain one more byte than the
+ * report contains. For example, if a hid report is 16 bytes long, 17 bytes
+ * must be passed to SDL_hid_send_feature_report(): the Report ID (or 0x0, for
+ * devices which do not use numbered reports), followed by the report data (16
+ * bytes). In this example, the length passed in would be 17.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ * \param data The data to send, including the report number as the first
+ *             byte.
+ * \param length The length in bytes of the data to send, including the report
+ *               number.
+ * \returns the actual number of bytes written and -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_send_feature_report(dev: PSDL_hid_device; data: pcUint8; length: csize_t): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_send_feature_report' {$ENDIF} {$ENDIF};
