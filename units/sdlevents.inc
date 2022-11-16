@@ -370,6 +370,16 @@ type
   end;
 
   {**
+   *  Joysick battery level change event structure (event.jbattery.*)
+   *}
+  TSDL_JoyBatteryEvent = record
+    type_: cuint32;                 // SDL_JOYBATTERYUPDATED
+    timestamp: cuint32;             // In milliseconds, populated using SDL_GetTicks()
+    which: TSDL_JoystickID;         // The joystick instance id
+    level: TSDL_JoystickPowerLevel; // The joystick battery level
+  end;
+
+  {**
    *  Game controller axis motion event structure (event.caxis.*)
    *}
 
@@ -549,6 +559,7 @@ type
       SDL_JOYBUTTONUP: (jbutton: TSDL_JoyButtonEvent);
       SDL_JOYDEVICEADDED,
       SDL_JOYDEVICEREMOVED: (jdevice: TSDL_JoyDeviceEvent);
+      SDL_JOYBATTERYUPDATED: (jbattery: TSDL_JoyBatteryEvent);
 
       SDL_CONTROLLERAXISMOTION: (caxis: TSDL_ControllerAxisEvent);
       SDL_CONTROLLERBUTTONUP,
