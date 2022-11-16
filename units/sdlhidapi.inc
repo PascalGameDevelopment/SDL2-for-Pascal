@@ -362,3 +362,56 @@ function SDL_hid_get_feature_report(dev: PSDL_hid_device; data: pcUint8; length:
  *)
 procedure SDL_hid_close(dev: PSDL_hid_device); cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_close' {$ENDIF} {$ENDIF};
+
+(**
+ * Get The Manufacturer String from a HID device.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ * \param string A wide string buffer to put the data into.
+ * \param maxlen The length of the buffer in multiples of wchar_t.
+ * \returns 0 on success and -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_get_manufacturer_string(dev: PSDL_hid_device; str: pcwchar_t; maxlen: csize_t): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_get_manufacturer_string' {$ENDIF} {$ENDIF};
+
+(**
+ * Get The Product String from a HID device.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ * \param string A wide string buffer to put the data into.
+ * \param maxlen The length of the buffer in multiples of wchar_t.
+ * \returns 0 on success and -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_get_product_string(dev: PSDL_hid_device; str: pcwchar_t; maxlen: csize_t): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_get_product_string' {$ENDIF} {$ENDIF};
+
+(**
+ * Get The Serial Number String from a HID device.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ * \param string A wide string buffer to put the data into.
+ * \param maxlen The length of the buffer in multiples of wchar_t.
+ * \returns 0 on success and -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_get_serial_number_string(dev: PSDL_hid_device; str: pcwchar_t; maxlen: csize_t): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_get_serial_number_string' {$ENDIF} {$ENDIF};
+
+(**
+ * Get a string from a HID device, based on its string index.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ * \param string_index The index of the string to get.
+ * \param string A wide string buffer to put the data into.
+ * \param maxlen The length of the buffer in multiples of wchar_t.
+ * \returns 0 on success and -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+function SDL_hid_get_indexed_string(dev: PSDL_hid_device; string_index: cint; str: pcwchar_t; maxlen: csize_t): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_get_indexed_string' {$ENDIF} {$ENDIF};
