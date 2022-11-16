@@ -122,6 +122,9 @@ const
   SDL_AUDIODEVICEADDED     = TSDL_EventType($1100); // A new audio device is available
   SDL_AUDIODEVICEREMOVED   = TSDL_EventType($1101); // An audio device has been removed.
 
+  { Sensor events }
+  SDL_SENSORUPDATED = TSDL_EventType($1200); // A sensor was updated
+
   { Render events }
   SDL_RENDER_TARGETS_RESET = TSDL_EventType($2000); // The render targets have been reset
   SDL_RENDER_DEVICE_RESET  = TSDL_EventType($2001); // The device has been reset and all textures need to be recreated
