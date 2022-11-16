@@ -153,6 +153,7 @@ const
   {$ENDIF}
 
 
+{$DEFINE WANT_CWCHAR_T}
 {$I ctypes.inc}                  // C data types
 
                                  {SDL2 version of the represented header file}
