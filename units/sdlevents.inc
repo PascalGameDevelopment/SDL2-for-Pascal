@@ -435,6 +435,17 @@ type
   end;
 
   {**
+   *  Game controller sensor event structure (event.csensor.*)
+   *}
+  TSDL_ControllerSensorEvent = record
+    type_: cuint32;              // SDL_CONTROLLERSENSORUPDATE
+    timestamp: cuint32;          // In milliseconds, populated using SDL_GetTicks()
+    which: TSDL_JoystickID;      // The joystick instance id
+    sensor: cint32;              // The type of the sensor, one of the values of SDL_SensorType
+    data: array[0..2] of cfloat; // Up to 3 values from the sensor, as defined in SDL_sensor.h
+  end;
+
+  {**
    *  Audio device event structure (event.adevice.*)
    *}
 
@@ -584,6 +595,7 @@ type
       SDL_CONTROLLERTOUCHPADDOWN,
       SDL_CONTROLLERTOUCHPADMOTION,
       SDL_CONTROLLERTOUCHPADUP: (ctouchpad: TSDL_ControllerTouchpadEvent);
+      SDL_CONTROLLERSENSORUPDATE: (csensor: TSDL_ControllerSensorEvent);
 
       SDL_AUDIODEVICEADDED,
       SDL_AUDIODEVICEREMOVED: (adevice: TSDL_AudioDeviceEvent);
