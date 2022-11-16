@@ -352,3 +352,13 @@ function SDL_hid_send_feature_report(dev: PSDL_hid_device; data: pcUint8; length
  *)
 function SDL_hid_get_feature_report(dev: PSDL_hid_device; data: pcUint8; length: csize_t): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_get_feature_report' {$ENDIF} {$ENDIF};
+
+(**
+ * Close a HID device.
+ *
+ * \param dev A device handle returned from SDL_hid_open().
+ *
+ * \since This function is available since SDL 2.0.18.
+ *)
+procedure SDL_hid_close(dev: PSDL_hid_device); cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_close' {$ENDIF} {$ENDIF};
