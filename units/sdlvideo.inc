@@ -1,15 +1,4 @@
-//from "sdl_video.h" and "sdl_sysvideo.h" and "sdl_shape.h"
-
-{ ATTENTION Conv.:
-
-    The SDL_HitTestResult-Enum. and the SDL_HitTest func. are shifted before
-    TSDL_Window decl. because it need this.
-
-    Since the HitTest constants would break Pascal's
-    forward declaration rules, it has to be above
-    forward declaration of TSDL_Window.
-
-}
+// from "sdl_video.h" and "sdl_sysvideo.h" and "sdl_shape.h"
 
   {**
    *  \brief Possible return values from the SDL_HitTest callback.
@@ -31,10 +20,10 @@
     SDL_HITTEST_RESIZE_BOTTOMLEFT  = TSDL_HitTestResult(8);
     SDL_HITTEST_RESIZE_LEFT        = TSDL_HitTestResult(9);
 
-{ Conv.: Important forward declaration of SDL_Window. }
 type
   PPSDL_Window = ^PSDL_Window;
   PSDL_Window = ^TSDL_Window;
+  TSDL_Window = record end;
 
   {**
     *  \brief Callback used for hit-testing.
@@ -112,85 +101,6 @@ TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer)
     driverdata: Pointer;          {**< driver-specific data, initialize to 0 *}
   end;
 
-  {**
-   *  The type used to identify a window
-   *
-   *   SDL_CreateWindow()
-   *   SDL_CreateWindowFrom()
-   *   SDL_DestroyWindow()
-   *   SDL_GetWindowData()
-   *   SDL_GetWindowFlags()
-   *   SDL_GetWindowGrab()
-   *   SDL_GetWindowKeyboardGrab()
-   *   SDL_GetWindowMouseGrab()
-   *   SDL_GetWindowMouseRect()
-   *   SDL_GetWindowPosition()
-   *   SDL_GetWindowSize()
-   *   SDL_GetWindowTitle()
-   *   SDL_HideWindow()
-   *   SDL_MaximizeWindow()
-   *   SDL_MinimizeWindow()
-   *   SDL_RaiseWindow()
-   *   SDL_RestoreWindow()
-   *   SDL_SetWindowData()
-   *   SDL_SetWindowFullscreen()
-   *   SDL_SetWindowGrab()
-   *   SDL_SetWindowKeyboardGrab()
-   *   SDL_SetWindowMouseGrab()
-   *   SDL_SetWindowMouseRect()
-   *   SDL_SetWindowIcon()
-   *   SDL_SetWindowPosition()
-   *   SDL_SetWindowSize()
-   *   SDL_SetWindowBordered()
-   *   SDL_SetWindowTitle()
-   *   SDL_ShowWindow()
-   *}
-
-  { ATTENTION Conv.: TSDL_Window declaration from SDL_sysvideo.h. }
-  {* Define the SDL window structure, corresponding to toplevel windows *}
-  TSDL_Window = record
-    magic: Pointer;
-    id: cuint32;
-    title: PAnsiChar;
-    icon: PSDL_Surface;
-    x,y: cint;
-    w,h: cint;
-    min_w, min_h: cint;
-    max_w, max_h: cint;
-    flags: cuint32;
-    last_fullscreen_flags: cuint32;
-
-    {* Stored position and size for windowed mode * }
-    windowed: TSDL_Rect;
-
-    fullscreen_mode: TSDL_DisplayMode;
-
-    opacity: cfloat;
-
-    brightness: cfloat;
-    gamma: pcuint16;
-    saved_gamma: pcuint16;  {* (just offset into gamma) *}
-
-    surface: PSDL_Surface;
-    surface_valid: TSDL_Bool;
-
-    is_hiding: TSDL_Bool;
-    is_destroying: TSDL_Bool;
-    is_dropping: TSDL_Bool; {* drag/drop in progress, expecting SDL_SendDropComplete(). *}
-
-    shaper: PSDL_WindowShaper;
-
-    hit_test: TSDL_HitTest;
-    hit_test_data: Pointer;
-
-    data: PSDL_WindowUserData;
-
-    driverdata: Pointer;
-
-    prev: PSDL_Window;
-    next: PSDL_Window;
-  end;
- 
 { Functions from "sdl_shape.h" }
 
    {**
