@@ -24,9 +24,11 @@ type
     pressure: cfloat;
   end;
 
-{* Used as the device ID for mouse events simulated with touch input *}
 const
+  {* Used as the device ID for mouse events simulated with touch input *}
   SDL_TOUCH_MOUSEID = cuint32(-1);
+  {* Used as the SDL_TouchID for touch events simulated with mouse input *}
+  SDL_MOUSE_TOUCHID = TSDL_TouchID(-1);
 
   {* Function prototypes *}
 
