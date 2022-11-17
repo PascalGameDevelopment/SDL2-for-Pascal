@@ -65,8 +65,6 @@ const
   {** \brief A color key is applied. *}
   ShapeModeColorKey              = TWindowShapeMode(3);
 
-{ #todo : Conv.: Macro interpreted correctly?
-  //#define SDL_SHAPEMODEALPHA(mode) (mode == ShapeModeDefault || mode == ShapeModeBinarizeAlpha || mode == ShapeModeReverseBinarizeAlpha)}
 function SDL_SHAPEMODEALPHA(mode: TWindowShapeMode): Boolean;
 
 type
