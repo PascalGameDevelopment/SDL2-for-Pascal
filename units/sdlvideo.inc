@@ -1,36 +1,10 @@
 // from "sdl_video.h"
 
-  {**
-   *  \brief Possible return values from the SDL_HitTest callback.
-   *
-   *  \sa SDL_HitTest
-   *}
-  type
-    TSDL_HitTestResult = type Integer;
-
-  const
-    SDL_HITTEST_NORMAL             = TSDL_HitTestResult(0);  {**< Region is normal. No special properties. *}
-    SDL_HITTEST_DRAGGABLE          = TSDL_HitTestResult(1);  {**< Region can drag entire window. *}
-    SDL_HITTEST_RESIZE_TOPLEFT     = TSDL_HitTestResult(2);
-    SDL_HITTEST_RESIZE_TOP         = TSDL_HitTestResult(3);
-    SDL_HITTEST_RESIZE_TOPRIGHT    = TSDL_HitTestResult(4);
-    SDL_HITTEST_RESIZE_RIGHT       = TSDL_HitTestResult(5);
-    SDL_HITTEST_RESIZE_BOTTOMRIGHT = TSDL_HitTestResult(6);
-    SDL_HITTEST_RESIZE_BOTTOM      = TSDL_HitTestResult(7);
-    SDL_HITTEST_RESIZE_BOTTOMLEFT  = TSDL_HitTestResult(8);
-    SDL_HITTEST_RESIZE_LEFT        = TSDL_HitTestResult(9);
 
 type
   PPSDL_Window = ^PSDL_Window;
   PSDL_Window = ^TSDL_Window;
   TSDL_Window = record end;
-
-  {**
-    *  \brief Callback used for hit-testing.
-    *
-    *  \sa SDL_SetWindowHitTest
-    *}
-TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer): TSDL_HitTestResult; cdecl;
 
   {**
    *  The structure that defines a display mode
@@ -1197,12 +1171,33 @@ function SDL_SetWindowGammaRamp(window: PSDL_Window; const red: pcuint16; const 
 function SDL_GetWindowGammaRamp(window: PSDL_Window; red: pcuint16; green: pcuint16; blue: pcuint16): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowGammaRamp' {$ENDIF} {$ENDIF};
 
-  { ATTENTION Conv.:
+{**
+ *  \brief Possible return values from the SDL_HitTest callback.
+ *
+ *  \sa SDL_HitTest
+ *}
+type
+  TSDL_HitTestResult = type Integer;
 
-      The SDL_HitTestResult-Enum. and the SDL_HitTest func. are shifted before
-      TSDL_Window decl. because it need this.
+const
+  SDL_HITTEST_NORMAL             = TSDL_HitTestResult(0);  {**< Region is normal. No special properties. *}
+  SDL_HITTEST_DRAGGABLE          = TSDL_HitTestResult(1);  {**< Region can drag entire window. *}
+  SDL_HITTEST_RESIZE_TOPLEFT     = TSDL_HitTestResult(2);
+  SDL_HITTEST_RESIZE_TOP         = TSDL_HitTestResult(3);
+  SDL_HITTEST_RESIZE_TOPRIGHT    = TSDL_HitTestResult(4);
+  SDL_HITTEST_RESIZE_RIGHT       = TSDL_HitTestResult(5);
+  SDL_HITTEST_RESIZE_BOTTOMRIGHT = TSDL_HitTestResult(6);
+  SDL_HITTEST_RESIZE_BOTTOM      = TSDL_HitTestResult(7);
+  SDL_HITTEST_RESIZE_BOTTOMLEFT  = TSDL_HitTestResult(8);
+  SDL_HITTEST_RESIZE_LEFT        = TSDL_HitTestResult(9);
 
-  }
+  {**
+    *  \brief Callback used for hit-testing.
+    *
+    *  \sa SDL_SetWindowHitTest
+    *}
+type
+  TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer): TSDL_HitTestResult; cdecl;
 
   {**
    *  \brief Provide a callback that decides if a window region has special properties.
