@@ -7,6 +7,15 @@ type
   PSDL_FingerID = ^TSDL_FingerID;
   TSDL_FingerID = type cint64;
 
+  TSDL_TouchDeviceType = type cint;
+
+const
+  SDL_TOUCH_DEVICE_INVALID           = TSDL_TouchDeviceType(-1);
+  SDL_TOUCH_DEVICE_DIRECT            = TSDL_TouchDeviceType(0);  {* touch screen with window-relative coordinates *}
+  SDL_TOUCH_DEVICE_INDIRECT_ABSOLUTE = TSDL_TouchDeviceType(1);  {* trackpad with absolute device coordinates *}
+  SDL_TOUCH_DEVICE_INDIRECT_RELATIVE = TSDL_TouchDeviceType(2);  {* trackpad with relative device coordinates *}
+
+type
   PSDL_Finger = ^TSDL_Finger;
   TSDL_Finger = record
     id: TSDL_FingerID;
