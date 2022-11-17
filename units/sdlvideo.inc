@@ -509,6 +509,21 @@ function SDL_SetWindowDisplayMode(window: PSDL_Window; const mode: PSDL_DisplayM
 function SDL_GetWindowDisplayMode(window: PSDL_Window; mode: PSDL_DisplayMode): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowDisplayMode' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the raw ICC profile data for the screen the window is currently on.
+ *
+ * Data returned should be freed with SDL_free().
+ *
+ * \param window the window to query
+ * \param size the size of the ICC profile
+ * \returns the raw ICC profile data on success or NIL on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *}
+function SDL_GetWindowICCProfile(window: PSDL_Window; size: pcsize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowICCProfile' {$ENDIF} {$ENDIF};
+
   {**
    *  Get the pixel format associated with the window.
    *}
