@@ -206,6 +206,7 @@ const
   SDL_GL_CONTEXT_RELEASE_BEHAVIOR         = TSDL_GLattr(24);
   SDL_GL_CONTEXT_RESET_NOTIFICATION       = TSDL_GLattr(25);
   SDL_GL_CONTEXT_NO_ERROR                 = TSDL_GLattr(26);
+  SDL_GL_FLOATBUFFERS                     = TSDL_GLattr(27);
 
 type
   TSDL_GLprofile = type Integer;
