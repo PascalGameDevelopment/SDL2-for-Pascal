@@ -836,6 +836,23 @@ procedure SDL_SetWindowBordered(window: PSDL_Window; bordered: TSDL_Bool); cdecl
 procedure SDL_SetWindowResizable(window: PSDL_Window; resizable: TSDL_Bool); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowResizable' {$ENDIF} {$ENDIF};
 
+{**
+ * Set the window to always be above the others.
+ *
+ * This will add or remove the window's `SDL_WINDOW_ALWAYS_ON_TOP` flag. This
+ * will bring the window to the front and keep the window above the rest.
+ *
+ * \param window The window of which to change the always on top state
+ * \param on_top SDL_TRUE to set the window always on top, SDL_FALSE to
+ *               disable
+ *
+ * \since This function is available since SDL 2.0.16.
+ *
+ * \sa SDL_GetWindowFlags
+ *}
+procedure SDL_SetWindowAlwaysOnTop(window: PSDL_Window; on_top: TSDL_Bool); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowAlwaysOnTop' {$ENDIF} {$ENDIF};
+
   {**
    *  Show a window.
    *  
