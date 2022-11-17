@@ -2071,9 +2071,15 @@ function TTF_RenderGlyph32_LCD(font: PTTF_Font; ch: cuint32; fg: TSDL_Color; bg:
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_RenderGlyph32_LCD' {$ENDIF} {$ENDIF};
 
 {* For compatibility with previous versions, here are the old functions *}
-function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
-function TTF_RenderUTF8(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
-function TTF_RenderUNICODE(font: PTTF_Font; text: pcuint16; fg, bg: TSDL_Color): PSDL_Surface;
+function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface; cdecl;
+  external TTF_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_TTF_RenderText_Shaded' {$ELSE} 'TTF_RenderText_Shaded' {$ENDIF};
+function TTF_RenderUTF8(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface; cdecl;
+  external TTF_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_TTF_RenderUTF8_Shaded' {$ELSE} 'TTF_RenderUTF8_Shaded' {$ENDIF};
+function TTF_RenderUNICODE(font: PTTF_Font; text: pcuint16; fg, bg: TSDL_Color): PSDL_Surface; cdecl;
+  external TTF_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_TTF_RenderUNICODE_Shaded' {$ELSE} 'TTF_RenderUNICODE_Shaded' {$ENDIF};
 
 {*
  * Dispose of a previously-created font.
@@ -2252,7 +2258,9 @@ function TTF_GetFontSDF(font: PTTF_Font): TSDL_bool; cdecl;
  *
  * \sa TTF_GetError
   }
-function TTF_SetError(const fmt: PAnsiChar): cint; cdecl;
+function TTF_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_SetError' {$ELSE} 'SDL_SetError' {$ENDIF};
 
 {*
  * Get last SDL_ttf error
@@ -2260,6 +2268,8 @@ function TTF_SetError(const fmt: PAnsiChar): cint; cdecl;
  * \sa TTF_SetError
   }
 function TTF_GetError: PAnsiChar; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_GetError' {$ELSE} 'SDL_GetError' {$ENDIF};
 
 {*
  * Direction flags
@@ -2391,31 +2401,6 @@ begin
   Result := (SDL_TTF_MAJOR_VERSION >= X) and
             ((SDL_TTF_MAJOR_VERSION > X) or (SDL_TTF_MINOR_VERSION >= Y)) and
             ((SDL_TTF_MAJOR_VERSION > X) or (SDL_TTF_MINOR_VERSION > Y) or (SDL_TTF_PATCHLEVEL >= Z));
-end;
-
-function TTF_SetError(const fmt: PAnsiChar): cint; cdecl;
-begin
-  Result := SDL_SetError(fmt);
-end;
-
-function TTF_GetError: PAnsiChar; cdecl;
-begin
-  Result := SDL_GetError();
-end;
-
-function TTF_RenderText(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
-begin
-  Result := TTF_RenderText_Shaded(font, text, fg, bg);
-end;
-
-function TTF_RenderUTF8(font: PTTF_Font; text: PAnsiChar; fg, bg: TSDL_Color): PSDL_Surface;
-begin
-  Result := TTF_RenderUTF8_Shaded(font, text, fg, bg);
-end;
-
-function TTF_RenderUNICODE(font: PTTF_Font; text: pcuint16; fg, bg: TSDL_Color): PSDL_Surface;
-begin
-  Result := TTF_RenderUNICODE_Shaded(font, text, fg, bg);
 end;
 
 end.
