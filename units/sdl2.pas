@@ -384,13 +384,6 @@ begin
   Result := (mode = ShapeModeDefault) or (mode = ShapeModeBinarizeAlpha) or (mode = ShapeModeReverseBinarizeAlpha);
 end;
 
-//from "sdl_sysvideo.h"
-
-function FULLSCREEN_VISIBLE(W: PSDL_Window): Variant;
-begin
-  Result := ((W^.flags and SDL_WINDOW_FULLSCREEN) and (W^.flags and SDL_WINDOW_SHOWN) and not (W^.flags and SDL_WINDOW_MINIMIZED));
-end;
-
 //from "sdl_video.h"
 
 function SDL_WINDOWPOS_UNDEFINED_DISPLAY(X: Variant): Variant;

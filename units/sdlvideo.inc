@@ -190,9 +190,7 @@ TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer)
     prev: PSDL_Window;
     next: PSDL_Window;
   end;
-
-  function FULLSCREEN_VISIBLE(W: PSDL_Window): Variant;
-
+ 
 { Functions from "sdl_shape.h" }
 
    {**
