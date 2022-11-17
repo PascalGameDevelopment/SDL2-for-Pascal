@@ -44,6 +44,15 @@ function SDL_GetNumTouchDevices(): cint; cdecl;
 function SDL_GetTouchDevice(index: cint): TSDL_TouchID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTouchDevice' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the touch device name as reported from the driver,
+ * or NIL if the index is invalid.
+ *
+ * \since This function is available since SDL 2.0.22.
+ *}
+function SDL_GetTouchName(index: cint): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTouchName' {$ENDIF} {$ENDIF};
+
   {**
    *  Get the number of active fingers for a given touch device.
    *}
