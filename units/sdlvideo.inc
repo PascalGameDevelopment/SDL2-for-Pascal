@@ -1,4 +1,4 @@
-// from "sdl_video.h" and "sdl_sysvideo.h" and "sdl_shape.h"
+// from "sdl_video.h" and "sdl_shape.h"
 
   {**
    *  \brief Possible return values from the SDL_HitTest callback.
@@ -31,55 +31,6 @@ type
     *  \sa SDL_SetWindowHitTest
     *}
 TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer): TSDL_HitTestResult; cdecl;
-
-{ ATTENTION Conv.:
-
-    The following declarations are from SDL_sysvideo.h.
-
-    Remark: The way SDL_video.h and SDL_sysvideo.h are intertwisted
-            it is best to keep them both in sdlvideo.inc because
-            Pascal has more strict rules regarding forward declarations.
-
-}
-
-  {* Define the SDL window-shaper structure *}
-  PSDL_WindowShaper = ^TSDL_WindowShaper;
-  TSDL_WindowShaper = record
-    {* The window associated with the shaper *}
-    window: PSDL_Window;
-
-    {* The user's specified coordinates for the window, for once we give it a shape. *}
-    userx,usery: cuint32;
-
-    {* The parameters for shape calculation. *}
-    mode: TSDL_WindowShapeMode;
-
-    {* Has this window been assigned a shape? *}
-    hasshape: TSDL_Bool;
-
-    driverdata: Pointer;
-  end;
-
- {* Define the SDL shape driver structure *}
-  PSDL_ShapeDriver = ^TSDL_ShapeDriver;
-  TSDL_ShapeDriver = record
-    CreateShaper: function(window: PSDL_Window): PSDL_WindowShaper; cdecl;
-    SetWindowShaper: function(shaper: PSDL_WindowShaper; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
-    ResizeWindowShape: function(window: PSDL_Window): cint; cdecl;
-  end;
-
-  PSDL_WindowUserData = ^TSDL_WindowUserData;
-  TSDL_WindowUserData = record
-    name: PAnsiChar;
-    data: Pointer;
-    next: PSDL_WindowUserData;
-  end;
-
-{ ATTENTION Conv.:
-
-    Everything below this comment is mostly from SDL_video.h.
-
-}
 
   {**
    *  The structure that defines a display mode
