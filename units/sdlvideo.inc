@@ -58,7 +58,7 @@ TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer)
  *   SDL_GetWindowFlags()
  *}
 type
-  TSDL_WindowFlags = type cuint32;
+  TSDL_WindowFlags = type cuint;
 
 const
   SDL_WINDOW_FULLSCREEN    = TSDL_WindowFlags($00000001);      {**< fullscreen window *}
@@ -69,7 +69,7 @@ const
   SDL_WINDOW_RESIZABLE     = TSDL_WindowFlags($00000020);      {**< window can be resized *}
   SDL_WINDOW_MINIMIZED     = TSDL_WindowFlags($00000040);      {**< window is minimized *}
   SDL_WINDOW_MAXIMIZED     = TSDL_WindowFlags($00000080);      {**< window is maximized *}
-  SDL_WINDOW_INPUT_GRABBED = TSDL_WindowFlags($00000100);      {**< window has grabbed input focus *}
+  SDL_WINDOW_MOUSE_GRABBED = TSDL_WindowFlags($00000100);      {**< window has grabbed mouse input *}
   SDL_WINDOW_INPUT_FOCUS   = TSDL_WindowFlags($00000200);      {**< window has input focus *}
   SDL_WINDOW_MOUSE_FOCUS   = TSDL_WindowFlags($00000400);      {**< window has mouse focus *}
   SDL_WINDOW_FULLSCREEN_DESKTOP = TSDL_WindowFlags(SDL_WINDOW_FULLSCREEN or $00001000);
@@ -77,14 +77,17 @@ const
   SDL_WINDOW_ALLOW_HIGHDPI = TSDL_WindowFlags($00002000);      {**< window should be created in high-DPI mode if supported.
                                                    On macOS NSHighResolutionCapable must be set true in the
                                                    application's Info.plist for this to have any effect. *}
-  SDL_WINDOW_MOUSE_CAPTURE = TSDL_WindowFlags($00004000);      {**< window has mouse captured (unrelated to INPUT_GRABBED) *}
-  SDL_WINDOW_ALWAYS_ON_TOP = TSDL_WindowFlags($00008000);      {**< window should always be above others *}
-  SDL_WINDOW_SKIP_TASKBAR  = TSDL_WindowFlags($00010000);      {**< window should not be added to the taskbar *}
-  SDL_WINDOW_UTILITY       = TSDL_WindowFlags($00020000);      {**< window should be treated as a utility window *}
-  SDL_WINDOW_TOOLTIP       = TSDL_WindowFlags($00040000);      {**< window should be treated as a tooltip *}
-  SDL_WINDOW_POPUP_MENU    = TSDL_WindowFlags($00080000);      {**< window should be treated as a popup menu *}
-  SDL_WINDOW_VULKAN        = TSDL_WindowFlags($10000000);      {**< window usable for Vulkan surface *}
-  SDL_WINDOW_METAL         = TSDL_WindowFlags($20000000);      {**< window usable for Metal view *}
+  SDL_WINDOW_MOUSE_CAPTURE    = TSDL_WindowFlags($00004000);      {**< window has mouse captured (unrelated to MOUSE_GRABBED) *}
+  SDL_WINDOW_ALWAYS_ON_TOP    = TSDL_WindowFlags($00008000);      {**< window should always be above others *}
+  SDL_WINDOW_SKIP_TASKBAR     = TSDL_WindowFlags($00010000);      {**< window should not be added to the taskbar *}
+  SDL_WINDOW_UTILITY          = TSDL_WindowFlags($00020000);      {**< window should be treated as a utility window *}
+  SDL_WINDOW_TOOLTIP          = TSDL_WindowFlags($00040000);      {**< window should be treated as a tooltip *}
+  SDL_WINDOW_POPUP_MENU       = TSDL_WindowFlags($00080000);      {**< window should be treated as a popup menu *}
+  SDL_WINDOW_KEYBOARD_GRABBED = TSDL_WindowFlags($00100000);      {**< window has grabbed keyboard input *}
+  SDL_WINDOW_VULKAN           = TSDL_WindowFlags($10000000);      {**< window usable for Vulkan surface *}
+  SDL_WINDOW_METAL            = TSDL_WindowFlags($20000000);      {**< window usable for Metal view *}
+
+  SDL_WINDOW_INPUT_GRABBED = SDL_WINDOW_MOUSE_GRABBED; {**< equivalent to SDL_WINDOW_MOUSE_GRABBED for compatibility *}
 
   {**
   *  Used to indicate that you don't care what the window position is.
