@@ -455,6 +455,22 @@ function SDL_GetClosestDisplayMode(displayIndex: cint; const mode: PSDL_DisplayM
 function SDL_GetPointDisplayIndex(const point: PSDL_Point): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPointDisplayIndex' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the index of the display primarily containing a rect
+ *
+ * \param rect the rect to query
+ * \returns the index of the display entirely containing the rect or closest
+ *          to the center of the rect on success or a negative error code on
+ *          failure; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *
+ * \sa SDL_GetDisplayBounds
+ * \sa SDL_GetNumVideoDisplays
+ *}
+function SDL_GetRectDisplayIndex(const rect: PSDL_Rect): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectDisplayIndex' {$ENDIF} {$ENDIF};
+
   {**
    *  Get the display index associated with a window.
    *  
