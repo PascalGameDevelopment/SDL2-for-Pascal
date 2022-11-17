@@ -440,6 +440,21 @@ function SDL_GetCurrentDisplayMode(displayIndex: cint; mode: PSDL_DisplayMode): 
 function SDL_GetClosestDisplayMode(displayIndex: cint; const mode: PSDL_DisplayMode; closest: PSDL_DisplayMode): PSDL_DisplayMode; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetClosestDisplayMode' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the index of the display containing a point
+ *
+ * \param point the point to query
+ * \returns the index of the display containing the point or a negative error
+ *          code on failure; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *
+ * \sa SDL_GetDisplayBounds
+ * \sa SDL_GetNumVideoDisplays
+ *}
+function SDL_GetPointDisplayIndex(const point: PSDL_Point): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPointDisplayIndex' {$ENDIF} {$ENDIF};
+
   {**
    *  Get the display index associated with a window.
    *  
