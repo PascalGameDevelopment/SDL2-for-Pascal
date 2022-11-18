@@ -2201,6 +2201,21 @@ function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; 
 function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHint' {$ENDIF} {$ENDIF};
 
+{**
+ * Reset a hint to the default value.
+ *
+ * This will reset a hint to the value of the environment variable, or NULL if
+ * the environment isn't set. Callbacks will be called normally with this
+ * change.
+ *
+ * \param name the hint to set
+ * \returns SDL_TRUE if the hint was set, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *}
+function SDL_ResetHint(const name: PAnsiChar): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResetHint' {$ENDIF} {$ENDIF};
+
 {/**
  *  \brief Get a hint
  *
