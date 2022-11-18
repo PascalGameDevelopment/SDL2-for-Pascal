@@ -474,3 +474,16 @@ function SDL_WinRTGetDeviceFamily(): TSDL_WinRT_DeviceFamily;
   cdecl; external SDL_LibName;
 
 {$ENDIF}
+
+
+{**
+ * Query if the current device is a tablet.
+ *
+ * If SDL can't determine this, it will return SDL_FALSE.
+ *
+ * \returns SDL_TRUE if the device is a tablet, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.0.9.
+ *}
+function SDL_IsTablet(): TSDL_Bool; cdecl;
+  external SDL_LibName;
