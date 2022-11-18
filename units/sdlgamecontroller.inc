@@ -19,16 +19,20 @@ type
 
   TSDL_GameControllerType = type cint;
 const
-  SDL_CONTROLLER_TYPE_UNKNOWN             = TSDL_GameControllerType(0);
-  SDL_CONTROLLER_TYPE_XBOX360             = TSDL_GameControllerType(1);
-  SDL_CONTROLLER_TYPE_XBOXONE             = TSDL_GameControllerType(2);
-  SDL_CONTROLLER_TYPE_PS3                 = TSDL_GameControllerType(3);
-  SDL_CONTROLLER_TYPE_PS4                 = TSDL_GameControllerType(4);
-  SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_PRO = TSDL_GameControllerType(5);
-  SDL_CONTROLLER_TYPE_VIRTUAL             = TSDL_GameControllerType(6);
-  SDL_CONTROLLER_TYPE_PS5                 = TSDL_GameControllerType(7);
-  SDL_CONTROLLER_TYPE_AMAZON_LUNA         = TSDL_GameControllerType(8);
-  SDL_CONTROLLER_TYPE_GOOGLE_STADIA       = TSDL_GameControllerType(9);
+  SDL_CONTROLLER_TYPE_UNKNOWN                      = TSDL_GameControllerType(0);
+  SDL_CONTROLLER_TYPE_XBOX360                      = TSDL_GameControllerType(1);
+  SDL_CONTROLLER_TYPE_XBOXONE                      = TSDL_GameControllerType(2);
+  SDL_CONTROLLER_TYPE_PS3                          = TSDL_GameControllerType(3);
+  SDL_CONTROLLER_TYPE_PS4                          = TSDL_GameControllerType(4);
+  SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_PRO          = TSDL_GameControllerType(5);
+  SDL_CONTROLLER_TYPE_VIRTUAL                      = TSDL_GameControllerType(6);
+  SDL_CONTROLLER_TYPE_PS5                          = TSDL_GameControllerType(7);
+  SDL_CONTROLLER_TYPE_AMAZON_LUNA                  = TSDL_GameControllerType(8);
+  SDL_CONTROLLER_TYPE_GOOGLE_STADIA                = TSDL_GameControllerType(9);
+  SDL_CONTROLLER_TYPE_NVIDIA_SHIELD                = TSDL_GameControllerType(10);
+  SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_LEFT  = TSDL_GameControllerType(11);
+  SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_RIGHT = TSDL_GameControllerType(12);
+  SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_PAIR  = TSDL_GameControllerType(13);
 
 type
   TSDL_GameControllerBindType = type cint;
