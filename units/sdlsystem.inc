@@ -7,7 +7,7 @@
    *  \brief Set a function that is called for every windows message, before TranslateMessage()
    *}
 Type
-  TSDL_WindowsMessageHook = Procedure(userdata, hWnd: Pointer; mesage: cuint32; wParam: cuint64; lParam: cint64); cdecl;
+  TSDL_WindowsMessageHook = Procedure(userdata, hWnd: Pointer; mesage: cuint; wParam: cuint64; lParam: cint64); cdecl;
 
 Procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata: Pointer); cdecl;
   external SDL_LibName;
@@ -16,24 +16,26 @@ Procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata:
    * This adapter index can be passed to IDirect3D9::CreateDevice and controls
    * on which monitor a full screen application will appear.
    *}
-Function SDL_Direct3D9GetAdapterIndex(displayIndex:cint32):cint32;
-   cdecl; external SDL_LibName;
+Function SDL_Direct3D9GetAdapterIndex(displayIndex:cint):cint; cdecl;
+  external SDL_LibName;
+
+Type
+  PIDirect3DDevice9 = type Pointer;
 
   {* Returns the D3D device associated with a renderer, or NULL if it's not a D3D renderer.
    * Once you are done using the device, you should release it to avoid a resource leak.
    *}
-Type PIDirect3DDevice9 = Pointer;
-Function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9;
-   cdecl; external SDL_LibName;
+Function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
+  external SDL_LibName;
 
 {* Returns the DXGI Adapter and Output indices for the specified display index. 
  * These can be passed to EnumAdapters and EnumOutputs respectively to get the objects
  *  required to create a DX10 or DX11 device and swap chain.
  *}
-function SDL_DXGIGetOutputInfo(displayIndex :cint32; adapterIndex, outputIndex :pcint32): TSDL_Bool;
-   cdecl; external SDL_LibName;
+function SDL_DXGIGetOutputInfo(displayIndex: cint; adapterIndex, outputIndex: pcint): TSDL_Bool;
+  external SDL_LibName;
 
-{$IFEND}
+{$ENDIF}
 
 
 (* Platform specific functions for WinRT *)
