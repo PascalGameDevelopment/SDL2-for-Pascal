@@ -256,6 +256,19 @@ procedure SDL_GameControllerSetPlayerIndex(gamecontroller: PSDL_GameController; 
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetPlayerIndex' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the USB vendor ID of an opened controller, if available.
+ *
+ * If the vendor ID isn't available this function returns 0.
+ *
+ * \param gamecontroller the game controller object to query.
+ * \return the USB vendor ID, or zero if unavailable.
+ *
+ * \since This function is available since SDL 2.0.6.
+ *}
+function SDL_GameControllerGetVendor(gamecontroller: PSDL_GameController): cuint16; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetVendor' {$ENDIF} {$ENDIF};
+
+{**
  * Get the USB product ID of an opened controller, if available.
  * If the product ID isn't available, this function returns 0.
  *}
