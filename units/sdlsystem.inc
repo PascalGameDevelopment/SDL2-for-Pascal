@@ -398,24 +398,30 @@ function SDL_AndroidSendMessage(command: cUint32; param: cint): cint; cdecl;
    *}
 Type
   TSDL_WinRT_Path = (
-
-    {** \brief The installed app's root directory.
+    {** The installed app's root directory.
         Files here are likely to be read-only. *}
     SDL_WINRT_PATH_INSTALLED_LOCATION = 0,
-
-    {** \brief The app's local data store.  Files may be written here *}
+    {** The app's local data store.  Files may be written here *}
     SDL_WINRT_PATH_LOCAL_FOLDER = 1,
-
-    {** \brief The app's roaming data store.  Unsupported on Windows Phone.
+    {** The app's roaming data store.  Unsupported on Windows Phone.
         Files written here may be copied to other machines via a network
         connection.
     *}
     SDL_WINRT_PATH_ROAMING_FOLDER = 2,
-
-    {** \brief The app's temporary data store.  Unsupported on Windows Phone.
+    {** The app's temporary data store.  Unsupported on Windows Phone.
         Files written here may be deleted at any time. *}
     SDL_WINRT_PATH_TEMP_FOLDER = 3
+  );
 
+  TSDL_WinRT_DeviceFamily = (
+    {** Unknown family  *}
+    SDL_WINRT_DEVICEFAMILY_UNKNOWN,
+    {** Desktop family *}
+    SDL_WINRT_DEVICEFAMILY_DESKTOP,
+    {** Mobile family (for example smartphone) *}
+    SDL_WINRT_DEVICEFAMILY_MOBILE,
+    {** XBox family *}
+    SDL_WINRT_DEVICEFAMILY_XBOX
   );
 
 
@@ -455,5 +461,16 @@ Function SDL_WinRTGetFSPathUNICODE(pathType :TSDL_WinRT_Path):PWideChar;
    *}
 Function SDL_WinRTGetFSPathUTF8(pathType :TSDL_WinRT_Path):PChar;
    cdecl; external SDL_LibName;
+
+
+{**
+ * Detects the device family of WinRT platform at runtime.
+ *
+ * \returns a value from the SDL_WinRT_DeviceFamily enum.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *}
+function SDL_WinRTGetDeviceFamily(): TSDL_WinRT_DeviceFamily;
+  cdecl; external SDL_LibName;
 
 {$ENDIF}
