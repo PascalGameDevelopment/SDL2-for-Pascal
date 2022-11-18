@@ -2014,7 +2014,8 @@ SDL_HINT_IME_SUPPORT_EXTENDED_TEXT = 'SDL_IME_SUPPORT_EXTENDED_TEXT';
  *       Use SDL_HINT_MOUSE_TOUCH_EVENTS and SDL_HINT_TOUCH_MOUSE_EVENTS
  *       for generating synthetic touch/mouse events.
  */}
-SDL_HINT_ANDROID_SEPARATE_MOUSE_AND_TOUCH = 'SDL_ANDROID_SEPARATE_MOUSE_AND_TOUCH' deprecated;
+SDL_HINT_ANDROID_SEPARATE_MOUSE_AND_TOUCH = 'SDL_ANDROID_SEPARATE_MOUSE_AND_TOUCH'
+  deprecated 'This hint is no longer supported on SDL >= 2.0.10. Use SDL_HINT_MOUSE_TOUCH_EVENTS and SDL_HINT_TOUCH_MOUSE_EVENTS instead.';
 
 {/**
  *  \brief Disable giving back control to the browser automatically
