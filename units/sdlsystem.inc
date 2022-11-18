@@ -21,11 +21,43 @@ Function SDL_Direct3D9GetAdapterIndex(displayIndex:cint):cint; cdecl;
 
 Type
   PIDirect3DDevice9 = type Pointer;
+  PID3D11Device = type Pointer;
+  PID3D12Device = type Pointer;
 
   {* Returns the D3D device associated with a renderer, or NULL if it's not a D3D renderer.
    * Once you are done using the device, you should release it to avoid a resource leak.
    *}
 Function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
+  external SDL_LibName;
+
+{**
+ * Get the D3D11 device associated with a renderer.
+ *
+ * Once you are done using the device, you should release it to avoid a
+ * resource leak.
+ *
+ * \param renderer the renderer from which to get the associated D3D11 device
+ * \returns the D3D11 device associated with given renderer or NIL if it is
+ *          not a D3D11 renderer; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *}
+Function SDL_RenderGetD3D11Device(renderer:PSDL_Renderer):PID3D11Device; cdecl;
+  external SDL_LibName;
+
+{**
+ * Get the D3D12 device associated with a renderer.
+ *
+ * Once you are done using the device, you should release it to avoid a
+ * resource leak.
+ *
+ * \param renderer the renderer from which to get the associated D3D12 device
+ * \returns the D3D12 device associated with given renderer or NIL if it is
+ *          not a D3D12 renderer; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *}
+Function SDL_RenderGetD3D12Device(renderer:PSDL_Renderer):PID3D12Device; cdecl;
   external SDL_LibName;
 
 {* Returns the DXGI Adapter and Output indices for the specified display index. 
