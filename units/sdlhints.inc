@@ -2190,7 +2190,7 @@ const
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority) : boolean; cdecl;
+function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHintWithPriority' {$ENDIF} {$ENDIF};
 
 {/**
@@ -2198,7 +2198,7 @@ function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; 
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): boolean; cdecl;
+function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHint' {$ENDIF} {$ENDIF};
 
 {/**
@@ -2214,7 +2214,7 @@ function SDL_GetHint(const name: PAnsiChar): PAnsiChar; cdecl;
  *
  *  \return The boolean value of a hint variable.
  */}
-function SDL_GetHintBoolean(const name: PAnsiChar; default_value: boolean): boolean; cdecl;
+function SDL_GetHintBoolean(const name: PAnsiChar; default_value: TSDL_Bool): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetHintBoolean' {$ENDIF} {$ENDIF};
 
 {/**
