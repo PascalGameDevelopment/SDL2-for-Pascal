@@ -2,20 +2,33 @@
 
 (* Platform specific functions for Windows *)
 {$IF DEFINED(WIN32) OR DEFINED(WIN64)} 
-
-  {**
-   *  \brief Set a function that is called for every windows message, before TranslateMessage()
-   *}
 Type
   TSDL_WindowsMessageHook = Procedure(userdata, hWnd: Pointer; mesage: cuint; wParam: cuint64; lParam: cint64); cdecl;
 
+{**
+ * Set a callback for every Windows message, run before TranslateMessage().
+ *
+ * \param callback The SDL_WindowsMessageHook function to call.
+ * \param userdata a pointer to pass to every iteration of `callback`
+ *
+ * \since This function is available since SDL 2.0.4.
+ *}
 Procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata: Pointer); cdecl;
   external SDL_LibName;
 
-  {* Returns the D3D9 adapter index that matches the specified display index.
-   * This adapter index can be passed to IDirect3D9::CreateDevice and controls
-   * on which monitor a full screen application will appear.
-   *}
+{**
+ * Get the D3D9 adapter index that matches the specified display index.
+ *
+ * The returned adapter index can be passed to `IDirect3D9::CreateDevice` and
+ * controls on which monitor a full screen application will appear.
+ *
+ * \param displayIndex the display index for which to get the D3D9 adapter
+ *                     index
+ * \returns the D3D9 adapter index on success or a negative error code on
+ *          failure; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.1.
+ *}
 Function SDL_Direct3D9GetAdapterIndex(displayIndex:cint):cint; cdecl;
   external SDL_LibName;
 
@@ -24,9 +37,18 @@ Type
   PID3D11Device = type Pointer;
   PID3D12Device = type Pointer;
 
-  {* Returns the D3D device associated with a renderer, or NULL if it's not a D3D renderer.
-   * Once you are done using the device, you should release it to avoid a resource leak.
-   *}
+{**
+ * Get the D3D9 device associated with a renderer.
+ *
+ * Once you are done using the device, you should release it to avoid a
+ * resource leak.
+ *
+ * \param renderer the renderer from which to get the associated D3D device
+ * \returns the D3D9 device associated with given renderer or NIL if it is
+ *          not a D3D9 renderer; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.1.
+ *}
 Function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
   external SDL_LibName;
 
@@ -60,14 +82,27 @@ Function SDL_RenderGetD3D11Device(renderer:PSDL_Renderer):PID3D11Device; cdecl;
 Function SDL_RenderGetD3D12Device(renderer:PSDL_Renderer):PID3D12Device; cdecl;
   external SDL_LibName;
 
-{* Returns the DXGI Adapter and Output indices for the specified display index. 
- * These can be passed to EnumAdapters and EnumOutputs respectively to get the objects
- *  required to create a DX10 or DX11 device and swap chain.
+{**
+ * Get the DXGI Adapter and Output indices for the specified display index.
+ *
+ * The DXGI Adapter and Output indices can be passed to `EnumAdapters` and
+ * `EnumOutputs` respectively to get the objects required to create a DX10 or
+ * DX11 device and swap chain.
+ *
+ * Before SDL 2.0.4 this function did not return a value.
+ * Since SDL 2.0.4 it returns a TSDL_bool.
+ *
+ * \param displayIndex the display index for which to get both indices
+ * \param adapterIndex a pointer to be filled in with the adapter index
+ * \param outputIndex a pointer to be filled in with the output index
+ * \returns SDL_TRUE on success or SDL_FALSE on failure; call SDL_GetError()
+ *          for more information.
+ *
+ * \since This function is available since SDL 2.0.2.
  *}
 function SDL_DXGIGetOutputInfo(displayIndex: cint; adapterIndex, outputIndex: pcint): TSDL_Bool;
   external SDL_LibName;
-
-{$ENDIF}
+{$ENDIF WIN32 OR WIN64}
 
 
 (* Platform specific functions for Linux *)
@@ -92,7 +127,7 @@ function SDL_LinuxSetThreadPriority(threadID: cint64; priority: cint): cint; cde
  * This uses setpriority() if possible, and RealtimeKit if available.
  *
  * \param threadID The Unix thread ID to change priority of.
- * \param sdlPriority The new SDL_ThreadPriority value.
+ * \param sdlPriority The new TSDL_ThreadPriority value.
  * \param schedPolicy The new scheduling policy (SCHED_FIFO, SCHED_RR,
  *                    SCHED_OTHER, etc...)
  * \returns 0 on success, or -1 on error.
@@ -101,12 +136,11 @@ function SDL_LinuxSetThreadPriority(threadID: cint64; priority: cint): cint; cde
  *}
 function SDL_LinuxSetThreadPriorityAndPolicy(threadID: cint64; sdlPriority, schedPolicy: cint): cint; cdecl;
   external SDL_LibName;
-{$ENDIF}
+{$ENDIF LINUX}
 
 
 (* Platform specific functions for iOS *)
 {$IFDEF __IPHONEOS__}
-
 type
   TSDL_iPhoneAnimationCallback = procedure(callbackParam: Pointer); cdecl;
 
@@ -117,9 +151,6 @@ type
  *
  * For more information see:
  * https://github.com/libsdl-org/SDL/blob/main/docs/README-ios.md
- *
- * This functions is also accessible using the macro
- * SDL_iOSSetAnimationCallback() since SDL 2.0.4.
  *
  * \param window the window for which the animation callback should be set
  * \param interval the number of frames after which **callback** will be
@@ -141,9 +172,6 @@ function SDL_iPhoneSetAnimationCallback(window: PSDL_Window; interval: cint; cal
  *
  * This function is only available on Apple iOS.
  *
- * This functions is also accessible using the macro SDL_iOSSetEventPump()
- * since SDL 2.0.4.
- *
  * \param enabled SDL_TRUE to enable the event pump, SDL_FALSE to disable it
  *
  * \since This function is available since SDL 2.0.0.
@@ -152,7 +180,7 @@ function SDL_iPhoneSetAnimationCallback(window: PSDL_Window; interval: cint; cal
  *}
 procedure SDL_iPhoneSetEventPump(enabled: TSDL_Bool); cdecl;
   external SDL_LibName;
-{$ENDIF}
+{$ENDIF __IPHONEOS__}
 
 
 (* Platform specific functions for Android *)
@@ -162,11 +190,11 @@ procedure SDL_iPhoneSetEventPump(enabled: TSDL_Bool); cdecl;
  * Get the Android Java Native Interface Environment of the current thread.
  *
  * This is the JNIEnv one needs to access the Java virtual machine from native
- * code, and is needed for many Android APIs to be usable from C.
+ * code, and is needed for many Android APIs to be usable from Pascal.
  *
- * The prototype of the function in SDL's code actually declare a void* return
+ * The prototype of the function in SDL's code actually declare a Pointer return
  * type, even if the implementation returns a pointer to a JNIEnv. The
- * rationale being that the SDL headers can avoid including jni.h.
+ * rationale being that the SDL units can avoid using the JNI unit.
  *
  * \returns a pointer to Java native interface object (JNIEnv) to which the
  *          current thread is attached, or NIL on error.
@@ -181,11 +209,11 @@ function SDL_AndroidGetJNIEnv(): Pointer; cdecl;
 (**
  * Retrieve the Java instance of the Android activity class.
  *
- * The prototype of the function in SDL's code actually declares a void*
- * return type, even if the implementation returns a jobject. The rationale
- * being that the SDL headers can avoid including jni.h.
+ * The prototype of the function in SDL's code actually declares a Pointer
+ * return type, even if the implementation returns a JObject. The rationale
+ * being that the SDL units can avoid using the JNI unit.
  *
- * The jobject returned by the function is a local reference and must be
+ * The JObject returned by the function is a local reference and must be
  * released by the caller. See the PushLocalFrame() and PopLocalFrame() or
  * DeleteLocalRef() functions of the Java native interface:
  *
@@ -204,28 +232,31 @@ function SDL_AndroidGetActivity(): Pointer; cdecl;
 {**
  * Query Android API level of the current device.
  *
+ * - API level 34: Android 14
+ * - API level 33: Android 13
+ * - API level 32: Android 12L
  * - API level 31: Android 12
  * - API level 30: Android 11
  * - API level 29: Android 10
- * - API level 28: Android 9
- * - API level 27: Android 8.1
- * - API level 26: Android 8.0
- * - API level 25: Android 7.1
- * - API level 24: Android 7.0
- * - API level 23: Android 6.0
- * - API level 22: Android 5.1
- * - API level 21: Android 5.0
- * - API level 20: Android 4.4W
- * - API level 19: Android 4.4
- * - API level 18: Android 4.3
- * - API level 17: Android 4.2
- * - API level 16: Android 4.1
- * - API level 15: Android 4.0.3
- * - API level 14: Android 4.0
- * - API level 13: Android 3.2
- * - API level 12: Android 3.1
- * - API level 11: Android 3.0
- * - API level 10: Android 2.3.3
+ * - API level 28: Android 9 "Pie"
+ * - API level 27: Android 8.1 "Oreo"
+ * - API level 26: Android 8.0 "Oreo"
+ * - API level 25: Android 7.1 "Nougat"
+ * - API level 24: Android 7.0 "Nougat"
+ * - API level 23: Android 6.0 "Marshmallow"
+ * - API level 22: Android 5.1 "Lollipop"
+ * - API level 21: Android 5.0 "Lollipop"
+ * - API level 20: Android 4.4W "KitKat"
+ * - API level 19: Android 4.4  "KitKat"
+ * - API level 18: Android 4.3 "Jelly Bean"
+ * - API level 17: Android 4.2 "Jelly Bean"
+ * - API level 16: Android 4.1 "Jelly Bean"
+ * - API level 15: Android 4.0.3 "Ice Cream Sandwich"
+ * - API level 14: Android 4.0   "Ice Cream Sandwich"
+ * - API level 13: Android 3.2 "Honeycomb"
+ * - API level 12: Android 3.1 "Honeycomb"
+ * - API level 11: Android 3.0 "Honeycomb"
+ * - API level 10: Android 2.3.3 "Gingerbread"
  *
  * \returns the Android API level.
  *
@@ -289,8 +320,8 @@ const
  * Your internal storage path is typically:
  * `/data/data/your.app.package/files`.
  *
- * \returns the path used for internal storage or NULL on failure; call
- *          SDL_GetError() for more information.
+ * \returns the path used for internal storage or NIL on failure;
+ *          call SDL_GetError() for more information.
  *
  * \since This function is available since SDL 2.0.0.
  *
@@ -327,7 +358,7 @@ function SDL_AndroidGetExternalStorageState(): cint; cdecl;
  * `/storage/sdcard0/Android/data/your.app.package/files`.
  *
  * \returns the path used for external storage for this application on success
- *          or NULL on failure; call SDL_GetError() for more information.
+ *          or NIL on failure; call SDL_GetError() for more information.
  *
  * \since This function is available since SDL 2.0.0.
  *
@@ -340,6 +371,9 @@ function SDL_AndroidGetExternalStoragePath(): PAnsiChar; cdecl;
  * Request permissions at runtime.
  *
  * This blocks the calling thread until the permission is granted or denied.
+ *
+ * For a full list of possible permission names, consult the Android docs:
+ * https://developer.android.com/reference/android/Manifest.permission
  *
  * \param permission The permission to request.
  * \returns SDL_TRUE if the permission was granted, SDL_FALSE otherwise.
@@ -387,16 +421,13 @@ function SDL_AndroidShowToast(const message: PAnsiChar; duration, gravity, xoffs
  *}
 function SDL_AndroidSendMessage(command: cUint32; param: cint): cint; cdecl;
   external SDL_LibName;
-{$ENDIF}
+{$ENDIF ANDROID}
 
 
 (* Platform specific functions for WinRT *)
 {$IFDEF __WINRT__}
-
-  {**
-   *  \brief WinRT / Windows Phone path types
-   *}
 Type
+  {** WinRT / Windows Phone path types *}
   TSDL_WinRT_Path = (
     {** The installed app's root directory.
         Files here are likely to be read-only. *}
@@ -472,8 +503,7 @@ Function SDL_WinRTGetFSPathUTF8(pathType :TSDL_WinRT_Path):PChar;
  *}
 function SDL_WinRTGetDeviceFamily(): TSDL_WinRT_DeviceFamily;
   cdecl; external SDL_LibName;
-
-{$ENDIF}
+{$ENDIF __WINRT__}
 
 
 {**
