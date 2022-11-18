@@ -146,6 +146,26 @@ function SDL_IsGameController(joystick_index: cint): TSDL_Bool cdecl; external S
 function SDL_GameControllerNameForIndex(joystick_index: cint): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerNameForIndex' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the implementation dependent path for the game controller.
+ *
+ * This function can be called before any controllers are opened.
+ *
+ * `joystick_index` is the same as the `device_index` passed to
+ * SDL_JoystickOpen().
+ *
+ * \param joystick_index the device_index of a device, from zero to
+ *                       SDL_NumJoysticks()-1
+ * \returns the implementation-dependent path for the game controller, or NIL
+ *          if there is no path or the index is invalid.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *
+ * \sa SDL_GameControllerPath
+ *}
+function SDL_GameControllerPathForIndex(joystick_index: cint): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerPathForIndex' {$ENDIF} {$ENDIF};
+
+{**
  * Get the type of a game controller.
  * This can be called before any controllers are opened.
  *}
