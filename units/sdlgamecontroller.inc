@@ -283,6 +283,19 @@ function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetProductVersion' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the firmware version of an opened controller, if available.
+ *
+ * If the firmware version isn't available this function returns 0.
+ *
+ * \param gamecontroller the game controller object to query.
+ * \return the controller firmware version, or zero if unavailable.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *}
+function SDL_GameControllerGetFirmwareVersion(gamecontroller: PSDL_GameController): cuint16; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetFirmwareVersion' {$ENDIF} {$ENDIF};
+
+{**
  * Get the serial number of an opened controller, if available.
  *
  * Returns a string containing the serial number of the controller,
