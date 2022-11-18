@@ -194,7 +194,7 @@ const
 {$I sdlfilesystem.inc}           // 2.24.1
 {$I sdllog.inc}                  // 2.0.14
 {$I sdlmisc.inc}                 // 2.0.14
-{$I sdlsystem.inc}
+{$I sdlsystem.inc}               // 2.24.0
 {$I sdl.inc}                     // 2.0.14
 
 implementation
