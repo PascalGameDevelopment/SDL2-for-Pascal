@@ -155,6 +155,241 @@ procedure SDL_iPhoneSetEventPump(enabled: TSDL_Bool); cdecl;
 {$ENDIF}
 
 
+(* Platform specific functions for Android *)
+{$IFDEF ANDROID}
+
+{**
+ * Get the Android Java Native Interface Environment of the current thread.
+ *
+ * This is the JNIEnv one needs to access the Java virtual machine from native
+ * code, and is needed for many Android APIs to be usable from C.
+ *
+ * The prototype of the function in SDL's code actually declare a void* return
+ * type, even if the implementation returns a pointer to a JNIEnv. The
+ * rationale being that the SDL headers can avoid including jni.h.
+ *
+ * \returns a pointer to Java native interface object (JNIEnv) to which the
+ *          current thread is attached, or NIL on error.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_AndroidGetActivity
+ *}
+function SDL_AndroidGetJNIEnv(): Pointer; cdecl;
+  external SDL_LibName;
+
+(**
+ * Retrieve the Java instance of the Android activity class.
+ *
+ * The prototype of the function in SDL's code actually declares a void*
+ * return type, even if the implementation returns a jobject. The rationale
+ * being that the SDL headers can avoid including jni.h.
+ *
+ * The jobject returned by the function is a local reference and must be
+ * released by the caller. See the PushLocalFrame() and PopLocalFrame() or
+ * DeleteLocalRef() functions of the Java native interface:
+ *
+ * https://docs.oracle.com/javase/1.5.0/docs/guide/jni/spec/functions.html
+ *
+ * \returns the jobject representing the instance of the Activity class of the
+ *          Android application, or NIL on error.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_AndroidGetJNIEnv
+ *)
+function SDL_AndroidGetActivity(): Pointer; cdecl;
+  external SDL_LibName;
+
+{**
+ * Query Android API level of the current device.
+ *
+ * - API level 31: Android 12
+ * - API level 30: Android 11
+ * - API level 29: Android 10
+ * - API level 28: Android 9
+ * - API level 27: Android 8.1
+ * - API level 26: Android 8.0
+ * - API level 25: Android 7.1
+ * - API level 24: Android 7.0
+ * - API level 23: Android 6.0
+ * - API level 22: Android 5.1
+ * - API level 21: Android 5.0
+ * - API level 20: Android 4.4W
+ * - API level 19: Android 4.4
+ * - API level 18: Android 4.3
+ * - API level 17: Android 4.2
+ * - API level 16: Android 4.1
+ * - API level 15: Android 4.0.3
+ * - API level 14: Android 4.0
+ * - API level 13: Android 3.2
+ * - API level 12: Android 3.1
+ * - API level 11: Android 3.0
+ * - API level 10: Android 2.3.3
+ *
+ * \returns the Android API level.
+ *
+ * \since This function is available since SDL 2.0.12.
+ *}
+function SDL_GetAndroidSDKVersion(): cint; cdecl;
+  external SDL_LibName;
+
+{**
+ * Query if the application is running on Android TV.
+ *
+ * \returns SDL_TRUE if this is Android TV, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *}
+function SDL_IsAndroidTV(): TSDL_Bool; cdecl;
+  external SDL_LibName;
+
+{**
+ * Query if the application is running on a Chromebook.
+ *
+ * \returns SDL_TRUE if this is a Chromebook, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.0.9.
+ *}
+function SDL_IsChromebook(): TSDL_Bool; cdecl;
+  external SDL_LibName;
+
+{**
+ * Query if the application is running on a Samsung DeX docking station.
+ *
+ * \returns SDL_TRUE if this is a DeX docking station, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.0.9.
+ *}
+function SDL_IsDeXMode(): TSDL_Bool; cdecl;
+  external SDL_LibName;
+
+{**
+ * Trigger the Android system back button behavior.
+ *
+ * \since This function is available since SDL 2.0.9.
+ *}
+procedure SDL_AndroidBackButton(); cdecl;
+  external SDL_LibName;
+
+{**
+   See the official Android developer guide for more information:
+   http://developer.android.com/guide/topics/data/data-storage.html
+*}
+const
+  SDL_ANDROID_EXTERNAL_STORAGE_READ  = $01;
+  SDL_ANDROID_EXTERNAL_STORAGE_WRITE = $02;
+
+{**
+ * Get the path used for internal storage for this application.
+ *
+ * This path is unique to your application and cannot be written to by other
+ * applications.
+ *
+ * Your internal storage path is typically:
+ * `/data/data/your.app.package/files`.
+ *
+ * \returns the path used for internal storage or NULL on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_AndroidGetExternalStorageState
+ *}
+function SDL_AndroidGetInternalStoragePath(): PAnsiChar; cdecl;
+  external SDL_LibName;
+
+{**
+ * Get the current state of external storage.
+ *
+ * The current state of external storage, a bitmask of these values:
+ * `SDL_ANDROID_EXTERNAL_STORAGE_READ`, `SDL_ANDROID_EXTERNAL_STORAGE_WRITE`.
+ *
+ * If external storage is currently unavailable, this will return 0.
+ *
+ * \returns the current state of external storage on success or 0 on failure;
+ *          call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_AndroidGetExternalStoragePath
+ *}
+function SDL_AndroidGetExternalStorageState(): cint; cdecl;
+  external SDL_LibName;
+
+{**
+ * Get the path used for external storage for this application.
+ *
+ * This path is unique to your application, but is public and can be written
+ * to by other applications.
+ *
+ * Your external storage path is typically:
+ * `/storage/sdcard0/Android/data/your.app.package/files`.
+ *
+ * \returns the path used for external storage for this application on success
+ *          or NULL on failure; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_AndroidGetExternalStorageState
+ *}
+function SDL_AndroidGetExternalStoragePath(): PAnsiChar; cdecl;
+  external SDL_LibName;
+
+{**
+ * Request permissions at runtime.
+ *
+ * This blocks the calling thread until the permission is granted or denied.
+ *
+ * \param permission The permission to request.
+ * \returns SDL_TRUE if the permission was granted, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.0.14.
+ *}
+function SDL_AndroidRequestPermission(const permission: PAnsiChar): TSDL_Bool; cdecl;
+  external SDL_LibName;
+
+{**
+ * Shows an Android toast notification.
+ *
+ * Toasts are a sort of lightweight notification that are unique to Android.
+ *
+ * https://developer.android.com/guide/topics/ui/notifiers/toasts
+ *
+ * Shows toast in UI thread.
+ *
+ * For the `gravity` parameter, choose a value from here, or -1 if you don't
+ * have a preference:
+ *
+ * https://developer.android.com/reference/android/view/Gravity
+ *
+ * \param message text message to be shown
+ * \param duration 0=short, 1=long
+ * \param gravity where the notification should appear on the screen.
+ * \param xoffset set this parameter only when gravity >=0
+ * \param yoffset set this parameter only when gravity >=0
+ * \returns 0 if success, -1 if any error occurs.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *}
+function SDL_AndroidShowToast(const message: PAnsiChar; duration, gravity, xoffset, yoffset: cint): cint; cdecl;
+  external SDL_LibName;
+
+{**
+ * Send a user command to SDLActivity.
+ *
+ * Override "boolean onUnhandledMessage(Message msg)" to handle the message.
+ *
+ * \param command user command that must be greater or equal to 0x8000
+ * \param param user parameter
+ *
+ * \since This function is available since SDL 2.0.22.
+ *}
+function SDL_AndroidSendMessage(command: cUint32; param: cint): cint; cdecl;
+  external SDL_LibName;
+{$ENDIF}
+
+
 (* Platform specific functions for WinRT *)
 {$IFDEF __WINRT__}
 
