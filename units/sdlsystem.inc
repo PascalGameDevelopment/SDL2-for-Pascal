@@ -104,6 +104,57 @@ function SDL_LinuxSetThreadPriorityAndPolicy(threadID: cint64; sdlPriority, sche
 {$ENDIF}
 
 
+(* Platform specific functions for iOS *)
+{$IFDEF __IPHONEOS__}
+
+type
+  TSDL_iPhoneAnimationCallback = procedure(callbackParam: Pointer); cdecl;
+
+{**
+ * Use this function to set the animation callback on Apple iOS.
+ *
+ * This function is only available on Apple iOS.
+ *
+ * For more information see:
+ * https://github.com/libsdl-org/SDL/blob/main/docs/README-ios.md
+ *
+ * This functions is also accessible using the macro
+ * SDL_iOSSetAnimationCallback() since SDL 2.0.4.
+ *
+ * \param window the window for which the animation callback should be set
+ * \param interval the number of frames after which **callback** will be
+ *                 called
+ * \param callback the function to call for every frame.
+ * \param callbackParam a pointer that is passed to `callback`.
+ * \returns 0 on success or a negative error code on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_iPhoneSetEventPump
+ *}
+function SDL_iPhoneSetAnimationCallback(window: PSDL_Window; interval: cint; callback: TSDL_iPhoneAnimationCallback; callbackParam: Pointer); cdecl;
+  external SDL_LibName;
+
+{**
+ * Use this function to enable or disable the SDL event pump on Apple iOS.
+ *
+ * This function is only available on Apple iOS.
+ *
+ * This functions is also accessible using the macro SDL_iOSSetEventPump()
+ * since SDL 2.0.4.
+ *
+ * \param enabled SDL_TRUE to enable the event pump, SDL_FALSE to disable it
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_iPhoneSetAnimationCallback
+ *}
+procedure SDL_iPhoneSetEventPump(enabled: TSDL_Bool); cdecl;
+  external SDL_LibName;
+{$ENDIF}
+
+
 (* Platform specific functions for WinRT *)
 {$IFDEF __WINRT__}
 
