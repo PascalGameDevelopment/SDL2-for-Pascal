@@ -214,6 +214,24 @@ function SDL_GameControllerFromPlayerIndex(player_index: cint): PSDL_GameControl
 function SDL_GameControllerName(gamecontroller: PSDL_GameController): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerName' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the implementation-dependent path for an opened game controller.
+ *
+ * This is the same path as returned by SDL_GameControllerNameForIndex(), but
+ * it takes a controller identifier instead of the (unstable) device index.
+ *
+ * \param gamecontroller a game controller identifier previously returned by
+ *                       SDL_GameControllerOpen()
+ * \returns the implementation dependent path for the game controller, or NIL
+ *          if there is no path or the identifier passed is invalid.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *
+ * \sa SDL_GameControllerPathForIndex
+ *}
+function SDL_GameControllerPath(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerPath' {$ENDIF} {$ENDIF};
+
+{**
  * Get the type of this currently opened controller
  *
  * This is the same name as returned by SDL_GameControllerTypeForIndex(), but
