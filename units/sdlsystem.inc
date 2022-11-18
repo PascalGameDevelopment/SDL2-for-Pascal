@@ -70,6 +70,40 @@ function SDL_DXGIGetOutputInfo(displayIndex: cint; adapterIndex, outputIndex: pc
 {$ENDIF}
 
 
+(* Platform specific functions for Linux *)
+{$IFDEF LINUX}
+{**
+ * Sets the UNIX nice value for a thread.
+ *
+ * This uses setpriority() if possible, and RealtimeKit if available.
+ *
+ * \param threadID the Unix thread ID to change priority of.
+ * \param priority The new, Unix-specific, priority value.
+ * \returns 0 on success, or -1 on error.
+ *
+ * \since This function is available since SDL 2.0.9.
+ *}
+function SDL_LinuxSetThreadPriority(threadID: cint64; priority: cint): cint; cdecl;
+  external SDL_LibName;
+
+{**
+ * Sets the priority (not nice level) and scheduling policy for a thread.
+ *
+ * This uses setpriority() if possible, and RealtimeKit if available.
+ *
+ * \param threadID The Unix thread ID to change priority of.
+ * \param sdlPriority The new SDL_ThreadPriority value.
+ * \param schedPolicy The new scheduling policy (SCHED_FIFO, SCHED_RR,
+ *                    SCHED_OTHER, etc...)
+ * \returns 0 on success, or -1 on error.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *}
+function SDL_LinuxSetThreadPriorityAndPolicy(threadID: cint64; sdlPriority, schedPolicy: cint): cint; cdecl;
+  external SDL_LibName;
+{$ENDIF}
+
+
 (* Platform specific functions for WinRT *)
 {$IFDEF __WINRT__}
 
