@@ -251,7 +251,7 @@ end;
 
 function SDL_RectEmpty(const r: PSDL_Rect): Boolean;
 begin
-  Result := (r^.w <= 0) or (r^.h <= 0);
+  Result := (r = NIL) or (r^.w <= 0) or (r^.h <= 0);
 end;
 
 function SDL_RectEquals(const a, b: PSDL_Rect): Boolean;
@@ -265,6 +265,11 @@ begin
     (p^.x >= r^.x) and (p^.x < (r^.x + r^.w))
     and
     (p^.y >= r^.y) and (p^.y < (r^.y + r^.h))
+end;
+
+function SDL_FRectEmpty(const r: PSDL_FRect): Boolean;
+begin
+  Result := (r = NIL) or (r^.w <= cfloat(0.0)) or (r^.h <= cfloat(0.0))
 end;
 
 //from "sdl_atomic.h"

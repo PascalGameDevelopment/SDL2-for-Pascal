@@ -64,9 +64,6 @@ function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): Boolean; Inli
 {**
  *  Returns true if the rectangle has no area.
  *}
-
-//changed from variant(b�����h!) to TSDL_Rect
-//maybe PSDL_Rect?
 function SDL_RectEmpty(const r: PSDL_Rect): Boolean; inline;
 
 {**
@@ -116,3 +113,8 @@ function SDL_IntersectRectAndLine(const rect: PSDL_Rect; X1, Y1, X2, Y2: pcint):
  *  Returns true if point resides inside a rectangle.
  *}
 function SDL_PointInFRect(const p: PSDL_FPoint; const r: PSDL_FRect): Boolean; Inline;
+
+{**
+ *  Returns true if the rectangle has no area.
+ *}
+function SDL_FRectEmpty(const r: PSDL_FRect): Boolean; inline;
