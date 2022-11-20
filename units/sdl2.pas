@@ -165,7 +165,7 @@ const
 {$I sdlmutex.inc}                // 2.0.14 WIP
 {$I sdltimer.inc}                // 2.0.18
 {$I sdlpixels.inc}               // 2.0.14 WIP
-{$I sdlrect.inc}                 // 2.0.14
+{$I sdlrect.inc}                 // 2.24.0
 {$I sdlrwops.inc}                // 2.0.14
 {$I sdlaudio.inc}
 {$I sdlblendmode.inc}            // 2.0.14

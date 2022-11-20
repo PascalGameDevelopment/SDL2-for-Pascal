@@ -1,4 +1,4 @@
-//based on "sdl_rect.h" (2.0.14)
+// based on "sdl_rect.h" (2.24.0)
 
 {**
  *  \file SDL_rect.h
