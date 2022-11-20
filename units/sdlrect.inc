@@ -166,3 +166,16 @@ function SDL_HasIntersectionF(const a, b: PSDL_FRect): TSDL_Bool; cdecl;
  *}
 function SDL_IntersectFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IntersectFRect' {$ENDIF} {$ENDIF};
+
+{**
+ * Calculate the union of two rectangles with float precision.
+ *
+ * \param A an SDL_FRect structure representing the first rectangle
+ * \param B an SDL_FRect structure representing the second rectangle
+ * \param result an SDL_FRect structure filled in with the union of rectangles
+ *               `A` and `B`
+ *
+ * \since This function is available since SDL 2.0.22.
+ *}
+function SDL_UnionFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnionFRect' {$ENDIF} {$ENDIF};
