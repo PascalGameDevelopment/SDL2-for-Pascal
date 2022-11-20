@@ -272,6 +272,27 @@ begin
   Result := (r = NIL) or (r^.w <= cfloat(0.0)) or (r^.h <= cfloat(0.0))
 end;
 
+{ FIXME: This the Pascal System.Abs() function, instead of the C SDL_fabsf() function. }
+function SDL_FRectEqualsEpsilon(const a, b: PSDL_FRect; const epsilon: cfloat): Boolean;
+begin
+  Result :=
+    (a <> NIL) and
+    (b <> NIL) and
+    (
+      (a = b)
+      or
+      (
+        (Abs(a^.x - b^.x) <= epsilon)
+        and
+        (Abs(a^.y - b^.y) <= epsilon)
+        and
+        (Abs(a^.w - b^.w) <= epsilon)
+        and
+        (Abs(a^.h - b^.h) <= epsilon)
+      )
+    )
+end;
+
 //from "sdl_atomic.h"
 function SDL_AtomicIncRef(atomic: PSDL_Atomic): cint;
 begin

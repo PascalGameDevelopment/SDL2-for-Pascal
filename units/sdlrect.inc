@@ -118,3 +118,10 @@ function SDL_PointInFRect(const p: PSDL_FPoint; const r: PSDL_FRect): Boolean; I
  *  Returns true if the rectangle has no area.
  *}
 function SDL_FRectEmpty(const r: PSDL_FRect): Boolean; inline;
+
+{**
+ * Returns true if the two rectangles are equal, within some given epsilon.
+ *
+ * \since This function is available since SDL 2.0.22.
+ *}
+function SDL_FRectEqualsEpsilon(const a, b: PSDL_FRect; const epsilon: cfloat): Boolean; Inline;
