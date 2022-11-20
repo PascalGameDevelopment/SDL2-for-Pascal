@@ -148,3 +148,21 @@ function SDL_FRectEquals(const a, b: PSDL_FRect): Boolean; Inline;
  *}
 function SDL_HasIntersectionF(const a, b: PSDL_FRect): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasIntersectionF' {$ENDIF} {$ENDIF};
+
+{**
+ * Calculate the intersection of two rectangles with float precision.
+ *
+ * If `result` is NIL then this function will return SDL_FALSE.
+ *
+ * \param A an SDL_FRect structure representing the first rectangle
+ * \param B an SDL_FRect structure representing the second rectangle
+ * \param result an SDL_FRect structure filled in with the intersection of
+ *               rectangles `A` and `B`
+ * \returns SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.0.22.
+ *
+ * \sa SDL_HasIntersectionF
+ *}
+function SDL_IntersectFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IntersectFRect' {$ENDIF} {$ENDIF};
