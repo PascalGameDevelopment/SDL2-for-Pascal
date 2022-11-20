@@ -259,6 +259,14 @@ begin
   Result := (a^.x = b^.x) and (a^.y = b^.y) and (a^.w = b^.w) and (a^.h = b^.h);
 end;
 
+function SDL_PointInFRect(const p: PSDL_FPoint; const r: PSDL_FRect): Boolean;
+begin
+  Result :=
+    (p^.x >= r^.x) and (p^.x < (r^.x + r^.w))
+    and
+    (p^.y >= r^.y) and (p^.y < (r^.y + r^.h))
+end;
+
 //from "sdl_atomic.h"
 function SDL_AtomicIncRef(atomic: PSDL_Atomic): cint;
 begin

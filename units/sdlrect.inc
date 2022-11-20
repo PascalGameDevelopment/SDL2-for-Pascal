@@ -57,7 +57,7 @@ type
   end;
 
 {**
- *  \brief Returns true if point resides inside a rectangle.
+ *  Returns true if point resides inside a rectangle.
  *}
 function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): Boolean; Inline;
 
@@ -111,3 +111,8 @@ function SDL_EnclosePoints(const points: PSDL_Point; count: cint; const clip: PS
  *}
 function SDL_IntersectRectAndLine(const rect: PSDL_Rect; X1, Y1, X2, Y2: pcint): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IntersectRectAndLine' {$ENDIF} {$ENDIF};
+
+{**
+ *  Returns true if point resides inside a rectangle.
+ *}
+function SDL_PointInFRect(const p: PSDL_FPoint; const r: PSDL_FRect): Boolean; Inline;
