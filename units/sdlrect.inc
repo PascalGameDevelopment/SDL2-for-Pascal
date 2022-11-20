@@ -200,3 +200,25 @@ function SDL_UnionFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; 
  *}
 function SDL_EncloseFPoints(const points: PSDL_FPoint; count: cint; const clip: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EncloseFPoints' {$ENDIF} {$ENDIF};
+
+{**
+ * Calculate the intersection of a rectangle and line segment with float
+ * precision.
+ *
+ * This function is used to clip a line segment to a rectangle. A line segment
+ * contained entirely within the rectangle or that does not intersect will
+ * remain unchanged. A line segment that crosses the rectangle at either or
+ * both ends will be clipped to the boundary of the rectangle and the new
+ * coordinates saved in `X1`, `Y1`, `X2`, and/or `Y2` as necessary.
+ *
+ * \param rect an SDL_FRect structure representing the rectangle to intersect
+ * \param X1 a pointer to the starting X-coordinate of the line
+ * \param Y1 a pointer to the starting Y-coordinate of the line
+ * \param X2 a pointer to the ending X-coordinate of the line
+ * \param Y2 a pointer to the ending Y-coordinate of the line
+ * \returns SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.0.22.
+ *}
+function SDL_IntersectFRectAndLine(const rect: PSDL_FRect; X1, Y1, X2, Y2: pcfloat): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IntersectFRectAndLine' {$ENDIF} {$ENDIF};
