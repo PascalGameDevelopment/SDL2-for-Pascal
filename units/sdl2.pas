@@ -187,7 +187,7 @@ const
 {$I sdltouch.inc}
 {$I sdlgesture.inc}
 {$I sdlsyswm.inc}
-{$I sdlevents.inc}
+{$I sdlevents.inc}               // 2.24.0
 {$I sdllocale.inc}               // 2.0.14
 {$I sdlclipboard.inc}            // 2.24.1
 {$I sdlcpuinfo.inc}              // 2.0.14

@@ -69,6 +69,7 @@ const
   SDL_TEXTEDITING      = TSDL_EventType($302);  // Keyboard text editing (composition)
   SDL_TEXTINPUT        = TSDL_EventType($303);  // Keyboard text input
   SDL_KEYMAPCHANGED    = TSDL_EventType($304);  // Keymap changed due to a system event such as an input language or keyboard layout change.
+  SDL_TEXTEDITING_EXT  = TSDL_EventType($305);  // Extended keyboard text editing (composition)
 
   { Mouse events }
   SDL_MOUSEMOTION      = TSDL_EventType($400);  // Mouse moved
@@ -77,21 +78,26 @@ const
   SDL_MOUSEWHEEL       = TSDL_EventType($403);  // Mouse wheel motion
 
   { Joystick events }
-  SDL_JOYAXISMOTION    = TSDL_EventType($600);  // Joystick axis motion
-  SDL_JOYBALLMOTION    = TSDL_EventType($601);  // Joystick trackball motion
-  SDL_JOYHATMOTION     = TSDL_EventType($602);  // Joystick hat position change
-  SDL_JOYBUTTONDOWN    = TSDL_EventType($603);  // Joystick button pressed
-  SDL_JOYBUTTONUP      = TSDL_EventType($604);  // Joystick button released
-  SDL_JOYDEVICEADDED   = TSDL_EventType($605);  // A new joystick has been inserted into the system 
-  SDL_JOYDEVICEREMOVED = TSDL_EventType($606);  // An opened joystick has been removed 
+  SDL_JOYAXISMOTION     = TSDL_EventType($600);  // Joystick axis motion
+  SDL_JOYBALLMOTION     = TSDL_EventType($601);  // Joystick trackball motion
+  SDL_JOYHATMOTION      = TSDL_EventType($602);  // Joystick hat position change
+  SDL_JOYBUTTONDOWN     = TSDL_EventType($603);  // Joystick button pressed
+  SDL_JOYBUTTONUP       = TSDL_EventType($604);  // Joystick button released
+  SDL_JOYDEVICEADDED    = TSDL_EventType($605);  // A new joystick has been inserted into the system
+  SDL_JOYDEVICEREMOVED  = TSDL_EventType($606);  // An opened joystick has been removed
+  SDL_JOYBATTERYUPDATED = TSDL_EventType($607);  // Joystick battery level change
 
   { Game controller events }
   SDL_CONTROLLERAXISMOTION     = TSDL_EventType($650);  // Game controller axis motion
-  SDL_CONTROLLERBUTTONDOWN     = TSDL_EventType($651);  // Game controller button pressed 
+  SDL_CONTROLLERBUTTONDOWN     = TSDL_EventType($651);  // Game controller button pressed
   SDL_CONTROLLERBUTTONUP       = TSDL_EventType($652);  // Game controller button released
-  SDL_CONTROLLERDEVICEADDED    = TSDL_EventType($653);  // A new Game controller has been inserted into the system 
-  SDL_CONTROLLERDEVICEREMOVED  = TSDL_EventType($654);  // An opened Game controller has been removed 
-  SDL_CONTROLLERDEVICEREMAPPED = TSDL_EventType($655);  // The controller mapping was updated 
+  SDL_CONTROLLERDEVICEADDED    = TSDL_EventType($653);  // A new Game controller has been inserted into the system
+  SDL_CONTROLLERDEVICEREMOVED  = TSDL_EventType($654);  // An opened Game controller has been removed
+  SDL_CONTROLLERDEVICEREMAPPED = TSDL_EventType($655);  // The controller mapping was updated
+  SDL_CONTROLLERTOUCHPADDOWN   = TSDL_EventType($666);  // Game controller touchpad was touched
+  SDL_CONTROLLERTOUCHPADMOTION = TSDL_EventType($667);  // Game controller touchpad finger was moved
+  SDL_CONTROLLERTOUCHPADUP     = TSDL_EventType($668);  // Game controller touchpad finger was lifted
+  SDL_CONTROLLERSENSORUPDATE   = TSDL_EventType($669);  // Game controller sensor was updated
    
   { Touch events }
   SDL_FINGERDOWN      = TSDL_EventType($700);
@@ -116,10 +122,16 @@ const
   SDL_AUDIODEVICEADDED     = TSDL_EventType($1100); // A new audio device is available
   SDL_AUDIODEVICEREMOVED   = TSDL_EventType($1101); // An audio device has been removed.
 
+  { Sensor events }
+  SDL_SENSORUPDATED = TSDL_EventType($1200); // A sensor was updated
+
   { Render events }
   SDL_RENDER_TARGETS_RESET = TSDL_EventType($2000); // The render targets have been reset
   SDL_RENDER_DEVICE_RESET  = TSDL_EventType($2001); // The device has been reset and all textures need to be recreated
-  
+
+  { Internal events }
+  SDL_POLLSENTINEL = TSDL_EventType($7F00); // Signals the end of an event poll cycle
+
   {** Events SDL_USEREVENT through SDL_LASTEVENT are for your use,
    *  and should be allocated with SDL_RegisterEvents()
    *}
@@ -134,16 +146,28 @@ type
   {**
    *  Fields shared by every event
    *}
-
   TSDL_CommonEvent = record
     type_: cuint32;
     timestamp: cuint32;
   end;
 
   {**
+   * Display state change event data (event.display.*)
+   *}
+  TSDL_DisplayEvent = record
+    type_: cuint32;     // SDL_DISPLAYEVENT
+    timestamp: cuint32; // In milliseconds, populated using SDL_GetTicks()
+    display: cuint32;   // The associated display index
+    event: cuint8;      // SDL_DisplayEventID
+    padding1: cuint8;
+    padding2: cuint8;
+    padding3: cuint8;
+    data1: cint32;      // event dependent data
+  end;
+
+  {**
    *  Window state change event data (event.window.*)
    *}
-
   TSDL_WindowEvent = record
     type_: cuint32;       // SDL_WINDOWEVENT
     timestamp: cuint32;
@@ -164,7 +188,7 @@ type
     timestamp: cuint32;
     windowID: cuint32;     // The window with keyboard focus, if any
     state: cuint8;         // SDL_PRESSED or SDL_RELEASED 
-    _repeat: cuint8;       // Non-zero if this is a key repeat
+    repeat_: cuint8;       // Non-zero if this is a key repeat
     padding2: cuint8;
     padding3: cuint8;
     keysym: TSDL_KeySym;  // The key that was pressed or released
@@ -174,11 +198,9 @@ const
   SDL_TEXTEDITINGEVENT_TEXT_SIZE = 32;
 
 type
- 
   {**
    *  Keyboard text editing event structure (event.edit.*)
    *}
-
   TSDL_TextEditingEvent = record
     type_: cuint32;                               // SDL_TEXTEDITING 
     timestamp: cuint32;
@@ -186,6 +208,19 @@ type
     text: array[0..SDL_TEXTEDITINGEVENT_TEXT_SIZE] of Char;  // The editing text 
     start: cint32;                               // The start cursor of selected editing text
     length: cint32;                              // The length of selected editing text
+  end;
+
+  {**
+   *  Extended keyboard text editing event structure (event.editExt.*) when text would be
+   *  truncated if stored in the text buffer SDL_TextEditingEvent
+   *}
+  TSDL_TextEditingExtEvent = record
+    type_: cuint32;     // SDL_TEXTEDITING_EXT
+    timestamp: cuint32; // In milliseconds, populated using SDL_GetTicks()
+    windowID: cuint32;  // The window with keyboard focus, if any
+    text: PAnsiChar;    // The editing text, which should be freed with SDL_free(), and will not be NIL
+    start: cint32;      // The start cursor of selected editing text
+    length: cint32;     // The length of selected editing text
   end;
 
 const
@@ -207,16 +242,12 @@ type
   {**
    *  Mouse motion event structure (event.motion.*)
    *}
- 
   TSDL_MouseMotionEvent = record
-    type_: cuint32;       // SDL_MOUSEMOTION
-    timestamp: cuint32;
-    windowID: cuint32;    // The window with mouse focus, if any
-    which: cuint32;       // The mouse instance id, or SDL_TOUCH_MOUSEID
-    state: cuint8;        // The current button state 
-    padding1: cuint8;
-    padding2: cuint8;
-    padding3: cuint8;
+    type_: cuint32;      // SDL_MOUSEMOTION
+    timestamp: cuint32;  // In milliseconds, populated using SDL_GetTicks()
+    windowID: cuint32;   // The window with mouse focus, if any
+    which: cuint32;      // The mouse instance id, or SDL_TOUCH_MOUSEID
+    state: cuint32;      // The current button state
     x: cint32;           // X coordinate, relative to window
     y: cint32;           // Y coordinate, relative to window
     xrel: cint32;        // The relative motion in the X direction 
@@ -333,6 +364,16 @@ type
   end;
 
   {**
+   *  Joysick battery level change event structure (event.jbattery.*)
+   *}
+  TSDL_JoyBatteryEvent = record
+    type_: cuint32;                 // SDL_JOYBATTERYUPDATED
+    timestamp: cuint32;             // In milliseconds, populated using SDL_GetTicks()
+    which: TSDL_JoystickID;         // The joystick instance id
+    level: TSDL_JoystickPowerLevel; // The joystick battery level
+  end;
+
+  {**
    *  Game controller axis motion event structure (event.caxis.*)
    *}
 
@@ -374,6 +415,31 @@ type
   end;
 
   {**
+   *  Game controller touchpad event structure (event.ctouchpad.*)
+   *}
+  TSDL_ControllerTouchpadEvent = record
+    type_: cuint32;         // SDL_CONTROLLERTOUCHPADDOWN or SDL_CONTROLLERTOUCHPADMOTION or SDL_CONTROLLERTOUCHPADUP
+    timestamp: cuint32;     // In milliseconds, populated using SDL_GetTicks()
+    which: TSDL_JoystickID; // The joystick instance id
+    touchpad: cint32;       // The index of the touchpad
+    finger: cint32;         // The index of the finger on the touchpad
+    x: cfloat;              // Normalized in the range 0...1 with 0 being on the left
+    y: cfloat;              // Normalized in the range 0...1 with 0 being at the top
+    pressure: cfloat;       // Normalized in the range 0...1
+  end;
+
+  {**
+   *  Game controller sensor event structure (event.csensor.*)
+   *}
+  TSDL_ControllerSensorEvent = record
+    type_: cuint32;              // SDL_CONTROLLERSENSORUPDATE
+    timestamp: cuint32;          // In milliseconds, populated using SDL_GetTicks()
+    which: TSDL_JoystickID;      // The joystick instance id
+    sensor: cint32;              // The type of the sensor, one of the values of SDL_SensorType
+    data: array[0..2] of cfloat; // Up to 3 values from the sensor, as defined in SDL_sensor.h
+  end;
+
+  {**
    *  Audio device event structure (event.adevice.*)
    *}
 
@@ -402,6 +468,7 @@ type
     dx: cfloat;             // Normalized in the range 0...1
     dy: cfloat;             // Normalized in the range 0...1
     pressure: cfloat;       // Normalized in the range 0...1
+    window: cuint32;        // The window underneath the finger, if any
   end;
 
   {**
@@ -438,17 +505,26 @@ type
    *  This event is disabled by default, you can enable it with SDL_EventState()
    *  If you enable this event, you must free the filename in the event.
    *}
-
   TSDL_DropEvent = record
-    type_: cuint32;      // SDL_DROPFILE
+    type_: cuint32;      // SDL_DROPBEGIN or SDL_DROPFILE or SDL_DROPTEXT or SDL_DROPCOMPLETE
     timestamp: cuint32;
-    _file: PAnsiChar;   // The file name, which should be freed with SDL_free()
+    file_: PAnsiChar;   // The file name, which should be freed with SDL_free(), is NIL on begin/complete
+    windowID: cuint32;  // The window that was dropped on, if any
+  end;
+
+  {**
+   *  Sensor event structure (event.sensor.*)
+   *}
+  TSDL_SensorEvent = record
+    type_: cuint32;              // SDL_SENSORUPDATED
+    timestamp: cuint32;          // In milliseconds, populated using SDL_GetTicks()
+    which: cint32;               // The instance ID of the sensor
+    data: array[0..5] of cfloat; // Up to 6 values from the sensor - additional values can be queried using SDL_SensorGetData()
   end;
 
   {**
    *  The "quit requested" event
    *}
-
   TSDL_QuitEvent = record
     type_: cuint32;        // SDL_QUIT
     timestamp: cuint32;
@@ -457,7 +533,6 @@ type
   {**
    *  A user-defined event type (event.user.*)
    *}
-
   TSDL_UserEvent = record
     type_: cuint32;       // SDL_USEREVENT through SDL_NUMEVENTS-1
     timestamp: cuint32;
@@ -491,11 +566,13 @@ type
       0:  (type_: cuint32);
 
       SDL_COMMONEVENT:  (common: TSDL_CommonEvent);
+      SDL_DISPLAYEVENT: (display: TSDL_DisplayEvent);
       SDL_WINDOWEVENT:  (window: TSDL_WindowEvent);
 
       SDL_KEYUP,
       SDL_KEYDOWN:  (key: TSDL_KeyboardEvent);
       SDL_TEXTEDITING:  (edit: TSDL_TextEditingEvent);
+      SDL_TEXTEDITING_EXT: (exitExt: TSDL_TextEditingExtEvent);
       SDL_TEXTINPUT:  (text: TSDL_TextInputEvent);
 
       SDL_MOUSEMOTION:  (motion: TSDL_MouseMotionEvent);
@@ -510,6 +587,7 @@ type
       SDL_JOYBUTTONUP: (jbutton: TSDL_JoyButtonEvent);
       SDL_JOYDEVICEADDED,
       SDL_JOYDEVICEREMOVED: (jdevice: TSDL_JoyDeviceEvent);
+      SDL_JOYBATTERYUPDATED: (jbattery: TSDL_JoyBatteryEvent);
 
       SDL_CONTROLLERAXISMOTION: (caxis: TSDL_ControllerAxisEvent);
       SDL_CONTROLLERBUTTONUP,
@@ -517,9 +595,15 @@ type
       SDL_CONTROLLERDEVICEADDED,
       SDL_CONTROLLERDEVICEREMOVED,
       SDL_CONTROLLERDEVICEREMAPPED: (cdevice: TSDL_ControllerDeviceEvent);
+      SDL_CONTROLLERTOUCHPADDOWN,
+      SDL_CONTROLLERTOUCHPADMOTION,
+      SDL_CONTROLLERTOUCHPADUP: (ctouchpad: TSDL_ControllerTouchpadEvent);
+      SDL_CONTROLLERSENSORUPDATE: (csensor: TSDL_ControllerSensorEvent);
 
       SDL_AUDIODEVICEADDED,
       SDL_AUDIODEVICEREMOVED: (adevice: TSDL_AudioDeviceEvent);
+
+      SDL_SENSORUPDATED: (sensor: TSDL_SensorEvent);
 
       SDL_QUITEV: (quit: TSDL_QuitEvent);
 
