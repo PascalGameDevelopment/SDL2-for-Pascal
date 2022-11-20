@@ -125,3 +125,10 @@ function SDL_FRectEmpty(const r: PSDL_FRect): Boolean; inline;
  * \since This function is available since SDL 2.0.22.
  *}
 function SDL_FRectEqualsEpsilon(const a, b: PSDL_FRect; const epsilon: cfloat): Boolean; Inline;
+
+{**
+ * Returns true if the two rectangles are equal, using a default epsilon.
+ *
+ * \since This function is available since SDL 2.0.22.
+ *}
+function SDL_FRectEquals(const a, b: PSDL_FRect): Boolean; Inline;

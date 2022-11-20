@@ -293,6 +293,11 @@ begin
     )
 end;
 
+function SDL_FRectEquals(const a, b: PSDL_FRect): Boolean; Inline;
+begin
+  Result := SDL_FRectEqualsEpsilon(a, b, SDL_FLT_EPSILON)
+end;
+
 //from "sdl_atomic.h"
 function SDL_AtomicIncRef(atomic: PSDL_Atomic): cint;
 begin
