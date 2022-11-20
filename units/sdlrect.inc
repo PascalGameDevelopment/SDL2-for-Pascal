@@ -179,3 +179,24 @@ function SDL_IntersectFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bo
  *}
 function SDL_UnionFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnionFRect' {$ENDIF} {$ENDIF};
+
+{**
+ * Calculate a minimal rectangle enclosing a set of points with float
+ * precision.
+ *
+ * If `clip` is not NIL then only points inside of the clipping rectangle
+ * are considered.
+ *
+ * \param points an array of SDL_FPoint structures representing points to be
+ *               enclosed
+ * \param count the number of structures in the `points` array
+ * \param clip an SDL_FRect used for clipping or NIL to enclose all points
+ * \param result an SDL_FRect structure filled in with the minimal enclosing
+ *               rectangle
+ * \returns SDL_TRUE if any points were enclosed or SDL_FALSE if all the
+ *          points were outside of the clipping rectangle.
+ *
+ * \since This function is available since SDL 2.0.22.
+ *}
+function SDL_EncloseFPoints(const points: PSDL_FPoint; count: cint; const clip: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EncloseFPoints' {$ENDIF} {$ENDIF};
