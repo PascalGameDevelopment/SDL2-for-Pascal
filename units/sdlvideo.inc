@@ -578,8 +578,8 @@ function SDL_GetDisplayDPI(displayIndex: cint; ddpi, hdpi, vdpi: pcfloat): cint;
  *
  *  \sa SDL_GetNumVideoDisplays()
  *}
-function SDL_DisplayOrientation(displayIndex: cint): TSDL_DisplayOrientation; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DisplayOrientation' {$ENDIF} {$ENDIF};
+function SDL_GetDisplayOrientation(displayIndex: cint): TSDL_DisplayOrientation; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetDisplayOrientation' {$ENDIF} {$ENDIF};
 
   {**
    *  Returns the number of available display modes.
