@@ -184,7 +184,7 @@ const
 {$I sdlsensor.inc}
 {$I sdlgamecontroller.inc}       // 2.0.22
 {$I sdlhaptic.inc}
-{$I sdltouch.inc}
+{$I sdltouch.inc}                // 2.24.0
 {$I sdlgesture.inc}
 {$I sdlsyswm.inc}
 {$I sdlevents.inc}               // 2.24.0
