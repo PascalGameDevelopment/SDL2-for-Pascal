@@ -13,6 +13,8 @@ const
   SDL_FALSE = TSDL_Bool(0);
   SDL_TRUE  = TSDL_Bool(1);
 
+  SDL_FLT_EPSILON = cfloat(1.1920928955078125e-07);
+
 type
   TSDL_malloc_func = function(size: csize_t): Pointer; cdecl;
   PSDL_malloc_func = ^TSDL_malloc_func;
