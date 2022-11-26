@@ -97,6 +97,18 @@ type
   pcfloat = ^cfloat;
   cfloat = Single;
   {$EXTERNALSYM cfloat}
+
+  {$IF DEFINED(CPU32) OR DEFINED(CPU32BITS)}
+    clong = cint32;
+  {$ELSE} // 64-bit
+    {$IFDEF MSWINDOWS}
+      clong = cint32;
+    {$ELSE}
+      clong = cint64;
+    {$ENDIF}
+  {$ENDIF}
+  {$EXTERNALSYM clong}
+
 {$ENDIF}
 
 { Data types for all compilers }
