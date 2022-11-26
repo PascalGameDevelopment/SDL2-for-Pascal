@@ -28,10 +28,6 @@ type
   cbool = LongBool;
   {$EXTERNALSYM cbool}
 
-  pcint = ^cint;
-  cint = Integer;
-  {$EXTERNALSYM cint}
-
   pcint8 = ^cint8;
   cint8 = ShortInt;
   {$EXTERNALSYM cint8}
@@ -55,9 +51,6 @@ type
   pcuint32 = ^cuint32;
   cuint32 = LongWord;
   {$EXTERNALSYM cuint32}
-
-  cuint = LongWord;
-  {$EXTERNALSYM cuint}
 
   {$IFNDEF Has_Int64}
      pcint64 = ^cint64;
@@ -95,6 +88,9 @@ type
   cfloat = Single;
   {$EXTERNALSYM cfloat}
 
+  (* Based on: https://en.cppreference.com/w/c/language/arithmetic_types#Data_models *)
+  cint = cint32;
+  cuint = cuint32;
   {$IF DEFINED(CPU32) OR DEFINED(CPU32BITS)}
     clong = cint32;
     culong = cuint32;
@@ -107,6 +103,8 @@ type
       culong = cuint64;
     {$ENDIF}
   {$ENDIF}
+  {$EXTERNALSYM cint}
+  {$EXTERNALSYM cuint}
   {$EXTERNALSYM clong}
   {$EXTERNALSYM culong}
 
