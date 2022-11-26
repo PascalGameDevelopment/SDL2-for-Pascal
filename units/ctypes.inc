@@ -82,7 +82,7 @@ type
   {$ELSE}
     csize_t = cuint64;
   {$ENDIF}
-  {$EXTERNALSYM SIZE_T}
+  {$EXTERNALSYM csize_t}
 
   pcfloat = ^cfloat;
   cfloat = Single;
