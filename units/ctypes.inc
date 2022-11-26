@@ -56,9 +56,6 @@ type
   cuint32 = LongWord;
   {$EXTERNALSYM cuint32}
 
-  culong = LongWord;
-  {$EXTERNALSYM culong}
-
   cuint = LongWord;
   {$EXTERNALSYM cuint}
 
@@ -100,14 +97,18 @@ type
 
   {$IF DEFINED(CPU32) OR DEFINED(CPU32BITS)}
     clong = cint32;
+    culong = cuint32;
   {$ELSE} // 64-bit
     {$IFDEF MSWINDOWS}
       clong = cint32;
+      culong = cuint32;
     {$ELSE}
       clong = cint64;
+      culong = cuint64;
     {$ENDIF}
   {$ENDIF}
   {$EXTERNALSYM clong}
+  {$EXTERNALSYM culong}
 
 {$ENDIF}
 
