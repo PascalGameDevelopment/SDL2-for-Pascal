@@ -2,8 +2,8 @@
 
 (* Platform specific functions for Windows *)
 {$IF DEFINED(WIN32) OR DEFINED(WIN64)} 
-Type
-  TSDL_WindowsMessageHook = Procedure(userdata, hWnd: Pointer; mesage: cuint; wParam: cuint64; lParam: cint64); cdecl;
+type
+  TSDL_WindowsMessageHook = procedure(userdata, hWnd: Pointer; mesage: cuint; wParam: cuint64; lParam: cint64); cdecl;
 
 {**
  * Set a callback for every Windows message, run before TranslateMessage().
@@ -13,7 +13,7 @@ Type
  *
  * \since This function is available since SDL 2.0.4.
  *}
-Procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata: Pointer); cdecl;
+procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata: Pointer); cdecl;
   external SDL_LibName;
 
 {**
@@ -29,10 +29,10 @@ Procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata:
  *
  * \since This function is available since SDL 2.0.1.
  *}
-Function SDL_Direct3D9GetAdapterIndex(displayIndex:cint):cint; cdecl;
+function SDL_Direct3D9GetAdapterIndex(displayIndex:cint):cint; cdecl;
   external SDL_LibName;
 
-Type
+type
   PIDirect3DDevice9 = type Pointer;
   PID3D11Device = type Pointer;
   PID3D12Device = type Pointer;
@@ -49,7 +49,7 @@ Type
  *
  * \since This function is available since SDL 2.0.1.
  *}
-Function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
+function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
   external SDL_LibName;
 
 {**
@@ -64,7 +64,7 @@ Function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdec
  *
  * \since This function is available since SDL 2.0.16.
  *}
-Function SDL_RenderGetD3D11Device(renderer:PSDL_Renderer):PID3D11Device; cdecl;
+function SDL_RenderGetD3D11Device(renderer:PSDL_Renderer):PID3D11Device; cdecl;
   external SDL_LibName;
 
 {**
@@ -79,7 +79,7 @@ Function SDL_RenderGetD3D11Device(renderer:PSDL_Renderer):PID3D11Device; cdecl;
  *
  * \since This function is available since SDL 2.24.0.
  *}
-Function SDL_RenderGetD3D12Device(renderer:PSDL_Renderer):PID3D12Device; cdecl;
+function SDL_RenderGetD3D12Device(renderer:PSDL_Renderer):PID3D12Device; cdecl;
   external SDL_LibName;
 
 {**
@@ -471,7 +471,7 @@ Type
    *      SDL_WinRT_Path for more information on which path types are
    *      supported where.
    *}
-Function SDL_WinRTGetFSPathUNICODE(pathType :TSDL_WinRT_Path):PWideChar;
+function SDL_WinRTGetFSPathUNICODE(pathType :TSDL_WinRT_Path):PWideChar;
    cdecl; external SDL_LibName;
 
 
@@ -490,7 +490,7 @@ Function SDL_WinRTGetFSPathUNICODE(pathType :TSDL_WinRT_Path):PWideChar;
    *      SDL_WinRT_Path for more information on which path types are
    *      supported where.
    *}
-Function SDL_WinRTGetFSPathUTF8(pathType :TSDL_WinRT_Path):PChar;
+function SDL_WinRTGetFSPathUTF8(pathType :TSDL_WinRT_Path):PChar;
    cdecl; external SDL_LibName;
 
 
