@@ -88,7 +88,14 @@ type
   cfloat = Single;
   {$EXTERNALSYM cfloat}
 
-  (* Based on: https://en.cppreference.com/w/c/language/arithmetic_types#Data_models *)
+  pcint = ^cint;
+  pcuint = ^cuint;
+  pclong = ^clong;
+  pculong = ^culong;
+  {
+    Integer type sizes based on:
+    https://en.cppreference.com/w/c/language/arithmetic_types#Data_models
+  }
   cint = cint32;
   cuint = cuint32;
   {$IF DEFINED(CPU32) OR DEFINED(CPU32BITS)}
