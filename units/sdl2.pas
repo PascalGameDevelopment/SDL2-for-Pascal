@@ -170,8 +170,8 @@ const
 {$I sdlaudio.inc}
 {$I sdlblendmode.inc}            // 2.0.14
 {$I sdlsurface.inc}              // 2.0.14
-{$I sdlshape.inc}                // 2.0.14
-{$I sdlvideo.inc}                // 2.0.14
+{$I sdlvideo.inc}                // 2.24.0
+{$I sdlshape.inc}                // 2.24.0
 {$I sdlhints.inc}                // 2.24.0
 {$I sdlloadso.inc}               // 2.24.1
 {$I sdlmessagebox.inc}           // 2.0.14
@@ -421,13 +421,6 @@ end;
 function SDL_SHAPEMODEALPHA(mode: TWindowShapeMode): Boolean;
 begin
   Result := (mode = ShapeModeDefault) or (mode = ShapeModeBinarizeAlpha) or (mode = ShapeModeReverseBinarizeAlpha);
-end;
-
-//from "sdl_sysvideo.h"
-
-function FULLSCREEN_VISIBLE(W: PSDL_Window): Variant;
-begin
-  Result := ((W^.flags and SDL_WINDOW_FULLSCREEN) and (W^.flags and SDL_WINDOW_SHOWN) and not (W^.flags and SDL_WINDOW_MINIMIZED));
 end;
 
 //from "sdl_video.h"
