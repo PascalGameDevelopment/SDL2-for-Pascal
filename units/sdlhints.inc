@@ -2256,9 +2256,9 @@ function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; 
 {**
  * Reset a hint to the default value.
  *
- * This will reset a hint to the value of the environment variable, or NULL if
- * the environment isn't set. Callbacks will be called normally with this
- * change.
+ * This will reset a hint to the value of the environment variable,
+ * or NIL if the environment isn't set. Callbacks will be called normally
+ * with this change.
  *
  * \param name the hint to set
  * \returns SDL_TRUE if the hint was set, SDL_FALSE otherwise.
@@ -2267,6 +2267,22 @@ function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; 
  *}
 function SDL_ResetHint(const name: PAnsiChar): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResetHint' {$ENDIF} {$ENDIF};
+
+{**
+ * Reset all hints to the default values.
+ *
+ * This will reset all hints to the value of the associated environment
+ * variable, or NIL if the environment isn't set. Callbacks will be called
+ * normally with this change.
+ *
+ * \since This function is available since SDL 2.26.0.
+ *
+ * \sa SDL_GetHint
+ * \sa SDL_SetHint
+ * \sa SDL_ResetHint
+ *}
+procedure SDL_ResetHints(); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResetHints' {$ENDIF} {$ENDIF};
 
 {/**
  *  \brief Get a hint
@@ -2307,10 +2323,19 @@ procedure SDL_AddHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback
 procedure SDL_DelHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DelHintCallback' {$ENDIF} {$ENDIF};
 
-{/**
- *  \brief  Clear all hints
+{**
+ * Clear all hints.
  *
- *  This function is called during SDL_Quit() to free stored hints.
- */}
+ * This function is automatically called during SDL_Quit(), and deletes all
+ * callbacks without calling them and frees all memory associated with hints.
+ * If you're calling this from application code you probably want to call
+ * SDL_ResetHints() instead.
+ *
+ * This function will be removed from the API the next time we rev the ABI.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_ResetHints
+ *}
 procedure SDL_ClearHints(); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearHints' {$ENDIF} {$ENDIF};
