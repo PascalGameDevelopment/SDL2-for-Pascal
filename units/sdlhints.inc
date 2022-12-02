@@ -350,6 +350,25 @@ SDL_HINT_VIDEO_WAYLAND_PREFER_LIBDECOR = 'SDL_VIDEO_WAYLAND_PREFER_LIBDECOR';
  *}
 SDL_HINT_VIDEO_WAYLAND_MODE_EMULATION = 'SDL_VIDEO_WAYLAND_MODE_EMULATION';
 
+{**
+ *  \brief  Enable or disable mouse pointer warp emulation, needed by some older games.
+ *
+ *  When this hint is set, any SDL will emulate mouse warps using relative mouse mode.
+ *  This is required for some older games (such as Source engine games), which warp the
+ *  mouse to the centre of the screen rather than using relative mouse motion. Note that
+ *  relative mouse mode may have different mouse acceleration behaviour than pointer warps.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - All mouse warps fail, as mouse warping is not available under Wayland.
+ *    "1"       - Some mouse warps will be emulated by forcing relative mouse mode.
+ *
+ *  If not set, this is automatically enabled unless an application uses
+ *  relative mouse mode directly.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_VIDEO_WAYLAND_EMULATE_MOUSE_WARP = 'SDL_VIDEO_WAYLAND_EMULATE_MOUSE_WARP';
+
 {/**
  *  \brief Specify an "activity name" for screensaver inhibition.
  *
