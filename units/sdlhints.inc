@@ -1546,6 +1546,17 @@ SDL_HINT_JOYSTICK_HIDAPI_SWITCH_PLAYER_LED = 'SDL_JOYSTICK_HIDAPI_SWITCH_PLAYER_
  *}
 SDL_HINT_JOYSTICK_HIDAPI_WII = 'SDL_JOYSTICK_HIDAPI_WII';
 
+{**
+ *  \brief  A variable controlling whether the player LEDs should be lit to indicate which player is associated with a Wii controller.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - player LEDs are not enabled
+ *    "1"       - player LEDs are enabled (the default)
+ *
+ *  This hiny is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_WII_PLAYER_LED = 'SDL_JOYSTICK_HIDAPI_WII_PLAYER_LED';
+
 {/**
  *  \brief  A variable controlling whether the HIDAPI driver for XBox controllers should be used.
  *
