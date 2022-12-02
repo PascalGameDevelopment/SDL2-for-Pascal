@@ -587,6 +587,16 @@ SDL_HINT_WINDOWS_DPI_SCALING = 'SDL_WINDOWS_DPI_SCALING';
 SDL_HINT_GRAB_KEYBOARD = 'SDL_GRAB_KEYBOARD';
 
 {**
+ *  \brief  A variable containing a list of devices to ignore in SDL_hid_enumerate()
+ *
+ *  For example, to ignore the Shanwan DS3 controller and any Valve controller, you might
+ *  have the string "0x2563/0x0523,0x28de/0x0000".
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_HIDAPI_IGNORE_DEVICES = 'SDL_HIDAPI_IGNORE_DEVICES';
+
+{**
  *  \brief  A variable controlling whether the mouse is captured while mouse buttons are pressed
  *
  *  This variable can be set to the following values:
