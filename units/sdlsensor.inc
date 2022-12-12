@@ -128,7 +128,7 @@ function SDL_NumSensors(): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.9.
  *}
-function SDL_SensorGetDeviceName(device_index: cint): PChar; cdecl;
+function SDL_SensorGetDeviceName(device_index: cint): PAnsiChar; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetDeviceName' {$ENDIF} {$ENDIF};
 
 {**
@@ -196,7 +196,7 @@ function SDL_SensorFromInstanceID(instance_id: TSDL_SensorID): PSDL_Sensor; cdec
  *
  * \since This function is available since SDL 2.0.9.
  *}
-function SDL_SensorGetName(sensor: PSDL_Sensor): PChar; cdecl;
+function SDL_SensorGetName(sensor: PSDL_Sensor): PAnsiChar; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetName' {$ENDIF} {$ENDIF};
 
 {**
