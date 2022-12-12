@@ -37,6 +37,10 @@ const
 	SDL_SENSOR_UNKNOWN = TSDL_SensorType(0);     {**< Unknown sensor type *}
 	SDL_SENSOR_ACCEL   = TSDL_SensorType(1);     {**< Accelerometer *}
 	SDL_SENSOR_GYRO    = TSDL_SensorType(2);     {**< Gyroscope *}
+	SDL_SENSOR_ACCEL_L = TSDL_SensorType(3);     {**< Accelerometer for left Joy-Con controller and Wii nunchuk *}
+	SDL_SENSOR_GYRO_L  = TSDL_SensorType(4);     {**< Gyroscope for left Joy-Con controller *}
+	SDL_SENSOR_ACCEL_R = TSDL_SensorType(5);     {**< Accelerometer for right Joy-Con controller *}
+	SDL_SENSOR_GYRO_R  = TSDL_SensorType(6);     {**< Gyroscope for right Joy-Con controller *}
 
 {**
  * Accelerometer sensor
