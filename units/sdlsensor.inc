@@ -30,7 +30,7 @@ type
  * https://developer.android.com/reference/android/hardware/SensorEvent.html#values
  *}
 type
-	TSDL_SensorType = type cint32;
+	TSDL_SensorType = type cint;
 
 const
 	SDL_SENSOR_INVALID = TSDL_SensorType(-1);    {**< Returned for an invalid sensor *}
@@ -107,7 +107,7 @@ procedure SDL_UnlockSensors(); cdecl;
 {**
  *  \brief Count the number of sensors attached to the system right now
  *}
-function SDL_NumSensors(): cint32; cdecl;
+function SDL_NumSensors(): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_NumSensors' {$ENDIF} {$ENDIF};
 
 {**
@@ -117,7 +117,7 @@ function SDL_NumSensors(): cint32; cdecl;
  *
  *  \return The sensor name, or NIL if device_index is out of range.
  *}
-function SDL_SensorGetDeviceName(device_index: cint32): PChar; cdecl;
+function SDL_SensorGetDeviceName(device_index: cint): PChar; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetDeviceName' {$ENDIF} {$ENDIF};
 
 {**
@@ -127,7 +127,7 @@ function SDL_SensorGetDeviceName(device_index: cint32): PChar; cdecl;
  *
  *  \return The sensor type, or SDL_SENSOR_INVALID if device_index is out of range.
  *}
-function SDL_SensorGetDeviceType(device_index: cint32): TSDL_SensorType; cdecl;
+function SDL_SensorGetDeviceType(device_index: cint): TSDL_SensorType; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetDeviceType' {$ENDIF} {$ENDIF};
 
 {**
@@ -137,7 +137,7 @@ function SDL_SensorGetDeviceType(device_index: cint32): TSDL_SensorType; cdecl;
  *
  *  \return The sensor platform dependent type, or -1 if device_index is out of range.
  *}
-function SDL_SensorGetDeviceNonPortableType(device_index: cint32): cint32; cdecl;
+function SDL_SensorGetDeviceNonPortableType(device_index: cint): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetDeviceNonPortableType' {$ENDIF} {$ENDIF};
 
 {**
@@ -147,7 +147,7 @@ function SDL_SensorGetDeviceNonPortableType(device_index: cint32): cint32; cdecl
  *
  *  \return The sensor instance ID, or -1 if device_index is out of range.
  *}
-function SDL_SensorGetDeviceInstanceID(device_index: cint32): TSDL_SensorID; cdecl;
+function SDL_SensorGetDeviceInstanceID(device_index: cint): TSDL_SensorID; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetDeviceInstanceID' {$ENDIF} {$ENDIF};
 
 {**
@@ -157,7 +157,7 @@ function SDL_SensorGetDeviceInstanceID(device_index: cint32): TSDL_SensorID; cde
  *
  *  \return A sensor identifier, or NIL if an error occurred.
  *}
-function SDL_SensorOpen(device_index: cint32): PSDL_Sensor; cdecl;
+function SDL_SensorOpen(device_index: cint): PSDL_Sensor; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorOpen' {$ENDIF} {$ENDIF};
 
 {**
@@ -191,7 +191,7 @@ function SDL_SensorGetType(sensor: PSDL_Sensor): TSDL_SensorType; cdecl;
  *
  *  \return The sensor platform dependent type, or -1 if the sensor is NIL.
  *}
-function SDL_SensorGetNonPortableType(sensor: PSDL_Sensor): cint32; cdecl;
+function SDL_SensorGetNonPortableType(sensor: PSDL_Sensor): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetNonPortableType' {$ENDIF} {$ENDIF};
 
 {**
@@ -215,7 +215,7 @@ function SDL_SensorGetInstanceID(sensor: PSDL_Sensor): TSDL_SensorID; cdecl;
  *
  *  \return 0 or -1 if an error occurred.
  *}
-function SDL_SensorGetData(sensor: PSDL_Sensor; data: pcfloat; num_values: cint32): cint32; cdecl;
+function SDL_SensorGetData(sensor: PSDL_Sensor; data: pcfloat; num_values: cint): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetData' {$ENDIF} {$ENDIF};
 
 {**
