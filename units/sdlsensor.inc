@@ -219,6 +219,24 @@ function SDL_SensorGetData(sensor: PSDL_Sensor; data: pcfloat; num_values: cint3
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetData' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the current state of an opened sensor with the timestamp of the last
+ * update.
+ *
+ * The number of values and interpretation of the data is sensor dependent.
+ *
+ * \param sensor The SDL_Sensor object to query
+ * \param timestamp A pointer filled with the timestamp in microseconds of the
+ *                  current sensor reading if available, or 0 if not
+ * \param data A pointer filled with the current sensor state
+ * \param num_values The number of values to write to data
+ * \returns 0 or -1 if an error occurred.
+ *
+ * \since This function is available since SDL 2.26.0.
+ *}
+function SDL_SensorGetDataWithTimestamp(sensor: PSDL_Sensor; timestamp: pcuint64; data: pcfloat; num_values: cint): cint; cdecl;
+	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorGetDataWithTimestamp' {$ENDIF} {$ENDIF};
+
+{**
  *  Close a sensor previously opened with SDL_SensorOpen()
  *}
 procedure SDL_SensorClose(sensor: PSDL_Sensor); cdecl;
