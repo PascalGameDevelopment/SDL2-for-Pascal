@@ -243,6 +243,17 @@ SDL_HINT_RENDER_SCALE_QUALITY = 'SDL_RENDER_SCALE_QUALITY';
  */}
 SDL_HINT_RENDER_VSYNC = 'SDL_RENDER_VSYNC';
 
+{**
+ *  \brief  A variable controlling if VSYNC is automatically disable if doesn't reach the enough FPS
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - It will be using VSYNC as defined in the main flag. Default
+ *    "1"       - If VSYNC was previously enabled, then it will disable VSYNC if doesn't reach enough speed
+ *
+ *  By default SDL does not enable the automatic VSYNC
+ *}
+SDL_HINT_PS2_DYNAMIC_VSYNC = 'SDL_PS2_DYNAMIC_VSYNC';
+
 {/**
  *  \brief  A variable controlling whether the screensaver is enabled. 
  *
@@ -323,6 +334,40 @@ SDL_HINT_VIDEO_WAYLAND_ALLOW_LIBDECOR = 'SDL_VIDEO_WAYLAND_ALLOW_LIBDECOR';
  *  libdecor is used over xdg-shell when xdg-decoration protocol is unavailable.
  *}
 SDL_HINT_VIDEO_WAYLAND_PREFER_LIBDECOR = 'SDL_VIDEO_WAYLAND_PREFER_LIBDECOR';
+
+{**
+ *  \brief  A variable controlling whether video mode emulation is enabled under Wayland.
+ *
+ *  When this hint is set, a standard set of emulated CVT video modes will be exposed for use by the application.
+ *  If it is disabled, the only modes exposed will be the logical desktop size and, in the case of a scaled
+ *  desktop, the native display resolution.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Video mode emulation is disabled.
+ *    "1"       - Video mode emulation is enabled.
+ *
+ *  By default video mode emulation is enabled.
+ *}
+SDL_HINT_VIDEO_WAYLAND_MODE_EMULATION = 'SDL_VIDEO_WAYLAND_MODE_EMULATION';
+
+{**
+ *  \brief  Enable or disable mouse pointer warp emulation, needed by some older games.
+ *
+ *  When this hint is set, any SDL will emulate mouse warps using relative mouse mode.
+ *  This is required for some older games (such as Source engine games), which warp the
+ *  mouse to the centre of the screen rather than using relative mouse motion. Note that
+ *  relative mouse mode may have different mouse acceleration behaviour than pointer warps.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - All mouse warps fail, as mouse warping is not available under Wayland.
+ *    "1"       - Some mouse warps will be emulated by forcing relative mouse mode.
+ *
+ *  If not set, this is automatically enabled unless an application uses
+ *  relative mouse mode directly.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_VIDEO_WAYLAND_EMULATE_MOUSE_WARP = 'SDL_VIDEO_WAYLAND_EMULATE_MOUSE_WARP';
 
 {/**
  *  \brief Specify an "activity name" for screensaver inhibition.
@@ -509,6 +554,57 @@ SDL_HINT_WINDOWS_INTRESOURCE_ICON_SMALL = 'SDL_WINDOWS_INTRESOURCE_ICON_SMALL';
  */}
 SDL_HINT_WINDOWS_USE_D3D9EX = 'SDL_WINDOWS_USE_D3D9EX';
 
+{**
+ * \brief Controls whether SDL will declare the process to be DPI aware.
+ *
+ *  This hint must be set before initializing the video subsystem.
+ *
+ *  The main purpose of declaring DPI awareness is to disable OS bitmap scaling of SDL windows on monitors with
+ *  a DPI scale factor.
+ *
+ *  This hint is equivalent to requesting DPI awareness via external means (e.g. calling SetProcessDpiAwarenessContext)
+ *  and does not cause SDL to use a virtualized coordinate system, so it will generally give you 1 SDL coordinate = 1 pixel
+ *  even on high-DPI displays.
+ *
+ *  For more information, see:
+ *  https://docs.microsoft.com/en-us/windows/win32/hidpi/high-dpi-desktop-application-development-on-windows
+ *
+ *  This variable can be set to the following values:
+ *    ""             - Do not change the DPI awareness (default).
+ *    "unaware"      - Declare the process as DPI unaware. (Windows 8.1 and later).
+ *    "system"       - Request system DPI awareness. (Vista and later).
+ *    "permonitor"   - Request per-monitor DPI awareness. (Windows 8.1 and later).
+ *    "permonitorv2" - Request per-monitor V2 DPI awareness. (Windows 10, version 1607 and later).
+ *                     The most visible difference from "permonitor" is that window title bar will be scaled
+ *                     to the visually correct size when dragging between monitors with different scale factors.
+ *                     This is the preferred DPI awareness level.
+ *
+ * If the requested DPI awareness is not available on the currently running OS, SDL will try to request the best
+ * available match.
+ *}
+SDL_HINT_WINDOWS_DPI_AWARENESS = 'SDL_WINDOWS_DPI_AWARENESS';
+
+{**
+ * \brief Uses DPI-scaled points as the SDL coordinate system on Windows.
+ *
+ *  This changes the SDL coordinate system units to be DPI-scaled points, rather than pixels everywhere.
+ *  This means windows will be appropriately sized, even when created on high-DPI displays with scaling.
+ *
+ *  e.g. requesting a 640x480 window from SDL, on a display with 125% scaling in Windows display settings,
+ *  will create a window with an 800x600 client area (in pixels).
+ *
+ *  Setting this to "1" implicitly requests process DPI awareness (setting SDL_WINDOWS_DPI_AWARENESS is unnecessary),
+ *  and forces SDL_WINDOW_ALLOW_HIGHDPI on all windows.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - SDL coordinates equal Windows coordinates. No automatic window resizing when dragging
+ *                between monitors with different scale factors (unless this is performed by
+ *                Windows itself, which is the case when the process is DPI unaware).
+ *    "1"       - SDL coordinates are in DPI-scaled points. Automatically resize windows as needed on
+ *                displays with non-100% scale factors.
+ *}
+SDL_HINT_WINDOWS_DPI_SCALING = 'SDL_WINDOWS_DPI_SCALING';
+
 {/**
  *  \brief  A variable controlling whether grabbing input grabs the keyboard
  *
@@ -519,6 +615,16 @@ SDL_HINT_WINDOWS_USE_D3D9EX = 'SDL_WINDOWS_USE_D3D9EX';
  *  By default SDL will not grab the keyboard so system shortcuts still work.
  */}
 SDL_HINT_GRAB_KEYBOARD = 'SDL_GRAB_KEYBOARD';
+
+{**
+ *  \brief  A variable containing a list of devices to ignore in SDL_hid_enumerate()
+ *
+ *  For example, to ignore the Shanwan DS3 controller and any Valve controller, you might
+ *  have the string "0x2563/0x0523,0x28de/0x0000".
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_HIDAPI_IGNORE_DEVICES = 'SDL_HIDAPI_IGNORE_DEVICES';
 
 {**
  *  \brief  A variable controlling whether the mouse is captured while mouse buttons are pressed
@@ -601,6 +707,30 @@ SDL_HINT_MOUSE_RELATIVE_SCALING = 'SDL_MOUSE_RELATIVE_SCALING';
  *  \brief  A variable setting the scale for mouse motion, in floating point, when the mouse is in relative mode
  */}
 SDL_HINT_MOUSE_RELATIVE_SPEED_SCALE = 'SDL_MOUSE_RELATIVE_SPEED_SCALE';
+
+{**
+ *  \brief  A variable controlling whether the system mouse acceleration curve is used for relative mouse motion.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Relative mouse motion will be unscaled (the default)
+ *    "1"       - Relative mouse motion will be scaled using the system mouse acceleration curve.
+ *
+ *  If SDL_HINT_MOUSE_RELATIVE_SPEED_SCALE is set, that will override the system speed scale.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_MOUSE_RELATIVE_SYSTEM_SCALE = 'SDL_MOUSE_RELATIVE_SYSTEM_SCALE';
+
+{**
+ *  \brief  A variable controlling whether a motion event should be generated for mouse warping in relative mode.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Warping the mouse will not generate a motion event in relative mode
+ *    "1"       - Warping the mouse will generate a motion event in relative mode
+ *
+ *  By default warping the mouse will not generate motion events in relative mode. This avoids the application having to filter out large relative motion due to warping.
+ *}
+SDL_HINT_MOUSE_RELATIVE_WARP_MOTION = 'SDL_MOUSE_RELATIVE_WARP_MOTION';
 
 {/**
  *  \brief  A variable controlling whether mouse events should generate synthetic touch events
@@ -1056,6 +1186,15 @@ SDL_HINT_X11_WINDOW_TYPE = 'SDL_X11_WINDOW_TYPE';
 SDL_HINT_XINPUT_ENABLED = 'SDL_XINPUT_ENABLED';
 
 {**
+  *  \brief  A variable that lets you disable the detection and use of DirectInput gamepad devices
+  *
+  *  The variable can be set to the following values:
+  *    "0"       - Disable DirectInput detection (only uses XInput)
+  *    "1"       - Enable DirectInput detection (the default)
+  *}
+SDL_HINT_DIRECTINPUT_ENABLED = 'SDL_DIRECTINPUT_ENABLED';
+
+{**
  *  \brief  A variable that causes SDL to use the old axis and button mapping for XInput devices.
  *
  *  This hint is for backwards compatibility only and will be removed in SDL 2.1
@@ -1231,6 +1370,28 @@ SDL_HINT_JOYSTICK_HIDAPI_GAMECUBE = 'SDL_JOYSTICK_HIDAPI_GAMECUBE';
   */}
 SDL_HINT_JOYSTICK_HIDAPI_JOY_CONS = 'SDL_JOYSTICK_HIDAPI_JOY_CONS';
 
+{**
+  *  \brief  A variable controlling whether Nintendo Switch Joy-Con controllers will be combined into a single Pro-like controller when using the HIDAPI driver
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - Left and right Joy-Con controllers will not be combined and each will be a mini-gamepad
+  *    "1"       - Left and right Joy-Con controllers will be combined into a single controller (the default)
+  *}
+SDL_HINT_JOYSTICK_HIDAPI_COMBINE_JOY_CONS = 'SDL_JOYSTICK_HIDAPI_COMBINE_JOY_CONS';
+
+{**
+  *  \brief  A variable controlling whether Nintendo Switch Joy-Con controllers will be in vertical mode when using the HIDAPI driver
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - Left and right Joy-Con controllers will not be in vertical mode (the default)
+  *    "1"       - Left and right Joy-Con controllers will be in vertical mode
+  *
+  *  This hint must be set before calling SDL_Init(SDL_INIT_GAMECONTROLLER).
+  *
+  *  This hint is available since SDL 2.26.0.
+  *}
+SDL_HINT_JOYSTICK_HIDAPI_VERTICAL_JOY_CONS = 'SDL_JOYSTICK_HIDAPI_VERTICAL_JOY_CONS';
+
 {/**
   *  \brief  A variable controlling whether the HIDAPI driver for Amazon Luna controllers connected via Bluetooth should be used.
   *
@@ -1241,6 +1402,44 @@ SDL_HINT_JOYSTICK_HIDAPI_JOY_CONS = 'SDL_JOYSTICK_HIDAPI_JOY_CONS';
   *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
   */}
 SDL_HINT_JOYSTICK_HIDAPI_LUNA = 'SDL_JOYSTICK_HIDAPI_LUNA';
+
+{**
+  *  \brief  A variable controlling whether the HIDAPI driver for Nintendo Online classic controllers should be used.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - HIDAPI driver is not used
+  *    "1"       - HIDAPI driver is used
+  *
+  *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
+  *}
+SDL_HINT_JOYSTICK_HIDAPI_NINTENDO_CLASSIC = 'SDL_JOYSTICK_HIDAPI_NINTENDO_CLASSIC';
+
+{**
+  *  \brief  A variable controlling whether the HIDAPI driver for NVIDIA SHIELD controllers should be used.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - HIDAPI driver is not used
+  *    "1"       - HIDAPI driver is used
+  *
+  *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI
+  *}
+SDL_HINT_JOYSTICK_HIDAPI_SHIELD = 'SDL_JOYSTICK_HIDAPI_SHIELD';
+
+{**
+ *  \brief  A variable controlling whether the HIDAPI driver for PS3 controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI on macOS, and "0" on other platforms.
+ *
+ *  It is not possible to use this driver on Windows, due to limitations in the default drivers
+ *  installed. See https://github.com/ViGEm/DsHidMini for an alternative driver on Windows.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_PS3 = 'SDL_JOYSTICK_HIDAPI_PS3';
 
 {/**
  *  \brief  A variable controlling whether the HIDAPI driver for PS4 controllers should be used.
@@ -1357,6 +1556,50 @@ SDL_HINT_JOYSTICK_HIDAPI_SWITCH = 'SDL_JOYSTICK_HIDAPI_SWITCH';
  */}
 SDL_HINT_JOYSTICK_HIDAPI_SWITCH_HOME_LED = 'SDL_JOYSTICK_HIDAPI_SWITCH_HOME_LED';
 
+{**
+ *  \brief  A variable controlling whether the Home button LED should be turned on when a Nintendo Switch Joy-Con controller is opened
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - home button LED is turned off
+ *    "1"       - home button LED is turned on
+ *
+ *  By default the Home button LED state is not changed. This hint can also be set to a floating point value between 0.0 and 1.0 which controls the brightness of the Home button LED.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_JOYCON_HOME_LED = 'SDL_JOYSTICK_HIDAPI_JOYCON_HOME_LED';
+
+{**
+ *  \brief  A variable controlling whether the player LEDs should be lit to indicate which player is associated with a Nintendo Switch controller.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - player LEDs are not enabled
+ *    "1"       - player LEDs are enabled (the default)
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_SWITCH_PLAYER_LED = 'SDL_JOYSTICK_HIDAPI_SWITCH_PLAYER_LED';
+
+{**
+ *  \brief  A variable controlling whether the HIDAPI driver for Nintendo Wii and Wii U controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  This driver doesn't work with the dolphinbar, so the default is SDL_FALSE for now.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_WII = 'SDL_JOYSTICK_HIDAPI_WII';
+
+{**
+ *  \brief  A variable controlling whether the player LEDs should be lit to indicate which player is associated with a Wii controller.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - player LEDs are not enabled
+ *    "1"       - player LEDs are enabled (the default)
+ *
+ *  This hiny is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_WII_PLAYER_LED = 'SDL_JOYSTICK_HIDAPI_WII_PLAYER_LED';
+
 {/**
  *  \brief  A variable controlling whether the HIDAPI driver for XBox controllers should be used.
  *
@@ -1367,6 +1610,71 @@ SDL_HINT_JOYSTICK_HIDAPI_SWITCH_HOME_LED = 'SDL_JOYSTICK_HIDAPI_SWITCH_HOME_LED'
  *  The default is "0" on Windows, otherwise the value of SDL_HINT_JOYSTICK_HIDAPI
  */}
 SDL_HINT_JOYSTICK_HIDAPI_XBOX   = 'SDL_JOYSTICK_HIDAPI_XBOX';
+
+{**
+ *  \brief  A variable controlling whether the HIDAPI driver for XBox 360 controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI_XBOX.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_XBOX_360 = 'SDL_JOYSTICK_HIDAPI_XBOX_360';
+
+{**
+ *  \brief  A variable controlling whether the player LEDs should be lit to indicate which player is associated with an Xbox 360 controller.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - player LEDs are not enabled
+ *    "1"       - player LEDs are enabled (the default)
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_XBOX_360_PLAYER_LED = 'SDL_JOYSTICK_HIDAPI_XBOX_360_PLAYER_LED';
+
+{**
+ *  \brief  A variable controlling whether the HIDAPI driver for XBox 360 wireless controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI_XBOX_360.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_XBOX_360_WIRELESS = 'SDL_JOYSTICK_HIDAPI_XBOX_360_WIRELESS';
+
+{**
+ *  \brief  A variable controlling whether the HIDAPI driver for XBox One controllers should be used.
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - HIDAPI driver is not used
+ *    "1"       - HIDAPI driver is used
+ *
+ *  The default is the value of SDL_HINT_JOYSTICK_HIDAPI_XBOX.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_XBOX_ONE = 'SDL_JOYSTICK_HIDAPI_XBOX_ONE';
+
+{**
+ *  \brief  A variable controlling whether the Home button LED should be turned on when an Xbox One controller is opened
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - home button LED is turned off
+ *    "1"       - home button LED is turned on
+ *
+ *  By default the Home button LED state is not changed. This hint can also
+ *  be set to a floating point value between 0.0 and 1.0 which controls
+ *  the brightness of the Home button LED. The default brightness is 0.4.
+ *
+ *  This hint is available since SDL 2.26.0.
+ *}
+SDL_HINT_JOYSTICK_HIDAPI_XBOX_ONE_HOME_LED = 'SDL_JOYSTICK_HIDAPI_XBOX_ONE_HOME_LED';
 
 {/**
   *  \brief  A variable controlling whether the RAWINPUT joystick drivers should be used for better handling XInput-capable devices.
@@ -1521,6 +1829,24 @@ SDL_HINT_TV_REMOTE_AS_JOYSTICK = 'SDL_TV_REMOTE_AS_JOYSTICK';
  */}
 SDL_HINT_VIDEO_HIGHDPI_DISABLED = 'SDL_VIDEO_HIGHDPI_DISABLED';
 
+{**
+  *  \brief  A variable controlling whether joysticks on Linux will always treat 'hat' axis inputs (ABS_HAT0X - ABS_HAT3Y) as 8-way digital hats without checking whether they may be analog.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - Only map hat axis inputs to digital hat outputs if the input axes appear to actually be digital (the default)
+  *    "1"       - Always handle the input axes numbered ABS_HAT0X to ABS_HAT3Y as digital hats
+  *}
+SDL_HINT_LINUX_DIGITAL_HATS = 'SDL_LINUX_DIGITAL_HATS';
+
+{**
+  *  \brief  A variable controlling whether digital hats on Linux will apply deadzones to their underlying input axes or use unfiltered values.
+  *
+  *  This variable can be set to the following values:
+  *    "0"       - Return digital hat values based on unfiltered input axis values
+  *    "1"       - Return digital hat values with deadzones on the input axes taken into account (the default)
+  *}
+SDL_HINT_LINUX_HAT_DEADZONES = 'SDL_LINUX_HAT_DEADZONES';
+
 {/**
   *  \brief  A variable controlling whether to use the classic /dev/input/js* joystick interface or the newer /dev/input/event* joystick interface on Linux
   *
@@ -1548,6 +1874,23 @@ SDL_HINT_LINUX_JOYSTICK_DEADZONES = 'SDL_LINUX_JOYSTICK_DEADZONES';
  *  event when on Mac.
  */}
 SDL_HINT_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK = 'SDL_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK';
+
+{**
+ *  \brief   A variable controlling whether dispatching OpenGL context updates should block the dispatching thread until the main thread finishes processing
+ *
+ *  This variable can be set to the following values:
+ *    "0"       - Dispatching OpenGL context updates will block the dispatching thread until the main thread finishes processing (default).
+ *    "1"       - Dispatching OpenGL context updates will allow the dispatching thread to continue execution.
+ *
+ *  Generally you want the default, but if you have OpenGL code in a background thread on a Mac, and the main thread
+ *  hangs because it's waiting for that background thread, but that background thread is also hanging because it's
+ *  waiting for the main thread to do an update, this might fix your issue.
+ *
+ *  This hint only applies to macOS.
+ *
+ *  This hint is available since SDL 2.24.0.
+ *}
+SDL_HINT_MAC_OPENGL_ASYNC_DISPATCH = 'SDL_MAC_OPENGL_ASYNC_DISPATCH';
 
 {/**
  *  \brief  A variable specifying which shader compiler to preload when using the Chrome ANGLE binaries
@@ -1842,7 +2185,8 @@ SDL_HINT_IME_SUPPORT_EXTENDED_TEXT = 'SDL_IME_SUPPORT_EXTENDED_TEXT';
  *       Use SDL_HINT_MOUSE_TOUCH_EVENTS and SDL_HINT_TOUCH_MOUSE_EVENTS
  *       for generating synthetic touch/mouse events.
  */}
-SDL_HINT_ANDROID_SEPARATE_MOUSE_AND_TOUCH = 'SDL_ANDROID_SEPARATE_MOUSE_AND_TOUCH' deprecated;
+SDL_HINT_ANDROID_SEPARATE_MOUSE_AND_TOUCH = 'SDL_ANDROID_SEPARATE_MOUSE_AND_TOUCH'
+  deprecated 'This hint is no longer supported on SDL >= 2.0.10. Use SDL_HINT_MOUSE_TOUCH_EVENTS and SDL_HINT_TOUCH_MOUSE_EVENTS instead.';
 
 {/**
  *  \brief Disable giving back control to the browser automatically
@@ -2014,6 +2358,41 @@ SDL_HINT_AUDIODRIVER = 'SDL_AUDIODRIVER';
  *}
 SDL_HINT_VIDEODRIVER = 'SDL_VIDEODRIVER';
 
+{**
+ *  \brief  A variable that decides what KMSDRM device to use.
+ *
+ *  Internally, SDL might open something like "/dev/dri/cardNN" to
+ *  access KMSDRM functionality, where "NN" is a device index number.
+ *
+ *  SDL makes a guess at the best index to use (usually zero), but the
+ *  app or user can set this hint to a number between 0 and 99 to
+ *  force selection.
+ *
+ *  This hint is available since SDL 2.24.0.
+ *}
+SDL_HINT_KMSDRM_DEVICE_INDEX = 'SDL_KMSDRM_DEVICE_INDEX';
+
+{**
+ *  \brief  A variable that treats trackpads as touch devices.
+ *
+ *  On macOS (and possibly other platforms in the future), SDL will report
+ *  touches on a trackpad as mouse input, which is generally what users
+ *  expect from this device; however, these are often actually full
+ *  multitouch-capable touch devices, so it might be preferable to some apps
+ *  to treat them as such.
+ *
+ *  Setting this hint to true will make the trackpad input report as a
+ *  multitouch device instead of a mouse. The default is false.
+ *
+ *  Note that most platforms don't support this hint. As of 2.24.0, it
+ *  only supports MacBooks' trackpads on macOS. Others may follow later.
+ *
+ *  This hint is checked during SDL_Init and can not be changed after.
+ *
+ *  This hint is available since SDL 2.24.0.
+ *}
+SDL_HINT_TRACKPAD_IS_TOUCH_ONLY = 'SDL_TRACKPAD_IS_TOUCH_ONLY';
+
 {/**
  *  \brief  An enumeration of hint priorities
  */}
@@ -2034,7 +2413,7 @@ const
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority) : boolean; cdecl;
+function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHintWithPriority' {$ENDIF} {$ENDIF};
 
 {/**
@@ -2042,8 +2421,39 @@ function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; 
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): boolean; cdecl;
+function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHint' {$ENDIF} {$ENDIF};
+
+{**
+ * Reset a hint to the default value.
+ *
+ * This will reset a hint to the value of the environment variable,
+ * or NIL if the environment isn't set. Callbacks will be called normally
+ * with this change.
+ *
+ * \param name the hint to set
+ * \returns SDL_TRUE if the hint was set, SDL_FALSE otherwise.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *}
+function SDL_ResetHint(const name: PAnsiChar): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResetHint' {$ENDIF} {$ENDIF};
+
+{**
+ * Reset all hints to the default values.
+ *
+ * This will reset all hints to the value of the associated environment
+ * variable, or NIL if the environment isn't set. Callbacks will be called
+ * normally with this change.
+ *
+ * \since This function is available since SDL 2.26.0.
+ *
+ * \sa SDL_GetHint
+ * \sa SDL_SetHint
+ * \sa SDL_ResetHint
+ *}
+procedure SDL_ResetHints(); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResetHints' {$ENDIF} {$ENDIF};
 
 {/**
  *  \brief Get a hint
@@ -2058,7 +2468,7 @@ function SDL_GetHint(const name: PAnsiChar): PAnsiChar; cdecl;
  *
  *  \return The boolean value of a hint variable.
  */}
-function SDL_GetHintBoolean(const name: PAnsiChar; default_value: boolean): boolean; cdecl;
+function SDL_GetHintBoolean(const name: PAnsiChar; default_value: TSDL_Bool): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetHintBoolean' {$ENDIF} {$ENDIF};
 
 {/**
@@ -2084,10 +2494,19 @@ procedure SDL_AddHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback
 procedure SDL_DelHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DelHintCallback' {$ENDIF} {$ENDIF};
 
-{/**
- *  \brief  Clear all hints
+{**
+ * Clear all hints.
  *
- *  This function is called during SDL_Quit() to free stored hints.
- */}
+ * This function is automatically called during SDL_Quit(), and deletes all
+ * callbacks without calling them and frees all memory associated with hints.
+ * If you're calling this from application code you probably want to call
+ * SDL_ResetHints() instead.
+ *
+ * This function will be removed from the API the next time we rev the ABI.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_ResetHints
+ *}
 procedure SDL_ClearHints(); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearHints' {$ENDIF} {$ENDIF};

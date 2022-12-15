@@ -168,14 +168,14 @@ const
 {$I sdlmutex.inc}                // 2.0.14 WIP
 {$I sdltimer.inc}                // 2.0.18
 {$I sdlpixels.inc}               // 2.0.14 WIP
-{$I sdlrect.inc}                 // 2.0.14
+{$I sdlrect.inc}                 // 2.24.0
 {$I sdlrwops.inc}                // 2.0.14
 {$I sdlaudio.inc}
 {$I sdlblendmode.inc}            // 2.0.14
 {$I sdlsurface.inc}              // 2.0.14
-{$I sdlshape.inc}                // 2.0.14
-{$I sdlvideo.inc}                // 2.0.14
-{$I sdlhints.inc}                // 2.0.22
+{$I sdlvideo.inc}                // 2.24.0
+{$I sdlshape.inc}                // 2.24.0
+{$I sdlhints.inc}                // 2.26.0
 {$I sdlloadso.inc}               // 2.24.1
 {$I sdlmessagebox.inc}           // 2.0.14
 {$I sdlrenderer.inc}             // 2.0.22
@@ -184,21 +184,21 @@ const
 {$I sdlmouse.inc}                // 2.0.24
 {$I sdlguid.inc}                 // 2.24.0
 {$I sdljoystick.inc}             // 2.24.0
-{$I sdlsensor.inc}
-{$I sdlgamecontroller.inc}       // 2.0.22
+{$I sdlsensor.inc}               // 2.26.0
+{$I sdlgamecontroller.inc}       // 2.24.0
 {$I sdlhaptic.inc}
 {$I sdlhidapi.inc}               // 2.0.18
-{$I sdltouch.inc}
+{$I sdltouch.inc}                // 2.24.0
 {$I sdlgesture.inc}
 {$I sdlsyswm.inc}
-{$I sdlevents.inc}
+{$I sdlevents.inc}               // 2.24.0
 {$I sdllocale.inc}               // 2.0.14
 {$I sdlclipboard.inc}            // 2.24.1
 {$I sdlcpuinfo.inc}              // 2.0.14
 {$I sdlfilesystem.inc}           // 2.24.1
 {$I sdllog.inc}                  // 2.0.14
 {$I sdlmisc.inc}                 // 2.0.14
-{$I sdlsystem.inc}
+{$I sdlsystem.inc}               // 2.24.0
 {$I sdl.inc}                     // 2.0.14
 
 implementation
@@ -255,12 +255,51 @@ end;
 
 function SDL_RectEmpty(const r: PSDL_Rect): Boolean;
 begin
-  Result := (r^.w <= 0) or (r^.h <= 0);
+  Result := (r = NIL) or (r^.w <= 0) or (r^.h <= 0);
 end;
 
 function SDL_RectEquals(const a, b: PSDL_Rect): Boolean;
 begin
   Result := (a^.x = b^.x) and (a^.y = b^.y) and (a^.w = b^.w) and (a^.h = b^.h);
+end;
+
+function SDL_PointInFRect(const p: PSDL_FPoint; const r: PSDL_FRect): Boolean;
+begin
+  Result :=
+    (p^.x >= r^.x) and (p^.x < (r^.x + r^.w))
+    and
+    (p^.y >= r^.y) and (p^.y < (r^.y + r^.h))
+end;
+
+function SDL_FRectEmpty(const r: PSDL_FRect): Boolean;
+begin
+  Result := (r = NIL) or (r^.w <= cfloat(0.0)) or (r^.h <= cfloat(0.0))
+end;
+
+{ FIXME: This the Pascal System.Abs() function, instead of the C SDL_fabsf() function. }
+function SDL_FRectEqualsEpsilon(const a, b: PSDL_FRect; const epsilon: cfloat): Boolean;
+begin
+  Result :=
+    (a <> NIL) and
+    (b <> NIL) and
+    (
+      (a = b)
+      or
+      (
+        (Abs(a^.x - b^.x) <= epsilon)
+        and
+        (Abs(a^.y - b^.y) <= epsilon)
+        and
+        (Abs(a^.w - b^.w) <= epsilon)
+        and
+        (Abs(a^.h - b^.h) <= epsilon)
+      )
+    )
+end;
+
+function SDL_FRectEquals(const a, b: PSDL_FRect): Boolean; Inline;
+begin
+  Result := SDL_FRectEqualsEpsilon(a, b, SDL_FLT_EPSILON)
 end;
 
 //from "sdl_atomic.h"
@@ -386,13 +425,6 @@ end;
 function SDL_SHAPEMODEALPHA(mode: TWindowShapeMode): Boolean;
 begin
   Result := (mode = ShapeModeDefault) or (mode = ShapeModeBinarizeAlpha) or (mode = ShapeModeReverseBinarizeAlpha);
-end;
-
-//from "sdl_sysvideo.h"
-
-function FULLSCREEN_VISIBLE(W: PSDL_Window): Variant;
-begin
-  Result := ((W^.flags and SDL_WINDOW_FULLSCREEN) and (W^.flags and SDL_WINDOW_SHOWN) and not (W^.flags and SDL_WINDOW_MINIMIZED));
 end;
 
 //from "sdl_video.h"

@@ -13,7 +13,7 @@
  *
  *  \return -1, there is no error handling for this function
  *}
-function SDL_SetError(const fmt: PAnsiChar): cint; cdecl;
+function SDL_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetError' {$ENDIF} {$ENDIF};
 
 {**

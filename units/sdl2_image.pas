@@ -167,8 +167,12 @@ function IMG_SaveJPG_RW(surface: PSDL_Surface; dst: PSDL_RWops; freedst: cint32;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SaveJPG_RW' {$ENDIF} {$ENDIF};
 
 {* We'll use SDL for reporting errors *}
-function IMG_SetError(fmt: PAnsiChar): cint32; cdecl;
+function IMG_SetError(fmt: PAnsiChar; args: array of const): cint; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_SetError' {$ELSE} 'SDL_SetError' {$ENDIF};
 function IMG_GetError: PAnsiChar; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_GetError' {$ELSE} 'SDL_GetError' {$ENDIF};
 
 implementation
 
@@ -177,16 +181,6 @@ begin
   X.major := SDL_IMAGE_MAJOR_VERSION;
   X.minor := SDL_IMAGE_MINOR_VERSION;
   X.patch := SDL_IMAGE_PATCHLEVEL;
-end;
-
-function IMG_SetError(fmt: PAnsiChar): cint32; cdecl;
-begin
-  Result := SDL_SetError(fmt);
-end;
-
-function IMG_GetError: PAnsiChar; cdecl;
-begin
-  Result := SDL_GetError();
 end;
 
 end.

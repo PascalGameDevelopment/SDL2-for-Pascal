@@ -1,96 +1,10 @@
-//from "sdl_video.h" and "sdl_sysvideo.h" and "sdl_shape.h"
+// from "sdl_video.h"
 
-{ ATTENTION Conv.:
 
-    The SDL_HitTestResult-Enum. and the SDL_HitTest func. are shifted before
-    TSDL_Window decl. because it need this.
-
-    Since the HitTest constants would break Pascal's
-    forward declaration rules, it has to be above
-    forward declaration of TSDL_Window.
-
-}
-
-  {**
-   *  \brief Possible return values from the SDL_HitTest callback.
-   *
-   *  \sa SDL_HitTest
-   *}
-  type
-    TSDL_HitTestResult = type Integer;
-
-  const
-    SDL_HITTEST_NORMAL             = TSDL_HitTestResult(0);  {**< Region is normal. No special properties. *}
-    SDL_HITTEST_DRAGGABLE          = TSDL_HitTestResult(1);  {**< Region can drag entire window. *}
-    SDL_HITTEST_RESIZE_TOPLEFT     = TSDL_HitTestResult(2);
-    SDL_HITTEST_RESIZE_TOP         = TSDL_HitTestResult(3);
-    SDL_HITTEST_RESIZE_TOPRIGHT    = TSDL_HitTestResult(4);
-    SDL_HITTEST_RESIZE_RIGHT       = TSDL_HitTestResult(5);
-    SDL_HITTEST_RESIZE_BOTTOMRIGHT = TSDL_HitTestResult(6);
-    SDL_HITTEST_RESIZE_BOTTOM      = TSDL_HitTestResult(7);
-    SDL_HITTEST_RESIZE_BOTTOMLEFT  = TSDL_HitTestResult(8);
-    SDL_HITTEST_RESIZE_LEFT        = TSDL_HitTestResult(9);
-
-{ Conv.: Important forward declaration of SDL_Window. }
 type
   PPSDL_Window = ^PSDL_Window;
   PSDL_Window = ^TSDL_Window;
-
-  {**
-    *  \brief Callback used for hit-testing.
-    *
-    *  \sa SDL_SetWindowHitTest
-    *}
-TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer): TSDL_HitTestResult; cdecl;
-
-{ ATTENTION Conv.:
-
-    The following declarations are from SDL_sysvideo.h.
-
-    Remark: The way SDL_video.h and SDL_sysvideo.h are intertwisted
-            it is best to keep them both in sdlvideo.inc because
-            Pascal has more strict rules regarding forward declarations.
-
-}
-
-  {* Define the SDL window-shaper structure *}
-  PSDL_WindowShaper = ^TSDL_WindowShaper;
-  TSDL_WindowShaper = record
-    {* The window associated with the shaper *}
-    window: PSDL_Window;
-
-    {* The user's specified coordinates for the window, for once we give it a shape. *}
-    userx,usery: cuint32;
-
-    {* The parameters for shape calculation. *}
-    mode: TSDL_WindowShapeMode;
-
-    {* Has this window been assigned a shape? *}
-    hasshape: TSDL_Bool;
-
-    driverdata: Pointer;
-  end;
-
- {* Define the SDL shape driver structure *}
-  PSDL_ShapeDriver = ^TSDL_ShapeDriver;
-  TSDL_ShapeDriver = record
-    CreateShaper: function(window: PSDL_Window): PSDL_WindowShaper; cdecl;
-    SetWindowShaper: function(shaper: PSDL_WindowShaper; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
-    ResizeWindowShape: function(window: PSDL_Window): cint; cdecl;
-  end;
-
-  PSDL_WindowUserData = ^TSDL_WindowUserData;
-  TSDL_WindowUserData = record
-    name: PAnsiChar;
-    data: Pointer;
-    next: PSDL_WindowUserData;
-  end;
-
-{ ATTENTION Conv.:
-
-    Everything below this comment is mostly from SDL_video.h.
-
-}
+  TSDL_Window = record end;
 
   {**
    *  The structure that defines a display mode
@@ -112,162 +26,13 @@ TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer)
     driverdata: Pointer;          {**< driver-specific data, initialize to 0 *}
   end;
 
-  {**
-   *  The type used to identify a window
-   *
-   *   SDL_CreateWindow()
-   *   SDL_CreateWindowFrom()
-   *   SDL_DestroyWindow()
-   *   SDL_GetWindowData()
-   *   SDL_GetWindowFlags()
-   *   SDL_GetWindowGrab()
-   *   SDL_GetWindowKeyboardGrab()
-   *   SDL_GetWindowMouseGrab()
-   *   SDL_GetWindowMouseRect()
-   *   SDL_GetWindowPosition()
-   *   SDL_GetWindowSize()
-   *   SDL_GetWindowTitle()
-   *   SDL_HideWindow()
-   *   SDL_MaximizeWindow()
-   *   SDL_MinimizeWindow()
-   *   SDL_RaiseWindow()
-   *   SDL_RestoreWindow()
-   *   SDL_SetWindowData()
-   *   SDL_SetWindowFullscreen()
-   *   SDL_SetWindowGrab()
-   *   SDL_SetWindowKeyboardGrab()
-   *   SDL_SetWindowMouseGrab()
-   *   SDL_SetWindowMouseRect()
-   *   SDL_SetWindowIcon()
-   *   SDL_SetWindowPosition()
-   *   SDL_SetWindowSize()
-   *   SDL_SetWindowBordered()
-   *   SDL_SetWindowTitle()
-   *   SDL_ShowWindow()
-   *}
-
-  { ATTENTION Conv.: TSDL_Window declaration from SDL_sysvideo.h. }
-  {* Define the SDL window structure, corresponding to toplevel windows *}
-  TSDL_Window = record
-    magic: Pointer;
-    id: cuint32;
-    title: PAnsiChar;
-    icon: PSDL_Surface;
-    x,y: cint;
-    w,h: cint;
-    min_w, min_h: cint;
-    max_w, max_h: cint;
-    flags: cuint32;
-    last_fullscreen_flags: cuint32;
-
-    {* Stored position and size for windowed mode * }
-    windowed: TSDL_Rect;
-
-    fullscreen_mode: TSDL_DisplayMode;
-
-    opacity: cfloat;
-
-    brightness: cfloat;
-    gamma: pcuint16;
-    saved_gamma: pcuint16;  {* (just offset into gamma) *}
-
-    surface: PSDL_Surface;
-    surface_valid: TSDL_Bool;
-
-    is_hiding: TSDL_Bool;
-    is_destroying: TSDL_Bool;
-    is_dropping: TSDL_Bool; {* drag/drop in progress, expecting SDL_SendDropComplete(). *}
-
-    shaper: PSDL_WindowShaper;
-
-    hit_test: TSDL_HitTest;
-    hit_test_data: Pointer;
-
-    data: PSDL_WindowUserData;
-
-    driverdata: Pointer;
-
-    prev: PSDL_Window;
-    next: PSDL_Window;
-  end;
-
-  function FULLSCREEN_VISIBLE(W: PSDL_Window): Variant;
-
-{ Functions from "sdl_shape.h" }
-
-   {**
-   *  Create a window that can be shaped with the specified position, dimensions, and flags.
-   *
-   *   title The title of the window, in UTF-8 encoding.
-   *   x     The x position of the window, ::SDL_WINDOWPOS_CENTERED, or
-   *               ::SDL_WINDOWPOS_UNDEFINED.
-   *   y     The y position of the window, ::SDL_WINDOWPOS_CENTERED, or
-   *               ::SDL_WINDOWPOS_UNDEFINED.
-   *   w     The width of the window.
-   *   h     The height of the window.
-   *   flags The flags for the window, a mask of SDL_WINDOW_BORDERLESS with any of the following:
-   *         SDL_WINDOW_OPENGL,     SDL_WINDOW_INPUT_GRABBED,
-   *         SDL_WINDOW_SHOWN,      SDL_WINDOW_RESIZABLE,
-   *         SDL_WINDOW_MAXIMIZED,  SDL_WINDOW_MINIMIZED,
-   *         SDL_WINDOW_BORDERLESS is always set, and SDL_WINDOW_FULLSCREEN is always unset.
-   *
-   *   The window created, or NULL if window creation failed.
-   *
-   *  SDL_DestroyWindow()
-   *}
-function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint; y: cuint; w: cuint; h: cuint; flags: cuint32): PSDL_Window; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateShapedWindow' {$ENDIF} {$ENDIF};
-
-  {**
-   * Return whether the given window is a shaped window.
-   *
-   *  window The window to query for being shaped.
-   *
-   *  SDL_TRUE if the window is a window that can be shaped, SDL_FALSE if the window is unshaped or NULL.
-   *  SDL_CreateShapedWindow
-   *}
-function SDL_IsShapedWindow(window: PSDL_Window): TSDL_Bool; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsShapedWindow' {$ENDIF} {$ENDIF};
-
-   {**
-   * Set the shape and parameters of a shaped window.
-   *
-   *  window The shaped window whose parameters should be set.
-   *  shape A surface encoding the desired shape for the window.
-   *  shape_mode The parameters to set for the shaped window.
-   *
-   *  0 on success, SDL_INVALID_SHAPE_ARGUMENT on invalid an invalid shape argument, or SDL_NONSHAPEABLE_WINDOW
-   *  if the SDL_Window* given does not reference a valid shaped window.
-   *
-   *  SDL_WindowShapeMode
-   *  SDL_GetShapedWindowMode.
-   *}
-function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowShape' {$ENDIF} {$ENDIF};
-
-  {**
-   * Get the shape parameters of a shaped window.
-   *
-   *  window The shaped window whose parameters should be retrieved.
-   *  shape_mode An empty shape-mode structure to fill, or NULL to check whether the window has a shape.
-   *
-   *  0 if the window has a shape and, provided shape_mode was not NULL, shape_mode has been filled with the mode
-   *  data, SDL_NONSHAPEABLE_WINDOW if the SDL_Window given is not a shaped window, or SDL_WINDOW_LACKS_SHAPE if
-   *  the SDL_Window* given is a shapeable window currently lacking a shape.
-   *
-   *  SDL_WindowShapeMode
-   *  SDL_SetWindowShape
-   *}
-function SDL_GetShapedWindowMode(window: PSDL_Window; shape_mode: TSDL_WindowShapeMode): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetShapedWindowMode' {$ENDIF} {$ENDIF};
-
 {**
  *  The flags on a window
  *
  *   SDL_GetWindowFlags()
  *}
 type
-  TSDL_WindowFlags = type cuint32;
+  TSDL_WindowFlags = type cuint;
 
 const
   SDL_WINDOW_FULLSCREEN    = TSDL_WindowFlags($00000001);      {**< fullscreen window *}
@@ -278,7 +43,7 @@ const
   SDL_WINDOW_RESIZABLE     = TSDL_WindowFlags($00000020);      {**< window can be resized *}
   SDL_WINDOW_MINIMIZED     = TSDL_WindowFlags($00000040);      {**< window is minimized *}
   SDL_WINDOW_MAXIMIZED     = TSDL_WindowFlags($00000080);      {**< window is maximized *}
-  SDL_WINDOW_INPUT_GRABBED = TSDL_WindowFlags($00000100);      {**< window has grabbed input focus *}
+  SDL_WINDOW_MOUSE_GRABBED = TSDL_WindowFlags($00000100);      {**< window has grabbed mouse input *}
   SDL_WINDOW_INPUT_FOCUS   = TSDL_WindowFlags($00000200);      {**< window has input focus *}
   SDL_WINDOW_MOUSE_FOCUS   = TSDL_WindowFlags($00000400);      {**< window has mouse focus *}
   SDL_WINDOW_FULLSCREEN_DESKTOP = TSDL_WindowFlags(SDL_WINDOW_FULLSCREEN or $00001000);
@@ -286,14 +51,17 @@ const
   SDL_WINDOW_ALLOW_HIGHDPI = TSDL_WindowFlags($00002000);      {**< window should be created in high-DPI mode if supported.
                                                    On macOS NSHighResolutionCapable must be set true in the
                                                    application's Info.plist for this to have any effect. *}
-  SDL_WINDOW_MOUSE_CAPTURE = TSDL_WindowFlags($00004000);      {**< window has mouse captured (unrelated to INPUT_GRABBED) *}
-  SDL_WINDOW_ALWAYS_ON_TOP = TSDL_WindowFlags($00008000);      {**< window should always be above others *}
-  SDL_WINDOW_SKIP_TASKBAR  = TSDL_WindowFlags($00010000);      {**< window should not be added to the taskbar *}
-  SDL_WINDOW_UTILITY       = TSDL_WindowFlags($00020000);      {**< window should be treated as a utility window *}
-  SDL_WINDOW_TOOLTIP       = TSDL_WindowFlags($00040000);      {**< window should be treated as a tooltip *}
-  SDL_WINDOW_POPUP_MENU    = TSDL_WindowFlags($00080000);      {**< window should be treated as a popup menu *}
-  SDL_WINDOW_VULKAN        = TSDL_WindowFlags($10000000);      {**< window usable for Vulkan surface *}
-  SDL_WINDOW_METAL         = TSDL_WindowFlags($20000000);      {**< window usable for Metal view *}
+  SDL_WINDOW_MOUSE_CAPTURE    = TSDL_WindowFlags($00004000);      {**< window has mouse captured (unrelated to MOUSE_GRABBED) *}
+  SDL_WINDOW_ALWAYS_ON_TOP    = TSDL_WindowFlags($00008000);      {**< window should always be above others *}
+  SDL_WINDOW_SKIP_TASKBAR     = TSDL_WindowFlags($00010000);      {**< window should not be added to the taskbar *}
+  SDL_WINDOW_UTILITY          = TSDL_WindowFlags($00020000);      {**< window should be treated as a utility window *}
+  SDL_WINDOW_TOOLTIP          = TSDL_WindowFlags($00040000);      {**< window should be treated as a tooltip *}
+  SDL_WINDOW_POPUP_MENU       = TSDL_WindowFlags($00080000);      {**< window should be treated as a popup menu *}
+  SDL_WINDOW_KEYBOARD_GRABBED = TSDL_WindowFlags($00100000);      {**< window has grabbed keyboard input *}
+  SDL_WINDOW_VULKAN           = TSDL_WindowFlags($10000000);      {**< window usable for Vulkan surface *}
+  SDL_WINDOW_METAL            = TSDL_WindowFlags($20000000);      {**< window usable for Metal view *}
+
+  SDL_WINDOW_INPUT_GRABBED = SDL_WINDOW_MOUSE_GRABBED; {**< equivalent to SDL_WINDOW_MOUSE_GRABBED for compatibility *}
 
   {**
   *  Used to indicate that you don't care what the window position is.
@@ -317,25 +85,27 @@ function SDL_WINDOWPOS_ISCENTERED(X: Variant): Variant;
    *}
 type
   PSDL_WindowEventID = ^TSDL_WindowEventID;
-  TSDL_WindowEventID = type DWord;
+  TSDL_WindowEventID = type cint;
 const
-  SDL_WINDOWEVENT_NONE = TSDL_WindowEventID(0);           {**< Never used *}
-  SDL_WINDOWEVENT_SHOWN = TSDL_WindowEventID(1);          {**< Window has been shown *}
-  SDL_WINDOWEVENT_HIDDEN = TSDL_WindowEventID(2);         {**< Window has been hidden *}
-  SDL_WINDOWEVENT_EXPOSED = TSDL_WindowEventID(3);        {**< Window has been exposed and should be redrawn *}
-  SDL_WINDOWEVENT_MOVED = TSDL_WindowEventID(4);          {**< Window has been moved to data1; data2 *}
-  SDL_WINDOWEVENT_RESIZED = TSDL_WindowEventID(5);        {**< Window has been resized to data1xdata2 *}
-  SDL_WINDOWEVENT_SIZE_CHANGED = TSDL_WindowEventID(6);   {**< The window size has changed; either as a result of an API call or through the system or user changing the window size. *}
-  SDL_WINDOWEVENT_MINIMIZED = TSDL_WindowEventID(7);      {**< Window has been minimized *}
-  SDL_WINDOWEVENT_MAXIMIZED = TSDL_WindowEventID(8);      {**< Window has been maximized *}
-  SDL_WINDOWEVENT_RESTORED = TSDL_WindowEventID(9);       {**< Window has been restored to normal size and position *}
-  SDL_WINDOWEVENT_ENTER = TSDL_WindowEventID(10);          {**< Window has gained mouse focus *}
-  SDL_WINDOWEVENT_LEAVE = TSDL_WindowEventID(11);          {**< Window has lost mouse focus *}
-  SDL_WINDOWEVENT_FOCUS_GAINED = TSDL_WindowEventID(12);   {**< Window has gained keyboard focus *}
-  SDL_WINDOWEVENT_FOCUS_LOST = TSDL_WindowEventID(13);     {**< Window has lost keyboard focus *}
-  SDL_WINDOWEVENT_CLOSE = TSDL_WindowEventID(14);          {**< The window manager requests that the window be closed *}
-  SDL_WINDOWEVENT_TAKE_FOCUS = TSDL_WindowEventID(15);     {**< Window is being offered a focus (should SetWindowInputFocus() on itself or a subwindow, or ignore) *}
-  SDL_WINDOWEVENT_HIT_TEST = TSDL_WindowEventID(16);       {**< Window had a hit test that wasn't SDL_HITTEST_NORMAL. *}
+  SDL_WINDOWEVENT_NONE            = TSDL_WindowEventID(0);   {**< Never used *}
+  SDL_WINDOWEVENT_SHOWN           = TSDL_WindowEventID(1);   {**< Window has been shown *}
+  SDL_WINDOWEVENT_HIDDEN          = TSDL_WindowEventID(2);   {**< Window has been hidden *}
+  SDL_WINDOWEVENT_EXPOSED         = TSDL_WindowEventID(3);   {**< Window has been exposed and should be redrawn *}
+  SDL_WINDOWEVENT_MOVED           = TSDL_WindowEventID(4);   {**< Window has been moved to data1; data2 *}
+  SDL_WINDOWEVENT_RESIZED         = TSDL_WindowEventID(5);   {**< Window has been resized to data1xdata2 *}
+  SDL_WINDOWEVENT_SIZE_CHANGED    = TSDL_WindowEventID(6);   {**< The window size has changed; either as a result of an API call or through the system or user changing the window size. *}
+  SDL_WINDOWEVENT_MINIMIZED       = TSDL_WindowEventID(7);   {**< Window has been minimized *}
+  SDL_WINDOWEVENT_MAXIMIZED       = TSDL_WindowEventID(8);   {**< Window has been maximized *}
+  SDL_WINDOWEVENT_RESTORED        = TSDL_WindowEventID(9);   {**< Window has been restored to normal size and position *}
+  SDL_WINDOWEVENT_ENTER           = TSDL_WindowEventID(10);  {**< Window has gained mouse focus *}
+  SDL_WINDOWEVENT_LEAVE           = TSDL_WindowEventID(11);  {**< Window has lost mouse focus *}
+  SDL_WINDOWEVENT_FOCUS_GAINED    = TSDL_WindowEventID(12);  {**< Window has gained keyboard focus *}
+  SDL_WINDOWEVENT_FOCUS_LOST      = TSDL_WindowEventID(13);  {**< Window has lost keyboard focus *}
+  SDL_WINDOWEVENT_CLOSE           = TSDL_WindowEventID(14);  {**< The window manager requests that the window be closed *}
+  SDL_WINDOWEVENT_TAKE_FOCUS      = TSDL_WindowEventID(15);  {**< Window is being offered a focus (should SetWindowInputFocus() on itself or a subwindow, or ignore) *}
+  SDL_WINDOWEVENT_HIT_TEST        = TSDL_WindowEventID(16);  {**< Window had a hit test that wasn't SDL_HITTEST_NORMAL. *}
+  SDL_WINDOWEVENT_ICCPROF_CHANGED = TSDL_WindowEventID(17);  {**< The ICC profile of the window's display has changed. *}
+  SDL_WINDOWEVENT_DISPLAY_CHANGED = TSDL_WindowEventID(18);  {**< Window has been moved to display data1. *}
 
 {**
  *  \brief Event subtype for display events
@@ -410,6 +180,7 @@ const
   SDL_GL_CONTEXT_RELEASE_BEHAVIOR         = TSDL_GLattr(24);
   SDL_GL_CONTEXT_RESET_NOTIFICATION       = TSDL_GLattr(25);
   SDL_GL_CONTEXT_NO_ERROR                 = TSDL_GLattr(26);
+  SDL_GL_FLOATBUFFERS                     = TSDL_GLattr(27);
 
 type
   TSDL_GLprofile = type Integer;
@@ -578,8 +349,8 @@ function SDL_GetDisplayDPI(displayIndex: cint; ddpi, hdpi, vdpi: pcfloat): cint;
  *
  *  \sa SDL_GetNumVideoDisplays()
  *}
-function SDL_DisplayOrientation(displayIndex: cint): TSDL_DisplayOrientation; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DisplayOrientation' {$ENDIF} {$ENDIF};
+function SDL_GetDisplayOrientation(displayIndex: cint): TSDL_DisplayOrientation; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetDisplayOrientation' {$ENDIF} {$ENDIF};
 
   {**
    *  Returns the number of available display modes.
@@ -643,6 +414,37 @@ function SDL_GetCurrentDisplayMode(displayIndex: cint; mode: PSDL_DisplayMode): 
 function SDL_GetClosestDisplayMode(displayIndex: cint; const mode: PSDL_DisplayMode; closest: PSDL_DisplayMode): PSDL_DisplayMode; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetClosestDisplayMode' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the index of the display containing a point
+ *
+ * \param point the point to query
+ * \returns the index of the display containing the point or a negative error
+ *          code on failure; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *
+ * \sa SDL_GetDisplayBounds
+ * \sa SDL_GetNumVideoDisplays
+ *}
+function SDL_GetPointDisplayIndex(const point: PSDL_Point): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPointDisplayIndex' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the index of the display primarily containing a rect
+ *
+ * \param rect the rect to query
+ * \returns the index of the display entirely containing the rect or closest
+ *          to the center of the rect on success or a negative error code on
+ *          failure; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.24.0.
+ *
+ * \sa SDL_GetDisplayBounds
+ * \sa SDL_GetNumVideoDisplays
+ *}
+function SDL_GetRectDisplayIndex(const rect: PSDL_Rect): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectDisplayIndex' {$ENDIF} {$ENDIF};
+
   {**
    *  Get the display index associated with a window.
    *  
@@ -680,6 +482,21 @@ function SDL_SetWindowDisplayMode(window: PSDL_Window; const mode: PSDL_DisplayM
 
 function SDL_GetWindowDisplayMode(window: PSDL_Window; mode: PSDL_DisplayMode): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowDisplayMode' {$ENDIF} {$ENDIF};
+
+{**
+ * Get the raw ICC profile data for the screen the window is currently on.
+ *
+ * Data returned should be freed with SDL_free().
+ *
+ * \param window the window to query
+ * \param size the size of the ICC profile
+ * \returns the raw ICC profile data on success or NIL on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.18.
+ *}
+function SDL_GetWindowICCProfile(window: PSDL_Window; size: pcsize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowICCProfile' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the pixel format associated with the window.
@@ -993,6 +810,23 @@ procedure SDL_SetWindowBordered(window: PSDL_Window; bordered: TSDL_Bool); cdecl
 procedure SDL_SetWindowResizable(window: PSDL_Window; resizable: TSDL_Bool); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowResizable' {$ENDIF} {$ENDIF};
 
+{**
+ * Set the window to always be above the others.
+ *
+ * This will add or remove the window's `SDL_WINDOW_ALWAYS_ON_TOP` flag. This
+ * will bring the window to the front and keep the window above the rest.
+ *
+ * \param window The window of which to change the always on top state
+ * \param on_top SDL_TRUE to set the window always on top, SDL_FALSE to
+ *               disable
+ *
+ * \since This function is available since SDL 2.0.16.
+ *
+ * \sa SDL_GetWindowFlags
+ *}
+procedure SDL_SetWindowAlwaysOnTop(window: PSDL_Window; on_top: TSDL_Bool); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowAlwaysOnTop' {$ENDIF} {$ENDIF};
+
   {**
    *  Show a window.
    *  
@@ -1120,17 +954,36 @@ procedure SDL_SetWindowGrab(window: PSDL_Window; grabbed: TSDL_Bool); cdecl;
 
 function SDL_GetWindowGrab(window: PSDL_Window): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowGrab' {$ENDIF} {$ENDIF};
-  
-  {**
-   *  Set a window's keyboard grab mode.
-   *
-   *  window The window for which the keyboard grab mode should be set.
-   *  rect This is SDL_TRUE to grab keyboard, and SDL_FALSE to release.
-   *
-   *  SDL_GetWindowKeyboardGrab()
-   *}
 
-procedure SDL_SetWindowKeyboardGrab(window: PSDL_Window; rect: PSDL_Rect); cdecl;
+{**
+ * Set a window's keyboard grab mode.
+ *
+ * Keyboard grab enables capture of system keyboard shortcuts like Alt+Tab or
+ * the Meta/Super key. Note that not all system keyboard shortcuts can be
+ * captured by applications (one example is Ctrl+Alt+Del on Windows).
+ *
+ * This is primarily intended for specialized applications such as VNC clients
+ * or VM frontends. Normal games should not use keyboard grab.
+ *
+ * When keyboard grab is enabled, SDL will continue to handle Alt+Tab when the
+ * window is full-screen to ensure the user is not trapped in your
+ * application. If you have a custom keyboard shortcut to exit fullscreen
+ * mode, you may suppress this behavior with
+ * `SDL_HINT_ALLOW_ALT_TAB_WHILE_GRABBED`.
+ *
+ * If the caller enables a grab while another window is currently grabbed, the
+ * other window loses its grab in favor of the caller's window.
+ *
+ * \param window The window for which the keyboard grab mode should be set.
+ * \param grabbed This is SDL_TRUE to grab keyboard, and SDL_FALSE to release.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *
+ * \sa SDL_GetWindowKeyboardGrab
+ * \sa SDL_SetWindowMouseGrab
+ * \sa SDL_SetWindowGrab
+ *}
+procedure SDL_SetWindowKeyboardGrab(window: PSDL_Window; grabbed: TSDL_Bool); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowKeyboardGrab' {$ENDIF} {$ENDIF};
 
   {**
@@ -1318,12 +1171,33 @@ function SDL_SetWindowGammaRamp(window: PSDL_Window; const red: pcuint16; const 
 function SDL_GetWindowGammaRamp(window: PSDL_Window; red: pcuint16; green: pcuint16; blue: pcuint16): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowGammaRamp' {$ENDIF} {$ENDIF};
 
-  { ATTENTION Conv.:
+{**
+ *  \brief Possible return values from the SDL_HitTest callback.
+ *
+ *  \sa SDL_HitTest
+ *}
+type
+  TSDL_HitTestResult = type Integer;
 
-      The SDL_HitTestResult-Enum. and the SDL_HitTest func. are shifted before
-      TSDL_Window decl. because it need this.
+const
+  SDL_HITTEST_NORMAL             = TSDL_HitTestResult(0);  {**< Region is normal. No special properties. *}
+  SDL_HITTEST_DRAGGABLE          = TSDL_HitTestResult(1);  {**< Region can drag entire window. *}
+  SDL_HITTEST_RESIZE_TOPLEFT     = TSDL_HitTestResult(2);
+  SDL_HITTEST_RESIZE_TOP         = TSDL_HitTestResult(3);
+  SDL_HITTEST_RESIZE_TOPRIGHT    = TSDL_HitTestResult(4);
+  SDL_HITTEST_RESIZE_RIGHT       = TSDL_HitTestResult(5);
+  SDL_HITTEST_RESIZE_BOTTOMRIGHT = TSDL_HitTestResult(6);
+  SDL_HITTEST_RESIZE_BOTTOM      = TSDL_HitTestResult(7);
+  SDL_HITTEST_RESIZE_BOTTOMLEFT  = TSDL_HitTestResult(8);
+  SDL_HITTEST_RESIZE_LEFT        = TSDL_HitTestResult(9);
 
-  }
+  {**
+    *  \brief Callback used for hit-testing.
+    *
+    *  \sa SDL_SetWindowHitTest
+    *}
+type
+  TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer): TSDL_HitTestResult; cdecl;
 
   {**
    *  \brief Provide a callback that decides if a window region has special properties.
