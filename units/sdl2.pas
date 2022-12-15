@@ -107,6 +107,7 @@ interface
     uses
       {$IFDEF FPC}
       ctypes,
+      UnixType,
       {$ENDIF}
       {$IFDEF DARWIN}
       CocoaAll;
@@ -118,7 +119,8 @@ interface
 
   {$IF DEFINED(UNIX) AND DEFINED(ANDROID) AND DEFINED(FPC)}
     uses
-      ctypes;
+      ctypes,
+      UnixType;
   {$ENDIF}
 
 const
@@ -151,6 +153,7 @@ const
   {$ENDIF}
 
 
+{$DEFINE WANT_CWCHAR_T}
 {$I ctypes.inc}                  // C data types
 
                                  {SDL2 version of the represented header file}
@@ -184,6 +187,7 @@ const
 {$I sdlsensor.inc}               // 2.26.0
 {$I sdlgamecontroller.inc}       // 2.24.0
 {$I sdlhaptic.inc}
+{$I sdlhidapi.inc}               // 2.0.18
 {$I sdltouch.inc}                // 2.24.0
 {$I sdlgesture.inc}
 {$I sdlsyswm.inc}

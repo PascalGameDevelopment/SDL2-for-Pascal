@@ -44,6 +44,10 @@ type
   cuint16 = Word;
   {$EXTERNALSYM cuint16}
 
+  pcushort = ^cushort;
+  cushort = Word;
+  {$EXTERNALSYM cushort}
+
   pcint32 = ^cint32;
   cint32 = LongInt;
   {$EXTERNALSYM cint32}
@@ -124,3 +128,31 @@ type
 
   ppcuint8 = ^pcuint8;
 
+  {$IFDEF WANT_CWCHAR_T}
+    (* wchar_t is the "wide character" type of the C language.
+     * The size of this type is platform- and compiler-dependent.
+     *
+     * While FPC does have it's own "wide character" type, System.WideChar,
+     * that one is defined as always being 16-bits, so we can't re-use it here.
+     *
+     * When using FPC on Unices, the UnixType unit provides a wchar_t definition.
+     *
+     * On other systems/compiler combos, let's just go
+     * by what the CPP reference wiki claims, i.e:
+     * - wchar_t is 16-bits on Windows
+     * - wchar_t is 32-bits on Linux "and many other non-Windows systems"
+     *
+     * See: https://en.cppreference.com/w/cpp/language/types#Character_types
+     *)
+    {$IF DEFINED(FPC) AND DEFINED(UNIX)}
+      cwchar_t = UnixType.wchar_t;
+    {$ELSE}
+      {$IF DEFINED(WIN32) OR DEFINED(WIN64)}
+        cwchar_t = cuint16;
+      {$ELSE}
+        cwchar_t = cuint32;
+      {$ENDIF}
+    {$ENDIF}
+    {$EXTERNALSYM cwchar_t}
+    pcwchar_t = ^cwchar_t;
+  {$ENDIF}
