@@ -1,0 +1,44 @@
+name: Build and deploy documentation
+
+on:
+  push:
+    branches: ["master"]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Install PasDoc
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          sudo apt update
+          sudo apt install -y pasdoc
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build documentation
+        run: |
+          mkdir gh-pages/
+          pasdoc --output gh-pages/ --format html --ignore-leading '*' --sort constants,functions,types,structures --define FPC --include units/ units/*.pas 
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'gh-pages/'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
