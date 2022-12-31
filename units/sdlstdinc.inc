@@ -114,3 +114,8 @@ procedure SDL_free(mem: Pointer); cdecl;
  *)
 function SDL_iconv_string(tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize_t): PAnsiChar; cdecl
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_string' {$ENDIF} {$ENDIF};
+
+// These are macros in the original C headers, we will reimplement them as simple Pascal functions.
+function SDL_iconv_utf8_locale(str: PAnsiChar): PAnsiChar; cdecl;
+function SDL_iconv_utf8_ucs2(str: PAnsiChar): pcUint16; cdecl;
+function SDL_iconv_utf8_ucs4(str: PAnsiChar): pcUint32; cdecl;
