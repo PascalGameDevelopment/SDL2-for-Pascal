@@ -119,3 +119,23 @@ function SDL_iconv_string(tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize
 function SDL_iconv_utf8_locale(str: PAnsiChar): PAnsiChar; cdecl;
 function SDL_iconv_utf8_ucs2(str: PAnsiChar): pcUint16; cdecl;
 function SDL_iconv_utf8_ucs4(str: PAnsiChar): pcUint32; cdecl;
+
+(* The SDL implementation of iconv() returns these error codes *)
+const
+  SDL_ICONV_ERROR  = csize_t(-1);
+  SDL_ICONV_E2BIG  = csize_t(-2);
+  SDL_ICONV_EILSEQ = csize_t(-3);
+  SDL_ICONV_EINVAL = csize_t(-4);
+
+type
+  TSDL_iconv = record end;
+  PSDL_iconv = ^TSDL_iconv;
+
+function SDL_iconv_open(tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_open' {$ENDIF} {$ENDIF};
+
+function SDL_iconv_close(cd: PSDL_iconv): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_close' {$ENDIF} {$ENDIF};
+
+function SDL_iconv(cd: PSDL_iconv; inbuf: PPAnsiChar; inbytesleft: pcsize_t; outbuf: PPAnsiChar; outbytesleft: pcsize_t): csize_t; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv' {$ENDIF} {$ENDIF};
