@@ -112,13 +112,13 @@ procedure SDL_free(mem: Pointer); cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *)
-function SDL_iconv_string(tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize_t): PAnsiChar; cdecl
+function SDL_iconv_string(Const tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize_t): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_string' {$ENDIF} {$ENDIF};
 
 // These are macros in the original C headers, we will reimplement them as simple Pascal functions.
-function SDL_iconv_utf8_locale(str: PAnsiChar): PAnsiChar; cdecl;
-function SDL_iconv_utf8_ucs2(str: PAnsiChar): pcUint16; cdecl;
-function SDL_iconv_utf8_ucs4(str: PAnsiChar): pcUint32; cdecl;
+function SDL_iconv_utf8_locale(Const str: PAnsiChar): PAnsiChar; cdecl;
+function SDL_iconv_utf8_ucs2(Const str: PAnsiChar): pcUint16; cdecl;
+function SDL_iconv_utf8_ucs4(Const str: PAnsiChar): pcUint32; cdecl;
 
 (* The SDL implementation of iconv() returns these error codes *)
 const
@@ -131,11 +131,11 @@ type
   TSDL_iconv = record end;
   PSDL_iconv = ^TSDL_iconv;
 
-function SDL_iconv_open(tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
+function SDL_iconv_open(Const tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_open' {$ENDIF} {$ENDIF};
 
 function SDL_iconv_close(cd: PSDL_iconv): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_close' {$ENDIF} {$ENDIF};
 
-function SDL_iconv(cd: PSDL_iconv; inbuf: PPAnsiChar; inbytesleft: pcsize_t; outbuf: PPAnsiChar; outbytesleft: pcsize_t): csize_t; cdecl;
+function SDL_iconv(cd: PSDL_iconv; Const inbuf: PPAnsiChar; inbytesleft: pcsize_t; outbuf: PPAnsiChar; outbytesleft: pcsize_t): csize_t; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv' {$ENDIF} {$ENDIF};

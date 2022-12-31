@@ -432,17 +432,17 @@ end;
 // from "sdl_stdinc.h"
 
 // Note: We're using FPC's Strings.strlen() here, not SDL_strlen().
-function SDL_iconv_utf8_locale(str: PAnsiChar): PAnsiChar; cdecl;
+function SDL_iconv_utf8_locale(Const str: PAnsiChar): PAnsiChar; cdecl;
 begin
   Result := SDL_iconv_string('', 'UTF-8', str, Strings.strlen(str)+1)
 end;
 
-function SDL_iconv_utf8_ucs2(str: PAnsiChar): pcUint16; cdecl;
+function SDL_iconv_utf8_ucs2(Const str: PAnsiChar): pcUint16; cdecl;
 begin
 	Result := pcUint16(SDL_iconv_string('UCS-2-INTERNAL', 'UTF-8', str, Strings.strlen(str)+1))
 end;
 
-function SDL_iconv_utf8_ucs4(str: PAnsiChar): pcUint32; cdecl;
+function SDL_iconv_utf8_ucs4(Const str: PAnsiChar): pcUint32; cdecl;
 begin
 	Result := pcUint32(SDL_iconv_string('UCS-4-INTERNAL', 'UTF-8', str, Strings.strlen(str)+1))
 end;
