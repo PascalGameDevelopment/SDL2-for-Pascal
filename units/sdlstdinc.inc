@@ -105,3 +105,12 @@ function SDL_realloc(mem: Pointer; size: csize_t): Pointer; cdecl;
  *)
 procedure SDL_free(mem: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_free' {$ENDIF} {$ENDIF};
+
+(**
+ * This function converts a string between encodings in one pass, returning a
+ * string that must be freed with SDL_free(), or NIL on error.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *)
+function SDL_iconv_string(tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize_t): PAnsiChar; cdecl
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_string' {$ENDIF} {$ENDIF};
