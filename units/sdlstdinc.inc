@@ -31,6 +31,20 @@ const
   SDL_MAX_UINT32 = High(cuint32);
   SDL_MIN_UINT32 = Low(cuint32);
 
+  {$IFDEF Has_Int64}
+    SDL_MAX_SINT64 = High(cint64);
+    SDL_MIN_SINT64 = Low(cint64);
+
+    SDL_MAX_UINT64 = High(cuint64);
+    SDL_MIN_UINT64 = Low(cuint64);
+  {$ELSE}
+    SDL_MAX_SINT64: cuint64 = (hi: SDL_MAX_SINT32; lo: SDL_MAX_UINT32);
+    SDL_MIN_SINT64: cuint64 = (hi: SDL_MIN_SINT32; lo: 0);
+
+    SDL_MAX_UINT64: cuint64 = (hi: SDL_MAX_UINT32; lo: SDL_MAX_UINT32);
+    SDL_MIN_UINT64: cuint64 = (hi: 0;              lo: 0);
+  {$ENDIF}
+
   SDL_FLT_EPSILON = cfloat(1.1920928955078125e-07);
 
 type
