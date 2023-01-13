@@ -13,6 +13,38 @@ const
   SDL_FALSE = TSDL_Bool(0);
   SDL_TRUE  = TSDL_Bool(1);
 
+  SDL_MAX_SINT8 = High(cint8);
+  SDL_MIN_SINT8 = Low(cint8);
+
+  SDL_MAX_UINT8 = High(cuint8);
+  SDL_MIN_UINT8 = Low(cuint8);
+
+  SDL_MAX_SINT16 = High(cint16);
+  SDL_MIN_SINT16 = Low(cint16);
+
+  SDL_MAX_UINT16 = High(cuint16);
+  SDL_MIN_UINT16 = Low(cuint16);
+
+  SDL_MAX_SINT32 = High(cint32);
+  SDL_MIN_SINT32 = Low(cint32);
+
+  SDL_MAX_UINT32 = High(cuint32);
+  SDL_MIN_UINT32 = Low(cuint32);
+
+  {$IFDEF Has_Int64}
+    SDL_MAX_SINT64 = High(cint64);
+    SDL_MIN_SINT64 = Low(cint64);
+
+    SDL_MAX_UINT64 = High(cuint64);
+    SDL_MIN_UINT64 = Low(cuint64);
+  {$ELSE}
+    SDL_MAX_SINT64: cuint64 = (hi: SDL_MAX_SINT32; lo: SDL_MAX_UINT32);
+    SDL_MIN_SINT64: cuint64 = (hi: SDL_MIN_SINT32; lo: 0);
+
+    SDL_MAX_UINT64: cuint64 = (hi: SDL_MAX_UINT32; lo: SDL_MAX_UINT32);
+    SDL_MIN_UINT64: cuint64 = (hi: 0;              lo: 0);
+  {$ENDIF}
+
   SDL_FLT_EPSILON = cfloat(1.1920928955078125e-07);
 
 type
