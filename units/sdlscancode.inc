@@ -364,7 +364,31 @@ const
   SDL_SCANCODE_APP1 = TSDL_ScanCode(283);
   SDL_SCANCODE_APP2 = TSDL_ScanCode(284);
 
-  {*Walther keys*}
+  {**
+   *  \name Usage page 0x0C (additional media keys)
+   *
+   *  These values are mapped from usage page 0x0C (USB consumer page).
+   *}
+
+   SDL_SCANCODE_AUDIOREWIND = TSDL_ScanCode(285);
+   SDL_SCANCODE_AUDIOFASTFORWARD = TSDL_ScanCode(286);
+
+  {**
+   *  \name Mobile keys
+   *
+   *  These are values that are often used on mobile phones.
+   *}
+
+  SDL_SCANCODE_SOFTLEFT = TSDL_ScanCode(287); {**< Usually situated below the display on phones and
+                                      used as a multi-function feature key for selecting
+                                      a software defined function shown on the bottom left
+                                      of the display. *}
+  SDL_SCANCODE_SOFTRIGHT = TSDL_ScanCode(288); {**< Usually situated below the display on phones and
+                                     used as a multi-function feature key for selecting
+                                     a software defined function shown on the bottom right
+                                     of the display. *}
+  SDL_SCANCODE_CALL = TSDL_ScanCode(289); {**< Used for accepting phone calls. *}
+  SDL_SCANCODE_ENDCALL = TSDL_ScanCode(290); {**< Used for rejecting phone calls. *}
 
   {* Add any other keys here. *}
 
