@@ -304,10 +304,6 @@ const
 const
   SDL_HAPTIC_SPHERICAL = 2;
 
-  {*Direction encodings*}
-
-  {*Haptic features*}
-
   {*
    * Misc defines.
    *}
