@@ -314,3 +314,5 @@ const
   KMOD_SHIFT = KMOD_LSHIFT or KMOD_RSHIFT;
   KMOD_ALT   = KMOD_LALT   or KMOD_RALT;
   KMOD_GUI   = KMOD_LGUI   or KMOD_RGUI;
+
+  KMOD_RESERVED = KMOD_SCROLL; {* This is for source-level compatibility with SDL 2.0.0. *}
