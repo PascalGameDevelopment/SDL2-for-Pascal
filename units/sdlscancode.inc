@@ -227,11 +227,11 @@ const
   SDL_SCANCODE_INTERNATIONAL7 = TSDL_ScanCode(141);
   SDL_SCANCODE_INTERNATIONAL8 = TSDL_ScanCode(142);
   SDL_SCANCODE_INTERNATIONAL9 = TSDL_ScanCode(143);
-  SDL_SCANCODE_LANG1 = TSDL_ScanCode(144); {**< Hangul{English toggle *}
+  SDL_SCANCODE_LANG1 = TSDL_ScanCode(144); {**< Hangul/English toggle *}
   SDL_SCANCODE_LANG2 = TSDL_ScanCode(145); {**< Hanja conversion *}
   SDL_SCANCODE_LANG3 = TSDL_ScanCode(146); {**< Katakana *}
   SDL_SCANCODE_LANG4 = TSDL_ScanCode(147); {**< Hiragana *}
-  SDL_SCANCODE_LANG5 = TSDL_ScanCode(148); {**< Zenkaku{Hankaku *}
+  SDL_SCANCODE_LANG5 = TSDL_ScanCode(148); {**< Zenkaku/Hankaku *}
   SDL_SCANCODE_LANG6 = TSDL_ScanCode(149); {**< reserved *}
   SDL_SCANCODE_LANG7 = TSDL_ScanCode(150); {**< reserved *}
   SDL_SCANCODE_LANG8 = TSDL_ScanCode(151); {**< reserved *}
