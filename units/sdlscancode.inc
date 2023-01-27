@@ -353,8 +353,8 @@ const
 
   SDL_SCANCODE_BRIGHTNESSDOWN = TSDL_ScanCode(275);
   SDL_SCANCODE_BRIGHTNESSUP = TSDL_ScanCode(276);
-  SDL_SCANCODE_DISPLAYSWITCH = TSDL_ScanCode(277); {**< display mirroring{dual display
-                                         switch; video mode switch *}
+  SDL_SCANCODE_DISPLAYSWITCH = TSDL_ScanCode(277); {**< display mirroring/dual display
+                                                        switch; video mode switch *}
   SDL_SCANCODE_KBDILLUMTOGGLE = TSDL_ScanCode(278);
   SDL_SCANCODE_KBDILLUMDOWN = TSDL_ScanCode(279);
   SDL_SCANCODE_KBDILLUMUP = TSDL_ScanCode(280);
