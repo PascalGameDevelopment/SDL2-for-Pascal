@@ -392,8 +392,8 @@ const
 
   {* Add any other keys here. *}
 
-  SDL_NUM_SCANCODES = 512; {**< not a key, just marks the number of scancodes
-                               for array bounds *}
+  SDL_NUM_SCANCODES = TSDL_ScanCode(512); {**< not a key, just marks the number of scancodes
+                                               for array bounds *}
 
   //from "sdl_keycode.h"
 
