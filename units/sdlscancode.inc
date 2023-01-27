@@ -12,7 +12,8 @@
    *}
 type
   PSDL_ScanCode = ^TSDL_ScanCode;
-  TSDL_ScanCode = type DWord;
+  TSDL_ScanCode = type cint;
+
 const
   SDL_SCANCODE_UNKNOWN = TSDL_ScanCode(0);
 
