@@ -671,8 +671,8 @@ type
 type
   TSDL_HapticCustom = record
     {* Header *}
-    _type: cuint16;                    {**< SDL_HAPTIC_CUSTOM *}
-    direction: TSDL_HapticDirection;  {**< Direction of the effect. *}
+    type_: cuint16;                    {**< SDL_HAPTIC_CUSTOM *}
+    direction: TSDL_HapticDirection;   {**< Direction of the effect. *}
 
     {* Replay *}
     length: cuint32;                   {**< Duration of the effect. *}
