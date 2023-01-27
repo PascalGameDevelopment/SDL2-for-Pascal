@@ -310,8 +310,6 @@ const
                                *   by any of the above; but since there's a 
                                *   special KMOD_MODE for it I'm adding it here
                                *}
-    
-  {*Usage page $07*}
 
   {**
      *  \name Usage page 0x0C
@@ -342,8 +340,6 @@ const
   SDL_SCANCODE_AC_STOP = TSDL_ScanCode(272);
   SDL_SCANCODE_AC_REFRESH = TSDL_ScanCode(273);
   SDL_SCANCODE_AC_BOOKMARKS = TSDL_ScanCode(274);
-
-  {*Usage page $0C*}
 
   {**
    *  Walther keys
