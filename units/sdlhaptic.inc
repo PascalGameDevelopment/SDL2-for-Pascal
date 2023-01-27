@@ -437,8 +437,8 @@ type
 type
   TSDL_HapticConstant = record
     {* Header *}
-    _type: cuint16;                   {**< SDL_HAPTIC_CONSTANT *}
-    direction: TSDL_HapticDirection; {**< Direction of the effect. *}
+    type_: cuint16;                   {**< SDL_HAPTIC_CONSTANT *}
+    direction: TSDL_HapticDirection;  {**< Direction of the effect. *}
 
     {* Replay *}
     length: cuint32;          {**< Duration of the effect. *}
@@ -449,7 +449,7 @@ type
     interval: cuint16;        {**< How soon it can be triggered again after button. *}
 
     {* Constant *}
-    level: cint16;           {**< Strength of the constant effect. *}
+    level: cint16;            {**< Strength of the constant effect. *}
 
     {* Envelope *}
     attack_length: cuint16;   {**< Duration of the attack. *}
