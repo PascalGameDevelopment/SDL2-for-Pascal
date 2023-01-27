@@ -304,6 +304,15 @@ const
 const
   SDL_HAPTIC_SPHERICAL = 2;
 
+  {**
+   *  \brief Use this value to play an effect on the steering wheel axis. This
+   *  provides better compatibility across platforms and devices as SDL will guess
+   *  the correct axis.
+   *  \sa SDL_HapticDirection
+   *}
+const
+  SDL_HAPTIC_STEERING_AXIS = 3;
+
   {*
    * Misc defines.
    *}
