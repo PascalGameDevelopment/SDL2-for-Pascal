@@ -323,8 +323,7 @@ const
    *  SDL_HapticRunEffect
    *}
 const
-  //SDL_HAPTIC_INFINITY = 4294967295U;
-  SDL_HAPTIC_INFINITY = 4294967295; //right?!
+  SDL_HAPTIC_INFINITY = 4294967295; //  C: 4294967295U
 
   {**
    *   Structure that represents a haptic direction.
