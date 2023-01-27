@@ -631,6 +631,31 @@ type
   end;
 
   {**
+   * \brief A structure containing a template for a Left/Right effect.
+   *
+   * This struct is exclusively for the ::SDL_HAPTIC_LEFTRIGHT effect.
+   *
+   * The Left/Right effect is used to explicitly control the large and small
+   * motors, commonly found in modern game controllers. The small (right) motor
+   * is high frequency, and the large (left) motor is low frequency.
+   *
+   * \sa SDL_HAPTIC_LEFTRIGHT
+   * \sa SDL_HapticEffect
+   *}
+type
+  TSDL_HapticLeftRight = record
+    {* Header *}
+    type_: cuint16;              {**< ::SDL_HAPTIC_LEFTRIGHT *}
+
+    {* Replay *}
+    length: cuint32;             {**< Duration of the effect in milliseconds. *}
+
+    {* Rumble *}
+    large_magnitude: cuint16;    {**< Control of the large controller motor. *}
+    small_magnitude: cuint16;    {**< Control of the small controller motor. *}
+  end;
+
+  {**
    *   A structure containing a template for the ::SDL_HAPTIC_CUSTOM effect.
    *
    *  A custom force feedback effect is much like a periodic effect, where the
