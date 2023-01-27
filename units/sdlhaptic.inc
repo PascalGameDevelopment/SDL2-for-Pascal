@@ -80,13 +80,6 @@
  *    SDL_HapticClose(haptic);
  *
  *    return 0; // Success
- *
- *
- *
- * You can also find out more information on my blog:
- * http://bobbens.dyndns.org/journal/2010/sdl_haptic/
- *
- *  Edgar Simo Serra
  *}
 
   {**
