@@ -217,7 +217,8 @@ const
   SDL_SCANCODE_KP_COMMA = TSDL_ScanCode(133);
   SDL_SCANCODE_KP_EQUALSAS400 = TSDL_ScanCode(134);
 
-  SDL_SCANCODE_INTERNATIONAL1 = TSDL_ScanCode(135); {**< used on Asian keyboards; see footnotes in USB doc *}
+  SDL_SCANCODE_INTERNATIONAL1 = TSDL_ScanCode(135); {**< used on Asian keyboards; see
+                                                         footnotes in USB doc *}
   SDL_SCANCODE_INTERNATIONAL2 = TSDL_ScanCode(136);
   SDL_SCANCODE_INTERNATIONAL3 = TSDL_ScanCode(137); {**< Yen *}
   SDL_SCANCODE_INTERNATIONAL4 = TSDL_ScanCode(138);
