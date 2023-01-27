@@ -571,9 +571,9 @@ type
 type
   TSDL_HapticCondition = record
     {* Header *}
-    _type: cuint16;                    {**< SDL_HAPTIC_SPRING, SDL_HAPTIC_DAMPER,
+    type_: cuint16;                    {**< SDL_HAPTIC_SPRING, SDL_HAPTIC_DAMPER,
                                            SDL_HAPTIC_INERTIA or SDL_HAPTIC_FRICTION *}
-    direction: TSDL_HapticDirection;  {**< Direction of the effect - Not used ATM. *}
+    direction: TSDL_HapticDirection;   {**< Direction of the effect - Not used ATM. *}
 
     {* Replay *}
     length: cuint32;                   {**< Duration of the effect. *}
@@ -586,10 +586,10 @@ type
     {* Condition *}
     right_sat: array[0..2] of cuint16; {**< Level when joystick is to the positive side. *}
     left_sat: array[0..2] of cuint16;  {**< Level when joystick is to the negative side. *}
-    right_coeff: array[0..2] of cint16;  {**< How fast to increase the force towards the positive side. *}
-    left_coeff: array[0..2] of cint16;   {**< How fast to increase the force towards the negative side. *}
-    deadband: array[0..2] of cuint16;     {**< Size of the dead zone. *}
-    center: array[0..2] of cint16;       {**< Position of the dead zone. *}
+    right_coeff: array[0..2] of cint16;{**< How fast to increase the force towards the positive side. *}
+    left_coeff: array[0..2] of cint16; {**< How fast to increase the force towards the negative side. *}
+    deadband: array[0..2] of cuint16;  {**< Size of the dead zone. *}
+    center: array[0..2] of cint16;     {**< Position of the dead zone. *}
   end;
 
   {**
