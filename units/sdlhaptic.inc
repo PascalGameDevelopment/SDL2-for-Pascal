@@ -608,8 +608,8 @@ type
 type
   TSDL_HapticRamp = record
     {* Header *}
-    _type: cuint16;                    {**< SDL_HAPTIC_RAMP *}
-    direction: TSDL_HapticDirection;  {**< Direction of the effect. *}
+    type_: cuint16;                    {**< SDL_HAPTIC_RAMP *}
+    direction: TSDL_HapticDirection;   {**< Direction of the effect. *}
 
     {* Replay *}
     length: cuint32;                   {**< Duration of the effect. *}
@@ -620,8 +620,8 @@ type
     interval: cuint16;                 {**< How soon it can be triggered again after button. *}
 
     {* Ramp *}
-    start: cint16;                    {**< Beginning strength level. *}
-    _end: cint16;                     {**< Ending strength level. *}
+    start: cint16;                     {**< Beginning strength level. *}
+    end_: cint16;                      {**< Ending strength level. *}
 
     {* Envelope *}
     attack_length: cuint16;            {**< Duration of the attack. *}
