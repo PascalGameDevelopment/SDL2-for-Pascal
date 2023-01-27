@@ -133,7 +133,13 @@ const
    *   SDL_HapticPeriodic
    *}
 const
-  SDL_HAPTIC_SQUARE   = (1 shl 2);
+  SDL_HAPTIC_LEFTRIGHT   = (1 shl 2);
+
+  { !!! FIXME: put this back when we have more bits in 2.1 }
+  { #define SDL_HAPTIC_SQUARE     (1<<2) }
+  SDL_HAPTIC_SQUARE   = (1 shl 2); // SDL2-For-Pascal: Out-commented in C code.
+                                   //                  Why not keeping it for
+                                   //                  compatibility here?
 
   {**
    *   Triangle wave effect supported.
