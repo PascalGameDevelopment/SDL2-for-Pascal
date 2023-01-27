@@ -518,7 +518,7 @@ type
 type
   TSDL_HapticPeriodic = record
     { Header *}
-    _type: cuint16;        {**< SDL_HAPTIC_SINE, SDL_HAPTIC_SQUARE,
+    type_: cuint16;            {**< SDL_HAPTIC_SINE, SDL_HAPTIC_SQUARE,
                                SDL_HAPTIC_TRIANGLE, SDL_HAPTIC_SAWTOOTHUP or
                                SDL_HAPTIC_SAWTOOTHDOWN *}
     direction: TSDL_HapticDirection;  {**< Direction of the effect. *}
@@ -533,8 +533,8 @@ type
 
     {* Periodic *}
     period: cuint16;          {**< Period of the wave. *}
-    magnitude: cint16;       {**< Peak value. *}
-    offset: cint16;          {**< Mean value of the wave. *}
+    magnitude: cint16;        {**< Peak value. *}
+    offset: cint16;           {**< Mean value of the wave. *}
     phase: cuint16;           {**< Horizontal shift given by hundredth of a cycle. *}
 
     {* Envelope *}
