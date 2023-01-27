@@ -17,6 +17,8 @@ type
 
 const
   SDLK_SCANCODE_MASK = 1 shl 30;
+  //#define SDL_SCANCODE_TO_KEYCODE(X)  (X | SDLK_SCANCODE_MASK)
+  //SDL2-for-Pascal: Not translated, see comment about this macro below.
 
   SDLK_UNKNOWN = TSDL_KeyCode(0);
 
@@ -92,6 +94,12 @@ const
   SDLK_x = TSDL_KeyCode('x');
   SDLK_y = TSDL_KeyCode('y');
   SDLK_z = TSDL_KeyCode('z');
+
+  {SDL2-for-Pascal: In C the following scancodes are or'd by a macro:
+                    SDL_SCANCODE_TO_KEYCODE(X)  (X | SDLK_SCANCODE_MASK)
+
+                    We convert the scancodes directly by:
+                    TSDL_KeyCode(X or SDLK_SCANCODE_MASK); }
 
   SDLK_CAPSLOCK = TSDL_KeyCode(SDL_SCANCODE_CAPSLOCK or SDLK_SCANCODE_MASK);
 
