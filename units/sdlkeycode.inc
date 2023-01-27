@@ -293,7 +293,7 @@ const
    *}
 type
   PSDL_KeyMod = ^TSDL_KeyMod;
-  TSDL_KeyMod = type Word;
+  TSDL_KeyMod = type cint;
 
 const
   KMOD_NONE = TSDL_KeyMod($0000);
