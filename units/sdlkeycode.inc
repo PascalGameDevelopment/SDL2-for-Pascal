@@ -23,7 +23,7 @@ const
   SDLK_UNKNOWN = TSDL_KeyCode(0);
 
   SDLK_RETURN = TSDL_KeyCode(#13);   // C: '\r'
-  SDLK_ESCAPE = TSDL_KeyCode(#27);   // C: '\033'
+  SDLK_ESCAPE = TSDL_KeyCode(#27);   // C: '\x1B'
   SDLK_BACKSPACE = TSDL_KeyCode(#8); // C: '\b'
   SDLK_TAB = TSDL_KeyCode(#9);       // C: '\t'
   SDLK_SPACE = TSDL_KeyCode(' ');
@@ -63,7 +63,7 @@ const
      Skip uppercase letters
    *}
   SDLK_LEFTBRACKET = TSDL_KeyCode('[');
-  SDLK_BACKSLASH = TSDL_KeyCode('\');
+  SDLK_BACKSLASH = TSDL_KeyCode('\');   // C: '\\'
   SDLK_RIGHTBRACKET = TSDL_KeyCode(']');
   SDLK_CARET = TSDL_KeyCode('^');
   SDLK_UNDERSCORE = TSDL_KeyCode('_');
@@ -122,7 +122,7 @@ const
   SDLK_INSERT = TSDL_KeyCode(SDL_SCANCODE_INSERT or SDLK_SCANCODE_MASK);
   SDLK_HOME = TSDL_KeyCode(SDL_SCANCODE_HOME or SDLK_SCANCODE_MASK);
   SDLK_PAGEUP = TSDL_KeyCode(SDL_SCANCODE_PAGEUP or SDLK_SCANCODE_MASK);
-  SDLK_DELETE = TSDL_KeyCode(#127); // C: '\177'
+  SDLK_DELETE = TSDL_KeyCode(#127); // C: '\x7F'
   SDLK_END = TSDL_KeyCode(SDL_SCANCODE_END or SDLK_SCANCODE_MASK);
   SDLK_PAGEDOWN = TSDL_KeyCode(SDL_SCANCODE_PAGEDOWN or SDLK_SCANCODE_MASK);
   SDLK_RIGHT = TSDL_KeyCode(SDL_SCANCODE_RIGHT or SDLK_SCANCODE_MASK);
