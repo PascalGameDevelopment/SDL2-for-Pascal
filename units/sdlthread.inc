@@ -1,5 +1,11 @@
 // based on "sdl_thread.h"
 
+{**
+ *  \file SDL_thread.h
+ *
+ *  Header for the SDL thread management routines.
+ *}
+
 {* The SDL thread structure, defined in SDL_thread.c *}
 { TODO : Update this file }
 type
