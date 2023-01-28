@@ -139,9 +139,23 @@ function SDL_GetThreadName(thread: PSDL_Thread): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetThreadName' {$ENDIF}{$ENDIF};
 
   {**
-   *  Get the thread identifier for the current thread.
-   *}
-function SDL_ThreadID: TSDL_ThreadID cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ThreadID' {$ENDIF}{$ENDIF};
+ * Get the thread identifier for the current thread.
+ *
+ * This thread identifier is as reported by the underlying operating system.
+ * If SDL is running on a platform that does not support threads the return
+ * value will always be zero.
+ *
+ * This function also returns a valid thread ID when called from the main
+ * thread.
+ *
+ * \returns the ID of the current thread.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetThreadID
+ *}
+function SDL_ThreadID: TSDL_ThreadID; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ThreadID' {$ENDIF}{$ENDIF};
 
   {**
    *  Get the thread identifier for the specified thread.
