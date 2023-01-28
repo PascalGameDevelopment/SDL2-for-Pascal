@@ -98,6 +98,8 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
   pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThreadWithStackSize' {$ENDIF} {$ENDIF};
 
+function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
+  name: PAnsiChar; const stacksize: csize_t; data: Pointer): PSDL_Thread; overload;
 
 { #todo : The OS2 part of SDL_thread.h is not translated, yet.
           The ELSE block is covering this right now. Not sure if the
