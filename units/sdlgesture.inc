@@ -22,11 +22,19 @@ function SDL_RecordGesture(touchId: TSDL_TouchID): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RecordGesture' {$ENDIF} {$ENDIF};
 
   {**
-   *  Save all currently loaded Dollar Gesture templates
-   *
-   *
-   *}
-function SDL_SaveAllDollarTemplates(src: PSDL_RWops): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveAllDollarTemplates' {$ENDIF} {$ENDIF};
+ * Save all currently loaded Dollar Gesture templates.
+ *
+ * \param dst a SDL_RWops to save to
+ * \returns the number of saved templates on success or 0 on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_LoadDollarTemplates
+ * \sa SDL_SaveDollarTemplate
+ *}
+function SDL_SaveAllDollarTemplates(dst: PSDL_RWops): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveAllDollarTemplates' {$ENDIF} {$ENDIF};
 
   {**
    *  Save a currently loaded Dollar Gesture template
