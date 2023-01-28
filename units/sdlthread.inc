@@ -281,16 +281,19 @@ function SDL_TLSCreate: TSDL_TLSID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSCreate' {$ENDIF} {$ENDIF};
 
   {**
-   *  Get the value associated with a thread local storage ID for the current thread.
-   *
-   *   id The thread local storage ID
-   *
-   *   The value associated with the ID for the current thread, or NULL if no value has been set.
-   *
-   *   SDL_TLSCreate()
-   *   SDL_TLSSet()
-   *}
-function SDL_TLSGet(id: TSDL_TLSID): Pointer cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSGet' {$ENDIF} {$ENDIF};
+ * Get the current thread's value associated with a thread local storage ID.
+ *
+ * \param id the thread local storage ID
+ * \returns the value associated with the ID for the current thread or NULL if
+ *          no value has been set; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_TLSCreate
+ * \sa SDL_TLSSet
+ *}
+function SDL_TLSGet(id: TSDL_TLSID): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSGet' {$ENDIF} {$ENDIF};
 
   {**
    *  Set the value associated with a thread local storage ID for the current thread.
