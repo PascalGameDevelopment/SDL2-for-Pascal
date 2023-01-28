@@ -265,35 +265,20 @@ procedure SDL_DetachThread(thread:TSDL_Thread); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DetachThread' {$ENDIF}{$ENDIF};
 
   {**
-   *  Create an identifier that is globally visible to all threads but refers to data that is thread-specific.
-   *
-   *   The newly created thread local storage identifier, or 0 on error
-   *
-   *  var tls_lock: TSDL_SpinLock;
-   *    thread_local_storage: TSDL_TLSID;
-   *
-   *  procedure SetMyThreadData(value: Pointer)
-   *
-   *      if not (thread_local_storage) then
-   *      begin
-   *        SDL_AtomicLock(@tls_lock);
-   *        if (!thread_local_storage)
-   *              thread_local_storage = SDL_TLSCreate();
-   *
-   *        SDL_AtomicUnLock(@tls_lock);
-   *
-   *        SDL_TLSSet(thread_local_storage, value);
-   *      end;
-   *
-   *  function GetMyThreadData(): Pointer;
-   *  begin
-   *     Result := SDL_TLSGet(thread_local_storage);
-   *  end;
-   *
-   *   SDL_TLSGet()
-   *   SDL_TLSSet()
-   *}
-function SDL_TLSCreate: TSDL_TLSID cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSCreate' {$ENDIF} {$ENDIF};
+ * Create a piece of thread-local storage.
+ *
+ * This creates an identifier that is globally visible to all threads but
+ * refers to data that is thread-specific.
+ *
+ * \returns the newly created thread local storage identifier or 0 on error.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_TLSGet
+ * \sa SDL_TLSSet
+ *}
+function SDL_TLSCreate: TSDL_TLSID; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSCreate' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the value associated with a thread local storage ID for the current thread.
