@@ -192,12 +192,40 @@ function SDL_SetThreadPriority(priority: TSDL_ThreadPriority): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetThreadPriority' {$ENDIF}{$ENDIF};
 
   {**
-   *  Wait for a thread to finish.
-   *
-   *  The return code for the thread function is placed in the area
-   *  pointed to by status, if status is not NULL.
-   *}
-procedure SDL_WaitThread(thread: PSDL_Thread; status: pcint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitThread' {$ENDIF}{$ENDIF};
+ * Wait for a thread to finish.
+ *
+ * Threads that haven't been detached will remain (as a "zombie") until this
+ * function cleans them up. Not doing so is a resource leak.
+ *
+ * Once a thread has been cleaned up through this function, the SDL_Thread
+ * that references it becomes invalid and should not be referenced again. As
+ * such, only one thread may call SDL_WaitThread() on another.
+ *
+ * The return code for the thread function is placed in the area pointed to by
+ * `status`, if `status` is not NULL.
+ *
+ * You may not wait on a thread that has been used in a call to
+ * SDL_DetachThread(). Use either that function or this one, but not both, or
+ * behavior is undefined.
+ *
+ * It is safe to pass a NULL thread to this function; it is a no-op.
+ *
+ * Note that the thread pointer is freed by this function and is not valid
+ * afterward.
+ *
+ * \param thread the SDL_Thread pointer that was returned from the
+ *               SDL_CreateThread() call that started this thread
+ * \param status pointer to an integer that will receive the value returned
+ *               from the thread function by its 'return', or NULL to not
+ *               receive such value back.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_CreateThread
+ * \sa SDL_DetachThread
+ *}
+procedure SDL_WaitThread(thread: PSDL_Thread; status: pcint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitThread' {$ENDIF}{$ENDIF};
 
   {**
    *  A thread may be "detached" to signify that it should not remain until
