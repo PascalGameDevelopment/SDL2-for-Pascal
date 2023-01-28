@@ -54,8 +54,17 @@ function SDL_SaveDollarTemplate(gestureId: TSDL_GestureID; dst: PSDL_RWops): cin
 
 
   {**
-   *  Load Dollar Gesture templates from a file
-   *
-   *
-   *}
-function SDL_LoadDollarTemplates(touchId: TSDL_TouchID; src: PSDL_RWops): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadDollarTemplates' {$ENDIF} {$ENDIF};
+ * Load Dollar Gesture templates from a file.
+ *
+ * \param touchId a touch id
+ * \param src a SDL_RWops to load from
+ * \returns the number of loaded templates on success or a negative error code
+ *          (or 0) on failure; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_SaveAllDollarTemplates
+ * \sa SDL_SaveDollarTemplate
+ *}
+function SDL_LoadDollarTemplates(touchId: TSDL_TouchID; src: PSDL_RWops): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadDollarTemplates' {$ENDIF} {$ENDIF};
