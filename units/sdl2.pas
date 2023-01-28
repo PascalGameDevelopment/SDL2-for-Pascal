@@ -237,13 +237,15 @@ end;
 {$IFDEF WINDOWS}
 //from "sdl_thread.h"
 
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar; data: Pointer): PSDL_Thread; overload;
+function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  data: Pointer): PSDL_Thread; overload;
 begin
   Result := SDL_CreateThread(fn,name,data,nil,nil);
 end;
 
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
-  name: PAnsiChar; const stacksize: csize_t; data: Pointer): PSDL_Thread; overload;
+  name: PAnsiChar; const stacksize: csize_t; data: Pointer
+  ): PSDL_Thread; overload;
 begin
   Result := SDL_CreateThreadWithStackSize(
     fn,name,stacksize,data,nil,nil);
