@@ -12,7 +12,7 @@ type
   TSDL_Thread = record end;
 
   {* The SDL thread ID *}
-  TSDL_threadID = culong;
+  TSDL_threadID = type culong;
 
   {* Thread local storage ID, 0 is the invalid ID *}
   TSDL_TLSID = cuint;
