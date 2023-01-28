@@ -82,18 +82,17 @@ type
 
   TpfnSDL_CurrentEndThread = procedure(code: cuint);
 
-  {**
-   *  Create a thread.
-   *}
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
-  data: Pointer; pfnBeginThread: TpfnSDL_CurrentBeginThread; pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload;
+function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar; data: Pointer;
+  pfnBeginThread: TpfnSDL_CurrentBeginThread;
+  pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThread' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Create a thread.
-   *}
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
-  data: Pointer): PSDL_Thread; overload;
+function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
+  name: PAnsiChar; const stacksize: csize_t; data: Pointer;
+  pfnBeginThread: TpfnSDL_CurrentBeginThread;
+  pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThreadWithStackSize' {$ENDIF} {$ENDIF};
+
 
 {$ELSE}
 
