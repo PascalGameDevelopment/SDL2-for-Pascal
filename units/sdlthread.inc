@@ -99,6 +99,15 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThreadWithStackSize' {$ENDIF} {$ENDIF};
 
 
+{ #todo : The OS2 part of SDL_thread.h is not translated, yet.
+          The ELSE block is covering this right now. Not sure if the
+          OS2 platform switch is implemented in Delphi. }
+//{$ELSEIF OS2}
+//{*
+// * just like the windows case above:  We compile SDL2
+// * into a dll with Watcom's runtime statically linked.
+// *}
+
 { #todo : THE FOLLOWING CODE UNTIL SDL_GetThreadName functions NEEDS MAJOR REVIEW }
 {$ELSE}
 
