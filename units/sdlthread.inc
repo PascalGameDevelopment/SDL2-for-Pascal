@@ -176,9 +176,20 @@ function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetThreadID' {$ENDIF}{$ENDIF};
 
   {**
-   *  Set the priority for the current thread
-   *}
-function SDL_SetThreadPriority(priority: TSDL_ThreadPriority): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetThreadPriority' {$ENDIF}{$ENDIF};
+ * Set the priority for the current thread.
+ *
+ * Note that some platforms will not let you alter the priority (or at least,
+ * promote the thread to a higher priority) at all, and some require you to be
+ * an administrator account. Be prepared for this to fail.
+ *
+ * \param priority the SDL_ThreadPriority to set
+ * \returns 0 on success or a negative error code on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *}
+function SDL_SetThreadPriority(priority: TSDL_ThreadPriority): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetThreadPriority' {$ENDIF}{$ENDIF};
 
   {**
    *  Wait for a thread to finish.
