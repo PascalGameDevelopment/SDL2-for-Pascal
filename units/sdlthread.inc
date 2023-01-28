@@ -111,7 +111,6 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
 // * into a dll with Watcom's runtime statically linked.
 // *}
 
-{ #todo : THE FOLLOWING CODE UNTIL SDL_GetThreadName functions NEEDS MAJOR REVIEW }
 {$ELSE}
 
   {**
