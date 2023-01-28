@@ -78,7 +78,9 @@ type
   {$ENDIF}
 
   { #todo : Update this declaration! }
-  TpfnSDL_CurrentBeginThread = function(SecurityAttributes: Pointer; StackSize: LongWord; ThreadFunc: TThreadFunc; Parameter: Pointer; CreationFlags: LongWord; var ThreadId: TThreadID): cint;
+  TpfnSDL_CurrentBeginThread = function(
+    SecurityAttributes: Pointer; StackSize: LongWord; ThreadFunc: TThreadFunc;
+    Parameter: Pointer {arg}; CreationFlags: LongWord; var ThreadId: TThreadID {threadID}): cuintptr_t;
 
   TpfnSDL_CurrentEndThread = procedure(code: cuint);
 
