@@ -38,9 +38,13 @@ const
    SDL_THREAD_PRIORITY_HIGH = TSDL_ThreadPriority(2);
    SDL_THREAD_PRIORITY_TIME_CRITICAL = TSDL_ThreadPriority(3);
 
-  {* The function passed to SDL_CreateThread()
-     It is passed a void* user context parameter and returns an int.
-   *}
+  {**
+ * The function passed to SDL_CreateThread().
+ *
+ * \param data what was passed as `data` to SDL_CreateThread()
+ * \returns a value that can be reported through SDL_WaitThread().
+ *}
+type
   PSDL_ThreadFunction = ^TSDL_ThreadFunction;
   TSDL_ThreadFunction = function(data: Pointer): cint; cdecl;
 
