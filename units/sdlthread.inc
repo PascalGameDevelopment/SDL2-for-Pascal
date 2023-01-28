@@ -158,11 +158,22 @@ function SDL_ThreadID: TSDL_ThreadID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ThreadID' {$ENDIF}{$ENDIF};
 
   {**
-   *  Get the thread identifier for the specified thread.
-   *
-   *  Equivalent to SDL_ThreadID() if the specified thread is NULL.
-   *}
-function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetThreadID' {$ENDIF}{$ENDIF};
+ * Get the thread identifier for the specified thread.
+ *
+ * This thread identifier is as reported by the underlying operating system.
+ * If SDL is running on a platform that does not support threads the return
+ * value will always be zero.
+ *
+ * \param thread the thread to query
+ * \returns the ID of the specified thread, or the ID of the current thread if
+ *          `thread` is NULL.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_ThreadID
+ *}
+function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetThreadID' {$ENDIF}{$ENDIF};
 
   {**
    *  Set the priority for the current thread
