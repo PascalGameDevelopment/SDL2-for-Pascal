@@ -296,15 +296,36 @@ function SDL_TLSGet(id: TSDL_TLSID): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSGet' {$ENDIF} {$ENDIF};
 
   {**
-   *  Set the value associated with a thread local storage ID for the current thread.
-   *
-   *   id The thread local storage ID
-   *   value The value to associate with the ID for the current thread
-   *   destructor_ A function called when the thread exits, to free the value.
-   *
-   *   0 on success, -1 on error
-   *
-   *   SDL_TLSCreate()
-   *   SDL_TLSGet()
-   *}
-function SDL_TLSSet(id: TSDL_TLSID; value: Pointer; destructor_: Pointer): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSSet' {$ENDIF} {$ENDIF};
+ * Set the current thread's value associated with a thread local storage ID.
+ *
+ * The function prototype for `destructor` is:
+ *
+ * ```c
+ * void destructor(void *value)
+ * ```
+ *
+ * where its parameter `value` is what was passed as `value` to SDL_TLSSet().
+ *
+ * \param id the thread local storage ID
+ * \param value the value to associate with the ID for the current thread
+ * \param destructor a function called when the thread exits, to free the
+ *                   value
+ * \returns 0 on success or a negative error code on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_TLSCreate
+ * \sa SDL_TLSGet
+ *}
+function SDL_TLSSet(id: TSDL_TLSID; const value: Pointer; destructor_: Pointer): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSSet' {$ENDIF} {$ENDIF};
+
+{**
+ * Cleanup all TLS data for this thread.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *}
+procedure SDL_TLSCleanup; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSCleanup' {$ENDIF} {$ENDIF};
+
