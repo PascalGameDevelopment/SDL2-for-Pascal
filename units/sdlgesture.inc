@@ -1,7 +1,7 @@
 //from "sdl_gesture.h"
 
 type
-  TSDL_GestureID = cint64;
+  TSDL_GestureID = type cint64;
 
   {* Function prototypes *}
 
