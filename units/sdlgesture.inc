@@ -37,11 +37,20 @@ function SDL_SaveAllDollarTemplates(dst: PSDL_RWops): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveAllDollarTemplates' {$ENDIF} {$ENDIF};
 
   {**
-   *  Save a currently loaded Dollar Gesture template
-   *
-   *
-   *}
-function SDL_SaveDollarTemplate(gestureId: TSDL_GestureID; src: PSDL_RWops): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveDollarTemplate' {$ENDIF} {$ENDIF};
+ * Save a currently loaded Dollar Gesture template.
+ *
+ * \param gestureId a gesture id
+ * \param dst a SDL_RWops to save to
+ * \returns 1 on success or 0 on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_LoadDollarTemplates
+ * \sa SDL_SaveAllDollarTemplates
+ *}
+function SDL_SaveDollarTemplate(gestureId: TSDL_GestureID; dst: PSDL_RWops): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveDollarTemplate' {$ENDIF} {$ENDIF};
 
 
   {**
