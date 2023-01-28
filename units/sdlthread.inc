@@ -7,8 +7,9 @@
  *}
 
 {* The SDL thread structure, defined in SDL_thread.c *}
-{ TODO : Update this file }
 type
+  PSDL_Thread = ^TSDL_Thread;
+  TSDL_Thread = record end;
 
   {* The SDL thread ID *}
   TSDL_threadID = culong;
@@ -37,16 +38,6 @@ type
    *}
   PSDL_ThreadFunction = ^TSDL_ThreadFunction;
   TSDL_ThreadFunction = function(data: Pointer): cint; cdecl;
-
-  PSDL_Thread = ^TSDL_Thread;
-  TSDL_Thread = record
-    threadid: TSDL_ThreadID;
-    handle: THandle;
-    status: cint32;
-    errbuf: TSDL_Error;
-    name: PAnsiChar;
-    data: Pointer;
-  end;
 
 {$IFDEF WINDOWS}
   {**
