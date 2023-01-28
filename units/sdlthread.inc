@@ -28,10 +28,15 @@ type
  *
  *  \note On many systems you require special privileges to set high or time critical priority.
  *}
-  TSDL_ThreadPriority = (SDL_THREAD_PRIORITY_LOW,
-                         SDL_THREAD_PRIORITY_NORMAL,
-                         SDL_THREAD_PRIORITY_HIGH,
-                         SDL_THREAD_PRIORITY_TIME_CRITICAL);
+type
+ PSDL_ThreadPriority = ^TSDL_ThreadPriority;
+ TSDL_ThreadPriority = cint;
+
+const
+   SDL_THREAD_PRIORITY_LOW = TSDL_ThreadPriority(0);
+   SDL_THREAD_PRIORITY_NORMAL = TSDL_ThreadPriority(1);
+   SDL_THREAD_PRIORITY_HIGH = TSDL_ThreadPriority(2);
+   SDL_THREAD_PRIORITY_TIME_CRITICAL = TSDL_ThreadPriority(3);
 
   {* The function passed to SDL_CreateThread()
      It is passed a void* user context parameter and returns an int.
