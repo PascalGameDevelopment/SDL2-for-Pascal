@@ -72,13 +72,15 @@ type
 {$DEFINE SDL_PASSED_BEGINTHREAD_ENDTHREAD}
 
 type
+  { #todo : Needed? }
   {$IFNDEF DELPHI16UP}
     TThreadID = Cardinal;
   {$ENDIF}
 
+  { #todo : Update this declaration! }
   TpfnSDL_CurrentBeginThread = function(SecurityAttributes: Pointer; StackSize: LongWord; ThreadFunc: TThreadFunc; Parameter: Pointer; CreationFlags: LongWord; var ThreadId: TThreadID): cint;
 
-  TpfnSDL_CurrentEndThread = procedure(ExitCode: cint);
+  TpfnSDL_CurrentEndThread = procedure(code: cuint);
 
   {**
    *  Create a thread.
