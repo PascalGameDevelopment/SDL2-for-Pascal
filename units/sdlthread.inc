@@ -94,6 +94,7 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThreadWithStackSize' {$ENDIF} {$ENDIF};
 
 
+{ #todo : THE FOLLOWING CODE UNTIL SDL_GetThreadName functions NEEDS MAJOR REVIEW }
 {$ELSE}
 
   {**
@@ -121,13 +122,21 @@ function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
 {$ENDIF}
 
   {**
-   * Get the thread name, as it was specified in SDL_CreateThread().
-   *  This function returns a pointer to a UTF-8 string that names the
-   *  specified thread, or NULL if it doesn't have a name. This is internal
-   *  memory, not to be free()'d by the caller, and remains valid until the
-   *  specified thread is cleaned up by SDL_WaitThread().
-   *}
-function SDL_GetThreadName(thread: PSDL_Thread): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetThreadName' {$ENDIF}{$ENDIF};
+ * Get the thread name as it was specified in SDL_CreateThread().
+ *
+ * This is internal memory, not to be freed by the caller, and remains valid
+ * until the specified thread is cleaned up by SDL_WaitThread().
+ *
+ * \param thread the thread to query
+ * \returns a pointer to a UTF-8 string that names the specified thread, or
+ *          NULL if it doesn't have a name.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_CreateThread
+ *}
+function SDL_GetThreadName(thread: PSDL_Thread): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetThreadName' {$ENDIF}{$ENDIF};
 
   {**
    *  Get the thread identifier for the current thread.
