@@ -163,7 +163,7 @@ const
 {$I sdlerror.inc}                // 2.0.14
 {$I sdlplatform.inc}             // 2.0.14
 {$I sdlpower.inc}                // 2.0.14
-{$I sdlthread.inc}
+{$I sdlthread.inc}               // 2.26.2
 {$I sdlatomic.inc}               // 2.0.20
 {$I sdlmutex.inc}                // 2.0.14 WIP
 {$I sdltimer.inc}                // 2.0.18
