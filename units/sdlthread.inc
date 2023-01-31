@@ -104,7 +104,8 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
   const stacksize: csize_t; data: Pointer): PSDL_Thread; overload;
 
-{ #todo : The OS2 part of SDL_thread.h is not translated, yet.
+{ SDL2-For-Pascal: #todo :
+          The OS2 part of SDL_thread.h is not translated, yet.
           The ELSE block is covering this right now. Not sure if the
           OS2 platform switch is implemented in Delphi. }
 //{$ELSEIF OS2}
@@ -112,6 +113,8 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
 // * just like the windows case above:  We compile SDL2
 // * into a dll with Watcom's runtime statically linked.
 // *}
+
+{ ... }
 
 {$ELSE}
 
