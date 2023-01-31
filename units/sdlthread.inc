@@ -86,14 +86,12 @@ type
 
   TpfnSDL_CurrentEndThread = procedure(code: cuint);
 
+
 function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer;
   pfnBeginThread: TpfnSDL_CurrentBeginThread;
   pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThread' {$ENDIF} {$ENDIF};
-
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
-  data: Pointer): PSDL_Thread; overload;
 
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
   name: PAnsiChar; const stacksize: csize_t; data: Pointer;
@@ -101,8 +99,15 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
   pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThreadWithStackSize' {$ENDIF} {$ENDIF};
 
+{ SDL2-For-Pascal:  #note : In the C header are two versions
+    of these macro functions. One for SDL's dynamic API and one without.
+    We can go with this for the moment. Improvement surely possible. }
+function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  data: Pointer): PSDL_Thread; overload;
+
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
   const stacksize: csize_t; data: Pointer): PSDL_Thread; overload;
+
 
 { SDL2-For-Pascal: #todo :
           The OS2 part of SDL_thread.h is not translated, yet.
