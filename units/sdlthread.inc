@@ -73,8 +73,10 @@ type
 
 type
   { SDL2-for-Pascal: #todo : Needed? }
-  {$IFNDEF DELPHI16UP}
-    TThreadID = Cardinal;
+  {$IFNDEF FPC}
+    {$IFNDEF DELPHI16UP}
+      TThreadID = Cardinal;
+    {$ENDIF}
   {$ENDIF}
 
   { SDL2-for-Pascal #todo : Explanation needed }
