@@ -72,12 +72,12 @@ type
 {$DEFINE SDL_PASSED_BEGINTHREAD_ENDTHREAD}
 
 type
-  { #todo : Needed? }
+  { SDL2-for-Pascal: #todo : Needed? }
   {$IFNDEF DELPHI16UP}
     TThreadID = Cardinal;
   {$ENDIF}
 
-  { #todo : Update this declaration! }
+  { SDL2-for-Pascal #todo : Explanation needed }
   TpfnSDL_CurrentBeginThread = function(
     SecurityAttributes: Pointer; StackSize: LongWord; ThreadFunc: TThreadFunc;
     Parameter: Pointer {arg}; CreationFlags: LongWord; var ThreadId: TThreadID {threadID}): cuintptr_t;
