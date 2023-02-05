@@ -70,8 +70,14 @@ const
 
 Hint 1: C enums start at 0 if no explicit value is set.
 
-Hint 2: The type should be Word if only unsigned values are possible. Otherwise
-it should be Integer.
+Hint 2: The type should always be cint. Most C compilers have the enum elements
+> In C, each enumeration constant has type int and each enumeration type
+> is compatible with some integer type. (The integer types include all three
+> character types–plain, signed, and unsigned.) The choice of compatible
+> type is implementation-defined. The C standard grants the freedom to
+> use different integer types to represent different enumeration types,
+> but most compilers just use int to represent all enumeration types.
+Ref.: [https://www.embedded.com/enumerations-are-integers-except-when-theyre-not/](https://www.embedded.com/enumerations-are-integers-except-when-theyre-not/)
 
 Hint 3: Do not translate C enums to Pascal enums. C enums are handled like plain
 integers which will make bitwise operations (e. g. in macros) possible
