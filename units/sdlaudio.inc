@@ -299,49 +299,55 @@ procedure SDL_AudioQuit; cdecl;
 function SDL_GetCurrentAudioDriver: PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCurrentAudioDriver' {$ENDIF} {$ENDIF};
 
-  {**
-   *  This function opens the audio device with the desired parameters, and
-   *  returns 0 if successful, placing the actual hardware parameters in the
-   *  structure pointed to by obtained.  If obtained is NULL, the audio
-   *  data passed to the callback function will be guaranteed to be in the
-   *  requested format, and will be automatically converted to the hardware
-   *  audio format if necessary.  This function returns -1 if it failed
-   *  to open the audio device, or couldn't set up the audio thread.
-   *
-   *  When filling in the desired audio spec structure,
-   *    - desired->freq should be the desired audio frequency in samples-per-
-   *      second.
-   *    - desired->format should be the desired audio format.
-   *    - desired->samples is the desired size of the audio buffer, in
-   *      samples.  This number should be a power of two, and may be adjusted by
-   *      the audio driver to a value more suitable for the hardware.  Good values
-   *      seem to range between 512 and 8096 inclusive, depending on the
-   *      application and CPU speed.  Smaller values yield faster response time,
-   *      but can lead to underflow if the application is doing heavy processing
-   *      and cannot fill the audio buffer in time.  A stereo sample consists of
-   *      both right and left channels in LR ordering.
-   *      Note that the number of samples is directly related to time by the
-   *      following formula:  ms := (samples*1000)/freq;
-   *    - desired->size is the size in bytes of the audio buffer, and is
-   *      calculated by SDL_OpenAudio().
-   *    - desired->silence is the value used to set the buffer to silence,
-   *      and is calculated by SDL_OpenAudio().
-   *    - desired->callback should be set to a function that will be called
-   *      when the audio device is ready for more data.  It is passed a pointer
-   *      to the audio buffer, and the length in bytes of the audio buffer.
-   *      This function usually runs in a separate thread, and so you should
-   *      protect data structures that it accesses by calling SDL_LockAudio()
-   *      and SDL_UnlockAudio() in your code.
-   *    - desired->userdata is passed as the first parameter to your callback
-   *      function.
-   *
-   *  The audio device starts out playing silence when it's opened, and should
-   *  be enabled for playing by calling SDL_PauseAudio(0) when you are ready
-   *  for your audio callback function to be called.  Since the audio driver
-   *  may modify the requested size of the audio buffer, you should allocate
-   *  any local mixing buffers after you open the audio device.
-   *}
-function SDL_OpenAudio(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_OpenAudio' {$ENDIF} {$ENDIF};
+{**
+ * This function is a legacy means of opening the audio device.
+ *
+ * This function remains for compatibility with SDL 1.2, but also because it's
+ * slightly easier to use than the new functions in SDL 2.0. The new, more
+ * powerful, and preferred way to do this is SDL_OpenAudioDevice().
+ *
+ * This function is roughly equivalent to:
+ *
+ * ```c
+ * SDL_OpenAudioDevice(NULL, 0, desired, obtained, SDL_AUDIO_ALLOW_ANY_CHANGE);
+ * ```
+ *
+ * With two notable exceptions:
+ *
+ * - If `obtained` is NULL, we use `desired` (and allow no changes), which
+ *   means desired will be modified to have the correct values for silence,
+ *   etc, and SDL will convert any differences between your app's specific
+ *   request and the hardware behind the scenes.
+ * - The return value is always success or failure, and not a device ID, which
+ *   means you can only have one device open at a time with this function.
+ *
+ * \param desired an SDL_AudioSpec structure representing the desired output
+ *                format. Please refer to the SDL_OpenAudioDevice
+ *                documentation for details on how to prepare this structure.
+ * \param obtained an SDL_AudioSpec structure filled in with the actual
+ *                 parameters, or NULL.
+ * \returns 0 if successful, placing the actual hardware parameters in the
+ *          structure pointed to by `obtained`.
+ *
+ *          If `obtained` is NULL, the audio data passed to the callback
+ *          function will be guaranteed to be in the requested format, and
+ *          will be automatically converted to the actual hardware audio
+ *          format if necessary. If `obtained` is NULL, `desired` will have
+ *          fields modified.
+ *
+ *          This function returns a negative error code on failure to open the
+ *          audio device or failure to set up the audio thread; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_CloseAudio
+ * \sa SDL_LockAudio
+ * \sa SDL_PauseAudio
+ * \sa SDL_UnlockAudio
+ *}
+function SDL_OpenAudio(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_OpenAudio' {$ENDIF} {$ENDIF};
 
   {**
    *  SDL Audio Device IDs.
@@ -355,19 +361,52 @@ function SDL_OpenAudio(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): cint 
 type
   TSDL_AudioDeviceID = cuint32;
 
-  {**
-   *  Get the number of available devices exposed by the current driver.
-   *  Only valid after a successfully initializing the audio subsystem.
-   *  Returns -1 if an explicit list of devices can't be determined; this is
-   *  not an error. For example, if SDL is set up to talk to a remote audio
-   *  server, it can't list every one available on the Internet, but it will
-   *  still allow a specific host to be specified to SDL_OpenAudioDevice().
-   *
-   *  In many common cases, when this function returns a value <= 0, it can still
-   *  successfully open the default device (NULL for first argument of
-   *  SDL_OpenAudioDevice()).
-   *}
-function SDL_GetNumAudioDevices(iscapture: cint): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAudioDevices' {$ENDIF} {$ENDIF};
+{**
+ * Get the number of built-in audio devices.
+ *
+ * This function is only valid after successfully initializing the audio
+ * subsystem.
+ *
+ * Note that audio capture support is not implemented as of SDL 2.0.4, so the
+ * `iscapture` parameter is for future expansion and should always be zero for
+ * now.
+ *
+ * This function will return -1 if an explicit list of devices can't be
+ * determined. Returning -1 is not an error. For example, if SDL is set up to
+ * talk to a remote audio server, it can't list every one available on the
+ * Internet, but it will still allow a specific host to be specified in
+ * SDL_OpenAudioDevice().
+ *
+ * In many common cases, when this function returns a value <= 0, it can still
+ * successfully open the default device (NULL for first argument of
+ * SDL_OpenAudioDevice()).
+ *
+ * This function may trigger a complete redetect of available hardware. It
+ * should not be called for each iteration of a loop, but rather once at the
+ * start of a loop:
+ *
+ * ```c
+ * // Don't do this:
+ * for (int i = 0; i < SDL_GetNumAudioDevices(0); i++)
+ *
+ * // do this instead:
+ * const int count = SDL_GetNumAudioDevices(0);
+ * for (int i = 0; i < count; ++i) { do_something_here(); }
+ * ```
+ *
+ * \param iscapture zero to request playback devices, non-zero to request
+ *                  recording devices
+ * \returns the number of available devices exposed by the current driver or
+ *          -1 if an explicit list of devices can't be determined. A return
+ *          value of -1 does not necessarily mean an error condition.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetAudioDeviceName
+ * \sa SDL_OpenAudioDevice
+ *}
+function SDL_GetNumAudioDevices(iscapture: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAudioDevices' {$ENDIF} {$ENDIF};
 
   {**
    *  Get the human-readable name of a specific audio device.
