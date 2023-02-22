@@ -1228,31 +1228,38 @@ function SDL_QueueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): c
 function SDL_DequeueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DequeueAudio' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Get the number of bytes of still-queued audio.
-   *
-   *  This is the number of bytes that have been queued for playback with
-   *  SDL_QueueAudio(), but have not yet been sent to the hardware.
-   *
-   *  Once we've sent it to the hardware, this function can not decide the exact
-   *  byte boundary of what has been played. It's possible that we just gave the
-   *  hardware several kilobytes right before you called this function, but it
-   *  hasn't played any of it yet, or maybe half of it, etc.
-   *
-   *  You may not queue audio on a device that is using an application-supplied
-   *  callback; calling this function on such a device always returns 0.
-   *  You have to use the audio callback or queue audio with SDL_QueueAudio(),
-   *  but not both.
-   *
-   *  You should not call SDL_LockAudio() on the device before querying; SDL
-   *  handles locking internally for this function.
-   *
-   *  \param dev The device ID of which we will query queued audio size.
-   *  \return Number of bytes (not samples!) of queued audio.
-   *
-   *  \sa SDL_QueueAudio
-   *  \sa SDL_ClearQueuedAudio
-   *}
+{**
+ * Get the number of bytes of still-queued audio.
+ *
+ * For playback devices: this is the number of bytes that have been queued for
+ * playback with SDL_QueueAudio(), but have not yet been sent to the hardware.
+ *
+ * Once we've sent it to the hardware, this function can not decide the exact
+ * byte boundary of what has been played. It's possible that we just gave the
+ * hardware several kilobytes right before you called this function, but it
+ * hasn't played any of it yet, or maybe half of it, etc.
+ *
+ * For capture devices, this is the number of bytes that have been captured by
+ * the device and are waiting for you to dequeue. This number may grow at any
+ * time, so this only informs of the lower-bound of available data.
+ *
+ * You may not queue or dequeue audio on a device that is using an
+ * application-supplied callback; calling this function on such a device
+ * always returns 0. You have to use the audio callback or queue audio, but
+ * not both.
+ *
+ * You should not call SDL_LockAudio() on the device before querying; SDL
+ * handles locking internally for this function.
+ *
+ * \param dev the device ID of which we will query queued audio size
+ * \returns the number of bytes (not samples!) of queued audio.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *
+ * \sa SDL_ClearQueuedAudio
+ * \sa SDL_QueueAudio
+ * \sa SDL_DequeueAudio
+ *}
 function SDL_GetQueuedAudioSize(dev: TSDL_AudioDeviceID): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetQueuedAudioSize' {$ENDIF} {$ENDIF};
 
