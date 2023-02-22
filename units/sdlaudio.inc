@@ -1405,10 +1405,23 @@ procedure SDL_UnlockAudioDevice(dev: TSDL_AudioDeviceID); cdecl;
 
 {*Audio lock functions*}
 
-  {**
-   *  This function shuts down audio processing and closes the audio device.
-   *}
-procedure SDL_CloseAudio cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseAudio' {$ENDIF} {$ENDIF};
+{**
+ * This function is a legacy means of closing the audio device.
+ *
+ * This function is equivalent to calling...
+ *
+ * ```c
+ * SDL_CloseAudioDevice(1);
+ * ```
+ *
+ * ...and is only useful if you used the legacy SDL_OpenAudio() function.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_OpenAudio
+ *}
+procedure SDL_CloseAudio; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseAudio' {$ENDIF} {$ENDIF};
 procedure SDL_CloseAudioDevice(dev: TSDL_AudioDeviceID) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseAudioDevice' {$ENDIF} {$ENDIF};
 
   {**
