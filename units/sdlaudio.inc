@@ -980,6 +980,26 @@ function SDL_NewAudioStream(src_format: TSDL_AudioFormat; src_channels: cuint8; 
 function SDL_AudioStreamPut(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamPut' {$ENDIF} {$ENDIF};
 
+{*
+ * Get converted/resampled data from the stream
+ *
+ * \param stream The stream the audio is being requested from
+ * \param buf A buffer to fill with audio data
+ * \param len The maximum number of bytes to fill
+ * \returns the number of bytes read from the stream, or -1 on error
+ *
+ * \since This function is available since SDL 2.0.7.
+ *
+ * \sa SDL_NewAudioStream
+ * \sa SDL_AudioStreamPut
+ * \sa SDL_AudioStreamAvailable
+ * \sa SDL_AudioStreamFlush
+ * \sa SDL_AudioStreamClear
+ * \sa SDL_FreeAudioStream
+  }
+function SDL_AudioStreamGet(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamGet' {$ENDIF} {$ENDIF};
+
 
 const
   SDL_MIX_MAXVOLUME = 128;
