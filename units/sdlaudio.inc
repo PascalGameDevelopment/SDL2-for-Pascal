@@ -264,7 +264,21 @@ function SDL_GetAudioDriver(index: cint): PAnsiChar; cdecl;
  *}
 function SDL_AudioInit(driver_name: PAnsiChar): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioInit' {$ENDIF} {$ENDIF};
-procedure SDL_AudioQuit cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioQuit' {$ENDIF} {$ENDIF};
+
+{**
+ * Use this function to shut down audio if you initialized it with
+ * SDL_AudioInit().
+ *
+ * This function is used internally, and should not be used unless you have a
+ * specific need to specify the audio driver you want to use. You should
+ * normally use SDL_Quit() or SDL_QuitSubSystem().
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_AudioInit
+ *}
+procedure SDL_AudioQuit; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioQuit' {$ENDIF} {$ENDIF};
 
   {**
    *  This function returns the name of the current audio driver, or NULL
