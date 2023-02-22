@@ -884,16 +884,45 @@ function SDL_BuildAudioCVT(cvt: PSDL_AudioCVT;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BuildAudioCVT' {$ENDIF} {$ENDIF};
 
 {**
- *  Once you have initialized the cvt structure using SDL_BuildAudioCVT(),
- *  created an audio buffer cvt->buf, and filled it with cvt->len bytes of
- *  audio data in the source format, this function will convert it in-place
- *  to the desired format.
+ * Convert audio data to a desired audio format.
  *
- *  The data conversion may expand the size of the audio data, so the buffer
- *  cvt->buf should be allocated after the cvt structure is initialized by
- *  SDL_BuildAudioCVT(), and should be cvt->len*cvt->len_mult bytes long.
+ * This function does the actual audio data conversion, after the application
+ * has called SDL_BuildAudioCVT() to prepare the conversion information and
+ * then filled in the buffer details.
+ *
+ * Once the application has initialized the `cvt` structure using
+ * SDL_BuildAudioCVT(), allocated an audio buffer and filled it with audio
+ * data in the source format, this function will convert the buffer, in-place,
+ * to the desired format.
+ *
+ * The data conversion may go through several passes; any given pass may
+ * possibly temporarily increase the size of the data. For example, SDL might
+ * expand 16-bit data to 32 bits before resampling to a lower frequency,
+ * shrinking the data size after having grown it briefly. Since the supplied
+ * buffer will be both the source and destination, converting as necessary
+ * in-place, the application must allocate a buffer that will fully contain
+ * the data during its largest conversion pass. After SDL_BuildAudioCVT()
+ * returns, the application should set the `cvt->len` field to the size, in
+ * bytes, of the source data, and allocate a buffer that is `cvt->len *
+ * cvt->len_mult` bytes long for the `buf` field.
+ *
+ * The source data should be copied into this buffer before the call to
+ * SDL_ConvertAudio(). Upon successful return, this buffer will contain the
+ * converted audio, and `cvt->len_cvt` will be the size of the converted data,
+ * in bytes. Any bytes in the buffer past `cvt->len_cvt` are undefined once
+ * this function returns.
+ *
+ * \param cvt an SDL_AudioCVT structure that was previously set up by
+ *            SDL_BuildAudioCVT().
+ * \returns 0 if the conversion was completed successfully or a negative error
+ *          code on failure; call SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_BuildAudioCVT
  *}
-function SDL_ConvertAudio(cvt: PSDL_AudioCVT): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertAudio' {$ENDIF} {$ENDIF};
+function SDL_ConvertAudio(cvt: PSDL_AudioCVT): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertAudio' {$ENDIF} {$ENDIF};
 
 const
   SDL_MIX_MAXVOLUME = 128;
