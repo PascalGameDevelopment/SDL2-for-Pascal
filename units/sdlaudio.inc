@@ -620,7 +620,13 @@ function SDL_OpenAudioDevice(device: PAnsiChar;
    *}
 
 type
-  TSDL_AudioStatus = (SDL_AUDIO_STOPPED,SDL_AUDIO_PLAYING,SDL_AUDIO_PAUSED);
+  PSDL_AudioStatus = ^TSDL_AudioStatus;
+  TSDL_AudioStatus =  cint;
+
+const
+  SDL_AUDIO_STOPPED = TSDL_AudioStatus(0);
+  SDL_AUDIO_PLAYING = TSDL_AudioStatus(1);
+  SDL_AUDIO_PAUSED  = TSDL_AudioStatus(2);
 
 function SDL_GetAudioStatus: TSDL_AudioStatus cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioStatus' {$ENDIF} {$ENDIF};
 
