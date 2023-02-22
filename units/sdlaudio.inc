@@ -621,7 +621,7 @@ function SDL_OpenAudioDevice(device: PAnsiChar;
 
 type
   PSDL_AudioStatus = ^TSDL_AudioStatus;
-  TSDL_AudioStatus =  cint;
+  TSDL_AudioStatus = cint;
 
 const
   SDL_AUDIO_STOPPED = TSDL_AudioStatus(0);
