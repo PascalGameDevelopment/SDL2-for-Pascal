@@ -818,17 +818,29 @@ function SDL_LoadWAV_RW(src: PSDL_RWops;
                         audio_len: pcuint32): PSDL_AudioSpec; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadWAV_RW' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Loads a WAV from a file.
-   *  Compatibility convenience function.
-   *}
+{**
+ *  Loads a WAV from a file.
+ *  Compatibility convenience function.
+ *}
+function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): PSDL_AudioSpec;
 
-   function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): PSDL_AudioSpec;
-
-  {**
-   *  This function frees data previously allocated with SDL_LoadWAV_RW()
-   *}
-  procedure SDL_FreeWAV(audio_buf: pcuint8) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FreeWAV' {$ENDIF} {$ENDIF};
+{**
+ * Free data previously allocated with SDL_LoadWAV() or SDL_LoadWAV_RW().
+ *
+ * After a WAVE file has been opened with SDL_LoadWAV() or SDL_LoadWAV_RW()
+ * its data can eventually be freed with SDL_FreeWAV(). It is safe to call
+ * this function with a NULL pointer.
+ *
+ * \param audio_buf a pointer to the buffer created by SDL_LoadWAV() or
+ *                  SDL_LoadWAV_RW()
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_LoadWAV
+ * \sa SDL_LoadWAV_RW
+ *}
+procedure SDL_FreeWAV(audio_buf: pcuint8); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FreeWAV' {$ENDIF} {$ENDIF};
 
   {**
    *  This function takes a source format and rate and a destination format
