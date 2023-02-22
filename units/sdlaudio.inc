@@ -662,7 +662,8 @@ function SDL_GetAudioStatus: TSDL_AudioStatus; cdecl;
  *}
 function SDL_GetAudioDeviceStatus(dev: TSDL_AudioDeviceID): TSDL_AudioStatus; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDeviceStatus' {$ENDIF} {$ENDIF};
-  {*Audio State*}
+
+{*Audio State*}
 
   {**
    *   Pause audio functions
@@ -674,7 +675,27 @@ function SDL_GetAudioDeviceStatus(dev: TSDL_AudioDeviceID): TSDL_AudioStatus; cd
    *  Silence will be written to the audio device during the pause.
    *}
 
-procedure SDL_PauseAudio(pause_on: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseAudio' {$ENDIF} {$ENDIF};
+{**
+ * This function is a legacy means of pausing the audio device.
+ *
+ * New programs might want to use SDL_PauseAudioDevice() instead. This
+ * function is equivalent to calling...
+ *
+ * ```c
+ * SDL_PauseAudioDevice(1, pause_on);
+ * ```
+ *
+ * ...and is only useful if you used the legacy SDL_OpenAudio() function.
+ *
+ * \param pause_on non-zero to pause, 0 to unpause
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetAudioStatus
+ * \sa SDL_PauseAudioDevice
+ *}
+procedure SDL_PauseAudio(pause_on: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseAudio' {$ENDIF} {$ENDIF};
 procedure SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID; pause_on: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseAudioDevice' {$ENDIF} {$ENDIF};
   {*Pause audio functions*}
 
