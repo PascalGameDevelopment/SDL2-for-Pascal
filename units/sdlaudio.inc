@@ -436,6 +436,32 @@ function SDL_GetNumAudioDevices(iscapture: cint): cint; cdecl;
 function SDL_GetAudioDeviceName(index: cint; iscapture: cint): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDeviceName' {$ENDIF} {$ENDIF};
 
+{*
+ * Get the preferred audio format of a specific audio device.
+ *
+ * This function is only valid after a successfully initializing the audio
+ * subsystem. The values returned by this function reflect the latest call to
+ * SDL_GetNumAudioDevices(); re-call that function to redetect available
+ * hardware.
+ *
+ * `spec` will be filled with the sample rate, sample format, and channel
+ * count.
+ *
+ * \param index the index of the audio device; valid values range from 0 to
+ *              SDL_GetNumAudioDevices() - 1
+ * \param iscapture non-zero to query the list of recording devices, zero to
+ *                  query the list of output devices.
+ * \param spec The SDL_AudioSpec to be initialized by this function.
+ * \returns 0 on success, nonzero on error
+ *
+ * \since This function is available since SDL 2.0.16.
+ *
+ * \sa SDL_GetNumAudioDevices
+ * \sa SDL_GetDefaultAudioInfo
+  }
+function SDL_GetAudioDeviceSpec(index: cint; iscapture: cint; spec: PSDL_AudioSpec): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDeviceSpec' {$ENDIF} {$ENDIF};
+
   {**
    *  Open a specific audio device. Passing in a device name of NULL requests
    *  the most reasonable default (and is equivalent to calling SDL_OpenAudio()).
