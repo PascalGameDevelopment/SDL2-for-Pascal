@@ -155,11 +155,10 @@ type
    *}
 const
   SDL_AUDIOCVT_MAX_FILTERS = 9;
+
 type
   PSDL_AudioCVT = ^TSDL_AudioCVT;
   TSDL_AudioFilter = procedure(cvt: PSDL_AudioCVT; format: TSDL_AudioFormat); cdecl;
-
-
 
   {**
    *  \struct SDL_AudioCVT
@@ -195,7 +194,28 @@ type
    *  order that they are normally initialized by default.
    *}
 
-function SDL_GetNumAudioDrivers: cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAudioDrivers' {$ENDIF} {$ENDIF};
+  {**
+   * Use this function to get the number of built-in audio drivers.
+   *
+   * This function returns a hardcoded number. This never returns a negative
+   * value; if there are no drivers compiled into this build of SDL, this
+   * function returns zero. The presence of a driver in this list does not mean
+   * it will function, it just means SDL is capable of interacting with that
+   * interface. For example, a build of SDL might have esound support, but if
+   * there's no esound server available, SDL's esound driver would fail if used.
+   *
+   * By default, SDL tries all drivers, in its preferred order, until one is
+   * found to be usable.
+   *
+   * \returns the number of built-in audio drivers.
+   *
+   * \since This function is available since SDL 2.0.0.
+   *
+   * \sa SDL_GetAudioDriver
+   *}
+function SDL_GetNumAudioDrivers: cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAudioDrivers' {$ENDIF} {$ENDIF};
+
 function SDL_GetAudioDriver(index: cint): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDriver' {$ENDIF} {$ENDIF};
 
   {**
