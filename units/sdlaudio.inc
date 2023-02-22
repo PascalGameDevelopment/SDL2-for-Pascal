@@ -1367,7 +1367,26 @@ procedure SDL_LockAudio; cdecl;
  *}
 procedure SDL_LockAudioDevice(dev: TSDL_AudioDeviceID); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockAudioDevice' {$ENDIF} {$ENDIF};
-procedure SDL_UnlockAudio cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Unlock' {$ENDIF} {$ENDIF};
+
+{**
+ * This function is a legacy means of unlocking the audio device.
+ *
+ * New programs might want to use SDL_UnlockAudioDevice() instead. This
+ * function is equivalent to calling...
+ *
+ * ```c
+ * SDL_UnlockAudioDevice(1);
+ * ```
+ *
+ * ...and is only useful if you used the legacy SDL_OpenAudio() function.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_LockAudio
+ * \sa SDL_UnlockAudioDevice
+ *}
+procedure SDL_UnlockAudio; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Unlock' {$ENDIF} {$ENDIF};
 procedure SDL_UnlockAudioDevice(dev: TSDL_AudioDeviceID) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockAudioDevice' {$ENDIF} {$ENDIF};
   {*Audio lock functions*}
 
