@@ -1264,32 +1264,37 @@ function SDL_GetQueuedAudioSize(dev: TSDL_AudioDeviceID): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetQueuedAudioSize' {$ENDIF} {$ENDIF};
 
   {**
-   *  Drop any queued audio data waiting to be sent to the hardware.
-   *
-   *  Immediately after this call, SDL_GetQueuedAudioSize() will return 0 and
-   *  the hardware will start playing silence if more audio isn't queued.
-   *
-   *  This will not prevent playback of queued audio that's already been sent
-   *  to the hardware, as we can not undo that, so expect there to be some
-   *  fraction of a second of audio that might still be heard. This can be
-   *  useful if you want to, say, drop any pending music during a level change
-   *  in your game.
-   *
-   *  You may not queue audio on a device that is using an application-supplied
-   *  callback; calling this function on such a device is always a no-op.
-   *  You have to use the audio callback or queue audio with SDL_QueueAudio(),
-   *  but not both.
-   *
-   *  You should not call SDL_LockAudio() on the device before clearing the
-   *  queue; SDL handles locking internally for this function.
-   *
-   *  This function always succeeds and thus returns void.
-   *
-   *  \param dev The device ID of which to clear the audio queue.
-   *
-   *  \sa SDL_QueueAudio
-   *  \sa SDL_GetQueuedAudioSize
-   *}
+ * Drop any queued audio data waiting to be sent to the hardware.
+ *
+ * Immediately after this call, SDL_GetQueuedAudioSize() will return 0. For
+ * output devices, the hardware will start playing silence if more audio isn't
+ * queued. For capture devices, the hardware will start filling the empty
+ * queue with new data if the capture device isn't paused.
+ *
+ * This will not prevent playback of queued audio that's already been sent to
+ * the hardware, as we can not undo that, so expect there to be some fraction
+ * of a second of audio that might still be heard. This can be useful if you
+ * want to, say, drop any pending music or any unprocessed microphone input
+ * during a level change in your game.
+ *
+ * You may not queue or dequeue audio on a device that is using an
+ * application-supplied callback; calling this function on such a device
+ * always returns 0. You have to use the audio callback or queue audio, but
+ * not both.
+ *
+ * You should not call SDL_LockAudio() on the device before clearing the
+ * queue; SDL handles locking internally for this function.
+ *
+ * This function always succeeds and thus returns void.
+ *
+ * \param dev the device ID of which to clear the audio queue
+ *
+ * \since This function is available since SDL 2.0.4.
+ *
+ * \sa SDL_GetQueuedAudioSize
+ * \sa SDL_QueueAudio
+ * \sa SDL_DequeueAudio
+ *}
 procedure SDL_ClearQueuedAudio(dev: TSDL_AudioDeviceID); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearQueuedAudio' {$ENDIF} {$ENDIF};
 
