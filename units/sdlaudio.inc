@@ -842,22 +842,46 @@ function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8
 procedure SDL_FreeWAV(audio_buf: pcuint8); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FreeWAV' {$ENDIF} {$ENDIF};
 
-  {**
-   *  This function takes a source format and rate and a destination format
-   *  and rate, and initializes the cvt structure with information needed
-   *  by SDL_ConvertAudio() to convert a buffer of audio data from one format
-   *  to the other.
-   *
-   *   -1 if the format conversion is not supported, 0 if there's
-   *  no conversion needed, or 1 if the audio filter is set up.
-   *}
+{**
+ * Initialize an SDL_AudioCVT structure for conversion.
+ *
+ * Before an SDL_AudioCVT structure can be used to convert audio data it must
+ * be initialized with source and destination information.
+ *
+ * This function will zero out every field of the SDL_AudioCVT, so it must be
+ * called before the application fills in the final buffer information.
+ *
+ * Once this function has returned successfully, and reported that a
+ * conversion is necessary, the application fills in the rest of the fields in
+ * SDL_AudioCVT, now that it knows how large a buffer it needs to allocate,
+ * and then can call SDL_ConvertAudio() to complete the conversion.
+ *
+ * \param cvt an SDL_AudioCVT structure filled in with audio conversion
+ *            information
+ * \param src_format the source format of the audio data; for more info see
+ *                   SDL_AudioFormat
+ * \param src_channels the number of channels in the source
+ * \param src_rate the frequency (sample-frames-per-second) of the source
+ * \param dst_format the destination format of the audio data; for more info
+ *                   see SDL_AudioFormat
+ * \param dst_channels the number of channels in the destination
+ * \param dst_rate the frequency (sample-frames-per-second) of the destination
+ * \returns 1 if the audio filter is prepared, 0 if no conversion is needed,
+ *          or a negative error code on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_ConvertAudio
+ *}
 function SDL_BuildAudioCVT(cvt: PSDL_AudioCVT;
                            src_format: TSDL_AudioFormat;
                            src_channels: cuint8;
                            src_rate: cint;
                            dst_format: TSDL_AudioFormat;
                            dst_channels: cuint8;
-                           dst_rate: cint): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BuildAudioCVT' {$ENDIF} {$ENDIF};
+                           dst_rate: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BuildAudioCVT' {$ENDIF} {$ENDIF};
 
 {**
  *  Once you have initialized the cvt structure using SDL_BuildAudioCVT(),
