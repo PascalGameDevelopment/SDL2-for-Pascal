@@ -1054,6 +1054,20 @@ function SDL_AudioStreamFlush(stream: PSDL_AudioStream): cint; cdecl;
 procedure SDL_AudioStreamClear(stream: PSDL_AudioStream); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamClear' {$ENDIF} {$ENDIF};
 
+{*
+ * Free an audio stream
+ *
+ * \since This function is available since SDL 2.0.7.
+ *
+ * \sa SDL_NewAudioStream
+ * \sa SDL_AudioStreamPut
+ * \sa SDL_AudioStreamGet
+ * \sa SDL_AudioStreamAvailable
+ * \sa SDL_AudioStreamFlush
+ * \sa SDL_AudioStreamClear
+  }
+procedure SDL_FreeAudioStream(stream: PSDL_AudioStream); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FreeAudioStream' {$ENDIF} {$ENDIF};
 
 const
   SDL_MIX_MAXVOLUME = 128;
