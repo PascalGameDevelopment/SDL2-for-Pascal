@@ -92,6 +92,10 @@ type
   cfloat = Single;
   {$EXTERNALSYM cfloat}
 
+  pcdouble = ^cdouble;
+  cdouble = Double;
+  {$EXTERNALSYM cfloat}
+
   pcint = ^cint;
   pcuint = ^cuint;
   pclong = ^clong;
