@@ -147,7 +147,7 @@ type
   end;
 
   PSDL_AudioCVT = ^TSDL_AudioCVT;
-  TSDL_AudioFilter = procedure(cvt: PSDL_AudioCVT; format: TSDL_AudioFormat) cdecl;
+  TSDL_AudioFilter = procedure(cvt: PSDL_AudioCVT; format: TSDL_AudioFormat); cdecl;
 
   {**
    *  A structure to hold a set of audio conversion filters and buffers.
