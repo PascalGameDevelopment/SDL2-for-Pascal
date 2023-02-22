@@ -1039,6 +1039,21 @@ function SDL_AudioStreamAvailable(stream: PSDL_AudioStream): cint; cdecl;
 function SDL_AudioStreamFlush(stream: PSDL_AudioStream): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamFlush' {$ENDIF} {$ENDIF};
 
+{*
+ * Clear any pending data in the stream without converting it
+ *
+ * \since This function is available since SDL 2.0.7.
+ *
+ * \sa SDL_NewAudioStream
+ * \sa SDL_AudioStreamPut
+ * \sa SDL_AudioStreamGet
+ * \sa SDL_AudioStreamAvailable
+ * \sa SDL_AudioStreamFlush
+ * \sa SDL_FreeAudioStream
+  }
+procedure SDL_AudioStreamClear(stream: PSDL_AudioStream); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamClear' {$ENDIF} {$ENDIF};
+
 
 const
   SDL_MIX_MAXVOLUME = 128;
