@@ -122,19 +122,28 @@ type
 
   {**
    *  The calculated values in this structure are calculated by SDL_OpenAudio().
+   *
+   *  For multi-channel audio, the default SDL channel mapping is:
+   *  2:  FL FR                       (stereo)
+   *  3:  FL FR LFE                   (2.1 surround)
+   *  4:  FL FR BL BR                 (quad)
+   *  5:  FL FR LFE BL BR             (4.1 surround)
+   *  6:  FL FR FC LFE SL SR          (5.1 surround - last two can also be BL BR)
+   *  7:  FL FR FC LFE BC SL SR       (6.1 surround)
+   *  8:  FL FR FC LFE BL BR SL SR    (7.1 surround)
    *}
 type
   PSDL_AudioSpec = ^TSDL_AudioSpec;
   TSDL_AudioSpec = record
-    freq: cint;                {**< DSP frequency -- samples per second *}
-    format: TSDL_AudioFormat;     {**< Audio data format *}
+    freq: cint;                    {**< DSP frequency -- samples per second *}
+    format: TSDL_AudioFormat;      {**< Audio data format *}
     channels: cuint8;              {**< Number of channels: 1 mono, 2 stereo *}
     silence: cuint8;               {**< Audio buffer silence value (calculated) *}
-    samples: cuint16;              {**< Audio buffer size in samples (power of 2) *}
+    samples: cuint16;              {**< Audio buffer size in sample FRAMES (total samples divided by channel count) *}
     padding: cuint16;              {**< Necessary for some compile environments *}
     size: cuint32;                 {**< Audio buffer size in bytes (calculated) *}
-    callback: TSDL_AudioCallback;
-    userdata: Pointer;
+    callback: TSDL_AudioCallback;  {**< Callback that feeds the audio device (NULL to use SDL_QueueAudio()). *}
+    userdata: Pointer;             {**< Userdata passed to callback (ignored for NULL callbacks). *}
   end;
 
   PSDL_AudioCVT = ^TSDL_AudioCVT;
