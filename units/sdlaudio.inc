@@ -1307,7 +1307,26 @@ procedure SDL_ClearQueuedAudio(dev: TSDL_AudioDeviceID); cdecl;
    *  function or you will cause deadlock.
    *}
 
-procedure SDL_LockAudio cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockAudio' {$ENDIF} {$ENDIF};
+{**
+ * This function is a legacy means of locking the audio device.
+ *
+ * New programs might want to use SDL_LockAudioDevice() instead. This function
+ * is equivalent to calling...
+ *
+ * ```c
+ * SDL_LockAudioDevice(1);
+ * ```
+ *
+ * ...and is only useful if you used the legacy SDL_OpenAudio() function.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_LockAudioDevice
+ * \sa SDL_UnlockAudio
+ * \sa SDL_UnlockAudioDevice
+ *}
+procedure SDL_LockAudio; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockAudio' {$ENDIF} {$ENDIF};
 procedure SDL_LockAudioDevice(dev: TSDL_AudioDeviceID) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockAudioDevice' {$ENDIF} {$ENDIF};
 procedure SDL_UnlockAudio cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Unlock' {$ENDIF} {$ENDIF};
 procedure SDL_UnlockAudioDevice(dev: TSDL_AudioDeviceID) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockAudioDevice' {$ENDIF} {$ENDIF};
