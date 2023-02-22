@@ -960,6 +960,26 @@ function SDL_NewAudioStream(src_format: TSDL_AudioFormat; src_channels: cuint8; 
            dst_rate: cint): PSDL_AudioStream; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_NewAudioStream' {$ENDIF} {$ENDIF};
 
+{*
+ * Add data to be converted/resampled to the stream.
+ *
+ * \param stream The stream the audio data is being added to
+ * \param buf A pointer to the audio data to add
+ * \param len The number of bytes to write to the stream
+ * \returns 0 on success, or -1 on error.
+ *
+ * \since This function is available since SDL 2.0.7.
+ *
+ * \sa SDL_NewAudioStream
+ * \sa SDL_AudioStreamGet
+ * \sa SDL_AudioStreamAvailable
+ * \sa SDL_AudioStreamFlush
+ * \sa SDL_AudioStreamClear
+ * \sa SDL_FreeAudioStream
+  }
+function SDL_AudioStreamPut(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamPut' {$ENDIF} {$ENDIF};
+
 
 const
   SDL_MIX_MAXVOLUME = 128;
