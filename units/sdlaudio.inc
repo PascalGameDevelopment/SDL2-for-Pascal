@@ -1450,6 +1450,10 @@ procedure SDL_CloseAudioDevice(dev: TSDL_AudioDeviceID); cdecl;
 
   {**
    *  1 if audio device is still functioning, zero if not, -1 on error.
-   *}
-function SDL_AudioDeviceConnected(dev: TSDL_AudioDeviceID): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioDeviceConnected' {$ENDIF} {$ENDIF};
+   *
+
+   SDL2-For-Pascal: Function is gone, obviously deprecated.
+   }
+function SDL_AudioDeviceConnected(dev: TSDL_AudioDeviceID): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioDeviceConnected' {$ENDIF} {$ENDIF}; deprecated;
 
