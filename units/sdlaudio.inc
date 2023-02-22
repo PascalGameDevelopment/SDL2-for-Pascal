@@ -936,6 +936,31 @@ type
   PSDL_AudioStream = ^TSDL_AudioStream;
   TSDL_AudioStream = record end;
 
+{*
+ * Create a new audio stream.
+ *
+ * \param src_format The format of the source audio
+ * \param src_channels The number of channels of the source audio
+ * \param src_rate The sampling rate of the source audio
+ * \param dst_format The format of the desired audio output
+ * \param dst_channels The number of channels of the desired audio output
+ * \param dst_rate The sampling rate of the desired audio output
+ * \returns 0 on success, or -1 on error.
+ *
+ * \since This function is available since SDL 2.0.7.
+ *
+ * \sa SDL_AudioStreamPut
+ * \sa SDL_AudioStreamGet
+ * \sa SDL_AudioStreamAvailable
+ * \sa SDL_AudioStreamFlush
+ * \sa SDL_AudioStreamClear
+ * \sa SDL_FreeAudioStream
+  }
+function SDL_NewAudioStream(src_format: TSDL_AudioFormat; src_channels: cuint8; src_rate: cint; dst_format: TSDL_AudioFormat; dst_channels: cuint8;
+           dst_rate: cint): PSDL_AudioStream; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_NewAudioStream' {$ENDIF} {$ENDIF};
+
+
 const
   SDL_MIX_MAXVOLUME = 128;
 
