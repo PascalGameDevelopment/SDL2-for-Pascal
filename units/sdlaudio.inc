@@ -408,20 +408,33 @@ type
 function SDL_GetNumAudioDevices(iscapture: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAudioDevices' {$ENDIF} {$ENDIF};
 
-  {**
-   *  Get the human-readable name of a specific audio device.
-   *  Must be a value between 0 and (number of audio devices-1).
-   *  Only valid after a successfully initializing the audio subsystem.
-   *  The values returned by this function reflect the latest call to
-   *  SDL_GetNumAudioDevices(); recall that function to redetect available
-   *  hardware.
-   *
-   *  The string returned by this function is UTF-8 encoded, read-only, and
-   *  managed internally. You are not to free it. If you need to keep the
-   *  string for any length of time, you should make your own copy of it, as it
-   *  will be invalid next time any of several other SDL functions is called.
-   *}
-function SDL_GetAudioDeviceName(index: cint; iscapture: cint): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDeviceName' {$ENDIF} {$ENDIF};
+{**
+ * Get the human-readable name of a specific audio device.
+ *
+ * This function is only valid after successfully initializing the audio
+ * subsystem. The values returned by this function reflect the latest call to
+ * SDL_GetNumAudioDevices(); re-call that function to redetect available
+ * hardware.
+ *
+ * The string returned by this function is UTF-8 encoded, read-only, and
+ * managed internally. You are not to free it. If you need to keep the string
+ * for any length of time, you should make your own copy of it, as it will be
+ * invalid next time any of several other SDL functions are called.
+ *
+ * \param index the index of the audio device; valid values range from 0 to
+ *              SDL_GetNumAudioDevices() - 1
+ * \param iscapture non-zero to query the list of recording devices, zero to
+ *                  query the list of output devices.
+ * \returns the name of the audio device at the requested index, or NULL on
+ *          error.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetNumAudioDevices
+ * \sa SDL_GetDefaultAudioInfo
+ *}
+function SDL_GetAudioDeviceName(index: cint; iscapture: cint): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDeviceName' {$ENDIF} {$ENDIF};
 
   {**
    *  Open a specific audio device. Passing in a device name of NULL requests
