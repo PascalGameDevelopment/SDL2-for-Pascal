@@ -216,7 +216,28 @@ type
 function SDL_GetNumAudioDrivers: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAudioDrivers' {$ENDIF} {$ENDIF};
 
-function SDL_GetAudioDriver(index: cint): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDriver' {$ENDIF} {$ENDIF};
+{**
+ * Use this function to get the name of a built in audio driver.
+ *
+ * The list of audio drivers is given in the order that they are normally
+ * initialized by default; the drivers that seem more reasonable to choose
+ * first (as far as the SDL developers believe) are earlier in the list.
+ *
+ * The names of drivers are all simple, low-ASCII identifiers, like "alsa",
+ * "coreaudio" or "xaudio2". These never have Unicode characters, and are not
+ * meant to be proper names.
+ *
+ * \param index the index of the audio driver; the value ranges from 0 to
+ *              SDL_GetNumAudioDrivers() - 1
+ * \returns the name of the audio driver at the requested index, or NULL if an
+ *          invalid index was specified.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetNumAudioDrivers
+ *}
+function SDL_GetAudioDriver(index: cint): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDriver' {$ENDIF} {$ENDIF};
 
   {**
    *   Initialization and cleanup
