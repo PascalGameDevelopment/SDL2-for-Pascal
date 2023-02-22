@@ -1422,7 +1422,31 @@ procedure SDL_UnlockAudioDevice(dev: TSDL_AudioDeviceID); cdecl;
  *}
 procedure SDL_CloseAudio; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseAudio' {$ENDIF} {$ENDIF};
-procedure SDL_CloseAudioDevice(dev: TSDL_AudioDeviceID) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseAudioDevice' {$ENDIF} {$ENDIF};
+
+{**
+ * Use this function to shut down audio processing and close the audio device.
+ *
+ * The application should close open audio devices once they are no longer
+ * needed. Calling this function will wait until the device's audio callback
+ * is not running, release the audio hardware and then clean up internal
+ * state. No further audio will play from this device once this function
+ * returns.
+ *
+ * This function may block briefly while pending audio data is played by the
+ * hardware, so that applications don't drop the last buffer of data they
+ * supplied.
+ *
+ * The device ID is invalid as soon as the device is closed, and is eligible
+ * for reuse in a new SDL_OpenAudioDevice() call immediately.
+ *
+ * \param dev an audio device previously opened with SDL_OpenAudioDevice()
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_OpenAudioDevice
+ *}
+procedure SDL_CloseAudioDevice(dev: TSDL_AudioDeviceID); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseAudioDevice' {$ENDIF} {$ENDIF};
 
   {**
    *  1 if audio device is still functioning, zero if not, -1 on error.
