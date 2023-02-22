@@ -281,10 +281,23 @@ procedure SDL_AudioQuit; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioQuit' {$ENDIF} {$ENDIF};
 
   {**
-   *  This function returns the name of the current audio driver, or NULL
-   *  if no driver has been initialized.
-   *}
-function SDL_GetCurrentAudioDriver: PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCurrentAudioDriver' {$ENDIF} {$ENDIF};
+ * Get the name of the current audio driver.
+ *
+ * The returned string points to internal static memory and thus never becomes
+ * invalid, even if you quit the audio subsystem and initialize a new driver
+ * (although such a case would return a different static string from another
+ * call to this function, of course). As such, you should not modify or free
+ * the returned string.
+ *
+ * \returns the name of the current audio driver or NULL if no driver has been
+ *          initialized.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_AudioInit
+ *}
+function SDL_GetCurrentAudioDriver: PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCurrentAudioDriver' {$ENDIF} {$ENDIF};
 
   {**
    *  This function opens the audio device with the desired parameters, and
