@@ -146,9 +146,6 @@ type
     userdata: Pointer;             {**< Userdata passed to callback (ignored for NULL callbacks). *}
   end;
 
-  PSDL_AudioCVT = ^TSDL_AudioCVT;
-  TSDL_AudioFilter = procedure(cvt: PSDL_AudioCVT; format: TSDL_AudioFormat); cdecl;
-
   {**
    *  \brief Upper limit of filters in SDL_AudioCVT
    *
@@ -158,22 +155,34 @@ type
    *}
 const
   SDL_AUDIOCVT_MAX_FILTERS = 9;
+type
+  PSDL_AudioCVT = ^TSDL_AudioCVT;
+  TSDL_AudioFilter = procedure(cvt: PSDL_AudioCVT; format: TSDL_AudioFormat); cdecl;
+
+
 
   {**
-   *  A structure to hold a set of audio conversion filters and buffers.
+   *  \struct SDL_AudioCVT
+   *  \brief A structure to hold a set of audio conversion filters and buffers.
+   *
+   *  Note that various parts of the conversion pipeline can take advantage
+   *  of SIMD operations (like SSE2, for example). SDL_AudioCVT doesn't require
+   *  you to pass it aligned data, but can possibly run much faster if you
+   *  set both its (buf) field to a pointer that is aligned to 16 bytes, and its
+   *  (len) field to something that's a multiple of 16, if possible.
    *}
   TSDL_AudioCVT = record
     needed: cint;                           {**< Set to 1 if conversion possible *}
-    src_format: TSDL_AudioFormat;              {**< Source audio format *}
-    dst_format: TSDL_AudioFormat;                {**< Target audio format *}
-    rate_incr: Double;                        {**< Rate conversion increment *}
-    buf: pcuint8;                             {**< Buffer to hold entire audio data *}
-    len: cint;                               {**< Length of original audio buffer *}
-    len_cvt: cint;                           {**< Length of converted audio buffer *}
-    len_mult: cint;                          {**< buffer must be len*len_mult big *}
-    len_ratio: Double;                        {**< Given len, final size is len*len_ratio *}
-    filters: array[0..9] of TSDL_AudioFilter; {**< Filter list *}
-    filter_index: cint;                      {**< Current audio conversion function *}
+    src_format: TSDL_AudioFormat;           {**< Source audio format *}
+    dst_format: TSDL_AudioFormat;           {**< Target audio format *}
+    rate_incr: cdouble;                     {**< Rate conversion increment *}
+    buf: pcuint8;                           {**< Buffer to hold entire audio data *}
+    len: cint;                              {**< Length of original audio buffer *}
+    len_cvt: cint;                          {**< Length of converted audio buffer *}
+    len_mult: cint;                         {**< buffer must be len*len_mult big *}
+    len_ratio: cdouble;                     {**< Given len, final size is len*len_ratio *}
+    filters: array[0..SDL_AUDIOCVT_MAX_FILTERS + 1] of TSDL_AudioFilter; {**< NULL-terminated list of filter functions *}
+    filter_index: cint;                     {**< Current audio conversion function *}
   end;
 
 
