@@ -170,7 +170,7 @@ const
 {$I sdlpixels.inc}               // 2.0.14 WIP
 {$I sdlrect.inc}                 // 2.24.0
 {$I sdlrwops.inc}                // 2.0.14
-{$I sdlaudio.inc}
+{$I sdlaudio.inc}                // 2.26.3
 {$I sdlblendmode.inc}            // 2.0.14
 {$I sdlsurface.inc}              // 2.0.14
 {$I sdlvideo.inc}                // 2.24.0
