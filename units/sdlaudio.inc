@@ -150,6 +150,16 @@ type
   TSDL_AudioFilter = procedure(cvt: PSDL_AudioCVT; format: TSDL_AudioFormat); cdecl;
 
   {**
+   *  \brief Upper limit of filters in SDL_AudioCVT
+   *
+   *  The maximum number of SDL_AudioFilter functions in SDL_AudioCVT is
+   *  currently limited to 9. The SDL_AudioCVT.filters array has 10 pointers,
+   *  one of which is the terminating NULL pointer.
+   *}
+const
+  SDL_AUDIOCVT_MAX_FILTERS = 9;
+
+  {**
    *  A structure to hold a set of audio conversion filters and buffers.
    *}
   TSDL_AudioCVT = record
