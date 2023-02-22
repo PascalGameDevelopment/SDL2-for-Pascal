@@ -246,8 +246,24 @@ function SDL_GetAudioDriver(index: cint): PAnsiChar; cdecl;
    *  you have a specific need to specify the audio driver you want to
    *  use.  You should normally use SDL_Init() or SDL_InitSubSystem().
    *}
- 
-function SDL_AudioInit(driver_name: PAnsiChar): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioInit' {$ENDIF} {$ENDIF};
+
+{**
+ * Use this function to initialize a particular audio driver.
+ *
+ * This function is used internally, and should not be used unless you have a
+ * specific need to designate the audio driver you want to use. You should
+ * normally use SDL_Init() or SDL_InitSubSystem().
+ *
+ * \param driver_name the name of the desired audio driver
+ * \returns 0 on success or a negative error code on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_AudioQuit
+ *}
+function SDL_AudioInit(driver_name: PAnsiChar): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioInit' {$ENDIF} {$ENDIF};
 procedure SDL_AudioQuit cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioQuit' {$ENDIF} {$ENDIF};
 
   {**
