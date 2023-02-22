@@ -1387,8 +1387,23 @@ procedure SDL_LockAudioDevice(dev: TSDL_AudioDeviceID); cdecl;
  *}
 procedure SDL_UnlockAudio; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Unlock' {$ENDIF} {$ENDIF};
-procedure SDL_UnlockAudioDevice(dev: TSDL_AudioDeviceID) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockAudioDevice' {$ENDIF} {$ENDIF};
-  {*Audio lock functions*}
+
+{**
+ * Use this function to unlock the audio callback function for a specified
+ * device.
+ *
+ * This function should be paired with a previous SDL_LockAudioDevice() call.
+ *
+ * \param dev the ID of the device to be unlocked
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_LockAudioDevice
+ *}
+procedure SDL_UnlockAudioDevice(dev: TSDL_AudioDeviceID); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockAudioDevice' {$ENDIF} {$ENDIF};
+
+{*Audio lock functions*}
 
   {**
    *  This function shuts down audio processing and closes the audio device.
