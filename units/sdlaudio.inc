@@ -628,7 +628,26 @@ const
   SDL_AUDIO_PLAYING = TSDL_AudioStatus(1);
   SDL_AUDIO_PAUSED  = TSDL_AudioStatus(2);
 
-function SDL_GetAudioStatus: TSDL_AudioStatus cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioStatus' {$ENDIF} {$ENDIF};
+{**
+ * This function is a legacy means of querying the audio device.
+ *
+ * New programs might want to use SDL_GetAudioDeviceStatus() instead. This
+ * function is equivalent to calling...
+ *
+ * ```c
+ * SDL_GetAudioDeviceStatus(1);
+ * ```
+ *
+ * ...and is only useful if you used the legacy SDL_OpenAudio() function.
+ *
+ * \returns the SDL_AudioStatus of the audio device opened by SDL_OpenAudio().
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_GetAudioDeviceStatus
+ *}
+function SDL_GetAudioStatus: TSDL_AudioStatus; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioStatus' {$ENDIF} {$ENDIF};
 
 function SDL_GetAudioDeviceStatus(dev: TSDL_AudioDeviceID): TSDL_AudioStatus cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDeviceStatus' {$ENDIF} {$ENDIF};
   {*Audio State*}
