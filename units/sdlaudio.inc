@@ -1019,6 +1019,26 @@ function SDL_AudioStreamGet(stream: PSDL_AudioStream; buf: pointer; len: cint): 
 function SDL_AudioStreamAvailable(stream: PSDL_AudioStream): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamAvailable' {$ENDIF} {$ENDIF};
 
+{*
+ * Tell the stream that you're done sending data, and anything being buffered
+ * should be converted/resampled and made available immediately.
+ *
+ * It is legal to add more data to a stream after flushing, but there will be
+ * audio gaps in the output. Generally this is intended to signal the end of
+ * input, so the complete output becomes available.
+ *
+ * \since This function is available since SDL 2.0.7.
+ *
+ * \sa SDL_NewAudioStream
+ * \sa SDL_AudioStreamPut
+ * \sa SDL_AudioStreamGet
+ * \sa SDL_AudioStreamAvailable
+ * \sa SDL_AudioStreamClear
+ * \sa SDL_FreeAudioStream
+  }
+function SDL_AudioStreamFlush(stream: PSDL_AudioStream): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamFlush' {$ENDIF} {$ENDIF};
+
 
 const
   SDL_MIX_MAXVOLUME = 128;
