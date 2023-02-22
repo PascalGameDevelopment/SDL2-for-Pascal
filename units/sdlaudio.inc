@@ -1072,14 +1072,30 @@ procedure SDL_FreeAudioStream(stream: PSDL_AudioStream); cdecl;
 const
   SDL_MIX_MAXVOLUME = 128;
 
-  {**
-   *  This takes two audio buffers of the playing audio format and mixes
-   *  them, performing addition, volume adjustment, and overflow clipping.
-   *  The volume ranges from 0 - 128, and should be set to ::SDL_MIX_MAXVOLUME
-   *  for full audio volume.  Note this does not change hardware volume.
-   *  This is provided for convenience -- you can mix your own audio data.
-   *}
-procedure SDL_MixAudio(dst: pcuint8; src: pcuint8; len: cuint32; volume: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudio' {$ENDIF} {$ENDIF};
+{**
+ * This function is a legacy means of mixing audio.
+ *
+ * This function is equivalent to calling...
+ *
+ * ```c
+ * SDL_MixAudioFormat(dst, src, format, len, volume);
+ * ```
+ *
+ * ...where `format` is the obtained format of the audio device from the
+ * legacy SDL_OpenAudio() function.
+ *
+ * \param dst the destination for the mixed audio
+ * \param src the source audio buffer to be mixed
+ * \param len the length of the audio buffer in bytes
+ * \param volume ranges from 0 - 128, and should be set to SDL_MIX_MAXVOLUME
+ *               for full audio volume
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_MixAudioFormat
+ *}
+procedure SDL_MixAudio(dst: pcuint8; src: pcuint8; len: cuint32; volume: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudio' {$ENDIF} {$ENDIF};
 
   {**
    *  This works like SDL_MixAudio(), but you specify the audio format instead of
