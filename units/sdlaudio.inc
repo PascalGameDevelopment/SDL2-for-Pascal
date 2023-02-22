@@ -1000,6 +1000,25 @@ function SDL_AudioStreamPut(stream: PSDL_AudioStream; buf: pointer; len: cint): 
 function SDL_AudioStreamGet(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamGet' {$ENDIF} {$ENDIF};
 
+{*
+ * Get the number of converted/resampled bytes available.
+ *
+ * The stream may be buffering data behind the scenes until it has enough to
+ * resample correctly, so this number might be lower than what you expect, or
+ * even be zero. Add more data or flush the stream if you need the data now.
+ *
+ * \since This function is available since SDL 2.0.7.
+ *
+ * \sa SDL_NewAudioStream
+ * \sa SDL_AudioStreamPut
+ * \sa SDL_AudioStreamGet
+ * \sa SDL_AudioStreamFlush
+ * \sa SDL_AudioStreamClear
+ * \sa SDL_FreeAudioStream
+  }
+function SDL_AudioStreamAvailable(stream: PSDL_AudioStream): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioStreamAvailable' {$ENDIF} {$ENDIF};
+
 
 const
   SDL_MIX_MAXVOLUME = 128;
