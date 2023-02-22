@@ -696,7 +696,37 @@ function SDL_GetAudioDeviceStatus(dev: TSDL_AudioDeviceID): TSDL_AudioStatus; cd
  *}
 procedure SDL_PauseAudio(pause_on: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseAudio' {$ENDIF} {$ENDIF};
-procedure SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID; pause_on: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseAudioDevice' {$ENDIF} {$ENDIF};
+
+{**
+ * Use this function to pause and unpause audio playback on a specified
+ * device.
+ *
+ * This function pauses and unpauses the audio callback processing for a given
+ * device. Newly-opened audio devices start in the paused state, so you must
+ * call this function with **pause_on**=0 after opening the specified audio
+ * device to start playing sound. This allows you to safely initialize data
+ * for your callback function after opening the audio device. Silence will be
+ * written to the audio device while paused, and the audio callback is
+ * guaranteed to not be called. Pausing one device does not prevent other
+ * unpaused devices from running their callbacks.
+ *
+ * Pausing state does not stack; even if you pause a device several times, a
+ * single unpause will start the device playing again, and vice versa. This is
+ * different from how SDL_LockAudioDevice() works.
+ *
+ * If you just need to protect a few variables from race conditions vs your
+ * callback, you shouldn't pause the audio device, as it will lead to dropouts
+ * in the audio playback. Instead, you should use SDL_LockAudioDevice().
+ *
+ * \param dev a device opened by SDL_OpenAudioDevice()
+ * \param pause_on non-zero to pause, 0 to unpause
+ *
+ * \since This function is available since SDL 2.0.0.
+ *
+ * \sa SDL_LockAudioDevice
+ *}
+procedure SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID; pause_on: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseAudioDevice' {$ENDIF} {$ENDIF};
   {*Pause audio functions*}
 
   {**
