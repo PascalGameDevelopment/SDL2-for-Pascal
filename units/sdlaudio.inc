@@ -1098,11 +1098,37 @@ procedure SDL_MixAudio(dst: pcuint8; src: pcuint8; len: cuint32; volume: cint); 
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudio' {$ENDIF} {$ENDIF};
 
   {**
-   *  This works like SDL_MixAudio(), but you specify the audio format instead of
-   *  using the format of audio device 1. Thus it can be used when no audio
-   *  device is open at all.
-   *}
-procedure SDL_MixAudioFormat(dst: pcuint8; src: pcuint8; format: TSDL_AudioFormat; len: cuint32; volume: cint) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudioFormat' {$ENDIF} {$ENDIF};
+ * Mix audio data in a specified format.
+ *
+ * This takes an audio buffer `src` of `len` bytes of `format` data and mixes
+ * it into `dst`, performing addition, volume adjustment, and overflow
+ * clipping. The buffer pointed to by `dst` must also be `len` bytes of
+ * `format` data.
+ *
+ * This is provided for convenience -- you can mix your own audio data.
+ *
+ * Do not use this function for mixing together more than two streams of
+ * sample data. The output from repeated application of this function may be
+ * distorted by clipping, because there is no accumulator with greater range
+ * than the input (not to mention this being an inefficient way of doing it).
+ *
+ * It is a common misconception that this function is required to write audio
+ * data to an output stream in an audio callback. While you can do that,
+ * SDL_MixAudioFormat() is really only needed when you're mixing a single
+ * audio stream with a volume adjustment.
+ *
+ * \param dst the destination for the mixed audio
+ * \param src the source audio buffer to be mixed
+ * \param format the SDL_AudioFormat structure representing the desired audio
+ *               format
+ * \param len the length of the audio buffer in bytes
+ * \param volume ranges from 0 - 128, and should be set to SDL_MIX_MAXVOLUME
+ *               for full audio volume
+ *
+ * \since This function is available since SDL 2.0.0.
+ *}
+procedure SDL_MixAudioFormat(dst: pcuint8; src: pcuint8; format: TSDL_AudioFormat; len: cuint32; volume: cint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudioFormat' {$ENDIF} {$ENDIF};
 
   {**
    *  Queue more audio on non-callback devices.
