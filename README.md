@@ -4,7 +4,7 @@ Unit files for building
 [Free Pascal](https://freepascal.org/) / [Delphi](https://www.embarcadero.com/products/delphi) applications
 using the [SDL2 library](https://libsdl.org).
 
-This repository is a community-maintained fork of the [Pascal-SDL-2-Headers](https://github.com/ev1313/Pascal-SDL-2-Headers) repo.
+The [SDL2-for-Pascal](https://github.com/PascalGameDevelopment/SDL2-for-Pascal) repository is a community-maintained fork of the [Pascal-SDL-2-Headers](https://github.com/ev1313/Pascal-SDL-2-Headers) repository.
 
 ## Installation
 
