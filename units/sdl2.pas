@@ -8,7 +8,7 @@ unit sdl2;
   Copyright (C) 2012-2020 Tim Blume aka End/EV1313
 
   SDL2-for-Pascal
-  Copyright (C) 2020-2021 PGD Community
+  Copyright (C) 2020-2023 PGD Community
 
   SDL.pas is based on the files:
   "sdl.h",
