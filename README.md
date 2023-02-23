@@ -43,7 +43,7 @@ See part Enums on the [Cheat sheet](CHEATSHEET.md) for reference.
 - (Continously) improve Delphi-compatibility (and even more important, DO NOT break it)
 - (Continously) Adapt comments to [PasDoc format](https://pasdoc.github.io). (See issue [#22](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/22))
 
-## Code style guidelines
+### Code style guidelines
 
 The main principle is to stay as tight as possible at the names in the C headers.
 These guidelines aim to have better consistency in this community project and make
