@@ -10,44 +10,9 @@ unit sdl2;
   SDL2-for-Pascal
   Copyright (C) 2020-2023 PGD Community
 
-  SDL.pas is based on the files:
-  "sdl.h",
-  "sdl_audio.h",
-  "sdl_blendmode.h",
-  "sdl_clipboard.h",
-  "sdl_cpuinfo.h",
-  "sdl_events.h",
-  "sdl_error.h",
-  "sdl_filesystem.h",
-  "sdl_gamecontroller.h",
-  "sdl_gesture.h",
-  "sdl_haptic.h",
-  "sdl_hints.h",
-  "sdl_joystick.h",
-  "sdl_keyboard.h",
-  "sdl_keycode.h",
-  "sdl_loadso.h",
-  "sdl_log.h",
-  "sdl_pixels.h",
-  "sdl_power.h",
-  "sdl_main.h",
-  "sdl_messagebox.h",
-  "sdl_mouse.h",
-  "sdl_mutex.h",
-  "sdl_rect.h",
-  "sdl_render.h",
-  "sdl_rwops.h",
-  "sdl_scancode.h",
-  "sdl_shape.h",
-  "sdl_stdinc.h",
-  "sdl_surface.h",
-  "sdl_system.h",
-  "sdl_syswm.h",
-  "sdl_thread.h",
-  "sdl_timer.h",
-  "sdl_touch.h",
-  "sdl_version.h",
-  "sdl_video.h"
+  sdl2.pas is based on the C header files in the include folder
+  of the original Simple DirectMedia Layer repository.
+  See: https://github.com/libsdl-org/SDL
 
   I will not translate:
   "sdl_opengl.h",
