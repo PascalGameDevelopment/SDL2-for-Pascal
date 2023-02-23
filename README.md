@@ -20,6 +20,10 @@ Use the `sdl2` unit for the main SDL2 library (should be always needed). Units f
  - [`sdl2_net`](https://www.libsdl.org/projects/SDL_net/)
  - [`sdl2_ttf`](https://www.libsdl.org/projects/SDL_ttf/)
 
+## Documentation
+
+[Official SDL2-for-Pascal Documentation](https://pascalgamedevelopment.github.io/SDL2-for-Pascal)
+
 ## Bugs / Contributions / ToDos
 
 If you have any contributions or bugfixes, feel free to drop a pull request or send in a patch.
