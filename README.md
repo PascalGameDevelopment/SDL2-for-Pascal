@@ -32,8 +32,8 @@ Use the `sdl2` unit for the main SDL2 library (should be always needed). Units f
 ## Bugs / Contributions / ToDos
 
 If you have any contributions or bugfixes, feel free to drop a pull request or send in a patch.
+Please use the GitHub [issue tracker](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues).
 
-Please use the GitHub issue tracker for bug reports.
 
 ### ToDos
 
