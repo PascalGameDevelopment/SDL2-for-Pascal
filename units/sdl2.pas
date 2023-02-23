@@ -14,16 +14,13 @@ unit sdl2;
   of the original Simple DirectMedia Layer repository.
   See: https://github.com/libsdl-org/SDL
 
-  I will not translate:
+  OpenGL header files are not translated:
   "sdl_opengl.h",
   "sdl_opengles.h"
   "sdl_opengles2.h"
 
-  cause there's a much better OpenGL-Header avaible at delphigl.com:
-
-  the dglopengl.pas
-
-  You'll find it nowadays here: https://github.com/SaschaWillems/dglOpenGL
+  There is a much better OpenGL-Header avaible at delphigl.com: dglopengl.pas
+  See: https://github.com/SaschaWillems/dglOpenGL
 
   Parts of the SDL.pas are from the SDL-1.2-Headerconversion from the JEDI-Team,
   written by Domenique Louis and others.
