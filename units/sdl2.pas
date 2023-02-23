@@ -2,7 +2,7 @@ unit sdl2;
 
 {
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2023 Sam Lantinga <slouken@libsdl.org>
 
   Pascal-Header-Conversion
   Copyright (C) 2012-2020 Tim Blume aka End/EV1313
