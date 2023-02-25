@@ -28,14 +28,6 @@
   3. This notice may not be removed or altered from any source distribution.
 }
 
-{
-  Changelog:
-  ----------
-  v. 1.63-stable; 16.09.13: since GPC isn't supported anymore, i've deleted it from here, too.
-  v. 1.22-alpha; 24.07.13: fixed some bugs. special thanks to kotai from pascalgamedevelopment.com
-  v. 1.00-alpha; 05.07.13: Initial Alpha-Release
-}
-
 {.$define Debug}           { uncomment for debugging }
 
 {$IFNDEF FPC}

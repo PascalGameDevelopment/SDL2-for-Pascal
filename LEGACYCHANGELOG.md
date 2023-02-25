@@ -83,3 +83,11 @@ v.1.70-stable; 16.09.2013: Initial Commit
 v.1.72-stable; 29.09.2013: fixed bug with procedures without parameters (they must have brackets)
 
 v.1.70-stable; 11.09.2013: Initial Commit
+
+## Extracted from jedi.inc
+
+v. 1.63-stable; 16.09.13: since GPC isn't supported anymore, i've deleted it from here, too.
+
+v. 1.22-alpha; 24.07.13: fixed some bugs. special thanks to kotai from pascalgamedevelopment.com
+
+v. 1.00-alpha; 05.07.13: Initial Alpha-Release
