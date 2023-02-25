@@ -26,9 +26,6 @@ unit sdl2;
   Parts of the SDL.pas are from the SDL-1.2-Headerconversion from the JEDI-Team,
   written by Domenique Louis and others.
 
-  I've changed the names of the dll for 32 & 64-Bit, so theres no conflict
-  between 32 & 64 bit Libraries.
-
   This software is provided 'as-is', without any express or implied
   warranty.  In no case will the authors be held liable for any damages
   arising from the use of this software.
