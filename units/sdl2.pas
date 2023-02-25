@@ -47,6 +47,7 @@ unit sdl2;
 
   Special Thanks to:
 
+   - Tim Blume and everyone else contributing to the "Pascal-Header-Conversion"
    - DelphiGL.com - Community
    - Domenique Louis and everyone else from the JEDI-Team
    - Sam Latinga and everyone else from the SDL-Team
