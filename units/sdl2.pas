@@ -9,6 +9,7 @@ unit sdl2;
 
   SDL2-for-Pascal
   Copyright (C) 2020-2023 PGD Community
+  Maintainers: M. J. Molski and Super Vegeta (aka suve)
 
   sdl2.pas is based on the C header files in the include folder
   of the original Simple DirectMedia Layer repository.
