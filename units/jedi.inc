@@ -1,22 +1,15 @@
 {
-  Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  This file (jedi.inc) is part of SDL2-for-Pascal.
+  It defines some variables for several Pascal-Compilers and OS-versions.
 
-  Pascal-Header-Conversion
-  Copyright (c) 2012/13 Tim Blume aka End
+  It is based upon:
 
-  sdl.inc is based on the files:
-    "begin_code.h",
-    "close_code.h",
-	  "sdl_config.h",
-	  "sdl_config_windows.h",
-   	...
-  it defines some variables for several Pascal-Compilers and OS-versions.
+    Pascal-Header-Conversion
+    Copyright (c) 2012/13 Tim Blume aka End
 
-  It is based on mine updated version of jedi-sdl.inc from the SDL 1.2 Headers,
-  they can be found at delphigl.com or on my github-repository:
-
-  https://github.com/ev1313/
+    jedi-sdl.inc: Global Conditional Definitions for JEDI-SDL cross-compilation
+    Copyright (C) 2000 - 2013 Prof. Abimbola Olowofoyeku and Tim Blume
+    See: https://github.com/ev1313/
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
