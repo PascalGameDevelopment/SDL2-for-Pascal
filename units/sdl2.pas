@@ -18,6 +18,9 @@ unit sdl2;
     Pascal-Header-Conversion
     Copyright (C) 2012-2020 Tim Blume aka End/EV1313
 
+    JEDI-SDL : Pascal units for SDL
+    Copyright (C) 2000 - 2004 Dominique Louis <Dominique@SavageSoftware.com.au>
+
   sdl2.pas is based on the C header files in the include folder
   of the original Simple DirectMedia Layer repository.
   See: https://github.com/libsdl-org/SDL
@@ -29,9 +32,6 @@ unit sdl2;
 
   There is a much better OpenGL-Header avaible at delphigl.com: dglopengl.pas
   See: https://github.com/SaschaWillems/dglOpenGL
-
-  Parts of the SDL.pas are from the SDL-1.2-Headerconversion from the JEDI-Team,
-  written by Domenique Louis and others.
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no case will the authors be held liable for any damages
