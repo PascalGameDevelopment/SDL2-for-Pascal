@@ -1,15 +1,19 @@
 unit sdl2;
 
 {
+                                SDL2-for-Pascal
+                               =================
+          Pascal units for SDL2 - Simple Direct Media Layer, Version 2
+
+  Copyright (C) 2020-2023 PGD Community
+  Maintainers: M. J. Molski and Super Vegeta (aka suve)
+  Visit: https://github.com/PascalGameDevelopment/SDL2-for-Pascal
+
   Simple DirectMedia Layer
   Copyright (C) 1997-2023 Sam Lantinga <slouken@libsdl.org>
 
   Pascal-Header-Conversion
   Copyright (C) 2012-2020 Tim Blume aka End/EV1313
-
-  SDL2-for-Pascal
-  Copyright (C) 2020-2023 PGD Community
-  Maintainers: M. J. Molski and Super Vegeta (aka suve)
 
   sdl2.pas is based on the C header files in the include folder
   of the original Simple DirectMedia Layer repository.
