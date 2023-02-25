@@ -27,6 +27,7 @@ Use the `sdl2` unit for the main SDL2 library (should be always needed). Units f
 ### Further Resources
 
 [Free Pascal meets SDL](https://www.freepascal-meets-sdl.net)
+
 [PGD SDL2 Forum](https://www.pascalgamedevelopment.com/forumdisplay.php?26-SDL-SDL-2)
 
 ## Bugs / Contributions / ToDos
