@@ -180,7 +180,7 @@ type
     len_cvt: cint;                          {**< Length of converted audio buffer *}
     len_mult: cint;                         {**< buffer must be len*len_mult big *}
     len_ratio: cdouble;                     {**< Given len, final size is len*len_ratio *}
-    filters: array[0..SDL_AUDIOCVT_MAX_FILTERS + 1] of TSDL_AudioFilter; {**< NULL-terminated list of filter functions *}
+    filters: array[0..SDL_AUDIOCVT_MAX_FILTERS] of TSDL_AudioFilter; {**< NULL-terminated list of filter functions *}
     filter_index: cint;                     {**< Current audio conversion function *}
   end;
 
