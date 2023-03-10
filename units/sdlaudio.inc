@@ -822,7 +822,7 @@ function SDL_LoadWAV_RW(src: PSDL_RWops;
  *  Loads a WAV from a file.
  *  Compatibility convenience function.
  *}
-function SDL_LoadWAV(_file: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): PSDL_AudioSpec;
+function SDL_LoadWAV(file_: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): PSDL_AudioSpec;
 
 {**
  * Free data previously allocated with SDL_LoadWAV() or SDL_LoadWAV_RW().
