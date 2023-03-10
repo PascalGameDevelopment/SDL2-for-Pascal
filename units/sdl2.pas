@@ -190,7 +190,7 @@ const
 {$I sdlhaptic.inc}
 {$I sdlhidapi.inc}               // 2.0.18
 {$I sdltouch.inc}                // 2.24.0
-{$I sdlgesture.inc}
+{$I sdlgesture.inc}              // 2.26.2
 {$I sdlsyswm.inc}
 {$I sdlevents.inc}               // 2.24.0
 {$I sdllocale.inc}               // 2.0.14
