@@ -766,15 +766,15 @@ type
 type
   PSDL_HapticEffect = ^TSDL_HapticEffect;
   TSDL_HapticEffect = record
-    {* Common for all force feedback effects *}
-    type_: cuint16;                           {**< Effect type. *}
-    case cuint16 of
-      0: (constant: TSDL_HapticConstant;);    {**< Constant effect. *}
-      1: (periodic: TSDL_HapticPeriodic;);    {**< Periodic effect. *}
-      2: (condition: TSDL_HapticCondition;);  {**< Condition effect. *}
-      3: (ramp: TSDL_HapticRamp;);            {**< Ramp effect. *}
-      4: (leftright: TSDL_HapticLeftRight;);  {**< Custom effect. *}
-      5: (custom: TSDL_HapticCustom;);        {**< Custom effect. *}
+    case cint of
+      {* Common for all force feedback effects *}
+      0: (type_: cuint16);                    {**< Effect type. *}
+      1: (constant: TSDL_HapticConstant;);    {**< Constant effect. *}
+      2: (periodic: TSDL_HapticPeriodic;);    {**< Periodic effect. *}
+      3: (condition: TSDL_HapticCondition;);  {**< Condition effect. *}
+      4: (ramp: TSDL_HapticRamp;);            {**< Ramp effect. *}
+      5: (leftright: TSDL_HapticLeftRight;);  {**< Custom effect. *}
+      6: (custom: TSDL_HapticCustom;);        {**< Custom effect. *}
   end;
 
   {* Function prototypes *}
