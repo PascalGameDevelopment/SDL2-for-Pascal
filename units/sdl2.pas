@@ -204,6 +204,20 @@ const
 
 implementation
 
+(*
+ * We need an strlen() implementation for some operations on C-strings.
+ * FPC ships one in the Strings unit; Delphi has one in the AnsiStrings unit.
+ * Since FPC defines "DELPHI" when building in Delphi-compatibility mode,
+ * check if "FPC" is defined to determine which compiler is used.
+ *)
+uses
+	{$IFDEF FPC}
+		Strings
+	{$ELSE}
+		AnsiStrings
+	{$ENDIF}
+	;
+
 // Macros from "sdl_version.h"
 procedure SDL_VERSION(out x: TSDL_Version);
 begin
@@ -426,6 +440,24 @@ end;
 function SDL_SHAPEMODEALPHA(mode: TWindowShapeMode): Boolean;
 begin
   Result := (mode = ShapeModeDefault) or (mode = ShapeModeBinarizeAlpha) or (mode = ShapeModeReverseBinarizeAlpha);
+end;
+
+// from "sdl_stdinc.h"
+
+// Note: We're using FPC's Strings.strlen() here, not SDL_strlen().
+function SDL_iconv_utf8_locale(Const str: PAnsiChar): PAnsiChar; cdecl;
+begin
+  Result := SDL_iconv_string('', 'UTF-8', str, strlen(str)+1)
+end;
+
+function SDL_iconv_utf8_ucs2(Const str: PAnsiChar): pcUint16; cdecl;
+begin
+	Result := pcUint16(SDL_iconv_string('UCS-2-INTERNAL', 'UTF-8', str, strlen(str)+1))
+end;
+
+function SDL_iconv_utf8_ucs4(Const str: PAnsiChar): pcUint32; cdecl;
+begin
+	Result := pcUint32(SDL_iconv_string('UCS-4-INTERNAL', 'UTF-8', str, strlen(str)+1))
 end;
 
 //from "sdl_video.h"
