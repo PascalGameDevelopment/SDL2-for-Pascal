@@ -187,7 +187,7 @@ const
 {$I sdljoystick.inc}             // 2.24.0
 {$I sdlsensor.inc}               // 2.26.0
 {$I sdlgamecontroller.inc}       // 2.24.0
-{$I sdlhaptic.inc}
+{$I sdlhaptic.inc}               // 2.26.2
 {$I sdlhidapi.inc}               // 2.0.18
 {$I sdltouch.inc}                // 2.24.0
 {$I sdlgesture.inc}              // 2.26.2
