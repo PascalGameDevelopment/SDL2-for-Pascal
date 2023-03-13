@@ -266,6 +266,24 @@ function SDL_isprint(x: cint):cint; cdecl;
 function SDL_isgraph(x: cint):cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isgraph' {$ENDIF} {$ENDIF};
 
+(**
+ * If the given ASCII character is a lowercase letter, converts it to uppercase.
+ * Otherwise returns the original value.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_toupper(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_toupper' {$ENDIF} {$ENDIF};
+
+(**
+ * If the given ASCII character is an uppercase letter, converts it to lowercase.
+ * Otherwise returns the original value.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_tolower(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tolower' {$ENDIF} {$ENDIF};
+
 
 (*** --- iconv functions --- ***)
 
