@@ -297,6 +297,38 @@ function SDL_floorf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_floorf' {$ENDIF} {$ENDIF};
 
 (**
+ * Round to nearest integer, away from zero.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_lround(x: cdouble): clong; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_lround' {$ENDIF} {$ENDIF};
+
+(**
+ * Round to nearest integer, away from zero.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_lroundf(x: cfloat): clong; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_lroundf' {$ENDIF} {$ENDIF};
+
+(**
+ * Round to nearest integral value, away from zero.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_round(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_round' {$ENDIF} {$ENDIF};
+
+(**
+ * Round to nearest integral value, away from zero.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_roundf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_roundf' {$ENDIF} {$ENDIF};
+
+(**
  * Calculate the sine of x, where x is given in radians.
  *
  * \since This function is available since SDL 2.0.4.
@@ -327,6 +359,22 @@ function SDL_tan(x: cdouble): cdouble; cdecl;
  *)
 function SDL_tanf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tanf' {$ENDIF} {$ENDIF};
+
+(**
+ * Round to nearest integral value, towards zero.
+ *
+ * \since This function is available since SDL 2.0.14.
+ *)
+function SDL_trunc(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_trunc' {$ENDIF} {$ENDIF};
+
+(**
+ * Round to nearest integral value, towards zero.
+ *
+ * \since This function is available since SDL 2.0.14.
+ *)
+function SDL_truncf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_truncf' {$ENDIF} {$ENDIF};
 
 
 (*** --- iconv functions --- ***)
