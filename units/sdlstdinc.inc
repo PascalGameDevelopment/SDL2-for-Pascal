@@ -143,6 +143,78 @@ procedure SDL_free(mem: Pointer); cdecl;
 
 
 (**
+ * Calculate the arc cosine of x;
+ * that is, the value (in radians) whose cosine equals x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_acos(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_acos' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the arc cosine of x;
+ * that is, the value (in radians) whose cosine equals x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_acosf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_acosf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the arc sine of x;
+ * that is, the value (in radians) whose sine equals x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_asin(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_asin' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the arc sine of x;
+ * that is, the value (in radians) whose sine equals x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_asinf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_asinf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the arc tangent of x;
+ * that is, the value (in radians) whose tangent equals x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_atan(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atan' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the arc tangent of x;
+ * that is, the value (in radians) whose tangent equals x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_atanf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atanf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the arc tangent of y/x, using the signs of the two arguments
+ * to determine the quadrant of the result.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_atan2(y, x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atan2' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the arc tangent of y/x, using the signs of the two arguments
+ * to determine the quadrant of the result.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_atan2f(y, x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atan2f' {$ENDIF} {$ENDIF};
+
+(**
  * Calculate the cosine of x, where x is given in radians.
  *
  * \since This function is available since SDL 2.0.4.
