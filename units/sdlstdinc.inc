@@ -231,6 +231,24 @@ function SDL_ceilf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ceilf' {$ENDIF} {$ENDIF};
 
 (**
+ * Return a number whose absolute value matches that of x,
+ * but the sign matches that of y.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_copysign(x, y: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_copysign' {$ENDIF} {$ENDIF};
+
+(**
+ * Return a number whose absolute value matches that of x,
+ * but the sign matches that of y.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_copysignf(x, y: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_copysignf' {$ENDIF} {$ENDIF};
+
+(**
  * Calculate the cosine of x, where x is given in radians.
  *
  * \since This function is available since SDL 2.0.4.
@@ -245,6 +263,22 @@ function SDL_cos(x: cdouble): cdouble; cdecl;
  *)
 function SDL_cosf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_cosf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the absolute value of x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_fabs(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_fabs' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the absolute value of x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_fabsf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_fabsf' {$ENDIF} {$ENDIF};
 
 (**
  * Calculate the largest integral value that is not greater than x.
