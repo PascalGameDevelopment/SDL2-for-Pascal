@@ -313,6 +313,22 @@ function SDL_lroundf(x: cfloat): clong; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_lroundf' {$ENDIF} {$ENDIF};
 
 (**
+ * Calculate the value of x raised to the power of y.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_pow(x, y: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_pow' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the value of x raised to the power of y.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_powf(x, y: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_powf' {$ENDIF} {$ENDIF};
+
+(**
  * Round to nearest integral value, away from zero.
  *
  * \since This function is available since SDL 2.0.16.
@@ -343,6 +359,22 @@ function SDL_sin(x: cdouble): cdouble; cdecl;
  *)
 function SDL_sinf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sinf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the non-negative square root of x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_sqrt(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sqrt' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the non-negative square root of x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_sqrtf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sqrtf' {$ENDIF} {$ENDIF};
 
 (**
  * Calculate the tangent of x, where x is given in radians.
