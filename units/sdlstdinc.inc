@@ -315,6 +315,22 @@ function SDL_floorf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_floorf' {$ENDIF} {$ENDIF};
 
 (**
+ * Calculate the floating-point remainder of dividing x by y.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_fmod(x, y: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_fmod' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the floating-point remainder of dividing x by y.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_fmodf(x, y: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_fmodf' {$ENDIF} {$ENDIF};
+
+(**
  * Calculate the natural logarithm of x.
  *
  * \since This function is available since SDL 2.0.4.
