@@ -265,6 +265,24 @@ function SDL_cosf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_cosf' {$ENDIF} {$ENDIF};
 
 (**
+ * Calculate the value of e (the base of natural logarithms)
+ * raised to the power of x.
+ *
+ * \since This function is available since SDL 2.0.9.
+ *)
+function SDL_exp(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_exp' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the value of e (the base of natural logarithms)
+ * raised to the power of x.
+ *
+ * \since This function is available since SDL 2.0.9.
+ *)
+function SDL_expf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_expf' {$ENDIF} {$ENDIF};
+
+(**
  * Calculate the absolute value of x.
  *
  * \since This function is available since SDL 2.0.4.
@@ -295,6 +313,40 @@ function SDL_floor(x: cdouble): cdouble; cdecl;
  *)
 function SDL_floorf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_floorf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the natural logarithm of x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_nlog(x: cdouble): cdouble; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_log' {$ELSE} 'SDL_log' {$ENDIF};
+
+(**
+ * Calculate the natural logarithm of x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_nlogf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_logf' {$ELSE} 'SDL_logf' {$ENDIF};
+
+(**
+ * Calculate the base 10 logarithm of x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_log10(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_log10' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the base 10 logarithm of x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_log10f(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_log10f' {$ENDIF} {$ENDIF};
 
 (**
  * Round to nearest integer, away from zero.
