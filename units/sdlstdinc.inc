@@ -138,6 +138,62 @@ function SDL_realloc(mem: Pointer; size: csize_t): Pointer; cdecl;
 procedure SDL_free(mem: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_free' {$ENDIF} {$ENDIF};
 
+
+(*** --- Math functions --- ***)
+
+
+(**
+ * Calculate the cosine of x, where x is given in radians.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_cos(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_cos' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the cosine of x, where x is given in radians.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_cosf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_cosf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the sine of x, where x is given in radians.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_sin(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sin' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the sine of x, where x is given in radians.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_sinf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sinf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the tangent of x, where x is given in radians.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_tan(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tan' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the tangent of x, where x is given in radians.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_tanf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tanf' {$ENDIF} {$ENDIF};
+
+
+(*** --- iconv functions --- ***)
+
+
 (**
  * This function converts a string between encodings in one pass, returning a
  * string that must be freed with SDL_free(), or NIL on error.
