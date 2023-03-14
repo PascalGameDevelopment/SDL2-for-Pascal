@@ -215,6 +215,22 @@ function SDL_atan2f(y, x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atan2f' {$ENDIF} {$ENDIF};
 
 (**
+ * Calculate the smallest integral value that is not less than x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_ceil(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ceil' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the smallest integral value that is not less than x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_ceilf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ceilf' {$ENDIF} {$ENDIF};
+
+(**
  * Calculate the cosine of x, where x is given in radians.
  *
  * \since This function is available since SDL 2.0.4.
@@ -229,6 +245,22 @@ function SDL_cos(x: cdouble): cdouble; cdecl;
  *)
 function SDL_cosf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_cosf' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the largest integral value that is not greater than x.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_floor(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_floor' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate the largest integral value that is not greater than x.
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_floorf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_floorf' {$ENDIF} {$ENDIF};
 
 (**
  * Calculate the sine of x, where x is given in radians.
