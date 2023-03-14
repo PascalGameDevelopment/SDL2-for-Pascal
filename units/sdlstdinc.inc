@@ -397,6 +397,24 @@ function SDL_roundf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_roundf' {$ENDIF} {$ENDIF};
 
 (**
+ * Calculate x multiplied by the floating-point radix to the power of n.
+ * On most systems, the radix is 2, making this equivalent to x*(2**n).
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_scalbn(x: cdouble; n: cint): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_scalbn' {$ENDIF} {$ENDIF};
+
+(**
+ * Calculate x multiplied by the floating-point radix to the power of n.
+ * On most systems, the radix is 2, making this equivalent to x*(2**n).
+ *
+ * \since This function is available since SDL 2.0.8.
+ *)
+function SDL_scalbnf(x: cfloat; n: cint): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_scalbnf' {$ENDIF} {$ENDIF};
+
+(**
  * Calculate the sine of x, where x is given in radians.
  *
  * \since This function is available since SDL 2.0.4.
