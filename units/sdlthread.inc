@@ -190,7 +190,7 @@ function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
  *}
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
   stacksize: csize_t; data: Pointer): PSDL_Thread; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SDL_CreateThreadWithStackSize' {$ENDIF} {$ENDIF};
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThreadWithStackSize' {$ENDIF} {$ENDIF};
 
 
 {$ENDIF}
