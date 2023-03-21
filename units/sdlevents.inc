@@ -285,8 +285,8 @@ type
     direction: cuint32;    // Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back
     preciseX: cfloat;      // The amount scrolled horizontally, positive to the right and negative to the left, with float precision (added in 2.0.18)
     preciseY: cfloat;      // The amount scrolled vertically, positive away from the user and negative toward the user, with float precision (added in 2.0.18)
-    mouse_x: cint32;       // X coordinate, relative to window (added in 2.26.0)
-    mouse_y: cint32;       // Y coordinate, relative to window (added in 2.26.0)
+    mouseX: cint32;        // X coordinate, relative to window (added in 2.26.0)
+    mouseY: cint32;        // Y coordinate, relative to window (added in 2.26.0)
   end;
 
   {**
