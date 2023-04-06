@@ -6,7 +6,7 @@ unit sdl2;
           Pascal units for SDL2 - Simple Direct MediaLayer, Version 2
 
   Copyright (C) 2020-2023 PGD Community
-  Maintainers: M. J. Molski and Super Vegeta (aka suve)
+  Maintainers: M. J. Molski and suve
   Visit: https://github.com/PascalGameDevelopment/SDL2-for-Pascal
 
   Simple DirectMedia Layer
