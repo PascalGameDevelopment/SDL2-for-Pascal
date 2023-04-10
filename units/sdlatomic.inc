@@ -10,6 +10,7 @@
  * The atomic locks are not safe to lock recursively.
  *}
 type
+	PPSDL_SpinLock = ^PSDL_SpinLock;
 	PSDL_SpinLock = ^TSDL_SpinLock;
 	TSDL_SpinLock = type cint;
 
@@ -40,11 +41,12 @@ procedure SDL_AtomicUnlock(lock: PSDL_SpinLock); cdecl;
 procedure SDL_CompilerBarrier();
 
 type
-	PSDL_Atomic = ^TSDL_Atomic;
 	{**
 	 * A type representing an atomic integer value.  It is a record
 	 * so people don't accidentally use numeric operations on it.
 	 *}
+	PPSDL_Atomic = ^PSDL_Atomic;
+	PSDL_Atomic = ^TSDL_Atomic;
 	TSDL_Atomic = record
 		Value: cint
 	end;

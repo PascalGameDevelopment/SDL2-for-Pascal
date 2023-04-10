@@ -19,6 +19,7 @@ const
    *}
 type
   {*The SDL mutex structure, defined in SDL_sysmutex.c *}
+  PPSDL_Mutex = ^PSDL_Mutex;
   PSDL_Mutex = Pointer; //todo!
 
   {**
@@ -69,6 +70,7 @@ procedure SDL_DestroyMutex(mutex: PSDL_Mutex); cdecl;
    *}
 type
   {* The SDL semaphore structure, defined in SDL_sem.c *}
+  PPSDL_Sem = ^PSDL_Sem;
   PSDL_Sem = Pointer; //todo!
 
   {**
@@ -133,6 +135,7 @@ function SDL_SemValue(sem: PSDL_Sem): cuint32; cdecl;
    * }
 type
   {* The SDL condition variable structure, defined in SDL_cond.c *}
+  PPSDL_Cond = ^PSDL_Cond;
   PSDL_Cond = Pointer; //todo!!
 
   {**

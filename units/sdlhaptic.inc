@@ -92,6 +92,7 @@
    *   SDL_HapticClose
    *}
 type
+  PPSDL_Haptic = ^PSDL_Haptic;
   PSDL_Haptic = ^TSDL_Haptic;
   TSDL_Haptic = record end;
 
@@ -418,6 +419,8 @@ const
    *   SDL_HapticNumAxes
    *}
 type
+  PPSDL_HapticDirection = ^PSDL_HapticDirection;
+  PSDL_HapticDirection = ^TSDL_HapticDirection;
   TSDL_HapticDirection = record
     type_: cuint8;               {**< The type of encoding. *}
     dir: array[0..2] of cint32;  {**< The encoded direction. *}
@@ -435,6 +438,8 @@ type
    *   SDL_HapticEffect
    *}
 type
+  PPSDL_HapticConstant = ^PSDL_HapticConstant;
+  PSDL_HapticConstant = ^TSDL_HapticConstant;
   TSDL_HapticConstant = record
     {* Header *}
     type_: cuint16;                   {**< SDL_HAPTIC_CONSTANT *}
@@ -516,6 +521,8 @@ type
    *   SDL_HapticEffect
    *}
 type
+  PPSDL_HapticPeriodic = ^PSDL_HapticPeriodic;
+  PSDL_HapticPeriodic = ^TSDL_HapticPeriodic;
   TSDL_HapticPeriodic = record
     { Header *}
     type_: cuint16;            {**< SDL_HAPTIC_SINE, SDL_HAPTIC_SQUARE,
@@ -569,6 +576,8 @@ type
    *   SDL_HapticEffect
    *}
 type
+  PPSDL_HapticCondition = ^PSDL_HapticCondition;
+  PSDL_HapticCondition = ^TSDL_HapticCondition;
   TSDL_HapticCondition = record
     {* Header *}
     type_: cuint16;                    {**< SDL_HAPTIC_SPRING, SDL_HAPTIC_DAMPER,
@@ -606,6 +615,8 @@ type
    *   SDL_HapticEffect
    *}
 type
+  PPSDL_HapticRamp = ^PSDL_HapticRamp;
+  PSDL_HapticRamp = ^TSDL_HapticRamp;
   TSDL_HapticRamp = record
     {* Header *}
     type_: cuint16;                    {**< SDL_HAPTIC_RAMP *}
@@ -669,6 +680,8 @@ type
    *   SDL_HapticEffect
    *}
 type
+  PPSDL_HapticCustom = ^PSDL_HapticCustom;
+  PSDL_HapticCustom = ^TSDL_HapticCustom;
   TSDL_HapticCustom = record
     {* Header *}
     type_: cuint16;                    {**< SDL_HAPTIC_CUSTOM *}
@@ -764,6 +777,7 @@ type
    *   SDL_HapticCustom
    *}
 type
+  PPSDL_HapticEffect = ^PSDL_HapticEffect;
   PSDL_HapticEffect = ^TSDL_HapticEffect;
   TSDL_HapticEffect = record
     case cint of

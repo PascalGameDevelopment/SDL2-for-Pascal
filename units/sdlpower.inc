@@ -10,6 +10,8 @@
    *  The basic state for the system's power supply.
    *}
 type
+  PPSDL_PowerState = ^PSDL_PowerState;
+  PSDL_PowerState = ^TSDL_PowerState;
   TSDL_PowerState = (SDL_POWERSTATE_UNKNOWN,      {**< cannot determine power status *}
                      SDL_POWERSTATE_ON_BATTERY,   {**< Not plugged in, running on the battery *}
                      SDL_POWERSTATE_NO_BATTERY,   {**< Plugged in, no battery available *}

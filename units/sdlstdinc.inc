@@ -7,6 +7,8 @@
   TODO: Investigate header file and translate potentially useful functions. }
 
 type
+  PPSDL_Bool = ^PSDL_Bool;
+  PSDL_Bool = ^TSDL_Bool;
   TSDL_Bool = cbool;
 
 const
@@ -48,17 +50,21 @@ const
   SDL_FLT_EPSILON = cfloat(1.1920928955078125e-07);
 
 type
-  TSDL_malloc_func = function(size: csize_t): Pointer; cdecl;
+  PPSDL_malloc_func = ^PSDL_malloc_func;
   PSDL_malloc_func = ^TSDL_malloc_func;
+  TSDL_malloc_func = function(size: csize_t): Pointer; cdecl;
 
-  TSDL_calloc_func = function(nmemb, size: csize_t): Pointer; cdecl;
+  PPSDL_calloc_func = ^PSDL_calloc_func;
   PSDL_calloc_func = ^TSDL_calloc_func;
+  TSDL_calloc_func = function(nmemb, size: csize_t): Pointer; cdecl;
 
-  TSDL_realloc_func = function(mem: Pointer; size: csize_t): Pointer; cdecl;
+  PPSDL_realloc_func = ^PSDL_realloc_func;
   PSDL_realloc_func = ^TSDL_realloc_func;
+  TSDL_realloc_func = function(mem: Pointer; size: csize_t): Pointer; cdecl;
 
-  TSDL_free_func = procedure(mem: Pointer); cdecl;
+  PPSDL_free_func = ^PSDL_free_func;
   PSDL_free_func = ^TSDL_free_func;
+  TSDL_free_func = procedure(mem: Pointer); cdecl;
 
 {**
  * Get the original set of SDL memory functions

@@ -24,10 +24,12 @@
 type
   DWord = LongWord;
 
+  ppcbool = ^pcbool;
   pcbool = ^cbool;
   cbool = LongBool;
   {$EXTERNALSYM cbool}
 
+  ppcint8 = ^pcint8;
   pcint8 = ^cint8;
   cint8 = ShortInt;
   {$EXTERNALSYM cint8}
@@ -36,27 +38,33 @@ type
   cuint8 = Byte;
   {$EXTERNALSYM cuint8}
 
+  ppcint16 = ^pcint16;
   pcint16 = ^cint16;
   cint16 = SmallInt;
   {$EXTERNALSYM cint16}
 
+  ppcuint16 = ^pcuint16;
   pcuint16 = ^cuint16;
   cuint16 = Word;
   {$EXTERNALSYM cuint16}
 
+  ppcushort = ^pcushort;
   pcushort = ^cushort;
   cushort = Word;
   {$EXTERNALSYM cushort}
 
+  ppcint32 = ^pcint32;
   pcint32 = ^cint32;
   cint32 = LongInt;
   {$EXTERNALSYM cint32}
 
+  ppcuint32 = ^pcuint32;
   pcuint32 = ^cuint32;
   cuint32 = LongWord;
   {$EXTERNALSYM cuint32}
 
   {$IFNDEF Has_Int64}
+     ppcint64 = ^pcint64;
      pcint64 = ^cint64;
      cint64 = record
        hi: cuint32;
@@ -64,6 +72,7 @@ type
      end;
     {$EXTERNALSYM cint64}
 
+    ppcuint64 = ^pcuint64;
     pcuint64 = ^cuint64;
     cuint64 = record
       hi: cuint32;
@@ -71,15 +80,18 @@ type
     end;
     {$EXTERNALSYM cuint64}
   {$ELSE}
+    ppcint64 = ^pcint64;
     pcint64 = ^cint64;
     cint64 = Int64;
     {$EXTERNALSYM cint64}
 
+    ppcuint64 = ^pcuint64;
     pcuint64 = ^cuint64;
     cuint64 = UInt64;
     {$EXTERNALSYM cuint64}
   {$ENDIF}
 
+  ppcsize_t = ^pcsize_t;
   pcsize_t = ^csize_t;
   {$IFNDEF WIN64}
     csize_t = cuint32;
@@ -88,17 +100,26 @@ type
   {$ENDIF}
   {$EXTERNALSYM csize_t}
 
+  ppcfloat = ^pcfloat;
   pcfloat = ^cfloat;
   cfloat = Single;
   {$EXTERNALSYM cfloat}
 
+  ppcdouble = ^pcdouble;
   pcdouble = ^cdouble;
   cdouble = Double;
   {$EXTERNALSYM cfloat}
 
+  ppcint = ^pcint;
   pcint = ^cint;
+
+  ppcuint = ^pcuint;
   pcuint = ^cuint;
+
+  ppclong = ^pclong;
   pclong = ^clong;
+
+  ppculong = ^pculong;
   pculong = ^culong;
   {
     Integer type sizes based on:
@@ -127,6 +148,7 @@ type
 
 { Data types for all compilers }
 type
+  PPUInt8Array = ^PUInt8Array;
   PUInt8Array = ^TUInt8Array;
   TUInt8Array = array [0..MAXINT shr 1] of cuint8;
 

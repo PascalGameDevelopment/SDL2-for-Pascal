@@ -59,7 +59,9 @@ const
 
 
 type
-   TSDLNet_Version = TSDL_Version;
+  PPSDLNet_Version = ^PSDLNet_Version;
+  PSDLNet_Version = ^TSDLNet_Version;
+  TSDLNet_Version = TSDL_Version;
 
 const
    {* Printable format: "%d.%d.%d", MAJOR, MINOR, PATCHLEVEL *}
@@ -89,11 +91,12 @@ type
   {***********************************************************************}
   {* IPv4 hostname resolution API                                        *}
   {***********************************************************************}
+  PPIPaddress = ^PIPaddress;
+  PIPaddress = ^TIPaddress;
   TIPaddress = record
     host: cuint32;            {* 32-bit IPv4 host address *}
     port: cuint16;            {* 16-bit protocol port *}
   end;
-  PIPaddress = ^TIPaddress;
 
 {* Resolve a host name and port to an IP address in network form.
    If the function succeeds, it will return 0.
@@ -178,10 +181,13 @@ const
   SDLNET_MAX_UDPADDRESSES = 4;
 
 type
+  PPUDPSocket = ^PUDPSocket;
+  PUDPSocket = ^TUDPSocket;
   TUDPSocket = record
   end;
-  PUDPSocket = ^TUDPSocket;
 
+  PPUDPPacket = ^PUDPPacket;
+  PUDPPacket = ^TUDPPacket;
   TUDPPacket = record
     channel: cint;     {* The src/dst channel of the packet *}
     data: pcuint8;         {* The packet data *}
@@ -190,8 +196,6 @@ type
     status: cint;      {* packet status after sending *}
     address: TIPaddress;  {* The source/dest address of an incoming/outgoing packet *}
   end;
-  PUDPPacket = ^TUDPPacket;
-  PPUDPPacket = ^PUDPPacket;
 
 {* Allocate/resize/free a single UDP packet 'size' bytes long.
    The new packet is returned, or NULL if the function ran out of memory.
@@ -297,15 +301,17 @@ procedure SDLNet_UDP_Close(sock: TUDPSocket) cdecl; external SDLNet_LibName {$IF
 {***********************************************************************}
 
 type
+  PPSDLNet_SocketSet = ^PSDLNet_SocketSet;
+  PSDLNet_SocketSet = ^TSDLNet_SocketSet;
   TSDLNet_SocketSet = record
   end;
-  PSDLNet_SocketSet = ^TSDLNet_SocketSet;
 
   {* Any network socket can be safely cast to this socket type *}
+  PPSDLNet_GenericSocket = ^PSDLNet_GenericSocket;
+  PSDLNet_GenericSocket = ^TSDLNet_GenericSocket;
   TSDLNet_GenericSocket = record
     ready: cint;
   end;
-  PSDLNet_GenericSocket = ^TSDLNet_GenericSocket;
 
 {* Allocate a socket set for use with SDLNet_CheckSockets()
    This returns a socket set for up to 'maxsockets' sockets, or NULL if

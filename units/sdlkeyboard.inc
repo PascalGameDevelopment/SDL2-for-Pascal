@@ -11,6 +11,7 @@ type
       - Is this type used/needed anywhere?
       - It doesn't seem to be part of sdl_keyboard.h
       - If not, should be commented out or deleted }
+  PPKeyStateArr = ^PKeyStateArr;
   PKeyStateArr = ^TKeyStateArr;
   TKeyStateArr = array[0..65000] of cuint8;
 
@@ -19,6 +20,7 @@ type
    *
    *  \note  If you are looking for translated character input, see the:: SDL_TEXTINPUT event.
     }
+  PPSDL_Keysym = ^PSDL_Keysym;
   PSDL_Keysym = ^TSDL_Keysym;
   TSDL_Keysym = record
     scancode: TSDL_ScanCode;       // SDL physical key code - see SDL_Scancode for details

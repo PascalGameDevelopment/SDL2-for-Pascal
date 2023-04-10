@@ -200,6 +200,7 @@ Type
 {**
  *  The custom event structure.
  *}
+   PPSDL_SysWMmsg = ^PSDL_SysWMmsg;
    PSDL_SysWMmsg = ^TSDL_SysWMmsg;
    TSDL_SysWMmsg = record
       version: TSDL_version;
@@ -234,6 +235,7 @@ Type
  *  When this structure is returned, it holds information about which
  *  low level system it is using, and will be one of SDL_SYSWM_TYPE.
  *}
+   PPSDL_SysWMinfo = ^PSDL_SysWMinfo;
    PSDL_SysWMinfo = ^TSDL_SysWMinfo;
    TSDL_SysWMinfo = record
       version: TSDL_version;

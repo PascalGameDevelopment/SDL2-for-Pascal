@@ -18,6 +18,8 @@ const
 
 {** Pixel type. *}
 type
+  PPSDL_PixelType = ^PSDL_PixelType;
+  PSDL_PixelType = ^TSDL_PixelType;
   TSDL_PixelType = type Cardinal;
 
 const
@@ -36,6 +38,8 @@ const
 
 {** Bitmap pixel order, high bit -> low bit. *}
 type
+  PPSDL_BitmapOrder = ^PSDL_BitmapOrder;
+  PSDL_BitmapOrder = ^TSDL_BitmapOrder;
   TSDL_BitmapOrder = type Cardinal;
 
 const
@@ -45,6 +49,8 @@ const
 
 {** Packed component order, high bit -> low bit. *}
 type
+  PPSDL_PackOrder = ^PSDL_PackOrder;
+  PSDL_PackOrder = ^TSDL_PackOrder;
   TSDL_PackOrder = type Cardinal;
 
 const
@@ -60,6 +66,8 @@ const
 
 {** Array component order, low byte -> high byte. *}
 type
+  PPSDL_ArrayOrder = ^PSDL_ArrayOrder;
+  PSDL_ArrayOrder = ^TSDL_ArrayOrder;
   TSDL_ArrayOrder = type Cardinal;
 
 const
@@ -73,6 +81,8 @@ const
 
 {** Packed component layout. *}
 type
+  PPSDL_PackedLayout = ^PSDL_PackedLayout;
+  PSDL_PackedLayout = ^TSDL_PackedLayout;
   TSDL_PackedLayout = type Cardinal;
 
 const
@@ -419,6 +429,7 @@ const
                            (cint(' ') shl 24);
 
 type
+  PPSDL_Color = ^PSDL_Color;
   PSDL_Color = ^TSDL_Color;
   TSDL_Color = record
     r: cuint8;
@@ -427,9 +438,11 @@ type
     a: cuint8;
   end;
 
-  TSDL_Colour = TSDL_Color;
+  PPSDL_Colour = ^PSDL_Colour;
   PSDL_Colour = ^TSDL_Colour;
+  TSDL_Colour = TSDL_Color;
 
+  PPSDL_Palette = ^PSDL_Palette;
   PSDL_Palette = ^TSDL_Palette;
   TSDL_Palette = record
     ncolors: cint;
@@ -442,6 +455,7 @@ type
    *  Everything in the pixel format structure is read-only.
    *}
 
+  PPSDL_PixelFormat = ^PSDL_PixelFormat;
   PSDL_PixelFormat = ^TSDL_PixelFormat;
   TSDL_PixelFormat = record
     format: cuint32;

@@ -19,6 +19,8 @@
    *  There are macros in SDL 2.0 and later to query these bits.
    *}
 type
+  PPSDL_AudioFormat = ^PSDL_AudioFormat;
+  PSDL_AudioFormat = ^TSDL_AudioFormat;
   TSDL_AudioFormat = cuint16;
 
   {**
@@ -118,6 +120,8 @@ const
  *  you like. Just open your audio device with a NULL callback.
    *}
 type
+  PPSDL_AudioCallback = ^PSDL_AudioCallback;
+  PSDL_AudioCallback = ^TSDL_AudioCallback;
   TSDL_AudioCallback = procedure(userdata: Pointer; stream: pcuint8; len: cint); cdecl;
 
   {**
@@ -133,6 +137,7 @@ type
    *  8:  FL FR FC LFE BL BR SL SR    (7.1 surround)
    *}
 type
+  PPSDL_AudioSpec = ^PSDL_AudioSpec;
   PSDL_AudioSpec = ^TSDL_AudioSpec;
   TSDL_AudioSpec = record
     freq: cint;                    {**< DSP frequency -- samples per second *}
@@ -157,6 +162,7 @@ const
   SDL_AUDIOCVT_MAX_FILTERS = 9;
 
 type
+  PPSDL_AudioCVT = ^PSDL_AudioCVT;
   PSDL_AudioCVT = ^TSDL_AudioCVT;
   TSDL_AudioFilter = procedure(cvt: PSDL_AudioCVT; format: TSDL_AudioFormat); cdecl;
 
@@ -359,6 +365,8 @@ function SDL_OpenAudio(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): cint;
    *  specific, or capture devices.
    *}
 type
+  PPSDL_AudioDeviceID = ^PSDL_AudioDeviceID;
+  PSDL_AudioDeviceID = ^TSDL_AudioDeviceID;
   TSDL_AudioDeviceID = cuint32;
 
 {**
@@ -620,6 +628,7 @@ function SDL_OpenAudioDevice(device: PAnsiChar;
    *}
 
 type
+  PPSDL_AudioStatus = ^PSDL_AudioStatus;
   PSDL_AudioStatus = ^TSDL_AudioStatus;
   TSDL_AudioStatus = type cint;
 
