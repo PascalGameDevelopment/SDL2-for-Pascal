@@ -1,12 +1,14 @@
 //from "sdl_mouse.h"
 
 type
+  PPSDL_Cursor = ^PSDL_Cursor;
   PSDL_Cursor = type Pointer;  {**< Implementation dependent *}
 
 {**
 *  Cursor types for SDL_CreateSystemCursor.
 *}
 type
+  PPSDL_SystemCursor = ^PSDL_SystemCursor;
   PSDL_SystemCursor = ^TSDL_SystemCursor;
   TSDL_SystemCursor = type Integer;
 
@@ -26,6 +28,8 @@ const
   SDL_NUM_SYSTEM_CURSORS = TSDL_SystemCursor(12);
 
 type
+  PPSDL_MouseWheelDirection = ^PSDL_MouseWheelDirection;
+  PSDL_MouseWheelDirection = ^TSDL_MouseWheelDirection;
   TSDL_MouseWheelDirection = type Integer;
 
 const

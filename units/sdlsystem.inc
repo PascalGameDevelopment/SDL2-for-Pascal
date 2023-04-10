@@ -3,6 +3,8 @@
 (* Platform specific functions for Windows *)
 {$IF DEFINED(WIN32) OR DEFINED(WIN64)} 
 type
+  PPSDL_WindowsMessageHook = ^PSDL_WindowsMessageHook;
+  PSDL_WindowsMessageHook = ^TSDL_WindowsMessageHook;
   TSDL_WindowsMessageHook = procedure(userdata, hWnd: Pointer; mesage: cuint; wParam: cuint64; lParam: cint64); cdecl;
 
 {**
@@ -142,6 +144,8 @@ function SDL_LinuxSetThreadPriorityAndPolicy(threadID: cint64; sdlPriority, sche
 (* Platform specific functions for iOS *)
 {$IFDEF __IPHONEOS__}
 type
+  PPSDL_iPhoneAnimationCallback = ^PSDL_iPhoneAnimationCallback;
+  PSDL_iPhoneAnimationCallback = ^TSDL_iPhoneAnimationCallback;
   TSDL_iPhoneAnimationCallback = procedure(callbackParam: Pointer); cdecl;
 
 {**
@@ -428,6 +432,8 @@ function SDL_AndroidSendMessage(command: cUint32; param: cint): cint; cdecl;
 {$IFDEF __WINRT__}
 Type
   {** WinRT / Windows Phone path types *}
+  PPSDL_WinRT_Path = ^PSDL_WinRT_Path;
+  PSDL_WinRT_Path = ^TSDL_WinRT_Path;
   TSDL_WinRT_Path = (
     {** The installed app's root directory.
         Files here are likely to be read-only. *}

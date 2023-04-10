@@ -1,6 +1,8 @@
 //from "sdl_gesture.h"
 
 type
+  PPSDL_GestureID = ^PSDL_GestureID;
+  PSDL_GestureID = ^TSDL_GestureID;
   TSDL_GestureID = type cint64;
 
   {* Function prototypes *}

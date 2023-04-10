@@ -17,6 +17,7 @@ type
    *   SDL_SetWindowDisplayMode()
    *   SDL_GetWindowDisplayMode()
    *}
+  PPSDL_DisplayMode = ^PSDL_DisplayMode;
   PSDL_DisplayMode = ^TSDL_DisplayMode;
   TSDL_DisplayMode = record
     format: cuint32;              {**< pixel format *}
@@ -32,6 +33,8 @@ type
  *   SDL_GetWindowFlags()
  *}
 type
+  PPSDL_WindowFlags = ^PSDL_WindowFlags;
+  PSDL_WindowFlags = ^TSDL_WindowFlags;
   TSDL_WindowFlags = type cuint;
 
 const
@@ -84,6 +87,7 @@ function SDL_WINDOWPOS_ISCENTERED(X: Variant): Variant;
    *  Event subtype for window events
    *}
 type
+  PPSDL_WindowEventID = ^PSDL_WindowEventID;
   PSDL_WindowEventID = ^TSDL_WindowEventID;
   TSDL_WindowEventID = type cint;
 const
@@ -111,6 +115,8 @@ const
  *  \brief Event subtype for display events
  *}
 type
+  PPSDL_DisplayEventID = ^PSDL_DisplayEventID;
+  PSDL_DisplayEventID = ^TSDL_DisplayEventID;
   TSDL_DisplayEventID = type Integer;
 
 const
@@ -120,6 +126,8 @@ const
   SDL_DISPLAYEVENT_DISCONNECTED  = TSDL_DisplayEventID(3);   {**< Display has been removed from the system *}
 
 type
+  PPSDL_DisplayOrientation = ^PSDL_DisplayOrientation;
+  PSDL_DisplayOrientation = ^TSDL_DisplayOrientation;
   TSDL_DisplayOrientation = type Integer;
 
 const
@@ -133,6 +141,8 @@ const
    *  \brief Window flash operation
    *}
 type
+  PPSDL_FlashOperation = ^PSDL_FlashOperation;
+  PSDL_FlashOperation = ^TSDL_FlashOperation;
   TSDL_FlashOperation = type Integer;
 
 const
@@ -144,12 +154,16 @@ const
    *  An opaque handle to an OpenGL context.
    *}
 type
+  PPSDL_GLContext = ^PSDL_GLContext;
+  PSDL_GLContext = ^TSDL_GLContext;
   TSDL_GLContext = Pointer;
 
   {**
    *  OpenGL configuration attributes
    *}
 type
+  PPSDL_GLattr = ^PSDL_GLattr;
+  PSDL_GLattr = ^TSDL_GLattr;
   TSDL_GLattr = type Integer;
 
 const
@@ -183,6 +197,8 @@ const
   SDL_GL_FLOATBUFFERS                     = TSDL_GLattr(27);
 
 type
+  PPSDL_GLprofile = ^PSDL_GLprofile;
+  PSDL_GLprofile = ^TSDL_GLprofile;
   TSDL_GLprofile = type Integer;
 
 const
@@ -191,6 +207,8 @@ const
   SDL_GL_CONTEXT_PROFILE_ES             = TSDL_GLprofile($0004);
 
 type
+  PPSDL_GLcontextFlag = ^PSDL_GLcontextFlag;
+  PSDL_GLcontextFlag = ^TSDL_GLcontextFlag;
   TSDL_GLcontextFlag = type Integer;
 
 const
@@ -200,6 +218,8 @@ const
   SDL_GL_CONTEXT_RESET_ISOLATION_FLAG    = TSDL_GLcontextFlag($0008);
 
 type
+  PPSDL_GLcontextReleaseFlag = ^PSDL_GLcontextReleaseFlag;
+  PSDL_GLcontextReleaseFlag = ^TSDL_GLcontextReleaseFlag;
   TSDL_GLcontextReleaseFlag = type Integer;
 
 const
@@ -207,6 +227,8 @@ const
   SDL_GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH  = TSDL_GLcontextReleaseFlag($0001);
 
 type
+  PPSDL_GLContextResetNotification = ^PSDL_GLContextResetNotification;
+  PSDL_GLContextResetNotification = ^TSDL_GLContextResetNotification;
   TSDL_GLContextResetNotification = type Integer;
 
 const
@@ -1177,6 +1199,8 @@ function SDL_GetWindowGammaRamp(window: PSDL_Window; red: pcuint16; green: pcuin
  *  \sa SDL_HitTest
  *}
 type
+  PPSDL_HitTestResult = ^PSDL_HitTestResult;
+  PSDL_HitTestResult = ^TSDL_HitTestResult;
   TSDL_HitTestResult = type Integer;
 
 const
@@ -1197,6 +1221,8 @@ const
     *  \sa SDL_SetWindowHitTest
     *}
 type
+  PPSDL_HitTest = ^PSDL_HitTest;
+  PSDL_HitTest = ^TSDL_HitTest;
   TSDL_HitTest = function(win: PSDL_Window; const area: PSDL_Point; data: Pointer): TSDL_HitTestResult; cdecl;
 
   {**

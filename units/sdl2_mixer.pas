@@ -95,6 +95,8 @@ const
   MIX_INIT_FLUIDSYNTH  = $00000020;
 }
 type
+  PPMIX_InitFlags = ^PMIX_InitFlags;
+  PMIX_InitFlags = ^TMIX_InitFlags;
   TMIX_InitFlags = cint;
 
   {* Loads dynamic libraries and prepares them for use.  Flags should be
@@ -131,6 +133,7 @@ const
 
   {* The internal format for an audio chunk *}
 type
+  PPMix_Chunk = ^PMix_Chunk;
   PMix_Chunk = ^TMix_Chunk;
   TMix_Chunk = record
     allocated: cint;
@@ -141,8 +144,12 @@ type
 
   {* The different fading types supported *}
 type
+  PPMix_Fading = ^PMix_Fading;
+  PMix_Fading = ^TMix_Fading;
   TMix_Fading = (MIX_NO_FADING, MIX_FADING_OUT, MIX_FADING_IN);
 
+  PPMix_MusicType = ^PMix_MusicType;
+  PMix_MusicType = ^TMix_MusicType;
   TMix_MusicType = (
     MUS_NONE,
     MUS_CMD,
@@ -158,6 +165,7 @@ type
   );
 
   {* The internal format for a music chunk interpreted via mikmod *}
+  PPMix_Music = ^PMix_Music;
   PMix_Music = ^TMix_Music;
   TMix_Music = record end;
 
@@ -240,6 +248,8 @@ function Mix_GetMusicType(music: TMix_Music): TMix_MusicType cdecl; external MIX
      or add a custom mixer filter for the stream data.
   *}
 type
+  PPMix_Func = ^PMix_Func;
+  PMix_Func = ^TMix_Func;
   TMix_Func = procedure(udata: Pointer; stream: pcuint8; len: cint) cdecl;
 
 procedure Mix_SetPostMix(func: TMix_Func; arg: Pointer) cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPostMix' {$ENDIF} {$ENDIF};
@@ -253,6 +263,7 @@ procedure Mix_HookMusic(func: TMix_Func; arg: Pointer) cdecl; external MIX_LibNa
    *  or when it is stopped from a call to Mix_HaltMusic.
    *}
 type
+  PPMix_Music_Finished = ^PMix_Music_Finished;
   PMix_Music_Finished = ^TMix_Music_Finished;
   TMix_Music_Finished = procedure() cdecl;
 
@@ -270,6 +281,8 @@ function Mix_GetMusicHookData: Pointer cdecl; external MIX_LibName {$IFDEF DELPH
    *  before calling your callback.
    *}
 type
+  PPMix_Channel_Finished = ^PMix_Channel_Finished;
+  PMix_Channel_Finished = ^TMix_Channel_Finished;
   TMix_Channel_Finished = procedure(channel: cint) cdecl;
 
 procedure Mix_ChannelFinished(channel_finished: TMix_Channel_Finished) cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ChannelFinished' {$ENDIF} {$ENDIF};
@@ -296,6 +309,8 @@ const
    * DO NOT EVER call SDL_LockAudio() from your callback function!
    *}
 type
+  PPMix_EffectFunc_t = ^PMix_EffectFunc_t;
+  PMix_EffectFunc_t = ^TMix_EffectFunc_t;
   TMix_EffectFunc_t = procedure(chan: cint; stream: Pointer; len: cint; udata: Pointer) cdecl;
 
   {*
@@ -308,6 +323,8 @@ type
    * DO NOT EVER call SDL_LockAudio() from your callback function!
    *}
 type
+  PPMix_EffectDone_t = ^PMix_EffectDone_t;
+  PMix_EffectDone_t = ^TMix_EffectDone_t;
   TMix_EffectDone_t = procedure(chan: cint; udata: Pointer) cdecl;
 
   {* Register a special effect function. At mixing time, the channel data is
@@ -652,6 +669,8 @@ function Mix_SetSoundFonts(paths: PAnsiChar): cint cdecl; external MIX_LibName {
 function Mix_GetSoundFonts: PAnsiChar cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetSoundFonts' {$ENDIF} {$ENDIF};
 
 type
+  PPMix_SoundFunc = ^PMix_SoundFunc;
+  PMix_SoundFunc = ^TMix_SoundFunc;
   TMix_SoundFunc = function(c: PAnsiChar; p: Pointer): cint cdecl;
 
 function Mix_EachSoundFont(func: TMix_SoundFunc; data: Pointer): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_EachSoundFont' {$ENDIF} {$ENDIF};

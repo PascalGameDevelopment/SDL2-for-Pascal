@@ -13,12 +13,14 @@ const
                                                    rendering to texture *}
 
 type
+  PPSDL_RendererFlags = ^PSDL_RendererFlags;
   PSDL_RendererFlags = ^TSDL_RendererFlags;
   TSDL_RendererFlags = Word;
 
   {**
    *  Information on the capabilities of a render driver or context.
    *}
+  PPSDL_RendererInfo = ^PSDL_RendererInfo;
   PSDL_RendererInfo = ^TSDL_RendererInfo;
   TSDL_RendererInfo = record  
     name: PAnsiChar;                         {**< The name of the renderer *}
@@ -29,6 +31,7 @@ type
     max_texture_height: cint32;              {**< The maximimum texture height *}
   end;
 
+  PPSDL_Vertex = ^PSDL_Vertex;
   PSDL_Vertex = ^TSDL_Vertex;
   TSDL_Vertex = record
     position: TSDL_FPoint;
@@ -39,6 +42,7 @@ type
 {**
  * The scaling mode for a texture.
  *}
+  PPSDL_ScaleMode = ^PSDL_ScaleMode;
   PSDL_ScaleMode = ^TSDL_ScaleMode;
   TSDL_ScaleMode = type cint;
 
@@ -51,6 +55,7 @@ const
    *  The access pattern allowed for a texture.
    *}
 type
+  PPSDL_TextureAccess = ^PSDL_TextureAccess;
   PSDL_TextureAccess = ^TSDL_TextureAccess;
   TSDL_TextureAccess = type cint;
 
@@ -63,6 +68,7 @@ type
   {**
    *  The texture channel modulation used in SDL_RenderCopy().
    *}
+  PPSDL_TextureModulate = ^PSDL_TextureModulate;
   PSDL_TextureModulate = ^TSDL_TextureModulate;
   TSDL_TextureModulate = type cint;
 
@@ -92,6 +98,7 @@ type
   {**
    *  An efficient driver-specific representation of pixel data
    *}
+  PPSDL_Texture = ^PSDL_Texture;
   PSDL_Texture = ^TSDL_Texture;
   TSDL_Texture = record
     end;

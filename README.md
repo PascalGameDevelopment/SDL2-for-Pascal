@@ -71,7 +71,9 @@ Exception: Replace `*char` by `PAnsiChar`! (see issue [#26](https://github.com/P
 
 4. If an identifier or a function declaration is gone, mark them as `deprecated`. (see issue [#34](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/34))
 
-5. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
+5. For convenience we encourage to add single and double pointers for any SDL type. (See #105)
+
+6. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
 
 ## Versions
 

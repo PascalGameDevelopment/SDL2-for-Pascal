@@ -53,6 +53,8 @@ function SDL_IsShapedWindow(window: PSDL_Window): TSDL_Bool; cdecl;
 
 type
   {** \brief An enum denoting the specific type of contents present in an SDL_WindowShapeParams union. *}
+  PPWindowShapeMode = ^PWindowShapeMode;
+  PWindowShapeMode = ^TWindowShapeMode;
   TWindowShapeMode = type Integer;
 
 const
@@ -69,6 +71,8 @@ function SDL_SHAPEMODEALPHA(mode: TWindowShapeMode): Boolean;
 
 type
   {** A union containing parameters for shaped windows. *}
+  PPSDL_WindowShapeParams = ^PSDL_WindowShapeParams;
+  PSDL_WindowShapeParams = ^TSDL_WindowShapeParams;
   TSDL_WindowShapeParams = record
     case cint of
       {** a cutoff alpha value for binarization of the window shape's alpha channel. *}
@@ -77,6 +81,7 @@ type
   end;
 
   {** A struct that tags the SDL_WindowShapeParams union with an enum describing the type of its contents. *}
+  PPSDL_WindowShapeMode = ^PSDL_WindowShapeMode;
   PSDL_WindowShapeMode = ^TSDL_WindowShapeMode;
   TSDL_WindowShapeMode = record
     {** The mode of these window-shape parameters. *}

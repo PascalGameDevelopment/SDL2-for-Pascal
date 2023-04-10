@@ -9,7 +9,8 @@ const
   //ERR_MAX_ARGS   = 5; { Obsolete in 2.0.14? }
 
 type
-
+  PPSDL_Error = ^PSDL_Error;
+  PSDL_Error = ^TSDL_Error;
   TSDL_Error = record
     {* This is a numeric value corresponding to the current error *}
     error: cint;

@@ -14,9 +14,12 @@
 
 {* The gamecontroller structure used to identify an SDL game controller *}
 type
+  PPSDL_GameController = ^PSDL_GameController;
   PSDL_GameController = ^TSDL_GameController;
   TSDL_GameController = record end;
 
+  PPSDL_GameControllerType = ^PSDL_GameControllerType;
+  PSDL_GameControllerType = ^TSDL_GameControllerType;
   TSDL_GameControllerType = type cint;
 const
   SDL_CONTROLLER_TYPE_UNKNOWN                      = TSDL_GameControllerType(0);
@@ -35,6 +38,8 @@ const
   SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_PAIR  = TSDL_GameControllerType(13);
 
 type
+  PPSDL_GameControllerBindType = ^PSDL_GameControllerBindType;
+  PSDL_GameControllerBindType = ^TSDL_GameControllerBindType;
   TSDL_GameControllerBindType = type cint;
 const
   SDL_CONTROLLER_BINDTYPE_NONE   = TSDL_GameControllerBindType(0);
@@ -51,6 +56,8 @@ type
     hat_mask: cint;
   end;
 
+  PPSDL_GameControllerButtonBind = ^PSDL_GameControllerButtonBind;
+  PSDL_GameControllerButtonBind = ^TSDL_GameControllerButtonBind;
   TSDL_GameControllerButtonBind = record
     bindType: TSDL_GameControllerBindType;
     case cint of
@@ -339,6 +346,7 @@ procedure SDL_GameControllerUpdate() cdecl; external SDL_LibName {$IFDEF DELPHI}
    *}
 
 type
+  PPSDL_GameControllerAxis = ^PSDL_GameControllerAxis;
   PSDL_GameControllerAxis = ^TSDL_GameControllerAxis;
   TSDL_GameControllerAxis = type cint;
 const
@@ -388,6 +396,7 @@ function SDL_GameControllerGetAxis(gamecontroller: PSDL_GameController; axis: TS
    *  The list of buttons available from a controller
    *}
 type
+  PPSDL_GameControllerButton = ^PSDL_GameControllerButton;
   PSDL_GameControllerButton = ^TSDL_GameControllerButton;
   TSDL_GameControllerButton = type cint;
 const

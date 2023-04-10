@@ -20,6 +20,8 @@
  *   different GUIDs on different operating systems).
  *}
 type
+  PPSDL_GUID = ^PSDL_GUID;
+  PSDL_GUID = ^TSDL_GUID;
   TSDL_GUID = record
     data: array[0..15] of cuint8;
   end;

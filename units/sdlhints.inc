@@ -2397,6 +2397,8 @@ SDL_HINT_TRACKPAD_IS_TOUCH_ONLY = 'SDL_TRACKPAD_IS_TOUCH_ONLY';
  *  \brief  An enumeration of hint priorities
  */}
 type
+  PPSDL_HintPriority = ^PSDL_HintPriority;
+  PSDL_HintPriority = ^TSDL_HintPriority;
   TSDL_HintPriority = type Integer;
 
 const
@@ -2479,6 +2481,8 @@ function SDL_GetHintBoolean(const name: PAnsiChar; default_value: TSDL_Bool): TS
  *  \param userdata A pointer to pass to the callback function
  */}
 type
+  PPSDL_HintCallback = ^PSDL_HintCallback;
+  PSDL_HintCallback = ^TSDL_HintCallback;
   TSDL_HintCallback = procedure(userdata: Pointer; const name: PAnsiChar; const oldValue: PAnsiChar; const newValue: PAnsiChar); cdecl;
 
 procedure SDL_AddHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
