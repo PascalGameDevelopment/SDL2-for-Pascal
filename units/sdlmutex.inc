@@ -10,8 +10,7 @@ const
   {**
    *  This is the timeout value which corresponds to never time out.
    *}
-  //SDL_MUTEX_MAXWAIT   (~(Uint32)0)
-
+  SDL_MUTEX_MAXWAIT = Not cuint32(0);
 
   {**
    *  Mutex functions
