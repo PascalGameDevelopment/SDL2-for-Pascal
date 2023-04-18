@@ -1,5 +1,4 @@
 // based on "sdl_mutex.h" (2.0.14)
-{ TODO : Add type definitions (see todos below).  }
 
   {**
    *  Synchronization functions which can time out return this value
@@ -20,7 +19,7 @@ const
 type
   {*The SDL mutex structure, defined in SDL_sysmutex.c *}
   PPSDL_Mutex = ^PSDL_Mutex;
-  PSDL_Mutex = Pointer; //todo!
+  PSDL_Mutex = Type Pointer;
 
   {**
    *  Create a mutex, initialized unlocked.
@@ -71,7 +70,7 @@ procedure SDL_DestroyMutex(mutex: PSDL_Mutex); cdecl;
 type
   {* The SDL semaphore structure, defined in SDL_sem.c *}
   PPSDL_Sem = ^PSDL_Sem;
-  PSDL_Sem = Pointer; //todo!
+  PSDL_Sem = Type Pointer;
 
   {**
    *  Create a semaphore, initialized with value, returns NULL on failure.
@@ -128,15 +127,13 @@ function SDL_SemPost(sem: PSDL_Sem): cint; cdecl;
 function SDL_SemValue(sem: PSDL_Sem): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemValue' {$ENDIF} {$ENDIF};
 
-  {*Semaphore functions*}
-
   {**
    *  Condition variable functions
    * }
 type
   {* The SDL condition variable structure, defined in SDL_cond.c *}
   PPSDL_Cond = ^PSDL_Cond;
-  PSDL_Cond = Pointer; //todo!!
+  PSDL_Cond = Type Pointer;
 
   {**
    *  Create a condition variable.
