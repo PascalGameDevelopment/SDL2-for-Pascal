@@ -369,6 +369,15 @@ function SDL_TLSCreate: TSDL_TLSID; cdecl;
 function SDL_TLSGet(id: TSDL_TLSID): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSGet' {$ENDIF} {$ENDIF};
 
+type
+  { SDL2-For-Pascal: This function pointer is introduced to specifiy the
+                     destructor pointer in the SDL_TLSSet function
+                     according to C headers.
+
+                     The TTLSDestructor type itself is not defined
+                     by the original SDL2 headers. }
+  TTLSDestructor = procedure(value: Pointer); cdecl;
+
   {**
  * Set the current thread's value associated with a thread local storage ID.
  *
@@ -392,7 +401,7 @@ function SDL_TLSGet(id: TSDL_TLSID): Pointer; cdecl;
  * \sa SDL_TLSCreate
  * \sa SDL_TLSGet
  *}
-function SDL_TLSSet(id: TSDL_TLSID; const value: Pointer; destructor_: Pointer): cint; cdecl;
+function SDL_TLSSet(id: TSDL_TLSID; const value: Pointer; destructor_: TTLSDestructor): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSSet' {$ENDIF} {$ENDIF};
 
 {**
