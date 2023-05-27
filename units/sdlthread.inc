@@ -81,8 +81,8 @@ type
 
   { SDL2-for-Pascal #todo : Explanation needed }
   TpfnSDL_CurrentBeginThread = function(
-    SecurityAttributes: Pointer; StackSize: LongWord; ThreadFunc: TThreadFunc;
-    Parameter: Pointer {arg}; CreationFlags: LongWord; var ThreadId: TThreadID {threadID}): cuintptr_t; cdecl;
+    SecurityAttributes: Pointer; StackSize: cuint; ThreadFunc: TThreadFunc;
+    Parameter: Pointer {arg}; CreationFlags: cuint; var ThreadId: TThreadID {threadID}): cuintptr_t; cdecl;
 
   TpfnSDL_CurrentEndThread = procedure(code: cuint); cdecl;
 
