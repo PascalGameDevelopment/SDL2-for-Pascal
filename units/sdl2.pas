@@ -259,7 +259,6 @@ begin
   Result := (r = NIL) or (r^.w <= cfloat(0.0)) or (r^.h <= cfloat(0.0))
 end;
 
-{ FIXME: This the Pascal System.Abs() function, instead of the C SDL_fabsf() function. }
 function SDL_FRectEqualsEpsilon(const a, b: PSDL_FRect; const epsilon: cfloat): Boolean;
 begin
   Result :=
@@ -269,13 +268,13 @@ begin
       (a = b)
       or
       (
-        (Abs(a^.x - b^.x) <= epsilon)
+        (SDL_fabsf(a^.x - b^.x) <= epsilon)
         and
-        (Abs(a^.y - b^.y) <= epsilon)
+        (SDL_fabsf(a^.y - b^.y) <= epsilon)
         and
-        (Abs(a^.w - b^.w) <= epsilon)
+        (SDL_fabsf(a^.w - b^.w) <= epsilon)
         and
-        (Abs(a^.h - b^.h) <= epsilon)
+        (SDL_fabsf(a^.h - b^.h) <= epsilon)
       )
     )
 end;
