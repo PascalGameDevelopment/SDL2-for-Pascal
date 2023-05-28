@@ -67,25 +67,29 @@
 {**
  *  These are the various supported windowing subsystems
  *}
-Type
-   TSDL_SYSWM_TYPE = (
-      SDL_SYSWM_UNKNOWN,
-      SDL_SYSWM_WINDOWS,
-      SDL_SYSWM_X11,
-      SDL_SYSWM_DIRECTFB,
-      SDL_SYSWM_COCOA,
-      SDL_SYSWM_UIKIT,
-      SDL_SYSWM_WAYLAND, // Since SDL 2.0.2 - REMOVED in SDL 2.0.10!
-      SDL_SYSWM_MIR,     // Since SDL 2.0.2
-      SDL_SYSWM_WINRT,   // Since SDL 2.0.3
-      SDL_SYSWM_ANDROID, // Since SDL 2.0.4
-      SDL_SYSWM_VIVANTE, // Since SDL 2.0.5
-      SDL_SYSWM_OS2,     // Since SDL 2.0.6
-      SDL_SYSWM_HAIKU    // Since SDL 2.0.12
-   );
+type
+  TSDL_SYSWM_TYPE = type cint;
+
+const
+  SDL_SYSWM_UNKNOWN  = TSDL_SYSWM_TYPE(0);
+  SDL_SYSWM_WINDOWS  = TSDL_SYSWM_TYPE(1);
+  SDL_SYSWM_X11      = TSDL_SYSWM_TYPE(2);
+  SDL_SYSWM_DIRECTFB = TSDL_SYSWM_TYPE(3);
+  SDL_SYSWM_COCOA    = TSDL_SYSWM_TYPE(4);
+  SDL_SYSWM_UIKIT    = TSDL_SYSWM_TYPE(5);
+  SDL_SYSWM_WAYLAND  = TSDL_SYSWM_TYPE(6);
+  SDL_SYSWM_MIR      = TSDL_SYSWM_TYPE(7);  // * no longer available, left for API/ABI compatibility. Remove in 2.1! *
+  SDL_SYSWM_WINRT    = TSDL_SYSWM_TYPE(8);
+  SDL_SYSWM_ANDROID  = TSDL_SYSWM_TYPE(9);
+  SDL_SYSWM_VIVANTE  = TSDL_SYSWM_TYPE(10);
+  SDL_SYSWM_OS2      = TSDL_SYSWM_TYPE(11);
+  SDL_SYSWM_HAIKU    = TSDL_SYSWM_TYPE(12);
+  SDL_SYSWM_KMSDRM   = TSDL_SYSWM_TYPE(13);
+  SDL_SYSWM_RISCOS   = TSDL_SYSWM_TYPE(14);
 
 /// sdl_syswm.h uses anonymous structs, declared right in SDL_SysWMmsg and SDL_SysWMinfo.
 /// Since Pascal does not allow this, we workaround by introducing named types.
+type
 {$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
    __SYSWM_WINDOWS = record
       hwnd:   HWND;   {**< The window for the message }
