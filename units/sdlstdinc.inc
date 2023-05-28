@@ -334,6 +334,10 @@ function SDL_fmodf(x, y: cfloat): cfloat; cdecl;
  * Calculate the natural logarithm of x.
  *
  * \since This function is available since SDL 2.0.4.
+ 
+ SDL2-for-Pascal: ATTENTION: The original C name of this function is SDL_log, 
+ but since Pascal names are case-insensitive, it is in conflict with SDL_Log (logging function). 
+ Hence we decided to rename it.
  *)
 function SDL_nlog(x: cdouble): cdouble; cdecl;
   external SDL_LibName
@@ -343,6 +347,10 @@ function SDL_nlog(x: cdouble): cdouble; cdecl;
  * Calculate the natural logarithm of x.
  *
  * \since This function is available since SDL 2.0.8.
+ 
+ SDL2-for-Pascal: ATTENTION: The original C name of this function is SDL_logf, 
+ but to be consistent with the renamed SDL_log function (see comment of SDL_nlog
+ for details), we decided to rename it.
  *)
 function SDL_nlogf(x: cfloat): cfloat; cdecl;
   external SDL_LibName
