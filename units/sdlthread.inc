@@ -5,9 +5,13 @@
 type
 
   {* The SDL thread ID *}
+  PPSDL_threadID = ^PSDL_threadID;
+  PSDL_threadID = ^TSDL_threadID;
   TSDL_threadID = culong;
 
   {* Thread local storage ID, 0 is the invalid ID *}
+  PPSDL_TLSID = ^PSDL_TLSID;
+  PSDL_TLSID = ^TSDL_TLSID;
   TSDL_TLSID = cuint;
 
 
@@ -21,6 +25,8 @@ type
  *
  *  \note On many systems you require special privileges to set high or time critical priority.
  *}
+  PPSDL_ThreadPriority = ^PSDL_ThreadPriority;
+  PSDL_ThreadPriority = ^TSDL_ThreadPriority;
   TSDL_ThreadPriority = (SDL_THREAD_PRIORITY_LOW,
                          SDL_THREAD_PRIORITY_NORMAL,
                          SDL_THREAD_PRIORITY_HIGH,
@@ -29,9 +35,11 @@ type
   {* The function passed to SDL_CreateThread()
      It is passed a void* user context parameter and returns an int.
    *}
+  PPSDL_ThreadFunction = ^PSDL_ThreadFunction;
   PSDL_ThreadFunction = ^TSDL_ThreadFunction;
   TSDL_ThreadFunction = function(data: Pointer): cint; cdecl;
 
+  PPSDL_Thread = ^PSDL_Thread;
   PSDL_Thread = ^TSDL_Thread;
   TSDL_Thread = record
     threadid: TSDL_ThreadID;

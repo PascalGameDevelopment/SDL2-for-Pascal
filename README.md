@@ -4,7 +4,7 @@ Unit files for building
 [Free Pascal](https://freepascal.org/) / [Delphi](https://www.embarcadero.com/products/delphi) applications
 using the [SDL2 library](https://libsdl.org).
 
-This repository is a community-maintained fork of the [Pascal-SDL-2-Headers](https://github.com/ev1313/Pascal-SDL-2-Headers) repo.
+The [SDL2-for-Pascal](https://github.com/PascalGameDevelopment/SDL2-for-Pascal) repository is a community-maintained fork of the [Pascal-SDL-2-Headers](https://github.com/ev1313/Pascal-SDL-2-Headers) repository.
 
 ## Installation
 
@@ -20,11 +20,21 @@ Use the `sdl2` unit for the main SDL2 library (should be always needed). Units f
  - [`sdl2_net`](https://www.libsdl.org/projects/SDL_net/)
  - [`sdl2_ttf`](https://www.libsdl.org/projects/SDL_ttf/)
 
+## Documentation
+
+[Official SDL2-for-Pascal Documentation](https://pascalgamedevelopment.github.io/SDL2-for-Pascal)
+
+### Further Resources
+
+[Free Pascal meets SDL](https://www.freepascal-meets-sdl.net)
+
+[PGD SDL2 Forum](https://www.pascalgamedevelopment.com/forumdisplay.php?26-SDL-SDL-2)
+
 ## Bugs / Contributions / ToDos
 
 If you have any contributions or bugfixes, feel free to drop a pull request or send in a patch.
+Please use the GitHub [issue tracker](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues).
 
-Please use the GitHub issue tracker for bug reports.
 
 ### ToDos
 
@@ -34,7 +44,7 @@ See part Enums on the [Cheat sheet](CHEATSHEET.md) for reference.
 - (Continously) improve Delphi-compatibility (and even more important, DO NOT break it)
 - (Continously) Adapt comments to [PasDoc format](https://pasdoc.github.io). (See issue [#22](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/22))
 
-## Code style guidelines
+### Code style guidelines
 
 The main principle is to stay as tight as possible at the names in the C headers.
 These guidelines aim to have better consistency in this community project and make
@@ -61,7 +71,9 @@ Exception: Replace `*char` by `PAnsiChar`! (see issue [#26](https://github.com/P
 
 4. If an identifier or a function declaration is gone, mark them as `deprecated`. (see issue [#34](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/34))
 
-5. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
+5. For convenience we encourage to add single and double pointers for any SDL type. (See #105)
+
+6. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
 
 ## Versions
 

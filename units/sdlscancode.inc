@@ -11,6 +11,7 @@
    *  https://www.usb.org/sites/default/files/documents/hut1_12v2.pdf
    *}
 type
+  PPSDL_ScanCode = ^PSDL_ScanCode;
   PSDL_ScanCode = ^TSDL_ScanCode;
   TSDL_ScanCode = type cint;
 

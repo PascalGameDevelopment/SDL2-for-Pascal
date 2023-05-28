@@ -29,10 +29,13 @@
 
 type
   {* The joystick structure used to identify an SDL joystick *}
-  TSDL_Joystick = record end;
+  PPSDL_Joystick = ^PSDL_Joystick;
   PSDL_Joystick = ^TSDL_Joystick;
+  TSDL_Joystick = record end;
 
   {* A structure that encodes the stable unique id for a joystick device *}
+  PPSDL_JoystickGUID = ^PSDL_JoystickGUID;
+  PSDL_JoystickGUID = ^TSDL_JoystickGUID;
   TSDL_JoystickGUID = type TSDL_GUID;
 
  {**
@@ -42,9 +45,13 @@ type
   *
   * The ID value starts at 0 and increments from there. The value -1 is an invalid ID.
   *}
+  PPSDL_JoystickID = ^PSDL_JoystickID;
+  PSDL_JoystickID = ^TSDL_JoystickID;
   TSDL_JoystickID = type cint32;
 
 type
+  PPSDL_JoystickType = ^PSDL_JoystickType;
+  PSDL_JoystickType = ^TSDL_JoystickType;
   TSDL_JoystickType = type Integer;
 
 const
@@ -60,6 +67,8 @@ const
   SDL_JOYSTICK_TYPE_THROTTLE       = TSDL_JoystickType(9);
 
 type
+  PPSDL_JoystickPowerLevel = ^PSDL_JoystickPowerLevel;
+  PSDL_JoystickPowerLevel = ^TSDL_JoystickPowerLevel;
   TSDL_JoystickPowerLevel = type Integer;
 
 const
@@ -326,13 +335,15 @@ type
  *
  * \sa SDL_JoystickAttachVirtualEx
  *}
-  PSDL_VirtualJoystickDesc = ^TSDL_VirtualJoystickDesc;
   TUpdateProc = procedure(userdata: Pointer); cdecl;
   TSetPlayerIndexProc = procedure(userdata: Pointer; player_index: cint); cdecl;
   TRumbleFunc = function(userdata: Pointer; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16): cint; cdecl;
   TRumbleTriggersFunc = function(userdata: Pointer; left_rumble: cuint16; right_rumble: cuint16): cint; cdecl;
   TSetLEDFunc = function(userdata: Pointer; red: cuint8; green: cuint8; blue: cuint8): cint; cdecl;
   TSendEffectFunc = function(userdata: Pointer; const data: Pointer; size: cint): cint; cdecl;
+
+  PPSDL_VirtualJoystickDesc = ^PSDL_VirtualJoystickDesc;
+  PSDL_VirtualJoystickDesc = ^TSDL_VirtualJoystickDesc;
   TSDL_VirtualJoystickDesc = record
     version: cuint16;     {**< `SDL_VIRTUAL_JOYSTICK_DESC_VERSION` *}
     type_: cuint16;       {**< `SDL_JoystickType` }

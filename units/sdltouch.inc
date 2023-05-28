@@ -1,12 +1,16 @@
 //from "sdl_touch.h"
 
 type
+  PPSDL_TouchID = ^PSDL_TouchID;
   PSDL_TouchID  = ^TSDL_TouchID;
   TSDL_TouchID  = type cint64;
 
+  PPSDL_FingerID = ^PSDL_FingerID;
   PSDL_FingerID = ^TSDL_FingerID;
   TSDL_FingerID = type cint64;
 
+  PPSDL_TouchDeviceType = ^PSDL_TouchDeviceType;
+  PSDL_TouchDeviceType = ^TSDL_TouchDeviceType;
   TSDL_TouchDeviceType = type cint;
 
 const
@@ -16,6 +20,7 @@ const
   SDL_TOUCH_DEVICE_INDIRECT_RELATIVE = TSDL_TouchDeviceType(2);  {* trackpad with relative device coordinates *}
 
 type
+  PPSDL_Finger = ^PSDL_Finger;
   PSDL_Finger = ^TSDL_Finger;
   TSDL_Finger = record
     id: TSDL_FingerID;

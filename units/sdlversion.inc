@@ -19,6 +19,7 @@
    *  SDL_GetVersion
    *}
 type
+  PPSDL_Version = ^PSDL_Version;
   PSDL_Version = ^TSDL_Version;
   TSDL_Version = record
     major,           {**< major version *}

@@ -59,11 +59,15 @@ type
    *  passed in, the periodic alarm continues, otherwise a new alarm is
    *  scheduled.  If the callback returns 0, the periodic alarm is cancelled.
    *}
+  PPSDL_TimerCallback = ^PSDL_TimerCallback;
+  PSDL_TimerCallback = ^TSDL_TimerCallback;
   TSDL_TimerCallback = function(interval: cuint32; param: Pointer): cuint32; cdecl;
 
   {**
    * Definition of the timer ID type.
    *}
+  PPSDL_TimerID = ^PSDL_TimerID;
+  PSDL_TimerID = ^TSDL_TimerID;
   TSDL_TimerID = cint;
 
 {**

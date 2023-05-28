@@ -4,6 +4,8 @@
  *  SDL_MessageBox flags. If supported will display warning icon, etc.
  *}
 type
+  PPSDL_MessageBoxFlags = ^PSDL_MessageBoxFlags;
+  PSDL_MessageBoxFlags = ^TSDL_MessageBoxFlags;
   TSDL_MessageBoxFlags = type cuint32;
 
 const
@@ -17,6 +19,8 @@ const
  *  Flags for SDL_MessageBoxButtonData.
  *}
 type
+  PPSDL_MessageBoxButtonFlags = ^PSDL_MessageBoxButtonFlags;
+  PSDL_MessageBoxButtonFlags = ^TSDL_MessageBoxButtonFlags;
   TSDL_MessageBoxButtonFlags = type cuint32;
 
 const
@@ -28,6 +32,7 @@ const
  *   Individual button data.
  *}
 type
+  PPSDL_MessageBoxButtonData = ^PSDL_MessageBoxButtonData;
   PSDL_MessageBoxButtonData = ^TSDL_MessageBoxButtonData;
   TSDL_MessageBoxButtonData = record
     flags: TSDL_MessageBoxButtonFlags;  {**< ::SDL_MessageBoxButtonFlags *}
@@ -39,11 +44,13 @@ type
  *  RGB value used in a message box color scheme
  *}
 type
+  PPSDL_MessageBoxColor = ^PSDL_MessageBoxColor;
   PSDL_MessageBoxColor = ^TSDL_MessageBoxColor;
   TSDL_MessageBoxColor = record
     r, g, b: cuint8;
   end;
 
+  PPSDL_MessageBoxColorType = ^PSDL_MessageBoxColorType;
   PSDL_MessageBoxColorType = ^TSDL_MessageBoxColorType;
   TSDL_MessageBoxColorType = type Word;
 
@@ -59,6 +66,7 @@ const
    *  A set of colors to use for message box dialogs
    *}
 type
+  PPSDL_MessageBoxColorScheme = ^PSDL_MessageBoxColorScheme;
   PSDL_MessageBoxColorScheme = ^TSDL_MessageBoxColorScheme;
   TSDL_MessageBoxColorScheme = record
     colors: array[0..SDL_MESSAGEBOX_COLOR_MAX-1] of TSDL_MessageBoxColor;
@@ -68,6 +76,7 @@ type
    *   MessageBox structure containing title, text, window, etc.
    *}
 type
+  PPSDL_MessageBoxData = ^PSDL_MessageBoxData;
   PSDL_MessageBoxData = ^TSDL_MessageBoxData;
   TSDL_MessageBoxData = record
     flags: TSDL_MessageBoxFlags;             {**< SDL_MessageBoxFlags *}

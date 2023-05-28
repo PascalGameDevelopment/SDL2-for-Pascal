@@ -5,6 +5,7 @@
  *}
 
 type
+  PPSDL_BlendMode = ^PSDL_BlendMode;
   PSDL_BlendMode = ^TSDL_BlendMode;
   TSDL_BlendMode = type DWord;
 
@@ -31,6 +32,7 @@ const
    *  \brief The blend operation used when combining source and destination pixel components
    *}
 type
+  PPSDL_BlendOperation = ^PSDL_BlendOperation;
   PSDL_BlendOperation = ^TSDL_BlendOperation;
   TSDL_BlendOperation = type DWord;
 
@@ -45,6 +47,7 @@ const
    *  \brief The normalized factor used to multiply pixel components
    *}
 type
+  PPSDL_BlendFactor = ^PSDL_BlendFactor;
   PSDL_BlendFactor = ^TSDL_BlendFactor;
   TSDL_BlendFactor = type DWord;
 
