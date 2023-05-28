@@ -89,13 +89,14 @@ Type
 {$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
    __SYSWM_WINDOWS = record
       hwnd:   HWND;   {**< The window for the message }
-      msg:    uInt;   {**< The type of message *}
+      msg:    UINT;   {**< The type of message *}
       wParam: WPARAM; {**< WORD message parameter *}
-      lParam: LPARAM; {**< WORD message parameter *}
+      lParam: LPARAM; {**< LONG message parameter *}
    end;
    __WMINFO_WINDOWS = record
-      window: HWND; {**< The window handle *}
-      hdc:    HDC;  {**< The window device context *}
+      window:    HWND;  {**< The window handle *}
+      hdc:       HDC;   {**< The window device context *}
+      hinstance: HINST; {**< The instance handle *}
    end;
 {$ENDIF}
 
