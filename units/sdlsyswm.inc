@@ -12,7 +12,7 @@
 
 (* 
  * Disabled because FPC does not ship a DirectFB unit.
- * If you have some working DirectDB bindings, feel welcome to enable this and check if it breaks anything.
+ * If you have some working DirectFB bindings, feel welcome to enable this and check if it breaks anything.
  *)
 {$UNDEF SDL_VIDEO_DRIVER_DIRECTFB}
 
