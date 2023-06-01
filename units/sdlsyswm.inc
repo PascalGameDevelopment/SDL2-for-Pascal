@@ -152,7 +152,12 @@ type
    __WMINFO_WAYLAND = record
       display: wl_display;             {**< Wayland display *}
       surface: wl_surface;             {**< Wayland surface *}
-      shell_surface: wl_shell_surface; {**< Wayland shell_surface (window manager handle) *}
+      shell_surface: Pointer;          {**< DEPRECATED Wayland shell_surface (window manager handle) *}
+      egl_window: wl_egl_window;       {**< Wayland EGL window (native window) *}
+      xdg_surface: xdg_surface;        {**< Wayland xdg surface (window manager handle) *}
+      xdg_toplevel: xdg_toplevel;      {**< Wayland xdg toplevel role *}
+      xdg_popup: xdg_popup;            {**< Wayland xdg popup role *}
+      xdg_positioner: xdg_positioner;  {**< Wayland xdg positioner, for popup *}
    end;
 {$ENDIF}
 
