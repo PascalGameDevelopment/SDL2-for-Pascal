@@ -128,7 +128,7 @@ type
 {$IFDEF SDL_VIDEO_DRIVER_COCOA}
    __SYSWM_COCOA = record
       (* No Cocoa window events yet *)
-      dummy: integer;
+      dummy: cint;
    end;
    __WMINFO_COCOA = record
       window: NSWindow; {* The Cocoa window *}
@@ -138,7 +138,7 @@ type
 {$IFDEF SDL_VIDEO_DRIVER_UIKIT}
    __SYSWM_UIKIT = record
       (* No UIKit window events yet *)
-      dummy: integer;
+      dummy: cint;
    end;
    __WMINFO_UIKIT = record
       window: UIWindow;           {* The UIKit window *}
@@ -179,7 +179,7 @@ type
 {$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
    __SYSWM_VIVANTE = record
       (* No Vivante window events yet *)
-      dummy: integer;
+      dummy: cint;
    end;
    __WMINFO_VIVANTE = record
       display: EGLNativeDisplayType;
@@ -191,7 +191,7 @@ type
    __SYSWM_OS2 = record
       fFrame: Boolean; {**< TRUE if hwnd is a frame window *}
       hwnd: HWND;      {**< The window receiving the message *}
-      msg: uInt;       {**< The message identifier *}
+      msg: ULONG;      {**< The message identifier *}
       mp1: MPARAM;     {**< The first first message parameter *}
       mp2: MPARAM;     {**< The second first message parameter *}
    end;
