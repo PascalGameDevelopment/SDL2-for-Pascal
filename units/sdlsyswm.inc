@@ -1,5 +1,14 @@
 // from sdl_syswm.h
 
+{**
+ *  \brief SDL_syswm.h
+ *
+ *  Your application has access to a special type of event ::SDL_SYSWMEVENT,
+ *  which contains window-manager specific information and arrives whenever
+ *  an unhandled window event occurs.  This event is ignored by default, but
+ *  you can enable it with SDL_EventState().
+ *}
+
 {$IFDEF WINDOWS}
    {$DEFINE SDL_VIDEO_DRIVER_WINDOWS}
 {$ENDIF}
