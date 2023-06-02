@@ -243,6 +243,14 @@ type
    end;
 {$ENDIF}
 
+{$IFDEF SDL_VIDEO_DRIVER_KMSDRM}
+   __WMINFO_KMSDRM = record
+      dev_index: cint;                   {**< Device index (ex: the X in /dev/dri/cardX) *}
+      drm_fd: cint;                      {**< DRM FD (unavailable on Vulkan windows) *}
+      gbm_device: Pointer;  // *gbm_dev  {**< GBM device (unavailable on Vulkan windows) *}
+   end;
+{$ENDIF}
+
 
 
 
@@ -321,6 +329,9 @@ type
          {$ENDIF}
          {$IFDEF SDL_VIDEO_DRIVER_OS2}
             SDL_SYSWM_OS2: (os2: __WMINFO_OS2);
+         {$ENDIF}
+         {$IFDEF SDL_VIDEO_DRIVER_KMSDRM}
+            SDL_SYSWM_KMSDRM: (kmsdrm: __WMINFO_KMSDRM);
          {$ENDIF}
          (* Ensure this union is always 64 bytes (8 64-bit pointers) *)
             SDL_SYSWM_UNKNOWN: (dummy: array[0..63] of Byte);
