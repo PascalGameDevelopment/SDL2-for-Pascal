@@ -215,7 +215,7 @@ type
    end;
 {$ENDIF}
 
-{$IFDEF SDL_VIDEO_DRIVER_MIR}
+{$IFDEF SDL_VIDEO_DRIVER_MIR}     {* no longer available, left for API/ABI compatibility. Remove in 2.1! *}
    __WMINFO_MIR = record
       connection: PMirConnection; {**< Mir display server connection *}
       surface: PMirSurface;       {**< Mir surface *}
