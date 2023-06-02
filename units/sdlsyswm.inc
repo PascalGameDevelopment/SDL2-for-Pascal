@@ -106,31 +106,17 @@ type
       wParam: WPARAM; {**< WORD message parameter *}
       lParam: LPARAM; {**< LONG message parameter *}
    end;
-   __WMINFO_WINDOWS = record
-      window:    HWND;  {**< The window handle *}
-      hdc:       HDC;   {**< The window device context *}
-      hinstance: HINST; {**< The instance handle *}
-   end;
 {$ENDIF}
 
 {$IFDEF SDL_VIDEO_DRIVER_X11}
    __SYSWM_X11 = record
       event: {$IFDEF FPC} TXEvent {$ELSE} XEvent {$ENDIF};
    end;
-   __WMINFO_X11 = record
-      display: PDisplay;  {**< The X11 display *}
-      window:  TWindow;   {**< The X11 window *}
-   end;
 {$ENDIF}
 
 {$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
    __SYSWM_DIRECTFB = record
       event: DFBEvent;
-   end;
-   __WMINFO_DIRECTFB = record
-      dfb:     IDirectFB;         {**< The directfb main interface *}
-      window:  IDirectFBWindow;   {**< The directfb window handle *}
-      surface: IDirectFBSurface;  {**< The directfb client surface *}
    end;
 {$ENDIF}
 
@@ -139,9 +125,6 @@ type
       (* No Cocoa window events yet *)
       dummy: cint;
    end;
-   __WMINFO_COCOA = record
-      window: NSWindow; {* The Cocoa window *}
-   end;
 {$ENDIF}
 
 {$IFDEF SDL_VIDEO_DRIVER_UIKIT}
@@ -149,6 +132,68 @@ type
       (* No UIKit window events yet *)
       dummy: cint;
    end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
+   __SYSWM_VIVANTE = record
+      (* No Vivante window events yet *)
+      dummy: cint;
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_OS2}
+   __SYSWM_OS2 = record
+      fFrame: Boolean; {**< TRUE if hwnd is a frame window *}
+      hwnd: HWND;      {**< The window receiving the message *}
+      msg: ULONG;      {**< The message identifier *}
+      mp1: MPARAM;     {**< The first first message parameter *}
+      mp2: MPARAM;     {**< The second first message parameter *}
+   end;
+{$ENDIF}
+
+{**
+ *  The custom window manager information structure.
+ *
+ *  When this structure is returned, it holds information about which
+ *  low level system it is using, and will be one of SDL_SYSWM_TYPE.
+ *}
+
+{$IFDEF SDL_VIDEO_DRIVER_WINDOWS}
+   __WMINFO_WINDOWS = record
+      window:    HWND;  {**< The window handle *}
+      hdc:       HDC;   {**< The window device context *}
+      hinstance: HINST; {**< The instance handle *}
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_WINRT}
+   __WMINFO_WINRT = record
+      window: IInspectable;      {**< The WinRT CoreWindow *}
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_X11}
+   __WMINFO_X11 = record
+      display: PDisplay;  {**< The X11 display *}
+      window:  TWindow;   {**< The X11 window *}
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_DIRECTFB}
+   __WMINFO_DIRECTFB = record
+      dfb:     IDirectFB;         {**< The directfb main interface *}
+      window:  IDirectFBWindow;   {**< The directfb window handle *}
+      surface: IDirectFBSurface;  {**< The directfb client surface *}
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_COCOA}
+   __WMINFO_COCOA = record
+      window: NSWindow; {* The Cocoa window *}
+   end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_UIKIT}
    __WMINFO_UIKIT = record
       window: UIWindow;           {* The UIKit window *}
       framebuffer: GLuint;        {* The GL view's Framebuffer Object. It must be bound when rendering to the screen using GL. *}
@@ -177,12 +222,6 @@ type
    end;
 {$ENDIF}
 
-{$IFDEF SDL_VIDEO_DRIVER_WINRT}
-   __WMINFO_WINRT = record
-      window: IInspectable;      {**< The WinRT CoreWindow *}
-   end;
-{$ENDIF}
-
 {$IFDEF SDL_VIDEO_DRIVER_ANDROID}
    __WMINFO_ANDROID = record
       window:  Pointer;  // PANativeWindow;
@@ -190,30 +229,21 @@ type
    end;
 {$ENDIF}
 
-{$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
-   __SYSWM_VIVANTE = record
-      (* No Vivante window events yet *)
-      dummy: cint;
+{$IFDEF SDL_VIDEO_DRIVER_OS2}
+   __WMINFO_OS2 = record
+      hwnd: HWND;      {**< The window handle *}
+      hwndFrame: HWND; {**< The frame window handle *}
    end;
+{$ENDIF}
+
+{$IFDEF SDL_VIDEO_DRIVER_VIVANTE}
    __WMINFO_VIVANTE = record
       display: EGLNativeDisplayType;
       window:  EGLNativeWindowType;
    end;
 {$ENDIF}
 
-{$IFDEF SDL_VIDEO_DRIVER_OS2}
-   __SYSWM_OS2 = record
-      fFrame: Boolean; {**< TRUE if hwnd is a frame window *}
-      hwnd: HWND;      {**< The window receiving the message *}
-      msg: ULONG;      {**< The message identifier *}
-      mp1: MPARAM;     {**< The first first message parameter *}
-      mp2: MPARAM;     {**< The second first message parameter *}
-   end;
-   __WMINFO_OS2 = record
-      hwnd: HWND;      {**< The window handle *}
-      hwndFrame: HWND; {**< The frame window handle *}
-   end;
-{$ENDIF}
+
 
 
 {**
