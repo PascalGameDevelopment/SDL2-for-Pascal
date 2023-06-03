@@ -68,6 +68,9 @@
    {$DEFINE SDL_VIDEO_DRIVER_OS2}
 {$ENDIF}
 
+{ SDL2-for-Pascal: Disabled because there are no FPC/Delphi units available. }
+{$UNDEF SDL_VIDEO_DRIVER_KMSDRM}
+
 {$IFDEF HAIKU}
    {$DEFINE SDL_VIDEO_DRIVER_HAIKU}
 {$ENDIF}
