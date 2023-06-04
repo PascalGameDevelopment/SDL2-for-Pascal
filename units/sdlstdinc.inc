@@ -145,6 +145,156 @@ procedure SDL_free(mem: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_free' {$ENDIF} {$ENDIF};
 
 
+
+{*** --- Character functions --- ***
+
+SDL2-for-Pascal: All comments are added by us and not found in the include file.}
+
+
+(**
+ * Check if the provided ASCII character is an alphabetic character (a letter).
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_isalpha(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isalpha' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is an alphanumeric character.
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_isalnum(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isalnum' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is a blank character (a space or a tab).
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_isblank(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isblank' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is a control character.
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_iscntrl(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iscntrl' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is a decimal digit.
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_isdigit(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isdigit' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is a hexadecimal digit.
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_isxdigit(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isxdigit' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is any printable character
+ * which is not a space or an alphanumeric character.
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_ispunct(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ispunct' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is a whitespace character.
+ * This set includes the following characters: space,
+ * form feed (FF), newline/line feed (LF), carriage return (CR),
+ * horizontal tab (HT), vertical tab (VT).
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_isspace(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isspace' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is an uppercase letter.
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.12.
+ *)
+function SDL_isupper(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isupper' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is a lowercase letter.
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.12.
+ *)
+function SDL_islower(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_islower' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is a printable character (including space).
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_isprint(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isprint' {$ENDIF} {$ENDIF};
+
+(**
+ * Check if the provided ASCII character is a printable character (excluding space).
+ *
+ * \returns 1 if the check passes, 0 otherwise.
+ *
+ * \since This function is available since SDL 2.0.16.
+ *)
+function SDL_isgraph(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isgraph' {$ENDIF} {$ENDIF};
+
+(**
+ * If the given ASCII character is a lowercase letter, converts it to uppercase.
+ * Otherwise returns the original value.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_toupper(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_toupper' {$ENDIF} {$ENDIF};
+
+(**
+ * If the given ASCII character is an uppercase letter, converts it to lowercase.
+ * Otherwise returns the original value.
+ *
+ * \since This function is available since SDL 2.0.4.
+ *)
+function SDL_tolower(x: cint):cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tolower' {$ENDIF} {$ENDIF};
+
+
+
 (*** --- Math functions --- ***)
 
 
@@ -507,6 +657,7 @@ function SDL_trunc(x: cdouble): cdouble; cdecl;
  *)
 function SDL_truncf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_truncf' {$ENDIF} {$ENDIF};
+
 
 
 (*** --- iconv functions --- ***)
