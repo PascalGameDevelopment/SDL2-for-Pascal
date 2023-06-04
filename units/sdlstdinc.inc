@@ -146,7 +146,9 @@ procedure SDL_free(mem: Pointer); cdecl;
 
 
 
-(*** --- Character functions --- ***)
+{*** --- Character functions --- ***
+
+SDL2-for-Pascal: All comments are added by us and not found in the include file.}
 
 
 (**
