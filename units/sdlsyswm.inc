@@ -16,8 +16,8 @@
 {$IFDEF UNIX}
    {$IF NOT (DEFINED(DARWIN) OR DEFINED(ANDROID))}
       {$DEFINE SDL_VIDEO_DRIVER_X11}
-   {$ENDIF}
-{$IFEND}
+   {$IFEND}
+{$ENDIF}
 
 (* 
  * Disabled because FPC does not ship a DirectFB unit.
