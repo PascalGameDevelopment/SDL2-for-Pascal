@@ -98,14 +98,36 @@ const
 
     {
         //todo!!
-function SDL_DEFINE_PIXELFORMAT(type, order, layour, bit, bytes: cuint32): Result;
 
 function SDL_DEFINE_PIXELFOURCC(A,B,C,D: Variant): Variant;
+    }
 
-#define SDL_DEFINE_PIXELFORMAT(type, order, layout, bits, bytes) \
-    ((1 << 28) | ((type) << 24) | ((order) << 20) | ((layout) << 16) | \
-     ((bits) << 8) | ((bytes) << 0))
-       }
+{
+SDL2-for-Pascal: The SDL_DEFINE_PIXELFORMAT macro returns the underlying
+                 pixel format based on five arguments.
+
+                 The original C macro:
+                 #define SDL_DEFINE_PIXELFORMAT(type, order, layout, bits, bytes) \
+                   ((1 << 28) | ((type) << 24) | ((order) << 20) | ((layout) << 16) | \
+                   ((bits) << 8) | ((bytes) << 0))
+
+                 This C implementation could be replaced by a Pascal function,
+                 but from a performance stand point this will be slower.
+                 Therefore we decided to keep it as it has been implemented
+                 before by the original binding authors and translate
+                 every pixel format constant by the very same expression:
+
+                 SDL_PIXELFORMAT_[...] = (1 shl 28)                     or
+                                         (SDL_PIXELTYPE_[...] shl 24)   or
+                                         (SDL_BITMAPORDER_[...] shl 20) or
+                                         ([...] shl 16)                 or
+                                         ([...] shl 8)                  or
+                                         ([...] shl 0);
+
+                 In the future it may be desirable to have a Pascal function.
+                 The prototype could look like this:
+                 function SDL_DEFINE_PIXELFORMAT(type, order, layour, bit, bytes: cuint32): Result;
+}
 
 function SDL_PIXELFLAG(X: cuint32): cuint32;
 function SDL_PIXELTYPE(X: cuint32): cuint32;
@@ -155,7 +177,6 @@ function SDL_BITSPERPIXEL(X: cuint32): cuint32;
 {* The flag is set to 1 because 0x1? is not in the printable ASCII range *}
 function SDL_ISPIXELFORMAT_FOURCC(format: Variant): Boolean;
 
-  { TODO : Use SDL_DEFINE_FORMAT macro? Examine results in detail. }
 {* Note: If you modify this list, update SDL_GetPixelFormatName() *}
 const
     SDL_PIXELFORMAT_UNKNOWN = 0;
