@@ -353,27 +353,27 @@ end;
 
 //from "sdl_pixels.h"
 
-function SDL_PIXELFLAG(X: Cardinal): Cardinal;
+function SDL_PIXELFLAG(X: cuint32): cuint32;
 begin
   Result := (X shr 28) and $0F;
 end;
 
-function SDL_PIXELTYPE(X: Cardinal): Cardinal;
+function SDL_PIXELTYPE(X: cuint32): cuint32;
 begin
   Result := (X shr 24) and $0F;
 end;
 
-function SDL_PIXELORDER(X: Cardinal): Cardinal;
+function SDL_PIXELORDER(X: cuint32): cuint32;
 begin
   Result := (X shr 20) and $0F;
 end;
 
-function SDL_PIXELLAYOUT(X: Cardinal): Cardinal;
+function SDL_PIXELLAYOUT(X: cuint32): cuint32;
 begin
   Result := (X shr 16) and $0F;
 end;
 
-function SDL_BITSPERPIXEL(X: Cardinal): Cardinal;
+function SDL_BITSPERPIXEL(X: cuint32): cuint32;
 begin
   Result := (X shr 8) and $FF;
 end;

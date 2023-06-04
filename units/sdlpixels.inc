@@ -20,7 +20,7 @@ const
 type
   PPSDL_PixelType = ^PSDL_PixelType;
   PSDL_PixelType = ^TSDL_PixelType;
-  TSDL_PixelType = type Cardinal;
+  TSDL_PixelType = type cuint;
 
 const
   SDL_PIXELTYPE_UNKNOWN  = TSDL_PixelType(0);
@@ -40,7 +40,7 @@ const
 type
   PPSDL_BitmapOrder = ^PSDL_BitmapOrder;
   PSDL_BitmapOrder = ^TSDL_BitmapOrder;
-  TSDL_BitmapOrder = type Cardinal;
+  TSDL_BitmapOrder = type cuint32;
 
 const
   SDL_BITMAPORDER_NONE = TSDL_BitmapOrder(0);
@@ -51,7 +51,7 @@ const
 type
   PPSDL_PackOrder = ^PSDL_PackOrder;
   PSDL_PackOrder = ^TSDL_PackOrder;
-  TSDL_PackOrder = type Cardinal;
+  TSDL_PackOrder = type cuint32;
 
 const
   SDL_PACKEDORDER_NONE = TSDL_PackOrder(0);
@@ -68,7 +68,7 @@ const
 type
   PPSDL_ArrayOrder = ^PSDL_ArrayOrder;
   PSDL_ArrayOrder = ^TSDL_ArrayOrder;
-  TSDL_ArrayOrder = type Cardinal;
+  TSDL_ArrayOrder = type cuint32;
 
 const
   SDL_ARRAYORDER_NONE = TSDL_ArrayOrder(0);
@@ -83,7 +83,7 @@ const
 type
   PPSDL_PackedLayout = ^PSDL_PackedLayout;
   PSDL_PackedLayout = ^TSDL_PackedLayout;
-  TSDL_PackedLayout = type Cardinal;
+  TSDL_PackedLayout = type cuint32;
 
 const
   SDL_PACKEDLAYOUT_NONE    = TSDL_PackedLayout(0);
@@ -107,11 +107,11 @@ function SDL_DEFINE_PIXELFOURCC(A,B,C,D: Variant): Variant;
      ((bits) << 8) | ((bytes) << 0))
        }
 
-function SDL_PIXELFLAG(X: Cardinal): Cardinal;
-function SDL_PIXELTYPE(X: Cardinal): Cardinal;
-function SDL_PIXELORDER(X: Cardinal): Cardinal;
-function SDL_PIXELLAYOUT(X: Cardinal): Cardinal;
-function SDL_BITSPERPIXEL(X: Cardinal): Cardinal;
+function SDL_PIXELFLAG(X: cuint32): cuint32;
+function SDL_PIXELTYPE(X: cuint32): cuint32;
+function SDL_PIXELORDER(X: cuint32): cuint32;
+function SDL_PIXELLAYOUT(X: cuint32): cuint32;
+function SDL_BITSPERPIXEL(X: cuint32): cuint32;
      {
 #define SDL_BYTESPERPIXEL(X) \
     (SDL_ISPIXELFORMAT_FOURCC(X) ? \
