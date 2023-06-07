@@ -450,6 +450,12 @@ const
                            (cint(' ') shl 24);
 
 type
+
+  {**
+   * The bits of this structure can be directly reinterpreted as an integer-packed
+   * color which uses the SDL_PIXELFORMAT_RGBA32 format (SDL_PIXELFORMAT_ABGR8888
+   * on little-endian systems and SDL_PIXELFORMAT_RGBA8888 on big-endian systems).
+   *}
   PPSDL_Color = ^PSDL_Color;
   PSDL_Color = ^TSDL_Color;
   TSDL_Color = record
@@ -475,7 +481,6 @@ type
   {**
    *  Everything in the pixel format structure is read-only.
    *}
-
   PPSDL_PixelFormat = ^PSDL_PixelFormat;
   PSDL_PixelFormat = ^TSDL_PixelFormat;
   TSDL_PixelFormat = record
