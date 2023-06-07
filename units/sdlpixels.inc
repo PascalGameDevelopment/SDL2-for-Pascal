@@ -152,7 +152,11 @@ function SDL_PIXELTYPE(X: cuint32): cuint32;
 function SDL_PIXELORDER(X: cuint32): cuint32;
 function SDL_PIXELLAYOUT(X: cuint32): cuint32;
 function SDL_BITSPERPIXEL(X: cuint32): cuint32;
-     {
+
+{
+SDL2-for-Pascal: Is it worth translating these macros as they seem to be used
+                 by SDL2 internally only?
+
 #define SDL_BYTESPERPIXEL(X) \
     (SDL_ISPIXELFORMAT_FOURCC(X) ? \
         ((((X) == SDL_PIXELFORMAT_YUY2) || \
@@ -190,7 +194,7 @@ function SDL_BITSPERPIXEL(X: cuint32): cuint32;
       (SDL_PIXELORDER(format) == SDL_ARRAYORDER_RGBA) || \
       (SDL_PIXELORDER(format) == SDL_ARRAYORDER_ABGR) || \
       (SDL_PIXELORDER(format) == SDL_ARRAYORDER_BGRA))))
-       }
+}
 
 {* The flag is set to 1 because 0x1? is not in the printable ASCII range *}
 function SDL_ISPIXELFORMAT_FOURCC(format: Variant): Boolean;
