@@ -96,11 +96,29 @@ const
   SDL_PACKEDLAYOUT_2101010 = TSDL_PackedLayout(7);
   SDL_PACKEDLAYOUT_1010102 = TSDL_PackedLayout(8);
 
-    {
-        //todo!!
+{
+SDL2-for-Pascal: The SDL_DEFINE_PIXELFOURCC macro is replaced
+                 by another macro, the SDL_FOURCC macro (in SDL_stdinc.h).
 
-function SDL_DEFINE_PIXELFOURCC(A,B,C,D: Variant): Variant;
-    }
+                 The original C SDL_FOURCC macro:
+                 #define SDL_FOURCC(A, B, C, D) \
+                     ((SDL_static_cast(Uint32, SDL_static_cast(Uint8, (A))) << 0) | \
+                      (SDL_static_cast(Uint32, SDL_static_cast(Uint8, (B))) << 8) | \
+                      (SDL_static_cast(Uint32, SDL_static_cast(Uint8, (C))) << 16) | \
+                      (SDL_static_cast(Uint32, SDL_static_cast(Uint8, (D))) << 24))
+
+                 In Pascal it is cleaner to implement this directly as a
+                 constant instead of a function. So we do, e. g.:
+
+                 SDL_PIXELFORMAT_YV12 =  (cuint32('Y')       ) or
+                                         (cuint32('V') shl  8) or
+                                         (cuint32('1') shl 16) or
+                                         (cuint32('2') shl 24);
+
+                 In the future it may be desirable to have a Pascal function.
+                 The prototype could look like this:
+                 function SDL_DEFINE_PIXELFOURCC(A,B,C,D: Variant): Variant;
+}
 
 {
 SDL2-for-Pascal: The SDL_DEFINE_PIXELFORMAT macro returns the underlying
@@ -408,46 +426,46 @@ const
     {$ENDIF}
 
     {**< Planar mode: Y + V + U  (3 planes) *}
-    SDL_PIXELFORMAT_YV12 = (cint('Y')       ) or
-                           (cint('V') shl  8) or
-                           (cint('1') shl 16) or
-                           (cint('2') shl 24);
+    SDL_PIXELFORMAT_YV12 = (cuint32('Y')       ) or
+                           (cuint32('V') shl  8) or
+                           (cuint32('1') shl 16) or
+                           (cuint32('2') shl 24);
     {**< Planar mode: Y + U + V  (3 planes) *}
-    SDL_PIXELFORMAT_IYUV = (cint('I')       ) or
-                           (cint('Y') shl  8) or
-                           (cint('U') shl 16) or
-                           (cint('V') shl 24);
+    SDL_PIXELFORMAT_IYUV = (cuint32('I')       ) or
+                           (cuint32('Y') shl  8) or
+                           (cuint32('U') shl 16) or
+                           (cuint32('V') shl 24);
     {**< Packed mode: Y0+U0+Y1+V0 (1 plane) *}
-    SDL_PIXELFORMAT_YUY2 = (cint('Y')       ) or
-                           (cint('U') shl  8) or
-                           (cint('Y') shl 16) or
-                           (cint('2') shl 24);
+    SDL_PIXELFORMAT_YUY2 = (cuint32('Y')       ) or
+                           (cuint32('U') shl  8) or
+                           (cuint32('Y') shl 16) or
+                           (cuint32('2') shl 24);
     {**< Packed mode: U0+Y0+V0+Y1 (1 plane) *}
-    SDL_PIXELFORMAT_UYVY = (cint('U')       ) or
-                           (cint('Y') shl  8) or
-                           (cint('V') shl 16) or
-                           (cint('Y') shl 24);
+    SDL_PIXELFORMAT_UYVY = (cuint32('U')       ) or
+                           (cuint32('Y') shl  8) or
+                           (cuint32('V') shl 16) or
+                           (cuint32('Y') shl 24);
     {**< Packed mode: Y0+V0+Y1+U0 (1 plane) *}
-    SDL_PIXELFORMAT_YVYU = (cint('Y')       ) or
-                           (cint('V') shl  8) or
-                           (cint('Y') shl 16) or
-                           (cint('U') shl 24);
+    SDL_PIXELFORMAT_YVYU = (cuint32('Y')       ) or
+                           (cuint32('V') shl  8) or
+                           (cuint32('Y') shl 16) or
+                           (cuint32('U') shl 24);
     {**< Planar mode: Y + U/V interleaved  (2 planes) *}
-    SDL_PIXELFORMAT_NV12 = (cint('N')       ) or
-                           (cint('V') shl  8) or
-                           (cint('1') shl 16) or
-                           (cint('2') shl 24);
+    SDL_PIXELFORMAT_NV12 = (cuint32('N')       ) or
+                           (cuint32('V') shl  8) or
+                           (cuint32('1') shl 16) or
+                           (cuint32('2') shl 24);
     {**< Planar mode: Y + V/U interleaved  (2 planes) *}
-    SDL_PIXELFORMAT_NV21 = (cint('N')       ) or
-                           (cint('V') shl  8) or
-                           (cint('2') shl 16) or
-                           (cint('1') shl 24);
+    SDL_PIXELFORMAT_NV21 = (cuint32('N')       ) or
+                           (cuint32('V') shl  8) or
+                           (cuint32('2') shl 16) or
+                           (cuint32('1') shl 24);
     {**< Android video texture format *}
     SDL_PIXELFORMAT_EXTERMAL_OES
-                         = (cint('O')       ) or
-                           (cint('E') shl  8) or
-                           (cint('S') shl 16) or
-                           (cint(' ') shl 24);
+                         = (cuint32('O')       ) or
+                           (cuint32('E') shl  8) or
+                           (cuint32('S') shl 16) or
+                           (cuint32(' ') shl 24);
 
 type
 
