@@ -71,7 +71,7 @@ Exception: Replace `*char` by `PAnsiChar`! (see issue [#26](https://github.com/P
 
 4. If an identifier or a function declaration is gone, mark them as `deprecated`. (see issue [#34](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/34))
 
-5. For convenience we encourage to add single and double pointers for any SDL type. (See #105)
+5. For convenience we encourage to add single and double pointers for any SDL type. (see issue [#105](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/105))
 
 6. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
 
@@ -83,6 +83,7 @@ The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pa
 
 - be up-to-date with _at least_ version 2.0.14 of the `SDL2 library`
 - replaced all aliases by typed enums
+- (done) add single and double pointers for all types (thanks furious-programming)
 - (done) update SDL_ttf.pas to latest version 2.21.0
 - (done) replace data types by c data types (see PR [#29](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/29)) 
 - (done) add folders to project
