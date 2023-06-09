@@ -1,4 +1,4 @@
-// based on "sdl_mutex.h" (2.0.14)
+// based on "sdl_mutex.h"
 
 const
   {**
@@ -55,6 +55,9 @@ function SDL_CreateMutex: PSDL_Mutex; cdecl;
 function SDL_LockMutex(mutex: PSDL_Mutex): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockMutex' {$ENDIF} {$ENDIF};
 
+{ SDL2-for-Pascal: SDL_mutexP macro ignored; no benefit for the Pascal units }
+//C: #define SDL_mutexP(m)   SDL_UnlockMutex(m)
+
 {**
  * Try to lock a mutex without blocking.
  *
@@ -92,6 +95,9 @@ function SDL_TryLockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *}
 function SDL_UnlockMutex(mutex: PSDL_Mutex): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockMutex' {$ENDIF} {$ENDIF};
+
+{ SDL2-for-Pascal: SDL_mutexV macro ignored; no benefit for the Pascal units }
+//C: #define SDL_mutexV(m)   SDL_UnlockMutex(m)
 
 {**
  * Destroy a mutex created with SDL_CreateMutex().
