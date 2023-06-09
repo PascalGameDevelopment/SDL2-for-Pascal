@@ -133,7 +133,7 @@ const
 {$I sdlpower.inc}                // 2.0.14
 {$I sdlthread.inc}
 {$I sdlatomic.inc}               // 2.0.20
-{$I sdlmutex.inc}                // 2.0.14 WIP
+{$I sdlmutex.inc}                // 2.26.5
 {$I sdltimer.inc}                // 2.0.18
 {$I sdlpixels.inc}               // 2.0.14 WIP
 {$I sdlrect.inc}                 // 2.24.0
