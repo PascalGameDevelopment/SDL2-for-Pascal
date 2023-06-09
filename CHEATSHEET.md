@@ -56,6 +56,8 @@ Pascal:
 
 ```pascal
 type
+  PPSDL_JoystickPowerLevel = ^PSDL_JoystickPowerLevel;
+  PSDL_JoystickPowerLevel = ^TSDL_JoystickPowerLevel;
   TSDL_JoystickPowerLevel = type Integer;
 
 const
@@ -85,6 +87,8 @@ without typecasting.
 
 ## Structs
 
+### Defined Structs
+
 C:
 
 ```c
@@ -100,6 +104,7 @@ Pascal:
 
 ```pascal
 type
+  PPSDL_Version = ^PSDL_Version;
   PSDL_Version = ^TSDL_Version;
   TSDL_Version = record
     major: cuint8    { major version }
@@ -108,10 +113,12 @@ type
   end;
 ```
 
-Hint 1: If you have something like ```typedef struct name name```. the concrete
-structure is probably opaque. You should translate it as follows, although
-the best way to handle this is still not finally decided on. (see issue
+### Opaque Structs
+
+If you have something like ```typedef struct name name```. the concrete
+structure is opaque. See issue
 [#63](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/63))
+for details.
 
 C:
 
@@ -121,8 +128,18 @@ typedef struct SDL_Window SDL_Window;
 
 Pascal:
 
+Prefered:
 ```pascal
 type
+  PPSDL_Window = ^PSDL_Window;
+  PSDL_Window = ^TSDL_Window;
+  TSDL_Window = type Pointer;
+```
+
+Alternativly:
+```pascal
+type
+  PPSDL_Window = ^PSDL_Window;
   PSDL_Window = ^TSDL_Window;
   TSDL_Window = record end;
 ```
@@ -143,6 +160,7 @@ Pascal:
 
 ```pascal
 type
+  PPSDL_WindowShapeParams = ^PSDL_WindowShapeParams;
   PSDL_WindowShapeParams = ^TSDL_WindowShapeParams;
   TSDL_WindowShapeParams = record
   case cint of
