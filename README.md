@@ -15,10 +15,10 @@ Simply add the units to your include path. You can achieve this by:
 
 Use the `sdl2` unit for the main SDL2 library (should be always needed). Units for the other SDL2 libraries are also provided:
  - [`sdl2_gfx`](https://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx/)
- - [`sdl2_image`](https://www.libsdl.org/projects/SDL_image/)
- - [`sdl2_mixer`](https://www.libsdl.org/projects/SDL_mixer/)
- - [`sdl2_net`](https://www.libsdl.org/projects/SDL_net/)
- - [`sdl2_ttf`](https://www.libsdl.org/projects/SDL_ttf/)
+ - [`sdl2_image`](https://github.com/libsdl-org/SDL_image)
+ - [`sdl2_mixer`](https://github.com/libsdl-org/SDL_mixer)
+ - [`sdl2_net`](https://github.com/libsdl-org/SDL_net)
+ - [`sdl2_ttf`](https://github.com/libsdl-org/SDL_ttf)
 
 ## Documentation
 
