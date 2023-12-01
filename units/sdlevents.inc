@@ -250,7 +250,7 @@ type
     type_: cuint32;                                          // SDL_TEXTINPUT 
     timestamp: cuint32;
     windowID: cuint32;                                       // The window with keyboard focus, if any
-    text: array[0..SDL_TEXTINPUTEVENT_TEXT_SIZE] of Char;   // The input text 
+    text: array[0..SDL_TEXTINPUTEVENT_TEXT_SIZE - 1] of Char;   // The input text 
   end;
 
   {**
