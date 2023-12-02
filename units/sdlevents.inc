@@ -216,7 +216,7 @@ type
     type_: cuint32;                               // SDL_TEXTEDITING 
     timestamp: cuint32;
     windowID: cuint32;                            // The window with keyboard focus, if any
-    text: array[0..SDL_TEXTEDITINGEVENT_TEXT_SIZE] of Char;  // The editing text 
+    text: array[0..SDL_TEXTEDITINGEVENT_TEXT_SIZE - 1] of Char;  // The editing text 
     start: cint32;                               // The start cursor of selected editing text
     length: cint32;                              // The length of selected editing text
   end;
