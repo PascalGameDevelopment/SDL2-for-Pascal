@@ -159,7 +159,7 @@ const
 {$I sdlhidapi.inc}               // 2.0.18
 {$I sdltouch.inc}                // 2.24.0
 {$I sdlgesture.inc}              // 2.26.2
-{$I sdlsyswm.inc}
+{$I sdlsyswm.inc}                // 2.26.5
 {$I sdlevents.inc}               // 2.24.0
 {$I sdllocale.inc}               // 2.0.14
 {$I sdlclipboard.inc}            // 2.24.1
