@@ -1,0 +1,70 @@
+Welcome to Free Pascal Testing Framework (FPTest)
+=================================================
+
+This is a fork of the DUnit2 project and further adapted for use
+with the Free Pascal Compiler and fpGUI Toolkit. The original code was
+created by the late Peter McNab. He single-handedly added some excellent
+features to DUnit2 and used the extensive test suite from tiOPF as his
+playground.
+
+FPTest has a Text Test Runner and a GUI Test Runner (fpGUI Toolkit and
+Lazarus Component Library versions).
+
+
+Support
+-------
+Support can be found in the form of a newsgroup (NNTP Server) at:
+
+  Server:  geldenhuys.co.uk
+  Port:    119
+
+Those that can't use NNTP news client software for some reason, can
+also access the support newsgroup via a web browser using the following
+URL:
+
+  http://geldenhuys.co.uk/webnews/
+
+
+Summary
+-------
+Unit tests comprise of classes derived from TTestCase, each containing one
+or more published test procedures as shown in the example below. TTestCase
+is now an interfaced object.
+
+[code,pascal]
+----
+type
+  TTestMyComms = class(TTestCase)
+  published
+    procedure VerifyThatThereIsAnUnAssignedCommPort;
+    procedure VerifyThatTheCommPortOpens;
+    procedure VerifyThatTheCommPortCloses;
+  end;
+----
+
+Through the magic of RTTI, FPTest is able to execute the published test
+procedures in an orderly fashion. Code written into test methods
+performs tests on user's code, and calls one or more Check() procedures
+to signal pass or fail to the test framework.
+
+For more information about FPTest, have a look at the various documents
+in the 'docs' directory.
+
+
+Brief History
+-------------
+As of July 2009, I (Graeme Geldenhuys) decided to continue Peter's work
+on DUnit2, but renamed the project to prevent confusion with the Delphi
+based DUnit2 project hosted on SourceForge [which is a continuation of
+Peter's work too]. I applied some of my own ideas listed below:
+
+* No need for Delphi.NET support. The product doesn't exist anymore
+  and .NET has its own testing framework anyway, called NUnit.
+* Must work with the Free Pascal Compiler (FPC).
+* Don't need Delphi support, because FPC is an excellent compiler.
+* With FPC support comes the idea that it must be cross-platform
+  friendly as well.
+* Due to the previous item, removing the idea of writing to the Windows
+  Registry is a logical step. Using something like INI, XML, or JSON config
+  files will do a great job, are easy to edit, and works for all OSes.
+
