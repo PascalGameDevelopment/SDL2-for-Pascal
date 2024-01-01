@@ -416,6 +416,7 @@ begin
 begin
     Result := _GetTickCount;
   {$ELSE}
+begin
     Result := GetTickCount64;
   {$ENDIF}
 {$ENDIF}
