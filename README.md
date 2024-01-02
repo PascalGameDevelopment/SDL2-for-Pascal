@@ -81,15 +81,20 @@ The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pa
 
 ### v2.x (work in progress)
 
-- be up-to-date with _at least_ version 2.0.14 of the `SDL2 library`
-- replaced all aliases by typed enums
-- (done) add single and double pointers for all types (thanks furious-programming)
-- (done) update SDL_ttf.pas to latest version 2.21.0
-- (done) replace data types by c data types (see PR [#29](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/29)) 
-- (done) add folders to project
-- (done) shift all units into unit folder (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27))
+- update sdlthreads.inc
+- add testing framework ([fptest](https://github.com/graemeg/fptest))
 
-### v2.1 (Compatibility Release)
+### v2.2 Stable (02/01/2024)
+
+- SDL2 unit is up-to-date with _at least_ version 2.0.14 of the `SDL2 library`
+- many aliases got replaced by typed enums
+- add single and double pointers for all types (thanks furious-programming)
+- update SDL_ttf.pas to latest version 2.21.0
+- replace data types by c data types (see PR [#29](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/29))
+- add folder structure (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27))
+- many bugfixes
+
+### v2.1 Compatibility Release (25/09/2021)
 
 - This release has all commits until the change of the project folder structure (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27)). Compare the disucssion in issue #22.
 - Moving the units to a new location may (1) raise difficulties in committing new changes if the branch was started before and (2) make updates of project research pathes necessary.
