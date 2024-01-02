@@ -153,14 +153,14 @@ jobs:
         with:
           source: units/sdl2_ttf.pas
           verbosity: ewnh
+      - name: Copy SDL2 library file to execution folder
+        run: copy tests/dll/SDL2.dll tests
       - name: Compile SDL2-for-Pascal Test Framework (fptest) and Test Cases
         uses: suve/GHActions-FPC@v0.4.0
         with:
           source: tests/sdl2forpascaltests.pas
           flags: Fuunits Futests/fptest/src Futests/fptest/3rdparty/epiktimer
           verbosity: ewnh
-      #  !!! Since no SDL2.DLL is available via chocolatey, the run will fail.
-      #      TODO: Find solution to install SDL2 binary.
-      #- name: Run SDL2-for-Pascal Tests
-      #  run: |
-      #    ./tests/sdl2forpascaltests.exe
+      - name: Run SDL2-for-Pascal Tests
+        run: |
+          ./tests/sdl2forpascaltests.exe
