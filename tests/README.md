@@ -1,5 +1,18 @@
-# Tests folder
+# Tests for SDL2-for-Pascal Units
 
-See issue #22.
+## Goal
+These test cases are meant to ensure a basic quality of the
+SDL2-for-Pascal units.
 
-Delete this file if the first test has been added.
+## Testing Framework
+We use the [fptest](https://github.com/graemeg/fptest) testing framework to
+perform the testing. We modified it slightly in that it allows for checking
+of (classic) pointers. Also we applied a
+[fix](https://github.com/graemeg/epiktimer/pull/4) to the
+[EpikTimer](https://wiki.freepascal.org/EpikTimer) unit.
+
+## Write a test
+Just add a test case to *sdl2testcases.pas*.
+
+
+
