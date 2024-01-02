@@ -63,6 +63,7 @@ jobs:
         run: |
           ./tests/sdl2forpascaltests
   ubuntu-20-04:
+    # if: false (uncomment to skip job)
     runs-on: ubuntu-20.04
     steps:
       - name: Install FPC
@@ -114,8 +115,7 @@ jobs:
         run: |
           ./tests/sdl2forpascaltests
   windows-2022:
-    # skip job temporarily
-    if: false
+    # if: false (uncomment to skip job)
     runs-on: windows-2022
     steps:
       - name: Install Lazarus
@@ -153,14 +153,14 @@ jobs:
         with:
           source: units/sdl2_ttf.pas
           verbosity: ewnh
-      - name: Test 1 - Compile Init Test
+      - name: Compile SDL2-for-Pascal Test Framework (fptest) and Test Cases
         uses: suve/GHActions-FPC@v0.4.0
         with:
-          source: tests/testinit.pas
-          flags: Flunits
+          source: tests/sdl2forpascaltests.pas
+          flags: Fuunits Futests/fptest/src Futests/fptest/3rdparty/epiktimer
           verbosity: ewnh
       #  !!! Since no SDL2.DLL is available via chocolatey, the run will fail.
       #      TODO: Find solution to install SDL2 binary.
-      #  - name: Test 1 - Run Init Test
-      #    run: |
-      #      ./tests/testinit.exe
+      #- name: Run SDL2-for-Pascal Tests
+      #  run: |
+      #    ./tests/sdl2forpascaltests.exe
