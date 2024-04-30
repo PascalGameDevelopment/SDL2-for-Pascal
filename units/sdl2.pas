@@ -141,7 +141,7 @@ const
 {$I sdlaudio.inc}                // 2.26.3
 {$I sdlblendmode.inc}            // 2.0.14
 {$I sdlsurface.inc}              // 2.0.14
-{$I sdlvideo.inc}                // 2.24.0
+{$I sdlvideo.inc}                // 2.26.0
 {$I sdlshape.inc}                // 2.24.0
 {$I sdlhints.inc}                // 2.26.0
 {$I sdlloadso.inc}               // 2.24.1

@@ -740,6 +740,27 @@ function SDL_GetWindowBordersSize(window: PSDL_Window; top, left, bottom, right:
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowBordersSize' {$ENDIF} {$ENDIF};
 
   {**
+   * Get the size of a window in pixels.
+   *
+   * This may differ from SDL_GetWindowSize() if we're rendering to a high-DPI
+   * drawable, i.e. the window was created with `SDL_WINDOW_ALLOW_HIGHDPI` on a
+   * platform with high-DPI support (Apple calls this "Retina"), and not
+   * disabled by the `SDL_HINT_VIDEO_HIGHDPI_DISABLED` hint.
+   *
+   * \param window the window from which the drawable size should be queried
+   * \param w a pointer to variable for storing the width in pixels, may be NIL
+   * \param h a pointer to variable for storing the height in pixels, may be
+   *          NIL
+   *
+   * \since This function is available since SDL 2.26.0.
+   *
+   * \sa SDL_CreateWindow
+   * \sa SDL_GetWindowSize
+   *}
+procedure SDL_GetWindowSizeInPixels(window: PSDL_Window; w, h: pcuint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowSizeInPixels' {$ENDIF} {$ENDIF};
+
+  {**
    *  Set the minimum size of a window's client area.
    *  
    *  min_w     The minimum width of the window, must be >0
