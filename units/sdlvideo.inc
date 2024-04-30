@@ -936,6 +936,19 @@ function SDL_SetWindowFullscreen(window: PSDL_Window; flags: TSDL_WindowFlags): 
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowFullscreen' {$ENDIF} {$ENDIF};
 
   {**
+   * Return whether the window has a surface associated with it.
+   *
+   * \returns SDL_TRUE if there is a surface associated with the window, or
+   *          SDL_FALSE otherwise.
+   *
+   * \since This function is available since SDL 2.28.0.
+   *
+   * \sa SDL_GetWindowSurface
+   *}
+function SDL_HasWindowSurface(window: PSDL_Window): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasWindowSurface' {$ENDIF} {$ENDIF};
+
+  {**
    *  Get the SDL surface associated with the window.
    *
    *  The window's framebuffer surface, or nil on error.
