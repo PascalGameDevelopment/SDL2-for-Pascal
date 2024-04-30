@@ -990,6 +990,21 @@ function SDL_UpdateWindowSurfaceRects(window: PSDL_Window; rects: PSDL_Rect; num
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateWindowSurfaceRects' {$ENDIF} {$ENDIF};
 
   {**
+   * Destroy the surface associated with the window.
+   *
+   * \param window the window to update
+   * \returns 0 on success or a negative error code on failure; call
+   *          SDL_GetError() for more information.
+   *
+   * \since This function is available since SDL 2.28.0.
+   *
+   * \sa SDL_GetWindowSurface
+   * \sa SDL_HasWindowSurface
+   *}
+function SDL_DestroyWindowSurface(window: PSDL_Window): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyWindowSurface' {$ENDIF} {$ENDIF};
+
+  {**
    *  Set a window's input grab mode.
    *  
    *  grabbed This is SDL_TRUE to grab input, and SDL_FALSE to release input.
