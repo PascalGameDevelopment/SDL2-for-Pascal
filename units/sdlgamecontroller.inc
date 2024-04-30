@@ -515,6 +515,32 @@ function SDL_GameControllerGetSensorData(gamecontroller: PSDL_GameController; se
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSensorData' {$ENDIF} {$ENDIF};
 
 {**
+ * Get the current state of a game controller sensor with the timestamp of the
+ * last update.
+ *
+ * The number of values and interpretation of the data is sensor dependent.
+ * See SDL_sensor.h for the details for each type of sensor.
+ *
+ * \param gamecontroller The controller to query
+ * \param type The type of sensor to query
+ * \param timestamp A pointer filled with the timestamp in microseconds of the
+ *                  current sensor reading if available, or 0 if not
+ * \param data A pointer filled with the current sensor state
+ * \param num_values The number of values to write to data
+ * \return 0 or -1 if an error occurred.
+ *
+ * \since This function is available since SDL 2.26.0.
+ *}
+function SDL_GameControllerGetSensorDataWithTimestamp(
+  gamecontroller: PSDL_GameController;
+  senstype: TSDL_SensorType;
+  timestamp: pcuint64;
+  data: pcfloat;
+  num_values: cint
+): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSensorDataWithTimestamp' {$ENDIF} {$ENDIF};
+
+{**
  * Query whether a game controller has rumble support.
  *}
 function SDL_GameControllerHasRumble(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
