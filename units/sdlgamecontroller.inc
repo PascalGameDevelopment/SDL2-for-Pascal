@@ -311,6 +311,20 @@ function SDL_GameControllerGetFirmwareVersion(gamecontroller: PSDL_GameControlle
 function SDL_GameControllerGetSerial(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSerial' {$ENDIF} {$ENDIF};
 
+{**
+ * Get the Steam Input handle of an opened controller, if available.
+ *
+ * Returns an InputHandle_t for the controller that can be used with Steam Input API:
+ * https://partner.steamgames.com/doc/api/ISteamInput
+ *
+ * \param gamecontroller the game controller object to query.
+ * \returns the gamepad handle, or 0 if unavailable.
+ *
+ * \since This function is available since SDL 2.30.0.
+ *}
+function SDL_GameControllerGetSteamHandle(gamecontroller: PSDL_GameController): cuint64; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSteamHandle' {$ENDIF} {$ENDIF};
+
   {**
    *  Returns SDL_TRUE if the controller has been opened and currently connected,
    *  or SDL_FALSE if it has not.
