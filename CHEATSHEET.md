@@ -56,6 +56,8 @@ Pascal:
 
 ```pascal
 type
+  PPSDL_JoystickPowerLevel = ^PSDL_JoystickPowerLevel;
+  PSDL_JoystickPowerLevel = ^TSDL_JoystickPowerLevel;
   TSDL_JoystickPowerLevel = type Integer;
 
 const
@@ -70,14 +72,22 @@ const
 
 Hint 1: C enums start at 0 if no explicit value is set.
 
-Hint 2: The type should be Word if only unsigned values are possible. Otherwise
-it should be Integer.
+Hint 2: The type should always be cint. Most C compilers have the enum elements
+> In C, each enumeration constant has type int and each enumeration type
+> is compatible with some integer type. (The integer types include all three
+> character types–plain, signed, and unsigned.) The choice of compatible
+> type is implementation-defined. The C standard grants the freedom to
+> use different integer types to represent different enumeration types,
+> but most compilers just use int to represent all enumeration types.
+Ref.: [https://www.embedded.com/enumerations-are-integers-except-when-theyre-not/](https://www.embedded.com/enumerations-are-integers-except-when-theyre-not/)
 
 Hint 3: Do not translate C enums to Pascal enums. C enums are handled like plain
 integers which will make bitwise operations (e. g. in macros) possible
 without typecasting.
 
 ## Structs
+
+### Defined Structs
 
 C:
 
@@ -94,6 +104,7 @@ Pascal:
 
 ```pascal
 type
+  PPSDL_Version = ^PSDL_Version;
   PSDL_Version = ^TSDL_Version;
   TSDL_Version = record
     major: cuint8    { major version }
@@ -102,10 +113,12 @@ type
   end;
 ```
 
-Hint 1: If you have something like ```typedef struct name name```. the concrete
-structure is probably opaque. You should translate it as follows, although
-the best way to handle this is still not finally decided on. (see issue
+### Opaque Structs
+
+If you have something like ```typedef struct name name```. the concrete
+structure is opaque. See issue
 [#63](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/63))
+for details.
 
 C:
 
@@ -115,8 +128,18 @@ typedef struct SDL_Window SDL_Window;
 
 Pascal:
 
+Prefered:
 ```pascal
 type
+  PPSDL_Window = ^PSDL_Window;
+  PSDL_Window = ^TSDL_Window;
+  TSDL_Window = type Pointer;
+```
+
+Alternativly:
+```pascal
+type
+  PPSDL_Window = ^PSDL_Window;
   PSDL_Window = ^TSDL_Window;
   TSDL_Window = record end;
 ```
@@ -137,6 +160,7 @@ Pascal:
 
 ```pascal
 type
+  PPSDL_WindowShapeParams = ^PSDL_WindowShapeParams;
   PSDL_WindowShapeParams = ^TSDL_WindowShapeParams;
   TSDL_WindowShapeParams = record
   case cint of

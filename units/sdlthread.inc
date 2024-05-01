@@ -12,11 +12,14 @@ type
   TSDL_Thread = record end;
 
   {* The SDL thread ID *}
-  TSDL_threadID = type culong;
+  PPSDL_threadID = ^PSDL_threadID;
+  PSDL_threadID = ^TSDL_threadID;
+  TSDL_threadID = culong;
 
   {* Thread local storage ID, 0 is the invalid ID *}
-  TSDL_TLSID = type cuint;
-
+  PPSDL_TLSID = ^PSDL_TLSID;
+  PSDL_TLSID = ^TSDL_TLSID;
+  TSDL_TLSID = cuint;
 
  {**
  *  The SDL thread priority.
@@ -29,14 +32,15 @@ type
  *  \note On many systems you require special privileges to set high or time critical priority.
  *}
 type
- PSDL_ThreadPriority = ^TSDL_ThreadPriority;
- TSDL_ThreadPriority = cint;
+  PPSDL_ThreadPriority = ^PSDL_ThreadPriority;
+  PSDL_ThreadPriority = ^TSDL_ThreadPriority;
+  TSDL_ThreadPriority = cint;
 
 const
-   SDL_THREAD_PRIORITY_LOW = TSDL_ThreadPriority(0);
-   SDL_THREAD_PRIORITY_NORMAL = TSDL_ThreadPriority(1);
-   SDL_THREAD_PRIORITY_HIGH = TSDL_ThreadPriority(2);
-   SDL_THREAD_PRIORITY_TIME_CRITICAL = TSDL_ThreadPriority(3);
+  SDL_THREAD_PRIORITY_LOW = TSDL_ThreadPriority(0);
+  SDL_THREAD_PRIORITY_NORMAL = TSDL_ThreadPriority(1);
+  SDL_THREAD_PRIORITY_HIGH = TSDL_ThreadPriority(2);
+  SDL_THREAD_PRIORITY_TIME_CRITICAL = TSDL_ThreadPriority(3);
 
   {**
  * The function passed to SDL_CreateThread().
@@ -45,6 +49,7 @@ const
  * \returns a value that can be reported through SDL_WaitThread().
  *}
 type
+  PPSDL_ThreadFunction = ^PSDL_ThreadFunction;
   PSDL_ThreadFunction = ^TSDL_ThreadFunction;
   TSDL_ThreadFunction = function(data: Pointer): cint; cdecl;
 

@@ -13,6 +13,7 @@ type
     *  \sa SDL_EnclosePoints
     *  \sa SDL_PointInRect
    *}
+  PPSDL_Point = ^PSDL_Point;
   PSDL_Point = ^TSDL_Point;
   TSDL_Point = record
     x: cint;
@@ -25,6 +26,7 @@ type
    *  \sa SDL_EnclosePoints
    *  \sa SDL_PointInRect
    *}
+  PPSDL_FPoint = ^PSDL_FPoint;
   PSDL_FPoint = ^TSDL_FPoint;
   TSDL_FPoint = record
     x: cfloat;
@@ -41,6 +43,7 @@ type
    *  \sa SDL_UnionRect
    *  \sa SDL_EnclosePoints
    *}
+  PPSDL_Rect = ^PSDL_Rect;
   PSDL_Rect = ^TSDL_Rect;
   TSDL_Rect = record
     x,y: cint;
@@ -50,6 +53,7 @@ type
   {**
    *  A rectangle, with the origin at the upper left. (floating point)
    *}
+  PPSDL_FRect = ^PSDL_FRect;
   PSDL_FRect = ^TSDL_FRect;
   TSDL_FRect = record
     x,y: cfloat;

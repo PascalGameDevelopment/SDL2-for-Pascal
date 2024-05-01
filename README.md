@@ -4,7 +4,7 @@ Unit files for building
 [Free Pascal](https://freepascal.org/) / [Delphi](https://www.embarcadero.com/products/delphi) applications
 using the [SDL2 library](https://libsdl.org).
 
-This repository is a community-maintained fork of the [Pascal-SDL-2-Headers](https://github.com/ev1313/Pascal-SDL-2-Headers) repo.
+The [SDL2-for-Pascal](https://github.com/PascalGameDevelopment/SDL2-for-Pascal) repository is a community-maintained fork of the [Pascal-SDL-2-Headers](https://github.com/ev1313/Pascal-SDL-2-Headers) repository.
 
 ## Installation
 
@@ -15,16 +15,26 @@ Simply add the units to your include path. You can achieve this by:
 
 Use the `sdl2` unit for the main SDL2 library (should be always needed). Units for the other SDL2 libraries are also provided:
  - [`sdl2_gfx`](https://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx/)
- - [`sdl2_image`](https://www.libsdl.org/projects/SDL_image/)
- - [`sdl2_mixer`](https://www.libsdl.org/projects/SDL_mixer/)
- - [`sdl2_net`](https://www.libsdl.org/projects/SDL_net/)
- - [`sdl2_ttf`](https://www.libsdl.org/projects/SDL_ttf/)
+ - [`sdl2_image`](https://github.com/libsdl-org/SDL_image)
+ - [`sdl2_mixer`](https://github.com/libsdl-org/SDL_mixer)
+ - [`sdl2_net`](https://github.com/libsdl-org/SDL_net)
+ - [`sdl2_ttf`](https://github.com/libsdl-org/SDL_ttf)
+
+## Documentation
+
+[Official SDL2-for-Pascal Documentation](https://pascalgamedevelopment.github.io/SDL2-for-Pascal)
+
+### Further Resources
+
+[Free Pascal meets SDL](https://www.freepascal-meets-sdl.net)
+
+[PGD SDL2 Forum](https://www.pascalgamedevelopment.com/forumdisplay.php?26-SDL-SDL-2)
 
 ## Bugs / Contributions / ToDos
 
 If you have any contributions or bugfixes, feel free to drop a pull request or send in a patch.
+Please use the GitHub [issue tracker](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues).
 
-Please use the GitHub issue tracker for bug reports.
 
 ### ToDos
 
@@ -34,7 +44,7 @@ See part Enums on the [Cheat sheet](CHEATSHEET.md) for reference.
 - (Continously) improve Delphi-compatibility (and even more important, DO NOT break it)
 - (Continously) Adapt comments to [PasDoc format](https://pasdoc.github.io). (See issue [#22](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/22))
 
-## Code style guidelines
+### Code style guidelines
 
 The main principle is to stay as tight as possible at the names in the C headers.
 These guidelines aim to have better consistency in this community project and make
@@ -61,7 +71,9 @@ Exception: Replace `*char` by `PAnsiChar`! (see issue [#26](https://github.com/P
 
 4. If an identifier or a function declaration is gone, mark them as `deprecated`. (see issue [#34](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/34))
 
-5. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
+5. For convenience we encourage to add single and double pointers for any SDL type. (see issue [#105](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/105))
+
+6. Have a look at our [Translation Cheat Sheet](CHEATSHEET.md) for reference.
 
 ## Versions
 
@@ -69,14 +81,20 @@ The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pa
 
 ### v2.x (work in progress)
 
-- be up-to-date with _at least_ version 2.0.14 of the `SDL2 library`
-- replaced all aliases by typed enums
-- (done) update SDL_ttf.pas to latest version 2.21.0
-- (done) replace data types by c data types (see PR [#29](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/29)) 
-- (done) add folders to project
-- (done) shift all units into unit folder (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27))
+- update sdlthreads.inc
+- add testing framework ([fptest](https://github.com/graemeg/fptest))
 
-### v2.1 (Compatibility Release)
+### v2.2 Stable (02/01/2024)
+
+- SDL2 unit is up-to-date with _at least_ version 2.0.14 of the `SDL2 library`
+- many aliases got replaced by typed enums
+- add single and double pointers for all types (thanks furious-programming)
+- update SDL_ttf.pas to latest version 2.21.0
+- replace data types by c data types (see PR [#29](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/29))
+- add folder structure (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27))
+- many bugfixes
+
+### v2.1 Compatibility Release (25/09/2021)
 
 - This release has all commits until the change of the project folder structure (see PR [#27](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/pull/27)). Compare the disucssion in issue #22.
 - Moving the units to a new location may (1) raise difficulties in committing new changes if the branch was started before and (2) make updates of project research pathes necessary.

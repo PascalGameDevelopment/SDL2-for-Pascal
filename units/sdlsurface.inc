@@ -22,7 +22,7 @@ type
    *  This structure should be treated as read-only, except for \c pixels,
    *  which, if not NULL, contains the raw pixel data for the surface.
    *}
-
+  PPSDL_BlitMap = ^PSDL_BlitMap;
   PSDL_BlitMap = ^TSDL_BlitMap;
   TSDL_BlitMap = record
     map: Pointer;
@@ -64,6 +64,8 @@ type
   {**
    *  The type of function used for surface blitting functions.
    *}
+   PPSDL_Blit = ^PSDL_Blit;
+   PSDL_Blit = ^TSDL_Blit;
    TSDL_Blit = function(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint;
 
 type

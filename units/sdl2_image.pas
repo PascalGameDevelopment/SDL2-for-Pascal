@@ -90,6 +90,8 @@ const
   IMG_INIT_WEBP = $00000008;
 
 type
+  PPIMG_InitFlags = ^PIMG_InitFlags;
+  PIMG_InitFlags = ^TIMG_InitFlags;
   TIMG_InitFlags = DWord;
 
   {* Loads dynamic libraries and prepares them for use.  Flags should be

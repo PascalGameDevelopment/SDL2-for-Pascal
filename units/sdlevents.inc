@@ -1,6 +1,7 @@
 //from "sdl_events.h"
 
 type
+  PPSDL_EventType = ^PSDL_EventType;
   PSDL_EventType = ^TSDL_EventType;
   TSDL_EventType = type cuint32;
 
@@ -146,6 +147,8 @@ type
   {**
    *  Fields shared by every event
    *}
+  PPSDL_CommonEvent = ^PSDL_CommonEvent;
+  PSDL_CommonEvent = ^TSDL_CommonEvent;
   TSDL_CommonEvent = record
     type_: cuint32;
     timestamp: cuint32;
@@ -154,6 +157,8 @@ type
   {**
    * Display state change event data (event.display.*)
    *}
+  PPSDL_DisplayEvent = ^PSDL_DisplayEvent;
+  PSDL_DisplayEvent = ^TSDL_DisplayEvent;
   TSDL_DisplayEvent = record
     type_: cuint32;     // SDL_DISPLAYEVENT
     timestamp: cuint32; // In milliseconds, populated using SDL_GetTicks()
@@ -168,6 +173,8 @@ type
   {**
    *  Window state change event data (event.window.*)
    *}
+  PPSDL_WindowEvent = ^PSDL_WindowEvent;
+  PSDL_WindowEvent = ^TSDL_WindowEvent;
   TSDL_WindowEvent = record
     type_: cuint32;       // SDL_WINDOWEVENT
     timestamp: cuint32;
@@ -183,6 +190,8 @@ type
   {**
    *  Keyboard button event structure (event.key.*)
    *}
+  PPSDL_KeyboardEvent = ^PSDL_KeyboardEvent;
+  PSDL_KeyboardEvent = ^TSDL_KeyboardEvent;
   TSDL_KeyboardEvent = record
     type_: cuint32;        // SDL_KEYDOWN or SDL_KEYUP
     timestamp: cuint32;
@@ -201,11 +210,13 @@ type
   {**
    *  Keyboard text editing event structure (event.edit.*)
    *}
+  PPSDL_TextEditingEvent = ^PSDL_TextEditingEvent;
+  PSDL_TextEditingEvent = ^TSDL_TextEditingEvent;
   TSDL_TextEditingEvent = record
     type_: cuint32;                               // SDL_TEXTEDITING 
     timestamp: cuint32;
     windowID: cuint32;                            // The window with keyboard focus, if any
-    text: array[0..SDL_TEXTEDITINGEVENT_TEXT_SIZE] of Char;  // The editing text 
+    text: array[0..SDL_TEXTEDITINGEVENT_TEXT_SIZE - 1] of Char;  // The editing text 
     start: cint32;                               // The start cursor of selected editing text
     length: cint32;                              // The length of selected editing text
   end;
@@ -214,6 +225,8 @@ type
    *  Extended keyboard text editing event structure (event.editExt.*) when text would be
    *  truncated if stored in the text buffer SDL_TextEditingEvent
    *}
+  PPSDL_TextEditingExtEvent = ^PSDL_TextEditingExtEvent;
+  PSDL_TextEditingExtEvent = ^TSDL_TextEditingExtEvent;
   TSDL_TextEditingExtEvent = record
     type_: cuint32;     // SDL_TEXTEDITING_EXT
     timestamp: cuint32; // In milliseconds, populated using SDL_GetTicks()
@@ -231,17 +244,20 @@ type
   {**
    *  Keyboard text input event structure (event.text.*)
    *}
-
+  PPSDL_TextInputEvent = ^PSDL_TextInputEvent;
+  PSDL_TextInputEvent = ^TSDL_TextInputEvent;
   TSDL_TextInputEvent = record
     type_: cuint32;                                          // SDL_TEXTINPUT 
     timestamp: cuint32;
     windowID: cuint32;                                       // The window with keyboard focus, if any
-    text: array[0..SDL_TEXTINPUTEVENT_TEXT_SIZE] of Char;   // The input text 
+    text: array[0..SDL_TEXTINPUTEVENT_TEXT_SIZE - 1] of Char;   // The input text 
   end;
 
   {**
    *  Mouse motion event structure (event.motion.*)
    *}
+  PPSDL_MouseMotionEvent = ^PSDL_MouseMotionEvent;
+  PSDL_MouseMotionEvent = ^TSDL_MouseMotionEvent;
   TSDL_MouseMotionEvent = record
     type_: cuint32;      // SDL_MOUSEMOTION
     timestamp: cuint32;  // In milliseconds, populated using SDL_GetTicks()
@@ -257,7 +273,8 @@ type
   {**
    *  Mouse button event structure (event.button.*)
    *}
-
+  PPSDL_MouseButtonEvent = ^PSDL_MouseButtonEvent;
+  PSDL_MouseButtonEvent = ^TSDL_MouseButtonEvent;
   TSDL_MouseButtonEvent = record
     type_: cuint32;       // SDL_MOUSEBUTTONDOWN or SDL_MOUSEBUTTONUP 
     timestamp: cuint32;
@@ -274,7 +291,8 @@ type
   {**
    *  Mouse wheel event structure (event.wheel.*)
    *}
- 
+  PPSDL_MouseWheelEvent = ^PSDL_MouseWheelEvent;
+  PSDL_MouseWheelEvent = ^TSDL_MouseWheelEvent;
   TSDL_MouseWheelEvent = record
     type_: cuint32;        // SDL_MOUSEWHEEL
     timestamp: cuint32;
@@ -285,12 +303,15 @@ type
     direction: cuint32;    // Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back
     preciseX: cfloat;      // The amount scrolled horizontally, positive to the right and negative to the left, with float precision (added in 2.0.18)
     preciseY: cfloat;      // The amount scrolled vertically, positive away from the user and negative toward the user, with float precision (added in 2.0.18)
+    mouseX: cint32;        // X coordinate, relative to window (added in 2.26.0)
+    mouseY: cint32;        // Y coordinate, relative to window (added in 2.26.0)
   end;
 
   {**
    *  Joystick axis motion event structure (event.jaxis.*)
    *}
-
+  PPSDL_JoyAxisEvent = ^PSDL_JoyAxisEvent;
+  PSDL_JoyAxisEvent = ^TSDL_JoyAxisEvent;
   TSDL_JoyAxisEvent = record
     type_: cuint32;         // SDL_JOYAXISMOTION 
     timestamp: cuint32;
@@ -306,7 +327,8 @@ type
   {**
    *  Joystick trackball motion event structure (event.jball.*)
    *}
-
+  PPSDL_JoyBallEvent = ^PSDL_JoyBallEvent;
+  PSDL_JoyBallEvent = ^TSDL_JoyBallEvent;
   TSDL_JoyBallEvent = record
     type_: cuint32;         // SDL_JOYBALLMOTION
     timestamp: cuint32;
@@ -322,7 +344,8 @@ type
   {**
    *  Joystick hat position change event structure (event.jhat.*)
    *}
-
+  PPSDL_JoyHatEvent = ^PSDL_JoyHatEvent;
+  PSDL_JoyHatEvent = ^TSDL_JoyHatEvent;
   TSDL_JoyHatEvent = record
     type_: cuint32;         // SDL_JOYHATMOTION
     timestamp: cuint32;
@@ -342,7 +365,8 @@ type
   {**
    *  Joystick button event structure (event.jbutton.*)
    *}
-
+  PPSDL_JoyButtonEvent = ^PSDL_JoyButtonEvent;
+  PSDL_JoyButtonEvent = ^TSDL_JoyButtonEvent;
   TSDL_JoyButtonEvent = record
     type_: cuint32;        // SDL_JOYBUTTONDOWN or SDL_JOYBUTTONUP
     timestamp: cuint32;
@@ -356,7 +380,8 @@ type
   {**
    *  Joystick device event structure (event.jdevice.*)
    *}
-
+  PPSDL_JoyDeviceEvent = ^PSDL_JoyDeviceEvent;
+  PSDL_JoyDeviceEvent = ^TSDL_JoyDeviceEvent;
   TSDL_JoyDeviceEvent = record
     type_: cuint32;      // SDL_JOYDEVICEADDED or SDL_JOYDEVICEREMOVED
     timestamp: cuint32;
@@ -366,6 +391,8 @@ type
   {**
    *  Joysick battery level change event structure (event.jbattery.*)
    *}
+  PPSDL_JoyBatteryEvent = ^PSDL_JoyBatteryEvent;
+  PSDL_JoyBatteryEvent = ^TSDL_JoyBatteryEvent;
   TSDL_JoyBatteryEvent = record
     type_: cuint32;                 // SDL_JOYBATTERYUPDATED
     timestamp: cuint32;             // In milliseconds, populated using SDL_GetTicks()
@@ -376,7 +403,8 @@ type
   {**
    *  Game controller axis motion event structure (event.caxis.*)
    *}
-
+  PPSDL_ControllerAxisEvent = ^PSDL_ControllerAxisEvent;
+  PSDL_ControllerAxisEvent = ^TSDL_ControllerAxisEvent;
   TSDL_ControllerAxisEvent = record
     type_: cuint32;         // SDL_CONTROLLERAXISMOTION
     timestamp: cuint32;
@@ -392,7 +420,8 @@ type
   {**
    *  Game controller button event structure (event.cbutton.*)
    *}
-
+  PPSDL_ControllerButtonEvent = ^PSDL_ControllerButtonEvent;
+  PSDL_ControllerButtonEvent = ^TSDL_ControllerButtonEvent;
   TSDL_ControllerButtonEvent = record
     type_: cuint32;         // SDL_CONTROLLERBUTTONDOWN or SDL_CONTROLLERBUTTONUP
     timestamp: cuint32;
@@ -407,7 +436,8 @@ type
   {**
    *  Controller device event structure (event.cdevice.*)
    *}
-
+  PPSDL_ControllerDeviceEvent = ^PSDL_ControllerDeviceEvent;
+  PSDL_ControllerDeviceEvent = ^TSDL_ControllerDeviceEvent;
   TSDL_ControllerDeviceEvent = record
     type_: cuint32;       // SDL_CONTROLLERDEVICEADDED, SDL_CONTROLLERDEVICEREMOVED, or SDL_CONTROLLERDEVICEREMAPPED
     timestamp: cuint32;
@@ -417,6 +447,8 @@ type
   {**
    *  Game controller touchpad event structure (event.ctouchpad.*)
    *}
+  PPSDL_ControllerTouchpadEvent = ^PSDL_ControllerTouchpadEvent;
+  PSDL_ControllerTouchpadEvent = ^TSDL_ControllerTouchpadEvent;
   TSDL_ControllerTouchpadEvent = record
     type_: cuint32;         // SDL_CONTROLLERTOUCHPADDOWN or SDL_CONTROLLERTOUCHPADMOTION or SDL_CONTROLLERTOUCHPADUP
     timestamp: cuint32;     // In milliseconds, populated using SDL_GetTicks()
@@ -431,6 +463,8 @@ type
   {**
    *  Game controller sensor event structure (event.csensor.*)
    *}
+  PPSDL_ControllerSensorEvent = ^PSDL_ControllerSensorEvent;
+  PSDL_ControllerSensorEvent = ^TSDL_ControllerSensorEvent;
   TSDL_ControllerSensorEvent = record
     type_: cuint32;              // SDL_CONTROLLERSENSORUPDATE
     timestamp: cuint32;          // In milliseconds, populated using SDL_GetTicks()
@@ -442,7 +476,8 @@ type
   {**
    *  Audio device event structure (event.adevice.*)
    *}
-
+  PPSDL_AudioDeviceEvent = ^PSDL_AudioDeviceEvent;
+  PSDL_AudioDeviceEvent = ^TSDL_AudioDeviceEvent;
   TSDL_AudioDeviceEvent = record
     type_: cuint32;        // ::SDL_AUDIODEVICEADDED, or ::SDL_AUDIODEVICEREMOVED
     timestamp: cuint32;
@@ -457,7 +492,8 @@ type
   {**
    *  Touch finger event structure (event.tfinger.*)
    *}
-
+  PPSDL_TouchFingerEvent = ^PSDL_TouchFingerEvent;
+  PSDL_TouchFingerEvent = ^TSDL_TouchFingerEvent;
   TSDL_TouchFingerEvent = record
     type_: cuint32;         // SDL_FINGERMOTION or SDL_FINGERDOWN or SDL_FINGERUP
     timestamp: cuint32;
@@ -474,6 +510,8 @@ type
   {**
    *  Multiple Finger Gesture Event (event.mgesture.*)
    *}
+  PPSDL_MultiGestureEvent = ^PSDL_MultiGestureEvent;
+  PSDL_MultiGestureEvent = ^TSDL_MultiGestureEvent;
   TSDL_MultiGestureEvent = record
     type_: cuint32;        // SDL_MULTIGESTURE
     timestamp: cuint32;
@@ -488,6 +526,8 @@ type
 
 
   {* (event.dgesture.*) *}
+  PPSDL_DollarGestureEvent = ^PSDL_DollarGestureEvent;
+  PSDL_DollarGestureEvent = ^TSDL_DollarGestureEvent;
   TSDL_DollarGestureEvent = record
     type_: cuint32;         // SDL_DOLLARGESTURE
     timestamp: cuint32;
@@ -505,6 +545,8 @@ type
    *  This event is disabled by default, you can enable it with SDL_EventState()
    *  If you enable this event, you must free the filename in the event.
    *}
+  PPSDL_DropEvent = ^PSDL_DropEvent;
+  PSDL_DropEvent = ^TSDL_DropEvent;
   TSDL_DropEvent = record
     type_: cuint32;      // SDL_DROPBEGIN or SDL_DROPFILE or SDL_DROPTEXT or SDL_DROPCOMPLETE
     timestamp: cuint32;
@@ -515,6 +557,8 @@ type
   {**
    *  Sensor event structure (event.sensor.*)
    *}
+  PPSDL_SensorEvent = ^PSDL_SensorEvent;
+  PSDL_SensorEvent = ^TSDL_SensorEvent;
   TSDL_SensorEvent = record
     type_: cuint32;              // SDL_SENSORUPDATED
     timestamp: cuint32;          // In milliseconds, populated using SDL_GetTicks()
@@ -525,6 +569,8 @@ type
   {**
    *  The "quit requested" event
    *}
+  PPSDL_QuitEvent = ^PSDL_QuitEvent;
+  PSDL_QuitEvent = ^TSDL_QuitEvent;
   TSDL_QuitEvent = record
     type_: cuint32;        // SDL_QUIT
     timestamp: cuint32;
@@ -533,6 +579,8 @@ type
   {**
    *  A user-defined event type (event.user.*)
    *}
+  PPSDL_UserEvent = ^PSDL_UserEvent;
+  PSDL_UserEvent = ^TSDL_UserEvent;
   TSDL_UserEvent = record
     type_: cuint32;       // SDL_USEREVENT through SDL_NUMEVENTS-1
     timestamp: cuint32;
@@ -548,7 +596,7 @@ type
    *
    *  If you want to use this event, you should include SDL_syswm.h.
    *}
-
+  PPSDL_SysWMEvent = ^PSDL_SysWMEvent;
   PSDL_SysWMEvent = ^TSDL_SysWMEvent;
   TSDL_SysWMEvent = record
     type_: cuint32;       // SDL_SYSWMEVENT
@@ -559,7 +607,7 @@ type
   {**
    *  General event structure
    *}
-
+  PPSDL_Event = ^PSDL_Event;
   PSDL_Event = ^TSDL_Event;
   TSDL_Event = record
     case cint of
@@ -637,6 +685,8 @@ const
   SDL_GETEVENT = 2;
 
 type
+  PPSDL_EventAction = ^PSDL_EventAction;
+  PSDL_EventAction = ^TSDL_EventAction;
   TSDL_EventAction = Word;
 
   {**
@@ -718,6 +768,7 @@ type
   function SDL_PushEvent(event: PSDL_Event): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PumpEvents' {$ENDIF} {$ENDIF};
 
 type
+  PPSDL_EventFilter = ^PSDL_EventFilter;
   PSDL_EventFilter = ^TSDL_EventFilter;
   {$IFNDEF GPC}
     TSDL_EventFilter = function(userdata: Pointer; event: PSDL_Event): cint; cdecl;

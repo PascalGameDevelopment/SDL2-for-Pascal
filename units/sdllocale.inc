@@ -1,6 +1,7 @@
 // based on SDL_locale.h
 
 type
+	PPSDL_Locale = ^PSDL_Locale;
 	PSDL_Locale = ^TSDL_Locale;
 	TSDL_Locale = record
 		// A language name, like 'en' for English.

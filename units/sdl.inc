@@ -1,6 +1,8 @@
 // based on "sdl.h"
 
 type
+  PPSDL_Init = ^PSDL_Init;
+  PSDL_Init = ^TSDL_Init;
   TSDL_Init = type cuint32;
 
 const

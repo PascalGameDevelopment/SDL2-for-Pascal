@@ -17,6 +17,7 @@ const
   SDL_RWOPS_MEMORY_RO     = 5;	{* Read-Only memory stream *}
 
 type
+  PPSDL_RWops = ^PSDL_RWops;
   PSDL_RWops = ^TSDL_RWops;
 
   {**
