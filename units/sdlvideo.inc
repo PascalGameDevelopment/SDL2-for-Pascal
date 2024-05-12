@@ -740,6 +740,27 @@ function SDL_GetWindowBordersSize(window: PSDL_Window; top, left, bottom, right:
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowBordersSize' {$ENDIF} {$ENDIF};
 
   {**
+   * Get the size of a window in pixels.
+   *
+   * This may differ from SDL_GetWindowSize() if we're rendering to a high-DPI
+   * drawable, i.e. the window was created with `SDL_WINDOW_ALLOW_HIGHDPI` on a
+   * platform with high-DPI support (Apple calls this "Retina"), and not
+   * disabled by the `SDL_HINT_VIDEO_HIGHDPI_DISABLED` hint.
+   *
+   * \param window the window from which the drawable size should be queried
+   * \param w a pointer to variable for storing the width in pixels, may be NIL
+   * \param h a pointer to variable for storing the height in pixels, may be
+   *          NIL
+   *
+   * \since This function is available since SDL 2.26.0.
+   *
+   * \sa SDL_CreateWindow
+   * \sa SDL_GetWindowSize
+   *}
+procedure SDL_GetWindowSizeInPixels(window: PSDL_Window; w, h: pcuint); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowSizeInPixels' {$ENDIF} {$ENDIF};
+
+  {**
    *  Set the minimum size of a window's client area.
    *  
    *  min_w     The minimum width of the window, must be >0
@@ -915,6 +936,19 @@ function SDL_SetWindowFullscreen(window: PSDL_Window; flags: TSDL_WindowFlags): 
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowFullscreen' {$ENDIF} {$ENDIF};
 
   {**
+   * Return whether the window has a surface associated with it.
+   *
+   * \returns SDL_TRUE if there is a surface associated with the window, or
+   *          SDL_FALSE otherwise.
+   *
+   * \since This function is available since SDL 2.28.0.
+   *
+   * \sa SDL_GetWindowSurface
+   *}
+function SDL_HasWindowSurface(window: PSDL_Window): TSDL_Bool; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasWindowSurface' {$ENDIF} {$ENDIF};
+
+  {**
    *  Get the SDL surface associated with the window.
    *
    *  The window's framebuffer surface, or nil on error.
@@ -954,6 +988,21 @@ function SDL_UpdateWindowSurface(window: PSDL_Window): cint; cdecl;
 
 function SDL_UpdateWindowSurfaceRects(window: PSDL_Window; rects: PSDL_Rect; numrects: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateWindowSurfaceRects' {$ENDIF} {$ENDIF};
+
+  {**
+   * Destroy the surface associated with the window.
+   *
+   * \param window the window to update
+   * \returns 0 on success or a negative error code on failure; call
+   *          SDL_GetError() for more information.
+   *
+   * \since This function is available since SDL 2.28.0.
+   *
+   * \sa SDL_GetWindowSurface
+   * \sa SDL_HasWindowSurface
+   *}
+function SDL_DestroyWindowSurface(window: PSDL_Window): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyWindowSurface' {$ENDIF} {$ENDIF};
 
   {**
    *  Set a window's input grab mode.
