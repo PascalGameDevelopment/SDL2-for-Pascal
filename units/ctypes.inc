@@ -154,6 +154,18 @@ type
 
   ppcuint8 = ^pcuint8;
 
+  { "The following type designates an unsigned integer type [or signed respectivly]
+    with the property that any valid pointer to void can be
+    converted to this type, then converted back to a pointer
+    to void, and the result will compare equal to the original
+    pointer: uintptr_t"
+    Source: https://pubs.opengroup.org/onlinepubs/000095399/basedefs/stdint.h.html
+    }
+  cuintptr_t = PtrUInt;
+  {$EXTERNALSYM cuintptr_t}
+  cintptr_t = PtrInt;
+  {$EXTERNALSYM cintptr_t}
+
   {$IFDEF WANT_CWCHAR_T}
     (* wchar_t is the "wide character" type of the C language.
      * The size of this type is platform- and compiler-dependent.

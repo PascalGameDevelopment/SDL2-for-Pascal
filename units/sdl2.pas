@@ -131,7 +131,7 @@ const
 {$I sdlerror.inc}                // 2.0.14
 {$I sdlplatform.inc}             // 2.0.14
 {$I sdlpower.inc}                // 2.0.14
-{$I sdlthread.inc}
+{$I sdlthread.inc}               // 2.30.2
 {$I sdlatomic.inc}               // 2.0.20
 {$I sdlmutex.inc}                // 2.26.5
 {$I sdltimer.inc}                // 2.0.18
@@ -220,9 +220,18 @@ end;
 {$IFDEF WINDOWS}
 //from "sdl_thread.h"
 
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar; data: Pointer): PSDL_Thread; overload;
+function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  data: Pointer): PSDL_Thread; overload;
 begin
   Result := SDL_CreateThread(fn,name,data,nil,nil);
+end;
+
+function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
+  name: PAnsiChar; const stacksize: csize_t; data: Pointer
+  ): PSDL_Thread; overload;
+begin
+  Result := SDL_CreateThreadWithStackSize(
+    fn,name,stacksize,data,nil,nil);
 end;
 
 {$ENDIF}
