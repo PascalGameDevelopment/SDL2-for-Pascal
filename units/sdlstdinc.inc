@@ -685,8 +685,7 @@ const
   SDL_ICONV_EINVAL = csize_t(-4);
 
 type
-  TSDL_iconv = record end;
-  PSDL_iconv = ^TSDL_iconv;
+  PSDL_iconv = type Pointer;
 
 function SDL_iconv_open(Const tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_open' {$ENDIF} {$ENDIF};

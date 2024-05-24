@@ -93,8 +93,7 @@
    *}
 type
   PPSDL_Haptic = ^PSDL_Haptic;
-  PSDL_Haptic = ^TSDL_Haptic;
-  TSDL_Haptic = record end;
+  PSDL_Haptic = type Pointer;
 
   {**
    *   Haptic features

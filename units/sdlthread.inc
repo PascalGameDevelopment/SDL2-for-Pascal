@@ -8,8 +8,7 @@
 
 {* The SDL thread structure, defined in SDL_thread.c *}
 type
-  PSDL_Thread = ^TSDL_Thread;
-  TSDL_Thread = record end;
+  PSDL_Thread = type Pointer;
 
   {* The SDL thread ID *}
   PPSDL_threadID = ^PSDL_threadID;
@@ -340,7 +339,7 @@ procedure SDL_WaitThread(thread: PSDL_Thread; status: pcint); cdecl;
  * \sa SDL_CreateThread
  * \sa SDL_WaitThread
  *}
-procedure SDL_DetachThread(thread:TSDL_Thread); cdecl;
+procedure SDL_DetachThread(thread:PSDL_Thread); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DetachThread' {$ENDIF}{$ENDIF};
 
   {**

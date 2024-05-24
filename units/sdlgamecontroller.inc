@@ -15,8 +15,7 @@
 {* The gamecontroller structure used to identify an SDL game controller *}
 type
   PPSDL_GameController = ^PSDL_GameController;
-  PSDL_GameController = ^TSDL_GameController;
-  TSDL_GameController = record end;
+  PSDL_GameController = type Pointer;
 
   PPSDL_GameControllerType = ^PSDL_GameControllerType;
   PSDL_GameControllerType = ^TSDL_GameControllerType;

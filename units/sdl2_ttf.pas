@@ -175,8 +175,7 @@ procedure TTF_ByteSwappedUNICODE(swapped: TSDL_bool); cdecl;
 {* The internal structure containing font information *}
 type
   PPTTF_Font = ^PTTF_Font;
-  PTTF_Font = ^TTTF_Font;
-  TTTF_Font = record  end; //todo?
+  PTTF_Font = type Pointer;
 
 {*
  * Initialize SDL_ttf.

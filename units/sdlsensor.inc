@@ -10,8 +10,7 @@
  *}
 type
 	PPSDL_Sensor = ^PSDL_Sensor;
-	PSDL_Sensor = ^TSDL_Sensor;
-	TSDL_Sensor = record end;
+	PSDL_Sensor = type Pointer;
 
 {**
  * This is a unique ID for a sensor for the time it is connected to the system,
