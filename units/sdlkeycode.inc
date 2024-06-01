@@ -34,7 +34,7 @@ const
   SDLK_PERCENT = TSDL_KeyCode('%');
   SDLK_DOLLAR = TSDL_KeyCode('$');
   SDLK_AMPERSAND = TSDL_KeyCode('&');
-  SDLK_QUOTE = TSDL_KeyCode('\');
+  SDLK_QUOTE = TSDL_KeyCode('''');
   SDLK_LEFTPAREN = TSDL_KeyCode('(');
   SDLK_RIGHTPAREN = TSDL_KeyCode(')');
   SDLK_ASTERISK = TSDL_KeyCode('*');
