@@ -127,7 +127,6 @@ const
                                  {SDL2 version of the represented header file}
 {$I sdlstdinc.inc}
 {$I sdlversion.inc}              // 2.0.14
-{$I sdlerror_c.inc}              // 2.0.14
 {$I sdlerror.inc}                // 2.0.14
 {$I sdlplatform.inc}             // 2.0.14
 {$I sdlpower.inc}                // 2.0.14
