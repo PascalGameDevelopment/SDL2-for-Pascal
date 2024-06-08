@@ -30,8 +30,7 @@
 type
   {* The joystick structure used to identify an SDL joystick *}
   PPSDL_Joystick = ^PSDL_Joystick;
-  PSDL_Joystick = ^TSDL_Joystick;
-  TSDL_Joystick = record end;
+  PSDL_Joystick = type Pointer;
 
   {* A structure that encodes the stable unique id for a joystick device *}
   PPSDL_JoystickGUID = ^PSDL_JoystickGUID;

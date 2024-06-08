@@ -116,9 +116,8 @@ type
 ### Opaque Structs
 
 If you have something like ```typedef struct name name```. the concrete
-structure is opaque. See issue
-[#63](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/63))
-for details.
+structure is opaque, and the programmer is expected to only ever
+interact with pointers to the struct.
 
 C:
 
@@ -128,21 +127,17 @@ typedef struct SDL_Window SDL_Window;
 
 Pascal:
 
-Prefered:
 ```pascal
 type
   PPSDL_Window = ^PSDL_Window;
-  PSDL_Window = ^TSDL_Window;
-  TSDL_Window = type Pointer;
+  PSDL_Window = type Pointer;
 ```
 
-Alternativly:
-```pascal
-type
-  PPSDL_Window = ^PSDL_Window;
-  PSDL_Window = ^TSDL_Window;
-  TSDL_Window = record end;
-```
+As shown above, for opaque structs, we avoid defining the base `TType`
+and define only the pointer `PType`.
+For the rationale behind this decision, read the discussion in
+[issue #63](https://github.com/PascalGameDevelopment/SDL2-for-Pascal/issues/63).
+
 
 ## Unions
 

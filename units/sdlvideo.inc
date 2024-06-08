@@ -3,8 +3,7 @@
 
 type
   PPSDL_Window = ^PSDL_Window;
-  PSDL_Window = ^TSDL_Window;
-  TSDL_Window = record end;
+  PSDL_Window = type Pointer;
 
   {**
    *  The structure that defines a display mode

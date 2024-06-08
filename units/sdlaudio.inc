@@ -942,8 +942,7 @@ function SDL_ConvertAudio(cvt: PSDL_AudioCVT): cint; cdecl;
   }
 { this is opaque to the outside world.  }
 type
-  PSDL_AudioStream = ^TSDL_AudioStream;
-  TSDL_AudioStream = record end;
+  PSDL_AudioStream = type Pointer;
 
 {*
  * Create a new audio stream.

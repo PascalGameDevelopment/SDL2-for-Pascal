@@ -166,8 +166,7 @@ type
 
   {* The internal format for a music chunk interpreted via mikmod *}
   PPMix_Music = ^PMix_Music;
-  PMix_Music = ^TMix_Music;
-  TMix_Music = record end;
+  PMix_Music = type Pointer;
 
   {* Open the mixer with a certain audio format *}
 function Mix_OpenAudio(frequency: cint; format: cuint16; channels: cint; chunksize: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_OpenAudio' {$ENDIF} {$ENDIF};
@@ -241,7 +240,7 @@ function Mix_HasMusicDecoder(const name: PAnsiChar): TSDL_Bool cdecl;
   {* Find out the music format of a mixer music, or the currently playing
      music, if 'music' is NULL.
   *}
-function Mix_GetMusicType(music: TMix_Music): TMix_MusicType cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicType' {$ENDIF} {$ENDIF};
+function Mix_GetMusicType(music: PMix_Music): TMix_MusicType cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicType' {$ENDIF} {$ENDIF};
 
   {* Set a function that is called after all mixing is performed.
      This can be used to provide real-time visual display of the audio stream

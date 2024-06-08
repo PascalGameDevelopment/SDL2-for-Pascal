@@ -42,8 +42,7 @@ type
 	(**
  	 *  \brief  A handle representing an open HID device.
  	 *)
-	PSDL_hid_device = ^TSDL_hid_device;
-	TSDL_hid_device = record end; // opaque struct
+	PSDL_hid_device = type Pointer;
 
 	PSDL_hid_device_info = ^TSDL_hid_device_info;
 
