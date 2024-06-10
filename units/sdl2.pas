@@ -351,7 +351,7 @@ end;
 
 function SDL_AUDIO_ISLITTLEENDIAN(x: Cardinal): Cardinal;
 begin
-  Result := not SDL_AUDIO_ISLITTLEENDIAN(x);
+  Result := not SDL_AUDIO_ISBIGENDIAN(x);
 end;
 
 function SDL_AUDIO_ISUNSIGNED(x: Cardinal): Cardinal;
