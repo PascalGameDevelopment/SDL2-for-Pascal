@@ -107,19 +107,19 @@ Type
    
    PFPSManager = ^TFPSManager;
 
-Procedure SDL_initFramerate(manager: PFPSManager);
+Procedure SDL_initFramerate(manager: PFPSManager); cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_initFramerate' {$ENDIF};
 
-Function SDL_setFramerate(manager: PFPSManager; rate: cuint32):cint32;
+Function SDL_setFramerate(manager: PFPSManager; rate: cuint32):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_setFramerate' {$ENDIF};
    
-Function SDL_getFramerate(manager: PFPSManager):cint32;
+Function SDL_getFramerate(manager: PFPSManager):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_getFramerate' {$ENDIF};
    
-Function SDL_getFramecount(manager: PFPSManager):cint32;
+Function SDL_getFramecount(manager: PFPSManager):cint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_getFramecount' {$ENDIF};
 
-Function SDL_framerateDelay(manager: PFPSManager):cuint32;
+Function SDL_framerateDelay(manager: PFPSManager):cuint32; cdecl;
    external GFX_LibName {$IFDEF DELMAC} name '_SDL_framerateDelay' {$ENDIF};
 
 
