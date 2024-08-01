@@ -77,13 +77,18 @@ const
   SDL_TEXTUREMODULATE_COLOR = TSDL_TextureModulate(1); {**< srcC = srcC * color *}
   SDL_TEXTUREMODULATE_ALPHA = TSDL_TextureModulate(2); {**< srcA = srcA * alpha *}
 
+type
   {**
    *  Flip constants for SDL_RenderCopyEx
    *}
+  PPSDL_Flip = ^PSDL_Flip;
+  PSDL_Flip = ^TSDL_Flip;
+  TSDL_Flip = type cint;
+
 const
-  SDL_FLIP_NONE       = $0; {**< Do not flip *}
-  SDL_FLIP_HORIZONTAL = $1; {**< flip horizontally *}
-  SDL_FLIP_VERTICAL   = $2; {**< flip vertically *}
+  SDL_FLIP_NONE       = TSDL_Flip($0); {**< Do not flip *}
+  SDL_FLIP_HORIZONTAL = TSDL_Flip($1); {**< flip horizontally *}
+  SDL_FLIP_VERTICAL   = TSDL_Flip($2); {**< flip vertically *}
 
 type
   {**
