@@ -81,14 +81,14 @@ type
   {**
    *  Flip constants for SDL_RenderCopyEx
    *}
-  PPSDL_Flip = ^PSDL_Flip;
-  PSDL_Flip = ^TSDL_Flip;
-  TSDL_Flip = type cint;
+  PPSDL_RenderFlip = ^PSDL_RenderFlip;
+  PSDL_RenderFlip = ^TSDL_RenderFlip;
+  TSDL_RenderFlip = type cint;
 
 const
-  SDL_FLIP_NONE       = TSDL_Flip($0); {**< Do not flip *}
-  SDL_FLIP_HORIZONTAL = TSDL_Flip($1); {**< flip horizontally *}
-  SDL_FLIP_VERTICAL   = TSDL_Flip($2); {**< flip vertically *}
+  SDL_FLIP_NONE       = TSDL_RenderFlip($0); {**< Do not flip *}
+  SDL_FLIP_HORIZONTAL = TSDL_RenderFlip($1); {**< flip horizontally *}
+  SDL_FLIP_VERTICAL   = TSDL_RenderFlip($2); {**< flip vertically *}
 
 type
   {**
@@ -894,7 +894,7 @@ function SDL_RenderCopyF(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect
    *
    *   0 on success, or -1 on error
    *}
-function SDL_RenderCopyEx(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_Rect; angle: cdouble; center: PSDL_Point; flip: TSDL_Flip): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCopyEx' {$ENDIF} {$ENDIF};
+function SDL_RenderCopyEx(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_Rect; angle: cdouble; center: PSDL_Point; flip: TSDL_RenderFlip): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCopyEx' {$ENDIF} {$ENDIF};
 
   {**
    *  Copy a portion of the source texture to the current rendering target, rotating it by angle around the given center
@@ -909,7 +909,7 @@ function SDL_RenderCopyEx(renderer: PSDL_Renderer; texture: PSDL_Texture; const 
    *
    *    0 on success, or -1 on error
    *}
-function SDL_RenderCopyExF(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: cdouble; center: PSDL_FPoint; flip: TSDL_Flip): cint32 cdecl;
+function SDL_RenderCopyExF(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: cdouble; center: PSDL_FPoint; flip: TSDL_RenderFlip): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCopyExF' {$ENDIF} {$ENDIF};
 
 {**
