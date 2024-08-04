@@ -7,8 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-  macos-11-big-sur:
-    runs-on: macos-11
+  macos-14-sonoma:
+    runs-on: macos-14
     steps:
       - name: Install FPC
         run: |
@@ -56,7 +56,7 @@ jobs:
         uses: suve/GHActions-FPC@v0.4.0
         with:
           source: tests/testinit.pas
-          flags: Fl/usr/local/lib
+          flags: Fl/opt/homebrew/lib
           verbosity: ewnh
       - name: Test 1 - Run Init Test
         run: |
@@ -65,13 +65,13 @@ jobs:
         uses: suve/GHActions-FPC@v0.4.0
         with:
           source: tests/testversion.pas
-          flags: Fl/usr/local/lib
+          flags: Fl/opt/homebrew/lib
           verbosity: ewnh
       - name: Test 2 - Run Version Test
         run: |
           ./tests/testversion
-  ubuntu-20-04:
-    runs-on: ubuntu-20.04
+  ubuntu-22-04:
+    runs-on: ubuntu-22.04
     steps:
       - name: Install FPC
         run: |
