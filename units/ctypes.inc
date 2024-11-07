@@ -161,10 +161,17 @@ type
     pointer: uintptr_t"
     Source: https://pubs.opengroup.org/onlinepubs/000095399/basedefs/stdint.h.html
     }
-  cuintptr_t = PtrUInt;
-  {$EXTERNALSYM cuintptr_t}
-  cintptr_t = PtrInt;
-  {$EXTERNALSYM cintptr_t}
+  {$IFNDEF FPC}
+    cuintptr_t = UIntPtr;
+    {$EXTERNALSYM cuintptr_t}
+    cintptr_t = IntPtr;
+    {$EXTERNALSYM cintptr_t}
+  {$ELSE}
+    cuintptr_t = PtrUInt;
+    {$EXTERNALSYM cuintptr_t}
+    cintptr_t = PtrInt;
+    {$EXTERNALSYM cintptr_t}
+  {$ENDIF}
 
   {$IFDEF WANT_CWCHAR_T}
     (* wchar_t is the "wide character" type of the C language.
