@@ -102,8 +102,16 @@ function SDL_VERSION_ATLEAST(X,Y,Z: cuint8): Boolean;
  *
  *  SDL_VERSION
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetVersion_proc = procedure(ver: PSDL_Version); cdecl;
+Var
+  SDL_GetVersion : TSDL_GetVersion_proc = Nil;
+{$else}
+
 procedure SDL_GetVersion(ver: PSDL_Version); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetVersion' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  Get the code revision of SDL that is linked against your program.

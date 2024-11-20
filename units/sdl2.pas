@@ -61,6 +61,30 @@ unit sdl2;
 
 {$I jedi.inc}
 
+(*
+ * If you get a compiler error with missing file
+ * just create a file namend "sdl2_cfg.inc" in your project folder and
+ * insert the following content:
+ *
+ * ---------- Content of file ----------
+
+ {*
+  * set this define if you want to use dynamic linking instead of static linking
+  * ! Attention !
+  * Not all functions are "ported" yet, so use is on own risk
+  * port missing functions.
+  *}
+ {.$DEFINE SDL_DYNAMIC_LINKING}
+
+ * ---------- End content of file ----------
+ *
+ * ! Attention !
+ * If you use the dynamic link feature, don't forget to call the SDL_LoadLib
+ * function.
+ *)
+
+{$I sdl2_cfg.inc}
+
 interface
 
   {$IFDEF WINDOWS}
@@ -169,6 +193,11 @@ const
 {$I sdlsystem.inc}               // 2.24.0
 {$I sdl.inc}                     // 2.0.14
 
+{$ifdef SDL_DYNAMIC_LINKING}
+Function SDL_LoadLib(LibFilename: String): Boolean;
+Procedure SDL_UnLoadLib();
+{$endif}
+
 implementation
 
 (*
@@ -183,7 +212,12 @@ uses
 	{$ELSE}
 		AnsiStrings
 	{$ENDIF}
-	;
+        {$ifdef SDL_DYNAMIC_LINKING}
+        , dynlibs
+        {$endif}
+        ;
+
+{$I sdl_dnymic_linking.inc}
 
 // Macros from "sdl_version.h"
 procedure SDL_VERSION(out x: TSDL_Version);
@@ -219,13 +253,13 @@ end;
 {$IFDEF WINDOWS}
 //from "sdl_thread.h"
 
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
+function SDL_CreateThread2(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer): PSDL_Thread; overload;
 begin
   Result := SDL_CreateThread(fn,name,data,nil,nil);
 end;
 
-function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
+function SDL_CreateThreadWithStackSize2(fn: TSDL_ThreadFunction;
   name: PAnsiChar; const stacksize: csize_t; data: Pointer
   ): PSDL_Thread; overload;
 begin
@@ -479,5 +513,12 @@ function SDL_GameControllerAddMappingsFromFile(const FilePath: PAnsiChar
 begin
   Result := SDL_GameControllerAddMappingsFromRW(SDL_RWFromFile(FilePath, 'rb'), 1)
 end;
+
+
+{$IFDEF SDL_DYNAMIC_LINKING}
+
+Finalization
+  SDL_UnLoadLib();
+{$ENDIF}
 
 end.

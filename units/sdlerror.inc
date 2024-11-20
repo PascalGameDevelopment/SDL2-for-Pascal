@@ -13,8 +13,16 @@
  *
  *  \return -1, there is no error handling for this function
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SetError_fun = function(const fmt: PAnsiChar; args: array of const): cint; cdecl;
+Var
+  SDL_SetError : TSDL_SetError_fun = Nil;
+{$else}
+
 function SDL_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetError' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Get the last error message that was set
@@ -42,8 +50,16 @@ function SDL_GetError: PAnsiChar; cdecl;
  *
  *  \return errstr
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetErrorMsg_fun = function(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdecl;
+Var
+  SDL_GetErrorMsg : TSDL_GetErrorMsg_fun = Nil;
+{$else}
+
 function SDL_GetErrorMsg(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetErrorMsg' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Clear the error message for the current thread
@@ -74,5 +90,13 @@ type
                     SDL_LASTERROR);
 
 {* SDL_Error() unconditionally returns -1. *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_Error_fun = function(code: TSDL_ErrorCode): cint; cdecl;
+Var
+  SDL_Error : TSDL_Error_fun = Nil;
+{$else}
+
 function SDL_Error(code: TSDL_ErrorCode): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Error' {$ENDIF} {$ENDIF};
+{$endif}

@@ -69,8 +69,16 @@ function SDL_GetMouseFocus: PSDL_Window; cdecl;
  * \sa SDL_GetRelativeMouseState
  * \sa SDL_PumpEvents
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetMouseState_fun = function(x: pcint; y: pcint): cuint32; cdecl;
+Var
+  SDL_GetMouseState : TSDL_GetMouseState_fun = Nil;
+{$else}
+
 function SDL_GetMouseState(x: pcint; y: pcint): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetMouseState' {$ENDIF}{$ENDIF};
+{$endif}
 
 
   {**
@@ -100,8 +108,16 @@ function SDL_GetMouseState(x: pcint; y: pcint): cuint32; cdecl;
  *
  * \sa SDL_CaptureMouse
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetGlobalMouseState_fun = function(x, y: pcint32): cuint32; cdecl;
+Var
+  SDL_GetGlobalMouseState : TSDL_GetGlobalMouseState_fun = Nil;
+{$else}
+
 function SDL_GetGlobalMouseState(x, y: pcint32): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetGlobalMouseState' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Retrieve the relative state of the mouse.
@@ -120,8 +136,16 @@ function SDL_GetGlobalMouseState(x, y: pcint32): cuint32; cdecl;
  *
  * \sa SDL_GetMouseState
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetRelativeMouseState_fun = function(x: pcint; y: pcint): cuint32; cdecl;
+Var
+  SDL_GetRelativeMouseState : TSDL_GetRelativeMouseState_fun = Nil;
+{$else}
+
 function SDL_GetRelativeMouseState(x: pcint; y: pcint): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRelativeMouseState' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Move the mouse cursor to the given position within the window.
@@ -142,8 +166,16 @@ function SDL_GetRelativeMouseState(x: pcint; y: pcint): cuint32; cdecl;
  *
  * \sa SDL_WarpMouseGlobal
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_WarpMouseInWindow_proc = procedure(window: PSDL_Window; x: cint; y: cint); cdecl;
+Var
+  SDL_WarpMouseInWindow : TSDL_WarpMouseInWindow_proc = Nil;
+{$else}
+
 procedure SDL_WarpMouseInWindow(window: PSDL_Window; x: cint; y: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WarpMouseInWindow' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Move the mouse to the given position in global screen space.
@@ -165,8 +197,16 @@ procedure SDL_WarpMouseInWindow(window: PSDL_Window; x: cint; y: cint); cdecl;
  *
  * \sa SDL_WarpMouseInWindow
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_WarpMouseGlobal_fun = function(x, y: cint): cint; cdecl;
+Var
+  SDL_WarpMouseGlobal : TSDL_WarpMouseGlobal_fun = Nil;
+{$else}
+
 function SDL_WarpMouseGlobal(x, y: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WarpMouseGlobal' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Set relative mouse mode.
@@ -191,8 +231,16 @@ function SDL_WarpMouseGlobal(x, y: cint): cint; cdecl;
  *
  * \sa SDL_GetRelativeMouseMode
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SetRelativeMouseMode_fun = function(enabled: TSDL_Bool): cint; cdecl;
+Var
+  SDL_SetRelativeMouseMode : TSDL_SetRelativeMouseMode_fun = Nil;
+{$else}
+
 function SDL_SetRelativeMouseMode(enabled: TSDL_Bool): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRelativeMouseMode' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Capture the mouse and to track input outside an SDL window.
@@ -238,8 +286,16 @@ function SDL_SetRelativeMouseMode(enabled: TSDL_Bool): cint; cdecl;
  *
  * \sa SDL_GetGlobalMouseState
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CaptureMouse_fun = function(enabled: TSDL_Bool): cint; cdecl;
+Var
+  SDL_CaptureMouse : TSDL_CaptureMouse_fun = Nil;
+{$else}
+
  function SDL_CaptureMouse(enabled: TSDL_Bool): cint; cdecl;
    external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CaptureMouse' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Query whether relative mouse mode is enabled.
@@ -294,12 +350,24 @@ function SDL_GetRelativeMouseMode: TSDL_Bool; cdecl;
  * \sa SDL_SetCursor
  * \sa SDL_ShowCursor
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateCursor_fun = function(
+  const data: pcuint8;
+  const mask: pcuint8;
+  w: cint; h: cint;
+  hot_x: cint; hot_y: cint): PSDL_Cursor; cdecl;
+Var
+  SDL_CreateCursor : TSDL_CreateCursor_fun = Nil;
+{$else}
+
 function SDL_CreateCursor(
   const data: pcuint8;
   const mask: pcuint8;
   w: cint; h: cint;
   hot_x: cint; hot_y: cint): PSDL_Cursor; cdecl;
     external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateCursor' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Create a color cursor.
@@ -315,11 +383,22 @@ function SDL_CreateCursor(
  * \sa SDL_CreateCursor
  * \sa SDL_FreeCursor
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateColorCursor_fun = function(
+    surface: PSDL_Surface;
+     hot_x: cint;
+     hot_y: cint): PSDL_Cursor; cdecl;
+Var
+  SDL_CreateColorCursor : TSDL_CreateColorCursor_fun = Nil;
+{$else}
+
 function SDL_CreateColorCursor(
   surface: PSDL_Surface;
   hot_x: cint;
   hot_y: cint): PSDL_Cursor; cdecl;
     external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateColorCursor' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Create a system cursor.
@@ -332,8 +411,16 @@ function SDL_CreateColorCursor(
  *
  * \sa SDL_FreeCursor
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateSystemCursor_fun = function(id: TSDL_SystemCursor): PSDL_Cursor; cdecl;
+Var
+  SDL_CreateSystemCursor : TSDL_CreateSystemCursor_fun = Nil;
+{$else}
+
 function SDL_CreateSystemCursor(id: TSDL_SystemCursor): PSDL_Cursor; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateSystemCursor' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Set the active cursor.
@@ -351,8 +438,16 @@ function SDL_CreateSystemCursor(id: TSDL_SystemCursor): PSDL_Cursor; cdecl;
  * \sa SDL_GetCursor
  * \sa SDL_ShowCursor
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SetCursor_proc = procedure(cursor: PSDL_Cursor); cdecl;
+Var
+  SDL_SetCursor : TSDL_SetCursor_proc = Nil;
+{$else}
+
 procedure SDL_SetCursor(cursor: PSDL_Cursor); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetCursor' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Get the active cursor.
@@ -395,8 +490,16 @@ function SDL_GetDefaultCursor: PSDL_Cursor; cdecl;
  * \sa SDL_CreateCursor
  * \sa SDL_CreateSystemCursor
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_FreeCursor_proc = procedure(cursor: PSDL_Cursor); cdecl;
+Var
+  SDL_FreeCursor : TSDL_FreeCursor_proc = Nil;
+{$else}
+
 procedure SDL_FreeCursor(cursor: PSDL_Cursor); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FreeCursor' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Toggle whether or not the cursor is shown.
@@ -418,8 +521,16 @@ procedure SDL_FreeCursor(cursor: PSDL_Cursor); cdecl;
  * \sa SDL_CreateCursor
  * \sa SDL_SetCursor
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_ShowCursor_fun = function(toggle: cint): cint; cdecl;
+Var
+  SDL_ShowCursor : TSDL_ShowCursor_fun = Nil;
+{$else}
+
 function SDL_ShowCursor(toggle: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowCursor' {$ENDIF}{$ENDIF};
+{$endif}
 
 {**
  *  Used as a mask when testing buttons in buttonstate.

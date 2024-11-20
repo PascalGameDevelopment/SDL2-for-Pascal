@@ -33,8 +33,16 @@ const
  *
  * \sa SDL_DestroyWindow
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateShapedWindow_fun = function(title: PAnsiChar; x: cuint; y: cuint; w: cuint; h: cuint; flags: cuint32): PSDL_Window; cdecl;
+Var
+  SDL_CreateShapedWindow : TSDL_CreateShapedWindow_fun = Nil;
+{$else}
+
 function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint; y: cuint; w: cuint; h: cuint; flags: cuint32): PSDL_Window; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateShapedWindow' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Return whether the given window is a shaped window.
@@ -47,8 +55,16 @@ function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint; y: cuint; w: cuint; 
  *
  * \sa SDL_CreateShapedWindow
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_IsShapedWindow_fun = function(window: PSDL_Window): TSDL_Bool; cdecl;
+Var
+  SDL_IsShapedWindow : TSDL_IsShapedWindow_fun = Nil;
+{$else}
+
 function SDL_IsShapedWindow(window: PSDL_Window): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsShapedWindow' {$ENDIF} {$ENDIF};
+{$endif}
 
 
 type
@@ -105,8 +121,16 @@ type
  * \sa SDL_WindowShapeMode
  * \sa SDL_GetShapedWindowMode
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SetWindowShape_fun = function(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
+Var
+  SDL_SetWindowShape : TSDL_SetWindowShape_fun = Nil;
+{$else}
+
 function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowShape' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the shape parameters of a shaped window.
@@ -125,5 +149,13 @@ function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode
  * \sa SDL_WindowShapeMode
  * \sa SDL_SetWindowShape
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetShapedWindowMode_fun = function(window: PSDL_Window; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
+Var
+  SDL_GetShapedWindowMode : TSDL_GetShapedWindowMode_fun = Nil;
+{$else}
+
 function SDL_GetShapedWindowMode(window: PSDL_Window; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetShapedWindowMode' {$ENDIF} {$ENDIF};
+{$endif}

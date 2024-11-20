@@ -52,8 +52,16 @@ function SDL_CreateMutex: PSDL_Mutex; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
+Var
+  SDL_LockMutex : TSDL_LockMutex_fun = Nil;
+{$else}
+
 function SDL_LockMutex(mutex: PSDL_Mutex): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockMutex' {$ENDIF} {$ENDIF};
+{$endif}
 
 { SDL2-for-Pascal: SDL_mutexP macro ignored; no benefit for the Pascal units }
 //C: #define SDL_mutexP(m)   SDL_UnlockMutex(m)
@@ -73,8 +81,16 @@ function SDL_LockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_TryLockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
+Var
+  SDL_TryLockMutex : TSDL_TryLockMutex_fun = Nil;
+{$else}
+
 function SDL_TryLockMutex(mutex: PSDL_Mutex): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TryLockMutex' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Unlock the mutex.
@@ -93,8 +109,16 @@ function SDL_TryLockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_UnlockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
+Var
+  SDL_UnlockMutex : TSDL_UnlockMutex_fun = Nil;
+{$else}
+
 function SDL_UnlockMutex(mutex: PSDL_Mutex): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockMutex' {$ENDIF} {$ENDIF};
+{$endif}
 
 { SDL2-for-Pascal: SDL_mutexV macro ignored; no benefit for the Pascal units }
 //C: #define SDL_mutexV(m)   SDL_UnlockMutex(m)
@@ -112,8 +136,16 @@ function SDL_UnlockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_DestroyMutex_proc = procedure(mutex: PSDL_Mutex); cdecl;
+Var
+  SDL_DestroyMutex : TSDL_DestroyMutex_proc = Nil;
+{$else}
+
 procedure SDL_DestroyMutex(mutex: PSDL_Mutex); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyMutex' {$ENDIF} {$ENDIF};
+{$endif}
 
   { -- Semaphore functions -- }
 type
@@ -136,8 +168,16 @@ type
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateSemaphore_fun = function(initial_value: cuint32): PSDL_sem; cdecl;
+Var
+  SDL_CreateSemaphore : TSDL_CreateSemaphore_fun = Nil;
+{$else}
+
 function SDL_CreateSemaphore(initial_value: cuint32): PSDL_sem; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateSemaphore' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Destroy a semaphore.
@@ -149,8 +189,16 @@ function SDL_CreateSemaphore(initial_value: cuint32): PSDL_sem; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_DestroySemaphore_proc = procedure(sem: PSDL_Sem); cdecl;
+Var
+  SDL_DestroySemaphore : TSDL_DestroySemaphore_proc = Nil;
+{$else}
+
 procedure SDL_DestroySemaphore(sem: PSDL_Sem); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroySemaphore' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Wait until a semaphore has a positive value and then decrements it.
@@ -169,8 +217,16 @@ procedure SDL_DestroySemaphore(sem: PSDL_Sem); cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SemWait_fun = function(sem: PSDL_Sem): cint; cdecl;
+Var
+  SDL_SemWait : TSDL_SemWait_fun = Nil;
+{$else}
+
 function SDL_SemWait(sem: PSDL_Sem): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemWait' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * See if a semaphore has a positive value and decrement it if it does.
@@ -187,8 +243,16 @@ function SDL_SemWait(sem: PSDL_Sem): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SemTryWait_fun = function(sem: PSDL_Sem): cint; cdecl;
+Var
+  SDL_SemTryWait : TSDL_SemTryWait_fun = Nil;
+{$else}
+
 function SDL_SemTryWait(sem: PSDL_Sem): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemTryWait' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Wait until a semaphore has a positive value and then decrements it.
@@ -206,8 +270,16 @@ function SDL_SemTryWait(sem: PSDL_Sem): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SemWaitTimeout_fun = function(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
+Var
+  SDL_SemWaitTimeout : TSDL_SemWaitTimeout_fun = Nil;
+{$else}
+
 function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemWaitTimeout' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Atomically increment a semaphore's value and wake waiting threads.
@@ -218,8 +290,16 @@ function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SemPost_fun = function(sem: PSDL_Sem): cint; cdecl;
+Var
+  SDL_SemPost : TSDL_SemPost_fun = Nil;
+{$else}
+
 function SDL_SemPost(sem: PSDL_Sem): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemPost' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the current value of a semaphore.
@@ -229,8 +309,16 @@ function SDL_SemPost(sem: PSDL_Sem): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SemValue_fun = function(sem: PSDL_Sem): cuint32; cdecl;
+Var
+  SDL_SemValue : TSDL_SemValue_fun = Nil;
+{$else}
+
 function SDL_SemValue(sem: PSDL_Sem): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SemValue' {$ENDIF} {$ENDIF};
+{$endif}
 
   { -- Condition variable functions -- }
 type
@@ -286,8 +374,16 @@ function SDL_CreateCond: PSDL_Cond; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_DestroyCond_proc = procedure(cond: PSDL_Cond); cdecl;
+Var
+  SDL_DestroyCond : TSDL_DestroyCond_proc = Nil;
+{$else}
+
 procedure SDL_DestroyCond(cond: PSDL_Cond); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyCond' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Restart one of the threads that are waiting on the condition variable.
@@ -298,8 +394,16 @@ procedure SDL_DestroyCond(cond: PSDL_Cond); cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CondSignal_fun = function(cond: PSDL_Cond): cint; cdecl;
+Var
+  SDL_CondSignal : TSDL_CondSignal_fun = Nil;
+{$else}
+
 function SDL_CondSignal(cond: PSDL_Cond): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondSignal' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Restart all threads that are waiting on the condition variable.
@@ -310,8 +414,16 @@ function SDL_CondSignal(cond: PSDL_Cond): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CondBroadcast_fun = function(cond: PSDL_Cond): cint; cdecl;
+Var
+  SDL_CondBroadcast : TSDL_CondBroadcast_fun = Nil;
+{$else}
+
 function SDL_CondBroadcast(cond: PSDL_Cond): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondBroadcast' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Wait until a condition variable is signaled.
@@ -333,8 +445,16 @@ function SDL_CondBroadcast(cond: PSDL_Cond): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CondWait_fun = function(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
+Var
+  SDL_CondWait : TSDL_CondWait_fun = Nil;
+{$else}
+
 function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondWait' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Wait until a condition variable is signaled or a certain time has passed.
@@ -357,5 +477,13 @@ function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CondWaitTimeout_fun = function(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint; cdecl;
+Var
+  SDL_CondWaitTimeout : TSDL_CondWaitTimeout_fun = Nil;
+{$else}
+
 function SDL_CondWaitTimeout(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CondWaitTimeout' {$ENDIF} {$ENDIF};
+{$endif}

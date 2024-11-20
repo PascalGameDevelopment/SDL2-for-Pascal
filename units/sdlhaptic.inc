@@ -819,8 +819,16 @@ function SDL_NumHaptics: cint; cdecl;
  *
  * \sa SDL_NumHaptics
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticName_fun = function(device_index: cint): PAnsiChar; cdecl;
+Var
+  SDL_HapticName : TSDL_HapticName_fun = Nil;
+{$else}
+
 function SDL_HapticName(device_index: cint): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticName' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Open a haptic device for use.
@@ -847,8 +855,16 @@ function SDL_HapticName(device_index: cint): PAnsiChar; cdecl;
  * \sa SDL_HapticSetGain
  * \sa SDL_HapticStopAll
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticOpen_fun = function(device_index: cint): PSDL_Haptic; cdecl;
+Var
+  SDL_HapticOpen : TSDL_HapticOpen_fun = Nil;
+{$else}
+
 function SDL_HapticOpen(device_index: cint): PSDL_Haptic; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticOpen' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Check if the haptic device at the designated index has been opened.
@@ -862,8 +878,16 @@ function SDL_HapticOpen(device_index: cint): PSDL_Haptic; cdecl;
  * \sa SDL_HapticIndex
  * \sa SDL_HapticOpen
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticOpened_fun = function(device_index: cint): cint; cdecl;
+Var
+  SDL_HapticOpened : TSDL_HapticOpened_fun = Nil;
+{$else}
+
 function SDL_HapticOpened(device_index: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticOpened' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Get the index of a haptic device.
@@ -877,8 +901,16 @@ function SDL_HapticOpened(device_index: cint): cint; cdecl;
  * \sa SDL_HapticOpen
  * \sa SDL_HapticOpened
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticIndex_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticIndex : TSDL_HapticIndex_fun = Nil;
+{$else}
+
 function SDL_HapticIndex(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticIndex' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Query whether or not the current mouse has haptic capabilities.
@@ -918,8 +950,16 @@ function SDL_HapticOpenFromMouse: PSDL_Haptic; cdecl;
  *
  * \sa SDL_HapticOpenFromJoystick
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_JoystickIsHaptic_fun = function(joystick: PSDL_Joystick): cint; cdecl;
+Var
+  SDL_JoystickIsHaptic : TSDL_JoystickIsHaptic_fun = Nil;
+{$else}
+
 function SDL_JoystickIsHaptic(joystick: PSDL_Joystick): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickIsHaptic' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Open a haptic device for use from a joystick device.
@@ -942,8 +982,16 @@ function SDL_JoystickIsHaptic(joystick: PSDL_Joystick): cint; cdecl;
  * \sa SDL_HapticOpen
  * \sa SDL_JoystickIsHaptic
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticOpenFromJoystick_fun = function(joystick: PSDL_Joystick): PSDL_Haptic; cdecl;
+Var
+  SDL_HapticOpenFromJoystick : TSDL_HapticOpenFromJoystick_fun = Nil;
+{$else}
+
 function SDL_HapticOpenFromJoystick(joystick: PSDL_Joystick): PSDL_Haptic; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticOpenFromJoystick' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Close a haptic device previously opened with SDL_HapticOpen().
@@ -954,8 +1002,16 @@ function SDL_HapticOpenFromJoystick(joystick: PSDL_Joystick): PSDL_Haptic; cdecl
  *
  * \sa SDL_HapticOpen
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticClose_proc = procedure(haptic: PSDL_Haptic); cdecl;
+Var
+  SDL_HapticClose : TSDL_HapticClose_proc = Nil;
+{$else}
+
 procedure SDL_HapticClose(haptic: PSDL_Haptic); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticClose' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Get the number of effects a haptic device can store.
@@ -973,8 +1029,16 @@ procedure SDL_HapticClose(haptic: PSDL_Haptic); cdecl;
  * \sa SDL_HapticNumEffectsPlaying
  * \sa SDL_HapticQuery
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticNumEffects_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticNumEffects : TSDL_HapticNumEffects_fun = Nil;
+{$else}
+
 function SDL_HapticNumEffects(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticNumEffects' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Get the number of effects a haptic device can play at the same time.
@@ -991,8 +1055,16 @@ function SDL_HapticNumEffects(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticNumEffects
  * \sa SDL_HapticQuery
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticNumEffectsPlaying_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticNumEffectsPlaying : TSDL_HapticNumEffectsPlaying_fun = Nil;
+{$else}
+
 function SDL_HapticNumEffectsPlaying(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticNumEffectsPlaying' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Get the haptic device's supported features in bitwise manner.
@@ -1006,8 +1078,16 @@ function SDL_HapticNumEffectsPlaying(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticEffectSupported
  * \sa SDL_HapticNumEffects
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticQuery_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticQuery : TSDL_HapticQuery_fun = Nil;
+{$else}
+
 function SDL_HapticQuery(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticQuery' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Get the number of haptic axes the device has.
@@ -1021,8 +1101,16 @@ function SDL_HapticQuery(haptic: PSDL_Haptic): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticNumAxes_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticNumAxes : TSDL_HapticNumAxes_fun = Nil;
+{$else}
+
 function SDL_HapticNumAxes(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticNumAxes' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Check to see if an effect is supported by a haptic device.
@@ -1038,8 +1126,16 @@ function SDL_HapticNumAxes(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticNewEffect
  * \sa SDL_HapticQuery
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticEffectSupported_fun = function(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
+Var
+  SDL_HapticEffectSupported : TSDL_HapticEffectSupported_fun = Nil;
+{$else}
+
 function SDL_HapticEffectSupported(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticEffectSupported' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Create a new haptic effect on a specified device.
@@ -1056,8 +1152,16 @@ function SDL_HapticEffectSupported(haptic: PSDL_Haptic; effect: PSDL_HapticEffec
  * \sa SDL_HapticRunEffect
  * \sa SDL_HapticUpdateEffect
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticNewEffect_fun = function(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
+Var
+  SDL_HapticNewEffect : TSDL_HapticNewEffect_fun = Nil;
+{$else}
+
 function SDL_HapticNewEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticNewEffect' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Update the properties of an effect.
@@ -1080,8 +1184,16 @@ function SDL_HapticNewEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): ci
  * \sa SDL_HapticNewEffect
  * \sa SDL_HapticRunEffect
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticUpdateEffect_fun = function(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): cint; cdecl;
+Var
+  SDL_HapticUpdateEffect : TSDL_HapticUpdateEffect_fun = Nil;
+{$else}
+
 function SDL_HapticUpdateEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticUpdateEffect' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Run the haptic effect on its associated haptic device.
@@ -1105,8 +1217,16 @@ function SDL_HapticUpdateEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_Ha
  * \sa SDL_HapticGetEffectStatus
  * \sa SDL_HapticStopEffect
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticRunEffect_fun = function(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): cint; cdecl;
+Var
+  SDL_HapticRunEffect : TSDL_HapticRunEffect_fun = Nil;
+{$else}
+
 function SDL_HapticRunEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRunEffect' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Stop the haptic effect on its associated haptic device.
@@ -1123,8 +1243,16 @@ function SDL_HapticRunEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuin
  * \sa SDL_HapticDestroyEffect
  * \sa SDL_HapticRunEffect
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticStopEffect_fun = function(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
+Var
+  SDL_HapticStopEffect : TSDL_HapticStopEffect_fun = Nil;
+{$else}
+
 function SDL_HapticStopEffect(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticStopEffect' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Destroy a haptic effect on the device.
@@ -1139,8 +1267,16 @@ function SDL_HapticStopEffect(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
  *
  * \sa SDL_HapticNewEffect
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticDestroyEffect_proc = procedure(haptic: PSDL_Haptic; effect: cint); cdecl;
+Var
+  SDL_HapticDestroyEffect : TSDL_HapticDestroyEffect_proc = Nil;
+{$else}
+
 procedure SDL_HapticDestroyEffect(haptic: PSDL_Haptic; effect: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticDestroyEffect' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Get the status of the current effect on the specified haptic device.
@@ -1157,8 +1293,16 @@ procedure SDL_HapticDestroyEffect(haptic: PSDL_Haptic; effect: cint); cdecl;
  * \sa SDL_HapticRunEffect
  * \sa SDL_HapticStopEffect
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticGetEffectStatus_fun = function(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
+Var
+  SDL_HapticGetEffectStatus : TSDL_HapticGetEffectStatus_fun = Nil;
+{$else}
+
 function SDL_HapticGetEffectStatus(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticGetEffectStatus' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Set the global gain of the specified haptic device.
@@ -1179,8 +1323,16 @@ function SDL_HapticGetEffectStatus(haptic: PSDL_Haptic; effect: cint): cint; cde
  *
  * \sa SDL_HapticQuery
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticSetGain_fun = function(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
+Var
+  SDL_HapticSetGain : TSDL_HapticSetGain_fun = Nil;
+{$else}
+
 function SDL_HapticSetGain(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticSetGain' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Set the global autocenter of the device.
@@ -1199,8 +1351,16 @@ function SDL_HapticSetGain(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
  *
  * \sa SDL_HapticQuery
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticSetAutocenter_fun = function(haptic: PSDL_Haptic; autocenter: cint): cint; cdecl;
+Var
+  SDL_HapticSetAutocenter : TSDL_HapticSetAutocenter_fun = Nil;
+{$else}
+
 function SDL_HapticSetAutocenter(haptic: PSDL_Haptic; autocenter: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticSetAutocenter' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Pause a haptic device.
@@ -1219,8 +1379,16 @@ function SDL_HapticSetAutocenter(haptic: PSDL_Haptic; autocenter: cint): cint; c
  *
  * \sa SDL_HapticUnpause
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticPause_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticPause : TSDL_HapticPause_fun = Nil;
+{$else}
+
 function SDL_HapticPause(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticPause' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Unpause a haptic device.
@@ -1235,8 +1403,16 @@ function SDL_HapticPause(haptic: PSDL_Haptic): cint; cdecl;
  *
  * \sa SDL_HapticPause
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticUnpause_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticUnpause : TSDL_HapticUnpause_fun = Nil;
+{$else}
+
 function SDL_HapticUnpause(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticUnPause' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Stop all the currently playing effects on a haptic device.
@@ -1247,8 +1423,16 @@ function SDL_HapticUnpause(haptic: PSDL_Haptic): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticStopAll_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticStopAll : TSDL_HapticStopAll_fun = Nil;
+{$else}
+
 function SDL_HapticStopAll(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticStopAll' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Check whether rumble is supported on a haptic device.
@@ -1264,8 +1448,16 @@ function SDL_HapticStopAll(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticRumblePlay
  * \sa SDL_HapticRumbleStop
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticRumbleSupported_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticRumbleSupported : TSDL_HapticRumbleSupported_fun = Nil;
+{$else}
+
 function SDL_HapticRumbleSupported(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumbleSupported' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Initialize a haptic device for simple rumble playback.
@@ -1281,8 +1473,16 @@ function SDL_HapticRumbleSupported(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticRumbleStop
  * \sa SDL_HapticRumbleSupported
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticRumbleInit_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticRumbleInit : TSDL_HapticRumbleInit_fun = Nil;
+{$else}
+
 function SDL_HapticRumbleInit(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumbleInit' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Run a simple rumble effect on a haptic device.
@@ -1299,8 +1499,16 @@ function SDL_HapticRumbleInit(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticRumbleStop
  * \sa SDL_HapticRumbleSupported
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticRumblePlay_fun = function(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): cint; cdecl;
+Var
+  SDL_HapticRumblePlay : TSDL_HapticRumblePlay_fun = Nil;
+{$else}
+
 function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumblePlay' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Stop the simple rumble on a haptic device.
@@ -1315,6 +1523,14 @@ function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: cfloat; length: cui
  * \sa SDL_HapticRumblePlay
  * \sa SDL_HapticRumbleSupported
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_HapticRumbleStop_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+Var
+  SDL_HapticRumbleStop : TSDL_HapticRumbleStop_fun = Nil;
+{$else}
+
 function SDL_HapticRumbleStop(haptic: PSDL_Haptic): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumbleStop' {$ENDIF} {$ENDIF};
+{$endif}
 

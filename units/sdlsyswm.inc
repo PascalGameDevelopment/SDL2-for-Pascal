@@ -357,5 +357,13 @@ type
  *
  * \since This function is available since SDL 2.0.0.
  *)
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetWindowWMInfo_fun = function(window: PSDL_Window; info: PSDL_SysWMinfo): TSDL_bool; cdecl;
+Var
+  SDL_GetWindowWMInfo : TSDL_GetWindowWMInfo_fun = Nil;
+{$else}
+
 function SDL_GetWindowWMInfo(window: PSDL_Window; info: PSDL_SysWMinfo): TSDL_bool; cdecl;
    external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowWMInfo' {$ENDIF} {$ENDIF};
+{$endif}

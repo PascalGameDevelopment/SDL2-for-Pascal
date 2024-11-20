@@ -91,25 +91,47 @@ type
   TpfnSDL_CurrentEndThread = procedure(code: cuint); cdecl;
 
 
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateThread_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  data: Pointer;
+  pfnBeginThread: TpfnSDL_CurrentBeginThread;
+  pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl;
+Var
+  SDL_CreateThread : TSDL_CreateThread_fun = Nil;
+{$else}
+
 function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer;
   pfnBeginThread: TpfnSDL_CurrentBeginThread;
   pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload;
   external SDL_LibName;
+{$endif}
+
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateThreadWithStackSize_fun = function(fn: TSDL_ThreadFunction;
+  name: PAnsiChar; const stacksize: csize_t; data: Pointer;
+  pfnBeginThread: TpfnSDL_CurrentBeginThread;
+  pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl;
+Var
+  SDL_CreateThreadWithStackSize : TSDL_CreateThreadWithStackSize_fun = Nil;
+{$else}
 
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
   name: PAnsiChar; const stacksize: csize_t; data: Pointer;
   pfnBeginThread: TpfnSDL_CurrentBeginThread;
   pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl; overload;
   external SDL_LibName;
+{$endif}
 
 { SDL2-For-Pascal:  #note : In the C header are two versions
     of these macro functions. One for SDL's dynamic API and one without.
     We can go with this for the moment. Improvement surely possible. }
-function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
+function SDL_CreateThread2(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer): PSDL_Thread; overload;
 
-function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
+function SDL_CreateThreadWithStackSize2(fn: TSDL_ThreadFunction; name: PAnsiChar;
   const stacksize: csize_t; data: Pointer): PSDL_Thread; overload;
 
 
@@ -145,9 +167,18 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
    *    it (truncate, etc), but the original string contents will be available
    *    from SDL_GetThreadName().
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateThread_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  data: Pointer): PSDL_Thread; cdecl;
+Var
+  SDL_CreateThread : TSDL_CreateThread_fun = Nil;
+{$else}
+
 function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer): PSDL_Thread; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThread' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Create a new thread with a specific stack size.
@@ -192,9 +223,18 @@ function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
  *
  * \sa SDL_WaitThread
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_CreateThreadWithStackSize_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  stacksize: csize_t; data: Pointer): PSDL_Thread; cdecl;
+Var
+  SDL_CreateThreadWithStackSize : TSDL_CreateThreadWithStackSize_fun = Nil;
+{$else}
+
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
   stacksize: csize_t; data: Pointer): PSDL_Thread; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateThreadWithStackSize' {$ENDIF} {$ENDIF};
+{$endif}
 
 
 {$ENDIF}
@@ -213,8 +253,16 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
  *
  * \sa SDL_CreateThread
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetThreadName_fun = function(thread: PSDL_Thread): PAnsiChar; cdecl;
+Var
+  SDL_GetThreadName : TSDL_GetThreadName_fun = Nil;
+{$else}
+
 function SDL_GetThreadName(thread: PSDL_Thread): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetThreadName' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Get the thread identifier for the current thread.
@@ -250,8 +298,16 @@ function SDL_ThreadID: TSDL_ThreadID; cdecl;
  *
  * \sa SDL_ThreadID
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetThreadID_fun = function(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
+Var
+  SDL_GetThreadID : TSDL_GetThreadID_fun = Nil;
+{$else}
+
 function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetThreadID' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Set the priority for the current thread.
@@ -266,8 +322,16 @@ function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_SetThreadPriority_fun = function(priority: TSDL_ThreadPriority): cint; cdecl;
+Var
+  SDL_SetThreadPriority : TSDL_SetThreadPriority_fun = Nil;
+{$else}
+
 function SDL_SetThreadPriority(priority: TSDL_ThreadPriority): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetThreadPriority' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Wait for a thread to finish.
@@ -302,8 +366,16 @@ function SDL_SetThreadPriority(priority: TSDL_ThreadPriority): cint; cdecl;
  * \sa SDL_CreateThread
  * \sa SDL_DetachThread
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_WaitThread_proc = procedure(thread: PSDL_Thread; status: pcint); cdecl;
+Var
+  SDL_WaitThread : TSDL_WaitThread_proc = Nil;
+{$else}
+
 procedure SDL_WaitThread(thread: PSDL_Thread; status: pcint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitThread' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Let a thread clean up on exit without intervention.
@@ -339,8 +411,16 @@ procedure SDL_WaitThread(thread: PSDL_Thread; status: pcint); cdecl;
  * \sa SDL_CreateThread
  * \sa SDL_WaitThread
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_DetachThread_proc = procedure(thread:PSDL_Thread); cdecl;
+Var
+  SDL_DetachThread : TSDL_DetachThread_proc = Nil;
+{$else}
+
 procedure SDL_DetachThread(thread:PSDL_Thread); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DetachThread' {$ENDIF}{$ENDIF};
+{$endif}
 
   {**
  * Create a piece of thread-local storage.
@@ -370,8 +450,16 @@ function SDL_TLSCreate: TSDL_TLSID; cdecl;
  * \sa SDL_TLSCreate
  * \sa SDL_TLSSet
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_TLSGet_fun = function(id: TSDL_TLSID): Pointer; cdecl;
+Var
+  SDL_TLSGet : TSDL_TLSGet_fun = Nil;
+{$else}
+
 function SDL_TLSGet(id: TSDL_TLSID): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSGet' {$ENDIF} {$ENDIF};
+{$endif}
 
 type
   { SDL2-For-Pascal: This function pointer is introduced to specifiy the
@@ -405,8 +493,16 @@ type
  * \sa SDL_TLSCreate
  * \sa SDL_TLSGet
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_TLSSet_fun = function(id: TSDL_TLSID; const value: Pointer; destructor_: TTLSDestructor): cint; cdecl;
+Var
+  SDL_TLSSet : TSDL_TLSSet_fun = Nil;
+{$else}
+
 function SDL_TLSSet(id: TSDL_TLSID; const value: Pointer; destructor_: TTLSDestructor): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSSet' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Cleanup all TLS data for this thread.

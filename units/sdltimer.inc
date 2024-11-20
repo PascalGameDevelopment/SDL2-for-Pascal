@@ -47,8 +47,16 @@ function SDL_GetPerformanceFrequency: cuint64; cdecl;
 {**
  *  Wait a specified number of milliseconds before returning.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_Delay_proc = procedure(ms: cuint32); cdecl;
+Var
+  SDL_Delay : TSDL_Delay_proc = Nil;
+{$else}
+
 procedure SDL_Delay(ms: cuint32); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Delay' {$ENDIF} {$ENDIF};
+{$endif}
 
 type
   {**
@@ -75,8 +83,16 @@ type
  *
  *  A timer ID, or NULL when an error occurs.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_AddTimer_fun = function(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID; cdecl;
+Var
+  SDL_AddTimer : TSDL_AddTimer_fun = Nil;
+{$else}
+
 function SDL_AddTimer(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddTimer' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  Remove a timer knowing its ID.
@@ -85,5 +101,13 @@ function SDL_AddTimer(interval: cuint32; callback: TSDL_TimerCallback; param: Po
  *
  *  It is not safe to remove a timer multiple times.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RemoveTimer_fun = function(id: TSDL_TimerID): Boolean; cdecl;
+Var
+  SDL_RemoveTimer : TSDL_RemoveTimer_fun = Nil;
+{$else}
+
 function SDL_RemoveTimer(id: TSDL_TimerID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RemoveTimer' {$ENDIF} {$ENDIF};
+{$endif}

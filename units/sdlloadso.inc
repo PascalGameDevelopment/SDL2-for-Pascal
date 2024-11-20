@@ -31,8 +31,16 @@
  * \sa SDL_LoadFunction
  * \sa SDL_UnloadObject
   }
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LoadObject_fun = function(sofile: PAnsiChar): Pointer; cdecl;
+Var
+  SDL_LoadObject : TSDL_LoadObject_fun = Nil;
+{$else}
+
 function SDL_LoadObject(sofile: PAnsiChar): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadObject' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Look up the address of the named function in a shared object.
@@ -72,5 +80,13 @@ function SDL_LoadFunction(handle: Pointer; name: PAnsiChar): Pointer; cdecl;
  * \sa SDL_LoadFunction
  * \sa SDL_LoadObject
   }
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_UnloadObject_proc = procedure(handle: Pointer); cdecl;
+Var
+  SDL_UnloadObject : TSDL_UnloadObject_proc = Nil;
+{$else}
+
 procedure SDL_UnloadObject(handle: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnloadObject' {$ENDIF} {$ENDIF};
+{$endif}

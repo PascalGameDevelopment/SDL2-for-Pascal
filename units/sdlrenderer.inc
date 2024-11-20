@@ -381,8 +381,16 @@ function SDL_UpdateTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: Point
    *
    *   SDL_UnlockTexture()
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LockTexture_fun = function(texture: PSDL_Texture; const rect: PSDL_Rect; pixels: PPointer; pitch: pcint): cint; cdecl;
+Var
+  SDL_LockTexture : TSDL_LockTexture_fun = Nil;
+{$else}
+
 function SDL_LockTexture(texture: PSDL_Texture; const rect: PSDL_Rect; pixels: PPointer; pitch: pcint): cint; cdecl;
      external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockTexture' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Lock a portion of the texture for write-only pixel access.
@@ -399,8 +407,16 @@ function SDL_LockTexture(texture: PSDL_Texture; const rect: PSDL_Rect; pixels: P
  *
  *  \sa SDL_UnlockTexture()
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LockTextureToSurface_fun = function(texture: PSDL_Texture; const rect: PSDL_Rect; surface: PPSDL_Surface): cint; cdecl;
+Var
+  SDL_LockTextureToSurface : TSDL_LockTextureToSurface_fun = Nil;
+{$else}
+
 function SDL_LockTextureToSurface(texture: PSDL_Texture; const rect: PSDL_Rect; surface: PPSDL_Surface): cint; cdecl;
      external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockTextureToSurface' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Unlock a texture, uploading the changes to video memory, if needed.
@@ -553,8 +569,16 @@ procedure SDL_RenderGetClipRect(renderer: PSDL_Renderer; rect: PSDL_Rect) cdecl;
    *
    *  \sa SDL_RenderGetClipRect()
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderIsClipEnabled_fun = function(renderer: PSDL_Renderer): TSDL_Bool; cdecl;
+Var
+  SDL_RenderIsClipEnabled : TSDL_RenderIsClipEnabled_fun = Nil;
+{$else}
+
 function SDL_RenderIsClipEnabled(renderer: PSDL_Renderer): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderIsClipEnabled' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Set the drawing scale for rendering on the current target.
@@ -687,8 +711,16 @@ function SDL_RenderDrawPoint(renderer: PSDL_Renderer; x: cint32; y: cint32): cin
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderDrawPointF_fun = function(renderer: PSDL_Renderer; x, y: single): cint32 cdecl;
+Var
+  SDL_RenderDrawPointF : TSDL_RenderDrawPointF_fun = Nil;
+{$else}
+
 function SDL_RenderDrawPointF(renderer: PSDL_Renderer; x, y: single): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawPointF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Draw multiple points on the current rendering target.
@@ -710,8 +742,16 @@ function SDL_RenderDrawPoints(renderer: PSDL_Renderer; points: PSDL_Point; count
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderDrawPointsF_fun = function(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
+Var
+  SDL_RenderDrawPointsF : TSDL_RenderDrawPointsF_fun = Nil;
+{$else}
+
 function SDL_RenderDrawPointsF(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawPointsF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Draw a line on the current rendering target.
@@ -737,8 +777,16 @@ function SDL_RenderDrawLine(renderer: PSDL_Renderer; x1: cint32; y1: cint32; x2:
    *
    *  0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderDrawLineF_fun = function(renderer: PSDL_Renderer; x1, y1, x2, y2: single): cint32 cdecl;
+Var
+  SDL_RenderDrawLineF : TSDL_RenderDrawLineF_fun = Nil;
+{$else}
+
 function SDL_RenderDrawLineF(renderer: PSDL_Renderer; x1, y1, x2, y2: single): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawLineF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  \brief Draw a series of connected lines on the current rendering target.
@@ -760,8 +808,16 @@ function SDL_RenderDrawLines(renderer: PSDL_Renderer; points: PSDL_Point; count:
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderDrawLinesF_fun = function(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
+Var
+  SDL_RenderDrawLinesF : TSDL_RenderDrawLinesF_fun = Nil;
+{$else}
+
 function SDL_RenderDrawLinesF(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawLinesF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Draw a rectangle on the current rendering target.
@@ -781,8 +837,16 @@ function SDL_RenderDrawRect(renderer: PSDL_Renderer; rect: PSDL_Rect): cint32 cd
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderDrawRectF_fun = function(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
+Var
+  SDL_RenderDrawRectF : TSDL_RenderDrawRectF_fun = Nil;
+{$else}
+
 function SDL_RenderDrawRectF(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawRectF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Draw some number of rectangles on the current rendering target.
@@ -804,8 +868,16 @@ function SDL_RenderDrawRects(renderer: PSDL_Renderer; rects: PSDL_Rect; count: c
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderDrawRectsF_fun = function(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
+Var
+  SDL_RenderDrawRectsF : TSDL_RenderDrawRectsF_fun = Nil;
+{$else}
+
 function SDL_RenderDrawRectsF(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDrawRectsF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Fill a rectangle on the current rendering target with the drawing color.
@@ -826,8 +898,16 @@ function SDL_RenderFillRect(renderer: PSDL_Renderer; rect: PSDL_Rect): cint32 cd
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderFillRectF_fun = function(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
+Var
+  SDL_RenderFillRectF : TSDL_RenderFillRectF_fun = Nil;
+{$else}
+
 function SDL_RenderFillRectF(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderFillRectF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Fill some number of rectangles on the current rendering target with the drawing color.
@@ -849,8 +929,16 @@ function SDL_RenderFillRects(renderer: PSDL_Renderer; rects: PSDL_Rect; count: c
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderFillRectsF_fun = function(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
+Var
+  SDL_RenderFillRectsF : TSDL_RenderFillRectsF_fun = Nil;
+{$else}
+
 function SDL_RenderFillRectsF(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderFillRectsF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Copy a portion of the texture to the current rendering target.
@@ -876,8 +964,16 @@ function SDL_RenderCopy(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect:
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderCopyF_fun = function(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_Rect; dstrect: PSDL_FRect): cint32 cdecl;
+Var
+  SDL_RenderCopyF : TSDL_RenderCopyF_fun = Nil;
+{$else}
+
 function SDL_RenderCopyF(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_Rect; dstrect: PSDL_FRect): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCopyF' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Copy a portion of the source texture to the current rendering target, rotating it by angle around the given center
@@ -909,8 +1005,16 @@ function SDL_RenderCopyEx(renderer: PSDL_Renderer; texture: PSDL_Texture; const 
    *
    *    0 on success, or -1 on error
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderCopyExF_fun = function(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: cdouble; center: PSDL_FPoint; flip: TSDL_RenderFlip): cint32 cdecl;
+Var
+  SDL_RenderCopyExF : TSDL_RenderCopyExF_fun = Nil;
+{$else}
+
 function SDL_RenderCopyExF(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: cdouble; center: PSDL_FPoint; flip: TSDL_RenderFlip): cint32 cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCopyExF' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Render a list of triangles, optionally using a texture and indices into the
@@ -1033,8 +1137,16 @@ function SDL_GL_UnbindTexture(texture: PSDL_Texture): cint32 cdecl; external SDL
  * but it can be safely cast to a pointer to `CAMetalLayer`.
  *
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderGetMetalLayer_fun = function(renderer: PSDL_Renderer): Pointer; cdecl;
+Var
+  SDL_RenderGetMetalLayer : TSDL_RenderGetMetalLayer_fun = Nil;
+{$else}
+
 function SDL_RenderGetMetalLayer(renderer: PSDL_Renderer): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetMetalLayer' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the Metal command encoder for the current frame
@@ -1047,8 +1159,16 @@ function SDL_RenderGetMetalLayer(renderer: PSDL_Renderer): Pointer; cdecl;
  * hidden/minimized/offscreen. This doesn't apply to command encoders for
  * render targets, just the window's backbacker. Check your return values!
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_RenderGetMetalCommandEncoder_fun = function(renderer: PSDL_Renderer): Pointer; cdecl;
+Var
+  SDL_RenderGetMetalCommandEncoder : TSDL_RenderGetMetalCommandEncoder_fun = Nil;
+{$else}
+
 function SDL_RenderGetMetalCommandEncoder(renderer: PSDL_Renderer): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGetMetalCommandEncoder' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Toggle VSync of the given renderer.
@@ -1074,8 +1194,17 @@ function SDL_RenderSetVSync(renderer: PSDL_Renderer; vsync: cint): cint; cdecl;
    *  a contiguous block of Y and U/V planes in the proper order, but
    *  this function is available if your pixel data is not contiguous.
    *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_UpdateYUVTexture_fun = function(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: pcuint8; Ypitch: cint32; Uplane: pcuint8; UPitch: cint32; Vplane: pcuint8; VPitch: cint32):cint32;
+   cdecl;
+Var
+  SDL_UpdateYUVTexture : TSDL_UpdateYUVTexture_fun = Nil;
+{$else}
+
 function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: pcuint8; Ypitch: cint32; Uplane: pcuint8; UPitch: cint32; Vplane: pcuint8; VPitch: cint32):cint32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateYUVTexture' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Update a rectangle within a planar NV12 or NV21 texture with new pixels.

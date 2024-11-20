@@ -11,8 +11,16 @@ const
 {**
  * This function returns the number of CPU cores available.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_GetCPUCount_fun = function(): cint; cdecl;
+Var
+  SDL_GetCPUCount : TSDL_GetCPUCount_fun = Nil;
+{$else}
+
 function SDL_GetCPUCount(): cint; cdecl;
 	 external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCPUCount' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * This function returns the L1 cache line size of the CPU.

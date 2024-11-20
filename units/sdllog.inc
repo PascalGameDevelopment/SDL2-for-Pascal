@@ -68,82 +68,186 @@ const
 {**
  *  \brief Set the priority of all log categories
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogSetAllPriority_proc = procedure(priority: TSDL_LogPriority); cdecl;
+Var
+  SDL_LogSetAllPriority : TSDL_LogSetAllPriority_proc = Nil;
+{$else}
+
 procedure SDL_LogSetAllPriority(priority: TSDL_LogPriority); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogSetAllPriority' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Set the priority of a particular log category
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogSetPriority_proc = procedure(category: TSDL_LogCategory; priority: TSDL_LogPriority); cdecl;
+Var
+  SDL_LogSetPriority : TSDL_LogSetPriority_proc = Nil;
+{$else}
+
 procedure SDL_LogSetPriority(category: TSDL_LogCategory; priority: TSDL_LogPriority); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogSetPriority' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Get the priority of a particular log category
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogGetPriority_fun = function(category: TSDL_LogCategory): TSDL_LogPriority; cdecl;
+Var
+  SDL_LogGetPriority : TSDL_LogGetPriority_fun = Nil;
+{$else}
+
 function SDL_LogGetPriority(category: TSDL_LogCategory): TSDL_LogPriority; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogGetPriority' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Reset all priorities to default.
  *
  *  \note This is called in SDL_Quit().
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogResetPriorities_proc = procedure(); cdecl;
+Var
+  SDL_LogResetPriorities : TSDL_LogResetPriorities_proc = Nil;
+{$else}
+
 procedure SDL_LogResetPriorities(); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogResetPriorities' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with SDL_LOG_CATEGORY_APPLICATION and SDL_LOG_PRIORITY_INFO
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_Log_proc = procedure(const fmt: PAnsiChar; pars: array of const); cdecl;
+Var
+  SDL_Log : TSDL_Log_proc = Nil;
+{$else}
+
 procedure SDL_Log(const fmt: PAnsiChar; pars: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Log' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_VERBOSE
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogVerbose_proc = procedure(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
+Var
+  SDL_LogVerbose : TSDL_LogVerbose_proc = Nil;
+{$else}
+
 procedure SDL_LogVerbose(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogVerbose' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_DEBUG
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogDebug_proc = procedure(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
+Var
+  SDL_LogDebug : TSDL_LogDebug_proc = Nil;
+{$else}
+
 procedure SDL_LogDebug(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogDebug' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_INFO
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogInfo_proc = procedure(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
+Var
+  SDL_LogInfo : TSDL_LogInfo_proc = Nil;
+{$else}
+
 procedure SDL_LogInfo(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogInfo' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_WARN
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogWarn_proc = procedure(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
+Var
+  SDL_LogWarn : TSDL_LogWarn_proc = Nil;
+{$else}
+
 procedure SDL_LogWarn(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogWarn' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_ERROR
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogError_proc = procedure(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
+Var
+  SDL_LogError : TSDL_LogError_proc = Nil;
+{$else}
+
 procedure SDL_LogError(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogError' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with SDL_LOG_PRIORITY_CRITICAL
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogCritical_proc = procedure(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
+Var
+  SDL_LogCritical : TSDL_LogCritical_proc = Nil;
+{$else}
+
 procedure SDL_LogCritical(category: TSDL_LogCategory; const fmt: PAnsiChar; pars: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogCritical' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with the specified category and priority.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogMessage_proc = procedure(category: TSDL_LogCategory; priority: TSDL_LogPriority; const fmt: PAnsiChar; pars: array of const); cdecl;
+Var
+  SDL_LogMessage : TSDL_LogMessage_proc = Nil;
+{$else}
+
 procedure SDL_LogMessage(category: TSDL_LogCategory; priority: TSDL_LogPriority; const fmt: PAnsiChar; pars: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogMessage' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Log a message with the specified category and priority.
  *}
+{$ifdef SDL_DYNAMIC_LINKING}
+Type
+  TSDL_LogMessageV_proc = procedure(category: TSDL_LogCategory; priority: TSDL_LogPriority; const fmt: PAnsiChar; ap: array of const); cdecl;
+Var
+  SDL_LogMessageV : TSDL_LogMessageV_proc = Nil;
+{$else}
+
 procedure SDL_LogMessageV(category: TSDL_LogCategory; priority: TSDL_LogPriority; const fmt: PAnsiChar; ap: array of const); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogMessageV' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief The prototype for the log output function
