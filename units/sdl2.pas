@@ -69,7 +69,7 @@ unit sdl2;
  * ---------- Content of file ----------
 
  {*
-  * set this define if you want to use dynamic linking instead of static linking
+  * set this define if you want to use runtime loading instead of static linking
   * ! Attention !
   * Not all functions are "ported" yet, so use is on own risk
   * port missing functions.
@@ -79,7 +79,7 @@ unit sdl2;
  * ---------- End content of file ----------
  *
  * ! Attention !
- * If you use the dynamic link feature, don't forget to call the SDL_LoadLib
+ * If you use the runtime loading feature, don't forget to call the SDL_LoadLib
  * function.
  *)
 
