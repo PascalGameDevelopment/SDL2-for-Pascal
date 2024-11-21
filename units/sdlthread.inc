@@ -91,7 +91,7 @@ type
   TpfnSDL_CurrentEndThread = procedure(code: cuint); cdecl;
 
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateThread_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer;
@@ -108,7 +108,7 @@ function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
   external SDL_LibName;
 {$endif}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateThreadWithStackSize_fun = function(fn: TSDL_ThreadFunction;
   name: PAnsiChar; const stacksize: csize_t; data: Pointer;
@@ -167,7 +167,7 @@ function SDL_CreateThreadWithStackSize2(fn: TSDL_ThreadFunction; name: PAnsiChar
    *    it (truncate, etc), but the original string contents will be available
    *    from SDL_GetThreadName().
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateThread_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer): PSDL_Thread; cdecl;
@@ -223,7 +223,7 @@ function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
  *
  * \sa SDL_WaitThread
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateThreadWithStackSize_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
   stacksize: csize_t; data: Pointer): PSDL_Thread; cdecl;
@@ -253,7 +253,7 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
  *
  * \sa SDL_CreateThread
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetThreadName_fun = function(thread: PSDL_Thread): PAnsiChar; cdecl;
 Var
@@ -298,7 +298,7 @@ function SDL_ThreadID: TSDL_ThreadID; cdecl;
  *
  * \sa SDL_ThreadID
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetThreadID_fun = function(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
 Var
@@ -322,7 +322,7 @@ function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetThreadPriority_fun = function(priority: TSDL_ThreadPriority): cint; cdecl;
 Var
@@ -366,7 +366,7 @@ function SDL_SetThreadPriority(priority: TSDL_ThreadPriority): cint; cdecl;
  * \sa SDL_CreateThread
  * \sa SDL_DetachThread
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_WaitThread_proc = procedure(thread: PSDL_Thread; status: pcint); cdecl;
 Var
@@ -411,7 +411,7 @@ procedure SDL_WaitThread(thread: PSDL_Thread; status: pcint); cdecl;
  * \sa SDL_CreateThread
  * \sa SDL_WaitThread
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_DetachThread_proc = procedure(thread:PSDL_Thread); cdecl;
 Var
@@ -450,7 +450,7 @@ function SDL_TLSCreate: TSDL_TLSID; cdecl;
  * \sa SDL_TLSCreate
  * \sa SDL_TLSSet
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_TLSGet_fun = function(id: TSDL_TLSID): Pointer; cdecl;
 Var
@@ -493,7 +493,7 @@ type
  * \sa SDL_TLSCreate
  * \sa SDL_TLSGet
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_TLSSet_fun = function(id: TSDL_TLSID; const value: Pointer; destructor_: TTLSDestructor): cint; cdecl;
 Var

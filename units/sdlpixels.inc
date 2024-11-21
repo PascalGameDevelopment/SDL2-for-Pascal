@@ -536,7 +536,7 @@ type
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetPixelFormatName_fun = function(format: cuint32): PAnsiChar; cdecl;
 Var
@@ -563,7 +563,7 @@ function SDL_GetPixelFormatName(format: cuint32): PAnsiChar; cdecl;
  *
  * \sa SDL_MasksToPixelFormatEnum
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_PixelFormatEnumToMasks_fun = function(format: cuint32; bpp: pcint;
   Rmask: pcuint32; Gmask: pcuint32; Bmask: pcuint32; Amask: pcuint32): TSDL_Bool; cdecl;
@@ -593,7 +593,7 @@ function SDL_PixelFormatEnumToMasks(format: cuint32; bpp: pcint;
  *
  * \sa SDL_PixelFormatEnumToMasks
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_MasksToPixelFormatEnum_fun = function(bpp: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): cuint32; cdecl;
 Var
@@ -619,7 +619,7 @@ function SDL_MasksToPixelFormatEnum(bpp: cint; Rmask: cuint32; Gmask: cuint32; B
  *
  * \sa SDL_FreeFormat
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AllocFormat_fun = function(pixel_format: cuint32): PSDL_PixelFormat; cdecl;
 Var
@@ -639,7 +639,7 @@ function SDL_AllocFormat(pixel_format: cuint32): PSDL_PixelFormat; cdecl;
  *
  * \sa SDL_AllocFormat
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_FreeFormat_proc = procedure(format: PSDL_PixelFormat); cdecl;
 Var
@@ -664,7 +664,7 @@ procedure SDL_FreeFormat(format: PSDL_PixelFormat); cdecl;
  *
  * \sa SDL_FreePalette
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AllocPalette_fun = function(ncolors: cint): PSDL_Palette; cdecl;
 Var
@@ -688,7 +688,7 @@ function SDL_AllocPalette(ncolors: cint): PSDL_Palette; cdecl;
  * \sa SDL_AllocPalette
  * \sa SDL_FreePalette
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetPixelFormatPalette_fun = function(format: PSDL_PixelFormat; palette: PSDL_Palette): cint; cdecl;
 Var
@@ -714,7 +714,7 @@ function SDL_SetPixelFormatPalette(format: PSDL_PixelFormat; palette: PSDL_Palet
  * \sa SDL_AllocPalette
  * \sa SDL_CreateRGBSurface
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetPaletteColors_fun = function(palette: PSDL_Palette; const colors: PSDL_Color; firstcolor: cint; ncolors: cint): cint; cdecl;
 Var
@@ -734,7 +734,7 @@ function SDL_SetPaletteColors(palette: PSDL_Palette; const colors: PSDL_Color; f
  *
  * \sa SDL_AllocPalette
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_FreePalette_proc = procedure(palette: PSDL_Palette); cdecl;
 Var
@@ -775,7 +775,7 @@ procedure SDL_FreePalette(palette: PSDL_Palette); cdecl;
  * \sa SDL_GetRGBA
  * \sa SDL_MapRGBA
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_MapRGB_fun = function(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8): cuint32; cdecl;
 Var
@@ -818,7 +818,7 @@ function SDL_MapRGB(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cui
  * \sa SDL_GetRGBA
  * \sa SDL_MapRGB
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_MapRGBA_fun = function(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cuint32; cdecl;
 Var
@@ -850,7 +850,7 @@ function SDL_MapRGBA(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cu
  * \sa SDL_MapRGB
  * \sa SDL_MapRGBA
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetRGB_proc = procedure(pixel: cuint32; const format: PSDL_PixelFormat; r: pcuint8; g: pcuint8; b: pcuint8); cdecl;
 Var
@@ -886,7 +886,7 @@ procedure SDL_GetRGB(pixel: cuint32; const format: PSDL_PixelFormat; r: pcuint8;
  * \sa SDL_MapRGB
  * \sa SDL_MapRGBA
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetRGBA_proc = procedure(pixel: cuint32; const format: PSDL_PixelFormat; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8); cdecl;
 Var
@@ -907,7 +907,7 @@ procedure SDL_GetRGBA(pixel: cuint32; const format: PSDL_PixelFormat; r: pcuint8
  *
  * \sa SDL_SetWindowGammaRamp
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CalculateGammaRamp_proc = procedure(gamma: cfloat; ramp: pcuint16); cdecl;
 Var

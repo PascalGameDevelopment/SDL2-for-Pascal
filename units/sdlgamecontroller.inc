@@ -107,7 +107,7 @@ function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): cint cdecl; e
    * 
    *  Returns number of mappings added, -1 on error
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerAddMappingsFromRW_fun = function(rw: PSDL_RWops; freerw: cint32):cint32;
    cdecl;
@@ -122,7 +122,7 @@ function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: cint32):cin
 {**
  * Get the number of mappings installed.
   *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerNumMappings_fun = function():cint; cdecl;
 Var
@@ -146,7 +146,7 @@ function SDL_GameControllerMappingForGUID( guid: TSDL_JoystickGUID ): PAnsiChar 
  * Returns the mapping string. Must be freed with SDL_free().
  * Returns NIL if the index is out of range.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerMappingForIndex_fun = function(mapping_index: cint): PAnsiChar; cdecl;
 Var
@@ -193,7 +193,7 @@ function SDL_GameControllerNameForIndex(joystick_index: cint): PAnsiChar cdecl; 
  *
  * \sa SDL_GameControllerPath
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerPathForIndex_fun = function(joystick_index: cint): PAnsiChar; cdecl;
 Var
@@ -208,7 +208,7 @@ function SDL_GameControllerPathForIndex(joystick_index: cint): PAnsiChar; cdecl;
  * Get the type of a game controller.
  * This can be called before any controllers are opened.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerTypeForIndex_fun = function(joystick_index: cint): TSDL_GameControllerType; cdecl;
 Var
@@ -226,7 +226,7 @@ function SDL_GameControllerTypeForIndex(joystick_index: cint): TSDL_GameControll
  * Returns the mapping string. Must be freed with SDL_free().
  * Returns NIL if no mapping is available.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerMappingForDeviceIndex_fun = function(joystick_index: cint): PAnsiChar; cdecl;
 Var
@@ -250,7 +250,7 @@ function SDL_GameControllerOpen(joystick_index: cint): PSDL_GameController cdecl
   {**
    * Return the SDL_GameController associated with an instance id.
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerFromInstanceID_fun = function(joyid: TSDL_JoystickID): PSDL_GameController; cdecl;
 Var
@@ -268,7 +268,7 @@ function SDL_GameControllerFromInstanceID(joyid: TSDL_JoystickID): PSDL_GameCont
  * instance id!
  *
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerFromPlayerIndex_fun = function(player_index: cint): PSDL_GameController; cdecl;
 Var
@@ -299,7 +299,7 @@ function SDL_GameControllerName(gamecontroller: PSDL_GameController): PAnsiChar 
  *
  * \sa SDL_GameControllerPathForIndex
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerPath_fun = function(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
 Var
@@ -316,7 +316,7 @@ function SDL_GameControllerPath(gamecontroller: PSDL_GameController): PAnsiChar;
  * This is the same name as returned by SDL_GameControllerTypeForIndex(), but
  * it takes a controller identifier instead of the (unstable) device index.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetType_fun = function(gamecontroller: PSDL_GameController): TSDL_GameControllerType; cdecl;
 Var
@@ -333,7 +333,7 @@ function SDL_GameControllerGetType(gamecontroller: PSDL_GameController): TSDL_Ga
  *
  * Returns the player index for controller, or -1 if it's not available.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetPlayerIndex_fun = function(gamecontroller: PSDL_GameController): cint; cdecl;
 Var
@@ -347,7 +347,7 @@ function SDL_GameControllerGetPlayerIndex(gamecontroller: PSDL_GameController): 
 {**
  * Set the player index of an opened game controller.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerSetPlayerIndex_proc = procedure(gamecontroller: PSDL_GameController; player_index: cint); cdecl;
 Var
@@ -368,7 +368,7 @@ procedure SDL_GameControllerSetPlayerIndex(gamecontroller: PSDL_GameController; 
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetVendor_fun = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
 Var
@@ -383,7 +383,7 @@ function SDL_GameControllerGetVendor(gamecontroller: PSDL_GameController): cuint
  * Get the USB product ID of an opened controller, if available.
  * If the product ID isn't available, this function returns 0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetProduct_fun = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
 Var
@@ -398,7 +398,7 @@ function SDL_GameControllerGetProduct(gamecontroller: PSDL_GameController): cuin
  * Get the product version of an opened controller, if available.
  * If the product version isn't available, this function returns 0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetProductVersion_fun = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
 Var
@@ -419,7 +419,7 @@ function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController
  *
  * \since This function is available since SDL 2.24.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetFirmwareVersion_fun = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
 Var
@@ -436,7 +436,7 @@ function SDL_GameControllerGetFirmwareVersion(gamecontroller: PSDL_GameControlle
  * Returns a string containing the serial number of the controller,
  * or NIL if it is not available. Do _not_ free the string with SDL_free().
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetSerial_fun = function(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
 Var
@@ -458,7 +458,7 @@ function SDL_GameControllerGetSerial(gamecontroller: PSDL_GameController): PAnsi
  *
  * \since This function is available since SDL 2.30.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetSteamHandle_fun = function(gamecontroller: PSDL_GameController): cuint64; cdecl;
 Var
@@ -538,7 +538,7 @@ function SDL_GameControllerGetBindForAxis(gamecontroller: PSDL_GameController; a
  * This merely reports whether the controller's mapping defined this axis,
  * as that is all the information SDL has about the physical device.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerHasAxis_fun = function(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_Bool; cdecl;
 Var
@@ -611,7 +611,7 @@ function SDL_GameControllerGetBindForButton(gamecontroller: PSDL_GameController;
  * This merely reports whether the controller's mapping defined this button,
  * as that is all the information SDL has about the physical device.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerHasButton_fun = function(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_Bool; cdecl;
 Var
@@ -632,7 +632,7 @@ function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button
 {**
  * Get the number of touchpads on a game controller.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetNumTouchpads_fun = function(gamecontroller: PSDL_GameController): cint; cdecl;
 Var
@@ -646,7 +646,7 @@ function SDL_GameControllerGetNumTouchpads(gamecontroller: PSDL_GameController):
 {**
  * Get the number of supported simultaneous fingers on a touchpad on a game controller.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetNumTouchpadFingers_fun = function(gamecontroller: PSDL_GameController; touchpad: cint): cint; cdecl;
 Var
@@ -660,7 +660,7 @@ function SDL_GameControllerGetNumTouchpadFingers(gamecontroller: PSDL_GameContro
 {**
  * Get the current state of a finger on a touchpad on a game controller.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetTouchpadFinger_fun = function(
     gamecontroller: PSDL_GameController;
@@ -684,7 +684,7 @@ function SDL_GameControllerGetTouchpadFinger(
 {**
  * Return whether a game controller has a particular sensor.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerHasSensor_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
 Var
@@ -698,7 +698,7 @@ function SDL_GameControllerHasSensor(gamecontroller: PSDL_GameController; sensty
 {**
  * Set whether data reporting for a game controller sensor is enabled.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerSetSensorEnabled_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; enabled: TSDL_bool): cint; cdecl;
 Var
@@ -712,7 +712,7 @@ function SDL_GameControllerSetSensorEnabled(gamecontroller: PSDL_GameController;
 {**
  * Query whether sensor data reporting is enabled for a game controller.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerIsSensorEnabled_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
 Var
@@ -729,7 +729,7 @@ function SDL_GameControllerIsSensorEnabled(gamecontroller: PSDL_GameController; 
  *
  * Returns the data rate, or 0.0 if the data rate is not available.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetSensorDataRate_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): cfloat; cdecl;
 Var
@@ -746,7 +746,7 @@ function SDL_GameControllerGetSensorDataRate(gamecontroller: PSDL_GameController
  * The number of values and interpretation of the data is sensor dependent.
  * See sdlsensor.inc for the details for each type of sensor.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetSensorData_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; data: pcfloat; num_values: cint): cint; cdecl;
 Var
@@ -774,7 +774,7 @@ function SDL_GameControllerGetSensorData(gamecontroller: PSDL_GameController; se
  *
  * \since This function is available since SDL 2.26.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetSensorDataWithTimestamp_fun = function(
     gamecontroller: PSDL_GameController;
@@ -800,7 +800,7 @@ function SDL_GameControllerGetSensorDataWithTimestamp(
 {**
  * Query whether a game controller has rumble support.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerHasRumble_fun = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
 Var
@@ -819,7 +819,7 @@ function SDL_GameControllerHasRumble(gamecontroller: PSDL_GameController): TSDL_
  *
  * Returns 0, or -1 if rumble isn't supported on this controller.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerRumble_fun = function(
     gamecontroller: PSDL_GameController;
@@ -842,7 +842,7 @@ function SDL_GameControllerRumble(
 {**
  * Query whether a game controller has rumble support on triggers.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerHasRumbleTriggers_fun = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
 Var
@@ -866,7 +866,7 @@ function SDL_GameControllerHasRumbleTriggers(gamecontroller: PSDL_GameController
  *
  * Returns 0, or -1 if trigger rumble isn't supported on this controller
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerRumbleTriggers_fun = function(
     gamecontroller: PSDL_GameController;
@@ -889,7 +889,7 @@ function SDL_GameControllerRumbleTriggers(
 {**
  * Query whether a game controller has an LED.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerHasLED_fun = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
 Var
@@ -905,7 +905,7 @@ function SDL_GameControllerHasLED(gamecontroller: PSDL_GameController): TSDL_Boo
  *
  * Returns 0, or -1 if this controller does not have a modifiable LED.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerSetLED_fun = function(gamecontroller: PSDL_GameController; red, green, blue: cuint8): cint; cdecl;
 Var
@@ -922,7 +922,7 @@ function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, gree
  * Returns 0, or -1 if this controller or driver does not
  * support effect packets.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerSendEffect_fun = function(gamecontroller: PSDL_GameController; data: Pointer; size: cint): cint; cdecl;
 Var
@@ -945,7 +945,7 @@ procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; ex
  * Returns the sfSymbolsName, or NIL if the name can't be found.
  * Do _not_ pass this string to SDL_free().
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetAppleSFSymbolsNameForAxis_fun = function(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): PAnsiChar; cdecl;
 Var
@@ -963,7 +963,7 @@ function SDL_GameControllerGetAppleSFSymbolsNameForAxis(gamecontroller: PSDL_Gam
  * Returns the sfSymbolsName, or NIL if the name can't be found.
  * Do _not_ pass this string to SDL_free().
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GameControllerGetAppleSFSymbolsNameForButton_fun = function(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): PAnsiChar; cdecl;
 Var

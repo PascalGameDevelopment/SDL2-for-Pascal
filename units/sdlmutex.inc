@@ -52,7 +52,7 @@ function SDL_CreateMutex: PSDL_Mutex; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
 Var
@@ -81,7 +81,7 @@ function SDL_LockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_TryLockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
 Var
@@ -109,7 +109,7 @@ function SDL_TryLockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UnlockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
 Var
@@ -136,7 +136,7 @@ function SDL_UnlockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_DestroyMutex_proc = procedure(mutex: PSDL_Mutex); cdecl;
 Var
@@ -168,7 +168,7 @@ type
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateSemaphore_fun = function(initial_value: cuint32): PSDL_sem; cdecl;
 Var
@@ -189,7 +189,7 @@ function SDL_CreateSemaphore(initial_value: cuint32): PSDL_sem; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_DestroySemaphore_proc = procedure(sem: PSDL_Sem); cdecl;
 Var
@@ -217,7 +217,7 @@ procedure SDL_DestroySemaphore(sem: PSDL_Sem); cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SemWait_fun = function(sem: PSDL_Sem): cint; cdecl;
 Var
@@ -243,7 +243,7 @@ function SDL_SemWait(sem: PSDL_Sem): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SemTryWait_fun = function(sem: PSDL_Sem): cint; cdecl;
 Var
@@ -270,7 +270,7 @@ function SDL_SemTryWait(sem: PSDL_Sem): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SemWaitTimeout_fun = function(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
 Var
@@ -290,7 +290,7 @@ function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SemPost_fun = function(sem: PSDL_Sem): cint; cdecl;
 Var
@@ -309,7 +309,7 @@ function SDL_SemPost(sem: PSDL_Sem): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SemValue_fun = function(sem: PSDL_Sem): cuint32; cdecl;
 Var
@@ -374,7 +374,7 @@ function SDL_CreateCond: PSDL_Cond; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_DestroyCond_proc = procedure(cond: PSDL_Cond); cdecl;
 Var
@@ -394,7 +394,7 @@ procedure SDL_DestroyCond(cond: PSDL_Cond); cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CondSignal_fun = function(cond: PSDL_Cond): cint; cdecl;
 Var
@@ -414,7 +414,7 @@ function SDL_CondSignal(cond: PSDL_Cond): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CondBroadcast_fun = function(cond: PSDL_Cond): cint; cdecl;
 Var
@@ -445,7 +445,7 @@ function SDL_CondBroadcast(cond: PSDL_Cond): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CondWait_fun = function(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
 Var
@@ -477,7 +477,7 @@ function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CondWaitTimeout_fun = function(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint; cdecl;
 Var

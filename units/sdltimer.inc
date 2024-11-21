@@ -47,7 +47,7 @@ function SDL_GetPerformanceFrequency: cuint64; cdecl;
 {**
  *  Wait a specified number of milliseconds before returning.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_Delay_proc = procedure(ms: cuint32); cdecl;
 Var
@@ -83,7 +83,7 @@ type
  *
  *  A timer ID, or NULL when an error occurs.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AddTimer_fun = function(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID; cdecl;
 Var
@@ -101,7 +101,7 @@ function SDL_AddTimer(interval: cuint32; callback: TSDL_TimerCallback; param: Po
  *
  *  It is not safe to remove a timer multiple times.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_RemoveTimer_fun = function(id: TSDL_TimerID): Boolean; cdecl;
 Var

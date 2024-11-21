@@ -2415,7 +2415,7 @@ const
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetHintWithPriority_fun = function(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority): TSDL_Bool; cdecl;
 Var
@@ -2431,7 +2431,7 @@ function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; 
  *
  *  \return SDL_TRUE if the hint was set, SDL_FALSE otherwise
  */}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetHint_fun = function(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; cdecl;
 Var
@@ -2454,7 +2454,7 @@ function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; 
  *
  * \since This function is available since SDL 2.24.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ResetHint_fun = function(const name: PAnsiChar): TSDL_Bool; cdecl;
 Var
@@ -2478,7 +2478,7 @@ function SDL_ResetHint(const name: PAnsiChar): TSDL_Bool; cdecl;
  * \sa SDL_SetHint
  * \sa SDL_ResetHint
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ResetHints_proc = procedure(); cdecl;
 Var
@@ -2494,7 +2494,7 @@ procedure SDL_ResetHints(); cdecl;
  *
  *  \return The string value of a hint variable.
  */}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetHint_fun = function(const name: PAnsiChar): PAnsiChar; cdecl;
 Var
@@ -2510,7 +2510,7 @@ function SDL_GetHint(const name: PAnsiChar): PAnsiChar; cdecl;
  *
  *  \return The boolean value of a hint variable.
  */}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetHintBoolean_fun = function(const name: PAnsiChar; default_value: TSDL_Bool): TSDL_Bool; cdecl;
 Var
@@ -2533,7 +2533,7 @@ type
   PSDL_HintCallback = ^TSDL_HintCallback;
   TSDL_HintCallback = procedure(userdata: Pointer; const name: PAnsiChar; const oldValue: PAnsiChar; const newValue: PAnsiChar); cdecl;
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AddHintCallback_proc = procedure(const name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
 Var
@@ -2551,7 +2551,7 @@ procedure SDL_AddHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback
  *  \param callback The function being called when the hint value changes
  *  \param userdata A pointer being passed to the callback function
  */}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_DelHintCallback_proc = procedure(const name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer); cdecl;
 Var
@@ -2576,7 +2576,7 @@ procedure SDL_DelHintCallback(const name: PAnsiChar; callback: TSDL_HintCallback
  *
  * \sa SDL_ResetHints
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ClearHints_proc = procedure(); cdecl;
 Var

@@ -33,7 +33,7 @@ const
  *
  * \sa SDL_DestroyWindow
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateShapedWindow_fun = function(title: PAnsiChar; x: cuint; y: cuint; w: cuint; h: cuint; flags: cuint32): PSDL_Window; cdecl;
 Var
@@ -55,7 +55,7 @@ function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint; y: cuint; w: cuint; 
  *
  * \sa SDL_CreateShapedWindow
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IsShapedWindow_fun = function(window: PSDL_Window): TSDL_Bool; cdecl;
 Var
@@ -121,7 +121,7 @@ type
  * \sa SDL_WindowShapeMode
  * \sa SDL_GetShapedWindowMode
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetWindowShape_fun = function(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
 Var
@@ -149,7 +149,7 @@ function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode
  * \sa SDL_WindowShapeMode
  * \sa SDL_SetWindowShape
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetShapedWindowMode_fun = function(window: PSDL_Window; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
 Var

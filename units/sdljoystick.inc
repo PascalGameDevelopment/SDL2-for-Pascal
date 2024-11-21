@@ -104,7 +104,7 @@ const
  *
  * \since This function is available since SDL 2.0.7.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LockJoysticks_proc = procedure(); cdecl;
 Var
@@ -127,7 +127,7 @@ procedure SDL_LockJoysticks(); cdecl;
  *
  * \since This function is available since SDL 2.0.7.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UnlockJoysticks_proc = procedure(); cdecl;
 Var
@@ -150,7 +150,7 @@ procedure SDL_UnlockJoysticks(); cdecl;
  * \sa SDL_JoystickPath
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_NumJoysticks_fun = function(): cint; cdecl;
 Var
@@ -176,7 +176,7 @@ function SDL_NumJoysticks(): cint; cdecl;
  * \sa SDL_JoystickName
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickNameForIndex_fun = function(device_index: cint): PAnsiChar; cdecl;
 Var
@@ -202,7 +202,7 @@ function SDL_JoystickNameForIndex(device_index: cint): PAnsiChar; cdecl;
  * \sa SDL_JoystickPath
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickPathForIndex_fun = function(device_index: cint): PAnsiChar; cdecl;
 Var
@@ -219,7 +219,7 @@ function SDL_JoystickPathForIndex(device_index: cint): PAnsiChar; cdecl;
  *
  * \since This function is available since SDL 2.0.9.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetDevicePlayerIndex_fun = function(device_index: cint): cint; cdecl;
 Var
@@ -234,7 +234,7 @@ function SDL_JoystickGetDevicePlayerIndex(device_index: cint): cint; cdecl;
  *  Return the GUID for the joystick at this index
  *  This can be called before any joysticks are opened.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetDeviceGUID_fun = function(device_index: cint): TSDL_JoystickGUID; cdecl;
 Var
@@ -258,7 +258,7 @@ function SDL_JoystickGetDeviceGUID(device_index: cint): TSDL_JoystickGUID; cdecl
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetDeviceVendor_fun = function(device_index: cint): cuint16; cdecl;
 Var
@@ -282,7 +282,7 @@ function SDL_JoystickGetDeviceVendor(device_index: cint): cuint16; cdecl;
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetDeviceProduct_fun = function(device_index: cint): cuint16; cdecl;
 Var
@@ -306,7 +306,7 @@ function SDL_JoystickGetDeviceProduct(device_index: cint): cuint16; cdecl;
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetDeviceProductVersion_fun = function(device_index: cint): cuint16; cdecl;
 Var
@@ -329,7 +329,7 @@ function SDL_JoystickGetDeviceProductVersion(device_index: cint): cuint16; cdecl
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetDeviceType_fun = function(device_index: cint): TSDL_JoystickType; cdecl;
 Var
@@ -353,7 +353,7 @@ function SDL_JoystickGetDeviceType(device_index: cint): TSDL_JoystickType; cdecl
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetDeviceInstanceID_fun = function(device_index: cint): TSDL_JoystickID; cdecl;
 Var
@@ -384,7 +384,7 @@ function SDL_JoystickGetDeviceInstanceID(device_index: cint): TSDL_JoystickID; c
  * \sa SDL_JoystickClose
  * \sa SDL_JoystickInstanceID
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickOpen_fun = function(device_index: cint): PSDL_Joystick; cdecl;
 
@@ -405,7 +405,7 @@ function SDL_JoystickOpen(device_index: cint): PSDL_Joystick; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickFromInstanceID_fun = function(instance_id: TSDL_JoystickID): PSDL_Joystick; cdecl;
 Var
@@ -425,7 +425,7 @@ function SDL_JoystickFromInstanceID(instance_id: TSDL_JoystickID): PSDL_Joystick
  *
  * \since This function is available since SDL 2.0.12.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickFromPlayerIndex_fun = function(player_index: cint): PSDL_Joystick; cdecl;
 Var
@@ -443,7 +443,7 @@ function SDL_JoystickFromPlayerIndex(player_index: cint): PSDL_Joystick; cdecl;
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickAttachVirtual_fun = function(type_: TSDL_JoystickType; naxes: cint; nbuttons: cint; nhats: cint): cint; cdecl;
 Var
@@ -509,7 +509,7 @@ const
  *
  * \since This function is available since SDL 2.24.0.
  */}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickAttachVirtualEx_fun = function(const desc: PSDL_VirtualJoystickDesc): cint; cdecl;
 Var
@@ -529,7 +529,7 @@ function SDL_JoystickAttachVirtualEx(const desc: PSDL_VirtualJoystickDesc): cint
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickDetachVirtual_fun = function(device_index: cint): cint; cdecl;
 Var
@@ -548,7 +548,7 @@ function SDL_JoystickDetachVirtual(device_index: cint): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickIsVirtual_fun = function(device_index: cint): TSDL_Bool; cdecl;
 Var
@@ -579,7 +579,7 @@ function SDL_JoystickIsVirtual(device_index: cint): TSDL_Bool; cdecl;
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickSetVirtualAxis_fun = function(joystick: PSDL_Joystick; axis: cint; value: cint16): cint; cdecl;
 Var
@@ -606,7 +606,7 @@ function SDL_JoystickSetVirtualAxis(joystick: PSDL_Joystick; axis: cint; value: 
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickSetVirtualButton_fun = function(joystick: PSDL_Joystick; button: cint; value: cuint8): cint; cdecl;
 Var
@@ -633,7 +633,7 @@ function SDL_JoystickSetVirtualButton(joystick: PSDL_Joystick; button: cint; val
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickSetVirtualHat_fun = function(joystick: PSDL_Joystick; hat: cint; value: cuint8): cint; cdecl;
 Var
@@ -656,7 +656,7 @@ function SDL_JoystickSetVirtualHat(joystick: PSDL_Joystick; hat: cint; value: cu
  * \sa SDL_JoystickNameForIndex
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickName_fun = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
 Var
@@ -678,7 +678,7 @@ function SDL_JoystickName(joystick: PSDL_Joystick): PAnsiChar; cdecl;
  *
  * \sa SDL_JoystickPathForIndex
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickPath_fun = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
 Var
@@ -700,7 +700,7 @@ function SDL_JoystickPath(joystick: PSDL_Joystick): PAnsiChar; cdecl;
  *
  * \since This function is available since SDL 2.0.9.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetPlayerIndex_fun = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
@@ -720,7 +720,7 @@ function SDL_JoystickGetPlayerIndex(joystick: PSDL_Joystick): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.12.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickSetPlayerIndex_proc = procedure(joystick: PSDL_Joystick; player_index: cint); cdecl;
 Var
@@ -746,7 +746,7 @@ procedure SDL_JoystickSetPlayerIndex(joystick: PSDL_Joystick; player_index: cint
  * \sa SDL_JoystickGetDeviceGUID
  * \sa SDL_JoystickGetGUIDString
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetGUID_fun = function(joystick: PSDL_Joystick): TSDL_JoystickGUID; cdecl;
 Var
@@ -767,7 +767,7 @@ function SDL_JoystickGetGUID(joystick: PSDL_Joystick): TSDL_JoystickGUID; cdecl;
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetVendor_fun = function(joystick: PSDL_Joystick): cuint16; cdecl;
 Var
@@ -788,7 +788,7 @@ function SDL_JoystickGetVendor(joystick: PSDL_Joystick): cuint16; cdecl;
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetProduct_fun = function(joystick: PSDL_Joystick): cuint16; cdecl;
 Var
@@ -809,7 +809,7 @@ function SDL_JoystickGetProduct(joystick: PSDL_Joystick): cuint16; cdecl;
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetProductVersion_fun = function(joystick: PSDL_Joystick): cuint16; cdecl;
 Var
@@ -831,7 +831,7 @@ function SDL_JoystickGetProductVersion(joystick: PSDL_Joystick): cuint16; cdecl;
  *
  * \since This function is available since SDL 2.24.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetFirmwareVersion_fun = function(joystick: PSDL_Joystick): cuint16; cdecl;
 Var
@@ -853,7 +853,7 @@ function SDL_JoystickGetFirmwareVersion(joystick: PSDL_Joystick): cuint16; cdecl
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetSerial_fun = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
 Var
@@ -872,7 +872,7 @@ function SDL_JoystickGetSerial(joystick: PSDL_Joystick): PAnsiChar; cdecl;
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetType_fun = function(joystick: PSDL_Joystick): TSDL_JoystickType; cdecl;
 Var
@@ -898,7 +898,7 @@ function SDL_JoystickGetType(joystick: PSDL_Joystick): TSDL_JoystickType; cdecl;
  * \sa SDL_JoystickGetGUID
  * \sa SDL_JoystickGetGUIDFromString
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetGUIDString_proc = procedure(guid: TSDL_JoystickGUID; pszGUID: PAnsiChar; cbGUID: cint); cdecl;
 Var
@@ -923,7 +923,7 @@ procedure SDL_JoystickGetGUIDString(guid: TSDL_JoystickGUID; pszGUID: PAnsiChar;
  *
  * \sa SDL_JoystickGetGUIDString
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetGUIDFromString_fun = function(const pchGUID: PAnsiChar): TSDL_JoystickGUID; cdecl;
 Var
@@ -951,7 +951,7 @@ function SDL_JoystickGetGUIDFromString(const pchGUID: PAnsiChar): TSDL_JoystickG
  *
  * \sa SDL_JoystickGetDeviceGUID
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetJoystickGUIDInfo_proc = procedure(guid: TSDL_JoystickGUID; vendor: pcuint16; product: pcuint16; version: pcuint16; crc16: pcuint16); cdecl;
 Var
@@ -974,7 +974,7 @@ procedure SDL_GetJoystickGUIDInfo(guid: TSDL_JoystickGUID; vendor: pcuint16; pro
  * \sa SDL_JoystickClose
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetAttached_fun = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
 Var
@@ -996,7 +996,7 @@ function SDL_JoystickGetAttached(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
  *
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickInstanceID_fun = function(joystick: PSDL_Joystick): TSDL_JoystickID; cdecl;
 Var
@@ -1024,7 +1024,7 @@ function SDL_JoystickInstanceID(joystick: PSDL_Joystick): TSDL_JoystickID; cdecl
  * \sa SDL_JoystickGetAxis
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickNumAxes_fun = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
@@ -1051,7 +1051,7 @@ function SDL_JoystickNumAxes(joystick: PSDL_Joystick): cint; cdecl;
  *
  * \sa SDL_JoystickGetBall
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickNumBalls_fun = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
@@ -1074,7 +1074,7 @@ function SDL_JoystickNumBalls(joystick: PSDL_Joystick): cint; cdecl;
  * \sa SDL_JoystickGetHat
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickNumHats_fun = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
@@ -1097,7 +1097,7 @@ function SDL_JoystickNumHats(joystick: PSDL_Joystick): cint; cdecl;
  * \sa SDL_JoystickGetButton
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickNumButtons_fun = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
@@ -1118,7 +1118,7 @@ function SDL_JoystickNumButtons(joystick: PSDL_Joystick): cint; cdecl;
  *
  * \sa SDL_JoystickEventState
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickUpdate_proc = procedure(); cdecl;
 Var
@@ -1152,7 +1152,7 @@ procedure SDL_JoystickUpdate(); cdecl;
  *
  * \sa SDL_GameControllerEventState
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickEventState_fun = function(state: cint): cint; cdecl;
 Var
@@ -1189,7 +1189,7 @@ const
  *
  * \sa SDL_JoystickNumAxes
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetAxis_fun = function(joystick: PSDL_Joystick; axis: cint): cint16; cdecl;
 Var
@@ -1214,7 +1214,7 @@ function SDL_JoystickGetAxis(joystick: PSDL_Joystick; axis: cint): cint16; cdecl
  *
  * \since This function is available since SDL 2.0.6.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetAxisInitialState_fun = function(joystick: PSDL_Joystick; axis: cint; state: pcint16): TSDL_Bool; cdecl;
 Var
@@ -1262,7 +1262,7 @@ const
  *
  * \sa SDL_JoystickNumHats
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetHat_fun = function(joystick: PSDL_Joystick; hat: cint): cuint8; cdecl;
 Var
@@ -1292,7 +1292,7 @@ function SDL_JoystickGetHat(joystick: PSDL_Joystick; hat: cint): cuint8; cdecl;
  *
  * \sa SDL_JoystickNumBalls
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetBall_fun = function(joystick: PSDL_Joystick; ball: cint; dx: pcint; dy: pcint): cint; cdecl;
 Var
@@ -1315,7 +1315,7 @@ function SDL_JoystickGetBall(joystick: PSDL_Joystick; ball: cint; dx: pcint; dy:
  *
  * \sa SDL_JoystickNumButtons
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickGetButton_fun = function(joystick: PSDL_Joystick; button: cint): cuint8; cdecl;
 Var
@@ -1344,7 +1344,7 @@ function SDL_JoystickGetButton(joystick: PSDL_Joystick; button: cint): cuint8; c
  *
  * \sa SDL_JoystickHasRumble
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickRumble_fun = function(joystick: PSDL_Joystick; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): cint; cdecl;
 Var
@@ -1378,7 +1378,7 @@ function SDL_JoystickRumble(joystick: PSDL_Joystick; low_frequency_rumble: cuint
  *
  * \sa SDL_JoystickHasRumbleTriggers
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickRumbleTriggers_fun = function(joystick: PSDL_Joystick; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): cint; cdecl;
 Var
@@ -1400,7 +1400,7 @@ function SDL_JoystickRumbleTriggers(joystick: PSDL_Joystick; left_rumble: cuint1
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickHasLED_fun = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
 Var
@@ -1421,7 +1421,7 @@ function SDL_JoystickHasLED(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
  *
  * \sa SDL_JoystickRumble
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickHasRumble_fun = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
 Var
@@ -1442,7 +1442,7 @@ function SDL_JoystickHasRumble(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
  *
  * \sa SDL_JoystickRumbleTriggers
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickHasRumbleTriggers_fun = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
 Var
@@ -1468,7 +1468,7 @@ function SDL_JoystickHasRumbleTriggers(joystick: PSDL_Joystick): TSDL_Bool; cdec
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickSetLED_fun = function(joystick: PSDL_Joystick; red: cuint8; green: cuint8; blue: cuint8): cint; cdecl;
 Var
@@ -1489,7 +1489,7 @@ function SDL_JoystickSetLED(joystick: PSDL_Joystick; red: cuint8; green: cuint8;
  *
  * \since This function is available since SDL 2.0.16.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickSendEffect_fun = function(joystick: PSDL_Joystick; const data: Pointer; size: cint): cint; cdecl;
 Var
@@ -1509,7 +1509,7 @@ function SDL_JoystickSendEffect(joystick: PSDL_Joystick; const data: Pointer; si
  *
  * \sa SDL_JoystickOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickClose_proc = procedure(joystick: PSDL_Joystick); cdecl;
 Var
@@ -1529,7 +1529,7 @@ procedure SDL_JoystickClose(joystick: PSDL_Joystick); cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickCurrentPowerLevel_fun = function(joystick: PSDL_Joystick): TSDL_JoystickPowerLevel; cdecl;
 Var

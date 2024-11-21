@@ -74,7 +74,7 @@ unit sdl2;
   * Not all functions are "ported" yet, so use is on own risk
   * port missing functions.
   *}
- {.$DEFINE SDL_DYNAMIC_LINKING}
+ {.$DEFINE SDL_RUNTIME_LOADING}
 
  * ---------- End content of file ----------
  *
@@ -193,7 +193,7 @@ const
 {$I sdlsystem.inc}               // 2.24.0
 {$I sdl.inc}                     // 2.0.14
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Function SDL_LoadLib(LibFilename: String): Boolean;
 Procedure SDL_UnLoadLib();
 {$endif}
@@ -212,7 +212,7 @@ uses
 	{$ELSE}
 		AnsiStrings
 	{$ENDIF}
-        {$ifdef SDL_DYNAMIC_LINKING}
+        {$ifdef SDL_RUNTIME_LOADING}
         , dynlibs
         {$endif}
         ;
@@ -515,7 +515,7 @@ begin
 end;
 
 
-{$IFDEF SDL_DYNAMIC_LINKING}
+{$IFDEF SDL_RUNTIME_LOADING}
 
 Finalization
   SDL_UnLoadLib();

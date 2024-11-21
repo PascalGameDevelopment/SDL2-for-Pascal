@@ -41,7 +41,7 @@ const
  *  Unless the SDL_INIT_NOPARACHUTE flag is set, it will install cleanup
  *  signal handlers for some commonly ignored fatal signals (like SIGSEGV).
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_Init_fun = function(flags: TSDL_Init): cint; cdecl;
 Var
@@ -55,7 +55,7 @@ function SDL_Init(flags: TSDL_Init): cint; cdecl;
 {**
  *  This function initializes specific SDL subsystems
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_InitSubSystem_fun = function(flags: TSDL_Init): cint; cdecl;
 Var
@@ -69,7 +69,7 @@ function SDL_InitSubSystem(flags: TSDL_Init): cint; cdecl;
 {**
  *  This function cleans up specific SDL subsystems
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_QuitSubSystem_proc = procedure(flags: TSDL_Init); cdecl;
 Var
@@ -86,7 +86,7 @@ procedure SDL_QuitSubSystem(flags: TSDL_Init); cdecl;
  *  
  *  If flags is 0, it returns a mask of all initialized subsystems.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_WasInit_fun = function(flags: TSDL_Init): cuint32; cdecl;
 Var
@@ -101,7 +101,7 @@ function SDL_WasInit(flags: TSDL_Init): cuint32; cdecl;
  *  This function cleans up all initialized subsystems. You should
  *  call it upon all exit conditions.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_Quit_proc = procedure(); cdecl;
 Var

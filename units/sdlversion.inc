@@ -102,7 +102,7 @@ function SDL_VERSION_ATLEAST(X,Y,Z: cuint8): Boolean;
  *
  *  SDL_VERSION
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetVersion_proc = procedure(ver: PSDL_Version); cdecl;
 Var

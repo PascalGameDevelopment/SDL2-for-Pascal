@@ -1,5 +1,5 @@
 
-{$IFDEF SDL_DYNAMIC_LINKING}
+{$IFDEF SDL_RUNTIME_LOADING}
 
 Var
   LibHandle: TLibHandle = 0;

@@ -13,7 +13,7 @@
  *
  *  \return -1, there is no error handling for this function
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetError_fun = function(const fmt: PAnsiChar; args: array of const): cint; cdecl;
 Var
@@ -50,7 +50,7 @@ function SDL_GetError: PAnsiChar; cdecl;
  *
  *  \return errstr
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetErrorMsg_fun = function(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdecl;
 Var
@@ -90,7 +90,7 @@ type
                     SDL_LASTERROR);
 
 {* SDL_Error() unconditionally returns -1. *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_Error_fun = function(code: TSDL_ErrorCode): cint; cdecl;
 Var

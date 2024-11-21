@@ -40,7 +40,7 @@ const
   {**
    *  Get the number of registered touch devices.
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetNumTouchDevices_fun = function(): cint; cdecl;
 Var
@@ -54,7 +54,7 @@ function SDL_GetNumTouchDevices(): cint; cdecl;
   {**
    *  Get the touch ID with the given index, or 0 if the index is invalid.
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetTouchDevice_fun = function(index: cint): TSDL_TouchID; cdecl;
 Var
@@ -71,7 +71,7 @@ function SDL_GetTouchDevice(index: cint): TSDL_TouchID; cdecl;
  *
  * \since This function is available since SDL 2.0.22.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetTouchName_fun = function(index: cint): PAnsiChar; cdecl;
 Var
@@ -87,7 +87,7 @@ function SDL_GetTouchName(index: cint): PAnsiChar; cdecl;
  *
  * \since This function is available since SDL 2.0.10.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetTouchDeviceType_fun = function(touchID: TSDL_TouchID): TSDL_TouchDeviceType; cdecl;
 Var
@@ -101,7 +101,7 @@ function SDL_GetTouchDeviceType(touchID: TSDL_TouchID): TSDL_TouchDeviceType; cd
   {**
    *  Get the number of active fingers for a given touch device.
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetNumTouchFingers_fun = function(touchID: TSDL_TouchID): cint; cdecl;
 Var
@@ -115,7 +115,7 @@ function SDL_GetNumTouchFingers(touchID: TSDL_TouchID): cint; cdecl;
   {**
    *  Get the finger object of the given touch, with the given index.
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetTouchFinger_fun = function(touchID: TSDL_TouchID; index: cint): PSDL_Finger; cdecl;
 Var

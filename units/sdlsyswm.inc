@@ -357,7 +357,7 @@ type
  *
  * \since This function is available since SDL 2.0.0.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetWindowWMInfo_fun = function(window: PSDL_Window; info: PSDL_SysWMinfo): TSDL_bool; cdecl;
 Var

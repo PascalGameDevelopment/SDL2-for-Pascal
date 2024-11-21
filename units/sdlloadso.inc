@@ -31,7 +31,7 @@
  * \sa SDL_LoadFunction
  * \sa SDL_UnloadObject
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LoadObject_fun = function(sofile: PAnsiChar): Pointer; cdecl;
 Var
@@ -80,7 +80,7 @@ function SDL_LoadFunction(handle: Pointer; name: PAnsiChar): Pointer; cdecl;
  * \sa SDL_LoadFunction
  * \sa SDL_LoadObject
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UnloadObject_proc = procedure(handle: Pointer); cdecl;
 Var

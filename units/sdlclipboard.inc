@@ -19,7 +19,7 @@
  * \sa SDL_GetClipboardText
  * \sa SDL_HasClipboardText
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetClipboardText_fun = function(text: PAnsiChar): cint; cdecl;
 Var
@@ -46,7 +46,7 @@ function SDL_SetClipboardText(text: PAnsiChar): cint; cdecl;
  * \sa SDL_HasClipboardText
  * \sa SDL_SetClipboardText
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetClipboardText_fun = function(): PAnsiChar; cdecl;
 Var
@@ -67,7 +67,7 @@ function SDL_GetClipboardText(): PAnsiChar; cdecl;
  * \sa SDL_GetClipboardText
  * \sa SDL_SetClipboardText
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HasClipboardText_fun = function(): TSDL_bool; cdecl;
 Var
@@ -90,7 +90,7 @@ function SDL_HasClipboardText(): TSDL_bool; cdecl;
  * \sa SDL_GetPrimarySelectionText
  * \sa SDL_HasPrimarySelectionText
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetPrimarySelectionText_fun = function(text: PAnsiChar): cint; cdecl;
 Var
@@ -118,7 +118,7 @@ function SDL_SetPrimarySelectionText(text: PAnsiChar): cint; cdecl;
  * \sa SDL_HasPrimarySelectionText
  * \sa SDL_SetPrimarySelectionText
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetPrimarySelectionText_fun = function(): PAnsiChar; cdecl;
 Var
@@ -141,7 +141,7 @@ function SDL_GetPrimarySelectionText(): PAnsiChar; cdecl;
  * \sa SDL_GetPrimarySelectionText
  * \sa SDL_SetPrimarySelectionText
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HasPrimarySelectionText_fun = function(): TSDL_bool; cdecl;
 Var

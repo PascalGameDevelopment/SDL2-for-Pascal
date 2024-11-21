@@ -39,7 +39,7 @@ type
  *
  * \sa SDL_GUIDFromString
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GUIDToString_proc = procedure(guid: TSDL_GUID; pszGUID: PAnsiChar; cbGUID: cint); cdecl;
 Var
@@ -64,7 +64,7 @@ procedure SDL_GUIDToString(guid: TSDL_GUID; pszGUID: PAnsiChar; cbGUID: cint); c
  *
  * \sa SDL_GUIDToString
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GUIDFromString_fun = function(const pchGUID: PAnsiChar): TSDL_GUID; cdecl;
 Var

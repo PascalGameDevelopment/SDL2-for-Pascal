@@ -819,7 +819,7 @@ function SDL_NumHaptics: cint; cdecl;
  *
  * \sa SDL_NumHaptics
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticName_fun = function(device_index: cint): PAnsiChar; cdecl;
 Var
@@ -855,7 +855,7 @@ function SDL_HapticName(device_index: cint): PAnsiChar; cdecl;
  * \sa SDL_HapticSetGain
  * \sa SDL_HapticStopAll
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticOpen_fun = function(device_index: cint): PSDL_Haptic; cdecl;
 Var
@@ -878,7 +878,7 @@ function SDL_HapticOpen(device_index: cint): PSDL_Haptic; cdecl;
  * \sa SDL_HapticIndex
  * \sa SDL_HapticOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticOpened_fun = function(device_index: cint): cint; cdecl;
 Var
@@ -901,7 +901,7 @@ function SDL_HapticOpened(device_index: cint): cint; cdecl;
  * \sa SDL_HapticOpen
  * \sa SDL_HapticOpened
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticIndex_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -950,7 +950,7 @@ function SDL_HapticOpenFromMouse: PSDL_Haptic; cdecl;
  *
  * \sa SDL_HapticOpenFromJoystick
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_JoystickIsHaptic_fun = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
@@ -982,7 +982,7 @@ function SDL_JoystickIsHaptic(joystick: PSDL_Joystick): cint; cdecl;
  * \sa SDL_HapticOpen
  * \sa SDL_JoystickIsHaptic
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticOpenFromJoystick_fun = function(joystick: PSDL_Joystick): PSDL_Haptic; cdecl;
 Var
@@ -1002,7 +1002,7 @@ function SDL_HapticOpenFromJoystick(joystick: PSDL_Joystick): PSDL_Haptic; cdecl
  *
  * \sa SDL_HapticOpen
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticClose_proc = procedure(haptic: PSDL_Haptic); cdecl;
 Var
@@ -1029,7 +1029,7 @@ procedure SDL_HapticClose(haptic: PSDL_Haptic); cdecl;
  * \sa SDL_HapticNumEffectsPlaying
  * \sa SDL_HapticQuery
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticNumEffects_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1055,7 +1055,7 @@ function SDL_HapticNumEffects(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticNumEffects
  * \sa SDL_HapticQuery
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticNumEffectsPlaying_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1078,7 +1078,7 @@ function SDL_HapticNumEffectsPlaying(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticEffectSupported
  * \sa SDL_HapticNumEffects
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticQuery_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1101,7 +1101,7 @@ function SDL_HapticQuery(haptic: PSDL_Haptic): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticNumAxes_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1126,7 +1126,7 @@ function SDL_HapticNumAxes(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticNewEffect
  * \sa SDL_HapticQuery
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticEffectSupported_fun = function(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
 Var
@@ -1152,7 +1152,7 @@ function SDL_HapticEffectSupported(haptic: PSDL_Haptic; effect: PSDL_HapticEffec
  * \sa SDL_HapticRunEffect
  * \sa SDL_HapticUpdateEffect
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticNewEffect_fun = function(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
 Var
@@ -1184,7 +1184,7 @@ function SDL_HapticNewEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): ci
  * \sa SDL_HapticNewEffect
  * \sa SDL_HapticRunEffect
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticUpdateEffect_fun = function(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): cint; cdecl;
 Var
@@ -1217,7 +1217,7 @@ function SDL_HapticUpdateEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_Ha
  * \sa SDL_HapticGetEffectStatus
  * \sa SDL_HapticStopEffect
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticRunEffect_fun = function(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): cint; cdecl;
 Var
@@ -1243,7 +1243,7 @@ function SDL_HapticRunEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuin
  * \sa SDL_HapticDestroyEffect
  * \sa SDL_HapticRunEffect
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticStopEffect_fun = function(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
 Var
@@ -1267,7 +1267,7 @@ function SDL_HapticStopEffect(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
  *
  * \sa SDL_HapticNewEffect
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticDestroyEffect_proc = procedure(haptic: PSDL_Haptic; effect: cint); cdecl;
 Var
@@ -1293,7 +1293,7 @@ procedure SDL_HapticDestroyEffect(haptic: PSDL_Haptic; effect: cint); cdecl;
  * \sa SDL_HapticRunEffect
  * \sa SDL_HapticStopEffect
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticGetEffectStatus_fun = function(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
 Var
@@ -1323,7 +1323,7 @@ function SDL_HapticGetEffectStatus(haptic: PSDL_Haptic; effect: cint): cint; cde
  *
  * \sa SDL_HapticQuery
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticSetGain_fun = function(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
 Var
@@ -1351,7 +1351,7 @@ function SDL_HapticSetGain(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
  *
  * \sa SDL_HapticQuery
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticSetAutocenter_fun = function(haptic: PSDL_Haptic; autocenter: cint): cint; cdecl;
 Var
@@ -1379,7 +1379,7 @@ function SDL_HapticSetAutocenter(haptic: PSDL_Haptic; autocenter: cint): cint; c
  *
  * \sa SDL_HapticUnpause
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticPause_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1403,7 +1403,7 @@ function SDL_HapticPause(haptic: PSDL_Haptic): cint; cdecl;
  *
  * \sa SDL_HapticPause
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticUnpause_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1423,7 +1423,7 @@ function SDL_HapticUnpause(haptic: PSDL_Haptic): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticStopAll_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1448,7 +1448,7 @@ function SDL_HapticStopAll(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticRumblePlay
  * \sa SDL_HapticRumbleStop
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticRumbleSupported_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1473,7 +1473,7 @@ function SDL_HapticRumbleSupported(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticRumbleStop
  * \sa SDL_HapticRumbleSupported
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticRumbleInit_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
@@ -1499,7 +1499,7 @@ function SDL_HapticRumbleInit(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_HapticRumbleStop
  * \sa SDL_HapticRumbleSupported
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticRumblePlay_fun = function(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): cint; cdecl;
 Var
@@ -1523,7 +1523,7 @@ function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: cfloat; length: cui
  * \sa SDL_HapticRumblePlay
  * \sa SDL_HapticRumbleSupported
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HapticRumbleStop_fun = function(haptic: PSDL_Haptic): cint; cdecl;
 Var

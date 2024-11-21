@@ -80,7 +80,7 @@ function SDL_RectEquals(const a, b: PSDL_Rect): Boolean; inline;
  *
  *  SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HasIntersection_fun = function(const a, b: PSDL_Rect): TSDL_Bool; cdecl;
 Var
@@ -96,7 +96,7 @@ function SDL_HasIntersection(const a, b: PSDL_Rect): TSDL_Bool; cdecl;
  *
  *  SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IntersectRect_fun = function(const A, B: PSDL_Rect; result: PSDL_Rect): TSDL_Bool; cdecl;
 Var
@@ -110,7 +110,7 @@ function SDL_IntersectRect(const A, B: PSDL_Rect; result: PSDL_Rect): TSDL_Bool;
 {**
  *  Calculate the union of two rectangles.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UnionRect_proc = procedure(const A, B: PSDL_Rect; result: PSDL_Rect); cdecl;
 Var
@@ -126,7 +126,7 @@ procedure SDL_UnionRect(const A, B: PSDL_Rect; result: PSDL_Rect); cdecl;
  *
  *  SDL_TRUE if any points were within the clipping rect
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_EnclosePoints_fun = function(const points: PSDL_Point; count: cint; const clip: PSDL_Rect; result: PSDL_Rect): TSDL_Bool; cdecl;
 Var
@@ -142,7 +142,7 @@ function SDL_EnclosePoints(const points: PSDL_Point; count: cint; const clip: PS
  *
  *  SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IntersectRectAndLine_fun = function(const rect: PSDL_Rect; X1, Y1, X2, Y2: pcint): TSDL_Bool; cdecl;
 Var
@@ -190,7 +190,7 @@ function SDL_FRectEquals(const a, b: PSDL_FRect): Boolean; Inline;
  *
  * \sa SDL_IntersectRect
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HasIntersectionF_fun = function(const a, b: PSDL_FRect): TSDL_Bool; cdecl;
 Var
@@ -216,7 +216,7 @@ function SDL_HasIntersectionF(const a, b: PSDL_FRect): TSDL_Bool; cdecl;
  *
  * \sa SDL_HasIntersectionF
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IntersectFRect_fun = function(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
 Var
@@ -237,7 +237,7 @@ function SDL_IntersectFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bo
  *
  * \since This function is available since SDL 2.0.22.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UnionFRect_fun = function(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
 Var
@@ -266,7 +266,7 @@ function SDL_UnionFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; 
  *
  * \since This function is available since SDL 2.0.22.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_EncloseFPoints_fun = function(const points: PSDL_FPoint; count: cint; const clip: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
 Var
@@ -296,7 +296,7 @@ function SDL_EncloseFPoints(const points: PSDL_FPoint; count: cint; const clip: 
  *
  * \since This function is available since SDL 2.0.22.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IntersectFRectAndLine_fun = function(const rect: PSDL_FRect; X1, Y1, X2, Y2: pcfloat): TSDL_Bool; cdecl;
 Var

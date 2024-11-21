@@ -110,7 +110,7 @@ function SDL_SetMemoryFunctions(
  *
  * \since This function is available since SDL 2.0.7.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetNumAllocations_fun = function(): cint; cdecl;
 Var
@@ -124,7 +124,7 @@ function SDL_GetNumAllocations(): cint; cdecl;
 (**
  * Allocate a block of memory. The memory is *not* initialized.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_malloc_fun = function(size: csize_t): Pointer; cdecl;
 Var
@@ -139,7 +139,7 @@ function SDL_malloc(size: csize_t): Pointer; cdecl;
  * Allocate a block of memory that can fit an array of nmemb elements, each of given size.
  * The memory is initialized by setting every byte to 0.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_calloc_fun = function(nmemb, size: csize_t): Pointer; cdecl;
 Var
@@ -156,7 +156,7 @@ function SDL_calloc(nmemb, size: csize_t): Pointer; cdecl;
  * The returned pointer may or may not be the same as the original pointer.
  * If the new size is larger than the old size, any new memory will *not* be initialized.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_realloc_fun = function(mem: Pointer; size: csize_t): Pointer; cdecl;
 Var
@@ -173,7 +173,7 @@ function SDL_realloc(mem: Pointer; size: csize_t): Pointer; cdecl;
  * Calling SDL_free() on the same pointer twice is undefined behaviour and may cause
  * your program to crash or behave in unexpected ways.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_free_proc = procedure(mem: Pointer); cdecl;
 Var
@@ -198,7 +198,7 @@ SDL2-for-Pascal: All comments are added by us and not found in the include file.
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isalpha_fun = function(x: cint):cint; cdecl;
 Var
@@ -216,7 +216,7 @@ function SDL_isalpha(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isalnum_fun = function(x: cint):cint; cdecl;
 Var
@@ -234,7 +234,7 @@ function SDL_isalnum(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isblank_fun = function(x: cint):cint; cdecl;
 Var
@@ -252,7 +252,7 @@ function SDL_isblank(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_iscntrl_fun = function(x: cint):cint; cdecl;
 Var
@@ -270,7 +270,7 @@ function SDL_iscntrl(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isdigit_fun = function(x: cint):cint; cdecl;
 Var
@@ -288,7 +288,7 @@ function SDL_isdigit(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isxdigit_fun = function(x: cint):cint; cdecl;
 Var
@@ -307,7 +307,7 @@ function SDL_isxdigit(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ispunct_fun = function(x: cint):cint; cdecl;
 Var
@@ -328,7 +328,7 @@ function SDL_ispunct(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isspace_fun = function(x: cint):cint; cdecl;
 Var
@@ -346,7 +346,7 @@ function SDL_isspace(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.12.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isupper_fun = function(x: cint):cint; cdecl;
 Var
@@ -364,7 +364,7 @@ function SDL_isupper(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.12.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_islower_fun = function(x: cint):cint; cdecl;
 Var
@@ -382,7 +382,7 @@ function SDL_islower(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isprint_fun = function(x: cint):cint; cdecl;
 Var
@@ -400,7 +400,7 @@ function SDL_isprint(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_isgraph_fun = function(x: cint):cint; cdecl;
 Var
@@ -417,7 +417,7 @@ function SDL_isgraph(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_toupper_fun = function(x: cint):cint; cdecl;
 Var
@@ -434,7 +434,7 @@ function SDL_toupper(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_tolower_fun = function(x: cint):cint; cdecl;
 Var
@@ -456,7 +456,7 @@ function SDL_tolower(x: cint):cint; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_acos_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -473,7 +473,7 @@ function SDL_acos(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_acosf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -490,7 +490,7 @@ function SDL_acosf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_asin_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -507,7 +507,7 @@ function SDL_asin(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_asinf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -524,7 +524,7 @@ function SDL_asinf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_atan_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -541,7 +541,7 @@ function SDL_atan(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_atanf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -558,7 +558,7 @@ function SDL_atanf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_atan2_fun = function(y, x: cdouble): cdouble; cdecl;
 Var
@@ -575,7 +575,7 @@ function SDL_atan2(y, x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_atan2f_fun = function(y, x: cfloat): cfloat; cdecl;
 Var
@@ -591,7 +591,7 @@ function SDL_atan2f(y, x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ceil_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -607,7 +607,7 @@ function SDL_ceil(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ceilf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -624,7 +624,7 @@ function SDL_ceilf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_copysign_fun = function(x, y: cdouble): cdouble; cdecl;
 Var
@@ -641,7 +641,7 @@ function SDL_copysign(x, y: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_copysignf_fun = function(x, y: cfloat): cfloat; cdecl;
 Var
@@ -657,7 +657,7 @@ function SDL_copysignf(x, y: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_cos_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -673,7 +673,7 @@ function SDL_cos(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_cosf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -690,7 +690,7 @@ function SDL_cosf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.9.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_exp_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -707,7 +707,7 @@ function SDL_exp(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.9.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_expf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -723,7 +723,7 @@ function SDL_expf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_fabs_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -739,7 +739,7 @@ function SDL_fabs(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_fabsf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -755,7 +755,7 @@ function SDL_fabsf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_floor_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -771,7 +771,7 @@ function SDL_floor(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_floorf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -787,7 +787,7 @@ function SDL_floorf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_fmod_fun = function(x, y: cdouble): cdouble; cdecl;
 Var
@@ -803,7 +803,7 @@ function SDL_fmod(x, y: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_fmodf_fun = function(x, y: cfloat): cfloat; cdecl;
 Var
@@ -823,7 +823,7 @@ function SDL_fmodf(x, y: cfloat): cfloat; cdecl;
  but since Pascal names are case-insensitive, it is in conflict with SDL_Log (logging function). 
  Hence we decided to rename it.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_nlog_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -844,7 +844,7 @@ function SDL_nlog(x: cdouble): cdouble; cdecl;
  but to be consistent with the renamed SDL_log function (see comment of SDL_nlog
  for details), we decided to rename it.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_nlogf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -861,7 +861,7 @@ function SDL_nlogf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_log10_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -877,7 +877,7 @@ function SDL_log10(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_log10f_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -893,7 +893,7 @@ function SDL_log10f(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_lround_fun = function(x: cdouble): clong; cdecl;
 Var
@@ -909,7 +909,7 @@ function SDL_lround(x: cdouble): clong; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_lroundf_fun = function(x: cfloat): clong; cdecl;
 Var
@@ -925,7 +925,7 @@ function SDL_lroundf(x: cfloat): clong; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_pow_fun = function(x, y: cdouble): cdouble; cdecl;
 Var
@@ -941,7 +941,7 @@ function SDL_pow(x, y: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_powf_fun = function(x, y: cfloat): cfloat; cdecl;
 Var
@@ -957,7 +957,7 @@ function SDL_powf(x, y: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_round_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -973,7 +973,7 @@ function SDL_round(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.16.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_roundf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -990,7 +990,7 @@ function SDL_roundf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_scalbn_fun = function(x: cdouble; n: cint): cdouble; cdecl;
 Var
@@ -1007,7 +1007,7 @@ function SDL_scalbn(x: cdouble; n: cint): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_scalbnf_fun = function(x: cfloat; n: cint): cfloat; cdecl;
 Var
@@ -1023,7 +1023,7 @@ function SDL_scalbnf(x: cfloat; n: cint): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_sin_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -1039,7 +1039,7 @@ function SDL_sin(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_sinf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -1055,7 +1055,7 @@ function SDL_sinf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_sqrt_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -1071,7 +1071,7 @@ function SDL_sqrt(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_sqrtf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -1087,7 +1087,7 @@ function SDL_sqrtf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_tan_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -1103,7 +1103,7 @@ function SDL_tan(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.4.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_tanf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -1119,7 +1119,7 @@ function SDL_tanf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.14.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_trunc_fun = function(x: cdouble): cdouble; cdecl;
 Var
@@ -1135,7 +1135,7 @@ function SDL_trunc(x: cdouble): cdouble; cdecl;
  *
  * \since This function is available since SDL 2.0.14.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_truncf_fun = function(x: cfloat): cfloat; cdecl;
 Var
@@ -1157,7 +1157,7 @@ function SDL_truncf(x: cfloat): cfloat; cdecl;
  *
  * \since This function is available since SDL 2.0.0.
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_iconv_string_fun = function(Const tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize_t): PAnsiChar; cdecl;
 Var
@@ -1183,7 +1183,7 @@ const
 type
   PSDL_iconv = type Pointer;
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_iconv_open_fun = function(Const tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
 Var
@@ -1194,7 +1194,7 @@ function SDL_iconv_open(Const tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_open' {$ENDIF} {$ENDIF};
 {$endif}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_iconv_close_fun = function(cd: PSDL_iconv): cint; cdecl;
 Var
@@ -1205,7 +1205,7 @@ function SDL_iconv_close(cd: PSDL_iconv): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iconv_close' {$ENDIF} {$ENDIF};
 {$endif}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_iconv_fun = function(cd: PSDL_iconv; Const inbuf: PPAnsiChar; inbytesleft: pcsize_t; outbuf: PPAnsiChar; outbytesleft: pcsize_t): csize_t; cdecl;
 Var

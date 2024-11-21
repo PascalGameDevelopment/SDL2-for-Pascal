@@ -42,7 +42,7 @@
  *
  * \sa SDL_GetPrefPath
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetBasePath_fun = function(): PAnsiChar; cdecl;
 Var
@@ -108,7 +108,7 @@ function SDL_GetBasePath(): PAnsiChar; cdecl;
  *
  * \sa SDL_GetBasePath
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetPrefPath_fun = function(org: PAnsiChar; app: PAnsiChar): PAnsiChar; cdecl;
 Var

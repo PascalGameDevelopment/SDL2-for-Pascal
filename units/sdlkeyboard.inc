@@ -70,7 +70,7 @@ function SDL_GetKeyboardFocus: PSDL_Window; cdecl;
  * \sa SDL_PumpEvents
  * \sa SDL_ResetKeyboard
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetKeyboardState_fun = function(numkeys: pcint): pcuint8; cdecl;
 Var
@@ -124,7 +124,7 @@ function SDL_GetModState: TSDL_Keymod; cdecl;
  *
  * \sa SDL_GetModState
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetModState_proc = procedure(modstate: TSDL_Keymod); cdecl;
 Var
@@ -149,7 +149,7 @@ procedure SDL_SetModState(modstate: TSDL_Keymod); cdecl;
  * \sa SDL_GetKeyName
  * \sa SDL_GetScancodeFromKey
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetKeyFromScancode_fun = function(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
 Var
@@ -174,7 +174,7 @@ function SDL_GetKeyFromScancode(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
  * \sa SDL_GetKeyFromScancode
  * \sa SDL_GetScancodeName
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetScancodeFromKey_fun = function(key: TSDL_Keycode): TSDL_Scancode; cdecl;
 Var
@@ -208,7 +208,7 @@ function SDL_GetScancodeFromKey(key: TSDL_Keycode): TSDL_Scancode; cdecl;
  * \sa SDL_GetScancodeFromKey
  * \sa SDL_GetScancodeFromName
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetScancodeName_fun = function(scancode: TSDL_Scancode): PAnsiChar; cdecl;
 Var
@@ -232,7 +232,7 @@ function SDL_GetScancodeName(scancode: TSDL_Scancode): PAnsiChar; cdecl;
  * \sa SDL_GetScancodeFromKey
  * \sa SDL_GetScancodeName
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetScancodeFromName_fun = function(name: PAnsiChar): TSDL_Scancode; cdecl;
 Var
@@ -260,7 +260,7 @@ function SDL_GetScancodeFromName(name: PAnsiChar): TSDL_Scancode; cdecl;
  * \sa SDL_GetKeyFromScancode
  * \sa SDL_GetScancodeFromKey
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetKeyName_fun = function(key: TSDL_Keycode): PAnsiChar; cdecl;
 Var
@@ -284,7 +284,7 @@ function SDL_GetKeyName(key: TSDL_Keycode): PAnsiChar; cdecl;
  * \sa SDL_GetKeyName
  * \sa SDL_GetScancodeFromName
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetKeyFromName_fun = function(name: PAnsiChar): TSDL_Keycode; cdecl;
 Var
@@ -372,7 +372,7 @@ function SDL_IsTextInputShown: TSDL_bool; cdecl;
  *
  * \sa SDL_StartTextInput
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetTextInputRect_proc = procedure(rect: PSDL_Rect); cdecl;
 Var
@@ -407,7 +407,7 @@ function SDL_HasScreenKeyboardSupport: TSDL_bool; cdecl;
  *
  * \sa SDL_HasScreenKeyboardSupport
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IsScreenKeyboardShown_fun = function(window: PSDL_Window): TSDL_bool; cdecl;
 Var

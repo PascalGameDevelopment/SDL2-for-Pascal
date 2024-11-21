@@ -96,7 +96,7 @@ const
  *  \param Amask The alpha mask of the surface to create.
  *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateRGBSurface_fun = function(flags: cuint32; width: cint; height: cint; depth: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
 Var
@@ -107,7 +107,7 @@ function SDL_CreateRGBSurface(flags: cuint32; width: cint; height: cint; depth: 
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurface' {$ENDIF} {$ENDIF};
 {$endif}
 {* !!! FIXME for 2.1: why does this ask for depth? Format provides that. *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateRGBSurfaceWithFormat_fun = function(flags: cuint32; width, height, depth: cint; format: cuint32):PSDL_Surface; cdecl;
 Var
@@ -117,7 +117,7 @@ Var
 function SDL_CreateRGBSurfaceWithFormat(flags: cuint32; width, height, depth: cint; format: cuint32):PSDL_Surface; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurfaceWithFormat' {$ENDIF} {$ENDIF};
 {$endif}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateRGBSurfaceFrom_fun = function(pixels: Pointer; width: cint; height: cint; depth: cint; pitch: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
 Var
@@ -127,7 +127,7 @@ Var
 function SDL_CreateRGBSurfaceFrom(pixels: Pointer; width: cint; height: cint; depth: cint; pitch: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurfaceFrom' {$ENDIF} {$ENDIF};
 {$endif}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateRGBSurfaceWithFormatFrom_fun = function(pixels: Pointer; width, height, depth, pitch: cint; format: cuint32):PSDL_Surface; cdecl;
 Var
@@ -137,7 +137,7 @@ Var
 function SDL_CreateRGBSurfaceWithFormatFrom(pixels: Pointer; width, height, depth, pitch: cint; format: cuint32):PSDL_Surface; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateRGBSurfaceWithFormatFrom' {$ENDIF} {$ENDIF};
 {$endif}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_FreeSurface_proc = procedure(surface: PSDL_Surface); cdecl;
 Var
@@ -156,7 +156,7 @@ procedure SDL_FreeSurface(surface: PSDL_Surface); cdecl;
    *  A single palette can be shared with many surfaces.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetSurfacePalette_fun = function(surface: PSDL_Surface; palette: PSDL_Palette): cint; cdecl;
 Var
@@ -187,7 +187,7 @@ function SDL_SetSurfacePalette(surface: PSDL_Surface; palette: PSDL_Palette): ci
    *  SDL_UnlockSurface()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LockSurface_fun = function(surface: PSDL_Surface): cint; cdecl;
 Var
@@ -200,7 +200,7 @@ function SDL_LockSurface(surface: PSDL_Surface): cint; cdecl;
 
   {** SDL_LockSurface() *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UnlockSurface_proc = procedure(surface: PSDL_Surface); cdecl;
 Var
@@ -221,7 +221,7 @@ procedure SDL_UnlockSurface(surface: PSDL_Surface); cdecl;
    *  the new surface, or NULL if there was an error.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LoadBMP_RW_fun = function(src: PSDL_RWops; freesrc: cint): PSDL_Surface; cdecl;
 Var
@@ -254,7 +254,7 @@ function SDL_LoadBMP(_file: PAnsiChar): PSDL_Surface;
  *  \return 0 if successful or -1 if there was an error.
  *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SaveBMP_RW_fun = function(surface: PSDL_Surface; dst: PSDL_RWops; freedst: cint): cint; cdecl;
 Var
@@ -282,7 +282,7 @@ function SDL_SaveBMP(const surface: PSDL_Surface; const filename:AnsiString): ci
    *  but the surface must be locked before directly accessing the pixels.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetSurfaceRLE_fun = function(surface: PSDL_Surface; flag: cint): cint; cdecl;
 Var
@@ -298,7 +298,7 @@ function SDL_SetSurfaceRLE(surface: PSDL_Surface; flag: cint): cint; cdecl;
  *
  *  \return SDL_TRUE if the surface is RLE enabled, or SDL_FALSE if the surface is NULL or not RLE enabled
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HasSurfaceRLE_fun = function(surface: PSDL_Surface): TSDL_Bool; cdecl;
 Var
@@ -321,7 +321,7 @@ Var
    *  You can pass SDL_RLEACCEL to enable RLE accelerated blits.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetColorKey_fun = function(surface: PSDL_Surface; flag: cint; key: cuint32): cint; cdecl;
 Var
@@ -337,7 +337,7 @@ function SDL_SetColorKey(surface: PSDL_Surface; flag: cint; key: cuint32): cint;
  *
  *  \return SDL_TRUE if the surface has a color key, or SDL_FALSE if the surface is NULL or has no color key
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_HasColorKey_fun = function(surface: PSDL_Surface): TSDL_Bool; cdecl;
 Var
@@ -359,7 +359,7 @@ function SDL_HasColorKey(surface: PSDL_Surface): TSDL_Bool; cdecl;
    *  enabled.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetColorKey_fun = function(surface: PSDL_Surface; key: pcuint32): cint; cdecl;
 Var
@@ -383,7 +383,7 @@ function SDL_GetColorKey(surface: PSDL_Surface; key: pcuint32): cint; cdecl;
    *  SDL_GetSurfaceColorMod()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetSurfaceColorMod_fun = function(surface: PSDL_Surface; r: cuint8; g: cuint8; b: cuint8): cint; cdecl;
 Var
@@ -407,7 +407,7 @@ function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: cuint8; g: cuint8; b: 
    *  SDL_SetSurfaceColorMod()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetSurfaceColorMod_fun = function(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b: pcuint8): cint; cdecl;
 Var
@@ -429,7 +429,7 @@ function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b
    *  SDL_GetSurfaceAlphaMod()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetSurfaceAlphaMod_fun = function(surface: PSDL_Surface; alpha: cuint8): cint; cdecl;
 Var
@@ -451,7 +451,7 @@ function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: cuint8): cint; cde
    *  SDL_SetSurfaceAlphaMod()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetSurfaceAlphaMod_fun = function(surface: PSDL_Surface; alpha: pcuint8): cint; cdecl;
 Var
@@ -473,7 +473,7 @@ function SDL_GetSurfaceAlphaMod(surface: PSDL_Surface; alpha: pcuint8): cint; cd
    *  SDL_GetSurfaceBlendMode()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetSurfaceBlendMode_fun = function(surface: PSDL_Surface; blendMode: TSDL_BlendMode): cint; cdecl;
 Var
@@ -495,7 +495,7 @@ function SDL_SetSurfaceBlendMode(surface: PSDL_Surface; blendMode: TSDL_BlendMod
    *  SDL_SetSurfaceBlendMode()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetSurfaceBlendMode_fun = function(surface: PSDL_Surface; blendMode: PSDL_BlendMode): cint; cdecl;
 Var
@@ -520,7 +520,7 @@ function SDL_GetSurfaceBlendMode(surface: PSDL_Surface; blendMode: PSDL_BlendMod
    *  and destination surfaces.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetClipRect_fun = function(surface: PSDL_Surface; const rect: PSDL_Rect): TSDL_Bool; cdecl;
 Var
@@ -538,7 +538,7 @@ function SDL_SetClipRect(surface: PSDL_Surface; const rect: PSDL_Rect): TSDL_Boo
    *  with the correct values.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetClipRect_proc = procedure(surface: PSDL_Surface; rect: PSDL_Rect); cdecl;
 Var
@@ -552,7 +552,7 @@ procedure SDL_GetClipRect(surface: PSDL_Surface; rect: PSDL_Rect); cdecl;
 {*
  * Creates a new surface identical to the existing surface
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_DuplicateSurface_fun = function(surface: PSDL_Surface): PSDL_Surface; cdecl;
 Var
@@ -574,7 +574,7 @@ function SDL_DuplicateSurface(surface: PSDL_Surface): PSDL_Surface; cdecl;
    *  surface.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ConvertSurface_fun = function(src: PSDL_Surface; const fmt: PSDL_PixelFormat; flags: cuint32): PSDL_Surface; cdecl;
 Var
@@ -584,7 +584,7 @@ Var
 function SDL_ConvertSurface(src: PSDL_Surface; const fmt: PSDL_PixelFormat; flags: cuint32): PSDL_Surface; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertSurface' {$ENDIF} {$ENDIF};
 {$endif}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ConvertSurfaceFormat_fun = function(src: PSDL_Surface; pixel_format: cuint32; flags: cuint32): PSDL_Surface; cdecl;
 Var
@@ -601,7 +601,7 @@ function SDL_ConvertSurfaceFormat(src: PSDL_Surface; pixel_format: cuint32; flag
    *  0 on success, or -1 if there was an error
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ConvertPixels_fun = function(width: cint; height: cint; src_format: cuint32; const src: Pointer; src_pitch: cint; dst_format: cuint32; dst: Pointer; dst_pitch: cint): cint; cdecl;
 Var
@@ -623,7 +623,7 @@ function SDL_ConvertPixels(width: cint; height: cint; src_format: cuint32; const
    *  0 on success, or -1 on error.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_FillRect_fun = function(dst: PSDL_Surface; const rect: PSDL_Rect; color: cuint32): cint; cdecl;
 Var
@@ -633,7 +633,7 @@ Var
 function SDL_FillRect(dst: PSDL_Surface; const rect: PSDL_Rect; color: cuint32): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FillRect' {$ENDIF} {$ENDIF};
 {$endif}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_FillRects_fun = function(dst: PSDL_Surface; const rects: PSDL_Rect; count: cint; color: cuint32): cint; cdecl;
 Var
@@ -705,7 +705,7 @@ function SDL_FillRects(dst: PSDL_Surface; const rects: PSDL_Rect; count: cint; c
 
 (* SDL_surface.h uses #define to change all SDL_BlitSurface() calls into SDL_UpperBlit() calls.                         *
  * Since Pascal macro support is very limited, we workaround by outright pointing SDL_BlitSurface() to SDL_UpperBlit(). *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_BlitSurface_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
@@ -722,7 +722,7 @@ function SDL_BlitSurface(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_
    *  rectangle validation and clipping before passing it to SDL_LowerBlit()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UpperBlit_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
@@ -738,7 +738,7 @@ function SDL_UpperBlit(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Su
    *  blitting only.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LowerBlit_fun = function(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
@@ -756,7 +756,7 @@ function SDL_LowerBlit(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface;
    *  This function uses a static buffer, and is not thread-safe.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SoftStretch_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; const dstrect: PSDL_Surface): cint; cdecl;
 Var
@@ -769,7 +769,7 @@ function SDL_SoftStretch(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_
 
 (* SDL_surface.h uses #define to change all SDL_BlitSurfaceScaled() calls into SDL_UpperBlitScaled() calls.                         *
  * Since Pascal macro support is very limited, we workaround by outright pointing SDL_BlitSurfaceScaled() to SDL_UpperBlitScaled(). *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_BlitSurfaceScaled_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
@@ -785,7 +785,7 @@ function SDL_BlitSurfaceScaled(src: PSDL_Surface; const srcrect: PSDL_Rect; dst:
    *  rectangle validation and clipping before passing it to SDL_LowerBlitScaled()
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UpperBlitScaled_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
@@ -801,7 +801,7 @@ function SDL_UpperBlitScaled(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: P
    *  scaled blitting only.
    *}
 
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LowerBlitScaled_fun = function(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
@@ -815,7 +815,7 @@ function SDL_LowerBlitScaled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Su
 {**
  *  \brief Set the YUV conversion mode
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetYUVConversionMode_proc = procedure(mode: TSDL_YUV_CONVERSION_MODE); cdecl;
 Var
@@ -835,7 +835,7 @@ function SDL_GetYUVConversionMode: TSDL_YUV_CONVERSION_MODE; cdecl;
 {**
  *  \brief Get the YUV conversion mode, returning the correct mode for the resolution when the current conversion mode is SDL_YUV_CONVERSION_AUTOMATIC
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetYUVConversionModeForResolution_fun = function(width: cint; height: cint): TSDL_YUV_CONVERSION_MODE; cdecl;
 Var

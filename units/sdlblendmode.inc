@@ -78,7 +78,7 @@ const
  *  and
  *      dstA = dstA * dstAlphaFactor alphaOperation srcA * srcAlphaFactor
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ComposeCustomBlendMode_fun = function(srcColorFactor, dstColorFactor: TSDL_BlendFactor; colorOperation: TSDL_BlendOperation; srcAlphaFactor, dstAlphaFactor: TSDL_BlendFactor; alphaOperation: TSDL_BlendOperation): TSDL_BlendMode; cdecl;
 Var

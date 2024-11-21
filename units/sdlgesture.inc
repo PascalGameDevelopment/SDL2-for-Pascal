@@ -20,7 +20,7 @@ type
  *
  * \sa SDL_GetTouchDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_RecordGesture_fun = function(touchId: TSDL_TouchID): cint; cdecl;
 Var
@@ -43,7 +43,7 @@ function SDL_RecordGesture(touchId: TSDL_TouchID): cint; cdecl;
  * \sa SDL_LoadDollarTemplates
  * \sa SDL_SaveDollarTemplate
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SaveAllDollarTemplates_fun = function(dst: PSDL_RWops): cint; cdecl;
 Var
@@ -67,7 +67,7 @@ function SDL_SaveAllDollarTemplates(dst: PSDL_RWops): cint; cdecl;
  * \sa SDL_LoadDollarTemplates
  * \sa SDL_SaveAllDollarTemplates
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SaveDollarTemplate_fun = function(gestureId: TSDL_GestureID; dst: PSDL_RWops): cint; cdecl;
 Var
@@ -92,7 +92,7 @@ function SDL_SaveDollarTemplate(gestureId: TSDL_GestureID; dst: PSDL_RWops): cin
  * \sa SDL_SaveAllDollarTemplates
  * \sa SDL_SaveDollarTemplate
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LoadDollarTemplates_fun = function(touchId: TSDL_TouchID; src: PSDL_RWops): cint; cdecl;
 Var

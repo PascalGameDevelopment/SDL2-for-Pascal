@@ -11,7 +11,7 @@ const
 {**
  * This function returns the number of CPU cores available.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetCPUCount_fun = function(): cint; cdecl;
 Var

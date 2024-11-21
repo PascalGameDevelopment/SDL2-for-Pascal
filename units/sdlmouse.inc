@@ -69,7 +69,7 @@ function SDL_GetMouseFocus: PSDL_Window; cdecl;
  * \sa SDL_GetRelativeMouseState
  * \sa SDL_PumpEvents
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetMouseState_fun = function(x: pcint; y: pcint): cuint32; cdecl;
 Var
@@ -108,7 +108,7 @@ function SDL_GetMouseState(x: pcint; y: pcint): cuint32; cdecl;
  *
  * \sa SDL_CaptureMouse
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetGlobalMouseState_fun = function(x, y: pcint32): cuint32; cdecl;
 Var
@@ -136,7 +136,7 @@ function SDL_GetGlobalMouseState(x, y: pcint32): cuint32; cdecl;
  *
  * \sa SDL_GetMouseState
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetRelativeMouseState_fun = function(x: pcint; y: pcint): cuint32; cdecl;
 Var
@@ -166,7 +166,7 @@ function SDL_GetRelativeMouseState(x: pcint; y: pcint): cuint32; cdecl;
  *
  * \sa SDL_WarpMouseGlobal
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_WarpMouseInWindow_proc = procedure(window: PSDL_Window; x: cint; y: cint); cdecl;
 Var
@@ -197,7 +197,7 @@ procedure SDL_WarpMouseInWindow(window: PSDL_Window; x: cint; y: cint); cdecl;
  *
  * \sa SDL_WarpMouseInWindow
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_WarpMouseGlobal_fun = function(x, y: cint): cint; cdecl;
 Var
@@ -231,7 +231,7 @@ function SDL_WarpMouseGlobal(x, y: cint): cint; cdecl;
  *
  * \sa SDL_GetRelativeMouseMode
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetRelativeMouseMode_fun = function(enabled: TSDL_Bool): cint; cdecl;
 Var
@@ -286,7 +286,7 @@ function SDL_SetRelativeMouseMode(enabled: TSDL_Bool): cint; cdecl;
  *
  * \sa SDL_GetGlobalMouseState
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CaptureMouse_fun = function(enabled: TSDL_Bool): cint; cdecl;
 Var
@@ -350,7 +350,7 @@ function SDL_GetRelativeMouseMode: TSDL_Bool; cdecl;
  * \sa SDL_SetCursor
  * \sa SDL_ShowCursor
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateCursor_fun = function(
   const data: pcuint8;
@@ -383,7 +383,7 @@ function SDL_CreateCursor(
  * \sa SDL_CreateCursor
  * \sa SDL_FreeCursor
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateColorCursor_fun = function(
     surface: PSDL_Surface;
@@ -411,7 +411,7 @@ function SDL_CreateColorCursor(
  *
  * \sa SDL_FreeCursor
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CreateSystemCursor_fun = function(id: TSDL_SystemCursor): PSDL_Cursor; cdecl;
 Var
@@ -438,7 +438,7 @@ function SDL_CreateSystemCursor(id: TSDL_SystemCursor): PSDL_Cursor; cdecl;
  * \sa SDL_GetCursor
  * \sa SDL_ShowCursor
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetCursor_proc = procedure(cursor: PSDL_Cursor); cdecl;
 Var
@@ -490,7 +490,7 @@ function SDL_GetDefaultCursor: PSDL_Cursor; cdecl;
  * \sa SDL_CreateCursor
  * \sa SDL_CreateSystemCursor
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_FreeCursor_proc = procedure(cursor: PSDL_Cursor); cdecl;
 Var
@@ -521,7 +521,7 @@ procedure SDL_FreeCursor(cursor: PSDL_Cursor); cdecl;
  * \sa SDL_CreateCursor
  * \sa SDL_SetCursor
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ShowCursor_fun = function(toggle: cint): cint; cdecl;
 Var

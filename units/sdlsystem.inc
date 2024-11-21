@@ -15,7 +15,7 @@ type
  *
  * \since This function is available since SDL 2.0.4.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_SetWindowsMessageHook_proc = procedure(callback: TSDL_WindowsMessageHook; userdata: Pointer); cdecl;
 Var
@@ -39,7 +39,7 @@ procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata:
  *
  * \since This function is available since SDL 2.0.1.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_Direct3D9GetAdapterIndex_fun = function(displayIndex:cint):cint; cdecl;
 Var
@@ -67,7 +67,7 @@ type
  *
  * \since This function is available since SDL 2.0.1.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_RenderGetD3D9Device_fun = function(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
 Var
@@ -90,7 +90,7 @@ function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdec
  *
  * \since This function is available since SDL 2.0.16.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_RenderGetD3D11Device_fun = function(renderer:PSDL_Renderer):PID3D11Device; cdecl;
 Var
@@ -113,7 +113,7 @@ function SDL_RenderGetD3D11Device(renderer:PSDL_Renderer):PID3D11Device; cdecl;
  *
  * \since This function is available since SDL 2.24.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_RenderGetD3D12Device_fun = function(renderer:PSDL_Renderer):PID3D12Device; cdecl;
 Var
@@ -142,7 +142,7 @@ function SDL_RenderGetD3D12Device(renderer:PSDL_Renderer):PID3D12Device; cdecl;
  *
  * \since This function is available since SDL 2.0.2.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_DXGIGetOutputInfo_fun = function(displayIndex: cint; adapterIndex, outputIndex: pcint): TSDL_Bool; cdecl;
 Var
@@ -168,7 +168,7 @@ function SDL_DXGIGetOutputInfo(displayIndex: cint; adapterIndex, outputIndex: pc
  *
  * \since This function is available since SDL 2.0.9.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LinuxSetThreadPriority_fun = function(threadID: cint64; priority: cint): cint; cdecl;
 Var
@@ -192,7 +192,7 @@ function SDL_LinuxSetThreadPriority(threadID: cint64; priority: cint): cint; cde
  *
  * \since This function is available since SDL 2.0.18.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LinuxSetThreadPriorityAndPolicy_fun = function(threadID: cint64; sdlPriority, schedPolicy: cint): cint; cdecl;
 Var
@@ -232,7 +232,7 @@ type
  *
  * \sa SDL_iPhoneSetEventPump
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_iPhoneSetAnimationCallback_fun = function(window: PSDL_Window; interval: cint; callback: TSDL_iPhoneAnimationCallback; callbackParam: Pointer); cdecl;
 Var
@@ -254,7 +254,7 @@ function SDL_iPhoneSetAnimationCallback(window: PSDL_Window; interval: cint; cal
  *
  * \sa SDL_iPhoneSetAnimationCallback
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_iPhoneSetEventPump_proc = procedure(enabled: TSDL_Bool); cdecl;
 Var
@@ -287,7 +287,7 @@ procedure SDL_iPhoneSetEventPump(enabled: TSDL_Bool); cdecl;
  *
  * \sa SDL_AndroidGetActivity
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidGetJNIEnv_fun = function(): Pointer; cdecl;
 Var
@@ -318,7 +318,7 @@ function SDL_AndroidGetJNIEnv(): Pointer; cdecl;
  *
  * \sa SDL_AndroidGetJNIEnv
  *)
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidGetActivity_fun = function(): Pointer; cdecl;
 Var
@@ -362,7 +362,7 @@ function SDL_AndroidGetActivity(): Pointer; cdecl;
  *
  * \since This function is available since SDL 2.0.12.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetAndroidSDKVersion_fun = function(): cint; cdecl;
 Var
@@ -380,7 +380,7 @@ function SDL_GetAndroidSDKVersion(): cint; cdecl;
  *
  * \since This function is available since SDL 2.0.8.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IsAndroidTV_fun = function(): TSDL_Bool; cdecl;
 Var
@@ -398,7 +398,7 @@ function SDL_IsAndroidTV(): TSDL_Bool; cdecl;
  *
  * \since This function is available since SDL 2.0.9.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IsChromebook_fun = function(): TSDL_Bool; cdecl;
 Var
@@ -416,7 +416,7 @@ function SDL_IsChromebook(): TSDL_Bool; cdecl;
  *
  * \since This function is available since SDL 2.0.9.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IsDeXMode_fun = function(): TSDL_Bool; cdecl;
 Var
@@ -432,7 +432,7 @@ function SDL_IsDeXMode(): TSDL_Bool; cdecl;
  *
  * \since This function is available since SDL 2.0.9.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidBackButton_proc = procedure(); cdecl;
 Var
@@ -467,7 +467,7 @@ const
  *
  * \sa SDL_AndroidGetExternalStorageState
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidGetInternalStoragePath_fun = function(): PAnsiChar; cdecl;
 Var
@@ -493,7 +493,7 @@ function SDL_AndroidGetInternalStoragePath(): PAnsiChar; cdecl;
  *
  * \sa SDL_AndroidGetExternalStoragePath
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidGetExternalStorageState_fun = function(): cint; cdecl;
 Var
@@ -520,7 +520,7 @@ function SDL_AndroidGetExternalStorageState(): cint; cdecl;
  *
  * \sa SDL_AndroidGetExternalStorageState
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidGetExternalStoragePath_fun = function(): PAnsiChar; cdecl;
 Var
@@ -544,7 +544,7 @@ function SDL_AndroidGetExternalStoragePath(): PAnsiChar; cdecl;
  *
  * \since This function is available since SDL 2.0.14.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidRequestPermission_fun = function(const permission: PAnsiChar): TSDL_Bool; cdecl;
 Var
@@ -578,7 +578,7 @@ function SDL_AndroidRequestPermission(const permission: PAnsiChar): TSDL_Bool; c
  *
  * \since This function is available since SDL 2.0.16.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidShowToast_fun = function(const message: PAnsiChar; duration, gravity, xoffset, yoffset: cint): cint; cdecl;
 Var
@@ -599,7 +599,7 @@ function SDL_AndroidShowToast(const message: PAnsiChar; duration, gravity, xoffs
  *
  * \since This function is available since SDL 2.0.22.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AndroidSendMessage_fun = function(command: cUint32; param: cint): cint; cdecl;
 Var
@@ -661,7 +661,7 @@ Type
    *      SDL_WinRT_Path for more information on which path types are
    *      supported where.
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_WinRTGetFSPathUNICODE_fun = function(pathT
 Var
@@ -688,7 +688,7 @@ function SDL_WinRTGetFSPathUNICODE(pathType :TSDL_WinRT_Path):PWideChar;
    *      SDL_WinRT_Path for more information on which path types are
    *      supported where.
    *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_WinRTGetFSPathUTF8_fun = function(pathT
 Var
@@ -707,7 +707,7 @@ function SDL_WinRTGetFSPathUTF8(pathType :TSDL_WinRT_Path):PChar;
  *
  * \since This function is available since SDL 2.0.8.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_WinRTGetDeviceFamily_fun = function(): TS
 Var
@@ -729,7 +729,7 @@ function SDL_WinRTGetDeviceFamily(): TSDL_WinRT_DeviceFamily;
  *
  * \since This function is available since SDL 2.0.9.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_IsTablet_fun = function(): TSDL_Bool; cdecl;
 Var

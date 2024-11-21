@@ -104,7 +104,7 @@ type
  *   block execution of that thread until the user clicks a button or
  *   closes the messagebox.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ShowMessageBox_fun = function(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cint; cdecl;
 Var
@@ -127,7 +127,7 @@ function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint
  *
  *   SDL_ShowMessageBox
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ShowSimpleMessageBox_fun = function(flags: TSDL_MessageBoxFlags; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): cint; cdecl;
 Var

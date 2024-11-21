@@ -242,7 +242,7 @@ function SDL_GetNumAudioDrivers: cint; cdecl;
  *
  * \sa SDL_GetNumAudioDrivers
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetAudioDriver_fun = function(index: cint): PAnsiChar; cdecl;
 Var
@@ -276,7 +276,7 @@ function SDL_GetAudioDriver(index: cint): PAnsiChar; cdecl;
  *
  * \sa SDL_AudioQuit
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AudioInit_fun = function(driver_name: PAnsiChar): cint; cdecl;
 Var
@@ -368,7 +368,7 @@ function SDL_GetCurrentAudioDriver: PAnsiChar; cdecl;
  * \sa SDL_PauseAudio
  * \sa SDL_UnlockAudio
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_OpenAudio_fun = function(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): cint; cdecl;
 Var
@@ -437,7 +437,7 @@ type
  * \sa SDL_GetAudioDeviceName
  * \sa SDL_OpenAudioDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetNumAudioDevices_fun = function(iscapture: cint): cint; cdecl;
 Var
@@ -473,7 +473,7 @@ function SDL_GetNumAudioDevices(iscapture: cint): cint; cdecl;
  * \sa SDL_GetNumAudioDevices
  * \sa SDL_GetDefaultAudioInfo
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetAudioDeviceName_fun = function(index: cint; iscapture: cint): PAnsiChar; cdecl;
 Var
@@ -507,7 +507,7 @@ function SDL_GetAudioDeviceName(index: cint; iscapture: cint): PAnsiChar; cdecl;
  * \sa SDL_GetNumAudioDevices
  * \sa SDL_GetDefaultAudioInfo
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetAudioDeviceSpec_fun = function(index: cint; iscapture: cint; spec: PSDL_AudioSpec): cint; cdecl;
 Var
@@ -548,7 +548,7 @@ function SDL_GetAudioDeviceSpec(index: cint; iscapture: cint; spec: PSDL_AudioSp
  * \sa SDL_GetAudioDeviceSpec
  * \sa SDL_OpenAudioDevice
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetDefaultAudioInfo_fun = function(name: PPAnsiChar; spec: PSDL_AudioSpec; iscapture: cint): cint; cdecl;
 Var
@@ -670,7 +670,7 @@ function SDL_GetDefaultAudioInfo(name: PPAnsiChar; spec: PSDL_AudioSpec; iscaptu
  * \sa SDL_PauseAudioDevice
  * \sa SDL_UnlockAudioDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_OpenAudioDevice_fun = function(device: PAnsiChar;
                              iscapture: cint;
@@ -737,7 +737,7 @@ function SDL_GetAudioStatus: TSDL_AudioStatus; cdecl;
  *
  * \sa SDL_PauseAudioDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetAudioDeviceStatus_fun = function(dev: TSDL_AudioDeviceID): TSDL_AudioStatus; cdecl;
 Var
@@ -779,7 +779,7 @@ function SDL_GetAudioDeviceStatus(dev: TSDL_AudioDeviceID): TSDL_AudioStatus; cd
  * \sa SDL_GetAudioStatus
  * \sa SDL_PauseAudioDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_PauseAudio_proc = procedure(pause_on: cint); cdecl;
 Var
@@ -818,7 +818,7 @@ procedure SDL_PauseAudio(pause_on: cint); cdecl;
  *
  * \sa SDL_LockAudioDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_PauseAudioDevice_proc = procedure(dev: TSDL_AudioDeviceID; pause_on: cint); cdecl;
 Var
@@ -912,7 +912,7 @@ procedure SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID; pause_on: cint); cdecl;
  * \sa SDL_FreeWAV
  * \sa SDL_LoadWAV
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LoadWAV_RW_fun = function(src: PSDL_RWops;
                         freesrc: cint;
@@ -952,7 +952,7 @@ function SDL_LoadWAV(file_: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8
  * \sa SDL_LoadWAV
  * \sa SDL_LoadWAV_RW
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_FreeWAV_proc = procedure(audio_buf: pcuint8); cdecl;
 Var
@@ -995,7 +995,7 @@ procedure SDL_FreeWAV(audio_buf: pcuint8); cdecl;
  *
  * \sa SDL_ConvertAudio
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_BuildAudioCVT_fun = function(cvt: PSDL_AudioCVT;
                            src_format: TSDL_AudioFormat;
@@ -1056,7 +1056,7 @@ function SDL_BuildAudioCVT(cvt: PSDL_AudioCVT;
  *
  * \sa SDL_BuildAudioCVT
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ConvertAudio_fun = function(cvt: PSDL_AudioCVT): cint; cdecl;
 Var
@@ -1098,7 +1098,7 @@ type
  * \sa SDL_AudioStreamClear
  * \sa SDL_FreeAudioStream
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_NewAudioStream_fun = function(src_format: TSDL_AudioFormat; src_channels: cuint8; src_rate: cint; dst_format: TSDL_AudioFormat; dst_channels: cuint8;
            dst_rate: cint): PSDL_AudioStream; cdecl;
@@ -1128,7 +1128,7 @@ function SDL_NewAudioStream(src_format: TSDL_AudioFormat; src_channels: cuint8; 
  * \sa SDL_AudioStreamClear
  * \sa SDL_FreeAudioStream
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AudioStreamPut_fun = function(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
 Var
@@ -1156,7 +1156,7 @@ function SDL_AudioStreamPut(stream: PSDL_AudioStream; buf: pointer; len: cint): 
  * \sa SDL_AudioStreamClear
  * \sa SDL_FreeAudioStream
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AudioStreamGet_fun = function(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
 Var
@@ -1183,7 +1183,7 @@ function SDL_AudioStreamGet(stream: PSDL_AudioStream; buf: pointer; len: cint): 
  * \sa SDL_AudioStreamClear
  * \sa SDL_FreeAudioStream
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AudioStreamAvailable_fun = function(stream: PSDL_AudioStream): cint; cdecl;
 Var
@@ -1211,7 +1211,7 @@ function SDL_AudioStreamAvailable(stream: PSDL_AudioStream): cint; cdecl;
  * \sa SDL_AudioStreamClear
  * \sa SDL_FreeAudioStream
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AudioStreamFlush_fun = function(stream: PSDL_AudioStream): cint; cdecl;
 Var
@@ -1234,7 +1234,7 @@ function SDL_AudioStreamFlush(stream: PSDL_AudioStream): cint; cdecl;
  * \sa SDL_AudioStreamFlush
  * \sa SDL_FreeAudioStream
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_AudioStreamClear_proc = procedure(stream: PSDL_AudioStream); cdecl;
 Var
@@ -1257,7 +1257,7 @@ procedure SDL_AudioStreamClear(stream: PSDL_AudioStream); cdecl;
  * \sa SDL_AudioStreamFlush
  * \sa SDL_AudioStreamClear
   }
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_FreeAudioStream_proc = procedure(stream: PSDL_AudioStream); cdecl;
 Var
@@ -1293,7 +1293,7 @@ const
  *
  * \sa SDL_MixAudioFormat
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_MixAudio_proc = procedure(dst: pcuint8; src: pcuint8; len: cuint32; volume: cint); cdecl;
 Var
@@ -1334,7 +1334,7 @@ procedure SDL_MixAudio(dst: pcuint8; src: pcuint8; len: cuint32; volume: cint); 
  *
  * \since This function is available since SDL 2.0.0.
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_MixAudioFormat_proc = procedure(dst: pcuint8; src: pcuint8; format: TSDL_AudioFormat; len: cuint32; volume: cint); cdecl;
 Var
@@ -1391,7 +1391,7 @@ procedure SDL_MixAudioFormat(dst: pcuint8; src: pcuint8; format: TSDL_AudioForma
  * \sa SDL_ClearQueuedAudio
  * \sa SDL_GetQueuedAudioSize
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_QueueAudio_fun = function(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cint; cdecl;
 Var
@@ -1448,7 +1448,7 @@ function SDL_QueueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): c
  * \sa SDL_ClearQueuedAudio
  * \sa SDL_GetQueuedAudioSize
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_DequeueAudio_fun = function(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cuint32; cdecl;
 Var
@@ -1491,7 +1491,7 @@ function SDL_DequeueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32):
  * \sa SDL_QueueAudio
  * \sa SDL_DequeueAudio
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_GetQueuedAudioSize_fun = function(dev: TSDL_AudioDeviceID): cuint32; cdecl;
 Var
@@ -1534,7 +1534,7 @@ function SDL_GetQueuedAudioSize(dev: TSDL_AudioDeviceID): cuint32; cdecl;
  * \sa SDL_QueueAudio
  * \sa SDL_DequeueAudio
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_ClearQueuedAudio_proc = procedure(dev: TSDL_AudioDeviceID); cdecl;
 Var
@@ -1612,7 +1612,7 @@ procedure SDL_LockAudio; cdecl;
  *
  * \sa SDL_UnlockAudioDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_LockAudioDevice_proc = procedure(dev: TSDL_AudioDeviceID); cdecl;
 Var
@@ -1655,7 +1655,7 @@ procedure SDL_UnlockAudio; cdecl;
  *
  * \sa SDL_LockAudioDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_UnlockAudioDevice_proc = procedure(dev: TSDL_AudioDeviceID); cdecl;
 Var
@@ -1708,7 +1708,7 @@ procedure SDL_CloseAudio; cdecl;
  *
  * \sa SDL_OpenAudioDevice
  *}
-{$ifdef SDL_DYNAMIC_LINKING}
+{$ifdef SDL_RUNTIME_LOADING}
 Type
   TSDL_CloseAudioDevice_proc = procedure(dev: TSDL_AudioDeviceID); cdecl;
 Var
