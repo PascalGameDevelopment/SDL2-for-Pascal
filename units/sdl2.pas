@@ -217,7 +217,7 @@ uses
         {$endif}
         ;
 
-{$I sdl_dnymic_linking.inc}
+{$I sdl_runtime_linking.inc}
 
 // Macros from "sdl_version.h"
 procedure SDL_VERSION(out x: TSDL_Version);
