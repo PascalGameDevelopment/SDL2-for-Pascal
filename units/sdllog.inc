@@ -98,9 +98,9 @@ procedure SDL_LogSetPriority(category: TSDL_LogCategory; priority: TSDL_LogPrior
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LogGetPriority_fun = function(category: TSDL_LogCategory): TSDL_LogPriority; cdecl;
+  TSDL_LogGetPriority_func = function(category: TSDL_LogCategory): TSDL_LogPriority; cdecl;
 Var
-  SDL_LogGetPriority : TSDL_LogGetPriority_fun = Nil;
+  SDL_LogGetPriority : TSDL_LogGetPriority_func = Nil;
 {$else}
 
 function SDL_LogGetPriority(category: TSDL_LogCategory): TSDL_LogPriority; cdecl;

@@ -42,9 +42,9 @@ const
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetNumTouchDevices_fun = function(): cint; cdecl;
+  TSDL_GetNumTouchDevices_func = function(): cint; cdecl;
 Var
-  SDL_GetNumTouchDevices : TSDL_GetNumTouchDevices_fun = Nil;
+  SDL_GetNumTouchDevices : TSDL_GetNumTouchDevices_func = Nil;
 {$else}
 
 function SDL_GetNumTouchDevices(): cint; cdecl;
@@ -56,9 +56,9 @@ function SDL_GetNumTouchDevices(): cint; cdecl;
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetTouchDevice_fun = function(index: cint): TSDL_TouchID; cdecl;
+  TSDL_GetTouchDevice_func = function(index: cint): TSDL_TouchID; cdecl;
 Var
-  SDL_GetTouchDevice : TSDL_GetTouchDevice_fun = Nil;
+  SDL_GetTouchDevice : TSDL_GetTouchDevice_func = Nil;
 {$else}
 
 function SDL_GetTouchDevice(index: cint): TSDL_TouchID; cdecl;
@@ -73,9 +73,9 @@ function SDL_GetTouchDevice(index: cint): TSDL_TouchID; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetTouchName_fun = function(index: cint): PAnsiChar; cdecl;
+  TSDL_GetTouchName_func = function(index: cint): PAnsiChar; cdecl;
 Var
-  SDL_GetTouchName : TSDL_GetTouchName_fun = Nil;
+  SDL_GetTouchName : TSDL_GetTouchName_func = Nil;
 {$else}
 
 function SDL_GetTouchName(index: cint): PAnsiChar; cdecl;
@@ -89,9 +89,9 @@ function SDL_GetTouchName(index: cint): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetTouchDeviceType_fun = function(touchID: TSDL_TouchID): TSDL_TouchDeviceType; cdecl;
+  TSDL_GetTouchDeviceType_func = function(touchID: TSDL_TouchID): TSDL_TouchDeviceType; cdecl;
 Var
-  SDL_GetTouchDeviceType : TSDL_GetTouchDeviceType_fun = Nil;
+  SDL_GetTouchDeviceType : TSDL_GetTouchDeviceType_func = Nil;
 {$else}
 
 function SDL_GetTouchDeviceType(touchID: TSDL_TouchID): TSDL_TouchDeviceType; cdecl;
@@ -103,9 +103,9 @@ function SDL_GetTouchDeviceType(touchID: TSDL_TouchID): TSDL_TouchDeviceType; cd
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetNumTouchFingers_fun = function(touchID: TSDL_TouchID): cint; cdecl;
+  TSDL_GetNumTouchFingers_func = function(touchID: TSDL_TouchID): cint; cdecl;
 Var
-  SDL_GetNumTouchFingers : TSDL_GetNumTouchFingers_fun = Nil;
+  SDL_GetNumTouchFingers : TSDL_GetNumTouchFingers_func = Nil;
 {$else}
 
 function SDL_GetNumTouchFingers(touchID: TSDL_TouchID): cint; cdecl;
@@ -117,9 +117,9 @@ function SDL_GetNumTouchFingers(touchID: TSDL_TouchID): cint; cdecl;
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetTouchFinger_fun = function(touchID: TSDL_TouchID; index: cint): PSDL_Finger; cdecl;
+  TSDL_GetTouchFinger_func = function(touchID: TSDL_TouchID; index: cint): PSDL_Finger; cdecl;
 Var
-  SDL_GetTouchFinger : TSDL_GetTouchFinger_fun = Nil;
+  SDL_GetTouchFinger : TSDL_GetTouchFinger_func = Nil;
 {$else}
 
 function SDL_GetTouchFinger(touchID: TSDL_TouchID; index: cint): PSDL_Finger; cdecl;

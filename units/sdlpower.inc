@@ -33,9 +33,9 @@ type
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetPowerInfo_fun = function(secs: pcint; pct: pcint): TSDL_PowerState; cdecl;
+  TSDL_GetPowerInfo_func = function(secs: pcint; pct: pcint): TSDL_PowerState; cdecl;
 Var
-  SDL_GetPowerInfo : TSDL_GetPowerInfo_fun = Nil;
+  SDL_GetPowerInfo : TSDL_GetPowerInfo_func = Nil;
 {$else}
 
 function SDL_GetPowerInfo(secs: pcint; pct: pcint): TSDL_PowerState; cdecl;

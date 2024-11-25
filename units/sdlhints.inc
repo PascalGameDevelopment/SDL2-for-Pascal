@@ -2417,9 +2417,9 @@ const
  */}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetHintWithPriority_fun = function(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority): TSDL_Bool; cdecl;
+  TSDL_SetHintWithPriority_func = function(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority): TSDL_Bool; cdecl;
 Var
-  SDL_SetHintWithPriority : TSDL_SetHintWithPriority_fun = Nil;
+  SDL_SetHintWithPriority : TSDL_SetHintWithPriority_func = Nil;
 {$else}
 
 function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; priority: TSDL_HintPriority): TSDL_Bool; cdecl;
@@ -2433,9 +2433,9 @@ function SDL_SetHintWithPriority(const name: PAnsiChar; const value: PAnsiChar; 
  */}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetHint_fun = function(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; cdecl;
+  TSDL_SetHint_func = function(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; cdecl;
 Var
-  SDL_SetHint : TSDL_SetHint_fun = Nil;
+  SDL_SetHint : TSDL_SetHint_func = Nil;
 {$else}
 
 function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; cdecl;
@@ -2456,9 +2456,9 @@ function SDL_SetHint(const name: PAnsiChar; const value: PAnsiChar): TSDL_Bool; 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ResetHint_fun = function(const name: PAnsiChar): TSDL_Bool; cdecl;
+  TSDL_ResetHint_func = function(const name: PAnsiChar): TSDL_Bool; cdecl;
 Var
-  SDL_ResetHint : TSDL_ResetHint_fun = Nil;
+  SDL_ResetHint : TSDL_ResetHint_func = Nil;
 {$else}
 
 function SDL_ResetHint(const name: PAnsiChar): TSDL_Bool; cdecl;
@@ -2496,9 +2496,9 @@ procedure SDL_ResetHints(); cdecl;
  */}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetHint_fun = function(const name: PAnsiChar): PAnsiChar; cdecl;
+  TSDL_GetHint_func = function(const name: PAnsiChar): PAnsiChar; cdecl;
 Var
-  SDL_GetHint : TSDL_GetHint_fun = Nil;
+  SDL_GetHint : TSDL_GetHint_func = Nil;
 {$else}
 
 function SDL_GetHint(const name: PAnsiChar): PAnsiChar; cdecl;
@@ -2512,9 +2512,9 @@ function SDL_GetHint(const name: PAnsiChar): PAnsiChar; cdecl;
  */}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetHintBoolean_fun = function(const name: PAnsiChar; default_value: TSDL_Bool): TSDL_Bool; cdecl;
+  TSDL_GetHintBoolean_func = function(const name: PAnsiChar; default_value: TSDL_Bool): TSDL_Bool; cdecl;
 Var
-  SDL_GetHintBoolean : TSDL_GetHintBoolean_fun = Nil;
+  SDL_GetHintBoolean : TSDL_GetHintBoolean_func = Nil;
 {$else}
 
 function SDL_GetHintBoolean(const name: PAnsiChar; default_value: TSDL_Bool): TSDL_Bool; cdecl;

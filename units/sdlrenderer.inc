@@ -383,9 +383,9 @@ function SDL_UpdateTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: Point
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LockTexture_fun = function(texture: PSDL_Texture; const rect: PSDL_Rect; pixels: PPointer; pitch: pcint): cint; cdecl;
+  TSDL_LockTexture_func = function(texture: PSDL_Texture; const rect: PSDL_Rect; pixels: PPointer; pitch: pcint): cint; cdecl;
 Var
-  SDL_LockTexture : TSDL_LockTexture_fun = Nil;
+  SDL_LockTexture : TSDL_LockTexture_func = Nil;
 {$else}
 
 function SDL_LockTexture(texture: PSDL_Texture; const rect: PSDL_Rect; pixels: PPointer; pitch: pcint): cint; cdecl;
@@ -409,9 +409,9 @@ function SDL_LockTexture(texture: PSDL_Texture; const rect: PSDL_Rect; pixels: P
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LockTextureToSurface_fun = function(texture: PSDL_Texture; const rect: PSDL_Rect; surface: PPSDL_Surface): cint; cdecl;
+  TSDL_LockTextureToSurface_func = function(texture: PSDL_Texture; const rect: PSDL_Rect; surface: PPSDL_Surface): cint; cdecl;
 Var
-  SDL_LockTextureToSurface : TSDL_LockTextureToSurface_fun = Nil;
+  SDL_LockTextureToSurface : TSDL_LockTextureToSurface_func = Nil;
 {$else}
 
 function SDL_LockTextureToSurface(texture: PSDL_Texture; const rect: PSDL_Rect; surface: PPSDL_Surface): cint; cdecl;
@@ -571,9 +571,9 @@ procedure SDL_RenderGetClipRect(renderer: PSDL_Renderer; rect: PSDL_Rect) cdecl;
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderIsClipEnabled_fun = function(renderer: PSDL_Renderer): TSDL_Bool; cdecl;
+  TSDL_RenderIsClipEnabled_func = function(renderer: PSDL_Renderer): TSDL_Bool; cdecl;
 Var
-  SDL_RenderIsClipEnabled : TSDL_RenderIsClipEnabled_fun = Nil;
+  SDL_RenderIsClipEnabled : TSDL_RenderIsClipEnabled_func = Nil;
 {$else}
 
 function SDL_RenderIsClipEnabled(renderer: PSDL_Renderer): TSDL_Bool; cdecl;
@@ -713,9 +713,9 @@ function SDL_RenderDrawPoint(renderer: PSDL_Renderer; x: cint32; y: cint32): cin
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderDrawPointF_fun = function(renderer: PSDL_Renderer; x, y: single): cint32 cdecl;
+  TSDL_RenderDrawPointF_func = function(renderer: PSDL_Renderer; x, y: single): cint32 cdecl;
 Var
-  SDL_RenderDrawPointF : TSDL_RenderDrawPointF_fun = Nil;
+  SDL_RenderDrawPointF : TSDL_RenderDrawPointF_func = Nil;
 {$else}
 
 function SDL_RenderDrawPointF(renderer: PSDL_Renderer; x, y: single): cint32 cdecl;
@@ -744,9 +744,9 @@ function SDL_RenderDrawPoints(renderer: PSDL_Renderer; points: PSDL_Point; count
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderDrawPointsF_fun = function(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
+  TSDL_RenderDrawPointsF_func = function(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
 Var
-  SDL_RenderDrawPointsF : TSDL_RenderDrawPointsF_fun = Nil;
+  SDL_RenderDrawPointsF : TSDL_RenderDrawPointsF_func = Nil;
 {$else}
 
 function SDL_RenderDrawPointsF(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
@@ -779,9 +779,9 @@ function SDL_RenderDrawLine(renderer: PSDL_Renderer; x1: cint32; y1: cint32; x2:
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderDrawLineF_fun = function(renderer: PSDL_Renderer; x1, y1, x2, y2: single): cint32 cdecl;
+  TSDL_RenderDrawLineF_func = function(renderer: PSDL_Renderer; x1, y1, x2, y2: single): cint32 cdecl;
 Var
-  SDL_RenderDrawLineF : TSDL_RenderDrawLineF_fun = Nil;
+  SDL_RenderDrawLineF : TSDL_RenderDrawLineF_func = Nil;
 {$else}
 
 function SDL_RenderDrawLineF(renderer: PSDL_Renderer; x1, y1, x2, y2: single): cint32 cdecl;
@@ -810,9 +810,9 @@ function SDL_RenderDrawLines(renderer: PSDL_Renderer; points: PSDL_Point; count:
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderDrawLinesF_fun = function(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
+  TSDL_RenderDrawLinesF_func = function(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
 Var
-  SDL_RenderDrawLinesF : TSDL_RenderDrawLinesF_fun = Nil;
+  SDL_RenderDrawLinesF : TSDL_RenderDrawLinesF_func = Nil;
 {$else}
 
 function SDL_RenderDrawLinesF(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint32): cint32 cdecl;
@@ -839,9 +839,9 @@ function SDL_RenderDrawRect(renderer: PSDL_Renderer; rect: PSDL_Rect): cint32 cd
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderDrawRectF_fun = function(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
+  TSDL_RenderDrawRectF_func = function(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
 Var
-  SDL_RenderDrawRectF : TSDL_RenderDrawRectF_fun = Nil;
+  SDL_RenderDrawRectF : TSDL_RenderDrawRectF_func = Nil;
 {$else}
 
 function SDL_RenderDrawRectF(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
@@ -870,9 +870,9 @@ function SDL_RenderDrawRects(renderer: PSDL_Renderer; rects: PSDL_Rect; count: c
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderDrawRectsF_fun = function(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
+  TSDL_RenderDrawRectsF_func = function(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
 Var
-  SDL_RenderDrawRectsF : TSDL_RenderDrawRectsF_fun = Nil;
+  SDL_RenderDrawRectsF : TSDL_RenderDrawRectsF_func = Nil;
 {$else}
 
 function SDL_RenderDrawRectsF(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
@@ -900,9 +900,9 @@ function SDL_RenderFillRect(renderer: PSDL_Renderer; rect: PSDL_Rect): cint32 cd
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderFillRectF_fun = function(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
+  TSDL_RenderFillRectF_func = function(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
 Var
-  SDL_RenderFillRectF : TSDL_RenderFillRectF_fun = Nil;
+  SDL_RenderFillRectF : TSDL_RenderFillRectF_func = Nil;
 {$else}
 
 function SDL_RenderFillRectF(renderer: PSDL_Renderer; rect: PSDL_FRect): cint32 cdecl;
@@ -931,9 +931,9 @@ function SDL_RenderFillRects(renderer: PSDL_Renderer; rects: PSDL_Rect; count: c
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderFillRectsF_fun = function(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
+  TSDL_RenderFillRectsF_func = function(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
 Var
-  SDL_RenderFillRectsF : TSDL_RenderFillRectsF_fun = Nil;
+  SDL_RenderFillRectsF : TSDL_RenderFillRectsF_func = Nil;
 {$else}
 
 function SDL_RenderFillRectsF(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint32): cint32 cdecl;
@@ -966,9 +966,9 @@ function SDL_RenderCopy(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect:
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderCopyF_fun = function(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_Rect; dstrect: PSDL_FRect): cint32 cdecl;
+  TSDL_RenderCopyF_func = function(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_Rect; dstrect: PSDL_FRect): cint32 cdecl;
 Var
-  SDL_RenderCopyF : TSDL_RenderCopyF_fun = Nil;
+  SDL_RenderCopyF : TSDL_RenderCopyF_func = Nil;
 {$else}
 
 function SDL_RenderCopyF(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_Rect; dstrect: PSDL_FRect): cint32 cdecl;
@@ -1007,9 +1007,9 @@ function SDL_RenderCopyEx(renderer: PSDL_Renderer; texture: PSDL_Texture; const 
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderCopyExF_fun = function(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: cdouble; center: PSDL_FPoint; flip: TSDL_RenderFlip): cint32 cdecl;
+  TSDL_RenderCopyExF_func = function(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: cdouble; center: PSDL_FPoint; flip: TSDL_RenderFlip): cint32 cdecl;
 Var
-  SDL_RenderCopyExF : TSDL_RenderCopyExF_fun = Nil;
+  SDL_RenderCopyExF : TSDL_RenderCopyExF_func = Nil;
 {$else}
 
 function SDL_RenderCopyExF(renderer: PSDL_Renderer; texture: PSDL_Texture; const srcrect: PSDL_Rect; dstrect: PSDL_FRect; angle: cdouble; center: PSDL_FPoint; flip: TSDL_RenderFlip): cint32 cdecl;
@@ -1139,9 +1139,9 @@ function SDL_GL_UnbindTexture(texture: PSDL_Texture): cint32 cdecl; external SDL
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderGetMetalLayer_fun = function(renderer: PSDL_Renderer): Pointer; cdecl;
+  TSDL_RenderGetMetalLayer_func = function(renderer: PSDL_Renderer): Pointer; cdecl;
 Var
-  SDL_RenderGetMetalLayer : TSDL_RenderGetMetalLayer_fun = Nil;
+  SDL_RenderGetMetalLayer : TSDL_RenderGetMetalLayer_func = Nil;
 {$else}
 
 function SDL_RenderGetMetalLayer(renderer: PSDL_Renderer): Pointer; cdecl;
@@ -1161,9 +1161,9 @@ function SDL_RenderGetMetalLayer(renderer: PSDL_Renderer): Pointer; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderGetMetalCommandEncoder_fun = function(renderer: PSDL_Renderer): Pointer; cdecl;
+  TSDL_RenderGetMetalCommandEncoder_func = function(renderer: PSDL_Renderer): Pointer; cdecl;
 Var
-  SDL_RenderGetMetalCommandEncoder : TSDL_RenderGetMetalCommandEncoder_fun = Nil;
+  SDL_RenderGetMetalCommandEncoder : TSDL_RenderGetMetalCommandEncoder_func = Nil;
 {$else}
 
 function SDL_RenderGetMetalCommandEncoder(renderer: PSDL_Renderer): Pointer; cdecl;
@@ -1196,10 +1196,10 @@ function SDL_RenderSetVSync(renderer: PSDL_Renderer; vsync: cint): cint; cdecl;
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_UpdateYUVTexture_fun = function(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: pcuint8; Ypitch: cint32; Uplane: pcuint8; UPitch: cint32; Vplane: pcuint8; VPitch: cint32):cint32;
+  TSDL_UpdateYUVTexture_func = function(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: pcuint8; Ypitch: cint32; Uplane: pcuint8; UPitch: cint32; Vplane: pcuint8; VPitch: cint32):cint32;
    cdecl;
 Var
-  SDL_UpdateYUVTexture : TSDL_UpdateYUVTexture_fun = Nil;
+  SDL_UpdateYUVTexture : TSDL_UpdateYUVTexture_func = Nil;
 {$else}
 
 function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect; Yplane: pcuint8; Ypitch: cint32; Uplane: pcuint8; UPitch: cint32; Vplane: pcuint8; VPitch: cint32):cint32;

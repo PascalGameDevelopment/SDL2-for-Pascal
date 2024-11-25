@@ -22,9 +22,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RecordGesture_fun = function(touchId: TSDL_TouchID): cint; cdecl;
+  TSDL_RecordGesture_func = function(touchId: TSDL_TouchID): cint; cdecl;
 Var
-  SDL_RecordGesture : TSDL_RecordGesture_fun = Nil;
+  SDL_RecordGesture : TSDL_RecordGesture_func = Nil;
 {$else}
 
 function SDL_RecordGesture(touchId: TSDL_TouchID): cint; cdecl;
@@ -45,9 +45,9 @@ function SDL_RecordGesture(touchId: TSDL_TouchID): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SaveAllDollarTemplates_fun = function(dst: PSDL_RWops): cint; cdecl;
+  TSDL_SaveAllDollarTemplates_func = function(dst: PSDL_RWops): cint; cdecl;
 Var
-  SDL_SaveAllDollarTemplates : TSDL_SaveAllDollarTemplates_fun = Nil;
+  SDL_SaveAllDollarTemplates : TSDL_SaveAllDollarTemplates_func = Nil;
 {$else}
 
 function SDL_SaveAllDollarTemplates(dst: PSDL_RWops): cint; cdecl;
@@ -69,9 +69,9 @@ function SDL_SaveAllDollarTemplates(dst: PSDL_RWops): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SaveDollarTemplate_fun = function(gestureId: TSDL_GestureID; dst: PSDL_RWops): cint; cdecl;
+  TSDL_SaveDollarTemplate_func = function(gestureId: TSDL_GestureID; dst: PSDL_RWops): cint; cdecl;
 Var
-  SDL_SaveDollarTemplate : TSDL_SaveDollarTemplate_fun = Nil;
+  SDL_SaveDollarTemplate : TSDL_SaveDollarTemplate_func = Nil;
 {$else}
 
 function SDL_SaveDollarTemplate(gestureId: TSDL_GestureID; dst: PSDL_RWops): cint; cdecl;
@@ -94,9 +94,9 @@ function SDL_SaveDollarTemplate(gestureId: TSDL_GestureID; dst: PSDL_RWops): cin
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LoadDollarTemplates_fun = function(touchId: TSDL_TouchID; src: PSDL_RWops): cint; cdecl;
+  TSDL_LoadDollarTemplates_func = function(touchId: TSDL_TouchID; src: PSDL_RWops): cint; cdecl;
 Var
-  SDL_LoadDollarTemplates : TSDL_LoadDollarTemplates_fun = Nil;
+  SDL_LoadDollarTemplates : TSDL_LoadDollarTemplates_func = Nil;
 {$else}
 
 function SDL_LoadDollarTemplates(touchId: TSDL_TouchID; src: PSDL_RWops): cint; cdecl;

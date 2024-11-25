@@ -112,9 +112,9 @@ function SDL_SetMemoryFunctions(
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetNumAllocations_fun = function(): cint; cdecl;
+  TSDL_GetNumAllocations_func = function(): cint; cdecl;
 Var
-  SDL_GetNumAllocations : TSDL_GetNumAllocations_fun = Nil;
+  SDL_GetNumAllocations : TSDL_GetNumAllocations_func = Nil;
 {$else}
 
 function SDL_GetNumAllocations(): cint; cdecl;
@@ -125,10 +125,8 @@ function SDL_GetNumAllocations(): cint; cdecl;
  * Allocate a block of memory. The memory is *not* initialized.
  *)
 {$ifdef SDL_RUNTIME_LOADING}
-Type
-  TSDL_malloc_fun = function(size: csize_t): Pointer; cdecl;
 Var
-  SDL_malloc : TSDL_malloc_fun = Nil;
+  SDL_malloc : TSDL_malloc_func = Nil;
 {$else}
 
 function SDL_malloc(size: csize_t): Pointer; cdecl;
@@ -140,10 +138,8 @@ function SDL_malloc(size: csize_t): Pointer; cdecl;
  * The memory is initialized by setting every byte to 0.
  *)
 {$ifdef SDL_RUNTIME_LOADING}
-Type
-  TSDL_calloc_fun = function(nmemb, size: csize_t): Pointer; cdecl;
 Var
-  SDL_calloc : TSDL_calloc_fun = Nil;
+  SDL_calloc : TSDL_calloc_func = Nil;
 {$else}
 
 function SDL_calloc(nmemb, size: csize_t): Pointer; cdecl;
@@ -157,10 +153,8 @@ function SDL_calloc(nmemb, size: csize_t): Pointer; cdecl;
  * If the new size is larger than the old size, any new memory will *not* be initialized.
  *)
 {$ifdef SDL_RUNTIME_LOADING}
-Type
-  TSDL_realloc_fun = function(mem: Pointer; size: csize_t): Pointer; cdecl;
 Var
-  SDL_realloc : TSDL_realloc_fun = Nil;
+  SDL_realloc : TSDL_realloc_func = Nil;
 {$else}
 
 function SDL_realloc(mem: Pointer; size: csize_t): Pointer; cdecl;
@@ -200,9 +194,9 @@ SDL2-for-Pascal: All comments are added by us and not found in the include file.
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isalpha_fun = function(x: cint):cint; cdecl;
+  TSDL_isalpha_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isalpha : TSDL_isalpha_fun = Nil;
+  SDL_isalpha : TSDL_isalpha_func = Nil;
 {$else}
 
 function SDL_isalpha(x: cint):cint; cdecl;
@@ -218,9 +212,9 @@ function SDL_isalpha(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isalnum_fun = function(x: cint):cint; cdecl;
+  TSDL_isalnum_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isalnum : TSDL_isalnum_fun = Nil;
+  SDL_isalnum : TSDL_isalnum_func = Nil;
 {$else}
 
 function SDL_isalnum(x: cint):cint; cdecl;
@@ -236,9 +230,9 @@ function SDL_isalnum(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isblank_fun = function(x: cint):cint; cdecl;
+  TSDL_isblank_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isblank : TSDL_isblank_fun = Nil;
+  SDL_isblank : TSDL_isblank_func = Nil;
 {$else}
 
 function SDL_isblank(x: cint):cint; cdecl;
@@ -254,9 +248,9 @@ function SDL_isblank(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_iscntrl_fun = function(x: cint):cint; cdecl;
+  TSDL_iscntrl_func = function(x: cint):cint; cdecl;
 Var
-  SDL_iscntrl : TSDL_iscntrl_fun = Nil;
+  SDL_iscntrl : TSDL_iscntrl_func = Nil;
 {$else}
 
 function SDL_iscntrl(x: cint):cint; cdecl;
@@ -272,9 +266,9 @@ function SDL_iscntrl(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isdigit_fun = function(x: cint):cint; cdecl;
+  TSDL_isdigit_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isdigit : TSDL_isdigit_fun = Nil;
+  SDL_isdigit : TSDL_isdigit_func = Nil;
 {$else}
 
 function SDL_isdigit(x: cint):cint; cdecl;
@@ -290,9 +284,9 @@ function SDL_isdigit(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isxdigit_fun = function(x: cint):cint; cdecl;
+  TSDL_isxdigit_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isxdigit : TSDL_isxdigit_fun = Nil;
+  SDL_isxdigit : TSDL_isxdigit_func = Nil;
 {$else}
 
 function SDL_isxdigit(x: cint):cint; cdecl;
@@ -309,9 +303,9 @@ function SDL_isxdigit(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ispunct_fun = function(x: cint):cint; cdecl;
+  TSDL_ispunct_func = function(x: cint):cint; cdecl;
 Var
-  SDL_ispunct : TSDL_ispunct_fun = Nil;
+  SDL_ispunct : TSDL_ispunct_func = Nil;
 {$else}
 
 function SDL_ispunct(x: cint):cint; cdecl;
@@ -330,9 +324,9 @@ function SDL_ispunct(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isspace_fun = function(x: cint):cint; cdecl;
+  TSDL_isspace_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isspace : TSDL_isspace_fun = Nil;
+  SDL_isspace : TSDL_isspace_func = Nil;
 {$else}
 
 function SDL_isspace(x: cint):cint; cdecl;
@@ -348,9 +342,9 @@ function SDL_isspace(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isupper_fun = function(x: cint):cint; cdecl;
+  TSDL_isupper_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isupper : TSDL_isupper_fun = Nil;
+  SDL_isupper : TSDL_isupper_func = Nil;
 {$else}
 
 function SDL_isupper(x: cint):cint; cdecl;
@@ -366,9 +360,9 @@ function SDL_isupper(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_islower_fun = function(x: cint):cint; cdecl;
+  TSDL_islower_func = function(x: cint):cint; cdecl;
 Var
-  SDL_islower : TSDL_islower_fun = Nil;
+  SDL_islower : TSDL_islower_func = Nil;
 {$else}
 
 function SDL_islower(x: cint):cint; cdecl;
@@ -384,9 +378,9 @@ function SDL_islower(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isprint_fun = function(x: cint):cint; cdecl;
+  TSDL_isprint_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isprint : TSDL_isprint_fun = Nil;
+  SDL_isprint : TSDL_isprint_func = Nil;
 {$else}
 
 function SDL_isprint(x: cint):cint; cdecl;
@@ -402,9 +396,9 @@ function SDL_isprint(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_isgraph_fun = function(x: cint):cint; cdecl;
+  TSDL_isgraph_func = function(x: cint):cint; cdecl;
 Var
-  SDL_isgraph : TSDL_isgraph_fun = Nil;
+  SDL_isgraph : TSDL_isgraph_func = Nil;
 {$else}
 
 function SDL_isgraph(x: cint):cint; cdecl;
@@ -419,9 +413,9 @@ function SDL_isgraph(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_toupper_fun = function(x: cint):cint; cdecl;
+  TSDL_toupper_func = function(x: cint):cint; cdecl;
 Var
-  SDL_toupper : TSDL_toupper_fun = Nil;
+  SDL_toupper : TSDL_toupper_func = Nil;
 {$else}
 
 function SDL_toupper(x: cint):cint; cdecl;
@@ -436,9 +430,9 @@ function SDL_toupper(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_tolower_fun = function(x: cint):cint; cdecl;
+  TSDL_tolower_func = function(x: cint):cint; cdecl;
 Var
-  SDL_tolower : TSDL_tolower_fun = Nil;
+  SDL_tolower : TSDL_tolower_func = Nil;
 {$else}
 
 function SDL_tolower(x: cint):cint; cdecl;
@@ -458,9 +452,9 @@ function SDL_tolower(x: cint):cint; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_acos_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_acos_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_acos : TSDL_acos_fun = Nil;
+  SDL_acos : TSDL_acos_func = Nil;
 {$else}
 
 function SDL_acos(x: cdouble): cdouble; cdecl;
@@ -475,9 +469,9 @@ function SDL_acos(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_acosf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_acosf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_acosf : TSDL_acosf_fun = Nil;
+  SDL_acosf : TSDL_acosf_func = Nil;
 {$else}
 
 function SDL_acosf(x: cfloat): cfloat; cdecl;
@@ -492,9 +486,9 @@ function SDL_acosf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_asin_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_asin_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_asin : TSDL_asin_fun = Nil;
+  SDL_asin : TSDL_asin_func = Nil;
 {$else}
 
 function SDL_asin(x: cdouble): cdouble; cdecl;
@@ -509,9 +503,9 @@ function SDL_asin(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_asinf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_asinf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_asinf : TSDL_asinf_fun = Nil;
+  SDL_asinf : TSDL_asinf_func = Nil;
 {$else}
 
 function SDL_asinf(x: cfloat): cfloat; cdecl;
@@ -526,9 +520,9 @@ function SDL_asinf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_atan_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_atan_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_atan : TSDL_atan_fun = Nil;
+  SDL_atan : TSDL_atan_func = Nil;
 {$else}
 
 function SDL_atan(x: cdouble): cdouble; cdecl;
@@ -543,9 +537,9 @@ function SDL_atan(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_atanf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_atanf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_atanf : TSDL_atanf_fun = Nil;
+  SDL_atanf : TSDL_atanf_func = Nil;
 {$else}
 
 function SDL_atanf(x: cfloat): cfloat; cdecl;
@@ -560,9 +554,9 @@ function SDL_atanf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_atan2_fun = function(y, x: cdouble): cdouble; cdecl;
+  TSDL_atan2_func = function(y, x: cdouble): cdouble; cdecl;
 Var
-  SDL_atan2 : TSDL_atan2_fun = Nil;
+  SDL_atan2 : TSDL_atan2_func = Nil;
 {$else}
 
 function SDL_atan2(y, x: cdouble): cdouble; cdecl;
@@ -577,9 +571,9 @@ function SDL_atan2(y, x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_atan2f_fun = function(y, x: cfloat): cfloat; cdecl;
+  TSDL_atan2f_func = function(y, x: cfloat): cfloat; cdecl;
 Var
-  SDL_atan2f : TSDL_atan2f_fun = Nil;
+  SDL_atan2f : TSDL_atan2f_func = Nil;
 {$else}
 
 function SDL_atan2f(y, x: cfloat): cfloat; cdecl;
@@ -593,9 +587,9 @@ function SDL_atan2f(y, x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ceil_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_ceil_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_ceil : TSDL_ceil_fun = Nil;
+  SDL_ceil : TSDL_ceil_func = Nil;
 {$else}
 
 function SDL_ceil(x: cdouble): cdouble; cdecl;
@@ -609,9 +603,9 @@ function SDL_ceil(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ceilf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_ceilf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_ceilf : TSDL_ceilf_fun = Nil;
+  SDL_ceilf : TSDL_ceilf_func = Nil;
 {$else}
 
 function SDL_ceilf(x: cfloat): cfloat; cdecl;
@@ -626,9 +620,9 @@ function SDL_ceilf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_copysign_fun = function(x, y: cdouble): cdouble; cdecl;
+  TSDL_copysign_func = function(x, y: cdouble): cdouble; cdecl;
 Var
-  SDL_copysign : TSDL_copysign_fun = Nil;
+  SDL_copysign : TSDL_copysign_func = Nil;
 {$else}
 
 function SDL_copysign(x, y: cdouble): cdouble; cdecl;
@@ -643,9 +637,9 @@ function SDL_copysign(x, y: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_copysignf_fun = function(x, y: cfloat): cfloat; cdecl;
+  TSDL_copysignf_func = function(x, y: cfloat): cfloat; cdecl;
 Var
-  SDL_copysignf : TSDL_copysignf_fun = Nil;
+  SDL_copysignf : TSDL_copysignf_func = Nil;
 {$else}
 
 function SDL_copysignf(x, y: cfloat): cfloat; cdecl;
@@ -659,9 +653,9 @@ function SDL_copysignf(x, y: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_cos_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_cos_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_cos : TSDL_cos_fun = Nil;
+  SDL_cos : TSDL_cos_func = Nil;
 {$else}
 
 function SDL_cos(x: cdouble): cdouble; cdecl;
@@ -675,9 +669,9 @@ function SDL_cos(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_cosf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_cosf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_cosf : TSDL_cosf_fun = Nil;
+  SDL_cosf : TSDL_cosf_func = Nil;
 {$else}
 
 function SDL_cosf(x: cfloat): cfloat; cdecl;
@@ -692,9 +686,9 @@ function SDL_cosf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_exp_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_exp_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_exp : TSDL_exp_fun = Nil;
+  SDL_exp : TSDL_exp_func = Nil;
 {$else}
 
 function SDL_exp(x: cdouble): cdouble; cdecl;
@@ -709,9 +703,9 @@ function SDL_exp(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_expf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_expf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_expf : TSDL_expf_fun = Nil;
+  SDL_expf : TSDL_expf_func = Nil;
 {$else}
 
 function SDL_expf(x: cfloat): cfloat; cdecl;
@@ -725,9 +719,9 @@ function SDL_expf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_fabs_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_fabs_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_fabs : TSDL_fabs_fun = Nil;
+  SDL_fabs : TSDL_fabs_func = Nil;
 {$else}
 
 function SDL_fabs(x: cdouble): cdouble; cdecl;
@@ -741,9 +735,9 @@ function SDL_fabs(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_fabsf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_fabsf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_fabsf : TSDL_fabsf_fun = Nil;
+  SDL_fabsf : TSDL_fabsf_func = Nil;
 {$else}
 
 function SDL_fabsf(x: cfloat): cfloat; cdecl;
@@ -757,9 +751,9 @@ function SDL_fabsf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_floor_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_floor_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_floor : TSDL_floor_fun = Nil;
+  SDL_floor : TSDL_floor_func = Nil;
 {$else}
 
 function SDL_floor(x: cdouble): cdouble; cdecl;
@@ -773,9 +767,9 @@ function SDL_floor(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_floorf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_floorf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_floorf : TSDL_floorf_fun = Nil;
+  SDL_floorf : TSDL_floorf_func = Nil;
 {$else}
 
 function SDL_floorf(x: cfloat): cfloat; cdecl;
@@ -789,9 +783,9 @@ function SDL_floorf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_fmod_fun = function(x, y: cdouble): cdouble; cdecl;
+  TSDL_fmod_func = function(x, y: cdouble): cdouble; cdecl;
 Var
-  SDL_fmod : TSDL_fmod_fun = Nil;
+  SDL_fmod : TSDL_fmod_func = Nil;
 {$else}
 
 function SDL_fmod(x, y: cdouble): cdouble; cdecl;
@@ -805,9 +799,9 @@ function SDL_fmod(x, y: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_fmodf_fun = function(x, y: cfloat): cfloat; cdecl;
+  TSDL_fmodf_func = function(x, y: cfloat): cfloat; cdecl;
 Var
-  SDL_fmodf : TSDL_fmodf_fun = Nil;
+  SDL_fmodf : TSDL_fmodf_func = Nil;
 {$else}
 
 function SDL_fmodf(x, y: cfloat): cfloat; cdecl;
@@ -825,9 +819,9 @@ function SDL_fmodf(x, y: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_nlog_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_nlog_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_nlog : TSDL_nlog_fun = Nil;
+  SDL_nlog : TSDL_nlog_func = Nil;
 {$else}
 
 function SDL_nlog(x: cdouble): cdouble; cdecl;
@@ -846,9 +840,9 @@ function SDL_nlog(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_nlogf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_nlogf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_nlogf : TSDL_nlogf_fun = Nil;
+  SDL_nlogf : TSDL_nlogf_func = Nil;
 {$else}
 
 function SDL_nlogf(x: cfloat): cfloat; cdecl;
@@ -863,9 +857,9 @@ function SDL_nlogf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_log10_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_log10_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_log10 : TSDL_log10_fun = Nil;
+  SDL_log10 : TSDL_log10_func = Nil;
 {$else}
 
 function SDL_log10(x: cdouble): cdouble; cdecl;
@@ -879,9 +873,9 @@ function SDL_log10(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_log10f_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_log10f_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_log10f : TSDL_log10f_fun = Nil;
+  SDL_log10f : TSDL_log10f_func = Nil;
 {$else}
 
 function SDL_log10f(x: cfloat): cfloat; cdecl;
@@ -895,9 +889,9 @@ function SDL_log10f(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_lround_fun = function(x: cdouble): clong; cdecl;
+  TSDL_lround_func = function(x: cdouble): clong; cdecl;
 Var
-  SDL_lround : TSDL_lround_fun = Nil;
+  SDL_lround : TSDL_lround_func = Nil;
 {$else}
 
 function SDL_lround(x: cdouble): clong; cdecl;
@@ -911,9 +905,9 @@ function SDL_lround(x: cdouble): clong; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_lroundf_fun = function(x: cfloat): clong; cdecl;
+  TSDL_lroundf_func = function(x: cfloat): clong; cdecl;
 Var
-  SDL_lroundf : TSDL_lroundf_fun = Nil;
+  SDL_lroundf : TSDL_lroundf_func = Nil;
 {$else}
 
 function SDL_lroundf(x: cfloat): clong; cdecl;
@@ -927,9 +921,9 @@ function SDL_lroundf(x: cfloat): clong; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_pow_fun = function(x, y: cdouble): cdouble; cdecl;
+  TSDL_pow_func = function(x, y: cdouble): cdouble; cdecl;
 Var
-  SDL_pow : TSDL_pow_fun = Nil;
+  SDL_pow : TSDL_pow_func = Nil;
 {$else}
 
 function SDL_pow(x, y: cdouble): cdouble; cdecl;
@@ -943,9 +937,9 @@ function SDL_pow(x, y: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_powf_fun = function(x, y: cfloat): cfloat; cdecl;
+  TSDL_powf_func = function(x, y: cfloat): cfloat; cdecl;
 Var
-  SDL_powf : TSDL_powf_fun = Nil;
+  SDL_powf : TSDL_powf_func = Nil;
 {$else}
 
 function SDL_powf(x, y: cfloat): cfloat; cdecl;
@@ -959,9 +953,9 @@ function SDL_powf(x, y: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_round_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_round_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_round : TSDL_round_fun = Nil;
+  SDL_round : TSDL_round_func = Nil;
 {$else}
 
 function SDL_round(x: cdouble): cdouble; cdecl;
@@ -975,9 +969,9 @@ function SDL_round(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_roundf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_roundf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_roundf : TSDL_roundf_fun = Nil;
+  SDL_roundf : TSDL_roundf_func = Nil;
 {$else}
 
 function SDL_roundf(x: cfloat): cfloat; cdecl;
@@ -992,9 +986,9 @@ function SDL_roundf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_scalbn_fun = function(x: cdouble; n: cint): cdouble; cdecl;
+  TSDL_scalbn_func = function(x: cdouble; n: cint): cdouble; cdecl;
 Var
-  SDL_scalbn : TSDL_scalbn_fun = Nil;
+  SDL_scalbn : TSDL_scalbn_func = Nil;
 {$else}
 
 function SDL_scalbn(x: cdouble; n: cint): cdouble; cdecl;
@@ -1009,9 +1003,9 @@ function SDL_scalbn(x: cdouble; n: cint): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_scalbnf_fun = function(x: cfloat; n: cint): cfloat; cdecl;
+  TSDL_scalbnf_func = function(x: cfloat; n: cint): cfloat; cdecl;
 Var
-  SDL_scalbnf : TSDL_scalbnf_fun = Nil;
+  SDL_scalbnf : TSDL_scalbnf_func = Nil;
 {$else}
 
 function SDL_scalbnf(x: cfloat; n: cint): cfloat; cdecl;
@@ -1025,9 +1019,9 @@ function SDL_scalbnf(x: cfloat; n: cint): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_sin_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_sin_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_sin : TSDL_sin_fun = Nil;
+  SDL_sin : TSDL_sin_func = Nil;
 {$else}
 
 function SDL_sin(x: cdouble): cdouble; cdecl;
@@ -1041,9 +1035,9 @@ function SDL_sin(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_sinf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_sinf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_sinf : TSDL_sinf_fun = Nil;
+  SDL_sinf : TSDL_sinf_func = Nil;
 {$else}
 
 function SDL_sinf(x: cfloat): cfloat; cdecl;
@@ -1057,9 +1051,9 @@ function SDL_sinf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_sqrt_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_sqrt_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_sqrt : TSDL_sqrt_fun = Nil;
+  SDL_sqrt : TSDL_sqrt_func = Nil;
 {$else}
 
 function SDL_sqrt(x: cdouble): cdouble; cdecl;
@@ -1073,9 +1067,9 @@ function SDL_sqrt(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_sqrtf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_sqrtf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_sqrtf : TSDL_sqrtf_fun = Nil;
+  SDL_sqrtf : TSDL_sqrtf_func = Nil;
 {$else}
 
 function SDL_sqrtf(x: cfloat): cfloat; cdecl;
@@ -1089,9 +1083,9 @@ function SDL_sqrtf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_tan_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_tan_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_tan : TSDL_tan_fun = Nil;
+  SDL_tan : TSDL_tan_func = Nil;
 {$else}
 
 function SDL_tan(x: cdouble): cdouble; cdecl;
@@ -1105,9 +1099,9 @@ function SDL_tan(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_tanf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_tanf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_tanf : TSDL_tanf_fun = Nil;
+  SDL_tanf : TSDL_tanf_func = Nil;
 {$else}
 
 function SDL_tanf(x: cfloat): cfloat; cdecl;
@@ -1121,9 +1115,9 @@ function SDL_tanf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_trunc_fun = function(x: cdouble): cdouble; cdecl;
+  TSDL_trunc_func = function(x: cdouble): cdouble; cdecl;
 Var
-  SDL_trunc : TSDL_trunc_fun = Nil;
+  SDL_trunc : TSDL_trunc_func = Nil;
 {$else}
 
 function SDL_trunc(x: cdouble): cdouble; cdecl;
@@ -1137,9 +1131,9 @@ function SDL_trunc(x: cdouble): cdouble; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_truncf_fun = function(x: cfloat): cfloat; cdecl;
+  TSDL_truncf_func = function(x: cfloat): cfloat; cdecl;
 Var
-  SDL_truncf : TSDL_truncf_fun = Nil;
+  SDL_truncf : TSDL_truncf_func = Nil;
 {$else}
 
 function SDL_truncf(x: cfloat): cfloat; cdecl;
@@ -1159,9 +1153,9 @@ function SDL_truncf(x: cfloat): cfloat; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_iconv_string_fun = function(Const tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize_t): PAnsiChar; cdecl;
+  TSDL_iconv_string_func = function(Const tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize_t): PAnsiChar; cdecl;
 Var
-  SDL_iconv_string : TSDL_iconv_string_fun = Nil;
+  SDL_iconv_string : TSDL_iconv_string_func = Nil;
 {$else}
 
 function SDL_iconv_string(Const tocode, fromcode, inbuf: PAnsiChar; inbytesleft: csize_t): PAnsiChar; cdecl;
@@ -1185,9 +1179,9 @@ type
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_iconv_open_fun = function(Const tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
+  TSDL_iconv_open_func = function(Const tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
 Var
-  SDL_iconv_open : TSDL_iconv_open_fun = Nil;
+  SDL_iconv_open : TSDL_iconv_open_func = Nil;
 {$else}
 
 function SDL_iconv_open(Const tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
@@ -1196,9 +1190,9 @@ function SDL_iconv_open(Const tocode, fromcode: PAnsiChar): PSDL_iconv; cdecl;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_iconv_close_fun = function(cd: PSDL_iconv): cint; cdecl;
+  TSDL_iconv_close_func = function(cd: PSDL_iconv): cint; cdecl;
 Var
-  SDL_iconv_close : TSDL_iconv_close_fun = Nil;
+  SDL_iconv_close : TSDL_iconv_close_func = Nil;
 {$else}
 
 function SDL_iconv_close(cd: PSDL_iconv): cint; cdecl;
@@ -1207,9 +1201,9 @@ function SDL_iconv_close(cd: PSDL_iconv): cint; cdecl;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_iconv_fun = function(cd: PSDL_iconv; Const inbuf: PPAnsiChar; inbytesleft: pcsize_t; outbuf: PPAnsiChar; outbytesleft: pcsize_t): csize_t; cdecl;
+  TSDL_iconv_func = function(cd: PSDL_iconv; Const inbuf: PPAnsiChar; inbytesleft: pcsize_t; outbuf: PPAnsiChar; outbytesleft: pcsize_t): csize_t; cdecl;
 Var
-  SDL_iconv : TSDL_iconv_fun = Nil;
+  SDL_iconv : TSDL_iconv_func = Nil;
 {$else}
 
 function SDL_iconv(cd: PSDL_iconv; Const inbuf: PPAnsiChar; inbytesleft: pcsize_t; outbuf: PPAnsiChar; outbytesleft: pcsize_t): csize_t; cdecl;

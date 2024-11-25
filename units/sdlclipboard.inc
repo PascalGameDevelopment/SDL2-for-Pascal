@@ -21,9 +21,9 @@
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetClipboardText_fun = function(text: PAnsiChar): cint; cdecl;
+  TSDL_SetClipboardText_func = function(text: PAnsiChar): cint; cdecl;
 Var
-  SDL_SetClipboardText : TSDL_SetClipboardText_fun = Nil;
+  SDL_SetClipboardText : TSDL_SetClipboardText_func = Nil;
 {$else}
 
 function SDL_SetClipboardText(text: PAnsiChar): cint; cdecl;
@@ -48,9 +48,9 @@ function SDL_SetClipboardText(text: PAnsiChar): cint; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetClipboardText_fun = function(): PAnsiChar; cdecl;
+  TSDL_GetClipboardText_func = function(): PAnsiChar; cdecl;
 Var
-  SDL_GetClipboardText : TSDL_GetClipboardText_fun = Nil;
+  SDL_GetClipboardText : TSDL_GetClipboardText_func = Nil;
 {$else}
 
 function SDL_GetClipboardText(): PAnsiChar; cdecl;
@@ -69,9 +69,9 @@ function SDL_GetClipboardText(): PAnsiChar; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HasClipboardText_fun = function(): TSDL_bool; cdecl;
+  TSDL_HasClipboardText_func = function(): TSDL_bool; cdecl;
 Var
-  SDL_HasClipboardText : TSDL_HasClipboardText_fun = Nil;
+  SDL_HasClipboardText : TSDL_HasClipboardText_func = Nil;
 {$else}
 
 function SDL_HasClipboardText(): TSDL_bool; cdecl;
@@ -92,9 +92,9 @@ function SDL_HasClipboardText(): TSDL_bool; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetPrimarySelectionText_fun = function(text: PAnsiChar): cint; cdecl;
+  TSDL_SetPrimarySelectionText_func = function(text: PAnsiChar): cint; cdecl;
 Var
-  SDL_SetPrimarySelectionText : TSDL_SetPrimarySelectionText_fun = Nil;
+  SDL_SetPrimarySelectionText : TSDL_SetPrimarySelectionText_func = Nil;
 {$else}
 
 function SDL_SetPrimarySelectionText(text: PAnsiChar): cint; cdecl;
@@ -120,9 +120,9 @@ function SDL_SetPrimarySelectionText(text: PAnsiChar): cint; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetPrimarySelectionText_fun = function(): PAnsiChar; cdecl;
+  TSDL_GetPrimarySelectionText_func = function(): PAnsiChar; cdecl;
 Var
-  SDL_GetPrimarySelectionText : TSDL_GetPrimarySelectionText_fun = Nil;
+  SDL_GetPrimarySelectionText : TSDL_GetPrimarySelectionText_func = Nil;
 {$else}
 
 function SDL_GetPrimarySelectionText(): PAnsiChar; cdecl;
@@ -143,9 +143,9 @@ function SDL_GetPrimarySelectionText(): PAnsiChar; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HasPrimarySelectionText_fun = function(): TSDL_bool; cdecl;
+  TSDL_HasPrimarySelectionText_func = function(): TSDL_bool; cdecl;
 Var
-  SDL_HasPrimarySelectionText : TSDL_HasPrimarySelectionText_fun = Nil;
+  SDL_HasPrimarySelectionText : TSDL_HasPrimarySelectionText_func = Nil;
 {$else}
 
 function SDL_HasPrimarySelectionText(): TSDL_bool; cdecl;

@@ -72,9 +72,9 @@ function SDL_GetKeyboardFocus: PSDL_Window; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetKeyboardState_fun = function(numkeys: pcint): pcuint8; cdecl;
+  TSDL_GetKeyboardState_func = function(numkeys: pcint): pcuint8; cdecl;
 Var
-  SDL_GetKeyboardState : TSDL_GetKeyboardState_fun = Nil;
+  SDL_GetKeyboardState : TSDL_GetKeyboardState_func = Nil;
 {$else}
 
 function SDL_GetKeyboardState(numkeys: pcint): pcuint8; cdecl;
@@ -151,9 +151,9 @@ procedure SDL_SetModState(modstate: TSDL_Keymod); cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetKeyFromScancode_fun = function(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
+  TSDL_GetKeyFromScancode_func = function(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
 Var
-  SDL_GetKeyFromScancode : TSDL_GetKeyFromScancode_fun = Nil;
+  SDL_GetKeyFromScancode : TSDL_GetKeyFromScancode_func = Nil;
 {$else}
 
 function SDL_GetKeyFromScancode(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
@@ -176,9 +176,9 @@ function SDL_GetKeyFromScancode(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetScancodeFromKey_fun = function(key: TSDL_Keycode): TSDL_Scancode; cdecl;
+  TSDL_GetScancodeFromKey_func = function(key: TSDL_Keycode): TSDL_Scancode; cdecl;
 Var
-  SDL_GetScancodeFromKey : TSDL_GetScancodeFromKey_fun = Nil;
+  SDL_GetScancodeFromKey : TSDL_GetScancodeFromKey_func = Nil;
 {$else}
 
 function SDL_GetScancodeFromKey(key: TSDL_Keycode): TSDL_Scancode; cdecl;
@@ -210,9 +210,9 @@ function SDL_GetScancodeFromKey(key: TSDL_Keycode): TSDL_Scancode; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetScancodeName_fun = function(scancode: TSDL_Scancode): PAnsiChar; cdecl;
+  TSDL_GetScancodeName_func = function(scancode: TSDL_Scancode): PAnsiChar; cdecl;
 Var
-  SDL_GetScancodeName : TSDL_GetScancodeName_fun = Nil;
+  SDL_GetScancodeName : TSDL_GetScancodeName_func = Nil;
 {$else}
 
 function SDL_GetScancodeName(scancode: TSDL_Scancode): PAnsiChar; cdecl;
@@ -234,9 +234,9 @@ function SDL_GetScancodeName(scancode: TSDL_Scancode): PAnsiChar; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetScancodeFromName_fun = function(name: PAnsiChar): TSDL_Scancode; cdecl;
+  TSDL_GetScancodeFromName_func = function(name: PAnsiChar): TSDL_Scancode; cdecl;
 Var
-  SDL_GetScancodeFromName : TSDL_GetScancodeFromName_fun = Nil;
+  SDL_GetScancodeFromName : TSDL_GetScancodeFromName_func = Nil;
 {$else}
 
 function SDL_GetScancodeFromName(name: PAnsiChar): TSDL_Scancode; cdecl;
@@ -262,9 +262,9 @@ function SDL_GetScancodeFromName(name: PAnsiChar): TSDL_Scancode; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetKeyName_fun = function(key: TSDL_Keycode): PAnsiChar; cdecl;
+  TSDL_GetKeyName_func = function(key: TSDL_Keycode): PAnsiChar; cdecl;
 Var
-  SDL_GetKeyName : TSDL_GetKeyName_fun = Nil;
+  SDL_GetKeyName : TSDL_GetKeyName_func = Nil;
 {$else}
 
 function SDL_GetKeyName(key: TSDL_Keycode): PAnsiChar; cdecl;
@@ -286,9 +286,9 @@ function SDL_GetKeyName(key: TSDL_Keycode): PAnsiChar; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetKeyFromName_fun = function(name: PAnsiChar): TSDL_Keycode; cdecl;
+  TSDL_GetKeyFromName_func = function(name: PAnsiChar): TSDL_Keycode; cdecl;
 Var
-  SDL_GetKeyFromName : TSDL_GetKeyFromName_fun = Nil;
+  SDL_GetKeyFromName : TSDL_GetKeyFromName_func = Nil;
 {$else}
 
 function SDL_GetKeyFromName(name: PAnsiChar): TSDL_Keycode; cdecl;
@@ -409,9 +409,9 @@ function SDL_HasScreenKeyboardSupport: TSDL_bool; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IsScreenKeyboardShown_fun = function(window: PSDL_Window): TSDL_bool; cdecl;
+  TSDL_IsScreenKeyboardShown_func = function(window: PSDL_Window): TSDL_bool; cdecl;
 Var
-  SDL_IsScreenKeyboardShown : TSDL_IsScreenKeyboardShown_fun = Nil;
+  SDL_IsScreenKeyboardShown : TSDL_IsScreenKeyboardShown_func = Nil;
 {$else}
 
 function SDL_IsScreenKeyboardShown(window: PSDL_Window): TSDL_bool; cdecl;

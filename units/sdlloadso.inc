@@ -33,9 +33,9 @@
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LoadObject_fun = function(sofile: PAnsiChar): Pointer; cdecl;
+  TSDL_LoadObject_func = function(sofile: PAnsiChar): Pointer; cdecl;
 Var
-  SDL_LoadObject : TSDL_LoadObject_fun = Nil;
+  SDL_LoadObject : TSDL_LoadObject_func = Nil;
 {$else}
 
 function SDL_LoadObject(sofile: PAnsiChar): Pointer; cdecl;

@@ -98,9 +98,9 @@ const
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateRGBSurface_fun = function(flags: cuint32; width: cint; height: cint; depth: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
+  TSDL_CreateRGBSurface_func = function(flags: cuint32; width: cint; height: cint; depth: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
 Var
-  SDL_CreateRGBSurface : TSDL_CreateRGBSurface_fun = Nil;
+  SDL_CreateRGBSurface : TSDL_CreateRGBSurface_func = Nil;
 {$else}
 
 function SDL_CreateRGBSurface(flags: cuint32; width: cint; height: cint; depth: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
@@ -109,9 +109,9 @@ function SDL_CreateRGBSurface(flags: cuint32; width: cint; height: cint; depth: 
 {* !!! FIXME for 2.1: why does this ask for depth? Format provides that. *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateRGBSurfaceWithFormat_fun = function(flags: cuint32; width, height, depth: cint; format: cuint32):PSDL_Surface; cdecl;
+  TSDL_CreateRGBSurfaceWithFormat_func = function(flags: cuint32; width, height, depth: cint; format: cuint32):PSDL_Surface; cdecl;
 Var
-  SDL_CreateRGBSurfaceWithFormat : TSDL_CreateRGBSurfaceWithFormat_fun = Nil;
+  SDL_CreateRGBSurfaceWithFormat : TSDL_CreateRGBSurfaceWithFormat_func = Nil;
 {$else}
 
 function SDL_CreateRGBSurfaceWithFormat(flags: cuint32; width, height, depth: cint; format: cuint32):PSDL_Surface; cdecl;
@@ -119,9 +119,9 @@ function SDL_CreateRGBSurfaceWithFormat(flags: cuint32; width, height, depth: ci
 {$endif}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateRGBSurfaceFrom_fun = function(pixels: Pointer; width: cint; height: cint; depth: cint; pitch: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
+  TSDL_CreateRGBSurfaceFrom_func = function(pixels: Pointer; width: cint; height: cint; depth: cint; pitch: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
 Var
-  SDL_CreateRGBSurfaceFrom : TSDL_CreateRGBSurfaceFrom_fun = Nil;
+  SDL_CreateRGBSurfaceFrom : TSDL_CreateRGBSurfaceFrom_func = Nil;
 {$else}
 
 function SDL_CreateRGBSurfaceFrom(pixels: Pointer; width: cint; height: cint; depth: cint; pitch: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): PSDL_Surface; cdecl;
@@ -129,9 +129,9 @@ function SDL_CreateRGBSurfaceFrom(pixels: Pointer; width: cint; height: cint; de
 {$endif}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateRGBSurfaceWithFormatFrom_fun = function(pixels: Pointer; width, height, depth, pitch: cint; format: cuint32):PSDL_Surface; cdecl;
+  TSDL_CreateRGBSurfaceWithFormatFrom_func = function(pixels: Pointer; width, height, depth, pitch: cint; format: cuint32):PSDL_Surface; cdecl;
 Var
-  SDL_CreateRGBSurfaceWithFormatFrom : TSDL_CreateRGBSurfaceWithFormatFrom_fun = Nil;
+  SDL_CreateRGBSurfaceWithFormatFrom : TSDL_CreateRGBSurfaceWithFormatFrom_func = Nil;
 {$else}
 
 function SDL_CreateRGBSurfaceWithFormatFrom(pixels: Pointer; width, height, depth, pitch: cint; format: cuint32):PSDL_Surface; cdecl;
@@ -158,9 +158,9 @@ procedure SDL_FreeSurface(surface: PSDL_Surface); cdecl;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetSurfacePalette_fun = function(surface: PSDL_Surface; palette: PSDL_Palette): cint; cdecl;
+  TSDL_SetSurfacePalette_func = function(surface: PSDL_Surface; palette: PSDL_Palette): cint; cdecl;
 Var
-  SDL_SetSurfacePalette : TSDL_SetSurfacePalette_fun = Nil;
+  SDL_SetSurfacePalette : TSDL_SetSurfacePalette_func = Nil;
 {$else}
 
 function SDL_SetSurfacePalette(surface: PSDL_Surface; palette: PSDL_Palette): cint; cdecl;
@@ -189,9 +189,9 @@ function SDL_SetSurfacePalette(surface: PSDL_Surface; palette: PSDL_Palette): ci
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LockSurface_fun = function(surface: PSDL_Surface): cint; cdecl;
+  TSDL_LockSurface_func = function(surface: PSDL_Surface): cint; cdecl;
 Var
-  SDL_LockSurface : TSDL_LockSurface_fun = Nil;
+  SDL_LockSurface : TSDL_LockSurface_func = Nil;
 {$else}
 
 function SDL_LockSurface(surface: PSDL_Surface): cint; cdecl;
@@ -223,9 +223,9 @@ procedure SDL_UnlockSurface(surface: PSDL_Surface); cdecl;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LoadBMP_RW_fun = function(src: PSDL_RWops; freesrc: cint): PSDL_Surface; cdecl;
+  TSDL_LoadBMP_RW_func = function(src: PSDL_RWops; freesrc: cint): PSDL_Surface; cdecl;
 Var
-  SDL_LoadBMP_RW : TSDL_LoadBMP_RW_fun = Nil;
+  SDL_LoadBMP_RW : TSDL_LoadBMP_RW_func = Nil;
 {$else}
 
 function SDL_LoadBMP_RW(src: PSDL_RWops; freesrc: cint): PSDL_Surface; cdecl;
@@ -256,9 +256,9 @@ function SDL_LoadBMP(_file: PAnsiChar): PSDL_Surface;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SaveBMP_RW_fun = function(surface: PSDL_Surface; dst: PSDL_RWops; freedst: cint): cint; cdecl;
+  TSDL_SaveBMP_RW_func = function(surface: PSDL_Surface; dst: PSDL_RWops; freedst: cint): cint; cdecl;
 Var
-  SDL_SaveBMP_RW : TSDL_SaveBMP_RW_fun = Nil;
+  SDL_SaveBMP_RW : TSDL_SaveBMP_RW_func = Nil;
 {$else}
 
 function SDL_SaveBMP_RW(surface: PSDL_Surface; dst: PSDL_RWops; freedst: cint): cint; cdecl;
@@ -284,9 +284,9 @@ function SDL_SaveBMP(const surface: PSDL_Surface; const filename:AnsiString): ci
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetSurfaceRLE_fun = function(surface: PSDL_Surface; flag: cint): cint; cdecl;
+  TSDL_SetSurfaceRLE_func = function(surface: PSDL_Surface; flag: cint): cint; cdecl;
 Var
-  SDL_SetSurfaceRLE : TSDL_SetSurfaceRLE_fun = Nil;
+  SDL_SetSurfaceRLE : TSDL_SetSurfaceRLE_func = Nil;
 {$else}
 
 function SDL_SetSurfaceRLE(surface: PSDL_Surface; flag: cint): cint; cdecl;
@@ -300,9 +300,9 @@ function SDL_SetSurfaceRLE(surface: PSDL_Surface; flag: cint): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HasSurfaceRLE_fun = function(surface: PSDL_Surface): TSDL_Bool; cdecl;
+  TSDL_HasSurfaceRLE_func = function(surface: PSDL_Surface): TSDL_Bool; cdecl;
 Var
-  SDL_HasSurfaceRLE : TSDL_HasSurfaceRLE_fun = Nil;
+  SDL_HasSurfaceRLE : TSDL_HasSurfaceRLE_func = Nil;
 {$else}
 
  function SDL_HasSurfaceRLE(surface: PSDL_Surface): TSDL_Bool; cdecl;
@@ -323,9 +323,9 @@ Var
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetColorKey_fun = function(surface: PSDL_Surface; flag: cint; key: cuint32): cint; cdecl;
+  TSDL_SetColorKey_func = function(surface: PSDL_Surface; flag: cint; key: cuint32): cint; cdecl;
 Var
-  SDL_SetColorKey : TSDL_SetColorKey_fun = Nil;
+  SDL_SetColorKey : TSDL_SetColorKey_func = Nil;
 {$else}
 
 function SDL_SetColorKey(surface: PSDL_Surface; flag: cint; key: cuint32): cint; cdecl;
@@ -339,9 +339,9 @@ function SDL_SetColorKey(surface: PSDL_Surface; flag: cint; key: cuint32): cint;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HasColorKey_fun = function(surface: PSDL_Surface): TSDL_Bool; cdecl;
+  TSDL_HasColorKey_func = function(surface: PSDL_Surface): TSDL_Bool; cdecl;
 Var
-  SDL_HasColorKey : TSDL_HasColorKey_fun = Nil;
+  SDL_HasColorKey : TSDL_HasColorKey_func = Nil;
 {$else}
 
 function SDL_HasColorKey(surface: PSDL_Surface): TSDL_Bool; cdecl;
@@ -361,9 +361,9 @@ function SDL_HasColorKey(surface: PSDL_Surface): TSDL_Bool; cdecl;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetColorKey_fun = function(surface: PSDL_Surface; key: pcuint32): cint; cdecl;
+  TSDL_GetColorKey_func = function(surface: PSDL_Surface; key: pcuint32): cint; cdecl;
 Var
-  SDL_GetColorKey : TSDL_GetColorKey_fun = Nil;
+  SDL_GetColorKey : TSDL_GetColorKey_func = Nil;
 {$else}
 
 function SDL_GetColorKey(surface: PSDL_Surface; key: pcuint32): cint; cdecl;
@@ -385,9 +385,9 @@ function SDL_GetColorKey(surface: PSDL_Surface; key: pcuint32): cint; cdecl;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetSurfaceColorMod_fun = function(surface: PSDL_Surface; r: cuint8; g: cuint8; b: cuint8): cint; cdecl;
+  TSDL_SetSurfaceColorMod_func = function(surface: PSDL_Surface; r: cuint8; g: cuint8; b: cuint8): cint; cdecl;
 Var
-  SDL_SetSurfaceColorMod : TSDL_SetSurfaceColorMod_fun = Nil;
+  SDL_SetSurfaceColorMod : TSDL_SetSurfaceColorMod_func = Nil;
 {$else}
 
 function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: cuint8; g: cuint8; b: cuint8): cint; cdecl;
@@ -409,9 +409,9 @@ function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: cuint8; g: cuint8; b: 
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetSurfaceColorMod_fun = function(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b: pcuint8): cint; cdecl;
+  TSDL_GetSurfaceColorMod_func = function(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b: pcuint8): cint; cdecl;
 Var
-  SDL_GetSurfaceColorMod : TSDL_GetSurfaceColorMod_fun = Nil;
+  SDL_GetSurfaceColorMod : TSDL_GetSurfaceColorMod_func = Nil;
 {$else}
 
 function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b: pcuint8): cint; cdecl;
@@ -431,9 +431,9 @@ function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetSurfaceAlphaMod_fun = function(surface: PSDL_Surface; alpha: cuint8): cint; cdecl;
+  TSDL_SetSurfaceAlphaMod_func = function(surface: PSDL_Surface; alpha: cuint8): cint; cdecl;
 Var
-  SDL_SetSurfaceAlphaMod : TSDL_SetSurfaceAlphaMod_fun = Nil;
+  SDL_SetSurfaceAlphaMod : TSDL_SetSurfaceAlphaMod_func = Nil;
 {$else}
 
 function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: cuint8): cint; cdecl;
@@ -453,9 +453,9 @@ function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: cuint8): cint; cde
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetSurfaceAlphaMod_fun = function(surface: PSDL_Surface; alpha: pcuint8): cint; cdecl;
+  TSDL_GetSurfaceAlphaMod_func = function(surface: PSDL_Surface; alpha: pcuint8): cint; cdecl;
 Var
-  SDL_GetSurfaceAlphaMod : TSDL_GetSurfaceAlphaMod_fun = Nil;
+  SDL_GetSurfaceAlphaMod : TSDL_GetSurfaceAlphaMod_func = Nil;
 {$else}
 
 function SDL_GetSurfaceAlphaMod(surface: PSDL_Surface; alpha: pcuint8): cint; cdecl;
@@ -475,9 +475,9 @@ function SDL_GetSurfaceAlphaMod(surface: PSDL_Surface; alpha: pcuint8): cint; cd
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetSurfaceBlendMode_fun = function(surface: PSDL_Surface; blendMode: TSDL_BlendMode): cint; cdecl;
+  TSDL_SetSurfaceBlendMode_func = function(surface: PSDL_Surface; blendMode: TSDL_BlendMode): cint; cdecl;
 Var
-  SDL_SetSurfaceBlendMode : TSDL_SetSurfaceBlendMode_fun = Nil;
+  SDL_SetSurfaceBlendMode : TSDL_SetSurfaceBlendMode_func = Nil;
 {$else}
 
 function SDL_SetSurfaceBlendMode(surface: PSDL_Surface; blendMode: TSDL_BlendMode): cint; cdecl;
@@ -497,9 +497,9 @@ function SDL_SetSurfaceBlendMode(surface: PSDL_Surface; blendMode: TSDL_BlendMod
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetSurfaceBlendMode_fun = function(surface: PSDL_Surface; blendMode: PSDL_BlendMode): cint; cdecl;
+  TSDL_GetSurfaceBlendMode_func = function(surface: PSDL_Surface; blendMode: PSDL_BlendMode): cint; cdecl;
 Var
-  SDL_GetSurfaceBlendMode : TSDL_GetSurfaceBlendMode_fun = Nil;
+  SDL_GetSurfaceBlendMode : TSDL_GetSurfaceBlendMode_func = Nil;
 {$else}
 
 function SDL_GetSurfaceBlendMode(surface: PSDL_Surface; blendMode: PSDL_BlendMode): cint; cdecl;
@@ -522,9 +522,9 @@ function SDL_GetSurfaceBlendMode(surface: PSDL_Surface; blendMode: PSDL_BlendMod
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetClipRect_fun = function(surface: PSDL_Surface; const rect: PSDL_Rect): TSDL_Bool; cdecl;
+  TSDL_SetClipRect_func = function(surface: PSDL_Surface; const rect: PSDL_Rect): TSDL_Bool; cdecl;
 Var
-  SDL_SetClipRect : TSDL_SetClipRect_fun = Nil;
+  SDL_SetClipRect : TSDL_SetClipRect_func = Nil;
 {$else}
 
 function SDL_SetClipRect(surface: PSDL_Surface; const rect: PSDL_Rect): TSDL_Bool; cdecl;
@@ -554,9 +554,9 @@ procedure SDL_GetClipRect(surface: PSDL_Surface; rect: PSDL_Rect); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_DuplicateSurface_fun = function(surface: PSDL_Surface): PSDL_Surface; cdecl;
+  TSDL_DuplicateSurface_func = function(surface: PSDL_Surface): PSDL_Surface; cdecl;
 Var
-  SDL_DuplicateSurface : TSDL_DuplicateSurface_fun = Nil;
+  SDL_DuplicateSurface : TSDL_DuplicateSurface_func = Nil;
 {$else}
 
 function SDL_DuplicateSurface(surface: PSDL_Surface): PSDL_Surface; cdecl;
@@ -576,9 +576,9 @@ function SDL_DuplicateSurface(surface: PSDL_Surface): PSDL_Surface; cdecl;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ConvertSurface_fun = function(src: PSDL_Surface; const fmt: PSDL_PixelFormat; flags: cuint32): PSDL_Surface; cdecl;
+  TSDL_ConvertSurface_func = function(src: PSDL_Surface; const fmt: PSDL_PixelFormat; flags: cuint32): PSDL_Surface; cdecl;
 Var
-  SDL_ConvertSurface : TSDL_ConvertSurface_fun = Nil;
+  SDL_ConvertSurface : TSDL_ConvertSurface_func = Nil;
 {$else}
 
 function SDL_ConvertSurface(src: PSDL_Surface; const fmt: PSDL_PixelFormat; flags: cuint32): PSDL_Surface; cdecl;
@@ -586,9 +586,9 @@ function SDL_ConvertSurface(src: PSDL_Surface; const fmt: PSDL_PixelFormat; flag
 {$endif}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ConvertSurfaceFormat_fun = function(src: PSDL_Surface; pixel_format: cuint32; flags: cuint32): PSDL_Surface; cdecl;
+  TSDL_ConvertSurfaceFormat_func = function(src: PSDL_Surface; pixel_format: cuint32; flags: cuint32): PSDL_Surface; cdecl;
 Var
-  SDL_ConvertSurfaceFormat : TSDL_ConvertSurfaceFormat_fun = Nil;
+  SDL_ConvertSurfaceFormat : TSDL_ConvertSurfaceFormat_func = Nil;
 {$else}
 
 function SDL_ConvertSurfaceFormat(src: PSDL_Surface; pixel_format: cuint32; flags: cuint32): PSDL_Surface; cdecl;
@@ -603,9 +603,9 @@ function SDL_ConvertSurfaceFormat(src: PSDL_Surface; pixel_format: cuint32; flag
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ConvertPixels_fun = function(width: cint; height: cint; src_format: cuint32; const src: Pointer; src_pitch: cint; dst_format: cuint32; dst: Pointer; dst_pitch: cint): cint; cdecl;
+  TSDL_ConvertPixels_func = function(width: cint; height: cint; src_format: cuint32; const src: Pointer; src_pitch: cint; dst_format: cuint32; dst: Pointer; dst_pitch: cint): cint; cdecl;
 Var
-  SDL_ConvertPixels : TSDL_ConvertPixels_fun = Nil;
+  SDL_ConvertPixels : TSDL_ConvertPixels_func = Nil;
 {$else}
 
 function SDL_ConvertPixels(width: cint; height: cint; src_format: cuint32; const src: Pointer; src_pitch: cint; dst_format: cuint32; dst: Pointer; dst_pitch: cint): cint; cdecl;
@@ -625,9 +625,9 @@ function SDL_ConvertPixels(width: cint; height: cint; src_format: cuint32; const
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_FillRect_fun = function(dst: PSDL_Surface; const rect: PSDL_Rect; color: cuint32): cint; cdecl;
+  TSDL_FillRect_func = function(dst: PSDL_Surface; const rect: PSDL_Rect; color: cuint32): cint; cdecl;
 Var
-  SDL_FillRect : TSDL_FillRect_fun = Nil;
+  SDL_FillRect : TSDL_FillRect_func = Nil;
 {$else}
 
 function SDL_FillRect(dst: PSDL_Surface; const rect: PSDL_Rect; color: cuint32): cint; cdecl;
@@ -635,9 +635,9 @@ function SDL_FillRect(dst: PSDL_Surface; const rect: PSDL_Rect; color: cuint32):
 {$endif}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_FillRects_fun = function(dst: PSDL_Surface; const rects: PSDL_Rect; count: cint; color: cuint32): cint; cdecl;
+  TSDL_FillRects_func = function(dst: PSDL_Surface; const rects: PSDL_Rect; count: cint; color: cuint32): cint; cdecl;
 Var
-  SDL_FillRects : TSDL_FillRects_fun = Nil;
+  SDL_FillRects : TSDL_FillRects_func = Nil;
 {$else}
 
 function SDL_FillRects(dst: PSDL_Surface; const rects: PSDL_Rect; count: cint; color: cuint32): cint; cdecl;
@@ -707,9 +707,9 @@ function SDL_FillRects(dst: PSDL_Surface; const rects: PSDL_Rect; count: cint; c
  * Since Pascal macro support is very limited, we workaround by outright pointing SDL_BlitSurface() to SDL_UpperBlit(). *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_BlitSurface_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
+  TSDL_BlitSurface_func = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
-  SDL_BlitSurface : TSDL_BlitSurface_fun = Nil;
+  SDL_BlitSurface : TSDL_BlitSurface_func = Nil;
 {$else}
 
 function SDL_BlitSurface(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
@@ -724,9 +724,9 @@ function SDL_BlitSurface(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_UpperBlit_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
+  TSDL_UpperBlit_func = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
-  SDL_UpperBlit : TSDL_UpperBlit_fun = Nil;
+  SDL_UpperBlit : TSDL_UpperBlit_func = Nil;
 {$else}
 
 function SDL_UpperBlit(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
@@ -740,9 +740,9 @@ function SDL_UpperBlit(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Su
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LowerBlit_fun = function(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
+  TSDL_LowerBlit_func = function(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
-  SDL_LowerBlit : TSDL_LowerBlit_fun = Nil;
+  SDL_LowerBlit : TSDL_LowerBlit_func = Nil;
 {$else}
 
 function SDL_LowerBlit(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
@@ -758,9 +758,9 @@ function SDL_LowerBlit(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SoftStretch_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; const dstrect: PSDL_Surface): cint; cdecl;
+  TSDL_SoftStretch_func = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; const dstrect: PSDL_Surface): cint; cdecl;
 Var
-  SDL_SoftStretch : TSDL_SoftStretch_fun = Nil;
+  SDL_SoftStretch : TSDL_SoftStretch_func = Nil;
 {$else}
 
 function SDL_SoftStretch(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; const dstrect: PSDL_Surface): cint; cdecl;
@@ -771,9 +771,9 @@ function SDL_SoftStretch(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_
  * Since Pascal macro support is very limited, we workaround by outright pointing SDL_BlitSurfaceScaled() to SDL_UpperBlitScaled(). *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_BlitSurfaceScaled_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
+  TSDL_BlitSurfaceScaled_func = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
-  SDL_BlitSurfaceScaled : TSDL_BlitSurfaceScaled_fun = Nil;
+  SDL_BlitSurfaceScaled : TSDL_BlitSurfaceScaled_func = Nil;
 {$else}
 
 function SDL_BlitSurfaceScaled(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
@@ -787,9 +787,9 @@ function SDL_BlitSurfaceScaled(src: PSDL_Surface; const srcrect: PSDL_Rect; dst:
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_UpperBlitScaled_fun = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
+  TSDL_UpperBlitScaled_func = function(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
-  SDL_UpperBlitScaled : TSDL_UpperBlitScaled_fun = Nil;
+  SDL_UpperBlitScaled : TSDL_UpperBlitScaled_func = Nil;
 {$else}
 
 function SDL_UpperBlitScaled(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
@@ -803,9 +803,9 @@ function SDL_UpperBlitScaled(src: PSDL_Surface; const srcrect: PSDL_Rect; dst: P
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LowerBlitScaled_fun = function(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
+  TSDL_LowerBlitScaled_func = function(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
 Var
-  SDL_LowerBlitScaled : TSDL_LowerBlitScaled_fun = Nil;
+  SDL_LowerBlitScaled : TSDL_LowerBlitScaled_func = Nil;
 {$else}
 
 function SDL_LowerBlitScaled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cint; cdecl;
@@ -837,9 +837,9 @@ function SDL_GetYUVConversionMode: TSDL_YUV_CONVERSION_MODE; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetYUVConversionModeForResolution_fun = function(width: cint; height: cint): TSDL_YUV_CONVERSION_MODE; cdecl;
+  TSDL_GetYUVConversionModeForResolution_func = function(width: cint; height: cint): TSDL_YUV_CONVERSION_MODE; cdecl;
 Var
-  SDL_GetYUVConversionModeForResolution : TSDL_GetYUVConversionModeForResolution_fun = Nil;
+  SDL_GetYUVConversionModeForResolution : TSDL_GetYUVConversionModeForResolution_func = Nil;
 {$else}
 
 function SDL_GetYUVConversionModeForResolution(width: cint; height: cint): TSDL_YUV_CONVERSION_MODE; cdecl;

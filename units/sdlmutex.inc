@@ -54,9 +54,9 @@ function SDL_CreateMutex: PSDL_Mutex; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
+  TSDL_LockMutex_func = function(mutex: PSDL_Mutex): cint; cdecl;
 Var
-  SDL_LockMutex : TSDL_LockMutex_fun = Nil;
+  SDL_LockMutex : TSDL_LockMutex_func = Nil;
 {$else}
 
 function SDL_LockMutex(mutex: PSDL_Mutex): cint; cdecl;
@@ -83,9 +83,9 @@ function SDL_LockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_TryLockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
+  TSDL_TryLockMutex_func = function(mutex: PSDL_Mutex): cint; cdecl;
 Var
-  SDL_TryLockMutex : TSDL_TryLockMutex_fun = Nil;
+  SDL_TryLockMutex : TSDL_TryLockMutex_func = Nil;
 {$else}
 
 function SDL_TryLockMutex(mutex: PSDL_Mutex): cint; cdecl;
@@ -111,9 +111,9 @@ function SDL_TryLockMutex(mutex: PSDL_Mutex): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_UnlockMutex_fun = function(mutex: PSDL_Mutex): cint; cdecl;
+  TSDL_UnlockMutex_func = function(mutex: PSDL_Mutex): cint; cdecl;
 Var
-  SDL_UnlockMutex : TSDL_UnlockMutex_fun = Nil;
+  SDL_UnlockMutex : TSDL_UnlockMutex_func = Nil;
 {$else}
 
 function SDL_UnlockMutex(mutex: PSDL_Mutex): cint; cdecl;
@@ -170,9 +170,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateSemaphore_fun = function(initial_value: cuint32): PSDL_sem; cdecl;
+  TSDL_CreateSemaphore_func = function(initial_value: cuint32): PSDL_sem; cdecl;
 Var
-  SDL_CreateSemaphore : TSDL_CreateSemaphore_fun = Nil;
+  SDL_CreateSemaphore : TSDL_CreateSemaphore_func = Nil;
 {$else}
 
 function SDL_CreateSemaphore(initial_value: cuint32): PSDL_sem; cdecl;
@@ -219,9 +219,9 @@ procedure SDL_DestroySemaphore(sem: PSDL_Sem); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SemWait_fun = function(sem: PSDL_Sem): cint; cdecl;
+  TSDL_SemWait_func = function(sem: PSDL_Sem): cint; cdecl;
 Var
-  SDL_SemWait : TSDL_SemWait_fun = Nil;
+  SDL_SemWait : TSDL_SemWait_func = Nil;
 {$else}
 
 function SDL_SemWait(sem: PSDL_Sem): cint; cdecl;
@@ -245,9 +245,9 @@ function SDL_SemWait(sem: PSDL_Sem): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SemTryWait_fun = function(sem: PSDL_Sem): cint; cdecl;
+  TSDL_SemTryWait_func = function(sem: PSDL_Sem): cint; cdecl;
 Var
-  SDL_SemTryWait : TSDL_SemTryWait_fun = Nil;
+  SDL_SemTryWait : TSDL_SemTryWait_func = Nil;
 {$else}
 
 function SDL_SemTryWait(sem: PSDL_Sem): cint; cdecl;
@@ -272,9 +272,9 @@ function SDL_SemTryWait(sem: PSDL_Sem): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SemWaitTimeout_fun = function(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
+  TSDL_SemWaitTimeout_func = function(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
 Var
-  SDL_SemWaitTimeout : TSDL_SemWaitTimeout_fun = Nil;
+  SDL_SemWaitTimeout : TSDL_SemWaitTimeout_func = Nil;
 {$else}
 
 function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
@@ -292,9 +292,9 @@ function SDL_SemWaitTimeout(sem: PSDL_Sem; ms: cuint32): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SemPost_fun = function(sem: PSDL_Sem): cint; cdecl;
+  TSDL_SemPost_func = function(sem: PSDL_Sem): cint; cdecl;
 Var
-  SDL_SemPost : TSDL_SemPost_fun = Nil;
+  SDL_SemPost : TSDL_SemPost_func = Nil;
 {$else}
 
 function SDL_SemPost(sem: PSDL_Sem): cint; cdecl;
@@ -311,9 +311,9 @@ function SDL_SemPost(sem: PSDL_Sem): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SemValue_fun = function(sem: PSDL_Sem): cuint32; cdecl;
+  TSDL_SemValue_func = function(sem: PSDL_Sem): cuint32; cdecl;
 Var
-  SDL_SemValue : TSDL_SemValue_fun = Nil;
+  SDL_SemValue : TSDL_SemValue_func = Nil;
 {$else}
 
 function SDL_SemValue(sem: PSDL_Sem): cuint32; cdecl;
@@ -396,9 +396,9 @@ procedure SDL_DestroyCond(cond: PSDL_Cond); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CondSignal_fun = function(cond: PSDL_Cond): cint; cdecl;
+  TSDL_CondSignal_func = function(cond: PSDL_Cond): cint; cdecl;
 Var
-  SDL_CondSignal : TSDL_CondSignal_fun = Nil;
+  SDL_CondSignal : TSDL_CondSignal_func = Nil;
 {$else}
 
 function SDL_CondSignal(cond: PSDL_Cond): cint; cdecl;
@@ -416,9 +416,9 @@ function SDL_CondSignal(cond: PSDL_Cond): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CondBroadcast_fun = function(cond: PSDL_Cond): cint; cdecl;
+  TSDL_CondBroadcast_func = function(cond: PSDL_Cond): cint; cdecl;
 Var
-  SDL_CondBroadcast : TSDL_CondBroadcast_fun = Nil;
+  SDL_CondBroadcast : TSDL_CondBroadcast_func = Nil;
 {$else}
 
 function SDL_CondBroadcast(cond: PSDL_Cond): cint; cdecl;
@@ -447,9 +447,9 @@ function SDL_CondBroadcast(cond: PSDL_Cond): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CondWait_fun = function(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
+  TSDL_CondWait_func = function(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
 Var
-  SDL_CondWait : TSDL_CondWait_fun = Nil;
+  SDL_CondWait : TSDL_CondWait_func = Nil;
 {$else}
 
 function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
@@ -479,9 +479,9 @@ function SDL_CondWait(cond: PSDL_Cond; mutex: PSDL_Mutex): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CondWaitTimeout_fun = function(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint; cdecl;
+  TSDL_CondWaitTimeout_func = function(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint; cdecl;
 Var
-  SDL_CondWaitTimeout : TSDL_CondWaitTimeout_fun = Nil;
+  SDL_CondWaitTimeout : TSDL_CondWaitTimeout_func = Nil;
 {$else}
 
 function SDL_CondWaitTimeout(cond: PSDL_Cond; mutex: PSDL_Mutex; ms: cuint32): cint; cdecl;

@@ -152,9 +152,9 @@ procedure SDL_UnlockJoysticks(); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_NumJoysticks_fun = function(): cint; cdecl;
+  TSDL_NumJoysticks_func = function(): cint; cdecl;
 Var
-  SDL_NumJoysticks : TSDL_NumJoysticks_fun = Nil;
+  SDL_NumJoysticks : TSDL_NumJoysticks_func = Nil;
 {$else}
 
 function SDL_NumJoysticks(): cint; cdecl;
@@ -178,9 +178,9 @@ function SDL_NumJoysticks(): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickNameForIndex_fun = function(device_index: cint): PAnsiChar; cdecl;
+  TSDL_JoystickNameForIndex_func = function(device_index: cint): PAnsiChar; cdecl;
 Var
-  SDL_JoystickNameForIndex : TSDL_JoystickNameForIndex_fun = Nil;
+  SDL_JoystickNameForIndex : TSDL_JoystickNameForIndex_func = Nil;
 {$else}
 
 function SDL_JoystickNameForIndex(device_index: cint): PAnsiChar; cdecl;
@@ -204,9 +204,9 @@ function SDL_JoystickNameForIndex(device_index: cint): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickPathForIndex_fun = function(device_index: cint): PAnsiChar; cdecl;
+  TSDL_JoystickPathForIndex_func = function(device_index: cint): PAnsiChar; cdecl;
 Var
-  SDL_JoystickPathForIndex : TSDL_JoystickPathForIndex_fun = Nil;
+  SDL_JoystickPathForIndex : TSDL_JoystickPathForIndex_func = Nil;
 {$else}
 
 function SDL_JoystickPathForIndex(device_index: cint): PAnsiChar; cdecl;
@@ -221,9 +221,9 @@ function SDL_JoystickPathForIndex(device_index: cint): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetDevicePlayerIndex_fun = function(device_index: cint): cint; cdecl;
+  TSDL_JoystickGetDevicePlayerIndex_func = function(device_index: cint): cint; cdecl;
 Var
-  SDL_JoystickGetDevicePlayerIndex : TSDL_JoystickGetDevicePlayerIndex_fun = Nil;
+  SDL_JoystickGetDevicePlayerIndex : TSDL_JoystickGetDevicePlayerIndex_func = Nil;
 {$else}
 
 function SDL_JoystickGetDevicePlayerIndex(device_index: cint): cint; cdecl;
@@ -236,9 +236,9 @@ function SDL_JoystickGetDevicePlayerIndex(device_index: cint): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetDeviceGUID_fun = function(device_index: cint): TSDL_JoystickGUID; cdecl;
+  TSDL_JoystickGetDeviceGUID_func = function(device_index: cint): TSDL_JoystickGUID; cdecl;
 Var
-  SDL_JoystickGetDeviceGUID : TSDL_JoystickGetDeviceGUID_fun = Nil;
+  SDL_JoystickGetDeviceGUID : TSDL_JoystickGetDeviceGUID_func = Nil;
 {$else}
 
 function SDL_JoystickGetDeviceGUID(device_index: cint): TSDL_JoystickGUID; cdecl;
@@ -260,9 +260,9 @@ function SDL_JoystickGetDeviceGUID(device_index: cint): TSDL_JoystickGUID; cdecl
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetDeviceVendor_fun = function(device_index: cint): cuint16; cdecl;
+  TSDL_JoystickGetDeviceVendor_func = function(device_index: cint): cuint16; cdecl;
 Var
-  SDL_JoystickGetDeviceVendor : TSDL_JoystickGetDeviceVendor_fun = Nil;
+  SDL_JoystickGetDeviceVendor : TSDL_JoystickGetDeviceVendor_func = Nil;
 {$else}
 
 function SDL_JoystickGetDeviceVendor(device_index: cint): cuint16; cdecl;
@@ -284,9 +284,9 @@ function SDL_JoystickGetDeviceVendor(device_index: cint): cuint16; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetDeviceProduct_fun = function(device_index: cint): cuint16; cdecl;
+  TSDL_JoystickGetDeviceProduct_func = function(device_index: cint): cuint16; cdecl;
 Var
-  SDL_JoystickGetDeviceProduct : TSDL_JoystickGetDeviceProduct_fun = Nil;
+  SDL_JoystickGetDeviceProduct : TSDL_JoystickGetDeviceProduct_func = Nil;
 {$else}
 
 function SDL_JoystickGetDeviceProduct(device_index: cint): cuint16; cdecl;
@@ -308,9 +308,9 @@ function SDL_JoystickGetDeviceProduct(device_index: cint): cuint16; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetDeviceProductVersion_fun = function(device_index: cint): cuint16; cdecl;
+  TSDL_JoystickGetDeviceProductVersion_func = function(device_index: cint): cuint16; cdecl;
 Var
-  SDL_JoystickGetDeviceProductVersion : TSDL_JoystickGetDeviceProductVersion_fun = Nil;
+  SDL_JoystickGetDeviceProductVersion : TSDL_JoystickGetDeviceProductVersion_func = Nil;
 {$else}
 
 function SDL_JoystickGetDeviceProductVersion(device_index: cint): cuint16; cdecl;
@@ -331,9 +331,9 @@ function SDL_JoystickGetDeviceProductVersion(device_index: cint): cuint16; cdecl
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetDeviceType_fun = function(device_index: cint): TSDL_JoystickType; cdecl;
+  TSDL_JoystickGetDeviceType_func = function(device_index: cint): TSDL_JoystickType; cdecl;
 Var
-  SDL_JoystickGetDeviceType : TSDL_JoystickGetDeviceType_fun = Nil;
+  SDL_JoystickGetDeviceType : TSDL_JoystickGetDeviceType_func = Nil;
 {$else}
 
 function SDL_JoystickGetDeviceType(device_index: cint): TSDL_JoystickType; cdecl;
@@ -355,9 +355,9 @@ function SDL_JoystickGetDeviceType(device_index: cint): TSDL_JoystickType; cdecl
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetDeviceInstanceID_fun = function(device_index: cint): TSDL_JoystickID; cdecl;
+  TSDL_JoystickGetDeviceInstanceID_func = function(device_index: cint): TSDL_JoystickID; cdecl;
 Var
-  SDL_JoystickGetDeviceInstanceID : TSDL_JoystickGetDeviceInstanceID_fun = Nil;
+  SDL_JoystickGetDeviceInstanceID : TSDL_JoystickGetDeviceInstanceID_func = Nil;
 {$else}
 
 function SDL_JoystickGetDeviceInstanceID(device_index: cint): TSDL_JoystickID; cdecl;
@@ -386,10 +386,10 @@ function SDL_JoystickGetDeviceInstanceID(device_index: cint): TSDL_JoystickID; c
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickOpen_fun = function(device_index: cint): PSDL_Joystick; cdecl;
+  TSDL_JoystickOpen_func = function(device_index: cint): PSDL_Joystick; cdecl;
 
 Var
-  SDL_JoystickOpen : TSDL_JoystickOpen_fun = Nil;
+  SDL_JoystickOpen : TSDL_JoystickOpen_func = Nil;
 {$else}
 
 function SDL_JoystickOpen(device_index: cint): PSDL_Joystick; cdecl;
@@ -407,9 +407,9 @@ function SDL_JoystickOpen(device_index: cint): PSDL_Joystick; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickFromInstanceID_fun = function(instance_id: TSDL_JoystickID): PSDL_Joystick; cdecl;
+  TSDL_JoystickFromInstanceID_func = function(instance_id: TSDL_JoystickID): PSDL_Joystick; cdecl;
 Var
-  SDL_JoystickFromInstanceID : TSDL_JoystickFromInstanceID_fun = Nil;
+  SDL_JoystickFromInstanceID : TSDL_JoystickFromInstanceID_func = Nil;
 {$else}
 
 function SDL_JoystickFromInstanceID(instance_id: TSDL_JoystickID): PSDL_Joystick; cdecl;
@@ -427,9 +427,9 @@ function SDL_JoystickFromInstanceID(instance_id: TSDL_JoystickID): PSDL_Joystick
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickFromPlayerIndex_fun = function(player_index: cint): PSDL_Joystick; cdecl;
+  TSDL_JoystickFromPlayerIndex_func = function(player_index: cint): PSDL_Joystick; cdecl;
 Var
-  SDL_JoystickFromPlayerIndex : TSDL_JoystickFromPlayerIndex_fun = Nil;
+  SDL_JoystickFromPlayerIndex : TSDL_JoystickFromPlayerIndex_func = Nil;
 {$else}
 
 function SDL_JoystickFromPlayerIndex(player_index: cint): PSDL_Joystick; cdecl;
@@ -445,9 +445,9 @@ function SDL_JoystickFromPlayerIndex(player_index: cint): PSDL_Joystick; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickAttachVirtual_fun = function(type_: TSDL_JoystickType; naxes: cint; nbuttons: cint; nhats: cint): cint; cdecl;
+  TSDL_JoystickAttachVirtual_func = function(type_: TSDL_JoystickType; naxes: cint; nbuttons: cint; nhats: cint): cint; cdecl;
 Var
-  SDL_JoystickAttachVirtual : TSDL_JoystickAttachVirtual_fun = Nil;
+  SDL_JoystickAttachVirtual : TSDL_JoystickAttachVirtual_func = Nil;
 {$else}
 
 function SDL_JoystickAttachVirtual(type_: TSDL_JoystickType; naxes: cint; nbuttons: cint; nhats: cint): cint; cdecl;
@@ -511,9 +511,9 @@ const
  */}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickAttachVirtualEx_fun = function(const desc: PSDL_VirtualJoystickDesc): cint; cdecl;
+  TSDL_JoystickAttachVirtualEx_func = function(const desc: PSDL_VirtualJoystickDesc): cint; cdecl;
 Var
-  SDL_JoystickAttachVirtualEx : TSDL_JoystickAttachVirtualEx_fun = Nil;
+  SDL_JoystickAttachVirtualEx : TSDL_JoystickAttachVirtualEx_func = Nil;
 {$else}
 
 function SDL_JoystickAttachVirtualEx(const desc: PSDL_VirtualJoystickDesc): cint; cdecl;
@@ -531,9 +531,9 @@ function SDL_JoystickAttachVirtualEx(const desc: PSDL_VirtualJoystickDesc): cint
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickDetachVirtual_fun = function(device_index: cint): cint; cdecl;
+  TSDL_JoystickDetachVirtual_func = function(device_index: cint): cint; cdecl;
 Var
-  SDL_JoystickDetachVirtual : TSDL_JoystickDetachVirtual_fun = Nil;
+  SDL_JoystickDetachVirtual : TSDL_JoystickDetachVirtual_func = Nil;
 {$else}
 
 function SDL_JoystickDetachVirtual(device_index: cint): cint; cdecl;
@@ -550,9 +550,9 @@ function SDL_JoystickDetachVirtual(device_index: cint): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickIsVirtual_fun = function(device_index: cint): TSDL_Bool; cdecl;
+  TSDL_JoystickIsVirtual_func = function(device_index: cint): TSDL_Bool; cdecl;
 Var
-  SDL_JoystickIsVirtual : TSDL_JoystickIsVirtual_fun = Nil;
+  SDL_JoystickIsVirtual : TSDL_JoystickIsVirtual_func = Nil;
 {$else}
 
 function SDL_JoystickIsVirtual(device_index: cint): TSDL_Bool; cdecl;
@@ -581,9 +581,9 @@ function SDL_JoystickIsVirtual(device_index: cint): TSDL_Bool; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickSetVirtualAxis_fun = function(joystick: PSDL_Joystick; axis: cint; value: cint16): cint; cdecl;
+  TSDL_JoystickSetVirtualAxis_func = function(joystick: PSDL_Joystick; axis: cint; value: cint16): cint; cdecl;
 Var
-  SDL_JoystickSetVirtualAxis : TSDL_JoystickSetVirtualAxis_fun = Nil;
+  SDL_JoystickSetVirtualAxis : TSDL_JoystickSetVirtualAxis_func = Nil;
 {$else}
 
 function SDL_JoystickSetVirtualAxis(joystick: PSDL_Joystick; axis: cint; value: cint16): cint; cdecl;
@@ -608,9 +608,9 @@ function SDL_JoystickSetVirtualAxis(joystick: PSDL_Joystick; axis: cint; value: 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickSetVirtualButton_fun = function(joystick: PSDL_Joystick; button: cint; value: cuint8): cint; cdecl;
+  TSDL_JoystickSetVirtualButton_func = function(joystick: PSDL_Joystick; button: cint; value: cuint8): cint; cdecl;
 Var
-  SDL_JoystickSetVirtualButton : TSDL_JoystickSetVirtualButton_fun = Nil;
+  SDL_JoystickSetVirtualButton : TSDL_JoystickSetVirtualButton_func = Nil;
 {$else}
 
 function SDL_JoystickSetVirtualButton(joystick: PSDL_Joystick; button: cint; value: cuint8): cint; cdecl;
@@ -635,9 +635,9 @@ function SDL_JoystickSetVirtualButton(joystick: PSDL_Joystick; button: cint; val
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickSetVirtualHat_fun = function(joystick: PSDL_Joystick; hat: cint; value: cuint8): cint; cdecl;
+  TSDL_JoystickSetVirtualHat_func = function(joystick: PSDL_Joystick; hat: cint; value: cuint8): cint; cdecl;
 Var
-  SDL_JoystickSetVirtualHat : TSDL_JoystickSetVirtualHat_fun = Nil;
+  SDL_JoystickSetVirtualHat : TSDL_JoystickSetVirtualHat_func = Nil;
 {$else}
 
 function SDL_JoystickSetVirtualHat(joystick: PSDL_Joystick; hat: cint; value: cuint8): cint; cdecl;
@@ -658,9 +658,9 @@ function SDL_JoystickSetVirtualHat(joystick: PSDL_Joystick; hat: cint; value: cu
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickName_fun = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
+  TSDL_JoystickName_func = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
 Var
-  SDL_JoystickName : TSDL_JoystickName_fun = Nil;
+  SDL_JoystickName : TSDL_JoystickName_func = Nil;
 {$else}
 
 function SDL_JoystickName(joystick: PSDL_Joystick): PAnsiChar; cdecl;
@@ -680,9 +680,9 @@ function SDL_JoystickName(joystick: PSDL_Joystick): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickPath_fun = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
+  TSDL_JoystickPath_func = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
 Var
-  SDL_JoystickPath : TSDL_JoystickPath_fun = Nil;
+  SDL_JoystickPath : TSDL_JoystickPath_func = Nil;
 {$else}
 
 function SDL_JoystickPath(joystick: PSDL_Joystick): PAnsiChar; cdecl;
@@ -702,9 +702,9 @@ function SDL_JoystickPath(joystick: PSDL_Joystick): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetPlayerIndex_fun = function(joystick: PSDL_Joystick): cint; cdecl;
+  TSDL_JoystickGetPlayerIndex_func = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
-  SDL_JoystickGetPlayerIndex : TSDL_JoystickGetPlayerIndex_fun = Nil;
+  SDL_JoystickGetPlayerIndex : TSDL_JoystickGetPlayerIndex_func = Nil;
 {$else}
 
 function SDL_JoystickGetPlayerIndex(joystick: PSDL_Joystick): cint; cdecl;
@@ -748,9 +748,9 @@ procedure SDL_JoystickSetPlayerIndex(joystick: PSDL_Joystick; player_index: cint
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetGUID_fun = function(joystick: PSDL_Joystick): TSDL_JoystickGUID; cdecl;
+  TSDL_JoystickGetGUID_func = function(joystick: PSDL_Joystick): TSDL_JoystickGUID; cdecl;
 Var
-  SDL_JoystickGetGUID : TSDL_JoystickGetGUID_fun = Nil;
+  SDL_JoystickGetGUID : TSDL_JoystickGetGUID_func = Nil;
 {$else}
 
 function SDL_JoystickGetGUID(joystick: PSDL_Joystick): TSDL_JoystickGUID; cdecl;
@@ -769,9 +769,9 @@ function SDL_JoystickGetGUID(joystick: PSDL_Joystick): TSDL_JoystickGUID; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetVendor_fun = function(joystick: PSDL_Joystick): cuint16; cdecl;
+  TSDL_JoystickGetVendor_func = function(joystick: PSDL_Joystick): cuint16; cdecl;
 Var
-  SDL_JoystickGetVendor : TSDL_JoystickGetVendor_fun = Nil;
+  SDL_JoystickGetVendor : TSDL_JoystickGetVendor_func = Nil;
 {$else}
 
 function SDL_JoystickGetVendor(joystick: PSDL_Joystick): cuint16; cdecl;
@@ -790,9 +790,9 @@ function SDL_JoystickGetVendor(joystick: PSDL_Joystick): cuint16; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetProduct_fun = function(joystick: PSDL_Joystick): cuint16; cdecl;
+  TSDL_JoystickGetProduct_func = function(joystick: PSDL_Joystick): cuint16; cdecl;
 Var
-  SDL_JoystickGetProduct : TSDL_JoystickGetProduct_fun = Nil;
+  SDL_JoystickGetProduct : TSDL_JoystickGetProduct_func = Nil;
 {$else}
 
 function SDL_JoystickGetProduct(joystick: PSDL_Joystick): cuint16; cdecl;
@@ -811,9 +811,9 @@ function SDL_JoystickGetProduct(joystick: PSDL_Joystick): cuint16; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetProductVersion_fun = function(joystick: PSDL_Joystick): cuint16; cdecl;
+  TSDL_JoystickGetProductVersion_func = function(joystick: PSDL_Joystick): cuint16; cdecl;
 Var
-  SDL_JoystickGetProductVersion : TSDL_JoystickGetProductVersion_fun = Nil;
+  SDL_JoystickGetProductVersion : TSDL_JoystickGetProductVersion_func = Nil;
 {$else}
 
 function SDL_JoystickGetProductVersion(joystick: PSDL_Joystick): cuint16; cdecl;
@@ -833,9 +833,9 @@ function SDL_JoystickGetProductVersion(joystick: PSDL_Joystick): cuint16; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetFirmwareVersion_fun = function(joystick: PSDL_Joystick): cuint16; cdecl;
+  TSDL_JoystickGetFirmwareVersion_func = function(joystick: PSDL_Joystick): cuint16; cdecl;
 Var
-  SDL_JoystickGetFirmwareVersion : TSDL_JoystickGetFirmwareVersion_fun = Nil;
+  SDL_JoystickGetFirmwareVersion : TSDL_JoystickGetFirmwareVersion_func = Nil;
 {$else}
 
 function SDL_JoystickGetFirmwareVersion(joystick: PSDL_Joystick): cuint16; cdecl;
@@ -855,9 +855,9 @@ function SDL_JoystickGetFirmwareVersion(joystick: PSDL_Joystick): cuint16; cdecl
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetSerial_fun = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
+  TSDL_JoystickGetSerial_func = function(joystick: PSDL_Joystick): PAnsiChar; cdecl;
 Var
-  SDL_JoystickGetSerial : TSDL_JoystickGetSerial_fun = Nil;
+  SDL_JoystickGetSerial : TSDL_JoystickGetSerial_func = Nil;
 {$else}
 
 function SDL_JoystickGetSerial(joystick: PSDL_Joystick): PAnsiChar; cdecl;
@@ -874,9 +874,9 @@ function SDL_JoystickGetSerial(joystick: PSDL_Joystick): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetType_fun = function(joystick: PSDL_Joystick): TSDL_JoystickType; cdecl;
+  TSDL_JoystickGetType_func = function(joystick: PSDL_Joystick): TSDL_JoystickType; cdecl;
 Var
-  SDL_JoystickGetType : TSDL_JoystickGetType_fun = Nil;
+  SDL_JoystickGetType : TSDL_JoystickGetType_func = Nil;
 {$else}
 
 function SDL_JoystickGetType(joystick: PSDL_Joystick): TSDL_JoystickType; cdecl;
@@ -925,9 +925,9 @@ procedure SDL_JoystickGetGUIDString(guid: TSDL_JoystickGUID; pszGUID: PAnsiChar;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetGUIDFromString_fun = function(const pchGUID: PAnsiChar): TSDL_JoystickGUID; cdecl;
+  TSDL_JoystickGetGUIDFromString_func = function(const pchGUID: PAnsiChar): TSDL_JoystickGUID; cdecl;
 Var
-  SDL_JoystickGetGUIDFromString : TSDL_JoystickGetGUIDFromString_fun = Nil;
+  SDL_JoystickGetGUIDFromString : TSDL_JoystickGetGUIDFromString_func = Nil;
 {$else}
 
 function SDL_JoystickGetGUIDFromString(const pchGUID: PAnsiChar): TSDL_JoystickGUID; cdecl;
@@ -976,9 +976,9 @@ procedure SDL_GetJoystickGUIDInfo(guid: TSDL_JoystickGUID; vendor: pcuint16; pro
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetAttached_fun = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
+  TSDL_JoystickGetAttached_func = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
 Var
-  SDL_JoystickGetAttached : TSDL_JoystickGetAttached_fun = Nil;
+  SDL_JoystickGetAttached : TSDL_JoystickGetAttached_func = Nil;
 {$else}
 
 function SDL_JoystickGetAttached(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
@@ -998,9 +998,9 @@ function SDL_JoystickGetAttached(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickInstanceID_fun = function(joystick: PSDL_Joystick): TSDL_JoystickID; cdecl;
+  TSDL_JoystickInstanceID_func = function(joystick: PSDL_Joystick): TSDL_JoystickID; cdecl;
 Var
-  SDL_JoystickInstanceID : TSDL_JoystickInstanceID_fun = Nil;
+  SDL_JoystickInstanceID : TSDL_JoystickInstanceID_func = Nil;
 {$else}
 
 function SDL_JoystickInstanceID(joystick: PSDL_Joystick): TSDL_JoystickID; cdecl;
@@ -1026,9 +1026,9 @@ function SDL_JoystickInstanceID(joystick: PSDL_Joystick): TSDL_JoystickID; cdecl
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickNumAxes_fun = function(joystick: PSDL_Joystick): cint; cdecl;
+  TSDL_JoystickNumAxes_func = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
-  SDL_JoystickNumAxes : TSDL_JoystickNumAxes_fun = Nil;
+  SDL_JoystickNumAxes : TSDL_JoystickNumAxes_func = Nil;
 {$else}
 
 function SDL_JoystickNumAxes(joystick: PSDL_Joystick): cint; cdecl;
@@ -1053,9 +1053,9 @@ function SDL_JoystickNumAxes(joystick: PSDL_Joystick): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickNumBalls_fun = function(joystick: PSDL_Joystick): cint; cdecl;
+  TSDL_JoystickNumBalls_func = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
-  SDL_JoystickNumBalls : TSDL_JoystickNumBalls_fun = Nil;
+  SDL_JoystickNumBalls : TSDL_JoystickNumBalls_func = Nil;
 {$else}
 
 function SDL_JoystickNumBalls(joystick: PSDL_Joystick): cint; cdecl;
@@ -1076,9 +1076,9 @@ function SDL_JoystickNumBalls(joystick: PSDL_Joystick): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickNumHats_fun = function(joystick: PSDL_Joystick): cint; cdecl;
+  TSDL_JoystickNumHats_func = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
-  SDL_JoystickNumHats : TSDL_JoystickNumHats_fun = Nil;
+  SDL_JoystickNumHats : TSDL_JoystickNumHats_func = Nil;
 {$else}
 
 function SDL_JoystickNumHats(joystick: PSDL_Joystick): cint; cdecl;
@@ -1099,9 +1099,9 @@ function SDL_JoystickNumHats(joystick: PSDL_Joystick): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickNumButtons_fun = function(joystick: PSDL_Joystick): cint; cdecl;
+  TSDL_JoystickNumButtons_func = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
-  SDL_JoystickNumButtons : TSDL_JoystickNumButtons_fun = Nil;
+  SDL_JoystickNumButtons : TSDL_JoystickNumButtons_func = Nil;
 {$else}
 
 function SDL_JoystickNumButtons(joystick: PSDL_Joystick): cint; cdecl;
@@ -1154,9 +1154,9 @@ procedure SDL_JoystickUpdate(); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickEventState_fun = function(state: cint): cint; cdecl;
+  TSDL_JoystickEventState_func = function(state: cint): cint; cdecl;
 Var
-  SDL_JoystickEventState : TSDL_JoystickEventState_fun = Nil;
+  SDL_JoystickEventState : TSDL_JoystickEventState_func = Nil;
 {$else}
 
 function SDL_JoystickEventState(state: cint): cint; cdecl;
@@ -1191,9 +1191,9 @@ const
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetAxis_fun = function(joystick: PSDL_Joystick; axis: cint): cint16; cdecl;
+  TSDL_JoystickGetAxis_func = function(joystick: PSDL_Joystick; axis: cint): cint16; cdecl;
 Var
-  SDL_JoystickGetAxis : TSDL_JoystickGetAxis_fun = Nil;
+  SDL_JoystickGetAxis : TSDL_JoystickGetAxis_func = Nil;
 {$else}
 
 function SDL_JoystickGetAxis(joystick: PSDL_Joystick; axis: cint): cint16; cdecl;
@@ -1216,9 +1216,9 @@ function SDL_JoystickGetAxis(joystick: PSDL_Joystick; axis: cint): cint16; cdecl
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetAxisInitialState_fun = function(joystick: PSDL_Joystick; axis: cint; state: pcint16): TSDL_Bool; cdecl;
+  TSDL_JoystickGetAxisInitialState_func = function(joystick: PSDL_Joystick; axis: cint; state: pcint16): TSDL_Bool; cdecl;
 Var
-  SDL_JoystickGetAxisInitialState : TSDL_JoystickGetAxisInitialState_fun = Nil;
+  SDL_JoystickGetAxisInitialState : TSDL_JoystickGetAxisInitialState_func = Nil;
 {$else}
 
 function SDL_JoystickGetAxisInitialState(joystick: PSDL_Joystick; axis: cint; state: pcint16): TSDL_Bool; cdecl;
@@ -1264,9 +1264,9 @@ const
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetHat_fun = function(joystick: PSDL_Joystick; hat: cint): cuint8; cdecl;
+  TSDL_JoystickGetHat_func = function(joystick: PSDL_Joystick; hat: cint): cuint8; cdecl;
 Var
-  SDL_JoystickGetHat : TSDL_JoystickGetHat_fun = Nil;
+  SDL_JoystickGetHat : TSDL_JoystickGetHat_func = Nil;
 {$else}
 
 function SDL_JoystickGetHat(joystick: PSDL_Joystick; hat: cint): cuint8; cdecl;
@@ -1294,9 +1294,9 @@ function SDL_JoystickGetHat(joystick: PSDL_Joystick; hat: cint): cuint8; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetBall_fun = function(joystick: PSDL_Joystick; ball: cint; dx: pcint; dy: pcint): cint; cdecl;
+  TSDL_JoystickGetBall_func = function(joystick: PSDL_Joystick; ball: cint; dx: pcint; dy: pcint): cint; cdecl;
 Var
-  SDL_JoystickGetBall : TSDL_JoystickGetBall_fun = Nil;
+  SDL_JoystickGetBall : TSDL_JoystickGetBall_func = Nil;
 {$else}
 
 function SDL_JoystickGetBall(joystick: PSDL_Joystick; ball: cint; dx: pcint; dy: pcint): cint; cdecl;
@@ -1317,9 +1317,9 @@ function SDL_JoystickGetBall(joystick: PSDL_Joystick; ball: cint; dx: pcint; dy:
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickGetButton_fun = function(joystick: PSDL_Joystick; button: cint): cuint8; cdecl;
+  TSDL_JoystickGetButton_func = function(joystick: PSDL_Joystick; button: cint): cuint8; cdecl;
 Var
-  SDL_JoystickGetButton : TSDL_JoystickGetButton_fun = Nil;
+  SDL_JoystickGetButton : TSDL_JoystickGetButton_func = Nil;
 {$else}
 
 function SDL_JoystickGetButton(joystick: PSDL_Joystick; button: cint): cuint8; cdecl;
@@ -1346,9 +1346,9 @@ function SDL_JoystickGetButton(joystick: PSDL_Joystick; button: cint): cuint8; c
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickRumble_fun = function(joystick: PSDL_Joystick; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): cint; cdecl;
+  TSDL_JoystickRumble_func = function(joystick: PSDL_Joystick; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): cint; cdecl;
 Var
-  SDL_JoystickRumble : TSDL_JoystickRumble_fun = Nil;
+  SDL_JoystickRumble : TSDL_JoystickRumble_func = Nil;
 {$else}
 
 function SDL_JoystickRumble(joystick: PSDL_Joystick; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): cint; cdecl;
@@ -1380,9 +1380,9 @@ function SDL_JoystickRumble(joystick: PSDL_Joystick; low_frequency_rumble: cuint
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickRumbleTriggers_fun = function(joystick: PSDL_Joystick; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): cint; cdecl;
+  TSDL_JoystickRumbleTriggers_func = function(joystick: PSDL_Joystick; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): cint; cdecl;
 Var
-  SDL_JoystickRumbleTriggers : TSDL_JoystickRumbleTriggers_fun = Nil;
+  SDL_JoystickRumbleTriggers : TSDL_JoystickRumbleTriggers_func = Nil;
 {$else}
 
 function SDL_JoystickRumbleTriggers(joystick: PSDL_Joystick; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): cint; cdecl;
@@ -1402,9 +1402,9 @@ function SDL_JoystickRumbleTriggers(joystick: PSDL_Joystick; left_rumble: cuint1
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickHasLED_fun = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
+  TSDL_JoystickHasLED_func = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
 Var
-  SDL_JoystickHasLED : TSDL_JoystickHasLED_fun = Nil;
+  SDL_JoystickHasLED : TSDL_JoystickHasLED_func = Nil;
 {$else}
 
 function SDL_JoystickHasLED(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
@@ -1423,9 +1423,9 @@ function SDL_JoystickHasLED(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickHasRumble_fun = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
+  TSDL_JoystickHasRumble_func = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
 Var
-  SDL_JoystickHasRumble : TSDL_JoystickHasRumble_fun = Nil;
+  SDL_JoystickHasRumble : TSDL_JoystickHasRumble_func = Nil;
 {$else}
 
 function SDL_JoystickHasRumble(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
@@ -1444,9 +1444,9 @@ function SDL_JoystickHasRumble(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickHasRumbleTriggers_fun = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
+  TSDL_JoystickHasRumbleTriggers_func = function(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
 Var
-  SDL_JoystickHasRumbleTriggers : TSDL_JoystickHasRumbleTriggers_fun = Nil;
+  SDL_JoystickHasRumbleTriggers : TSDL_JoystickHasRumbleTriggers_func = Nil;
 {$else}
 
 function SDL_JoystickHasRumbleTriggers(joystick: PSDL_Joystick): TSDL_Bool; cdecl;
@@ -1470,9 +1470,9 @@ function SDL_JoystickHasRumbleTriggers(joystick: PSDL_Joystick): TSDL_Bool; cdec
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickSetLED_fun = function(joystick: PSDL_Joystick; red: cuint8; green: cuint8; blue: cuint8): cint; cdecl;
+  TSDL_JoystickSetLED_func = function(joystick: PSDL_Joystick; red: cuint8; green: cuint8; blue: cuint8): cint; cdecl;
 Var
-  SDL_JoystickSetLED : TSDL_JoystickSetLED_fun = Nil;
+  SDL_JoystickSetLED : TSDL_JoystickSetLED_func = Nil;
 {$else}
 
 function SDL_JoystickSetLED(joystick: PSDL_Joystick; red: cuint8; green: cuint8; blue: cuint8): cint; cdecl;
@@ -1491,9 +1491,9 @@ function SDL_JoystickSetLED(joystick: PSDL_Joystick; red: cuint8; green: cuint8;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickSendEffect_fun = function(joystick: PSDL_Joystick; const data: Pointer; size: cint): cint; cdecl;
+  TSDL_JoystickSendEffect_func = function(joystick: PSDL_Joystick; const data: Pointer; size: cint): cint; cdecl;
 Var
-  SDL_JoystickSendEffect : TSDL_JoystickSendEffect_fun = Nil;
+  SDL_JoystickSendEffect : TSDL_JoystickSendEffect_func = Nil;
 {$else}
 
 function SDL_JoystickSendEffect(joystick: PSDL_Joystick; const data: Pointer; size: cint): cint; cdecl;
@@ -1531,9 +1531,9 @@ procedure SDL_JoystickClose(joystick: PSDL_Joystick); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickCurrentPowerLevel_fun = function(joystick: PSDL_Joystick): TSDL_JoystickPowerLevel; cdecl;
+  TSDL_JoystickCurrentPowerLevel_func = function(joystick: PSDL_Joystick): TSDL_JoystickPowerLevel; cdecl;
 Var
-  SDL_JoystickCurrentPowerLevel : TSDL_JoystickCurrentPowerLevel_fun = Nil;
+  SDL_JoystickCurrentPowerLevel : TSDL_JoystickCurrentPowerLevel_func = Nil;
 {$else}
 
 function SDL_JoystickCurrentPowerLevel(joystick: PSDL_Joystick): TSDL_JoystickPowerLevel; cdecl;

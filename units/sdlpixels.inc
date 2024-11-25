@@ -538,9 +538,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetPixelFormatName_fun = function(format: cuint32): PAnsiChar; cdecl;
+  TSDL_GetPixelFormatName_func = function(format: cuint32): PAnsiChar; cdecl;
 Var
-  SDL_GetPixelFormatName : TSDL_GetPixelFormatName_fun = Nil;
+  SDL_GetPixelFormatName : TSDL_GetPixelFormatName_func = Nil;
 {$else}
 
 function SDL_GetPixelFormatName(format: cuint32): PAnsiChar; cdecl;
@@ -565,10 +565,10 @@ function SDL_GetPixelFormatName(format: cuint32): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_PixelFormatEnumToMasks_fun = function(format: cuint32; bpp: pcint;
+  TSDL_PixelFormatEnumToMasks_func = function(format: cuint32; bpp: pcint;
   Rmask: pcuint32; Gmask: pcuint32; Bmask: pcuint32; Amask: pcuint32): TSDL_Bool; cdecl;
 Var
-  SDL_PixelFormatEnumToMasks : TSDL_PixelFormatEnumToMasks_fun = Nil;
+  SDL_PixelFormatEnumToMasks : TSDL_PixelFormatEnumToMasks_func = Nil;
 {$else}
 
 function SDL_PixelFormatEnumToMasks(format: cuint32; bpp: pcint;
@@ -595,9 +595,9 @@ function SDL_PixelFormatEnumToMasks(format: cuint32; bpp: pcint;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_MasksToPixelFormatEnum_fun = function(bpp: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): cuint32; cdecl;
+  TSDL_MasksToPixelFormatEnum_func = function(bpp: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): cuint32; cdecl;
 Var
-  SDL_MasksToPixelFormatEnum : TSDL_MasksToPixelFormatEnum_fun = Nil;
+  SDL_MasksToPixelFormatEnum : TSDL_MasksToPixelFormatEnum_func = Nil;
 {$else}
 
 function SDL_MasksToPixelFormatEnum(bpp: cint; Rmask: cuint32; Gmask: cuint32; Bmask: cuint32; Amask: cuint32): cuint32; cdecl;
@@ -621,9 +621,9 @@ function SDL_MasksToPixelFormatEnum(bpp: cint; Rmask: cuint32; Gmask: cuint32; B
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AllocFormat_fun = function(pixel_format: cuint32): PSDL_PixelFormat; cdecl;
+  TSDL_AllocFormat_func = function(pixel_format: cuint32): PSDL_PixelFormat; cdecl;
 Var
-  SDL_AllocFormat : TSDL_AllocFormat_fun = Nil;
+  SDL_AllocFormat : TSDL_AllocFormat_func = Nil;
 {$else}
 
 function SDL_AllocFormat(pixel_format: cuint32): PSDL_PixelFormat; cdecl;
@@ -666,9 +666,9 @@ procedure SDL_FreeFormat(format: PSDL_PixelFormat); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AllocPalette_fun = function(ncolors: cint): PSDL_Palette; cdecl;
+  TSDL_AllocPalette_func = function(ncolors: cint): PSDL_Palette; cdecl;
 Var
-  SDL_AllocPalette : TSDL_AllocPalette_fun = Nil;
+  SDL_AllocPalette : TSDL_AllocPalette_func = Nil;
 {$else}
 
 function SDL_AllocPalette(ncolors: cint): PSDL_Palette; cdecl;
@@ -690,9 +690,9 @@ function SDL_AllocPalette(ncolors: cint): PSDL_Palette; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetPixelFormatPalette_fun = function(format: PSDL_PixelFormat; palette: PSDL_Palette): cint; cdecl;
+  TSDL_SetPixelFormatPalette_func = function(format: PSDL_PixelFormat; palette: PSDL_Palette): cint; cdecl;
 Var
-  SDL_SetPixelFormatPalette : TSDL_SetPixelFormatPalette_fun = Nil;
+  SDL_SetPixelFormatPalette : TSDL_SetPixelFormatPalette_func = Nil;
 {$else}
 
 function SDL_SetPixelFormatPalette(format: PSDL_PixelFormat; palette: PSDL_Palette): cint; cdecl;
@@ -716,9 +716,9 @@ function SDL_SetPixelFormatPalette(format: PSDL_PixelFormat; palette: PSDL_Palet
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetPaletteColors_fun = function(palette: PSDL_Palette; const colors: PSDL_Color; firstcolor: cint; ncolors: cint): cint; cdecl;
+  TSDL_SetPaletteColors_func = function(palette: PSDL_Palette; const colors: PSDL_Color; firstcolor: cint; ncolors: cint): cint; cdecl;
 Var
-  SDL_SetPaletteColors : TSDL_SetPaletteColors_fun = Nil;
+  SDL_SetPaletteColors : TSDL_SetPaletteColors_func = Nil;
 {$else}
 
 function SDL_SetPaletteColors(palette: PSDL_Palette; const colors: PSDL_Color; firstcolor: cint; ncolors: cint): cint; cdecl;
@@ -777,9 +777,9 @@ procedure SDL_FreePalette(palette: PSDL_Palette); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_MapRGB_fun = function(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8): cuint32; cdecl;
+  TSDL_MapRGB_func = function(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8): cuint32; cdecl;
 Var
-  SDL_MapRGB : TSDL_MapRGB_fun = Nil;
+  SDL_MapRGB : TSDL_MapRGB_func = Nil;
 {$else}
 
 function SDL_MapRGB(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8): cuint32; cdecl;
@@ -820,9 +820,9 @@ function SDL_MapRGB(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cui
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_MapRGBA_fun = function(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cuint32; cdecl;
+  TSDL_MapRGBA_func = function(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cuint32; cdecl;
 Var
-  SDL_MapRGBA : TSDL_MapRGBA_fun = Nil;
+  SDL_MapRGBA : TSDL_MapRGBA_func = Nil;
 {$else}
 
 function SDL_MapRGBA(const format: PSDL_PixelFormat; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cuint32; cdecl;

@@ -41,9 +41,9 @@ procedure SDL_SetWindowsMessageHook(callback: TSDL_WindowsMessageHook; userdata:
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_Direct3D9GetAdapterIndex_fun = function(displayIndex:cint):cint; cdecl;
+  TSDL_Direct3D9GetAdapterIndex_func = function(displayIndex:cint):cint; cdecl;
 Var
-  SDL_Direct3D9GetAdapterIndex : TSDL_Direct3D9GetAdapterIndex_fun = Nil;
+  SDL_Direct3D9GetAdapterIndex : TSDL_Direct3D9GetAdapterIndex_func = Nil;
 {$else}
 
 function SDL_Direct3D9GetAdapterIndex(displayIndex:cint):cint; cdecl;
@@ -69,9 +69,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderGetD3D9Device_fun = function(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
+  TSDL_RenderGetD3D9Device_func = function(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
 Var
-  SDL_RenderGetD3D9Device : TSDL_RenderGetD3D9Device_fun = Nil;
+  SDL_RenderGetD3D9Device : TSDL_RenderGetD3D9Device_func = Nil;
 {$else}
 
 function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdecl;
@@ -92,9 +92,9 @@ function SDL_RenderGetD3D9Device(renderer:PSDL_Renderer):PIDirect3DDevice9; cdec
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderGetD3D11Device_fun = function(renderer:PSDL_Renderer):PID3D11Device; cdecl;
+  TSDL_RenderGetD3D11Device_func = function(renderer:PSDL_Renderer):PID3D11Device; cdecl;
 Var
-  SDL_RenderGetD3D11Device : TSDL_RenderGetD3D11Device_fun = Nil;
+  SDL_RenderGetD3D11Device : TSDL_RenderGetD3D11Device_func = Nil;
 {$else}
 
 function SDL_RenderGetD3D11Device(renderer:PSDL_Renderer):PID3D11Device; cdecl;
@@ -115,9 +115,9 @@ function SDL_RenderGetD3D11Device(renderer:PSDL_Renderer):PID3D11Device; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RenderGetD3D12Device_fun = function(renderer:PSDL_Renderer):PID3D12Device; cdecl;
+  TSDL_RenderGetD3D12Device_func = function(renderer:PSDL_Renderer):PID3D12Device; cdecl;
 Var
-  SDL_RenderGetD3D12Device : TSDL_RenderGetD3D12Device_fun = Nil;
+  SDL_RenderGetD3D12Device : TSDL_RenderGetD3D12Device_func = Nil;
 {$else}
 
 function SDL_RenderGetD3D12Device(renderer:PSDL_Renderer):PID3D12Device; cdecl;
@@ -144,9 +144,9 @@ function SDL_RenderGetD3D12Device(renderer:PSDL_Renderer):PID3D12Device; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_DXGIGetOutputInfo_fun = function(displayIndex: cint; adapterIndex, outputIndex: pcint): TSDL_Bool; cdecl;
+  TSDL_DXGIGetOutputInfo_func = function(displayIndex: cint; adapterIndex, outputIndex: pcint): TSDL_Bool; cdecl;
 Var
-  SDL_DXGIGetOutputInfo : TSDL_DXGIGetOutputInfo_fun = Nil;
+  SDL_DXGIGetOutputInfo : TSDL_DXGIGetOutputInfo_func = Nil;
 {$else}
 
 function SDL_DXGIGetOutputInfo(displayIndex: cint; adapterIndex, outputIndex: pcint): TSDL_Bool;
@@ -170,9 +170,9 @@ function SDL_DXGIGetOutputInfo(displayIndex: cint; adapterIndex, outputIndex: pc
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LinuxSetThreadPriority_fun = function(threadID: cint64; priority: cint): cint; cdecl;
+  TSDL_LinuxSetThreadPriority_func = function(threadID: cint64; priority: cint): cint; cdecl;
 Var
-  SDL_LinuxSetThreadPriority : TSDL_LinuxSetThreadPriority_fun = Nil;
+  SDL_LinuxSetThreadPriority : TSDL_LinuxSetThreadPriority_func = Nil;
 {$else}
 
 function SDL_LinuxSetThreadPriority(threadID: cint64; priority: cint): cint; cdecl;
@@ -194,9 +194,9 @@ function SDL_LinuxSetThreadPriority(threadID: cint64; priority: cint): cint; cde
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LinuxSetThreadPriorityAndPolicy_fun = function(threadID: cint64; sdlPriority, schedPolicy: cint): cint; cdecl;
+  TSDL_LinuxSetThreadPriorityAndPolicy_func = function(threadID: cint64; sdlPriority, schedPolicy: cint): cint; cdecl;
 Var
-  SDL_LinuxSetThreadPriorityAndPolicy : TSDL_LinuxSetThreadPriorityAndPolicy_fun = Nil;
+  SDL_LinuxSetThreadPriorityAndPolicy : TSDL_LinuxSetThreadPriorityAndPolicy_func = Nil;
 {$else}
 
 function SDL_LinuxSetThreadPriorityAndPolicy(threadID: cint64; sdlPriority, schedPolicy: cint): cint; cdecl;
@@ -234,9 +234,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_iPhoneSetAnimationCallback_fun = function(window: PSDL_Window; interval: cint; callback: TSDL_iPhoneAnimationCallback; callbackParam: Pointer); cdecl;
+  TSDL_iPhoneSetAnimationCallback_func = function(window: PSDL_Window; interval: cint; callback: TSDL_iPhoneAnimationCallback; callbackParam: Pointer); cdecl;
 Var
-  SDL_iPhoneSetAnimationCallback : TSDL_iPhoneSetAnimationCallback_fun = Nil;
+  SDL_iPhoneSetAnimationCallback : TSDL_iPhoneSetAnimationCallback_func = Nil;
 {$else}
 
 function SDL_iPhoneSetAnimationCallback(window: PSDL_Window; interval: cint; callback: TSDL_iPhoneAnimationCallback; callbackParam: Pointer); cdecl;
@@ -289,9 +289,9 @@ procedure SDL_iPhoneSetEventPump(enabled: TSDL_Bool); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AndroidGetJNIEnv_fun = function(): Pointer; cdecl;
+  TSDL_AndroidGetJNIEnv_func = function(): Pointer; cdecl;
 Var
-  SDL_AndroidGetJNIEnv : TSDL_AndroidGetJNIEnv_fun = Nil;
+  SDL_AndroidGetJNIEnv : TSDL_AndroidGetJNIEnv_func = Nil;
 {$else}
 
 function SDL_AndroidGetJNIEnv(): Pointer; cdecl;
@@ -320,9 +320,9 @@ function SDL_AndroidGetJNIEnv(): Pointer; cdecl;
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AndroidGetActivity_fun = function(): Pointer; cdecl;
+  TSDL_AndroidGetActivity_func = function(): Pointer; cdecl;
 Var
-  SDL_AndroidGetActivity : TSDL_AndroidGetActivity_fun = Nil;
+  SDL_AndroidGetActivity : TSDL_AndroidGetActivity_func = Nil;
 {$else}
 
 function SDL_AndroidGetActivity(): Pointer; cdecl;
@@ -364,9 +364,9 @@ function SDL_AndroidGetActivity(): Pointer; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetAndroidSDKVersion_fun = function(): cint; cdecl;
+  TSDL_GetAndroidSDKVersion_func = function(): cint; cdecl;
 Var
-  SDL_GetAndroidSDKVersion : TSDL_GetAndroidSDKVersion_fun = Nil;
+  SDL_GetAndroidSDKVersion : TSDL_GetAndroidSDKVersion_func = Nil;
 {$else}
 
 function SDL_GetAndroidSDKVersion(): cint; cdecl;
@@ -382,9 +382,9 @@ function SDL_GetAndroidSDKVersion(): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IsAndroidTV_fun = function(): TSDL_Bool; cdecl;
+  TSDL_IsAndroidTV_func = function(): TSDL_Bool; cdecl;
 Var
-  SDL_IsAndroidTV : TSDL_IsAndroidTV_fun = Nil;
+  SDL_IsAndroidTV : TSDL_IsAndroidTV_func = Nil;
 {$else}
 
 function SDL_IsAndroidTV(): TSDL_Bool; cdecl;
@@ -400,9 +400,9 @@ function SDL_IsAndroidTV(): TSDL_Bool; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IsChromebook_fun = function(): TSDL_Bool; cdecl;
+  TSDL_IsChromebook_func = function(): TSDL_Bool; cdecl;
 Var
-  SDL_IsChromebook : TSDL_IsChromebook_fun = Nil;
+  SDL_IsChromebook : TSDL_IsChromebook_func = Nil;
 {$else}
 
 function SDL_IsChromebook(): TSDL_Bool; cdecl;
@@ -418,9 +418,9 @@ function SDL_IsChromebook(): TSDL_Bool; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IsDeXMode_fun = function(): TSDL_Bool; cdecl;
+  TSDL_IsDeXMode_func = function(): TSDL_Bool; cdecl;
 Var
-  SDL_IsDeXMode : TSDL_IsDeXMode_fun = Nil;
+  SDL_IsDeXMode : TSDL_IsDeXMode_func = Nil;
 {$else}
 
 function SDL_IsDeXMode(): TSDL_Bool; cdecl;
@@ -469,9 +469,9 @@ const
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AndroidGetInternalStoragePath_fun = function(): PAnsiChar; cdecl;
+  TSDL_AndroidGetInternalStoragePath_func = function(): PAnsiChar; cdecl;
 Var
-  SDL_AndroidGetInternalStoragePath : TSDL_AndroidGetInternalStoragePath_fun = Nil;
+  SDL_AndroidGetInternalStoragePath : TSDL_AndroidGetInternalStoragePath_func = Nil;
 {$else}
 
 function SDL_AndroidGetInternalStoragePath(): PAnsiChar; cdecl;
@@ -495,9 +495,9 @@ function SDL_AndroidGetInternalStoragePath(): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AndroidGetExternalStorageState_fun = function(): cint; cdecl;
+  TSDL_AndroidGetExternalStorageState_func = function(): cint; cdecl;
 Var
-  SDL_AndroidGetExternalStorageState : TSDL_AndroidGetExternalStorageState_fun = Nil;
+  SDL_AndroidGetExternalStorageState : TSDL_AndroidGetExternalStorageState_func = Nil;
 {$else}
 
 function SDL_AndroidGetExternalStorageState(): cint; cdecl;
@@ -522,9 +522,9 @@ function SDL_AndroidGetExternalStorageState(): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AndroidGetExternalStoragePath_fun = function(): PAnsiChar; cdecl;
+  TSDL_AndroidGetExternalStoragePath_func = function(): PAnsiChar; cdecl;
 Var
-  SDL_AndroidGetExternalStoragePath : TSDL_AndroidGetExternalStoragePath_fun = Nil;
+  SDL_AndroidGetExternalStoragePath : TSDL_AndroidGetExternalStoragePath_func = Nil;
 {$else}
 
 function SDL_AndroidGetExternalStoragePath(): PAnsiChar; cdecl;
@@ -546,9 +546,9 @@ function SDL_AndroidGetExternalStoragePath(): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AndroidRequestPermission_fun = function(const permission: PAnsiChar): TSDL_Bool; cdecl;
+  TSDL_AndroidRequestPermission_func = function(const permission: PAnsiChar): TSDL_Bool; cdecl;
 Var
-  SDL_AndroidRequestPermission : TSDL_AndroidRequestPermission_fun = Nil;
+  SDL_AndroidRequestPermission : TSDL_AndroidRequestPermission_func = Nil;
 {$else}
 
 function SDL_AndroidRequestPermission(const permission: PAnsiChar): TSDL_Bool; cdecl;
@@ -580,9 +580,9 @@ function SDL_AndroidRequestPermission(const permission: PAnsiChar): TSDL_Bool; c
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AndroidShowToast_fun = function(const message: PAnsiChar; duration, gravity, xoffset, yoffset: cint): cint; cdecl;
+  TSDL_AndroidShowToast_func = function(const message: PAnsiChar; duration, gravity, xoffset, yoffset: cint): cint; cdecl;
 Var
-  SDL_AndroidShowToast : TSDL_AndroidShowToast_fun = Nil;
+  SDL_AndroidShowToast : TSDL_AndroidShowToast_func = Nil;
 {$else}
 
 function SDL_AndroidShowToast(const message: PAnsiChar; duration, gravity, xoffset, yoffset: cint): cint; cdecl;
@@ -601,9 +601,9 @@ function SDL_AndroidShowToast(const message: PAnsiChar; duration, gravity, xoffs
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AndroidSendMessage_fun = function(command: cUint32; param: cint): cint; cdecl;
+  TSDL_AndroidSendMessage_func = function(command: cUint32; param: cint): cint; cdecl;
 Var
-  SDL_AndroidSendMessage : TSDL_AndroidSendMessage_fun = Nil;
+  SDL_AndroidSendMessage : TSDL_AndroidSendMessage_func = Nil;
 {$else}
 
 function SDL_AndroidSendMessage(command: cUint32; param: cint): cint; cdecl;
@@ -663,9 +663,9 @@ Type
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_WinRTGetFSPathUNICODE_fun = function(pathT
+  TSDL_WinRTGetFSPathUNICODE_func = function(pathT
 Var
-  SDL_WinRTGetFSPathUNICODE : TSDL_WinRTGetFSPathUNICODE_fun = Nil;
+  SDL_WinRTGetFSPathUNICODE : TSDL_WinRTGetFSPathUNICODE_func = Nil;
 {$else}
 
 function SDL_WinRTGetFSPathUNICODE(pathType :TSDL_WinRT_Path):PWideChar;
@@ -690,9 +690,9 @@ function SDL_WinRTGetFSPathUNICODE(pathType :TSDL_WinRT_Path):PWideChar;
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_WinRTGetFSPathUTF8_fun = function(pathT
+  TSDL_WinRTGetFSPathUTF8_func = function(pathT
 Var
-  SDL_WinRTGetFSPathUTF8 : TSDL_WinRTGetFSPathUTF8_fun = Nil;
+  SDL_WinRTGetFSPathUTF8 : TSDL_WinRTGetFSPathUTF8_func = Nil;
 {$else}
 
 function SDL_WinRTGetFSPathUTF8(pathType :TSDL_WinRT_Path):PChar;
@@ -709,9 +709,9 @@ function SDL_WinRTGetFSPathUTF8(pathType :TSDL_WinRT_Path):PChar;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_WinRTGetDeviceFamily_fun = function(): TS
+  TSDL_WinRTGetDeviceFamily_func = function(): TS
 Var
-  SDL_WinRTGetDeviceFamily : TSDL_WinRTGetDeviceFamily_fun = Nil;
+  SDL_WinRTGetDeviceFamily : TSDL_WinRTGetDeviceFamily_func = Nil;
 {$else}
 
 function SDL_WinRTGetDeviceFamily(): TSDL_WinRT_DeviceFamily;
@@ -731,9 +731,9 @@ function SDL_WinRTGetDeviceFamily(): TSDL_WinRT_DeviceFamily;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IsTablet_fun = function(): TSDL_Bool; cdecl;
+  TSDL_IsTablet_func = function(): TSDL_Bool; cdecl;
 Var
-  SDL_IsTablet : TSDL_IsTablet_fun = Nil;
+  SDL_IsTablet : TSDL_IsTablet_func = Nil;
 {$else}
 
 function SDL_IsTablet(): TSDL_Bool; cdecl;

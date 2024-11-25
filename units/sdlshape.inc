@@ -35,9 +35,9 @@ const
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateShapedWindow_fun = function(title: PAnsiChar; x: cuint; y: cuint; w: cuint; h: cuint; flags: cuint32): PSDL_Window; cdecl;
+  TSDL_CreateShapedWindow_func = function(title: PAnsiChar; x: cuint; y: cuint; w: cuint; h: cuint; flags: cuint32): PSDL_Window; cdecl;
 Var
-  SDL_CreateShapedWindow : TSDL_CreateShapedWindow_fun = Nil;
+  SDL_CreateShapedWindow : TSDL_CreateShapedWindow_func = Nil;
 {$else}
 
 function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint; y: cuint; w: cuint; h: cuint; flags: cuint32): PSDL_Window; cdecl;
@@ -57,9 +57,9 @@ function SDL_CreateShapedWindow(title: PAnsiChar; x: cuint; y: cuint; w: cuint; 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IsShapedWindow_fun = function(window: PSDL_Window): TSDL_Bool; cdecl;
+  TSDL_IsShapedWindow_func = function(window: PSDL_Window): TSDL_Bool; cdecl;
 Var
-  SDL_IsShapedWindow : TSDL_IsShapedWindow_fun = Nil;
+  SDL_IsShapedWindow : TSDL_IsShapedWindow_func = Nil;
 {$else}
 
 function SDL_IsShapedWindow(window: PSDL_Window): TSDL_Bool; cdecl;
@@ -123,9 +123,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetWindowShape_fun = function(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
+  TSDL_SetWindowShape_func = function(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
 Var
-  SDL_SetWindowShape : TSDL_SetWindowShape_fun = Nil;
+  SDL_SetWindowShape : TSDL_SetWindowShape_func = Nil;
 {$else}
 
 function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
@@ -151,9 +151,9 @@ function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface; shape_mode
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetShapedWindowMode_fun = function(window: PSDL_Window; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
+  TSDL_GetShapedWindowMode_func = function(window: PSDL_Window; shape_mode: PSDL_WindowShapeMode): cint; cdecl;
 Var
-  SDL_GetShapedWindowMode : TSDL_GetShapedWindowMode_fun = Nil;
+  SDL_GetShapedWindowMode : TSDL_GetShapedWindowMode_func = Nil;
 {$else}
 
 function SDL_GetShapedWindowMode(window: PSDL_Window; shape_mode: PSDL_WindowShapeMode): cint; cdecl;

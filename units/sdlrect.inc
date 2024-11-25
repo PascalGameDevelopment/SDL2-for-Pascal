@@ -82,9 +82,9 @@ function SDL_RectEquals(const a, b: PSDL_Rect): Boolean; inline;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HasIntersection_fun = function(const a, b: PSDL_Rect): TSDL_Bool; cdecl;
+  TSDL_HasIntersection_func = function(const a, b: PSDL_Rect): TSDL_Bool; cdecl;
 Var
-  SDL_HasIntersection : TSDL_HasIntersection_fun = Nil;
+  SDL_HasIntersection : TSDL_HasIntersection_func = Nil;
 {$else}
 
 function SDL_HasIntersection(const a, b: PSDL_Rect): TSDL_Bool; cdecl;
@@ -98,9 +98,9 @@ function SDL_HasIntersection(const a, b: PSDL_Rect): TSDL_Bool; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IntersectRect_fun = function(const A, B: PSDL_Rect; result: PSDL_Rect): TSDL_Bool; cdecl;
+  TSDL_IntersectRect_func = function(const A, B: PSDL_Rect; result: PSDL_Rect): TSDL_Bool; cdecl;
 Var
-  SDL_IntersectRect : TSDL_IntersectRect_fun = Nil;
+  SDL_IntersectRect : TSDL_IntersectRect_func = Nil;
 {$else}
 
 function SDL_IntersectRect(const A, B: PSDL_Rect; result: PSDL_Rect): TSDL_Bool; cdecl;
@@ -128,9 +128,9 @@ procedure SDL_UnionRect(const A, B: PSDL_Rect; result: PSDL_Rect); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_EnclosePoints_fun = function(const points: PSDL_Point; count: cint; const clip: PSDL_Rect; result: PSDL_Rect): TSDL_Bool; cdecl;
+  TSDL_EnclosePoints_func = function(const points: PSDL_Point; count: cint; const clip: PSDL_Rect; result: PSDL_Rect): TSDL_Bool; cdecl;
 Var
-  SDL_EnclosePoints : TSDL_EnclosePoints_fun = Nil;
+  SDL_EnclosePoints : TSDL_EnclosePoints_func = Nil;
 {$else}
 
 function SDL_EnclosePoints(const points: PSDL_Point; count: cint; const clip: PSDL_Rect; result: PSDL_Rect): TSDL_Bool; cdecl;
@@ -144,9 +144,9 @@ function SDL_EnclosePoints(const points: PSDL_Point; count: cint; const clip: PS
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IntersectRectAndLine_fun = function(const rect: PSDL_Rect; X1, Y1, X2, Y2: pcint): TSDL_Bool; cdecl;
+  TSDL_IntersectRectAndLine_func = function(const rect: PSDL_Rect; X1, Y1, X2, Y2: pcint): TSDL_Bool; cdecl;
 Var
-  SDL_IntersectRectAndLine : TSDL_IntersectRectAndLine_fun = Nil;
+  SDL_IntersectRectAndLine : TSDL_IntersectRectAndLine_func = Nil;
 {$else}
 
 function SDL_IntersectRectAndLine(const rect: PSDL_Rect; X1, Y1, X2, Y2: pcint): TSDL_Bool; cdecl;
@@ -192,9 +192,9 @@ function SDL_FRectEquals(const a, b: PSDL_FRect): Boolean; Inline;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HasIntersectionF_fun = function(const a, b: PSDL_FRect): TSDL_Bool; cdecl;
+  TSDL_HasIntersectionF_func = function(const a, b: PSDL_FRect): TSDL_Bool; cdecl;
 Var
-  SDL_HasIntersectionF : TSDL_HasIntersectionF_fun = Nil;
+  SDL_HasIntersectionF : TSDL_HasIntersectionF_func = Nil;
 {$else}
 
 function SDL_HasIntersectionF(const a, b: PSDL_FRect): TSDL_Bool; cdecl;
@@ -218,9 +218,9 @@ function SDL_HasIntersectionF(const a, b: PSDL_FRect): TSDL_Bool; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IntersectFRect_fun = function(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
+  TSDL_IntersectFRect_func = function(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
 Var
-  SDL_IntersectFRect : TSDL_IntersectFRect_fun = Nil;
+  SDL_IntersectFRect : TSDL_IntersectFRect_func = Nil;
 {$else}
 
 function SDL_IntersectFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
@@ -239,9 +239,9 @@ function SDL_IntersectFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bo
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_UnionFRect_fun = function(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
+  TSDL_UnionFRect_func = function(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
 Var
-  SDL_UnionFRect : TSDL_UnionFRect_fun = Nil;
+  SDL_UnionFRect : TSDL_UnionFRect_func = Nil;
 {$else}
 
 function SDL_UnionFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
@@ -268,9 +268,9 @@ function SDL_UnionFRect(const a, b: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_EncloseFPoints_fun = function(const points: PSDL_FPoint; count: cint; const clip: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
+  TSDL_EncloseFPoints_func = function(const points: PSDL_FPoint; count: cint; const clip: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
 Var
-  SDL_EncloseFPoints : TSDL_EncloseFPoints_fun = Nil;
+  SDL_EncloseFPoints : TSDL_EncloseFPoints_func = Nil;
 {$else}
 
 function SDL_EncloseFPoints(const points: PSDL_FPoint; count: cint; const clip: PSDL_FRect; result: PSDL_FRect): TSDL_Bool; cdecl;
@@ -298,9 +298,9 @@ function SDL_EncloseFPoints(const points: PSDL_FPoint; count: cint; const clip: 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_IntersectFRectAndLine_fun = function(const rect: PSDL_FRect; X1, Y1, X2, Y2: pcfloat): TSDL_Bool; cdecl;
+  TSDL_IntersectFRectAndLine_func = function(const rect: PSDL_FRect; X1, Y1, X2, Y2: pcfloat): TSDL_Bool; cdecl;
 Var
-  SDL_IntersectFRectAndLine : TSDL_IntersectFRectAndLine_fun = Nil;
+  SDL_IntersectFRectAndLine : TSDL_IntersectFRectAndLine_func = Nil;
 {$else}
 
 function SDL_IntersectFRectAndLine(const rect: PSDL_FRect; X1, Y1, X2, Y2: pcfloat): TSDL_Bool; cdecl;

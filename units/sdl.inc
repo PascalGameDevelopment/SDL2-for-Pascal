@@ -43,9 +43,9 @@ const
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_Init_fun = function(flags: TSDL_Init): cint; cdecl;
+  TSDL_Init_func = function(flags: TSDL_Init): cint; cdecl;
 Var
-  SDL_Init : TSDL_Init_fun = Nil;
+  SDL_Init : TSDL_Init_func = Nil;
 {$else}
 
 function SDL_Init(flags: TSDL_Init): cint; cdecl;
@@ -57,9 +57,9 @@ function SDL_Init(flags: TSDL_Init): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_InitSubSystem_fun = function(flags: TSDL_Init): cint; cdecl;
+  TSDL_InitSubSystem_func = function(flags: TSDL_Init): cint; cdecl;
 Var
-  SDL_InitSubSystem : TSDL_InitSubSystem_fun = Nil;
+  SDL_InitSubSystem : TSDL_InitSubSystem_func = Nil;
 {$else}
 
 function SDL_InitSubSystem(flags: TSDL_Init): cint; cdecl;
@@ -88,9 +88,9 @@ procedure SDL_QuitSubSystem(flags: TSDL_Init); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_WasInit_fun = function(flags: TSDL_Init): cuint32; cdecl;
+  TSDL_WasInit_func = function(flags: TSDL_Init): cuint32; cdecl;
 Var
-  SDL_WasInit : TSDL_WasInit_fun = Nil;
+  SDL_WasInit : TSDL_WasInit_func = Nil;
 {$else}
 
 function SDL_WasInit(flags: TSDL_Init): cuint32; cdecl;

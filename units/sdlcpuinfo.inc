@@ -13,9 +13,9 @@ const
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetCPUCount_fun = function(): cint; cdecl;
+  TSDL_GetCPUCount_func = function(): cint; cdecl;
 Var
-  SDL_GetCPUCount : TSDL_GetCPUCount_fun = Nil;
+  SDL_GetCPUCount : TSDL_GetCPUCount_func = Nil;
 {$else}
 
 function SDL_GetCPUCount(): cint; cdecl;

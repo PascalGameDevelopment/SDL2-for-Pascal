@@ -106,9 +106,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ShowMessageBox_fun = function(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cint; cdecl;
+  TSDL_ShowMessageBox_func = function(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cint; cdecl;
 Var
-  SDL_ShowMessageBox : TSDL_ShowMessageBox_fun = Nil;
+  SDL_ShowMessageBox : TSDL_ShowMessageBox_func = Nil;
 {$else}
 
 function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cint; cdecl;
@@ -129,9 +129,9 @@ function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ShowSimpleMessageBox_fun = function(flags: TSDL_MessageBoxFlags; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): cint; cdecl;
+  TSDL_ShowSimpleMessageBox_func = function(flags: TSDL_MessageBoxFlags; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): cint; cdecl;
 Var
-  SDL_ShowSimpleMessageBox : TSDL_ShowSimpleMessageBox_fun = Nil;
+  SDL_ShowSimpleMessageBox : TSDL_ShowSimpleMessageBox_func = Nil;
 {$else}
 
 function SDL_ShowSimpleMessageBox(flags: TSDL_MessageBoxFlags; title: PAnsiChar; _message: PAnsiChar; window: PSDL_Window): cint; cdecl;

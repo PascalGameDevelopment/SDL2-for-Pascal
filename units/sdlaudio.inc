@@ -244,9 +244,9 @@ function SDL_GetNumAudioDrivers: cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetAudioDriver_fun = function(index: cint): PAnsiChar; cdecl;
+  TSDL_GetAudioDriver_func = function(index: cint): PAnsiChar; cdecl;
 Var
-  SDL_GetAudioDriver : TSDL_GetAudioDriver_fun = Nil;
+  SDL_GetAudioDriver : TSDL_GetAudioDriver_func = Nil;
 {$else}
 
 function SDL_GetAudioDriver(index: cint): PAnsiChar; cdecl;
@@ -278,9 +278,9 @@ function SDL_GetAudioDriver(index: cint): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AudioInit_fun = function(driver_name: PAnsiChar): cint; cdecl;
+  TSDL_AudioInit_func = function(driver_name: PAnsiChar): cint; cdecl;
 Var
-  SDL_AudioInit : TSDL_AudioInit_fun = Nil;
+  SDL_AudioInit : TSDL_AudioInit_func = Nil;
 {$else}
 
 function SDL_AudioInit(driver_name: PAnsiChar): cint; cdecl;
@@ -370,9 +370,9 @@ function SDL_GetCurrentAudioDriver: PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_OpenAudio_fun = function(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): cint; cdecl;
+  TSDL_OpenAudio_func = function(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): cint; cdecl;
 Var
-  SDL_OpenAudio : TSDL_OpenAudio_fun = Nil;
+  SDL_OpenAudio : TSDL_OpenAudio_func = Nil;
 {$else}
 
 function SDL_OpenAudio(desired: PSDL_AudioSpec; obtained: PSDL_AudioSpec): cint; cdecl;
@@ -439,9 +439,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetNumAudioDevices_fun = function(iscapture: cint): cint; cdecl;
+  TSDL_GetNumAudioDevices_func = function(iscapture: cint): cint; cdecl;
 Var
-  SDL_GetNumAudioDevices : TSDL_GetNumAudioDevices_fun = Nil;
+  SDL_GetNumAudioDevices : TSDL_GetNumAudioDevices_func = Nil;
 {$else}
 
 function SDL_GetNumAudioDevices(iscapture: cint): cint; cdecl;
@@ -475,9 +475,9 @@ function SDL_GetNumAudioDevices(iscapture: cint): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetAudioDeviceName_fun = function(index: cint; iscapture: cint): PAnsiChar; cdecl;
+  TSDL_GetAudioDeviceName_func = function(index: cint; iscapture: cint): PAnsiChar; cdecl;
 Var
-  SDL_GetAudioDeviceName : TSDL_GetAudioDeviceName_fun = Nil;
+  SDL_GetAudioDeviceName : TSDL_GetAudioDeviceName_func = Nil;
 {$else}
 
 function SDL_GetAudioDeviceName(index: cint; iscapture: cint): PAnsiChar; cdecl;
@@ -509,9 +509,9 @@ function SDL_GetAudioDeviceName(index: cint; iscapture: cint): PAnsiChar; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetAudioDeviceSpec_fun = function(index: cint; iscapture: cint; spec: PSDL_AudioSpec): cint; cdecl;
+  TSDL_GetAudioDeviceSpec_func = function(index: cint; iscapture: cint; spec: PSDL_AudioSpec): cint; cdecl;
 Var
-  SDL_GetAudioDeviceSpec : TSDL_GetAudioDeviceSpec_fun = Nil;
+  SDL_GetAudioDeviceSpec : TSDL_GetAudioDeviceSpec_func = Nil;
 {$else}
 
 function SDL_GetAudioDeviceSpec(index: cint; iscapture: cint; spec: PSDL_AudioSpec): cint; cdecl;
@@ -550,9 +550,9 @@ function SDL_GetAudioDeviceSpec(index: cint; iscapture: cint; spec: PSDL_AudioSp
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetDefaultAudioInfo_fun = function(name: PPAnsiChar; spec: PSDL_AudioSpec; iscapture: cint): cint; cdecl;
+  TSDL_GetDefaultAudioInfo_func = function(name: PPAnsiChar; spec: PSDL_AudioSpec; iscapture: cint): cint; cdecl;
 Var
-  SDL_GetDefaultAudioInfo : TSDL_GetDefaultAudioInfo_fun = Nil;
+  SDL_GetDefaultAudioInfo : TSDL_GetDefaultAudioInfo_func = Nil;
 {$else}
 
 function SDL_GetDefaultAudioInfo(name: PPAnsiChar; spec: PSDL_AudioSpec; iscapture: cint): cint; cdecl;
@@ -672,13 +672,13 @@ function SDL_GetDefaultAudioInfo(name: PPAnsiChar; spec: PSDL_AudioSpec; iscaptu
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_OpenAudioDevice_fun = function(device: PAnsiChar;
+  TSDL_OpenAudioDevice_func = function(device: PAnsiChar;
                              iscapture: cint;
                              desired: PSDL_AudioSpec;
                              obtained: PSDL_AudioSpec;
                              allowed_changes: cint): TSDL_AudioDeviceID; cdecl;
 Var
-  SDL_OpenAudioDevice : TSDL_OpenAudioDevice_fun = Nil;
+  SDL_OpenAudioDevice : TSDL_OpenAudioDevice_func = Nil;
 {$else}
 
 function SDL_OpenAudioDevice(device: PAnsiChar;
@@ -739,9 +739,9 @@ function SDL_GetAudioStatus: TSDL_AudioStatus; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetAudioDeviceStatus_fun = function(dev: TSDL_AudioDeviceID): TSDL_AudioStatus; cdecl;
+  TSDL_GetAudioDeviceStatus_func = function(dev: TSDL_AudioDeviceID): TSDL_AudioStatus; cdecl;
 Var
-  SDL_GetAudioDeviceStatus : TSDL_GetAudioDeviceStatus_fun = Nil;
+  SDL_GetAudioDeviceStatus : TSDL_GetAudioDeviceStatus_func = Nil;
 {$else}
 
 function SDL_GetAudioDeviceStatus(dev: TSDL_AudioDeviceID): TSDL_AudioStatus; cdecl;
@@ -914,13 +914,13 @@ procedure SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID; pause_on: cint); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_LoadWAV_RW_fun = function(src: PSDL_RWops;
+  TSDL_LoadWAV_RW_func = function(src: PSDL_RWops;
                         freesrc: cint;
                         spec: PSDL_AudioSpec;
                         audio_buf: ppcuint8;
                         audio_len: pcuint32): PSDL_AudioSpec; cdecl;
 Var
-  SDL_LoadWAV_RW : TSDL_LoadWAV_RW_fun = Nil;
+  SDL_LoadWAV_RW : TSDL_LoadWAV_RW_func = Nil;
 {$else}
 
 function SDL_LoadWAV_RW(src: PSDL_RWops;
@@ -997,7 +997,7 @@ procedure SDL_FreeWAV(audio_buf: pcuint8); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_BuildAudioCVT_fun = function(cvt: PSDL_AudioCVT;
+  TSDL_BuildAudioCVT_func = function(cvt: PSDL_AudioCVT;
                            src_format: TSDL_AudioFormat;
                            src_channels: cuint8;
                            src_rate: cint;
@@ -1005,7 +1005,7 @@ Type
                            dst_channels: cuint8;
                            dst_rate: cint): cint; cdecl;
 Var
-  SDL_BuildAudioCVT : TSDL_BuildAudioCVT_fun = Nil;
+  SDL_BuildAudioCVT : TSDL_BuildAudioCVT_func = Nil;
 {$else}
 
 function SDL_BuildAudioCVT(cvt: PSDL_AudioCVT;
@@ -1058,9 +1058,9 @@ function SDL_BuildAudioCVT(cvt: PSDL_AudioCVT;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_ConvertAudio_fun = function(cvt: PSDL_AudioCVT): cint; cdecl;
+  TSDL_ConvertAudio_func = function(cvt: PSDL_AudioCVT): cint; cdecl;
 Var
-  SDL_ConvertAudio : TSDL_ConvertAudio_fun = Nil;
+  SDL_ConvertAudio : TSDL_ConvertAudio_func = Nil;
 {$else}
 
 function SDL_ConvertAudio(cvt: PSDL_AudioCVT): cint; cdecl;
@@ -1100,10 +1100,10 @@ type
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_NewAudioStream_fun = function(src_format: TSDL_AudioFormat; src_channels: cuint8; src_rate: cint; dst_format: TSDL_AudioFormat; dst_channels: cuint8;
+  TSDL_NewAudioStream_func = function(src_format: TSDL_AudioFormat; src_channels: cuint8; src_rate: cint; dst_format: TSDL_AudioFormat; dst_channels: cuint8;
            dst_rate: cint): PSDL_AudioStream; cdecl;
 Var
-  SDL_NewAudioStream : TSDL_NewAudioStream_fun = Nil;
+  SDL_NewAudioStream : TSDL_NewAudioStream_func = Nil;
 {$else}
 
 function SDL_NewAudioStream(src_format: TSDL_AudioFormat; src_channels: cuint8; src_rate: cint; dst_format: TSDL_AudioFormat; dst_channels: cuint8;
@@ -1130,9 +1130,9 @@ function SDL_NewAudioStream(src_format: TSDL_AudioFormat; src_channels: cuint8; 
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AudioStreamPut_fun = function(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
+  TSDL_AudioStreamPut_func = function(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
 Var
-  SDL_AudioStreamPut : TSDL_AudioStreamPut_fun = Nil;
+  SDL_AudioStreamPut : TSDL_AudioStreamPut_func = Nil;
 {$else}
 
 function SDL_AudioStreamPut(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
@@ -1158,9 +1158,9 @@ function SDL_AudioStreamPut(stream: PSDL_AudioStream; buf: pointer; len: cint): 
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AudioStreamGet_fun = function(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
+  TSDL_AudioStreamGet_func = function(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
 Var
-  SDL_AudioStreamGet : TSDL_AudioStreamGet_fun = Nil;
+  SDL_AudioStreamGet : TSDL_AudioStreamGet_func = Nil;
 {$else}
 
 function SDL_AudioStreamGet(stream: PSDL_AudioStream; buf: pointer; len: cint): cint; cdecl;
@@ -1185,9 +1185,9 @@ function SDL_AudioStreamGet(stream: PSDL_AudioStream; buf: pointer; len: cint): 
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AudioStreamAvailable_fun = function(stream: PSDL_AudioStream): cint; cdecl;
+  TSDL_AudioStreamAvailable_func = function(stream: PSDL_AudioStream): cint; cdecl;
 Var
-  SDL_AudioStreamAvailable : TSDL_AudioStreamAvailable_fun = Nil;
+  SDL_AudioStreamAvailable : TSDL_AudioStreamAvailable_func = Nil;
 {$else}
 
 function SDL_AudioStreamAvailable(stream: PSDL_AudioStream): cint; cdecl;
@@ -1213,9 +1213,9 @@ function SDL_AudioStreamAvailable(stream: PSDL_AudioStream): cint; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AudioStreamFlush_fun = function(stream: PSDL_AudioStream): cint; cdecl;
+  TSDL_AudioStreamFlush_func = function(stream: PSDL_AudioStream): cint; cdecl;
 Var
-  SDL_AudioStreamFlush : TSDL_AudioStreamFlush_fun = Nil;
+  SDL_AudioStreamFlush : TSDL_AudioStreamFlush_func = Nil;
 {$else}
 
 function SDL_AudioStreamFlush(stream: PSDL_AudioStream): cint; cdecl;
@@ -1393,9 +1393,9 @@ procedure SDL_MixAudioFormat(dst: pcuint8; src: pcuint8; format: TSDL_AudioForma
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_QueueAudio_fun = function(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cint; cdecl;
+  TSDL_QueueAudio_func = function(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cint; cdecl;
 Var
-  SDL_QueueAudio : TSDL_QueueAudio_fun = Nil;
+  SDL_QueueAudio : TSDL_QueueAudio_func = Nil;
 {$else}
 
 function SDL_QueueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cint; cdecl;
@@ -1450,9 +1450,9 @@ function SDL_QueueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): c
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_DequeueAudio_fun = function(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cuint32; cdecl;
+  TSDL_DequeueAudio_func = function(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cuint32; cdecl;
 Var
-  SDL_DequeueAudio : TSDL_DequeueAudio_fun = Nil;
+  SDL_DequeueAudio : TSDL_DequeueAudio_func = Nil;
 {$else}
 
 function SDL_DequeueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32): cuint32; cdecl;
@@ -1493,9 +1493,9 @@ function SDL_DequeueAudio(dev: TSDL_AudioDeviceID; data: Pointer; len: cuint32):
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetQueuedAudioSize_fun = function(dev: TSDL_AudioDeviceID): cuint32; cdecl;
+  TSDL_GetQueuedAudioSize_func = function(dev: TSDL_AudioDeviceID): cuint32; cdecl;
 Var
-  SDL_GetQueuedAudioSize : TSDL_GetQueuedAudioSize_fun = Nil;
+  SDL_GetQueuedAudioSize : TSDL_GetQueuedAudioSize_func = Nil;
 {$else}
 
 function SDL_GetQueuedAudioSize(dev: TSDL_AudioDeviceID): cuint32; cdecl;

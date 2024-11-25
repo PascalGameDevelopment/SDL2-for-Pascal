@@ -66,9 +66,9 @@ procedure SDL_GUIDToString(guid: TSDL_GUID; pszGUID: PAnsiChar; cbGUID: cint); c
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GUIDFromString_fun = function(const pchGUID: PAnsiChar): TSDL_GUID; cdecl;
+  TSDL_GUIDFromString_func = function(const pchGUID: PAnsiChar): TSDL_GUID; cdecl;
 Var
-  SDL_GUIDFromString : TSDL_GUIDFromString_fun = Nil;
+  SDL_GUIDFromString : TSDL_GUIDFromString_func = Nil;
 {$else}
 
 function SDL_GUIDFromString(const pchGUID: PAnsiChar): TSDL_GUID; cdecl;

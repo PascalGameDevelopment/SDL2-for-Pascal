@@ -85,9 +85,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_AddTimer_fun = function(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID; cdecl;
+  TSDL_AddTimer_func = function(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID; cdecl;
 Var
-  SDL_AddTimer : TSDL_AddTimer_fun = Nil;
+  SDL_AddTimer : TSDL_AddTimer_func = Nil;
 {$else}
 
 function SDL_AddTimer(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID; cdecl;
@@ -103,9 +103,9 @@ function SDL_AddTimer(interval: cuint32; callback: TSDL_TimerCallback; param: Po
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_RemoveTimer_fun = function(id: TSDL_TimerID): Boolean; cdecl;
+  TSDL_RemoveTimer_func = function(id: TSDL_TimerID): Boolean; cdecl;
 Var
-  SDL_RemoveTimer : TSDL_RemoveTimer_fun = Nil;
+  SDL_RemoveTimer : TSDL_RemoveTimer_func = Nil;
 {$else}
 
 function SDL_RemoveTimer(id: TSDL_TimerID): Boolean; cdecl;

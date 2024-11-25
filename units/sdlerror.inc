@@ -15,9 +15,9 @@
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetError_fun = function(const fmt: PAnsiChar; args: array of const): cint; cdecl;
+  TSDL_SetError_func = function(const fmt: PAnsiChar; args: array of const): cint; cdecl;
 Var
-  SDL_SetError : TSDL_SetError_fun = Nil;
+  SDL_SetError : TSDL_SetError_func = Nil;
 {$else}
 
 function SDL_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
@@ -52,9 +52,9 @@ function SDL_GetError: PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetErrorMsg_fun = function(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdecl;
+  TSDL_GetErrorMsg_func = function(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdecl;
 Var
-  SDL_GetErrorMsg : TSDL_GetErrorMsg_fun = Nil;
+  SDL_GetErrorMsg : TSDL_GetErrorMsg_func = Nil;
 {$else}
 
 function SDL_GetErrorMsg(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdecl;
@@ -92,9 +92,9 @@ type
 {* SDL_Error() unconditionally returns -1. *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_Error_fun = function(code: TSDL_ErrorCode): cint; cdecl;
+  TSDL_Error_func = function(code: TSDL_ErrorCode): cint; cdecl;
 Var
-  SDL_Error : TSDL_Error_fun = Nil;
+  SDL_Error : TSDL_Error_func = Nil;
 {$else}
 
 function SDL_Error(code: TSDL_ErrorCode): cint; cdecl;

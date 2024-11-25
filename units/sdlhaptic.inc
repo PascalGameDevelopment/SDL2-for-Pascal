@@ -821,9 +821,9 @@ function SDL_NumHaptics: cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticName_fun = function(device_index: cint): PAnsiChar; cdecl;
+  TSDL_HapticName_func = function(device_index: cint): PAnsiChar; cdecl;
 Var
-  SDL_HapticName : TSDL_HapticName_fun = Nil;
+  SDL_HapticName : TSDL_HapticName_func = Nil;
 {$else}
 
 function SDL_HapticName(device_index: cint): PAnsiChar; cdecl;
@@ -857,9 +857,9 @@ function SDL_HapticName(device_index: cint): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticOpen_fun = function(device_index: cint): PSDL_Haptic; cdecl;
+  TSDL_HapticOpen_func = function(device_index: cint): PSDL_Haptic; cdecl;
 Var
-  SDL_HapticOpen : TSDL_HapticOpen_fun = Nil;
+  SDL_HapticOpen : TSDL_HapticOpen_func = Nil;
 {$else}
 
 function SDL_HapticOpen(device_index: cint): PSDL_Haptic; cdecl;
@@ -880,9 +880,9 @@ function SDL_HapticOpen(device_index: cint): PSDL_Haptic; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticOpened_fun = function(device_index: cint): cint; cdecl;
+  TSDL_HapticOpened_func = function(device_index: cint): cint; cdecl;
 Var
-  SDL_HapticOpened : TSDL_HapticOpened_fun = Nil;
+  SDL_HapticOpened : TSDL_HapticOpened_func = Nil;
 {$else}
 
 function SDL_HapticOpened(device_index: cint): cint; cdecl;
@@ -903,9 +903,9 @@ function SDL_HapticOpened(device_index: cint): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticIndex_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticIndex_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticIndex : TSDL_HapticIndex_fun = Nil;
+  SDL_HapticIndex : TSDL_HapticIndex_func = Nil;
 {$else}
 
 function SDL_HapticIndex(haptic: PSDL_Haptic): cint; cdecl;
@@ -952,9 +952,9 @@ function SDL_HapticOpenFromMouse: PSDL_Haptic; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_JoystickIsHaptic_fun = function(joystick: PSDL_Joystick): cint; cdecl;
+  TSDL_JoystickIsHaptic_func = function(joystick: PSDL_Joystick): cint; cdecl;
 Var
-  SDL_JoystickIsHaptic : TSDL_JoystickIsHaptic_fun = Nil;
+  SDL_JoystickIsHaptic : TSDL_JoystickIsHaptic_func = Nil;
 {$else}
 
 function SDL_JoystickIsHaptic(joystick: PSDL_Joystick): cint; cdecl;
@@ -984,9 +984,9 @@ function SDL_JoystickIsHaptic(joystick: PSDL_Joystick): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticOpenFromJoystick_fun = function(joystick: PSDL_Joystick): PSDL_Haptic; cdecl;
+  TSDL_HapticOpenFromJoystick_func = function(joystick: PSDL_Joystick): PSDL_Haptic; cdecl;
 Var
-  SDL_HapticOpenFromJoystick : TSDL_HapticOpenFromJoystick_fun = Nil;
+  SDL_HapticOpenFromJoystick : TSDL_HapticOpenFromJoystick_func = Nil;
 {$else}
 
 function SDL_HapticOpenFromJoystick(joystick: PSDL_Joystick): PSDL_Haptic; cdecl;
@@ -1031,9 +1031,9 @@ procedure SDL_HapticClose(haptic: PSDL_Haptic); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticNumEffects_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticNumEffects_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticNumEffects : TSDL_HapticNumEffects_fun = Nil;
+  SDL_HapticNumEffects : TSDL_HapticNumEffects_func = Nil;
 {$else}
 
 function SDL_HapticNumEffects(haptic: PSDL_Haptic): cint; cdecl;
@@ -1057,9 +1057,9 @@ function SDL_HapticNumEffects(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticNumEffectsPlaying_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticNumEffectsPlaying_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticNumEffectsPlaying : TSDL_HapticNumEffectsPlaying_fun = Nil;
+  SDL_HapticNumEffectsPlaying : TSDL_HapticNumEffectsPlaying_func = Nil;
 {$else}
 
 function SDL_HapticNumEffectsPlaying(haptic: PSDL_Haptic): cint; cdecl;
@@ -1080,9 +1080,9 @@ function SDL_HapticNumEffectsPlaying(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticQuery_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticQuery_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticQuery : TSDL_HapticQuery_fun = Nil;
+  SDL_HapticQuery : TSDL_HapticQuery_func = Nil;
 {$else}
 
 function SDL_HapticQuery(haptic: PSDL_Haptic): cint; cdecl;
@@ -1103,9 +1103,9 @@ function SDL_HapticQuery(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticNumAxes_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticNumAxes_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticNumAxes : TSDL_HapticNumAxes_fun = Nil;
+  SDL_HapticNumAxes : TSDL_HapticNumAxes_func = Nil;
 {$else}
 
 function SDL_HapticNumAxes(haptic: PSDL_Haptic): cint; cdecl;
@@ -1128,9 +1128,9 @@ function SDL_HapticNumAxes(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticEffectSupported_fun = function(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
+  TSDL_HapticEffectSupported_func = function(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
 Var
-  SDL_HapticEffectSupported : TSDL_HapticEffectSupported_fun = Nil;
+  SDL_HapticEffectSupported : TSDL_HapticEffectSupported_func = Nil;
 {$else}
 
 function SDL_HapticEffectSupported(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
@@ -1154,9 +1154,9 @@ function SDL_HapticEffectSupported(haptic: PSDL_Haptic; effect: PSDL_HapticEffec
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticNewEffect_fun = function(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
+  TSDL_HapticNewEffect_func = function(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
 Var
-  SDL_HapticNewEffect : TSDL_HapticNewEffect_fun = Nil;
+  SDL_HapticNewEffect : TSDL_HapticNewEffect_func = Nil;
 {$else}
 
 function SDL_HapticNewEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
@@ -1186,9 +1186,9 @@ function SDL_HapticNewEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): ci
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticUpdateEffect_fun = function(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): cint; cdecl;
+  TSDL_HapticUpdateEffect_func = function(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): cint; cdecl;
 Var
-  SDL_HapticUpdateEffect : TSDL_HapticUpdateEffect_fun = Nil;
+  SDL_HapticUpdateEffect : TSDL_HapticUpdateEffect_func = Nil;
 {$else}
 
 function SDL_HapticUpdateEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): cint; cdecl;
@@ -1219,9 +1219,9 @@ function SDL_HapticUpdateEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_Ha
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticRunEffect_fun = function(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): cint; cdecl;
+  TSDL_HapticRunEffect_func = function(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): cint; cdecl;
 Var
-  SDL_HapticRunEffect : TSDL_HapticRunEffect_fun = Nil;
+  SDL_HapticRunEffect : TSDL_HapticRunEffect_func = Nil;
 {$else}
 
 function SDL_HapticRunEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): cint; cdecl;
@@ -1245,9 +1245,9 @@ function SDL_HapticRunEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuin
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticStopEffect_fun = function(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
+  TSDL_HapticStopEffect_func = function(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
 Var
-  SDL_HapticStopEffect : TSDL_HapticStopEffect_fun = Nil;
+  SDL_HapticStopEffect : TSDL_HapticStopEffect_func = Nil;
 {$else}
 
 function SDL_HapticStopEffect(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
@@ -1295,9 +1295,9 @@ procedure SDL_HapticDestroyEffect(haptic: PSDL_Haptic; effect: cint); cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticGetEffectStatus_fun = function(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
+  TSDL_HapticGetEffectStatus_func = function(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
 Var
-  SDL_HapticGetEffectStatus : TSDL_HapticGetEffectStatus_fun = Nil;
+  SDL_HapticGetEffectStatus : TSDL_HapticGetEffectStatus_func = Nil;
 {$else}
 
 function SDL_HapticGetEffectStatus(haptic: PSDL_Haptic; effect: cint): cint; cdecl;
@@ -1325,9 +1325,9 @@ function SDL_HapticGetEffectStatus(haptic: PSDL_Haptic; effect: cint): cint; cde
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticSetGain_fun = function(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
+  TSDL_HapticSetGain_func = function(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
 Var
-  SDL_HapticSetGain : TSDL_HapticSetGain_fun = Nil;
+  SDL_HapticSetGain : TSDL_HapticSetGain_func = Nil;
 {$else}
 
 function SDL_HapticSetGain(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
@@ -1353,9 +1353,9 @@ function SDL_HapticSetGain(haptic: PSDL_Haptic; gain: cint): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticSetAutocenter_fun = function(haptic: PSDL_Haptic; autocenter: cint): cint; cdecl;
+  TSDL_HapticSetAutocenter_func = function(haptic: PSDL_Haptic; autocenter: cint): cint; cdecl;
 Var
-  SDL_HapticSetAutocenter : TSDL_HapticSetAutocenter_fun = Nil;
+  SDL_HapticSetAutocenter : TSDL_HapticSetAutocenter_func = Nil;
 {$else}
 
 function SDL_HapticSetAutocenter(haptic: PSDL_Haptic; autocenter: cint): cint; cdecl;
@@ -1381,9 +1381,9 @@ function SDL_HapticSetAutocenter(haptic: PSDL_Haptic; autocenter: cint): cint; c
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticPause_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticPause_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticPause : TSDL_HapticPause_fun = Nil;
+  SDL_HapticPause : TSDL_HapticPause_func = Nil;
 {$else}
 
 function SDL_HapticPause(haptic: PSDL_Haptic): cint; cdecl;
@@ -1405,9 +1405,9 @@ function SDL_HapticPause(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticUnpause_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticUnpause_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticUnpause : TSDL_HapticUnpause_fun = Nil;
+  SDL_HapticUnpause : TSDL_HapticUnpause_func = Nil;
 {$else}
 
 function SDL_HapticUnpause(haptic: PSDL_Haptic): cint; cdecl;
@@ -1425,9 +1425,9 @@ function SDL_HapticUnpause(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticStopAll_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticStopAll_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticStopAll : TSDL_HapticStopAll_fun = Nil;
+  SDL_HapticStopAll : TSDL_HapticStopAll_func = Nil;
 {$else}
 
 function SDL_HapticStopAll(haptic: PSDL_Haptic): cint; cdecl;
@@ -1450,9 +1450,9 @@ function SDL_HapticStopAll(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticRumbleSupported_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticRumbleSupported_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticRumbleSupported : TSDL_HapticRumbleSupported_fun = Nil;
+  SDL_HapticRumbleSupported : TSDL_HapticRumbleSupported_func = Nil;
 {$else}
 
 function SDL_HapticRumbleSupported(haptic: PSDL_Haptic): cint; cdecl;
@@ -1475,9 +1475,9 @@ function SDL_HapticRumbleSupported(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticRumbleInit_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticRumbleInit_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticRumbleInit : TSDL_HapticRumbleInit_fun = Nil;
+  SDL_HapticRumbleInit : TSDL_HapticRumbleInit_func = Nil;
 {$else}
 
 function SDL_HapticRumbleInit(haptic: PSDL_Haptic): cint; cdecl;
@@ -1501,9 +1501,9 @@ function SDL_HapticRumbleInit(haptic: PSDL_Haptic): cint; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticRumblePlay_fun = function(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): cint; cdecl;
+  TSDL_HapticRumblePlay_func = function(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): cint; cdecl;
 Var
-  SDL_HapticRumblePlay : TSDL_HapticRumblePlay_fun = Nil;
+  SDL_HapticRumblePlay : TSDL_HapticRumblePlay_func = Nil;
 {$else}
 
 function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): cint; cdecl;
@@ -1525,9 +1525,9 @@ function SDL_HapticRumblePlay(haptic: PSDL_Haptic; strength: cfloat; length: cui
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_HapticRumbleStop_fun = function(haptic: PSDL_Haptic): cint; cdecl;
+  TSDL_HapticRumbleStop_func = function(haptic: PSDL_Haptic): cint; cdecl;
 Var
-  SDL_HapticRumbleStop : TSDL_HapticRumbleStop_fun = Nil;
+  SDL_HapticRumbleStop : TSDL_HapticRumbleStop_func = Nil;
 {$else}
 
 function SDL_HapticRumbleStop(haptic: PSDL_Haptic): cint; cdecl;

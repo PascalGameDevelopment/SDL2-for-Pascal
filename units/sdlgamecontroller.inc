@@ -109,10 +109,10 @@ function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): cint cdecl; e
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerAddMappingsFromRW_fun = function(rw: PSDL_RWops; freerw: cint32):cint32;
+  TSDL_GameControllerAddMappingsFromRW_func = function(rw: PSDL_RWops; freerw: cint32):cint32;
    cdecl;
 Var
-  SDL_GameControllerAddMappingsFromRW : TSDL_GameControllerAddMappingsFromRW_fun = Nil;
+  SDL_GameControllerAddMappingsFromRW : TSDL_GameControllerAddMappingsFromRW_func = Nil;
 {$else}
 
 function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: cint32):cint32;
@@ -124,9 +124,9 @@ function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: cint32):cin
   *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerNumMappings_fun = function():cint; cdecl;
+  TSDL_GameControllerNumMappings_func = function():cint; cdecl;
 Var
-  SDL_GameControllerNumMappings : TSDL_GameControllerNumMappings_fun = Nil;
+  SDL_GameControllerNumMappings : TSDL_GameControllerNumMappings_func = Nil;
 {$else}
 
 function SDL_GameControllerNumMappings():cint; cdecl;
@@ -148,9 +148,9 @@ function SDL_GameControllerMappingForGUID( guid: TSDL_JoystickGUID ): PAnsiChar 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerMappingForIndex_fun = function(mapping_index: cint): PAnsiChar; cdecl;
+  TSDL_GameControllerMappingForIndex_func = function(mapping_index: cint): PAnsiChar; cdecl;
 Var
-  SDL_GameControllerMappingForIndex : TSDL_GameControllerMappingForIndex_fun = Nil;
+  SDL_GameControllerMappingForIndex : TSDL_GameControllerMappingForIndex_func = Nil;
 {$else}
 
 function SDL_GameControllerMappingForIndex(mapping_index: cint): PAnsiChar; cdecl;
@@ -195,9 +195,9 @@ function SDL_GameControllerNameForIndex(joystick_index: cint): PAnsiChar cdecl; 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerPathForIndex_fun = function(joystick_index: cint): PAnsiChar; cdecl;
+  TSDL_GameControllerPathForIndex_func = function(joystick_index: cint): PAnsiChar; cdecl;
 Var
-  SDL_GameControllerPathForIndex : TSDL_GameControllerPathForIndex_fun = Nil;
+  SDL_GameControllerPathForIndex : TSDL_GameControllerPathForIndex_func = Nil;
 {$else}
 
 function SDL_GameControllerPathForIndex(joystick_index: cint): PAnsiChar; cdecl;
@@ -210,9 +210,9 @@ function SDL_GameControllerPathForIndex(joystick_index: cint): PAnsiChar; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerTypeForIndex_fun = function(joystick_index: cint): TSDL_GameControllerType; cdecl;
+  TSDL_GameControllerTypeForIndex_func = function(joystick_index: cint): TSDL_GameControllerType; cdecl;
 Var
-  SDL_GameControllerTypeForIndex : TSDL_GameControllerTypeForIndex_fun = Nil;
+  SDL_GameControllerTypeForIndex : TSDL_GameControllerTypeForIndex_func = Nil;
 {$else}
 
 function SDL_GameControllerTypeForIndex(joystick_index: cint): TSDL_GameControllerType; cdecl;
@@ -228,9 +228,9 @@ function SDL_GameControllerTypeForIndex(joystick_index: cint): TSDL_GameControll
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerMappingForDeviceIndex_fun = function(joystick_index: cint): PAnsiChar; cdecl;
+  TSDL_GameControllerMappingForDeviceIndex_func = function(joystick_index: cint): PAnsiChar; cdecl;
 Var
-  SDL_GameControllerMappingForDeviceIndex : TSDL_GameControllerMappingForDeviceIndex_fun = Nil;
+  SDL_GameControllerMappingForDeviceIndex : TSDL_GameControllerMappingForDeviceIndex_func = Nil;
 {$else}
 
 function SDL_GameControllerMappingForDeviceIndex(joystick_index: cint): PAnsiChar; cdecl;
@@ -252,9 +252,9 @@ function SDL_GameControllerOpen(joystick_index: cint): PSDL_GameController cdecl
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerFromInstanceID_fun = function(joyid: TSDL_JoystickID): PSDL_GameController; cdecl;
+  TSDL_GameControllerFromInstanceID_func = function(joyid: TSDL_JoystickID): PSDL_GameController; cdecl;
 Var
-  SDL_GameControllerFromInstanceID : TSDL_GameControllerFromInstanceID_fun = Nil;
+  SDL_GameControllerFromInstanceID : TSDL_GameControllerFromInstanceID_func = Nil;
 {$else}
 
 function SDL_GameControllerFromInstanceID(joyid: TSDL_JoystickID): PSDL_GameController; cdecl;
@@ -270,9 +270,9 @@ function SDL_GameControllerFromInstanceID(joyid: TSDL_JoystickID): PSDL_GameCont
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerFromPlayerIndex_fun = function(player_index: cint): PSDL_GameController; cdecl;
+  TSDL_GameControllerFromPlayerIndex_func = function(player_index: cint): PSDL_GameController; cdecl;
 Var
-  SDL_GameControllerFromPlayerIndex : TSDL_GameControllerFromPlayerIndex_fun = Nil;
+  SDL_GameControllerFromPlayerIndex : TSDL_GameControllerFromPlayerIndex_func = Nil;
 {$else}
 
 function SDL_GameControllerFromPlayerIndex(player_index: cint): PSDL_GameController; cdecl;
@@ -301,9 +301,9 @@ function SDL_GameControllerName(gamecontroller: PSDL_GameController): PAnsiChar 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerPath_fun = function(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
+  TSDL_GameControllerPath_func = function(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
 Var
-  SDL_GameControllerPath : TSDL_GameControllerPath_fun = Nil;
+  SDL_GameControllerPath : TSDL_GameControllerPath_func = Nil;
 {$else}
 
 function SDL_GameControllerPath(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
@@ -318,9 +318,9 @@ function SDL_GameControllerPath(gamecontroller: PSDL_GameController): PAnsiChar;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetType_fun = function(gamecontroller: PSDL_GameController): TSDL_GameControllerType; cdecl;
+  TSDL_GameControllerGetType_func = function(gamecontroller: PSDL_GameController): TSDL_GameControllerType; cdecl;
 Var
-  SDL_GameControllerGetType : TSDL_GameControllerGetType_fun = Nil;
+  SDL_GameControllerGetType : TSDL_GameControllerGetType_func = Nil;
 {$else}
 
 function SDL_GameControllerGetType(gamecontroller: PSDL_GameController): TSDL_GameControllerType; cdecl;
@@ -335,9 +335,9 @@ function SDL_GameControllerGetType(gamecontroller: PSDL_GameController): TSDL_Ga
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetPlayerIndex_fun = function(gamecontroller: PSDL_GameController): cint; cdecl;
+  TSDL_GameControllerGetPlayerIndex_func = function(gamecontroller: PSDL_GameController): cint; cdecl;
 Var
-  SDL_GameControllerGetPlayerIndex : TSDL_GameControllerGetPlayerIndex_fun = Nil;
+  SDL_GameControllerGetPlayerIndex : TSDL_GameControllerGetPlayerIndex_func = Nil;
 {$else}
 
 function SDL_GameControllerGetPlayerIndex(gamecontroller: PSDL_GameController): cint; cdecl;
@@ -370,9 +370,9 @@ procedure SDL_GameControllerSetPlayerIndex(gamecontroller: PSDL_GameController; 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetVendor_fun = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
+  TSDL_GameControllerGetVendor_func = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
 Var
-  SDL_GameControllerGetVendor : TSDL_GameControllerGetVendor_fun = Nil;
+  SDL_GameControllerGetVendor : TSDL_GameControllerGetVendor_func = Nil;
 {$else}
 
 function SDL_GameControllerGetVendor(gamecontroller: PSDL_GameController): cuint16; cdecl;
@@ -385,9 +385,9 @@ function SDL_GameControllerGetVendor(gamecontroller: PSDL_GameController): cuint
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetProduct_fun = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
+  TSDL_GameControllerGetProduct_func = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
 Var
-  SDL_GameControllerGetProduct : TSDL_GameControllerGetProduct_fun = Nil;
+  SDL_GameControllerGetProduct : TSDL_GameControllerGetProduct_func = Nil;
 {$else}
 
 function SDL_GameControllerGetProduct(gamecontroller: PSDL_GameController): cuint16; cdecl;
@@ -400,9 +400,9 @@ function SDL_GameControllerGetProduct(gamecontroller: PSDL_GameController): cuin
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetProductVersion_fun = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
+  TSDL_GameControllerGetProductVersion_func = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
 Var
-  SDL_GameControllerGetProductVersion : TSDL_GameControllerGetProductVersion_fun = Nil;
+  SDL_GameControllerGetProductVersion : TSDL_GameControllerGetProductVersion_func = Nil;
 {$else}
 
 function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController): cuint16; cdecl;
@@ -421,9 +421,9 @@ function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetFirmwareVersion_fun = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
+  TSDL_GameControllerGetFirmwareVersion_func = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
 Var
-  SDL_GameControllerGetFirmwareVersion : TSDL_GameControllerGetFirmwareVersion_fun = Nil;
+  SDL_GameControllerGetFirmwareVersion : TSDL_GameControllerGetFirmwareVersion_func = Nil;
 {$else}
 
 function SDL_GameControllerGetFirmwareVersion(gamecontroller: PSDL_GameController): cuint16; cdecl;
@@ -438,9 +438,9 @@ function SDL_GameControllerGetFirmwareVersion(gamecontroller: PSDL_GameControlle
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetSerial_fun = function(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
+  TSDL_GameControllerGetSerial_func = function(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
 Var
-  SDL_GameControllerGetSerial : TSDL_GameControllerGetSerial_fun = Nil;
+  SDL_GameControllerGetSerial : TSDL_GameControllerGetSerial_func = Nil;
 {$else}
 
 function SDL_GameControllerGetSerial(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
@@ -460,9 +460,9 @@ function SDL_GameControllerGetSerial(gamecontroller: PSDL_GameController): PAnsi
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetSteamHandle_fun = function(gamecontroller: PSDL_GameController): cuint64; cdecl;
+  TSDL_GameControllerGetSteamHandle_func = function(gamecontroller: PSDL_GameController): cuint64; cdecl;
 Var
-  SDL_GameControllerGetSteamHandle : TSDL_GameControllerGetSteamHandle_fun = Nil;
+  SDL_GameControllerGetSteamHandle : TSDL_GameControllerGetSteamHandle_func = Nil;
 {$else}
 
 function SDL_GameControllerGetSteamHandle(gamecontroller: PSDL_GameController): cuint64; cdecl;
@@ -540,9 +540,9 @@ function SDL_GameControllerGetBindForAxis(gamecontroller: PSDL_GameController; a
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerHasAxis_fun = function(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_Bool; cdecl;
+  TSDL_GameControllerHasAxis_func = function(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_Bool; cdecl;
 Var
-  SDL_GameControllerHasAxis : TSDL_GameControllerHasAxis_fun = Nil;
+  SDL_GameControllerHasAxis : TSDL_GameControllerHasAxis_func = Nil;
 {$else}
 
 function SDL_GameControllerHasAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_Bool; cdecl;
@@ -613,9 +613,9 @@ function SDL_GameControllerGetBindForButton(gamecontroller: PSDL_GameController;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerHasButton_fun = function(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_Bool; cdecl;
+  TSDL_GameControllerHasButton_func = function(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_Bool; cdecl;
 Var
-  SDL_GameControllerHasButton : TSDL_GameControllerHasButton_fun = Nil;
+  SDL_GameControllerHasButton : TSDL_GameControllerHasButton_func = Nil;
 {$else}
 
 function SDL_GameControllerHasButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_Bool; cdecl;
@@ -634,9 +634,9 @@ function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetNumTouchpads_fun = function(gamecontroller: PSDL_GameController): cint; cdecl;
+  TSDL_GameControllerGetNumTouchpads_func = function(gamecontroller: PSDL_GameController): cint; cdecl;
 Var
-  SDL_GameControllerGetNumTouchpads : TSDL_GameControllerGetNumTouchpads_fun = Nil;
+  SDL_GameControllerGetNumTouchpads : TSDL_GameControllerGetNumTouchpads_func = Nil;
 {$else}
 
 function SDL_GameControllerGetNumTouchpads(gamecontroller: PSDL_GameController): cint; cdecl;
@@ -648,9 +648,9 @@ function SDL_GameControllerGetNumTouchpads(gamecontroller: PSDL_GameController):
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetNumTouchpadFingers_fun = function(gamecontroller: PSDL_GameController; touchpad: cint): cint; cdecl;
+  TSDL_GameControllerGetNumTouchpadFingers_func = function(gamecontroller: PSDL_GameController; touchpad: cint): cint; cdecl;
 Var
-  SDL_GameControllerGetNumTouchpadFingers : TSDL_GameControllerGetNumTouchpadFingers_fun = Nil;
+  SDL_GameControllerGetNumTouchpadFingers : TSDL_GameControllerGetNumTouchpadFingers_func = Nil;
 {$else}
 
 function SDL_GameControllerGetNumTouchpadFingers(gamecontroller: PSDL_GameController; touchpad: cint): cint; cdecl;
@@ -662,14 +662,14 @@ function SDL_GameControllerGetNumTouchpadFingers(gamecontroller: PSDL_GameContro
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetTouchpadFinger_fun = function(
+  TSDL_GameControllerGetTouchpadFinger_func = function(
     gamecontroller: PSDL_GameController;
       touchpad, finger: cint;
       state: pcuint8;
       x, y, pressure: pcfloat
     ): cint; cdecl;
 Var
-  SDL_GameControllerGetTouchpadFinger : TSDL_GameControllerGetTouchpadFinger_fun = Nil;
+  SDL_GameControllerGetTouchpadFinger : TSDL_GameControllerGetTouchpadFinger_func = Nil;
 {$else}
 
 function SDL_GameControllerGetTouchpadFinger(
@@ -686,9 +686,9 @@ function SDL_GameControllerGetTouchpadFinger(
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerHasSensor_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
+  TSDL_GameControllerHasSensor_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
 Var
-  SDL_GameControllerHasSensor : TSDL_GameControllerHasSensor_fun = Nil;
+  SDL_GameControllerHasSensor : TSDL_GameControllerHasSensor_func = Nil;
 {$else}
 
 function SDL_GameControllerHasSensor(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
@@ -700,9 +700,9 @@ function SDL_GameControllerHasSensor(gamecontroller: PSDL_GameController; sensty
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerSetSensorEnabled_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; enabled: TSDL_bool): cint; cdecl;
+  TSDL_GameControllerSetSensorEnabled_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; enabled: TSDL_bool): cint; cdecl;
 Var
-  SDL_GameControllerSetSensorEnabled : TSDL_GameControllerSetSensorEnabled_fun = Nil;
+  SDL_GameControllerSetSensorEnabled : TSDL_GameControllerSetSensorEnabled_func = Nil;
 {$else}
 
 function SDL_GameControllerSetSensorEnabled(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; enabled: TSDL_bool): cint; cdecl;
@@ -714,9 +714,9 @@ function SDL_GameControllerSetSensorEnabled(gamecontroller: PSDL_GameController;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerIsSensorEnabled_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
+  TSDL_GameControllerIsSensorEnabled_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
 Var
-  SDL_GameControllerIsSensorEnabled : TSDL_GameControllerIsSensorEnabled_fun = Nil;
+  SDL_GameControllerIsSensorEnabled : TSDL_GameControllerIsSensorEnabled_func = Nil;
 {$else}
 
 function SDL_GameControllerIsSensorEnabled(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
@@ -731,9 +731,9 @@ function SDL_GameControllerIsSensorEnabled(gamecontroller: PSDL_GameController; 
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetSensorDataRate_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): cfloat; cdecl;
+  TSDL_GameControllerGetSensorDataRate_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): cfloat; cdecl;
 Var
-  SDL_GameControllerGetSensorDataRate : TSDL_GameControllerGetSensorDataRate_fun = Nil;
+  SDL_GameControllerGetSensorDataRate : TSDL_GameControllerGetSensorDataRate_func = Nil;
 {$else}
 
 function SDL_GameControllerGetSensorDataRate(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): cfloat; cdecl;
@@ -748,9 +748,9 @@ function SDL_GameControllerGetSensorDataRate(gamecontroller: PSDL_GameController
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetSensorData_fun = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; data: pcfloat; num_values: cint): cint; cdecl;
+  TSDL_GameControllerGetSensorData_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; data: pcfloat; num_values: cint): cint; cdecl;
 Var
-  SDL_GameControllerGetSensorData : TSDL_GameControllerGetSensorData_fun = Nil;
+  SDL_GameControllerGetSensorData : TSDL_GameControllerGetSensorData_func = Nil;
 {$else}
 
 function SDL_GameControllerGetSensorData(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; data: pcfloat; num_values: cint): cint; cdecl;
@@ -776,7 +776,7 @@ function SDL_GameControllerGetSensorData(gamecontroller: PSDL_GameController; se
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetSensorDataWithTimestamp_fun = function(
+  TSDL_GameControllerGetSensorDataWithTimestamp_func = function(
     gamecontroller: PSDL_GameController;
     senstype: TSDL_SensorType;
     timestamp: pcuint64;
@@ -784,7 +784,7 @@ Type
     num_values: cint
   ): cint; cdecl;
 Var
-  SDL_GameControllerGetSensorDataWithTimestamp : TSDL_GameControllerGetSensorDataWithTimestamp_fun = Nil;
+  SDL_GameControllerGetSensorDataWithTimestamp : TSDL_GameControllerGetSensorDataWithTimestamp_func = Nil;
 {$else}
 
 function SDL_GameControllerGetSensorDataWithTimestamp(
@@ -802,9 +802,9 @@ function SDL_GameControllerGetSensorDataWithTimestamp(
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerHasRumble_fun = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+  TSDL_GameControllerHasRumble_func = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
 Var
-  SDL_GameControllerHasRumble : TSDL_GameControllerHasRumble_fun = Nil;
+  SDL_GameControllerHasRumble : TSDL_GameControllerHasRumble_func = Nil;
 {$else}
 
 function SDL_GameControllerHasRumble(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
@@ -821,14 +821,14 @@ function SDL_GameControllerHasRumble(gamecontroller: PSDL_GameController): TSDL_
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerRumble_fun = function(
+  TSDL_GameControllerRumble_func = function(
     gamecontroller: PSDL_GameController;
     low_frequency_rumble, high_frequency_rumble: cuint16;
     duration_ms: cuint32
   ): cint; cdecl;
 
 Var
-  SDL_GameControllerRumble : TSDL_GameControllerRumble_fun = Nil;
+  SDL_GameControllerRumble : TSDL_GameControllerRumble_func = Nil;
 {$else}
 
 function SDL_GameControllerRumble(
@@ -844,9 +844,9 @@ function SDL_GameControllerRumble(
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerHasRumbleTriggers_fun = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+  TSDL_GameControllerHasRumbleTriggers_func = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
 Var
-  SDL_GameControllerHasRumbleTriggers : TSDL_GameControllerHasRumbleTriggers_fun = Nil;
+  SDL_GameControllerHasRumbleTriggers : TSDL_GameControllerHasRumbleTriggers_func = Nil;
 {$else}
 
 function SDL_GameControllerHasRumbleTriggers(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
@@ -868,14 +868,14 @@ function SDL_GameControllerHasRumbleTriggers(gamecontroller: PSDL_GameController
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerRumbleTriggers_fun = function(
+  TSDL_GameControllerRumbleTriggers_func = function(
     gamecontroller: PSDL_GameController;
     left_rumble, right_rumble: cuint16;
     duration_ms: cuint32
   ): cint; cdecl;
 
 Var
-  SDL_GameControllerRumbleTriggers : TSDL_GameControllerRumbleTriggers_fun = Nil;
+  SDL_GameControllerRumbleTriggers : TSDL_GameControllerRumbleTriggers_func = Nil;
 {$else}
 
 function SDL_GameControllerRumbleTriggers(
@@ -891,9 +891,9 @@ function SDL_GameControllerRumbleTriggers(
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerHasLED_fun = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+  TSDL_GameControllerHasLED_func = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
 Var
-  SDL_GameControllerHasLED : TSDL_GameControllerHasLED_fun = Nil;
+  SDL_GameControllerHasLED : TSDL_GameControllerHasLED_func = Nil;
 {$else}
 
 function SDL_GameControllerHasLED(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
@@ -907,9 +907,9 @@ function SDL_GameControllerHasLED(gamecontroller: PSDL_GameController): TSDL_Boo
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerSetLED_fun = function(gamecontroller: PSDL_GameController; red, green, blue: cuint8): cint; cdecl;
+  TSDL_GameControllerSetLED_func = function(gamecontroller: PSDL_GameController; red, green, blue: cuint8): cint; cdecl;
 Var
-  SDL_GameControllerSetLED : TSDL_GameControllerSetLED_fun = Nil;
+  SDL_GameControllerSetLED : TSDL_GameControllerSetLED_func = Nil;
 {$else}
 
 function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, green, blue: cuint8): cint; cdecl;
@@ -924,9 +924,9 @@ function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, gree
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerSendEffect_fun = function(gamecontroller: PSDL_GameController; data: Pointer; size: cint): cint; cdecl;
+  TSDL_GameControllerSendEffect_func = function(gamecontroller: PSDL_GameController; data: Pointer; size: cint): cint; cdecl;
 Var
-  SDL_GameControllerSendEffect : TSDL_GameControllerSendEffect_fun = Nil;
+  SDL_GameControllerSendEffect : TSDL_GameControllerSendEffect_func = Nil;
 {$else}
 
 function SDL_GameControllerSendEffect(gamecontroller: PSDL_GameController; data: Pointer; size: cint): cint; cdecl;
@@ -947,9 +947,9 @@ procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; ex
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetAppleSFSymbolsNameForAxis_fun = function(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): PAnsiChar; cdecl;
+  TSDL_GameControllerGetAppleSFSymbolsNameForAxis_func = function(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): PAnsiChar; cdecl;
 Var
-  SDL_GameControllerGetAppleSFSymbolsNameForAxis : TSDL_GameControllerGetAppleSFSymbolsNameForAxis_fun = Nil;
+  SDL_GameControllerGetAppleSFSymbolsNameForAxis : TSDL_GameControllerGetAppleSFSymbolsNameForAxis_func = Nil;
 {$else}
 
 function SDL_GameControllerGetAppleSFSymbolsNameForAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): PAnsiChar; cdecl;
@@ -965,9 +965,9 @@ function SDL_GameControllerGetAppleSFSymbolsNameForAxis(gamecontroller: PSDL_Gam
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GameControllerGetAppleSFSymbolsNameForButton_fun = function(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): PAnsiChar; cdecl;
+  TSDL_GameControllerGetAppleSFSymbolsNameForButton_func = function(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): PAnsiChar; cdecl;
 Var
-  SDL_GameControllerGetAppleSFSymbolsNameForButton : TSDL_GameControllerGetAppleSFSymbolsNameForButton_fun = Nil;
+  SDL_GameControllerGetAppleSFSymbolsNameForButton : TSDL_GameControllerGetAppleSFSymbolsNameForButton_func = Nil;
 {$else}
 
 function SDL_GameControllerGetAppleSFSymbolsNameForButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): PAnsiChar; cdecl;

@@ -44,9 +44,9 @@
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetBasePath_fun = function(): PAnsiChar; cdecl;
+  TSDL_GetBasePath_func = function(): PAnsiChar; cdecl;
 Var
-  SDL_GetBasePath : TSDL_GetBasePath_fun = Nil;
+  SDL_GetBasePath : TSDL_GetBasePath_func = Nil;
 {$else}
 
 function SDL_GetBasePath(): PAnsiChar; cdecl;
@@ -110,9 +110,9 @@ function SDL_GetBasePath(): PAnsiChar; cdecl;
   }
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetPrefPath_fun = function(org: PAnsiChar; app: PAnsiChar): PAnsiChar; cdecl;
+  TSDL_GetPrefPath_func = function(org: PAnsiChar; app: PAnsiChar): PAnsiChar; cdecl;
 Var
-  SDL_GetPrefPath : TSDL_GetPrefPath_fun = Nil;
+  SDL_GetPrefPath : TSDL_GetPrefPath_func = Nil;
 {$else}
 
 function SDL_GetPrefPath(org: PAnsiChar; app: PAnsiChar): PAnsiChar; cdecl;

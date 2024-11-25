@@ -93,12 +93,12 @@ type
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateThread_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  TSDL_CreateThread_func = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer;
   pfnBeginThread: TpfnSDL_CurrentBeginThread;
   pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl;
 Var
-  SDL_CreateThread : TSDL_CreateThread_fun = Nil;
+  SDL_CreateThread : TSDL_CreateThread_func = Nil;
 {$else}
 
 function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
@@ -110,12 +110,12 @@ function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateThreadWithStackSize_fun = function(fn: TSDL_ThreadFunction;
+  TSDL_CreateThreadWithStackSize_func = function(fn: TSDL_ThreadFunction;
   name: PAnsiChar; const stacksize: csize_t; data: Pointer;
   pfnBeginThread: TpfnSDL_CurrentBeginThread;
   pfnEndThread: TpfnSDL_CurrentEndThread): PSDL_Thread; cdecl;
 Var
-  SDL_CreateThreadWithStackSize : TSDL_CreateThreadWithStackSize_fun = Nil;
+  SDL_CreateThreadWithStackSize : TSDL_CreateThreadWithStackSize_func = Nil;
 {$else}
 
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction;
@@ -169,10 +169,10 @@ function SDL_CreateThreadWithStackSize2(fn: TSDL_ThreadFunction; name: PAnsiChar
    *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateThread_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  TSDL_CreateThread_func = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
   data: Pointer): PSDL_Thread; cdecl;
 Var
-  SDL_CreateThread : TSDL_CreateThread_fun = Nil;
+  SDL_CreateThread : TSDL_CreateThread_func = Nil;
 {$else}
 
 function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
@@ -225,10 +225,10 @@ function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_CreateThreadWithStackSize_fun = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
+  TSDL_CreateThreadWithStackSize_func = function(fn: TSDL_ThreadFunction; name: PAnsiChar;
   stacksize: csize_t; data: Pointer): PSDL_Thread; cdecl;
 Var
-  SDL_CreateThreadWithStackSize : TSDL_CreateThreadWithStackSize_fun = Nil;
+  SDL_CreateThreadWithStackSize : TSDL_CreateThreadWithStackSize_func = Nil;
 {$else}
 
 function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
@@ -255,9 +255,9 @@ function SDL_CreateThreadWithStackSize(fn: TSDL_ThreadFunction; name: PAnsiChar;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetThreadName_fun = function(thread: PSDL_Thread): PAnsiChar; cdecl;
+  TSDL_GetThreadName_func = function(thread: PSDL_Thread): PAnsiChar; cdecl;
 Var
-  SDL_GetThreadName : TSDL_GetThreadName_fun = Nil;
+  SDL_GetThreadName : TSDL_GetThreadName_func = Nil;
 {$else}
 
 function SDL_GetThreadName(thread: PSDL_Thread): PAnsiChar; cdecl;
@@ -300,9 +300,9 @@ function SDL_ThreadID: TSDL_ThreadID; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetThreadID_fun = function(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
+  TSDL_GetThreadID_func = function(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
 Var
-  SDL_GetThreadID : TSDL_GetThreadID_fun = Nil;
+  SDL_GetThreadID : TSDL_GetThreadID_func = Nil;
 {$else}
 
 function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
@@ -324,9 +324,9 @@ function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_SetThreadPriority_fun = function(priority: TSDL_ThreadPriority): cint; cdecl;
+  TSDL_SetThreadPriority_func = function(priority: TSDL_ThreadPriority): cint; cdecl;
 Var
-  SDL_SetThreadPriority : TSDL_SetThreadPriority_fun = Nil;
+  SDL_SetThreadPriority : TSDL_SetThreadPriority_func = Nil;
 {$else}
 
 function SDL_SetThreadPriority(priority: TSDL_ThreadPriority): cint; cdecl;
@@ -452,9 +452,9 @@ function SDL_TLSCreate: TSDL_TLSID; cdecl;
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_TLSGet_fun = function(id: TSDL_TLSID): Pointer; cdecl;
+  TSDL_TLSGet_func = function(id: TSDL_TLSID): Pointer; cdecl;
 Var
-  SDL_TLSGet : TSDL_TLSGet_fun = Nil;
+  SDL_TLSGet : TSDL_TLSGet_func = Nil;
 {$else}
 
 function SDL_TLSGet(id: TSDL_TLSID): Pointer; cdecl;
@@ -495,9 +495,9 @@ type
  *}
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_TLSSet_fun = function(id: TSDL_TLSID; const value: Pointer; destructor_: TTLSDestructor): cint; cdecl;
+  TSDL_TLSSet_func = function(id: TSDL_TLSID; const value: Pointer; destructor_: TTLSDestructor): cint; cdecl;
 Var
-  SDL_TLSSet : TSDL_TLSSet_fun = Nil;
+  SDL_TLSSet : TSDL_TLSSet_func = Nil;
 {$else}
 
 function SDL_TLSSet(id: TSDL_TLSID; const value: Pointer; destructor_: TTLSDestructor): cint; cdecl;

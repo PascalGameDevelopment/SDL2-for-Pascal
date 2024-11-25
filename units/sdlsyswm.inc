@@ -359,9 +359,9 @@ type
  *)
 {$ifdef SDL_RUNTIME_LOADING}
 Type
-  TSDL_GetWindowWMInfo_fun = function(window: PSDL_Window; info: PSDL_SysWMinfo): TSDL_bool; cdecl;
+  TSDL_GetWindowWMInfo_func = function(window: PSDL_Window; info: PSDL_SysWMinfo): TSDL_bool; cdecl;
 Var
-  SDL_GetWindowWMInfo : TSDL_GetWindowWMInfo_fun = Nil;
+  SDL_GetWindowWMInfo : TSDL_GetWindowWMInfo_func = Nil;
 {$else}
 
 function SDL_GetWindowWMInfo(window: PSDL_Window; info: PSDL_SysWMinfo): TSDL_bool; cdecl;
