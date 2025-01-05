@@ -241,10 +241,15 @@ const
    *
    *  SDL_GetVideoDriver()
    *}
-
+   {$ifdef SDL_RUNTIME_LOADING}
+   Type
+     TSDL_GetNumVideoDrivers_func =function : cint; cdecl;
+   Var
+     SDL_GetNumVideoDrivers : TSDL_GetNumVideoDrivers_func = Nil;
+   {$else}
 function SDL_GetNumVideoDrivers: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumVideoDrivers' {$ENDIF} {$ENDIF};
-
+ {$endif}
   {**
    *  Get the name of a built in video driver.
    *
@@ -298,9 +303,15 @@ function SDL_VideoInit(const driver_name: PAnsiChar): cint; cdecl;
    *  
    *  SDL_VideoInit()
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_VideoQuit_proc =Procedure ; cdecl;
+Var
+  SDL_VideoQuit : TSDL_VideoQuit_proc = Nil;
+{$else}
 procedure SDL_VideoQuit; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_VideoQuit' {$ENDIF} {$ENDIF};
-
+ {$endif}
   {**
    *  Returns the name of the currently initialized video driver.
    *
@@ -310,19 +321,31 @@ procedure SDL_VideoQuit; cdecl;
    *  SDL_GetNumVideoDrivers()
    *  SDL_GetVideoDriver()
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetCurrentVideoDriver_func = function : PAnsiChar; cdecl;
+Var
+  SDL_GetCurrentVideoDriver : TSDL_GetCurrentVideoDriver_func = Nil;
+{$else}
 
 function SDL_GetCurrentVideoDriver: PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCurrentVideoDriver' {$ENDIF} {$ENDIF};
-
+{$endif}
   {**
    *  Returns the number of available video displays.
    *  
    *  SDL_GetDisplayBounds()
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetNumVideoDisplays_func =function : cint; cdecl;
+Var
+  SDL_GetNumVideoDisplays : TSDL_GetNumVideoDisplays_func = Nil;
+{$else}
 
 function SDL_GetNumVideoDisplays: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumVideoDisplays' {$ENDIF} {$ENDIF};
-
+{$endif}
   {**
    *  Get the name of a display in UTF-8 encoding
    *
@@ -1931,30 +1954,45 @@ procedure SDL_DestroyWindow(window: PSDL_Window); cdecl;
    *  SDL_EnableScreenSaver()
    *  SDL_DisableScreenSaver()
    *}
-
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_IsScreenSaverEnabled_func = function : TSDL_Bool; cdecl;
+Var
+  SDL_IsScreenSaverEnabled : TSDL_IsScreenSaverEnabled_func = Nil;
+{$else}
 function SDL_IsScreenSaverEnabled: TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsScreenSaverEnabled' {$ENDIF} {$ENDIF};
-
+{$endif}
   {**
    *  Allow the screen to be blanked by a screensaver
    *
    *  SDL_IsScreenSaverEnabled()
    *  SDL_DisableScreenSaver()
    *}
-
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_EnableScreenSaver_proc = procedure ; cdecl;
+Var
+  SDL_EnableScreenSaver : TSDL_EnableScreenSaver_proc = Nil;
+{$else}
 procedure SDL_EnableScreenSaver; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EnableScreenSaver' {$ENDIF} {$ENDIF};
-
+ {$endif}
   {**
    *  Prevent the screen from being blanked by a screensaver
    *
    *  SDL_IsScreenSaverEnabled()
    *  SDL_EnableScreenSaver()
    *}
-
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_DisableScreenSaver_proc =procedure ; cdecl;
+Var
+  SDL_DisableScreenSaver : TSDL_DisableScreenSaver_proc = Nil;
+{$else}
 procedure SDL_DisableScreenSaver; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DisableScreenSaver' {$ENDIF} {$ENDIF};
-
+  {$endif}
   {**
    *  OpenGL support functions
    *}
@@ -2009,10 +2047,16 @@ function SDL_GL_GetProcAddress(const proc: PAnsiChar): Pointer; cdecl;
    *
    *  SDL_GL_LoadLibrary()
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GL_UnloadLibrary_proc = procedure ; cdecl;
+Var
+  SDL_GL_UnloadLibrary : TSDL_GL_UnloadLibrary_proc = Nil;
+{$else}
 
 procedure SDL_GL_UnloadLibrary; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_UnloadLibrary' {$ENDIF} {$ENDIF};
-
+  {$endif}
   {**
    *  Return true if an OpenGL extension is supported for the current
    *  context.
@@ -2111,15 +2155,27 @@ function SDL_GL_MakeCurrent(window: PSDL_Window; context: TSDL_GLContext): cint;
   {**
    *  Get the currently active OpenGL window.
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GL_GetCurrentWindow_func = function : PSDL_Window; cdecl;
+Var
+  SDL_GL_GetCurrentWindow : TSDL_GL_GetCurrentWindow_func = Nil;
+{$else}
 function SDL_GL_GetCurrentWindow: PSDL_Window; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetCurrentWindow' {$ENDIF} {$ENDIF};
-
+ {$endif}
   {**
    *  Get the currently active OpenGL context.
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GL_GetCurrentContext_func = function : TSDL_GLContext; cdecl;
+Var
+  SDL_GL_GetCurrentContext : TSDL_GL_GetCurrentContext_func = Nil;
+{$else}
 function SDL_GL_GetCurrentContext: TSDL_GLContext; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetCurrentContext' {$ENDIF} {$ENDIF};
-
+ {$endif}
   {**
    *  Get the size of a window's underlying drawable in pixels (for use
    *  with glViewport).
@@ -2184,9 +2240,15 @@ function SDL_GL_SetSwapInterval(interval: cint): cint; cdecl;
    *  SDL_GL_SetSwapInterval()
    *}
 
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GL_GetSwapInterval_func = function : cint; cdecl;
+Var
+  SDL_GL_GetSwapInterval : TSDL_GL_GetSwapInterval_func = Nil;
+{$else}
 function SDL_GL_GetSwapInterval: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetSwapInterval' {$ENDIF} {$ENDIF};
-
+{$endif}
   {**
    *  Swap the OpenGL buffers for a window, if double-buffering is
    *  supported.

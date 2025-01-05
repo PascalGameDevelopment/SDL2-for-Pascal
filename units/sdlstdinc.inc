@@ -71,6 +71,18 @@ type
  *
  * \since This function is available since SDL 2.24.0.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetOriginalMemoryFunctions_proc = procedure (
+  malloc_func: PSDL_malloc_func;
+  calloc_func: PSDL_calloc_func;
+  realloc_func: PSDL_realloc_func;
+  free_func: PSDL_free_func
+); cdecl;
+Var
+  SDL_GetOriginalMemoryFunctions : TSDL_GetOriginalMemoryFunctions_proc = Nil;
+
+{$else}
 procedure SDL_GetOriginalMemoryFunctions(
   malloc_func: PSDL_malloc_func;
   calloc_func: PSDL_calloc_func;
@@ -78,12 +90,24 @@ procedure SDL_GetOriginalMemoryFunctions(
   free_func: PSDL_free_func
 ); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetOriginalMemoryFunctions' {$ENDIF} {$ENDIF};
+{$endif}
 
 (**
  * Get the current set of SDL memory functions
  *
  * \since This function is available since SDL 2.0.7.
  *)
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetMemoryFunctions_proc = procedure (
+  malloc_func: PSDL_malloc_func;
+  calloc_func: PSDL_calloc_func;
+  realloc_func: PSDL_realloc_func;
+  free_func: PSDL_free_func
+); cdecl;
+Var
+  SDL_GetMemoryFunctions : TSDL_GetMemoryFunctions_proc = Nil;
+{$else}
 procedure SDL_GetMemoryFunctions(
   malloc_func: PSDL_malloc_func;
   calloc_func: PSDL_calloc_func;
@@ -91,12 +115,25 @@ procedure SDL_GetMemoryFunctions(
   free_func: PSDL_free_func
 ); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetMemoryFunctions' {$ENDIF} {$ENDIF};
+{$endif}
 
 (**
  * Replace SDL's memory allocation functions with a custom set
  *
  * \since This function is available since SDL 2.0.7.
  *)
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_SetMemoryFunctions_func = function (
+  malloc_func: TSDL_malloc_func;
+  calloc_func: TSDL_calloc_func;
+  realloc_func: TSDL_realloc_func;
+  free_func: TSDL_free_func
+): cint; cdecl;
+
+Var
+  SDL_SetMemoryFunctions : TSDL_SetMemoryFunctions_func = Nil;
+{$else}
 function SDL_SetMemoryFunctions(
   malloc_func: TSDL_malloc_func;
   calloc_func: TSDL_calloc_func;
@@ -104,6 +141,7 @@ function SDL_SetMemoryFunctions(
   free_func: TSDL_free_func
 ): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetMemoryFunctions' {$ENDIF} {$ENDIF};
+{$endif}
 
 (**
  * Get the number of outstanding (unfreed) allocations

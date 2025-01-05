@@ -280,9 +280,15 @@ function SDL_GetThreadName(thread: PSDL_Thread): PAnsiChar; cdecl;
  *
  * \sa SDL_GetThreadID
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_ThreadID_func = function (): TSDL_ThreadID; cdecl;
+Var
+  SDL_ThreadID : TSDL_ThreadID_func = Nil;
+{$else}
 function SDL_ThreadID: TSDL_ThreadID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ThreadID' {$ENDIF}{$ENDIF};
-
+{$endif}
   {**
  * Get the thread identifier for the specified thread.
  *
@@ -435,8 +441,15 @@ procedure SDL_DetachThread(thread:PSDL_Thread); cdecl;
  * \sa SDL_TLSGet
  * \sa SDL_TLSSet
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_TLSCreate_func = function : TSDL_TLSID; cdecl;
+Var
+  SDL_TLSCreate : TSDL_TLSCreate_func = Nil;
+{$else}
 function SDL_TLSCreate: TSDL_TLSID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSCreate' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
  * Get the current thread's value associated with a thread local storage ID.
@@ -509,6 +522,13 @@ function SDL_TLSSet(id: TSDL_TLSID; const value: Pointer; destructor_: TTLSDestr
  *
  * \since This function is available since SDL 2.0.16.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_TLSCleanup_proc = procedure (); cdecl;
+Var
+  SDL_TLSCleanup : TSDL_TLSCleanup_proc = Nil;
+{$else}
 procedure SDL_TLSCleanup; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TLSCleanup' {$ENDIF} {$ENDIF};
+{$endif}
 

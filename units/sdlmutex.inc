@@ -33,9 +33,15 @@ type
  *
  * \since This function is available since SDL 2.0.0.
  *}
-function SDL_CreateMutex: PSDL_Mutex; cdecl;
+ {$ifdef SDL_RUNTIME_LOADING}
+ Type
+   TSDL_CreateMutex_func =  function (): PSDL_Mutex; cdecl;
+ Var
+   SDL_CreateMutex : TSDL_CreateMutex_func = Nil;
+ {$else}
+ function SDL_CreateMutex: PSDL_Mutex; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateMutex' {$ENDIF} {$ENDIF};
-
+  {$endif}
 {**
  * Lock the mutex.
  *
@@ -364,9 +370,15 @@ type
  *
  * \since This function is available since SDL 2.0.0.
  *}
-function SDL_CreateCond: PSDL_Cond; cdecl;
+ {$ifdef SDL_RUNTIME_LOADING}
+ Type
+   TSDL_CreateCond_func =  function (): PSDL_Cond; cdecl;
+ Var
+   SDL_CreateCond : TSDL_CreateCond_func = Nil;
+ {$else}
+ function SDL_CreateCond: PSDL_Cond; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateCond' {$ENDIF} {$ENDIF};
-
+ {$endif}
 {**
  * Destroy a condition variable.
  *

@@ -801,10 +801,12 @@ type
  * \since This function is available since SDL 2.0.0.
  *
  * \sa SDL_HapticName
- *}
+ *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_NumHaptics: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_NumHaptics' {$ENDIF} {$ENDIF};
-
+  {$endif}
   {**
  * Get the implementation dependent name of a haptic device.
  *
@@ -920,7 +922,9 @@ function SDL_HapticIndex(haptic: PSDL_Haptic): cint; cdecl;
  * \since This function is available since SDL 2.0.0.
  *
  * \sa SDL_HapticOpenFromMouse
- *}
+ *}        {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_MouseIsHaptic: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MouseInHaptic' {$ENDIF} {$ENDIF};
 
@@ -937,7 +941,7 @@ function SDL_MouseIsHaptic: cint; cdecl;
  *}
 function SDL_HapticOpenFromMouse: PSDL_Haptic; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticOpenFromMouse' {$ENDIF} {$ENDIF};
-
+  {$endif}
   {**
  * Query if a joystick has haptic features.
  *

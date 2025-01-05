@@ -829,9 +829,15 @@ procedure SDL_SetYUVConversionMode(mode: TSDL_YUV_CONVERSION_MODE); cdecl;
 {**
  *  \brief Get the YUV conversion mode
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetYUVConversionMode_func = function : TSDL_YUV_CONVERSION_MODE; cdecl;
+Var
+  SDL_GetYUVConversionMode : TSDL_GetYUVConversionMode_func = Nil;
+{$else}
 function SDL_GetYUVConversionMode: TSDL_YUV_CONVERSION_MODE; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetYUVConversionMode' {$ENDIF} {$ENDIF};
-
+{$endif}
 {**
  *  \brief Get the YUV conversion mode, returning the correct mode for the resolution when the current conversion mode is SDL_YUV_CONVERSION_AUTOMATIC
  *}

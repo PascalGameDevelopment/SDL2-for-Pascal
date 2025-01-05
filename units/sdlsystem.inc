@@ -740,7 +740,9 @@ function SDL_IsTablet(): TSDL_Bool; cdecl;
   external SDL_LibName;
 {$endif}
 
-
+   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 { Functions used by iOS application delegates to notify SDL about state changes }
 procedure SDL_OnApplicationWillTerminate(); cdecl; external SDL_LibName;
 procedure SDL_OnApplicationDidReceiveMemoryWarning(); cdecl; external SDL_LibName;
@@ -751,3 +753,4 @@ procedure SDL_OnApplicationDidBecomeActive(); cdecl; external SDL_LibName;
 {$IFDEF __IPHONEOS__}
 procedure SDL_OnApplicationDidChangeStatusBarOrientation(); cdecl; external SDL_LibName;
 {$ENDIF}
+{$endif}

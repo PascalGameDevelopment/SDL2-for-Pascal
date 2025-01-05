@@ -179,8 +179,15 @@ function SDL_RWFromConstMem(const mem: Pointer; size: cint): PSDL_RWops; cdecl;
 {$endif}
 
 {*RWFrom functions*}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_AllocRW_func =function : PSDL_RWops; cdecl;
+Var
+  SDL_AllocRW : TSDL_AllocRW_func = Nil;
+{$else}
 function SDL_AllocRW: PSDL_RWops; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AllocRW' {$ENDIF} {$ENDIF};
+{$endif}
 
 {$ifdef SDL_RUNTIME_LOADING}
 Type

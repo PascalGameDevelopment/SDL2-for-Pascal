@@ -96,9 +96,11 @@ type
    *  Add or update an existing mapping configuration
    *
    *  1 if mapping is added, 0 if updated, -1 on error
-   *}
+   *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerAddMapping' {$ENDIF} {$ENDIF};
-
+    {$endif}
   {**
    *  Load a set of mappings from a seekable SDL data stream (memory or file), filtered by the current SDL_GetPlatform()
    *  A community sourced database of controllers is available at https://raw.github.com/gabomdq/SDL_GameControllerDB/master/gamecontrollerdb.txt
@@ -138,8 +140,12 @@ function SDL_GameControllerNumMappings():cint; cdecl;
    *
    *   the mapping string.  Must be freed with SDL_free.  Returns NULL if no mapping is available
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerMappingForGUID( guid: TSDL_JoystickGUID ): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMappingForGUID' {$ENDIF} {$ENDIF};
-
+ 
+{$endif}
 {**
  * Get the mapping at a particular index.
  *
@@ -161,7 +167,9 @@ function SDL_GameControllerMappingForIndex(mapping_index: cint): PAnsiChar; cdec
    *  Get a mapping string for an open GameController
    *
    *   the mapping string.  Must be freed with SDL_free.  Returns NULL if no mapping is available
-   *}
+   *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerMapping( gamecontroller: PSDL_GameController ): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMapping' {$ENDIF} {$ENDIF};
 
   {**
@@ -175,7 +183,7 @@ function SDL_IsGameController(joystick_index: cint): TSDL_Bool cdecl; external S
    *  If no name can be found, this function returns NULL.
    *}
 function SDL_GameControllerNameForIndex(joystick_index: cint): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerNameForIndex' {$ENDIF} {$ENDIF};
-
+   {$endif}
 {**
  * Get the implementation dependent path for the game controller.
  *
@@ -244,9 +252,11 @@ function SDL_GameControllerMappingForDeviceIndex(joystick_index: cint): PAnsiCha
    *  events.
    *
    *   A controller identifier, or NULL if an error occurred.
-   *}
+   *}   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerOpen(joystick_index: cint): PSDL_GameController cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerOpen' {$ENDIF} {$ENDIF};
-
+      {$endif}
   {**
    * Return the SDL_GameController associated with an instance id.
    *}
@@ -281,9 +291,11 @@ function SDL_GameControllerFromPlayerIndex(player_index: cint): PSDL_GameControl
 
   {**
    *  Return the name for this currently opened controller
-   *}
+   *}   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerName(gamecontroller: PSDL_GameController): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerName' {$ENDIF} {$ENDIF};
-
+  {$endif}
 {**
  * Get the implementation-dependent path for an opened game controller.
  *
@@ -472,7 +484,9 @@ function SDL_GameControllerGetSteamHandle(gamecontroller: PSDL_GameController): 
   {**
    *  Returns SDL_TRUE if the controller has been opened and currently connected,
    *  or SDL_FALSE if it has not.
-   *}
+   *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerGetAttached(gamecontroller: PSDL_GameController): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAttached' {$ENDIF} {$ENDIF};
 
   {**
@@ -498,7 +512,7 @@ function SDL_GameControllerEventState(state: cint): cint cdecl; external SDL_Lib
    *  events are enabled.
    *}
 procedure SDL_GameControllerUpdate() cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerUpdate' {$ENDIF} {$ENDIF};
-
+  {$endif}
   {**
    *  The list of axes available from a controller
    *}
@@ -516,7 +530,9 @@ const
   SDL_CONTROLLER_AXIS_TRIGGERLEFT = TSDL_GameControllerAxis(4);
   SDL_CONTROLLER_AXIS_TRIGGERRIGHT = TSDL_GameControllerAxis(5);
   SDL_CONTROLLER_AXIS_MAX = TSDL_GameControllerAxis(6);
-
+ {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
   {**
    *  turn this string into a axis mapping
    *}
@@ -531,7 +547,7 @@ function SDL_GameControllerGetStringForAxis(axis: TSDL_GameControllerAxis): PAns
    *  Get the SDL joystick layer binding for this controller button mapping
    *}
 function SDL_GameControllerGetBindForAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_GameControllerButtonBind cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetBindForAxis' {$ENDIF} {$ENDIF};
-
+   {$endif}
 {**
  * Query whether a game controller has a given axis.
  *
@@ -555,9 +571,11 @@ function SDL_GameControllerHasAxis(gamecontroller: PSDL_GameController; axis: TS
    *  The state is a value ranging from -32768 to 32767.
    *
    *  The axis indices start at index 0.
-   *}
+   *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerGetAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): cint16 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAxis' {$ENDIF} {$ENDIF};
-
+  {$endif}
   {**
    *  The list of buttons available from a controller
    *}
@@ -589,7 +607,9 @@ const
   SDL_CONTROLLER_BUTTON_PADDLE4       = TSDL_GameControllerButton(19); {**< Xbox Elite paddle P4 *}
   SDL_CONTROLLER_BUTTON_TOUCHPAD      = TSDL_GameControllerButton(20); {**< PS4/PS5 touchpad button *}
   SDL_CONTROLLER_BUTTON_MAX           = TSDL_GameControllerButton(21);
-
+   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
   {**
    *  turn this string into a button mapping
    *}
@@ -604,7 +624,7 @@ function SDL_GameControllerGetStringForButton(button: TSDL_GameControllerButton)
  *  Get the SDL joystick layer binding for this controller button mapping
  *}
 function SDL_GameControllerGetBindForButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_GameControllerButtonBind cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetBindForButton' {$ENDIF} {$ENDIF};
-
+   {$endif}
 {**
  * Query whether a game controller has a given button.
  *
@@ -626,9 +646,11 @@ function SDL_GameControllerHasButton(gamecontroller: PSDL_GameController; button
  *  Get the current state of a button on a game controller.
  *
  *  The button indices start at index 0.
- *}
+ *}    {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): cuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetButton' {$ENDIF} {$ENDIF};
-
+  {$endif}
 {**
  * Get the number of touchpads on a game controller.
  *}
@@ -935,9 +957,11 @@ function SDL_GameControllerSendEffect(gamecontroller: PSDL_GameController; data:
 
 {**
  *  Close a controller previously opened with SDL_GameControllerOpen().
- *}
+ *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
-
+     {$endif}
 {**
  * Return the sfSymbolsName for a given axis on a game controller
  * on Apple platforms.

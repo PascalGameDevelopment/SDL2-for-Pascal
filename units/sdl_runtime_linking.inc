@@ -911,6 +911,10 @@ Begin
 {$ENDIF}
     SDL_IsTablet := TSDL_IsTablet_func(GetProcAddress(LibHandle, 'SDL_IsTablet'));
     If Not assigned(SDL_IsTablet) Then result := false;
+    SDL_PollEvent := TSDL_PollEvent_func(GetProcAddress(LibHandle, 'SDL_PollEvent'));
+    If Not assigned(SDL_PollEvent) Then result := false;
+    SDL_EventState := TSDL_EventState_func(GetProcAddress(LibHandle, 'SDL_EventState'));
+    If Not assigned(SDL_EventState) Then result := false;
     SDL_GetWindowWMInfo := TSDL_GetWindowWMInfo_func(GetProcAddress(LibHandle, 'SDL_GetWindowWMInfo'));
     If Not assigned(SDL_GetWindowWMInfo) Then result := false;
     SDL_CreateThread := TSDL_CreateThread_func(GetProcAddress(LibHandle, 'SDL_CreateThread'));

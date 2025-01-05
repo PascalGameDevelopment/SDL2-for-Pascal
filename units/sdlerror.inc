@@ -35,8 +35,15 @@ function SDL_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
  *
  *  \return a pointer to the last error message that was set
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetError_func = function (): PAnsiChar; cdecl;
+Var
+  SDL_GetError : TSDL_GetError_func = Nil;
+{$else}
 function SDL_GetError: PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetError' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Get the last error message that was set for the current thread
@@ -64,7 +71,14 @@ function SDL_GetErrorMsg(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdec
 {**
  *  \brief Clear the error message for the current thread
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_ClearError_proc = procedure () cdecl;
+Var
+  SDL_ClearError : TSDL_ClearError_proc = Nil;
+{$else}
 procedure SDL_ClearError cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearError' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*Internal error functions*}
 {**

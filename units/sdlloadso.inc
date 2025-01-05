@@ -67,9 +67,15 @@ function SDL_LoadObject(sofile: PAnsiChar): Pointer; cdecl;
  * \sa SDL_LoadObject
  * \sa SDL_UnloadObject
   }
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_LoadFunctions_func = function (handle: Pointer; name: PAnsiChar): Pointer; cdecl;
+  Var
+    SDL_LoadFunction : TSDL_LoadFunctions_func = Nil;
+  {$else}
 function SDL_LoadFunction(handle: Pointer; name: PAnsiChar): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadFunction' {$ENDIF} {$ENDIF};
-
+  {$endif}
 {*
  * Unload a shared object from memory.
  *

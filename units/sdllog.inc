@@ -264,6 +264,9 @@ type
 {**
  *  \brief Get the current log output function.
  *}
+ {$ifdef SDL_RUNTIME_LOADING}
+ // TODO: Portieren
+ {$else}
 procedure SDL_LogGetOutputFunction(callback: PSDL_LogOutputFunction; userdata: PPointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogGetOutputFunction' {$ENDIF} {$ENDIF};
 
@@ -273,5 +276,5 @@ procedure SDL_LogGetOutputFunction(callback: PSDL_LogOutputFunction; userdata: P
  *}
 procedure SDL_LogSetOutputFunction(callback: TSDL_LogOutputFunction; userdata: Pointer); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LogSetOutputFunction' {$ENDIF} {$ENDIF};
-
+  {$ENDIF}
 {$ENDIF}

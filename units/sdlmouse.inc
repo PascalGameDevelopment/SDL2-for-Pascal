@@ -44,10 +44,12 @@ const
  * \returns the window with mouse focus.
  *
  * \since This function is available since SDL 2.0.0.
- *}
+ *}     {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GetMouseFocus: PSDL_Window; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetMouseFocus' {$ENDIF}{$ENDIF};
-
+          {$endif}
   {**
  * Retrieve the current state of the mouse.
  *
@@ -305,10 +307,12 @@ Var
  * \since This function is available since SDL 2.0.0.
  *
  * \sa SDL_SetRelativeMouseMode
- *}
+ *}   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GetRelativeMouseMode: TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRelativeMouseMode' {$ENDIF}{$ENDIF};
-
+          {$endif}
   {**
  * Create a cursor using the specified bitmap data and mask (in MSB format).
  *
@@ -460,7 +464,9 @@ procedure SDL_SetCursor(cursor: PSDL_Cursor); cdecl;
  * \since This function is available since SDL 2.0.0.
  *
  * \sa SDL_SetCursor
- *}
+ *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GetCursor: PSDL_Cursor; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCursor' {$ENDIF}{$ENDIF};
   
@@ -475,7 +481,7 @@ function SDL_GetCursor: PSDL_Cursor; cdecl;
  *}
 function SDL_GetDefaultCursor: PSDL_Cursor; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetDefaultCursor' {$ENDIF}{$ENDIF};
-
+       {$endif}
   {**
  * Free a previously-created cursor.
  *

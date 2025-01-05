@@ -5,8 +5,15 @@
  *
  *  This value wraps if the program runs for more than ~49 days.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetTicks_func = function : cuint32; cdecl;
+Var
+  SDL_GetTicks : TSDL_GetTicks_func = Nil;
+{$else}
 function SDL_GetTicks: cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks' {$ENDIF} {$ENDIF};
+  {$endif}
 
 {**
  * Get the number of milliseconds since SDL library initialization.
@@ -16,8 +23,15 @@ function SDL_GetTicks: cuint32; cdecl;
  * the 32-bit overflow every ~49 days that SDL_GetTicks() suffers from. 64-bit
  * values from this function can be safely compared directly.
  *}
-function SDL_GetTicks64: cuint64; cdecl;
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_GetTicks64_func =  function : cuint64; cdecl;
+  Var
+    SDL_GetTicks64 : TSDL_GetTicks64_func = Nil;
+  {$else}
+  function SDL_GetTicks64: cuint64; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks64' {$ENDIF} {$ENDIF};
+    {$endif}
 
 {**
  * \brief Compare SDL ticks values, and return true if A has passed B
@@ -35,14 +49,28 @@ function SDL_TICKS_PASSED(const A, B: cint32): Boolean;
 {**
  *  Get the current value of the high resolution counter
  *}
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_GetPerformanceCounter_func = function : cuint64; cdecl;
+  Var
+    SDL_GetPerformanceCounter : TSDL_GetPerformanceCounter_func = Nil;
+  {$else}
 function SDL_GetPerformanceCounter: cuint64; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceCounter' {$ENDIF} {$ENDIF};
+  {$endif}
 
 {**
  *  Get the count per second of the high resolution counter
  *}
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_GetPerformanceFrequency_func = function : cuint64; cdecl;
+  Var
+    SDL_GetPerformanceFrequency : TSDL_GetPerformanceFrequency_func = Nil;
+  {$else}
 function SDL_GetPerformanceFrequency: cuint64; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceFrequency' {$ENDIF} {$ENDIF};
+ {$endif}
 
 {**
  *  Wait a specified number of milliseconds before returning.
