@@ -102,8 +102,16 @@ function SDL_VERSION_ATLEAST(X,Y,Z: cuint8): Boolean;
  *
  *  SDL_VERSION
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetVersion_proc = procedure(ver: PSDL_Version); cdecl;
+Var
+  SDL_GetVersion : TSDL_GetVersion_proc = Nil;
+{$else}
+
 procedure SDL_GetVersion(ver: PSDL_Version); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetVersion' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  Get the code revision of SDL that is linked against your program.
@@ -112,8 +120,15 @@ procedure SDL_GetVersion(ver: PSDL_Version); cdecl;
  *  exact revision of the SDL library in use, and is only useful in comparing
  *  against other revisions. It is NOT an incrementing number.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetRevision_func = function (): PAnsiChar; cdecl;
+Var
+  SDL_GetRevision : TSDL_GetRevision_func = Nil;
+{$else}
 function SDL_GetRevision: PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRevision' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  Get the revision number of SDL that is linked against your program.
@@ -122,5 +137,13 @@ function SDL_GetRevision: PAnsiChar; cdecl;
  *  library in use. It is an incrementing number based on commits to
  *  hg.libsdl.org.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetRevisionNumber_func = function (): cint; cdecl;
+Var
+  SDL_GetRevisionNumber : TSDL_GetRevisionNumber_func = Nil;
+{$else}
 function SDL_GetRevisionNumber: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRevisionNumber' {$ENDIF} {$ENDIF};
+{$endif}
+

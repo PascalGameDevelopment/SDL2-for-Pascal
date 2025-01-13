@@ -25,5 +25,9 @@
  * \param url A valid URL to open.
  * \return 0 on success, or -1 on error.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_OpenURL(const url: PAnsiChar): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_OpenURL' {$ENDIF} {$ENDIF};
+        {$endif}

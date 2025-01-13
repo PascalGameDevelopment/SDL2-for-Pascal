@@ -108,7 +108,9 @@ const
  * events will not be delivered.
  *
  * \since This function is available since SDL 2.0.14.
- *}
+ *}     {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 procedure SDL_LockSensors(); cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockSensors' {$ENDIF} {$ENDIF};
 procedure SDL_UnlockSensors(); cdecl;
@@ -293,3 +295,4 @@ procedure SDL_SensorClose(sensor: PSDL_Sensor); cdecl;
  *}
 procedure SDL_SensorUpdate(); cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SensorUpdate' {$ENDIF} {$ENDIF};
+        {$endif}

@@ -31,5 +31,13 @@ type
    *
    *  \return The state of the battery (if any).
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetPowerInfo_func = function(secs: pcint; pct: pcint): TSDL_PowerState; cdecl;
+Var
+  SDL_GetPowerInfo : TSDL_GetPowerInfo_func = Nil;
+{$else}
+
 function SDL_GetPowerInfo(secs: pcint; pct: pcint): TSDL_PowerState; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPowerInfo' {$ENDIF} {$ENDIF};
+{$endif}
