@@ -678,7 +678,9 @@ type
    *  This should only be run in the thread that sets the video mode.
    *}
    {$ifdef SDL_RUNTIME_LOADING}
-   // TODO: Portieren
+Type
+  TSDL_PumpEvents_proc = Procedure (); cdecl;
+  var SDL_PumpEvents: TSDL_PumpEvents_proc = Nil;
    {$else}
 
   procedure SDL_PumpEvents cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PumpEvents' {$ENDIF} {$ENDIF};
@@ -741,16 +743,15 @@ type
    *               stored in that area.
    *}
   {$endif}
-{$ifdef SDL_RUNTIME_LOADING}
-Type
-  TSDL_PollEvent_func =  function (event: PSDL_Event): cint32 cdecl;
-Var
-  SDL_PollEvent : TSDL_PollEvent_func = Nil;
-{$else}
-
-  function SDL_PollEvent(event: PSDL_Event): cint32 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PollEvent' {$ENDIF} {$ENDIF};
-
-{$endif}
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_PollEvent_func =  function (event: PSDL_Event): cint32 cdecl;
+  Var
+    SDL_PollEvent : TSDL_PollEvent_func = Nil;
+  {$else}
+  function SDL_PollEvent(event: PSDL_Event): cint32 cdecl;
+external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PollEvent' {$ENDIF} {$ENDIF};
+ {$endif}
 
     {$ifdef SDL_RUNTIME_LOADING}
     // TODO: Portieren
