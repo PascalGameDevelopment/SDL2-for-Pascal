@@ -89,6 +89,7 @@ const
   MIX_INIT_OGG         = $00000010;
   MIX_INIT_MID         = $00000020;
   MIX_INIT_OPUS        = $00000040;
+  MIX_INIT_WAVPACK     = $00000080;
 
 { // Removed in SDL2_mixer 2.0.2
   MIX_INIT_MODPLUG     = $00000004;
@@ -161,7 +162,9 @@ type
     MUS_MP3_MAD_UNUSED,
     MUS_FLAC,
     MUS_MODPLUG_UNUSED,
-    MUS_OPUS
+    MUS_OPUS,
+    MUS_WAVPACK,
+    MUS_GME
   );
 
   {* The internal format for a music chunk interpreted via mikmod *}
@@ -170,6 +173,14 @@ type
 
   {* Open the mixer with a certain audio format *}
 function Mix_OpenAudio(frequency: cint; format: cuint16; channels: cint; chunksize: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_OpenAudio' {$ENDIF} {$ENDIF};
+
+  { * Open a specific audio device for playback. *}
+function Mix_OpenAudioDevice(frequency: cint; format: cuint16; channels: cint; chunksize: cint; device: PAnsiChar; allowed_changes: cint): cint; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_OpenAudioDevice' {$ENDIF} {$ENDIF};
+
+  {* Pause (1) or resume (0) the whole audio output. *}
+procedure Mix_PauseAudio(pause_on: cint); cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PauseAudio' {$ENDIF} {$ENDIF};
 
   {* Dynamically change the number of channels managed by the mixer.
      If decreasing the number of channels, the upper channels are
@@ -241,6 +252,58 @@ function Mix_HasMusicDecoder(const name: PAnsiChar): TSDL_Bool cdecl;
      music, if 'music' is NULL.
   *}
 function Mix_GetMusicType(music: PMix_Music): TMix_MusicType cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicType' {$ENDIF} {$ENDIF};
+
+  {* Get the title for a music object, or its filename.
+     This returns format-specific metadata. Not all formats support this!
+
+     If `music` is NULL, this will query the currently-playing music.
+
+     If the music's title tag is missing or empty, the filename will be returned instead.
+
+     This function never returns NIL! If no data is available, it will return an empty string.
+  *}
+function Mix_GetMusicTitle(music: PMix_Music): PAnsiChar; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicTitle' {$ENDIF} {$ENDIF};
+
+  {* Get the title for a music object.
+     This returns format-specific metadata. Not all formats support this!
+
+     If `music` is NULL, this will query the currently-playing music.
+
+     This function never returns NIL! If no data is available, it will return an empty string.
+  *}
+function Mix_GetMusicTitleTag(music: PMix_Music): PAnsiChar; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicTitleTag' {$ENDIF} {$ENDIF};
+
+  {* Get the artist name for a music object.
+     This returns format-specific metadata. Not all formats support this!
+
+     If `music` is NULL, this will query the currently-playing music.
+
+     This function never returns NIL! If no data is available, it will return an empty string.
+  *}
+function Mix_GetMusicArtistTag(music: PMix_Music): PAnsiChar; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicArtistTag' {$ENDIF} {$ENDIF};
+
+  {* Get the album name for a music object.
+     This returns format-specific metadata. Not all formats support this!
+
+     If `music` is NULL, this will query the currently-playing music.
+
+     This function never returns NIL! If no data is available, it will return an empty string.
+  *}
+function Mix_GetMusicAlbumTag(music: PMix_Music): PAnsiChar; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicAlbumTag' {$ENDIF} {$ENDIF};
+
+  {* Get the copyright text for a music object.
+     This returns format-specific metadata. Not all formats support this!
+
+     If `music` is NULL, this will query the currently-playing music.
+
+     This function never returns NIL! If no data is available, it will return an empty string.
+  *}
+function Mix_GetMusicCopyrightTag(music: PMix_Music): PAnsiChar; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicCopyrightTag' {$ENDIF} {$ENDIF};
 
   {* Set a function that is called after all mixing is performed.
      This can be used to provide real-time visual display of the audio stream
@@ -608,6 +671,23 @@ function Mix_Volume(channel: cint; volume: cint): cint cdecl; external MIX_LibNa
 function Mix_VolumeChunk(chunk: PMix_Chunk; volume: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_VolumeChunk' {$ENDIF} {$ENDIF};
 function Mix_VolumeMusic(volume: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_VolumeMusic' {$ENDIF} {$ENDIF};
 
+  {* Query the current volume for a music object. *}
+function Mix_GetMusicVolume(music: PMix_Music): cint; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicVolume' {$ENDIF} {$ENDIF};
+
+  {* Set the master volume for all channels.
+
+     SDL_Mixer keeps a per-channel volume, a per-chunk volume, and a master volume.
+     All three are considered when mixing audio.
+
+     Note that the master volume does not affect any playing music;
+     it is only applied when mixing chunks. Use Mix_VolumeMusic() for that.
+
+     If the specified volume is -1, this returns the current volume.
+  *}
+function Mix_MasterVolume(volume: cint): cint; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_MasterVolume' {$ENDIF} {$ENDIF};
+
   {* Halt playing of a particular channel *}
 function Mix_HaltChannel(channel: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_HaltChannel' {$ENDIF} {$ENDIF};
 function Mix_HaltGroup(tag: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_HaltGroup' {$ENDIF} {$ENDIF};
@@ -642,6 +722,18 @@ procedure Mix_ResumeMusic cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MA
 procedure Mix_RewindMusic cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_RewindMusic' {$ENDIF} {$ENDIF};
 function Mix_PausedMusic: cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PausedMusic' {$ENDIF} {$ENDIF};
 
+  {* Jump to a given order in MOD music. *}
+function Mix_ModMusicJumpToOrder(order: cint): cint; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ModMusicJumpToOrder' {$ENDIF} {$ENDIF};
+
+  {* Set a track in a GME music object. *}
+function Mix_StartTrack(music: PMix_Music; track: cint): cint; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_StartTrack' {$ENDIF} {$ENDIF};
+
+  {* Get number of tracks in a GME music object. *}
+function Mix_GetNumTracks(music: PMix_Music): cint; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetNumTracks' {$ENDIF} {$ENDIF};
+
   {* Set the current position in the music stream.
      This returns 0 if successful, or -1 if it failed or isn't implemented.
      This function is only implemented for MOD music formats (set pattern
@@ -649,6 +741,40 @@ function Mix_PausedMusic: cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFD
      (set position in seconds), at the moment.
   *}
 function Mix_SetMusicPosition(position: Double): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetMusicPosition' {$ENDIF} {$ENDIF};
+
+  {* Get the current position of a music stream, in seconds.
+     Returns -1.0 if this feature is not supported for some codec.
+  *}
+function Mix_GetMusicPosition(music: PMix_Music): cdouble; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicPosition' {$ENDIF} {$ENDIF};
+
+  {* Get a music object's duration, in seconds.
+     If NIL is passed, returns duration of currently playing music.
+     Returns -1.0 on error.
+  *}
+function Mix_MusicDuration(music: PMix_Music): cdouble; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_MusicDuration' {$ENDIF} {$ENDIF};
+
+  {* Get the loop start time position of a music stream, in seconds.
+     Returns -1.0 if this feature is not used by this music
+     or unsupported by the codec.
+  *}
+function Mix_GetMusicLoopStartTime(music: PMix_Music): cdouble; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicLoopStartTime' {$ENDIF} {$ENDIF};
+
+  {* Get the loop end time position of a music stream, in seconds.
+     Returns -1.0 if this feature is not used by this music
+     or unsupported by the codec.
+  *}
+function Mix_GetMusicLoopEndTime(music: PMix_Music): cdouble; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicLoopEndTime' {$ENDIF} {$ENDIF};
+
+  {* Get the loop time length of a music stream, in seconds.
+     Returns -1.0 if this feature is not used by this music
+     or unsupported by the codec.
+  *}
+function Mix_GetMusicLoopLengthTime(music: PMix_Music): cdouble; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMusicLoopLengthTime' {$ENDIF} {$ENDIF};
 
   {* Check the status of a specific channel.
      If the specified channel is -1, check all channels.
@@ -673,6 +799,21 @@ type
   TMix_SoundFunc = function(c: PAnsiChar; p: Pointer): cint cdecl;
 
 function Mix_EachSoundFont(func: TMix_SoundFunc; data: Pointer): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_EachSoundFont' {$ENDIF} {$ENDIF};
+
+  {* Set full path of the Timidity config file.
+     This is only useful if SDL_Mixer is using Timidity to play MIDI files.
+  *}
+function Mix_SetTimidityCfg(path: PAnsiChar): cint; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTimidityCfg' {$ENDIF} {$ENDIF};
+
+  {* Get full path of previously specified Timidity config file.
+     If a path has never been specified, this returns NIL.
+
+     This returns a pointer to internal memory;
+     it must not be modified nor freed by the caller.
+  *}
+function Mix_GetTimidityCfg(): PAnsiChar; cdecl;
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTimidityCfg' {$ENDIF} {$ENDIF};
 
   {* Get the Mix_Chunk currently associated with a mixer channel
       Returns NULL if it's an invalid channel, or there's no chunk associated.
