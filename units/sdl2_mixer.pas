@@ -60,8 +60,8 @@ const
   {* Printable format: "%d.%d.%d", MAJOR, MINOR, PATCHLEVEL *}
 const
   SDL_MIXER_MAJOR_VERSION = 2;
-  SDL_MIXER_MINOR_VERSION = 0;
-  SDL_MIXER_PATCHLEVEL    = 4;
+  SDL_MIXER_MINOR_VERSION = 8;
+  SDL_MIXER_PATCHLEVEL    = 1;
 
   {* This macro can be used to fill a version structure with the compile-time
    * version of the SDL_mixer library.
@@ -118,18 +118,13 @@ const
 
   {* Good default values for a PC soundcard *}
 const
-  MIX_DEFAULT_FREQUENCY = 22050;
+  MIX_DEFAULT_FREQUENCY = 44100;
   MIX_DEFAULT_CHANNELS = 2;
   MIX_MAX_VOLUME       = SDL2.SDL_MIX_MAXVOLUME; {* Volume of a chunk *}
 
 {$IFDEF FPC}
-   {$IF DEFINED(ENDIAN_LITTLE)}
-      MIX_DEFAULT_FORMAT = AUDIO_S16LSB;
-   {$ELSEIF DEFINED(ENDIAN_BIG)}
-      MIX_DEFAULT_FORMAT = AUDIO_S16MSB;
-   {$ELSE}
-      {$FATAL Unable to determine endianness.}
-   {$IFEND}
+  // This is hidden behind IFDEF because AUDIO_S16SYS is also hidden.
+  MIX_DEFAULT_FORMAT = SDL2.AUDIO_S16SYS;
 {$ENDIF}
 
   {* The internal format for an audio chunk *}
