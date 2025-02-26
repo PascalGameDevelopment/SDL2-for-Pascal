@@ -662,7 +662,7 @@ function Mix_PlayMusic(music: PMix_Music; loops: cint): cint cdecl; external MIX
 
   {* Fade in music or a channel over "ms" milliseconds, same semantics as the "Play" functions *}
 function Mix_FadeInMusic(music: PMix_Music; loops: cint; ms: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_FadeInMusic' {$ENDIF} {$ENDIF};
-function Mix_FadeInMusicPos(music: PMix_Music; loops: cint; ms: cint; position: Double): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_FadeInMusicPos' {$ENDIF} {$ENDIF};
+function Mix_FadeInMusicPos(music: PMix_Music; loops: cint; ms: cint; position: cdouble): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_FadeInMusicPos' {$ENDIF} {$ENDIF};
 function Mix_FadeInChannel(channel: cint; chunk: PMix_Chunk; loops: cint; ms: cint): cint; cdecl;
   external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_FadeInChannel' {$ENDIF} {$ENDIF};
 function Mix_FadeInChannelTimed(channel: cint; chunk: PMix_Chunk; loops: cint; ms: cint; ticks: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_FadeInChannelTimed' {$ENDIF} {$ENDIF};
@@ -745,7 +745,7 @@ function Mix_GetNumTracks(music: PMix_Music): cint; cdecl;
      order number) and for OGG, FLAC, MP3_MAD, MP3_MPG and MODPLUG music
      (set position in seconds), at the moment.
   *}
-function Mix_SetMusicPosition(position: Double): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetMusicPosition' {$ENDIF} {$ENDIF};
+function Mix_SetMusicPosition(position: cdouble): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetMusicPosition' {$ENDIF} {$ENDIF};
 
   {* Get the current position of a music stream, in seconds.
      Returns -1.0 if this feature is not supported for some codec.
