@@ -82,29 +82,29 @@ procedure MIX_VERSION(Out X: TSDL_Version);
    *}
 function Mix_Linked_Version: PSDL_Version cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Linked_Version' {$ENDIF} {$ENDIF};
 
-const
-  MIX_INIT_FLAC        = $00000001;
-  MIX_INIT_MOD         = $00000002;
-  MIX_INIT_MP3         = $00000008;
-  MIX_INIT_OGG         = $00000010;
-  MIX_INIT_MID         = $00000020;
-  MIX_INIT_OPUS        = $00000040;
-  MIX_INIT_WAVPACK     = $00000080;
-
-{ // Removed in SDL2_mixer 2.0.2
-  MIX_INIT_MODPLUG     = $00000004;
-  MIX_INIT_FLUIDSYNTH  = $00000020;
-}
 type
-  PPMIX_InitFlags = ^PMIX_InitFlags;
-  PMIX_InitFlags = ^TMIX_InitFlags;
-  TMIX_InitFlags = cint;
+  PPMix_InitFlags = ^PMix_InitFlags;
+  PMix_InitFlags = ^TMix_InitFlags;
+  TMix_InitFlags = type cint;
+
+const
+  MIX_INIT_FLAC        = TMix_InitFlags($00000001);
+  MIX_INIT_MOD         = TMix_InitFlags($00000002);
+  MIX_INIT_MP3         = TMix_InitFlags($00000008);
+  MIX_INIT_OGG         = TMix_InitFlags($00000010);
+  MIX_INIT_MID         = TMix_InitFlags($00000020);
+  MIX_INIT_OPUS        = TMix_InitFlags($00000040);
+  MIX_INIT_WAVPACK     = TMix_InitFlags($00000080);
+
+// Removed in SDL2_mixer 2.0.2:
+// MIX_INIT_MODPLUG     = TMix_InitFlags($00000004);
+// MIX_INIT_FLUIDSYNTH  = TMix_InitFlags($00000020);
 
   {* Loads dynamic libraries and prepares them for use.  Flags should be
      one or more flags from MIX_InitFlags OR'd together.
      It returns the flags successfully initialized, or 0 on failure.
    *}
-function Mix_Init(flags: cint): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Init' {$ENDIF} {$ENDIF};
+function Mix_Init(flags: TMix_InitFlags): cint cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Init' {$ENDIF} {$ENDIF};
 
   {* Unloads libraries loaded with Mix_Init *}
 procedure Mix_Quit() cdecl; external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Quit' {$ENDIF} {$ENDIF};
@@ -142,26 +142,34 @@ type
 type
   PPMix_Fading = ^PMix_Fading;
   PMix_Fading = ^TMix_Fading;
-  TMix_Fading = (MIX_NO_FADING, MIX_FADING_OUT, MIX_FADING_IN);
+  TMix_Fading = type cint;
 
+const
+  MIX_NO_FADING  = TMix_Fading(0);
+  MIX_FADING_OUT = TMix_Fading(1);
+  MIX_FADING_IN  = TMix_Fading(2);
+
+type
   PPMix_MusicType = ^PMix_MusicType;
   PMix_MusicType = ^TMix_MusicType;
-  TMix_MusicType = (
-    MUS_NONE,
-    MUS_CMD,
-    MUS_WAV,
-    MUS_MOD,
-    MUS_MID,
-    MUS_OGG,
-    MUS_MP3,
-    MUS_MP3_MAD_UNUSED,
-    MUS_FLAC,
-    MUS_MODPLUG_UNUSED,
-    MUS_OPUS,
-    MUS_WAVPACK,
-    MUS_GME
-  );
+  TMix_MusicType = type cint;
 
+const
+  MUS_NONE           = TMix_MusicType(0);
+  MUS_CMD            = TMix_MusicType(1);
+  MUS_WAV            = TMix_MusicType(2);
+  MUS_MOD            = TMix_MusicType(3);
+  MUS_MID            = TMix_MusicType(4);
+  MUS_OGG            = TMix_MusicType(5);
+  MUS_MP3            = TMix_MusicType(6);
+  MUS_MP3_MAD_UNUSED = TMix_MusicType(7);
+  MUS_FLAC           = TMix_MusicType(8);
+  MUS_MODPLUG_UNUSED = TMix_MusicType(9);
+  MUS_OPUS           = TMix_MusicType(10);
+  MUS_WAVPACK        = TMix_MusicType(11);
+  MUS_GM             = TMix_MusicType(12);
+
+type
   {* The internal format for a music chunk interpreted via mikmod *}
   PPMix_Music = ^PMix_Music;
   PMix_Music = type Pointer;
