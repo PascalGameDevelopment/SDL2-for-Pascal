@@ -680,6 +680,17 @@ function TTF_FontDescent(font: PTTF_Font): cint; cdecl;
 function TTF_FontLineSkip(font: PTTF_Font): cint; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontLineSkip' {$ENDIF} {$ENDIF};
 
+{**
+ * Set the spacing between lines of text for a font.
+ *
+ * \param font the font to modify.
+ * \param lineskip the new line spacing for the font.
+ *
+ * \since This function is available since SDL_ttf 2.22.0.
+ *}
+procedure TTF_SetFontLineSkip(font: PTTF_Font; lineskip: cint); cdecl;
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontLineSkip' {$ENDIF} {$ENDIF};
+
 {*
  * Query whether or not kerning is allowed for a font.
  *
