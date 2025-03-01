@@ -74,7 +74,7 @@ const
 {* Printable format: "%d.%d.%d", MAJOR, MINOR, PATCHLEVEL *}
 const
   SDL_TTF_MAJOR_VERSION = 2;
-  SDL_TTF_MINOR_VERSION = 21;
+  SDL_TTF_MINOR_VERSION = 24;
   SDL_TTF_PATCHLEVEL    = 0;
 
 procedure SDL_TTF_VERSION(Out X: TSDL_Version);
@@ -196,6 +196,7 @@ type
  * \since This function is available since SDL_ttf 2.0.12.
  *
  * \sa TTF_Quit
+ * \sa TTF_WasInit
   }
 function TTF_Init(): cint; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Init' {$ENDIF} {$ENDIF};
@@ -252,15 +253,15 @@ function TTF_OpenFontIndex(file_: PAnsiChar; ptsize: cint; index: clong): PTTF_F
  * size becomes the index of choosing which size. If the value is too high,
  * the last indexed size will be the default.
  *
- * If `freesrc` is non-zero, the RWops will be closed before returning,
- * whether this function succeeds or not. SDL_ttf reads everything it needs
- * from the RWops during this call in any case.
+ * If `freesrc` is non-zero, the RWops will be automatically closed once the
+ * font is closed. Otherwise you should close the RWops yourself after closing
+ * the font.
  *
  * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
  *
  * \param src an SDL_RWops to provide a font file's data.
- * \param freesrc non-zero to close the RWops before returning, zero to leave
- *                it open.
+ * \param freesrc non-zero to close the RWops when the font is closed, zero to
+ *                leave it open.
  * \param ptsize point size to use for the newly-opened font.
  * \returns a valid TTF_Font, or nil on error.
  *
@@ -278,9 +279,9 @@ function TTF_OpenFontRW(src: PSDL_RWops; freesrc: cint; ptsize: cint): PTTF_Font
  * size becomes the index of choosing which size. If the value is too high,
  * the last indexed size will be the default.
  *
- * If `freesrc` is non-zero, the RWops will be closed before returning,
- * whether this function succeeds or not. SDL_ttf reads everything it needs
- * from the RWops during this call in any case.
+ * If `freesrc` is non-zero, the RWops will be automatically closed once the
+ * font is closed. Otherwise you should close the RWops yourself after closing
+ * the font.
  *
  * Some fonts have multiple "faces" included. The index specifies which face
  * to use from the font file. Font files with only one face should specify
@@ -289,8 +290,8 @@ function TTF_OpenFontRW(src: PSDL_RWops; freesrc: cint; ptsize: cint): PTTF_Font
  * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
  *
  * \param src an SDL_RWops to provide a font file's data.
- * \param freesrc non-zero to close the RWops before returning, zero to leave
- *                it open.
+ * \param freesrc non-zero to close the RWops when the font is closed, zero to
+ *                leave it open.
  * \param ptsize point size to use for the newly-opened font.
  * \param index index of the face in the font file.
  * \returns a valid TTF_Font, or nil on error.
@@ -364,15 +365,15 @@ function TTF_OpenFontIndexDPI(file_: PAnsiChar; ptsize: cint; index: clong; hdpi
  * size becomes the index of choosing which size. If the value is too high,
  * the last indexed size will be the default.
  *
- * If `freesrc` is non-zero, the RWops will be closed before returning,
- * whether this function succeeds or not. SDL_ttf reads everything it needs
- * from the RWops during this call in any case.
+ * If `freesrc` is non-zero, the RWops will be automatically closed once the
+ * font is closed. Otherwise you should close the RWops yourself after closing
+ * the font.
  *
  * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
  *
  * \param src an SDL_RWops to provide a font file's data.
- * \param freesrc non-zero to close the RWops before returning, zero to leave
- *                it open.
+ * \param freesrc non-zero to close the RWops when the font is closed, zero to
+ *                leave it open.
  * \param ptsize point size to use for the newly-opened font.
  * \param hdpi the target horizontal DPI.
  * \param vdpi the target vertical DPI.
@@ -394,9 +395,9 @@ function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; hdpi: c
  * size becomes the index of choosing which size. If the value is too high,
  * the last indexed size will be the default.
  *
- * If `freesrc` is non-zero, the RWops will be closed before returning,
- * whether this function succeeds or not. SDL_ttf reads everything it needs
- * from the RWops during this call in any case.
+ * If `freesrc` is non-zero, the RWops will be automatically closed once the
+ * font is closed. Otherwise you should close the RWops yourself after closing
+ * the font.
  *
  * Some fonts have multiple "faces" included. The index specifies which face
  * to use from the font file. Font files with only one face should specify
@@ -405,8 +406,8 @@ function TTF_OpenFontDPIRW(src: PSDL_RWops; freesrc: cint; ptsize: cint; hdpi: c
  * When done with the returned TTF_Font, use TTF_CloseFont() to dispose of it.
  *
  * \param src an SDL_RWops to provide a font file's data.
- * \param freesrc non-zero to close the RWops before returning, zero to leave
- *                it open.
+ * \param freesrc non-zero to close the RWops when the font is closed, zero to
+ *                leave it open.
  * \param ptsize point size to use for the newly-opened font.
  * \param index index of the face in the font file.
  * \param hdpi the target horizontal DPI.
@@ -670,15 +671,26 @@ function TTF_FontDescent(font: PTTF_Font): cint; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontDescent' {$ENDIF} {$ENDIF};
 
 {*
- * Query the recommended spacing between lines of text for a font.
+ * Query the spacing between lines of text for a font.
  *
  * \param font the font to query.
- * \returns the font's recommended spacing.
+ * \returns the font's line spacing.
  *
  * \since This function is available since SDL_ttf 2.0.12.
   }
 function TTF_FontLineSkip(font: PTTF_Font): cint; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontLineSkip' {$ENDIF} {$ENDIF};
+
+{**
+ * Set the spacing between lines of text for a font.
+ *
+ * \param font the font to modify.
+ * \param lineskip the new line spacing for the font.
+ *
+ * \since This function is available since SDL_ttf 2.22.0.
+ *}
+procedure TTF_SetFontLineSkip(font: PTTF_Font; lineskip: cint); cdecl;
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontLineSkip' {$ENDIF} {$ENDIF};
 
 {*
  * Query whether or not kerning is allowed for a font.
@@ -945,9 +957,9 @@ function TTF_SizeUNICODE(font: PTTF_Font; text: pcuint16; w: pcint; h: pcint): c
  * \param font the font to query.
  * \param text text to calculate, in Latin1 encoding.
  * \param measure_width maximum width, in pixels, available for the string.
+ * \param extent on return, filled with latest calculated width.
  * \param count on return, filled with number of characters that can be
  *              rendered.
- * \param extent on return, filled with latest calculated width.
  * \returns 0 if successful, -1 on error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -970,9 +982,9 @@ function TTF_MeasureText(font: PTTF_Font; text: PAnsiChar; measure_width: cint; 
  * \param font the font to query.
  * \param text text to calculate, in UTF-8 encoding.
  * \param measure_width maximum width, in pixels, available for the string.
+ * \param extent on return, filled with latest calculated width.
  * \param count on return, filled with number of characters that can be
  *              rendered.
- * \param extent on return, filled with latest calculated width.
  * \returns 0 if successful, -1 on error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -1000,9 +1012,9 @@ function TTF_MeasureUTF8(font: PTTF_Font; text: PAnsiChar; measure_width: cint; 
  * \param font the font to query.
  * \param text text to calculate, in UCS-2 encoding.
  * \param measure_width maximum width, in pixels, available for the string.
+ * \param extent on return, filled with latest calculated width.
  * \param count on return, filled with number of characters that can be
  *              rendered.
- * \param extent on return, filled with latest calculated width.
  * \returns 0 if successful, -1 on error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -1301,6 +1313,7 @@ function TTF_RenderGlyph32_Solid(font: PTTF_Font; ch: cuint32; fg: TSDL_Color): 
  * \param font the font to render with.
  * \param text text to render, in Latin1 encoding.
  * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
  * \returns a new 8-bit, palettized surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.12.
@@ -1332,6 +1345,7 @@ function TTF_RenderText_Shaded(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color;
  * \param font the font to render with.
  * \param text text to render, in UTF-8 encoding.
  * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
  * \returns a new 8-bit, palettized surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.12.
@@ -1367,6 +1381,7 @@ function TTF_RenderUTF8_Shaded(font: PTTF_Font; text: PAnsiChar; fg: TSDL_Color;
  * \param font the font to render with.
  * \param text text to render, in UCS-2 encoding.
  * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
  * \returns a new 8-bit, palettized surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.12.
@@ -1400,6 +1415,7 @@ function TTF_RenderUNICODE_Shaded(font: PTTF_Font; text: pcuint16; fg: TSDL_Colo
  * \param font the font to render with.
  * \param text text to render, in Latin1 encoding.
  * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
  * \returns a new 8-bit, palettized surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -1429,6 +1445,7 @@ function TTF_RenderText_Shaded_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSD
  * \param font the font to render with.
  * \param text text to render, in UTF-8 encoding.
  * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
  * \returns a new 8-bit, palettized surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -1465,6 +1482,7 @@ function TTF_RenderUTF8_Shaded_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TSD
  * \param font the font to render with.
  * \param text text to render, in UCS-2 encoding.
  * \param fg the foreground color for the text.
+ * \param bg the background color for the text.
  * \returns a new 8-bit, palettized surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -1663,6 +1681,9 @@ function TTF_RenderUNICODE_Blended(font: PTTF_Font; text: pcuint16; fg: TSDL_Col
  * \param font the font to render with.
  * \param text text to render, in Latin1 encoding.
  * \param fg the foreground color for the text.
+ * \param wrapLength the text is wrapped to multiple lines on line endings and
+ *                   on word boundaries if it extends beyond this value in
+ *                   pixels.
  * \returns a new 32-bit, ARGB surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -1691,6 +1712,9 @@ function TTF_RenderText_Blended_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TS
  * \param font the font to render with.
  * \param text text to render, in UTF-8 encoding.
  * \param fg the foreground color for the text.
+ * \param wrapLength the text is wrapped to multiple lines on line endings and
+ *                   on word boundaries if it extends beyond this value in
+ *                   pixels.
  * \returns a new 32-bit, ARGB surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -1726,6 +1750,9 @@ function TTF_RenderUTF8_Blended_Wrapped(font: PTTF_Font; text: PAnsiChar; fg: TS
  * \param font the font to render with.
  * \param text text to render, in UCS-2 encoding.
  * \param fg the foreground color for the text.
+ * \param wrapLength the text is wrapped to multiple lines on line endings and
+ *                   on word boundaries if it extends beyond this value in
+ *                   pixels.
  * \returns a new 32-bit, ARGB surface, or nil if there was an error.
  *
  * \since This function is available since SDL_ttf 2.0.18.
@@ -2097,6 +2124,7 @@ function TTF_RenderUNICODE(font: PTTF_Font; text: pcuint16; fg, bg: TSDL_Color):
  *
  * \since This function is available since SDL_ttf 2.0.12.
  *
+ * \sa TTF_OpenFont
  * \sa TTF_OpenFontIndexDPIRW
  * \sa TTF_OpenFontRW
  * \sa TTF_OpenFontDPI
