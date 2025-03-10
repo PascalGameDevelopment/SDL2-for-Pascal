@@ -38,9 +38,15 @@ type
  *
  * \since This function is available since SDL 2.0.0.
   }
-function SDL_GetKeyboardFocus: PSDL_Window; cdecl;
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_GetKeyboardFocus_func = function : PSDL_Window; cdecl;
+  Var
+    SDL_GetKeyboardFocus : TSDL_GetKeyboardFocus_func = Nil;
+  {$else}
+  function SDL_GetKeyboardFocus: PSDL_Window; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardFocus' {$ENDIF} {$ENDIF};
-
+  {$endif}
 {*
  * Get a snapshot of the current state of the keyboard.
  *
@@ -70,8 +76,16 @@ function SDL_GetKeyboardFocus: PSDL_Window; cdecl;
  * \sa SDL_PumpEvents
  * \sa SDL_ResetKeyboard
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetKeyboardState_func = function(numkeys: pcint): pcuint8; cdecl;
+Var
+  SDL_GetKeyboardState : TSDL_GetKeyboardState_func = Nil;
+{$else}
+
 function SDL_GetKeyboardState(numkeys: pcint): pcuint8; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardState' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Clear the state of the keyboard
@@ -82,9 +96,15 @@ function SDL_GetKeyboardState(numkeys: pcint): pcuint8; cdecl;
  *
  * \sa SDL_GetKeyboardState
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_ResetKeyboard_proc =procedure ; cdecl;
+Var
+  SDL_ResetKeyboard : TSDL_ResetKeyboard_proc = Nil;
+{$else}
 procedure SDL_ResetKeyboard; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResetKeyboard' {$ENDIF} {$ENDIF};
-
+{$endif}
 {*
  * Get the current key modifier state for the keyboard.
  *
@@ -96,9 +116,15 @@ procedure SDL_ResetKeyboard; cdecl;
  * \sa SDL_GetKeyboardState
  * \sa SDL_SetModState
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetModState_func = function : TSDL_Keymod; cdecl;
+Var
+  SDL_GetModState : TSDL_GetModState_func = Nil;
+{$else}
 function SDL_GetModState: TSDL_Keymod; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetModState' {$ENDIF} {$ENDIF};
-
+ {$endif}
 {*
  * Set the current key modifier state for the keyboard.
  *
@@ -116,8 +142,16 @@ function SDL_GetModState: TSDL_Keymod; cdecl;
  *
  * \sa SDL_GetModState
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_SetModState_proc = procedure(modstate: TSDL_Keymod); cdecl;
+Var
+  SDL_SetModState : TSDL_SetModState_proc = Nil;
+{$else}
+
 procedure SDL_SetModState(modstate: TSDL_Keymod); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetModState' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Get the key code corresponding to the given scancode according to the
@@ -133,8 +167,16 @@ procedure SDL_SetModState(modstate: TSDL_Keymod); cdecl;
  * \sa SDL_GetKeyName
  * \sa SDL_GetScancodeFromKey
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetKeyFromScancode_func = function(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
+Var
+  SDL_GetKeyFromScancode : TSDL_GetKeyFromScancode_func = Nil;
+{$else}
+
 function SDL_GetKeyFromScancode(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyFromScancode' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Get the scancode corresponding to the given key code according to the
@@ -150,8 +192,16 @@ function SDL_GetKeyFromScancode(scancode: TSDL_Scancode): TSDL_Keycode; cdecl;
  * \sa SDL_GetKeyFromScancode
  * \sa SDL_GetScancodeName
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetScancodeFromKey_func = function(key: TSDL_Keycode): TSDL_Scancode; cdecl;
+Var
+  SDL_GetScancodeFromKey : TSDL_GetScancodeFromKey_func = Nil;
+{$else}
+
 function SDL_GetScancodeFromKey(key: TSDL_Keycode): TSDL_Scancode; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeFromKey' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Get a human-readable name for a scancode.
@@ -176,8 +226,16 @@ function SDL_GetScancodeFromKey(key: TSDL_Keycode): TSDL_Scancode; cdecl;
  * \sa SDL_GetScancodeFromKey
  * \sa SDL_GetScancodeFromName
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetScancodeName_func = function(scancode: TSDL_Scancode): PAnsiChar; cdecl;
+Var
+  SDL_GetScancodeName : TSDL_GetScancodeName_func = Nil;
+{$else}
+
 function SDL_GetScancodeName(scancode: TSDL_Scancode): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeName' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Get a scancode from a human-readable name.
@@ -192,8 +250,16 @@ function SDL_GetScancodeName(scancode: TSDL_Scancode): PAnsiChar; cdecl;
  * \sa SDL_GetScancodeFromKey
  * \sa SDL_GetScancodeName
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetScancodeFromName_func = function(name: PAnsiChar): TSDL_Scancode; cdecl;
+Var
+  SDL_GetScancodeFromName : TSDL_GetScancodeFromName_func = Nil;
+{$else}
+
 function SDL_GetScancodeFromName(name: PAnsiChar): TSDL_Scancode; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetScancodeFromName' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Get a human-readable name for a key.
@@ -212,8 +278,16 @@ function SDL_GetScancodeFromName(name: PAnsiChar): TSDL_Scancode; cdecl;
  * \sa SDL_GetKeyFromScancode
  * \sa SDL_GetScancodeFromKey
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetKeyName_func = function(key: TSDL_Keycode): PAnsiChar; cdecl;
+Var
+  SDL_GetKeyName : TSDL_GetKeyName_func = Nil;
+{$else}
+
 function SDL_GetKeyName(key: TSDL_Keycode): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyName' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Get a key code from a human-readable name.
@@ -228,8 +302,16 @@ function SDL_GetKeyName(key: TSDL_Keycode): PAnsiChar; cdecl;
  * \sa SDL_GetKeyName
  * \sa SDL_GetScancodeFromName
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetKeyFromName_func = function(name: PAnsiChar): TSDL_Keycode; cdecl;
+Var
+  SDL_GetKeyFromName : TSDL_GetKeyFromName_func = Nil;
+{$else}
+
 function SDL_GetKeyFromName(name: PAnsiChar): TSDL_Keycode; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyFromName' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Start accepting Unicode text input events.
@@ -246,9 +328,15 @@ function SDL_GetKeyFromName(name: PAnsiChar): TSDL_Keycode; cdecl;
  * \sa SDL_SetTextInputRect
  * \sa SDL_StopTextInput
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_StartTextInput_proc =procedure ; cdecl;
+Var
+  SDL_StartTextInput : TSDL_StartTextInput_proc = Nil;
+{$else}
 procedure SDL_StartTextInput; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StartTextInput' {$ENDIF} {$ENDIF};
-
+{$endif}
 {*
  * Check whether or not Unicode text input events are enabled.
  *
@@ -258,9 +346,15 @@ procedure SDL_StartTextInput; cdecl;
  *
  * \sa SDL_StartTextInput
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_IsTextInputActive_func = function : TSDL_bool; cdecl;
+Var
+  SDL_IsTextInputActive : TSDL_IsTextInputActive_func = Nil;
+{$else}
 function SDL_IsTextInputActive: TSDL_bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsTextInputActive' {$ENDIF} {$ENDIF};
-
+{$endif}
 {*
  * Stop receiving any text input events.
  *
@@ -268,9 +362,15 @@ function SDL_IsTextInputActive: TSDL_bool; cdecl;
  *
  * \sa SDL_StartTextInput
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_StopTextInput_proc =procedure ; cdecl;
+Var
+  SDL_StopTextInput : TSDL_StopTextInput_proc = Nil;
+{$else}
 procedure SDL_StopTextInput; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopTextInput' {$ENDIF} {$ENDIF};
-
+{$endif}
 {*
  * Dismiss the composition window/IME without disabling the subsystem.
  *
@@ -279,17 +379,29 @@ procedure SDL_StopTextInput; cdecl;
  * \sa SDL_StartTextInput
  * \sa SDL_StopTextInput
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_ClearComposition_proc = procedure ; cdecl;
+Var
+  SDL_ClearComposition : TSDL_ClearComposition_proc = Nil;
+{$else}
 procedure SDL_ClearComposition; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearComposition' {$ENDIF} {$ENDIF};
-
+{$endif}
 {*
  * Returns if an IME Composite or Candidate window is currently shown.
  *
  * \since This function is available since SDL 2.0.22.
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_IsTextInputShown_func = function : TSDL_bool; cdecl;
+Var
+  SDL_IsTextInputShown : TSDL_IsTextInputShown_func = Nil;
+{$else}
 function SDL_IsTextInputShown: TSDL_bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsTextInputShown' {$ENDIF} {$ENDIF};
-
+{$endif}
 {*
  * Set the rectangle used to type Unicode text inputs.
  *
@@ -308,8 +420,16 @@ function SDL_IsTextInputShown: TSDL_bool; cdecl;
  *
  * \sa SDL_StartTextInput
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_SetTextInputRect_proc = procedure(rect: PSDL_Rect); cdecl;
+Var
+  SDL_SetTextInputRect : TSDL_SetTextInputRect_proc = Nil;
+{$else}
+
 procedure SDL_SetTextInputRect(rect: PSDL_Rect); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextInputRect' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*
  * Check whether the platform has screen keyboard support.
@@ -322,9 +442,15 @@ procedure SDL_SetTextInputRect(rect: PSDL_Rect); cdecl;
  * \sa SDL_StartTextInput
  * \sa SDL_IsScreenKeyboardShown
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_HasScreenKeyboardSupport_func = function : TSDL_bool; cdecl;
+Var
+  SDL_HasScreenKeyboardSupport : TSDL_HasScreenKeyboardSupport_func = Nil;
+{$else}
 function SDL_HasScreenKeyboardSupport: TSDL_bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasScreenKeyboardSupport' {$ENDIF} {$ENDIF};
-
+{$endif}
 {*
  * Check whether the screen keyboard is shown for given window.
  *
@@ -335,6 +461,14 @@ function SDL_HasScreenKeyboardSupport: TSDL_bool; cdecl;
  *
  * \sa SDL_HasScreenKeyboardSupport
   }
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_IsScreenKeyboardShown_func = function(window: PSDL_Window): TSDL_bool; cdecl;
+Var
+  SDL_IsScreenKeyboardShown : TSDL_IsScreenKeyboardShown_func = Nil;
+{$else}
+
 function SDL_IsScreenKeyboardShown(window: PSDL_Window): TSDL_bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsScreenKeyboardShown' {$ENDIF} {$ENDIF};
+{$endif}
 
