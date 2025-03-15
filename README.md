@@ -81,8 +81,21 @@ The version tag (see [tags](https://github.com/PascalGameDevelopment/SDL2-for-Pa
 
 ### v2.x (work in progress)
 
-- update sdlthreads.inc
-- add testing framework ([fptest](https://github.com/graemeg/fptest))
+- updates
+
+### v2.3 Stable (16/03/2025)
+
+- updates sdl2_mixer unit to v2.8.1
+- updates sdl2_ttf unit to v2.24.0
+- major update of sdlthreads.inc
+- update of sdlvideo.inc
+- update of sdlrenderer.inc
+- update of sdlgamecontroller.inc
+- patches, cleanups and bugfixes in many other inc files
+- bugfixes in sdl2_gfx unit
+- deletes obsolete files
+- improve CI workflow
+- improve Delphi compatibility
 
 ### v2.2 Stable (02/01/2024)
 
