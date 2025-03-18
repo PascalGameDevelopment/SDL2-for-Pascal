@@ -13,8 +13,16 @@
  *
  *  \return -1, there is no error handling for this function
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_SetError_func = function(const fmt: PAnsiChar; args: array of const): cint; cdecl;
+Var
+  SDL_SetError : TSDL_SetError_func = Nil;
+{$else}
+
 function SDL_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetError' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Get the last error message that was set
@@ -27,8 +35,15 @@ function SDL_SetError(const fmt: PAnsiChar; args: array of const): cint; cdecl;
  *
  *  \return a pointer to the last error message that was set
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetError_func = function (): PAnsiChar; cdecl;
+Var
+  SDL_GetError : TSDL_GetError_func = Nil;
+{$else}
 function SDL_GetError: PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetError' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Get the last error message that was set for the current thread
@@ -42,13 +57,28 @@ function SDL_GetError: PAnsiChar; cdecl;
  *
  *  \return errstr
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetErrorMsg_func = function(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdecl;
+Var
+  SDL_GetErrorMsg : TSDL_GetErrorMsg_func = Nil;
+{$else}
+
 function SDL_GetErrorMsg(const errstr: PAnsiChar; maxlen: cint): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetErrorMsg' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  \brief Clear the error message for the current thread
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_ClearError_proc = procedure () cdecl;
+Var
+  SDL_ClearError : TSDL_ClearError_proc = Nil;
+{$else}
 procedure SDL_ClearError cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearError' {$ENDIF} {$ENDIF};
+{$endif}
 
 {*Internal error functions*}
 {**
@@ -74,5 +104,13 @@ type
                     SDL_LASTERROR);
 
 {* SDL_Error() unconditionally returns -1. *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_Error_func = function(code: TSDL_ErrorCode): cint; cdecl;
+Var
+  SDL_Error : TSDL_Error_func = Nil;
+{$else}
+
 function SDL_Error(code: TSDL_ErrorCode): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Error' {$ENDIF} {$ENDIF};
+{$endif}

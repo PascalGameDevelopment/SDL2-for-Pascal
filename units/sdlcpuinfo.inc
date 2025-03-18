@@ -11,8 +11,16 @@ const
 {**
  * This function returns the number of CPU cores available.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetCPUCount_func = function(): cint; cdecl;
+Var
+  SDL_GetCPUCount : TSDL_GetCPUCount_func = Nil;
+{$else}
+
 function SDL_GetCPUCount(): cint; cdecl;
 	 external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCPUCount' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * This function returns the L1 cache line size of the CPU.
@@ -20,6 +28,9 @@ function SDL_GetCPUCount(): cint; cdecl;
  * This is useful for determining multi-threaded structure padding
  * or SIMD prefetch sizes.
  *}
+         {$ifdef SDL_RUNTIME_LOADING}
+         // TODO: Portieren
+         {$else}
 function SDL_GetCPUCacheLineSize(): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCPUCacheLineSize' {$ENDIF} {$ENDIF};
 
@@ -213,3 +224,4 @@ function SDL_SIMDRealloc(mem: Pointer; const len: csize_t): Pointer; cdecl;
 procedure SDL_SIMDFree(mem: Pointer); cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SIMDFree' {$ENDIF} {$ENDIF};
 
+{$endif}

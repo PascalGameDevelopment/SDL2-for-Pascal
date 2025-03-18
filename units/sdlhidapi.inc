@@ -104,7 +104,9 @@ type
  * \since This function is available since SDL 2.0.18.
  *
  * \sa SDL_hid_exit
- *)
+ *)                   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_hid_init(): cint; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_init' {$ENDIF} {$ENDIF};
 
@@ -424,3 +426,4 @@ function SDL_hid_get_indexed_string(dev: PSDL_hid_device; string_index: cint; st
  *)
 procedure SDL_hid_ble_scan(active: TSDL_bool); cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_ble_scan' {$ENDIF} {$ENDIF};
+{$endif}

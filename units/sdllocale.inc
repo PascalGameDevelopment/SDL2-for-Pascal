@@ -50,5 +50,9 @@ type
  *   \return array of locales, terminated with a locale with a NIL language
  *           field. Will return NIL on error.
  *}
+ {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GetPreferredLocales(): PSDL_Locale; cdecl;
 	external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPreferredLocales' {$ENDIF} {$ENDIF};
+        {$endif}

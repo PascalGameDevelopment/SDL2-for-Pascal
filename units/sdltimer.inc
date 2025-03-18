@@ -5,8 +5,15 @@
  *
  *  This value wraps if the program runs for more than ~49 days.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GetTicks_func = function : cuint32; cdecl;
+Var
+  SDL_GetTicks : TSDL_GetTicks_func = Nil;
+{$else}
 function SDL_GetTicks: cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks' {$ENDIF} {$ENDIF};
+  {$endif}
 
 {**
  * Get the number of milliseconds since SDL library initialization.
@@ -16,8 +23,15 @@ function SDL_GetTicks: cuint32; cdecl;
  * the 32-bit overflow every ~49 days that SDL_GetTicks() suffers from. 64-bit
  * values from this function can be safely compared directly.
  *}
-function SDL_GetTicks64: cuint64; cdecl;
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_GetTicks64_func =  function : cuint64; cdecl;
+  Var
+    SDL_GetTicks64 : TSDL_GetTicks64_func = Nil;
+  {$else}
+  function SDL_GetTicks64: cuint64; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks64' {$ENDIF} {$ENDIF};
+    {$endif}
 
 {**
  * \brief Compare SDL ticks values, and return true if A has passed B
@@ -35,20 +49,42 @@ function SDL_TICKS_PASSED(const A, B: cint32): Boolean;
 {**
  *  Get the current value of the high resolution counter
  *}
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_GetPerformanceCounter_func = function : cuint64; cdecl;
+  Var
+    SDL_GetPerformanceCounter : TSDL_GetPerformanceCounter_func = Nil;
+  {$else}
 function SDL_GetPerformanceCounter: cuint64; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceCounter' {$ENDIF} {$ENDIF};
+  {$endif}
 
 {**
  *  Get the count per second of the high resolution counter
  *}
+  {$ifdef SDL_RUNTIME_LOADING}
+  Type
+    TSDL_GetPerformanceFrequency_func = function : cuint64; cdecl;
+  Var
+    SDL_GetPerformanceFrequency : TSDL_GetPerformanceFrequency_func = Nil;
+  {$else}
 function SDL_GetPerformanceFrequency: cuint64; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPerformanceFrequency' {$ENDIF} {$ENDIF};
+ {$endif}
 
 {**
  *  Wait a specified number of milliseconds before returning.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_Delay_proc = procedure(ms: cuint32); cdecl;
+Var
+  SDL_Delay : TSDL_Delay_proc = Nil;
+{$else}
+
 procedure SDL_Delay(ms: cuint32); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Delay' {$ENDIF} {$ENDIF};
+{$endif}
 
 type
   {**
@@ -75,8 +111,16 @@ type
  *
  *  A timer ID, or NULL when an error occurs.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_AddTimer_func = function(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID; cdecl;
+Var
+  SDL_AddTimer : TSDL_AddTimer_func = Nil;
+{$else}
+
 function SDL_AddTimer(interval: cuint32; callback: TSDL_TimerCallback; param: Pointer): TSDL_TimerID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddTimer' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  Remove a timer knowing its ID.
@@ -85,5 +129,13 @@ function SDL_AddTimer(interval: cuint32; callback: TSDL_TimerCallback; param: Po
  *
  *  It is not safe to remove a timer multiple times.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_RemoveTimer_func = function(id: TSDL_TimerID): Boolean; cdecl;
+Var
+  SDL_RemoveTimer : TSDL_RemoveTimer_func = Nil;
+{$else}
+
 function SDL_RemoveTimer(id: TSDL_TimerID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RemoveTimer' {$ENDIF} {$ENDIF};
+{$endif}

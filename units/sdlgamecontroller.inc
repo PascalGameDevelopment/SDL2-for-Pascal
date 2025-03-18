@@ -96,9 +96,11 @@ type
    *  Add or update an existing mapping configuration
    *
    *  1 if mapping is added, 0 if updated, -1 on error
-   *}
+   *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): cint cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerAddMapping' {$ENDIF} {$ENDIF};
-
+    {$endif}
   {**
    *  Load a set of mappings from a seekable SDL data stream (memory or file), filtered by the current SDL_GetPlatform()
    *  A community sourced database of controllers is available at https://raw.github.com/gabomdq/SDL_GameControllerDB/master/gamecontrollerdb.txt
@@ -107,36 +109,67 @@ function SDL_GameControllerAddMapping( mappingString: PAnsiChar ): cint cdecl; e
    * 
    *  Returns number of mappings added, -1 on error
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerAddMappingsFromRW_func = function(rw: PSDL_RWops; freerw: cint32):cint32;
+   cdecl;
+Var
+  SDL_GameControllerAddMappingsFromRW : TSDL_GameControllerAddMappingsFromRW_func = Nil;
+{$else}
+
 function SDL_GameControllerAddMappingsFromRW(rw: PSDL_RWops; freerw: cint32):cint32;
    cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerAddMappingsFromRW' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the number of mappings installed.
   *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerNumMappings_func = function():cint; cdecl;
+Var
+  SDL_GameControllerNumMappings : TSDL_GameControllerNumMappings_func = Nil;
+{$else}
+
 function SDL_GameControllerNumMappings():cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerNumMappings' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Get a mapping string for a GUID
    *
    *   the mapping string.  Must be freed with SDL_free.  Returns NULL if no mapping is available
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerMappingForGUID( guid: TSDL_JoystickGUID ): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMappingForGUID' {$ENDIF} {$ENDIF};
-
+ 
+{$endif}
 {**
  * Get the mapping at a particular index.
  *
  * Returns the mapping string. Must be freed with SDL_free().
  * Returns NIL if the index is out of range.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerMappingForIndex_func = function(mapping_index: cint): PAnsiChar; cdecl;
+Var
+  SDL_GameControllerMappingForIndex : TSDL_GameControllerMappingForIndex_func = Nil;
+{$else}
+
 function SDL_GameControllerMappingForIndex(mapping_index: cint): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMappingForIndex' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Get a mapping string for an open GameController
    *
    *   the mapping string.  Must be freed with SDL_free.  Returns NULL if no mapping is available
-   *}
+   *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerMapping( gamecontroller: PSDL_GameController ): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMapping' {$ENDIF} {$ENDIF};
 
   {**
@@ -150,7 +183,7 @@ function SDL_IsGameController(joystick_index: cint): TSDL_Bool cdecl; external S
    *  If no name can be found, this function returns NULL.
    *}
 function SDL_GameControllerNameForIndex(joystick_index: cint): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerNameForIndex' {$ENDIF} {$ENDIF};
-
+   {$endif}
 {**
  * Get the implementation dependent path for the game controller.
  *
@@ -168,15 +201,31 @@ function SDL_GameControllerNameForIndex(joystick_index: cint): PAnsiChar cdecl; 
  *
  * \sa SDL_GameControllerPath
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerPathForIndex_func = function(joystick_index: cint): PAnsiChar; cdecl;
+Var
+  SDL_GameControllerPathForIndex : TSDL_GameControllerPathForIndex_func = Nil;
+{$else}
+
 function SDL_GameControllerPathForIndex(joystick_index: cint): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerPathForIndex' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the type of a game controller.
  * This can be called before any controllers are opened.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerTypeForIndex_func = function(joystick_index: cint): TSDL_GameControllerType; cdecl;
+Var
+  SDL_GameControllerTypeForIndex : TSDL_GameControllerTypeForIndex_func = Nil;
+{$else}
+
 function SDL_GameControllerTypeForIndex(joystick_index: cint): TSDL_GameControllerType; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerTypeForIndex' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the mapping of a game controller.
@@ -185,8 +234,16 @@ function SDL_GameControllerTypeForIndex(joystick_index: cint): TSDL_GameControll
  * Returns the mapping string. Must be freed with SDL_free().
  * Returns NIL if no mapping is available.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerMappingForDeviceIndex_func = function(joystick_index: cint): PAnsiChar; cdecl;
+Var
+  SDL_GameControllerMappingForDeviceIndex : TSDL_GameControllerMappingForDeviceIndex_func = Nil;
+{$else}
+
 function SDL_GameControllerMappingForDeviceIndex(joystick_index: cint): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerMappingForDeviceIndex' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Open a game controller for use.
@@ -195,14 +252,24 @@ function SDL_GameControllerMappingForDeviceIndex(joystick_index: cint): PAnsiCha
    *  events.
    *
    *   A controller identifier, or NULL if an error occurred.
-   *}
+   *}   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerOpen(joystick_index: cint): PSDL_GameController cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerOpen' {$ENDIF} {$ENDIF};
-
+      {$endif}
   {**
    * Return the SDL_GameController associated with an instance id.
    *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerFromInstanceID_func = function(joyid: TSDL_JoystickID): PSDL_GameController; cdecl;
+Var
+  SDL_GameControllerFromInstanceID : TSDL_GameControllerFromInstanceID_func = Nil;
+{$else}
+
 function SDL_GameControllerFromInstanceID(joyid: TSDL_JoystickID): PSDL_GameController; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerFromInstanceID' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the SDL_GameController associated with a player index.
@@ -211,14 +278,24 @@ function SDL_GameControllerFromInstanceID(joyid: TSDL_JoystickID): PSDL_GameCont
  * instance id!
  *
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerFromPlayerIndex_func = function(player_index: cint): PSDL_GameController; cdecl;
+Var
+  SDL_GameControllerFromPlayerIndex : TSDL_GameControllerFromPlayerIndex_func = Nil;
+{$else}
+
 function SDL_GameControllerFromPlayerIndex(player_index: cint): PSDL_GameController; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerFromPlayerIndex' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Return the name for this currently opened controller
-   *}
+   *}   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerName(gamecontroller: PSDL_GameController): PAnsiChar cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerName' {$ENDIF} {$ENDIF};
-
+  {$endif}
 {**
  * Get the implementation-dependent path for an opened game controller.
  *
@@ -234,8 +311,16 @@ function SDL_GameControllerName(gamecontroller: PSDL_GameController): PAnsiChar 
  *
  * \sa SDL_GameControllerPathForIndex
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerPath_func = function(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
+Var
+  SDL_GameControllerPath : TSDL_GameControllerPath_func = Nil;
+{$else}
+
 function SDL_GameControllerPath(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerPath' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the type of this currently opened controller
@@ -243,8 +328,16 @@ function SDL_GameControllerPath(gamecontroller: PSDL_GameController): PAnsiChar;
  * This is the same name as returned by SDL_GameControllerTypeForIndex(), but
  * it takes a controller identifier instead of the (unstable) device index.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetType_func = function(gamecontroller: PSDL_GameController): TSDL_GameControllerType; cdecl;
+Var
+  SDL_GameControllerGetType : TSDL_GameControllerGetType_func = Nil;
+{$else}
+
 function SDL_GameControllerGetType(gamecontroller: PSDL_GameController): TSDL_GameControllerType; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetType' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the player index of an opened game controller.
@@ -252,14 +345,30 @@ function SDL_GameControllerGetType(gamecontroller: PSDL_GameController): TSDL_Ga
  *
  * Returns the player index for controller, or -1 if it's not available.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetPlayerIndex_func = function(gamecontroller: PSDL_GameController): cint; cdecl;
+Var
+  SDL_GameControllerGetPlayerIndex : TSDL_GameControllerGetPlayerIndex_func = Nil;
+{$else}
+
 function SDL_GameControllerGetPlayerIndex(gamecontroller: PSDL_GameController): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetPlayerIndex' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Set the player index of an opened game controller.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerSetPlayerIndex_proc = procedure(gamecontroller: PSDL_GameController; player_index: cint); cdecl;
+Var
+  SDL_GameControllerSetPlayerIndex : TSDL_GameControllerSetPlayerIndex_proc = Nil;
+{$else}
+
 procedure SDL_GameControllerSetPlayerIndex(gamecontroller: PSDL_GameController; player_index: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetPlayerIndex' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the USB vendor ID of an opened controller, if available.
@@ -271,22 +380,46 @@ procedure SDL_GameControllerSetPlayerIndex(gamecontroller: PSDL_GameController; 
  *
  * \since This function is available since SDL 2.0.6.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetVendor_func = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
+Var
+  SDL_GameControllerGetVendor : TSDL_GameControllerGetVendor_func = Nil;
+{$else}
+
 function SDL_GameControllerGetVendor(gamecontroller: PSDL_GameController): cuint16; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetVendor' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the USB product ID of an opened controller, if available.
  * If the product ID isn't available, this function returns 0.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetProduct_func = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
+Var
+  SDL_GameControllerGetProduct : TSDL_GameControllerGetProduct_func = Nil;
+{$else}
+
 function SDL_GameControllerGetProduct(gamecontroller: PSDL_GameController): cuint16; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetProduct' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the product version of an opened controller, if available.
  * If the product version isn't available, this function returns 0.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetProductVersion_func = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
+Var
+  SDL_GameControllerGetProductVersion : TSDL_GameControllerGetProductVersion_func = Nil;
+{$else}
+
 function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController): cuint16; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetProductVersion' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the firmware version of an opened controller, if available.
@@ -298,8 +431,16 @@ function SDL_GameControllerGetProductVersion(gamecontroller: PSDL_GameController
  *
  * \since This function is available since SDL 2.24.0.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetFirmwareVersion_func = function(gamecontroller: PSDL_GameController): cuint16; cdecl;
+Var
+  SDL_GameControllerGetFirmwareVersion : TSDL_GameControllerGetFirmwareVersion_func = Nil;
+{$else}
+
 function SDL_GameControllerGetFirmwareVersion(gamecontroller: PSDL_GameController): cuint16; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetFirmwareVersion' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the serial number of an opened controller, if available.
@@ -307,8 +448,16 @@ function SDL_GameControllerGetFirmwareVersion(gamecontroller: PSDL_GameControlle
  * Returns a string containing the serial number of the controller,
  * or NIL if it is not available. Do _not_ free the string with SDL_free().
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetSerial_func = function(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
+Var
+  SDL_GameControllerGetSerial : TSDL_GameControllerGetSerial_func = Nil;
+{$else}
+
 function SDL_GameControllerGetSerial(gamecontroller: PSDL_GameController): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSerial' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the Steam Input handle of an opened controller, if available.
@@ -321,13 +470,23 @@ function SDL_GameControllerGetSerial(gamecontroller: PSDL_GameController): PAnsi
  *
  * \since This function is available since SDL 2.30.0.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetSteamHandle_func = function(gamecontroller: PSDL_GameController): cuint64; cdecl;
+Var
+  SDL_GameControllerGetSteamHandle : TSDL_GameControllerGetSteamHandle_func = Nil;
+{$else}
+
 function SDL_GameControllerGetSteamHandle(gamecontroller: PSDL_GameController): cuint64; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSteamHandle' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Returns SDL_TRUE if the controller has been opened and currently connected,
    *  or SDL_FALSE if it has not.
-   *}
+   *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerGetAttached(gamecontroller: PSDL_GameController): TSDL_Bool cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAttached' {$ENDIF} {$ENDIF};
 
   {**
@@ -353,7 +512,7 @@ function SDL_GameControllerEventState(state: cint): cint cdecl; external SDL_Lib
    *  events are enabled.
    *}
 procedure SDL_GameControllerUpdate() cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerUpdate' {$ENDIF} {$ENDIF};
-
+  {$endif}
   {**
    *  The list of axes available from a controller
    *}
@@ -371,7 +530,9 @@ const
   SDL_CONTROLLER_AXIS_TRIGGERLEFT = TSDL_GameControllerAxis(4);
   SDL_CONTROLLER_AXIS_TRIGGERRIGHT = TSDL_GameControllerAxis(5);
   SDL_CONTROLLER_AXIS_MAX = TSDL_GameControllerAxis(6);
-
+ {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
   {**
    *  turn this string into a axis mapping
    *}
@@ -386,15 +547,23 @@ function SDL_GameControllerGetStringForAxis(axis: TSDL_GameControllerAxis): PAns
    *  Get the SDL joystick layer binding for this controller button mapping
    *}
 function SDL_GameControllerGetBindForAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_GameControllerButtonBind cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetBindForAxis' {$ENDIF} {$ENDIF};
-
+   {$endif}
 {**
  * Query whether a game controller has a given axis.
  *
  * This merely reports whether the controller's mapping defined this axis,
  * as that is all the information SDL has about the physical device.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerHasAxis_func = function(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_Bool; cdecl;
+Var
+  SDL_GameControllerHasAxis : TSDL_GameControllerHasAxis_func = Nil;
+{$else}
+
 function SDL_GameControllerHasAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasAxis' {$ENDIF} {$ENDIF};
+{$endif}
 
   {**
    *  Get the current state of an axis control on a game controller.
@@ -402,9 +571,11 @@ function SDL_GameControllerHasAxis(gamecontroller: PSDL_GameController; axis: TS
    *  The state is a value ranging from -32768 to 32767.
    *
    *  The axis indices start at index 0.
-   *}
+   *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerGetAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): cint16 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAxis' {$ENDIF} {$ENDIF};
-
+  {$endif}
   {**
    *  The list of buttons available from a controller
    *}
@@ -436,7 +607,9 @@ const
   SDL_CONTROLLER_BUTTON_PADDLE4       = TSDL_GameControllerButton(19); {**< Xbox Elite paddle P4 *}
   SDL_CONTROLLER_BUTTON_TOUCHPAD      = TSDL_GameControllerButton(20); {**< PS4/PS5 touchpad button *}
   SDL_CONTROLLER_BUTTON_MAX           = TSDL_GameControllerButton(21);
-
+   {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
   {**
    *  turn this string into a button mapping
    *}
@@ -451,38 +624,76 @@ function SDL_GameControllerGetStringForButton(button: TSDL_GameControllerButton)
  *  Get the SDL joystick layer binding for this controller button mapping
  *}
 function SDL_GameControllerGetBindForButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_GameControllerButtonBind cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetBindForButton' {$ENDIF} {$ENDIF};
-
+   {$endif}
 {**
  * Query whether a game controller has a given button.
  *
  * This merely reports whether the controller's mapping defined this button,
  * as that is all the information SDL has about the physical device.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerHasButton_func = function(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_Bool; cdecl;
+Var
+  SDL_GameControllerHasButton : TSDL_GameControllerHasButton_func = Nil;
+{$else}
+
 function SDL_GameControllerHasButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasButton' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  Get the current state of a button on a game controller.
  *
  *  The button indices start at index 0.
- *}
+ *}    {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 function SDL_GameControllerGetButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): cuint8 cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetButton' {$ENDIF} {$ENDIF};
-
+  {$endif}
 {**
  * Get the number of touchpads on a game controller.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetNumTouchpads_func = function(gamecontroller: PSDL_GameController): cint; cdecl;
+Var
+  SDL_GameControllerGetNumTouchpads : TSDL_GameControllerGetNumTouchpads_func = Nil;
+{$else}
+
 function SDL_GameControllerGetNumTouchpads(gamecontroller: PSDL_GameController): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetNumTouchpads' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the number of supported simultaneous fingers on a touchpad on a game controller.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetNumTouchpadFingers_func = function(gamecontroller: PSDL_GameController; touchpad: cint): cint; cdecl;
+Var
+  SDL_GameControllerGetNumTouchpadFingers : TSDL_GameControllerGetNumTouchpadFingers_func = Nil;
+{$else}
+
 function SDL_GameControllerGetNumTouchpadFingers(gamecontroller: PSDL_GameController; touchpad: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetNumTouchpadFingers' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the current state of a finger on a touchpad on a game controller.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetTouchpadFinger_func = function(
+    gamecontroller: PSDL_GameController;
+      touchpad, finger: cint;
+      state: pcuint8;
+      x, y, pressure: pcfloat
+    ): cint; cdecl;
+Var
+  SDL_GameControllerGetTouchpadFinger : TSDL_GameControllerGetTouchpadFinger_func = Nil;
+{$else}
+
 function SDL_GameControllerGetTouchpadFinger(
   gamecontroller: PSDL_GameController;
   touchpad, finger: cint;
@@ -490,24 +701,49 @@ function SDL_GameControllerGetTouchpadFinger(
   x, y, pressure: pcfloat
 ): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetTouchpadFinger' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Return whether a game controller has a particular sensor.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerHasSensor_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
+Var
+  SDL_GameControllerHasSensor : TSDL_GameControllerHasSensor_func = Nil;
+{$else}
+
 function SDL_GameControllerHasSensor(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasSensor' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Set whether data reporting for a game controller sensor is enabled.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerSetSensorEnabled_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; enabled: TSDL_bool): cint; cdecl;
+Var
+  SDL_GameControllerSetSensorEnabled : TSDL_GameControllerSetSensorEnabled_func = Nil;
+{$else}
+
 function SDL_GameControllerSetSensorEnabled(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; enabled: TSDL_bool): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetSensorEnabled' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Query whether sensor data reporting is enabled for a game controller.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerIsSensorEnabled_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
+Var
+  SDL_GameControllerIsSensorEnabled : TSDL_GameControllerIsSensorEnabled_func = Nil;
+{$else}
+
 function SDL_GameControllerIsSensorEnabled(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerIsSensorEnabled' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the data rate (number of events per second) of
@@ -515,8 +751,16 @@ function SDL_GameControllerIsSensorEnabled(gamecontroller: PSDL_GameController; 
  *
  * Returns the data rate, or 0.0 if the data rate is not available.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetSensorDataRate_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): cfloat; cdecl;
+Var
+  SDL_GameControllerGetSensorDataRate : TSDL_GameControllerGetSensorDataRate_func = Nil;
+{$else}
+
 function SDL_GameControllerGetSensorDataRate(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSensorDataRate' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the current state of a game controller sensor.
@@ -524,8 +768,16 @@ function SDL_GameControllerGetSensorDataRate(gamecontroller: PSDL_GameController
  * The number of values and interpretation of the data is sensor dependent.
  * See sdlsensor.inc for the details for each type of sensor.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetSensorData_func = function(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; data: pcfloat; num_values: cint): cint; cdecl;
+Var
+  SDL_GameControllerGetSensorData : TSDL_GameControllerGetSensorData_func = Nil;
+{$else}
+
 function SDL_GameControllerGetSensorData(gamecontroller: PSDL_GameController; senstype: TSDL_SensorType; data: pcfloat; num_values: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSensorData' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Get the current state of a game controller sensor with the timestamp of the
@@ -544,6 +796,19 @@ function SDL_GameControllerGetSensorData(gamecontroller: PSDL_GameController; se
  *
  * \since This function is available since SDL 2.26.0.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetSensorDataWithTimestamp_func = function(
+    gamecontroller: PSDL_GameController;
+    senstype: TSDL_SensorType;
+    timestamp: pcuint64;
+    data: pcfloat;
+    num_values: cint
+  ): cint; cdecl;
+Var
+  SDL_GameControllerGetSensorDataWithTimestamp : TSDL_GameControllerGetSensorDataWithTimestamp_func = Nil;
+{$else}
+
 function SDL_GameControllerGetSensorDataWithTimestamp(
   gamecontroller: PSDL_GameController;
   senstype: TSDL_SensorType;
@@ -552,12 +817,21 @@ function SDL_GameControllerGetSensorDataWithTimestamp(
   num_values: cint
 ): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetSensorDataWithTimestamp' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Query whether a game controller has rumble support.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerHasRumble_func = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+Var
+  SDL_GameControllerHasRumble : TSDL_GameControllerHasRumble_func = Nil;
+{$else}
+
 function SDL_GameControllerHasRumble(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasRumble' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Start a rumble effect on a game controller.
@@ -567,18 +841,39 @@ function SDL_GameControllerHasRumble(gamecontroller: PSDL_GameController): TSDL_
  *
  * Returns 0, or -1 if rumble isn't supported on this controller.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerRumble_func = function(
+    gamecontroller: PSDL_GameController;
+    low_frequency_rumble, high_frequency_rumble: cuint16;
+    duration_ms: cuint32
+  ): cint; cdecl;
+
+Var
+  SDL_GameControllerRumble : TSDL_GameControllerRumble_func = Nil;
+{$else}
+
 function SDL_GameControllerRumble(
   gamecontroller: PSDL_GameController;
   low_frequency_rumble, high_frequency_rumble: cuint16;
   duration_ms: cuint32
 ): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerRumble' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Query whether a game controller has rumble support on triggers.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerHasRumbleTriggers_func = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+Var
+  SDL_GameControllerHasRumbleTriggers : TSDL_GameControllerHasRumbleTriggers_func = Nil;
+{$else}
+
 function SDL_GameControllerHasRumbleTriggers(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasRumbleTriggers' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Start a rumble effect in the game controller's triggers.
@@ -593,26 +888,55 @@ function SDL_GameControllerHasRumbleTriggers(gamecontroller: PSDL_GameController
  *
  * Returns 0, or -1 if trigger rumble isn't supported on this controller
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerRumbleTriggers_func = function(
+    gamecontroller: PSDL_GameController;
+    left_rumble, right_rumble: cuint16;
+    duration_ms: cuint32
+  ): cint; cdecl;
+
+Var
+  SDL_GameControllerRumbleTriggers : TSDL_GameControllerRumbleTriggers_func = Nil;
+{$else}
+
 function SDL_GameControllerRumbleTriggers(
   gamecontroller: PSDL_GameController;
   left_rumble, right_rumble: cuint16;
   duration_ms: cuint32
 ): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerRumbleTriggers' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Query whether a game controller has an LED.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerHasLED_func = function(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
+Var
+  SDL_GameControllerHasLED : TSDL_GameControllerHasLED_func = Nil;
+{$else}
+
 function SDL_GameControllerHasLED(gamecontroller: PSDL_GameController): TSDL_Bool; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerHasLED' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Update a game controller's LED color.
  *
  * Returns 0, or -1 if this controller does not have a modifiable LED.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerSetLED_func = function(gamecontroller: PSDL_GameController; red, green, blue: cuint8): cint; cdecl;
+Var
+  SDL_GameControllerSetLED : TSDL_GameControllerSetLED_func = Nil;
+{$else}
+
 function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, green, blue: cuint8): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSetLED' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Send a controller-specific effect packet.
@@ -620,14 +944,24 @@ function SDL_GameControllerSetLED(gamecontroller: PSDL_GameController; red, gree
  * Returns 0, or -1 if this controller or driver does not
  * support effect packets.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerSendEffect_func = function(gamecontroller: PSDL_GameController; data: Pointer; size: cint): cint; cdecl;
+Var
+  SDL_GameControllerSendEffect : TSDL_GameControllerSendEffect_func = Nil;
+{$else}
+
 function SDL_GameControllerSendEffect(gamecontroller: PSDL_GameController; data: Pointer; size: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerSendEffect' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  Close a controller previously opened with SDL_GameControllerOpen().
- *}
+ *}  {$ifdef SDL_RUNTIME_LOADING}
+// TODO: Portieren
+{$else}
 procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerClose' {$ENDIF} {$ENDIF};
-
+     {$endif}
 {**
  * Return the sfSymbolsName for a given axis on a game controller
  * on Apple platforms.
@@ -635,8 +969,16 @@ procedure SDL_GameControllerClose(gamecontroller: PSDL_GameController) cdecl; ex
  * Returns the sfSymbolsName, or NIL if the name can't be found.
  * Do _not_ pass this string to SDL_free().
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetAppleSFSymbolsNameForAxis_func = function(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): PAnsiChar; cdecl;
+Var
+  SDL_GameControllerGetAppleSFSymbolsNameForAxis : TSDL_GameControllerGetAppleSFSymbolsNameForAxis_func = Nil;
+{$else}
+
 function SDL_GameControllerGetAppleSFSymbolsNameForAxis(gamecontroller: PSDL_GameController; axis: TSDL_GameControllerAxis): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAppleSFSymbolsNameForAxis' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Return the sfSymbolsName for a given button on a game controller
@@ -645,8 +987,16 @@ function SDL_GameControllerGetAppleSFSymbolsNameForAxis(gamecontroller: PSDL_Gam
  * Returns the sfSymbolsName, or NIL if the name can't be found.
  * Do _not_ pass this string to SDL_free().
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GameControllerGetAppleSFSymbolsNameForButton_func = function(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): PAnsiChar; cdecl;
+Var
+  SDL_GameControllerGetAppleSFSymbolsNameForButton : TSDL_GameControllerGetAppleSFSymbolsNameForButton_func = Nil;
+{$else}
+
 function SDL_GameControllerGetAppleSFSymbolsNameForButton(gamecontroller: PSDL_GameController; button: TSDL_GameControllerButton): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GameControllerGetAppleSFSymbolsNameForButton' {$ENDIF} {$ENDIF};
+{$endif}
 
 
 function SDL_GameControllerAddMappingsFromFile(Const FilePath:PAnsiChar):cint32;

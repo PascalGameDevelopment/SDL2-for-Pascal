@@ -39,8 +39,16 @@ type
  *
  * \sa SDL_GUIDFromString
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GUIDToString_proc = procedure(guid: TSDL_GUID; pszGUID: PAnsiChar; cbGUID: cint); cdecl;
+Var
+  SDL_GUIDToString : TSDL_GUIDToString_proc = Nil;
+{$else}
+
 procedure SDL_GUIDToString(guid: TSDL_GUID; pszGUID: PAnsiChar; cbGUID: cint); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GUIDToString' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  * Convert a GUID string into a ::SDL_GUID structure.
@@ -56,5 +64,13 @@ procedure SDL_GUIDToString(guid: TSDL_GUID; pszGUID: PAnsiChar; cbGUID: cint); c
  *
  * \sa SDL_GUIDToString
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_GUIDFromString_func = function(const pchGUID: PAnsiChar): TSDL_GUID; cdecl;
+Var
+  SDL_GUIDFromString : TSDL_GUIDFromString_func = Nil;
+{$else}
+
 function SDL_GUIDFromString(const pchGUID: PAnsiChar): TSDL_GUID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GUIDFromString' {$ENDIF} {$ENDIF};
+{$endif}

@@ -41,20 +41,44 @@ const
  *  Unless the SDL_INIT_NOPARACHUTE flag is set, it will install cleanup
  *  signal handlers for some commonly ignored fatal signals (like SIGSEGV).
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_Init_func = function(flags: TSDL_Init): cint; cdecl;
+Var
+  SDL_Init : TSDL_Init_func = Nil;
+{$else}
+
 function SDL_Init(flags: TSDL_Init): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Init' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  This function initializes specific SDL subsystems
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_InitSubSystem_func = function(flags: TSDL_Init): cint; cdecl;
+Var
+  SDL_InitSubSystem : TSDL_InitSubSystem_func = Nil;
+{$else}
+
 function SDL_InitSubSystem(flags: TSDL_Init): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_InitSubSystem' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  This function cleans up specific SDL subsystems
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_QuitSubSystem_proc = procedure(flags: TSDL_Init); cdecl;
+Var
+  SDL_QuitSubSystem : TSDL_QuitSubSystem_proc = Nil;
+{$else}
+
 procedure SDL_QuitSubSystem(flags: TSDL_Init); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_QuitSubSystem' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  This function returns a mask of the specified subsystems which have
@@ -62,13 +86,29 @@ procedure SDL_QuitSubSystem(flags: TSDL_Init); cdecl;
  *  
  *  If flags is 0, it returns a mask of all initialized subsystems.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_WasInit_func = function(flags: TSDL_Init): cuint32; cdecl;
+Var
+  SDL_WasInit : TSDL_WasInit_func = Nil;
+{$else}
+
 function SDL_WasInit(flags: TSDL_Init): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WasInit' {$ENDIF} {$ENDIF};
+{$endif}
 
 {**
  *  This function cleans up all initialized subsystems. You should
  *  call it upon all exit conditions.
  *}
+{$ifdef SDL_RUNTIME_LOADING}
+Type
+  TSDL_Quit_proc = procedure(); cdecl;
+Var
+  SDL_Quit : TSDL_Quit_proc = Nil;
+{$else}
+
 procedure SDL_Quit(); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Quit' {$ENDIF} {$ENDIF};
+{$endif}
 
